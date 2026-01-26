@@ -182,7 +182,6 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
     if (province) province.value = sanitizeProvince(province.value);
 
     const data = {
-      action: "onboarding_submit",
       paymentEmail: (paymentEmail?.value || "").trim(),
       plan: (plan?.value || "").trim(),
       businessName: (document.getElementById("businessName")?.value || "").trim(),
@@ -324,53 +323,27 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
       throw new Error("Endpoint non configurato. Incolla l'URL della Web App in js/onboarding.js");
     }
 
-    // Tentativo principale: fetch con timeout e lettura risposta JSON
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    const res = await fetch(GAS_ENDPOINT, {
+      method: "POST",
+      // Evita preflight CORS: inviamo JSON come text/plain
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    });
 
+    // Se la risposta non è JSON parsabile, solleva errore
+    const text = await res.text();
+    let json;
     try {
-      const res = await fetch(GAS_ENDPOINT, {
-        method: "POST",
-        // Evita preflight CORS: inviamo JSON come text/plain
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(data),
-        signal: controller.signal
-      });
-
-      const text = await res.text();
-      let json = null;
-      try { json = JSON.parse(text); } catch (_) { /* noop */ }
-
-      // Alcune Web App GAS rispondono con testo/HTML senza JSON.
-      // Se la richiesta è arrivata e lo status è OK, consideriamo l'invio riuscito.
-      if (res.ok && (!json || typeof json !== "object")) return { ok: true, via: "text" };
-
-      if (!json || json.ok !== true) {
-        const msg = (json && json.error) ? String(json.error) : "Errore durante l’invio.";
-        throw new Error(msg);
-      }
-      return json;
-    } catch (err) {
-      // Fallback CORS/rete: sendBeacon (non leggibile risposta)
-      const isAbort = err && (err.name === "AbortError");
-      const isFetchBlocked = err && (err.name === "TypeError"); // spesso "Failed to fetch" (CORS/rete)
-
-      if (isAbort || isFetchBlocked) {
-        const payload = JSON.stringify(data);
-        const blob = new Blob([payload], { type: "text/plain;charset=utf-8" });
-
-        if (navigator && typeof navigator.sendBeacon === "function") {
-          const ok = navigator.sendBeacon(GAS_ENDPOINT, blob);
-          if (ok) return { ok: true, via: "beacon" };
-        }
-
-        throw new Error("Invio bloccato dal browser (CORS/rete). Controlla che la Web App GAS sia pubblica (Chiunque) e riprova.");
-      }
-
-      throw err;
-    } finally {
-      clearTimeout(timeoutId);
+      json = JSON.parse(text);
+    } catch (e) {
+      throw new Error("Risposta non valida dal server (non JSON).");
     }
+
+    if (!json || json.ok !== true) {
+      const msg = (json && json.error) ? String(json.error) : "Errore sconosciuto.";
+      throw new Error(msg);
+    }
+    return json;
   }
 
   function setSubmitting(isSubmitting) {

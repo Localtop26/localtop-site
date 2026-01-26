@@ -90,52 +90,15 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyCS2yWHbGMBszYtCD
   }
 
   async function postToGAS(data) {
-    // Tentativo principale: fetch con timeout e lettura risposta (se possibile)
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
-
-    try {
-      const res = await fetch(GAS_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(data),
-        signal: controller.signal
-      });
-
-      const json = await res.json().catch(() => null);
-
-      // Alcune Web App GAS rispondono con testo/HTML senza JSON.
-      // Se la richiesta è arrivata e lo status è OK, consideriamo l'invio riuscito.
-      if (res.ok && (!json || typeof json !== "object")) return { ok: true, via: "text" };
-
-      if (!res.ok || !json || json.ok !== true) {
-        const errMsg = (json && json.error) ? String(json.error) : "Errore durante l’invio.";
-        throw new Error(errMsg);
-      }
-
-      return json;
-    } catch (err) {
-      // Fallback CORS/rete: sendBeacon (non leggibile risposta)
-      const isAbort = err && (err.name === "AbortError");
-      const isFetchBlocked = err && (err.name === "TypeError"); // spesso "Failed to fetch" (CORS/rete)
-
-      if (isAbort || isFetchBlocked) {
-        const payload = JSON.stringify(data);
-        const blob = new Blob([payload], { type: "text/plain;charset=utf-8" });
-
-        if (navigator && typeof navigator.sendBeacon === "function") {
-          const ok = navigator.sendBeacon(GAS_ENDPOINT, blob);
-          if (ok) return { ok: true, via: "beacon" };
-        }
-
-        throw new Error(
-          "Invio bloccato dal browser (CORS/rete). Controlla che la Web App GAS sia pubblica (Chiunque) e riprova."
-        );
-      }
-
-      throw err;
-    } finally {
-      clearTimeout(timeoutId);
+    const res = await fetch(GAS_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json().catch(() => null);
+    if (!res.ok || !json || json.ok !== true) {
+      const err = (json && json.error) ? json.error : "Errore durante l’invio.";
+      throw new Error(err);
     }
   }
 

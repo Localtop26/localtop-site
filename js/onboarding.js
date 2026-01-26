@@ -182,6 +182,7 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
     if (province) province.value = sanitizeProvince(province.value);
 
     const data = {
+      action: "onboarding_submit",
       paymentEmail: (paymentEmail?.value || "").trim(),
       plan: (plan?.value || "").trim(),
       businessName: (document.getElementById("businessName")?.value || "").trim(),
@@ -316,6 +317,8 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
     // rough ideas only for PREMIUM (facoltativo)
     if (planRoughWrap) planRoughWrap.hidden = v !== "PREMIUM";
   }
+
+
   async function postToGAS(data) {
     if (!GAS_ENDPOINT || GAS_ENDPOINT.includes("INCOLLA_QUI")) {
       throw new Error("Endpoint non configurato. Incolla l'URL della Web App in js/onboarding.js");
@@ -323,7 +326,7 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
 
     // Tentativo principale: fetch con timeout e lettura risposta JSON
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
 
     try {
       const res = await fetch(GAS_ENDPOINT, {
@@ -335,22 +338,20 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
       });
 
       const text = await res.text();
-      let json;
-      try {
-        json = JSON.parse(text);
-      } catch {
-        throw new Error("Risposta non valida dal server (non JSON).");
-      }
+      let json = null;
+      try { json = JSON.parse(text); } catch (_) { /* noop */ }
 
-      if (!res.ok || !json || json.ok !== true) {
+      // Alcune Web App GAS rispondono con testo/HTML senza JSON.
+      // Se la richiesta è arrivata e lo status è OK, consideriamo l'invio riuscito.
+      if (res.ok && (!json || typeof json !== "object")) return { ok: true, via: "text" };
+
+      if (!json || json.ok !== true) {
         const msg = (json && json.error) ? String(json.error) : "Errore durante l’invio.";
         throw new Error(msg);
       }
-
       return json;
     } catch (err) {
-      // Fallback: se il browser blocca CORS / rete (fetch fallisce), usa sendBeacon.
-      // sendBeacon non permette di leggere la risposta, ma consente l'invio cross-origin senza blocchi CORS.
+      // Fallback CORS/rete: sendBeacon (non leggibile risposta)
       const isAbort = err && (err.name === "AbortError");
       const isFetchBlocked = err && (err.name === "TypeError"); // spesso "Failed to fetch" (CORS/rete)
 

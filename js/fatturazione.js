@@ -88,13 +88,11 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyCS2yWHbGMBszYtCD
     }
     return true;
   }
-  async function postToGAS(data) {
-    if (!GAS_ENDPOINT || GAS_ENDPOINT.includes("INCOLLA_QUI")) {
-      throw new Error("Endpoint non configurato. Incolla l'URL della Web App in js/fatturazione.js");
-    }
 
+  async function postToGAS(data) {
+    // Tentativo principale: fetch con timeout e lettura risposta (se possibile)
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
 
     try {
       const res = await fetch(GAS_ENDPOINT, {
@@ -104,23 +102,22 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyCS2yWHbGMBszYtCD
         signal: controller.signal
       });
 
-      const text = await res.text();
-      let json;
-      try {
-        json = JSON.parse(text);
-      } catch {
-        throw new Error("Risposta non valida dal server (non JSON).");
-      }
+      const json = await res.json().catch(() => null);
+
+      // Alcune Web App GAS rispondono con testo/HTML senza JSON.
+      // Se la richiesta è arrivata e lo status è OK, consideriamo l'invio riuscito.
+      if (res.ok && (!json || typeof json !== "object")) return { ok: true, via: "text" };
 
       if (!res.ok || !json || json.ok !== true) {
-        const msg = (json && json.error) ? String(json.error) : "Errore durante l’invio.";
-        throw new Error(msg);
+        const errMsg = (json && json.error) ? String(json.error) : "Errore durante l’invio.";
+        throw new Error(errMsg);
       }
 
       return json;
     } catch (err) {
+      // Fallback CORS/rete: sendBeacon (non leggibile risposta)
       const isAbort = err && (err.name === "AbortError");
-      const isFetchBlocked = err && (err.name === "TypeError");
+      const isFetchBlocked = err && (err.name === "TypeError"); // spesso "Failed to fetch" (CORS/rete)
 
       if (isAbort || isFetchBlocked) {
         const payload = JSON.stringify(data);
@@ -131,7 +128,9 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyCS2yWHbGMBszYtCD
           if (ok) return { ok: true, via: "beacon" };
         }
 
-        throw new Error("Invio bloccato dal browser (CORS/rete). Controlla che la Web App GAS sia pubblica (Chiunque) e riprova.");
+        throw new Error(
+          "Invio bloccato dal browser (CORS/rete). Controlla che la Web App GAS sia pubblica (Chiunque) e riprova."
+        );
       }
 
       throw err;

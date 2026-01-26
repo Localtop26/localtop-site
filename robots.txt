@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /base-demo.html
+Disallow: /grazie.html
+Disallow: /onboarding.html
+Disallow: /fatturazione.html
+Disallow: /plus-demo.html
+Disallow: /premium-demo.html
+Disallow: /demos/
+
+Sitemap: https://localtop.it/sitemap.xml

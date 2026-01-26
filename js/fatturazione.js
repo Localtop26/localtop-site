@@ -90,16 +90,46 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyCS2yWHbGMBszYtCD
   }
 
   async function postToGAS(data) {
+  // 1) Tentativo principale: fetch con timeout e lettura risposta JSON
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+  try {
     const res = await fetch(GAS_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
+      signal: controller.signal
     });
+
     const json = await res.json().catch(() => null);
     if (!res.ok || !json || json.ok !== true) {
       const err = (json && json.error) ? json.error : "Errore durante l’invio.";
       throw new Error(err);
     }
+    return json;
+  } catch (err) {
+    // Fallback CORS/rete: sendBeacon (non leggibile risposta)
+    const isAbort = err && (err.name === "AbortError");
+    const isFetchBlocked = err && (err.name === "TypeError"); // spesso "Failed to fetch" (CORS/rete)
+
+    if (isAbort || isFetchBlocked) {
+      const payload = JSON.stringify(data);
+      const blob = new Blob([payload], { type: "text/plain;charset=utf-8" });
+
+      if (navigator && typeof navigator.sendBeacon === "function") {
+        const ok = navigator.sendBeacon(GAS_ENDPOINT, blob);
+        if (ok) return { ok: true, via: "beacon" };
+      }
+
+      throw new Error("Invio bloccato dal browser (CORS/rete). Controlla che la Web App GAS sia pubblica (Chiunque) e riprova.");
+    }
+
+    throw err;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
   }
 
   form.addEventListener("submit", async (e) => {

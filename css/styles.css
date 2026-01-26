@@ -125,12 +125,14 @@ img{max-width:100%;display:block}
 
 /* Footer */
 footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:13px;text-align:center}
-.footRow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;max-width:1120px;margin:0 auto;padding:0 16px}
+.footRow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;max-width:1120px;margin:0 auto;padding:0 16px;text-align:center}
 .footLinks{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 .footRow a{text-decoration:none;color:var(--muted);font-weight:600}
 .footRow a:hover{color:var(--plus);}
 
 @media(min-width:980px){
+  .footRow{flex-direction:row;text-align:center}
+
   .menuBtn{display:none;}
   .navDesktop{display:flex;}
   .mobileMenu{display:none;}

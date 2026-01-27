@@ -583,4 +583,24 @@ h3 { font-size: 1.125rem; }
   background: transparent;
 }
 
+/* === Form validation (LocalTop) === */
+.is-invalid {
+  border-color: #dc2626;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
 
+.radioGroup.is-invalid,
+.checkboxRow.is-invalid,
+.privacy-consent.is-invalid {
+  border: 1px solid #dc2626;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.10);
+}
+
+.field-error {
+  color: #dc2626;
+  font-size: 0.92rem;
+  margin-top: 6px;
+}

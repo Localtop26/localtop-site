@@ -100,7 +100,7 @@
 </div>
 <div class="formRow">
 <label for="phone"><strong>Telefono</strong> <span class="req">*</span></label>
-<input autocomplete="tel" id="phone" name="phone" placeholder="es. 340 123 4567" required="" type="tel"/>
+<input autocomplete="tel" id="phone" name="phone" placeholder="es. 340 123 4567" required="" type="tel"/ inputmode="tel">
 </div>
 <div class="formRow">
 <label for="city"><strong>Città</strong> <span class="req">*</span></label>
@@ -108,7 +108,7 @@
 </div>
 <div class="formRow">
 <label for="province"><strong>Provincia (sigla)</strong> <span class="req">*</span></label>
-<input autocomplete="address-level1" id="province" maxlength="2" name="province" placeholder="es. MS" required="" type="text" />
+<input autocomplete="address-level1" id="province" maxlength="2" name="province" placeholder="es. MS" required="" type="text" / pattern="[A-Za-z]{2}" autocapitalize="characters">
 <small class="muted">Inserisci la sigla (2 lettere), es. MS, MI, RM.</small>
 </div>
 <div class="formRow">

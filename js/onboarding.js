@@ -69,6 +69,84 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
     "strength2",
     "strength3"
   ];
+  // === Field-level validation helpers ===
+  function getErrorId_(key) {
+    return "err_" + key;
+  }
+
+  function clearFieldError_(elOrWrap) {
+    if (!elOrWrap) return;
+    elOrWrap.classList.remove("is-invalid");
+    const key = elOrWrap.getAttribute("data-errkey");
+    if (key) {
+      const errEl = document.getElementById(getErrorId_(key));
+      if (errEl) errEl.remove();
+      elOrWrap.removeAttribute("data-errkey");
+    }
+  }
+
+  function setFieldError_(elOrWrap, key, message) {
+    if (!elOrWrap) return;
+    elOrWrap.classList.add("is-invalid");
+    elOrWrap.setAttribute("data-errkey", key);
+
+    const errId = getErrorId_(key);
+    let errEl = document.getElementById(errId);
+    if (!errEl) {
+      errEl = document.createElement("div");
+      errEl.id = errId;
+      errEl.className = "field-error";
+      // inserisci subito dopo il campo / wrapper
+      const parent = elOrWrap.parentNode;
+      if (parent) {
+        if (elOrWrap.nextSibling) parent.insertBefore(errEl, elOrWrap.nextSibling);
+        else parent.appendChild(errEl);
+      }
+    }
+    errEl.textContent = message || "Campo non valido.";
+  }
+
+  function clearAllFieldErrors_() {
+    form.querySelectorAll(".is-invalid").forEach((el) => clearFieldError_(el));
+    // rimuovi eventuali errori orfani
+    form.querySelectorAll(".field-error[id^='err_']").forEach((el) => el.remove());
+  }
+
+  function scrollToFirstError_() {
+    const first = form.querySelector(".is-invalid");
+    if (!first) return;
+    first.scrollIntoView({ behavior: "smooth", block: "center" });
+    // focus sul primo input interno se è un wrapper
+    const focusable = first.matches("input, select, textarea") ? first : first.querySelector("input, select, textarea");
+    if (focusable) focusable.focus();
+  }
+
+  function findRadioGroupWrap_(name) {
+    const input = form.querySelector(`input[name="${name}"]`);
+    if (!input) return null;
+    return input.closest(".radioGroup") || input.parentElement;
+  }
+
+  // pulizia errori live
+  form.addEventListener("input", (e) => {
+    const t = e.target;
+    if (!t) return;
+    if (t.closest(".radioGroup")) return; // gestito su change
+    clearFieldError_(t);
+  });
+
+  form.addEventListener("change", (e) => {
+    const t = e.target;
+    if (!t) return;
+    const rg = t.closest(".radioGroup");
+    if (rg) clearFieldError_(rg);
+    clearFieldError_(t);
+    const pc = t.closest(".privacy-consent");
+    if (pc) clearFieldError_(pc);
+    const cb = t.closest(".checkboxRow");
+    if (cb) clearFieldError_(cb);
+  });
+
 
   function setAlert(kind, msg) {
     if (!alertBox) return;
@@ -226,17 +304,114 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
     return data;
   }
 
+  
   function validateClientSide(data) {
-    // campi sempre obbligatori
+    clearAllFieldErrors_();
+
+    let firstMsg = "";
+
+    function need(elOrId, msg) {
+      const el = (typeof elOrId === "string") ? document.getElementById(elOrId) : elOrId;
+      const key = (typeof elOrId === "string") ? elOrId : (elOrId && elOrId.id ? elOrId.id : "field");
+      const val = (el && "value" in el) ? String(el.value || "").trim() : "";
+      if (!val) {
+        setFieldError_(el, key, msg);
+        if (!firstMsg) firstMsg = msg;
+        return false;
+      }
+      return true;
+    }
+
+    // campi sempre obbligatori (con messaggio generico)
     for (const id of requiredAlways) {
       const el = document.getElementById(id);
       if (!el) continue;
       const val = (el.value || "").trim();
       if (!val) {
-        el.focus();
-        setAlert("err", "Compila tutti i campi obbligatori prima di inviare.");
-        return false;
+        setFieldError_(el, id, "Campo obbligatorio.");
+        if (!firstMsg) firstMsg = "Compila tutti i campi obbligatori.";
       }
+    }
+
+    // radio groups obbligatori
+    if (!data.businessType) {
+      const wrap = findRadioGroupWrap_("businessType");
+      setFieldError_(wrap, "businessType", "Seleziona il tipo di attività.");
+      if (!firstMsg) firstMsg = "Seleziona il tipo di attività.";
+    }
+
+    if (!data.googleProfile) {
+      const wrap = findRadioGroupWrap_("googleProfile");
+      setFieldError_(wrap, "googleProfile", "Seleziona se il profilo Google Business esiste già o va creato.");
+      if (!firstMsg) firstMsg = "Seleziona il profilo Google Business.";
+    }
+
+    if (!data.materials) {
+      const wrap = findRadioGroupWrap_("materials");
+      setFieldError_(wrap, "materials", "Seleziona come preferisci inviarci foto e logo.");
+      if (!firstMsg) firstMsg = "Seleziona come inviarci foto e logo.";
+    }
+
+    // privacy
+    if (!data.privacyAccepted) {
+      const pc = document.querySelector(".privacy-consent") || document.getElementById("privacyAccepted");
+      setFieldError_(pc, "privacyAccepted", "Per proseguire devi accettare la Privacy e Cookie.");
+      if (!firstMsg) firstMsg = "Devi accettare Privacy e Cookie.";
+    }
+
+    // vincoli condizionali business type
+    if (data.businessType === "SEDE") {
+      if (!data.address) {
+        setFieldError_(document.getElementById("address"), "address", "Inserisci l’indirizzo della sede.");
+        if (!firstMsg) firstMsg = "Inserisci l’indirizzo della sede.";
+      }
+      if (!data.openingHours) {
+        setFieldError_(document.getElementById("openingHours"), "openingHours", "Inserisci gli orari di apertura.");
+        if (!firstMsg) firstMsg = "Inserisci gli orari di apertura.";
+      }
+    }
+
+    if (data.businessType === "DOMICILIO") {
+      if (!data.serviceArea) {
+        setFieldError_(document.getElementById("serviceArea"), "serviceArea", "Inserisci la zona/area di servizio.");
+        if (!firstMsg) firstMsg = "Inserisci la zona/area di servizio.";
+      }
+    }
+
+    // vincoli condizionali plan
+    if (data.plan === "PLUS" || data.plan === "PREMIUM") {
+      if (!data.priority) {
+        setFieldError_(document.getElementById("priority"), "priority", "Indica cosa vuoi evidenziare (priorità).");
+        if (!firstMsg) firstMsg = "Indica la priorità.";
+      }
+    }
+
+    // provincia 2 lettere
+    if (!data.province || String(data.province).length !== 2) {
+      setFieldError_(document.getElementById("province"), "province", "Provincia non valida: inserisci la sigla (2 lettere), es. MS.");
+      if (!firstMsg) firstMsg = "Provincia non valida (2 lettere).";
+    }
+
+    // email: validità base
+    if (data.paymentEmail) {
+      const emailEl = document.getElementById("paymentEmail");
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(data.paymentEmail));
+      if (!ok) {
+        setFieldError_(emailEl, "paymentEmail", "Email non valida.");
+        if (!firstMsg) firstMsg = "Email non valida.";
+      }
+    }
+
+    // se ci sono errori: alert + scroll
+    if (form.querySelector(".is-invalid")) {
+      setAlert("err", firstMsg || "Compila correttamente i campi evidenziati in rosso.");
+      scrollToFirstError_();
+      return false;
+    }
+
+    return true;
+  }
+
     }
 
     if (!data.businessType) {
@@ -365,10 +540,6 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
   }
 
   form.addEventListener("submit", async (e) => {
-    // Anti-doppio click: disabilita subito il submit
-    const __submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-    if (__submitBtn) __submitBtn.disabled = true;
-
     e.preventDefault();
     clearAlert();
 
@@ -384,8 +555,6 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
       window.location.href = `fatturazione.html?email=${email}&plan=${plan}`;
       return;
     } catch (err) {
-      if (typeof __submitBtn !== 'undefined' && __submitBtn) __submitBtn.disabled = false;
-
       const msg = (err && err.message) ? err.message : "Errore durante l’invio.";
       setAlert("err", msg);
     } finally {

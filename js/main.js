@@ -94,7 +94,13 @@
     el.style.display = 'none';
   }
 
-  window.loadGA = function loadGA() {
+  
+  window.openCookiePreferences = function openCookiePreferences() {
+    if (!isHostAllowed()) return;
+    showCookieBanner();
+  };
+
+window.loadGA = function loadGA() {
     if (!isHostAllowed()) return;
     if (window.__gaLoaded) return;
     window.__gaLoaded = true;
@@ -179,7 +185,14 @@ function initCookieBannerAndGA() {
         var action = btn.getAttribute('data-cookie-action');
         if (action === 'accept') window.acceptCookies();
         if (action === 'reject') window.rejectCookies();
-      });
+      }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-cookie-open]');
+      if (!a) return;
+      e.preventDefault();
+      window.openCookiePreferences();
+    });
+);
     }
 
     // view_demo (only on demo pages)

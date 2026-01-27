@@ -132,42 +132,18 @@
     hideCookieBanner();
   };
 
-
-  function initPremiumEntryFlag() {
-    // Mark direct entry to Premium demo without polluting URL
-    var KEY = 'lt_premium_entry';
-    var links = Array.from(document.querySelectorAll('a[href]'));
-
-    links.forEach(function (a) {
-      var href = a.getAttribute('href');
-      if (!href) return;
-
-      var u;
-      try { u = new URL(href, window.location.origin); }
-      catch (e) { return; }
-
-      if (u.pathname !== '/premium-demo') return;
-
-      a.addEventListener('click', function () {
-        try {
-          localStorage.setItem(KEY, JSON.stringify({ v: 1, ts: Date.now() }));
-        } catch (e) {}
-      });
-    });
-  }
-
   function initCookieBannerAndGA() {
-    if (!isHostAllowed()) return;
-
-    ensureGtagStub();
+    var hostAllowed = isHostAllowed();
+    if (hostAllowed) ensureGtagStub();
 
     var consent = localStorage.getItem('cookieConsent');
-    if (consent === 'accepted') {
+    if (hostAllowed && consent === 'accepted') {
       window.gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'denied' });
       window.loadGA();
-    } else if (consent === 'rejected') {
+    } else if (hostAllowed && consent === 'rejected') {
       // Do nothing: no banner, no GA
     } else {
+      // Always show banner when consent is not set, even on preview/dev hosts.
       showCookieBanner();
     }
 
@@ -179,16 +155,7 @@
         var action = btn.getAttribute('data-cookie-action');
         if (action === 'accept') window.acceptCookies();
         if (action === 'reject') window.rejectCookies();
-      }
-    // Re-open cookie preferences (Privacy page "QUI")
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-reopen-cookie]');
-      if (!btn) return;
-      e.preventDefault();
-      try { localStorage.removeItem('cookieConsent'); } catch (e2) {}
-      showCookieBanner();
-    });
-);
+      });
     }
 
     // view_demo (only on demo pages)
@@ -219,9 +186,19 @@
     });
   }
 
+  
+  // Re-open cookie banner from Privacy page (clean: reset + reload)
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-reopen-cookie]');
+    if (!btn) return;
+    e.preventDefault();
+    try { localStorage.removeItem('cookieConsent'); } catch (e2) {}
+    location.reload();
+  });
+
+
   document.addEventListener('DOMContentLoaded', initCookieBannerAndGA);
 
   setActiveLinks();
   initMobileMenu();
-  initPremiumEntryFlag();
 })();

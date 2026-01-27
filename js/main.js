@@ -191,7 +191,7 @@ function initCookieBannerAndGA() {
       if (!a) return;
       e.preventDefault();
       window.openCookiePreferences();
-    });
+     e.stopImmediatePropagation(); return false; });
 );
     }
 

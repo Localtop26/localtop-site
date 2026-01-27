@@ -103,6 +103,10 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2
   }
 
   form.addEventListener("submit", async (e) => {
+    // Anti-doppio click: disabilita subito il submit
+    const __submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (__submitBtn) __submitBtn.disabled = true;
+
     e.preventDefault();
     clearAlert();
 
@@ -117,6 +121,8 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2
       window.location.href = "conferma-dati.html";
       return;
     } catch (err) {
+      if (typeof __submitBtn !== 'undefined' && __submitBtn) __submitBtn.disabled = false;
+
       const msg = (err && err.message) ? err.message : "Errore durante l’invio.";
       setAlert("err", msg);
     } finally {

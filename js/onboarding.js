@@ -365,6 +365,10 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
   }
 
   form.addEventListener("submit", async (e) => {
+    // Anti-doppio click: disabilita subito il submit
+    const __submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (__submitBtn) __submitBtn.disabled = true;
+
     e.preventDefault();
     clearAlert();
 
@@ -380,6 +384,8 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
       window.location.href = `fatturazione.html?email=${email}&plan=${plan}`;
       return;
     } catch (err) {
+      if (typeof __submitBtn !== 'undefined' && __submitBtn) __submitBtn.disabled = false;
+
       const msg = (err && err.message) ? err.message : "Errore durante l’invio.";
       setAlert("err", msg);
     } finally {

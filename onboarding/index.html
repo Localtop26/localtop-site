@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Onboarding — LocalTop</title>
+<meta content="Raccolta dati per avvio sito LocalTop (pagina non indicizzata)." name="description"/>
+<link href="/css/styles.css" rel="stylesheet"/>
+<link href="https://localtop.it/onboarding" rel="canonical"/>
+<meta content="noindex, follow" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="LocalTop" property="og:site_name"/>
+<meta content="Onboarding – LocalTop" property="og:title"/>
+<meta content="Onboarding per attivazione LocalTop: inserisci i dati essenziali dell’attività." property="og:description"/>
+<meta content="https://localtop.it/onboarding" property="og:url"/>
+<meta content="https://localtop.it/assets/img/localtop-logo.png" property="og:image"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Onboarding – LocalTop" name="twitter:title"/>
+<meta content="Onboarding per attivazione LocalTop: inserisci i dati essenziali dell’attività." name="twitter:description"/>
+<meta content="https://localtop.it/assets/img/localtop-logo.png" name="twitter:image"/>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "LocalTop",
+    "url": "https://localtop.it/",
+    "logo": "https://localtop.it/assets/img/localtop-logo.png"
+  }
+  </script>
+
+<link rel="icon" href="/assets/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/favicon.png">
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+</script>
+</head>
+<body class="onboardingPage">
+<header aria-label="Header LocalTop" class="siteHeader">
+<div class="container">
+<div class="headerInner">
+<div aria-label="LocalTop" class="brand">
+<img alt="LocalTop" class="brandLogo" src="/assets/img/localtop-logo.png"/>
+</div>
+</div>
+</div>
+</header>
+<main class="page container">
+<section class="contact-hero">
+<div class="kicker">ATTIVAZIONE – PASSO 1 DI 2</div>
+<h1>Dati per l’attivazione</h1>
+<p class="lead">
+  Compila i dati necessari per attivare il servizio.<br>
+  Se qualcosa non è chiaro, scrivilo nelle note.
+</p>
+<div class="muted u-mt-8"><span class="req">*</span> Campo obbligatorio</div>
+</section>
+<section aria-label="Modulo onboarding" class="contactGrid">
+<div class="contactCard">
+<div aria-live="polite" class="onbAlert" hidden="" id="onbAlert" role="status"></div>
+<form class="formStack" id="onboardingForm" novalidate="">
+<h2 class="onbSectionTitle">Dati principali</h2>
+<div class="onbGrid">
+<div class="full formRow">
+<label for="paymentEmail"><strong>Email usata per il pagamento</strong> <span class="req">*</span></label>
+<input autocomplete="email" id="paymentEmail" name="paymentEmail" placeholder="es. nome@dominio.it" required="" type="email"/>
+</div>
+<div class="full formRow">
+<label for="plan"><strong>Piano scelto</strong> <span class="req">*</span></label>
+<select id="plan" name="plan" required="">
+<option disabled="" selected="" value="">Seleziona…</option>
+<option value="BASE">BASE</option>
+<option value="PLUS">PLUS</option>
+<option value="PREMIUM">PREMIUM</option>
+</select>
+</div><div class="formRow full"><div class="planBoxWrap"><div class="noteBox onbPlanBox" hidden="" id="planBaseBox">
+<h3 class="noteTitle">Piano BASE</h3>
+<p>Con il piano <strong>BASE</strong> attiviamo la struttura standard del servizio.<br/>
+          Se in futuro vorrai personalizzazioni o contenuti avanzati, potrai passare a <strong>PLUS</strong> o <strong>PREMIUM</strong>.</p>
+</div><div class="noteBox onbPlanBox" hidden="" id="planPlusBox">
+<h3 class="noteTitle">Piano PLUS</h3>
+<p>Con il piano <strong>PLUS</strong> personalizziamo il sito oltre la struttura standard.<br/>
+          Dopo l’invio dei dati potremmo contattarti per definire alcuni dettagli.</p>
+</div><div class="noteBox onbPlanBox onbPlanBoxPremium" hidden="" id="planPremiumBox">
+<h3 class="noteTitle">Piano PREMIUM</h3>
+<p>Con il piano <strong>PREMIUM</strong> il sito viene progettato su misura.<br/>
+          Dopo l’invio dei dati verrai contattato per definire impostazione e contenuti.</p>
+</div></div></div>
+<hr class="sep"/>
+<div class="formRow full">
+<label for="businessName"><strong>Nome attività</strong> <span class="req">*</span></label>
+<input id="businessName" name="businessName" placeholder="es. Idraulica Rossi" required="" type="text" maxlength="80" />
+</div>
+<div class="formRow">
+<label for="contactName"><strong>Nome e cognome referente</strong> <span class="req">*</span></label>
+<input autocomplete="name" id="contactName" name="contactName" placeholder="es. Mario Rossi" required="" type="text" maxlength="80" />
+</div>
+<div class="formRow">
+<label for="phone"><strong>Telefono</strong> <span class="req">*</span></label>
+<input autocomplete="tel" id="phone" name="phone" placeholder="es. 340 123 4567" required="" type="tel"/>
+</div>
+<div class="formRow">
+<label for="city"><strong>Città</strong> <span class="req">*</span></label>
+<input autocomplete="address-level2" id="city" name="city" placeholder="es. Carrara" required="" type="text" maxlength="80" />
+</div>
+<div class="formRow">
+<label for="province"><strong>Provincia (sigla)</strong> <span class="req">*</span></label>
+<input autocomplete="address-level1" id="province" maxlength="2" name="province" placeholder="es. MS" required="" type="text" />
+<small class="muted">Inserisci la sigla (2 lettere), es. MS, MI, RM.</small>
+</div>
+<div class="formRow">
+<label for="publicEmail"><strong>Email pubblica</strong> <span class="muted">(facoltativa)</span></label>
+<input id="publicEmail" name="publicEmail" placeholder="es. info@attivita.it" type="email"/>
+<small class="muted">Se diversa da quella del pagamento.</small>
+</div>
+<div class="formRow">
+<label for="businessDescription"><strong>Descrizione attività</strong> <span class="req">*</span> (500)</label>
+<textarea id="businessDescription" name="businessDescription" placeholder="Descrizione chiara dell’attività." required="" rows="4" maxlength="500"></textarea>
+<small class="muted onbCounter" id="businessDescriptionCounter">0 / 500</small></div>
+<div class="onbGroupTitle">Punti di forza Attività:</div>
+<div class="formRow">
+<label for="strength1"><strong>Punto di forza 1</strong> <span class="req">*</span></label>
+<input id="strength1" maxlength="60" name="strength1" placeholder="es. Intervento rapido" required="" type="text" /><small class="muted onbCounter" id="strength1Counter">0 / 60</small>
+</div>
+<div class="formRow">
+<label for="strength2"><strong>Punto di forza 2</strong> <span class="req">*</span></label>
+<input id="strength2" maxlength="60" name="strength2" placeholder="es. Preventivo chiaro" required="" type="text" /><small class="muted onbCounter" id="strength2Counter">0 / 60</small>
+</div>
+<div class="formRow">
+<label for="strength3"><strong>Punto di forza 3</strong> <span class="req">*</span></label>
+<input id="strength3" maxlength="60" name="strength3" placeholder="es. Esperienza certificata" required="" type="text" /><small class="muted onbCounter" id="strength3Counter">0 / 60</small>
+<small class="muted"></small>
+</div>
+<h2 class="onbSectionTitle">Dettagli del piano</h2>
+<div class="onbConditional" hidden="" id="planExtraWrap">
+<div class="formRow" id="planPriorityWrap">
+<label for="priority"><strong>Cosa vuoi evidenziare (priorità)?</strong> <span class="req">*</span></label>
+<textarea id="priority" name="priority" placeholder="Esempio: servizi principali, urgenze, differenziazione, punti di forza, specializzazione, anni di esperienza…" rows="4" maxlength="300"></textarea>
+<small class="muted onbCounter" id="priorityCounter">0 / 300</small>
+</div>
+<div class="formRow" id="planStyleWrap">
+<label for="stylePreferences"><strong>Stile e preferenze</strong> <span class="muted">(facoltativo)</span></label>
+<textarea id="stylePreferences" name="stylePreferences" placeholder="Esempio: colori preferiti, siti di esempio, tono più serio o più moderno." rows="3" maxlength="300"></textarea>
+<small class="muted onbCounter" id="stylePreferencesCounter">0 / 300</small>
+</div>
+<div class="formRow" hidden="" id="planRoughWrap">
+<label for="roughIdeas"><strong>Testi o idee grezze da ottimizzare</strong> <span class="muted">(facoltativo ma consigliato)</span></label>
+<textarea id="roughIdeas" name="roughIdeas" placeholder="Scrivi anche in modo disordinato: li sistemiamo noi." rows="4" maxlength="300"></textarea>
+<small class="muted onbCounter" id="roughIdeasCounter">0 / 300</small>
+</div>
+</div>
+</div>
+<hr class="sep"/>
+<hr class="sep"/>
+<h2 class="onbSectionTitle">Tipo attività</h2>
+<div class="formRow">
+<div aria-label="Tipo attività" class="radioGroup" role="radiogroup">
+<label class="radioOpt">
+<input name="businessType" required="" type="radio" value="SEDE"/>
+<span>Attività con sede aperta al pubblico</span>
+</label>
+<label class="radioOpt">
+<input name="businessType" required="" type="radio" value="DOMICILIO"/>
+<span>Attività che lavora principalmente a domicilio</span>
+</label>
+</div>
+</div>
+<div class="onbConditional" hidden="" id="typeSede">
+<div class="formRow">
+<label for="address"><strong>Indirizzo sede</strong> <span class="req">*</span></label>
+<input id="address" name="address" placeholder="Via, numero, CAP, città" type="text" maxlength="150" />
+</div>
+<div class="formRow">
+<label for="openingHours"><strong>Orari apertura</strong> <span class="req">*</span></label>
+<textarea id="openingHours" name="openingHours" placeholder="Esempio:
+Lun–Ven 08:30–12:30 / 15:00–19:00
+Sab 09:00–12:00" rows="4"></textarea>
+</div>
+<div class="formRow">
+<label for="closingDays"><strong>Giorni di chiusura / festività</strong> <span class="muted">(facoltativo)</span></label>
+<textarea id="closingDays" name="closingDays" placeholder="Esempio:
+Domenica
+Festivi" rows="3"></textarea>
+</div>
+</div>
+<div class="onbConditional" hidden="" id="typeDomicilio">
+<div class="formRow">
+<label for="serviceArea"><strong>Zona in cui lavori abitualmente</strong> <span class="req">*</span></label>
+<textarea id="serviceArea" name="serviceArea" placeholder="Esempio:
+Carrara e provincia + Versilia (fino a 30 km)" rows="3"></textarea>
+</div>
+</div>
+<hr class="sep"/>
+<h2 class="onbSectionTitle">Profilo Google Business</h2>
+<div class="formRow">
+<div aria-label="Profilo Google Business" class="radioGroup" role="radiogroup">
+<label class="radioOpt">
+<input name="googleProfile" required="" type="radio" value="SI"/>
+<span>Sì, esiste già</span>
+</label>
+<label class="radioOpt">
+<input name="googleProfile" required="" type="radio" value="NO"/>
+<span>No, va creato</span>
+</label>
+</div>
+</div>
+<div class="noteBox onbInfoBox" hidden="" id="googleYesBox">
+          Utilizzeremo il profilo Google già esistente per collegarlo e ottimizzarlo.
+          Dopo l’invio dei dati ti guideremo passo passo per concederci l’accesso come amministratori tecnici.
+        </div>
+<div class="noteBox onbInfoBox" hidden="" id="googleNoBox">
+          Ci occupiamo noi della creazione del profilo Google Business intestato alla tua attività.
+          Ti guideremo nei passaggi necessari per completare correttamente l’attivazione.
+        </div>
+<div class="onbConditional" hidden="" id="googleLinkWrap">
+<div class="formRow">
+<label for="googleLink"><strong>Link profilo Google</strong> <span class="muted">(facoltativo)</span></label>
+<input id="googleLink" name="googleLink" placeholder="Incolla qui il link (se lo trovi)" type="url"/>
+<small class="muted">
+              Come prendere il link: apri Google Maps → cerca la tua attività → apri la scheda → “Condividi” → “Copia link”.
+            </small>
+</div>
+</div>
+<hr class="sep"/>
+<h2 class="onbSectionTitle">Servizi e materiali</h2>
+<div class="formRow full">
+<label for="services"><strong>Servizi principali</strong> <span class="req">*</span> (300)</label>
+<textarea id="services" name="services" placeholder="Scrivi uno per riga.
+Esempio:
+- Installazione caldaie
+- Riparazioni urgenti
+- Manutenzione" required="" rows="5" maxlength="300"></textarea>
+<small class="muted onbCounter" id="servicesCounter">0 / 300</small>
+<small class="muted onbAfterServicesNote">Uno per riga. Se non sei sicuro, scrivi quelli più importanti.</small>
+</div>
+<div class="formRow">
+<label><strong>Come preferisci inviarci foto e logo dell’attività?</strong> <span class="req">*</span></label>
+<div aria-label="Invio foto e logo" class="radioGroup" role="radiogroup">
+<label class="radioOpt">
+<input name="materials" required="" type="radio" value="WHATSAPP"/>
+<span>WhatsApp</span>
+</label>
+<label class="radioOpt">
+<input name="materials" required="" type="radio" value="EMAIL"/>
+<span>Email</span>
+</label>
+<label class="radioOpt">
+<input name="materials" required="" type="radio" value="NON_LI_HO"/>
+<span>Non li ho ancora, li invierò successivamente.</span>
+</label>
+</div>
+<small class="formHelp formHelpAfterGroup">Se scegli WhatsApp o Email, ti contatteremo noi.</small>
+</div>
+<div class="formRow full">
+<label for="notes"><strong>Note finali</strong> <span class="muted">(facoltativo)</span> (300)</label>
+<textarea id="notes" name="notes" placeholder="Qui puoi scrivere qualsiasi cosa: dettagli, richieste, dubbi, preferenze." rows="4" maxlength="300"></textarea>
+<small class="muted onbCounter" id="notesCounter">0 / 300</small>
+</div>
+<hr class="sep"/>
+<div class="formRow full">
+  <div class="privacy-consent">
+    <label class="privacy-label" for="privacyAccepted">
+      <input id="privacyAccepted" name="privacyAccepted" required="" type="checkbox" value="1"/>
+      <span>
+        Dichiaro di aver letto e accettato la
+        <a href="/privacy-e-cookie" rel="noopener" target="_blank">Privacy e Cookie</a>.
+        <span class="muted">(Obbligatorio)</span>
+      </span>
+    </label>
+  </div>
+</div>
+<div class="formRow">
+<button class="btn premium" id="submitBtn" type="submit">Continua: dati di fatturazione</button>
+
+</div>
+<div class="noteBox u-mt-12">
+<strong>Dopo l’invio:</strong> ti porteremo al passo 2 per inserire i dati di fatturazione. Poi verificheremo il pagamento e le informazioni inviate. Se manca qualcosa o servono chiarimenti, ti contatteremo noi.</div>
+</form>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">
+<div class="footRow">
+<div>LocalTop © 2026 · P.IVA 01499880456</div>
+</div>
+</div>
+</footer>
+<script defer="" src="/js/main.js"></script>
+<script defer="" src="/js/onboarding.js"></script>
+  <div id="cookieBanner" class="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie banner">
+    <div class="cookieBanner__inner">
+      <p class="cookieBanner__text">
+        Questo sito utilizza cookie tecnici e di analisi per migliorare l’esperienza di navigazione.<br>
+        Per maggiori informazioni consulta la <a href="/privacy-e-cookie">Privacy e Cookie Policy</a>.
+      </p>
+      <div class="cookieBanner__actions">
+        <button type="button" class="cookieBtn cookieBtn--reject" data-cookie-action="reject">Rifiuta</button>
+        <button type="button" class="cookieBtn cookieBtn--accept" data-cookie-action="accept">Accetta</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

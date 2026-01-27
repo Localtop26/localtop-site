@@ -381,7 +381,7 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
       await postToGAS(data);
       const email = encodeURIComponent(String(data.paymentEmail || "").trim().toLowerCase());
       const plan = encodeURIComponent(String(data.plan || "").trim().toUpperCase());
-      window.location.href = `fatturazione.html?email=${email}&plan=${plan}`;
+      window.location.href = `/fatturazione?email=${email}&plan=${plan}`;
       return;
     } catch (err) {
       if (typeof __submitBtn !== 'undefined' && __submitBtn) __submitBtn.disabled = false;

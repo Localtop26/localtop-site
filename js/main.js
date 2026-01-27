@@ -1,20 +1,26 @@
 (function () {
   'use strict';
 
-  function currentFile() {
-    var p = location.pathname.split('/').pop();
-    return (p && p.length) ? p.toLowerCase() : 'index.html';
+  function normalizePath(p) {
+    // Remove query/hash, trim trailing slash, return last segment (or 'index' for root)
+    if (!p) return 'index';
+    p = p.split('#')[0].split('?')[0];
+    // If it's a full URL, keep only pathname
+    try { p = new URL(p, location.origin).pathname; } catch (e) {}
+    if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+    var seg = p.split('/').pop();
+    return (seg && seg.length) ? seg.toLowerCase() : 'index';
   }
 
   function setActiveLinks() {
-    var cur = currentFile();
+    var cur = normalizePath(location.pathname);
     var links = document.querySelectorAll('a[data-nav]');
     links.forEach(function (a) {
       a.classList.remove('active');
-      var href = (a.getAttribute('href') || '').toLowerCase();
+      var href = (a.getAttribute('href') || '');
       if (!href) return;
-      href = href.split('#')[0].split('?')[0];
-      if (href === cur) a.classList.add('active');
+      var h = normalizePath(href);
+      if (h === cur) a.classList.add('active');
     });
   }
 

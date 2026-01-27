@@ -118,7 +118,7 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2
     try {
       await postToGAS(data);
       // Conferma dedicata (evita reset che sembra un errore)
-      window.location.href = "conferma-dati.html";
+      window.location.href = "/conferma-dati";
       return;
     } catch (err) {
       if (typeof __submitBtn !== 'undefined' && __submitBtn) __submitBtn.disabled = false;

@@ -2,7 +2,7 @@
    Endpoint Google Apps Script:
    - Incolla qui l'URL della Web App (termina con /exec)
 */
-const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyCS2yWHbGMBszYtCDz7QuNuSYTqMCjHrk1Rmqnm_-TGivhMkYYsSIsXRNCx-Dw44UT/exec";
+const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2G9Da6wjJjg9T3nviAvKmyozEoHtLh9wYN0v0ab1UrACjRXgzR/exec";
 
 // Versione informativa privacy (usata per registrare l'accettazione nel foglio)
 const PRIVACY_POLICY_VERSION = "2026-01-19";

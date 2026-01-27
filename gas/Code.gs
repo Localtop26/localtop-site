@@ -7,7 +7,7 @@
  */
 
 // 1) INCOLLA QUI lo Spreadsheet ID (lo trovi nell'URL del foglio)
-const SPREADSHEET_ID = "1DGdDzhuTRTeeNjv6TN_20erOSjqrd95J0RdY6hLAPdk";
+const SPREADSHEET_ID = "INCOLLA_QUI_SPREADSHEET_ID";
 
 // 2) (Opzionale) Token semplice per protezione endpoint (se vuoi abilitarlo).
 //    Se lasci vuoto, il token NON è richiesto.

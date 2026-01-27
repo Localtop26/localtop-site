@@ -113,11 +113,9 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2
 
     try {
       await postToGAS(data);
-      setAlert("ok", "Dati di fatturazione ricevuti. Procederemo con l’emissione della fattura.");
-      // Success: keep the filled data visible (no reset) so the user has confirmation.
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      submitBtn.disabled = true;
-      submitHint.textContent = "Inviato.";
+      // Conferma dedicata (evita reset che sembra un errore)
+      window.location.href = "conferma-dati.html";
+      return;
     } catch (err) {
       const msg = (err && err.message) ? err.message : "Errore durante l’invio.";
       setAlert("err", msg);

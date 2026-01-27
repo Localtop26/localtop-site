@@ -286,7 +286,7 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
 
     if (!data.province || data.province.length !== 2) {
       if (province) province.focus();
-      setAlert("err", "Provincia non valida. Inserisci la sigla (2 lettere), es. MS.");
+      setAlert("err", "Provincia non valida. Inserisci la sigla (2 lettere), es. MI.");
       return false;
     }
 
@@ -365,15 +365,15 @@ const PRIVACY_POLICY_VERSION = "2026-01-19";
   }
 
   form.addEventListener("submit", async (e) => {
-    // Anti-doppio click: disabilita subito il submit
-    const __submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-    if (__submitBtn) __submitBtn.disabled = true;
-
     e.preventDefault();
     clearAlert();
 
     const data = collectData();
     if (!validateClientSide(data)) return;
+
+    // Anti-doppio click: disabilita solo dopo validazione OK
+    const __submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (__submitBtn) __submitBtn.disabled = true;
 
     setSubmitting(true);
 

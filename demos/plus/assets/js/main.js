@@ -1,5 +1,22 @@
 /* LocalTop demo - minimal JS (no tracking) */
 (() => {
+
+  function clearPremiumEntryFlag() {
+    try { localStorage.removeItem('lt_premium_entry'); } catch (e) {}
+  }
+
+  // Ensure entering Premium from other demos never triggers the Premium compare box
+  document.addEventListener('click', function (ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+    if (!a) return;
+
+    var u;
+    try { u = new URL(a.getAttribute('href'), window.location.origin); } catch (e) { return; }
+    if (u.pathname !== '/premium-demo') return;
+
+    clearPremiumEntryFlag();
+  }, true);
+
 })();
 
 /* GA4 (GDPR-compliant) + Cookie banner (localtop.it only) */

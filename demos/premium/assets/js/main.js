@@ -63,14 +63,30 @@
 
 // Show premium compare only if coming from hero
 (() => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("from") !== "hero") return;
-  const box = document.querySelector(".premium-compare");
-  if (!box) return;
-  box.classList.remove("hidden");
-  box.setAttribute("aria-hidden","false");
-})();
+  const KEY = 'lt_premium_entry';
+  let ok = false;
 
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) {
+      localStorage.removeItem(KEY);
+      const data = JSON.parse(raw);
+      const ts = Number(data && data.ts);
+      // accept only very recent flag to avoid stale behavior
+      ok = (data && data.v === 1 && Number.isFinite(ts) && (Date.now() - ts) <= 120000);
+    }
+  } catch (e) {
+    try { localStorage.removeItem(KEY); } catch (e2) {}
+    ok = false;
+  }
+
+  if (!ok) return;
+
+  const box = document.querySelector('.premium-compare');
+  if (!box) return;
+  box.classList.remove('hidden');
+  box.setAttribute('aria-hidden', 'false');
+})();
 /* GA4 (GDPR-compliant) + Cookie banner (localtop.it only) */
 (() => {
   'use strict';

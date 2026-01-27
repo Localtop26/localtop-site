@@ -95,9 +95,10 @@
   }
 
   
-  window.openCookiePreferences = function openCookiePreferences() {
-    if (!isHostAllowed()) return;
-    showCookieBanner();
+    window.openCookiePreferences = function openCookiePreferences() {
+    var el = document.getElementById('cookieBanner');
+    if (!el) return;
+    el.style.display = 'block';
   };
 
 window.loadGA = function loadGA() {

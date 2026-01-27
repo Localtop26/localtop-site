@@ -28,68 +28,6 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2
     submitHint.textContent = isSubmitting ? "Invio in corso…" : "";
   }
 
-  // === Field-level validation helpers ===
-  function getErrorId_(key) { return "err_" + key; }
-
-  function clearFieldError_(elOrWrap) {
-    if (!elOrWrap) return;
-    elOrWrap.classList.remove("is-invalid");
-    const key = elOrWrap.getAttribute && elOrWrap.getAttribute("data-errkey");
-    if (key) {
-      const errEl = document.getElementById(getErrorId_(key));
-      if (errEl) errEl.remove();
-      elOrWrap.removeAttribute("data-errkey");
-    }
-  }
-
-  function setFieldError_(elOrWrap, key, message) {
-    if (!elOrWrap) return;
-    elOrWrap.classList.add("is-invalid");
-    elOrWrap.setAttribute("data-errkey", key);
-
-    const errId = getErrorId_(key);
-    let errEl = document.getElementById(errId);
-    if (!errEl) {
-      errEl = document.createElement("div");
-      errEl.id = errId;
-      errEl.className = "field-error";
-      const parent = elOrWrap.parentNode;
-      if (parent) {
-        if (elOrWrap.nextSibling) parent.insertBefore(errEl, elOrWrap.nextSibling);
-        else parent.appendChild(errEl);
-      }
-    }
-    errEl.textContent = message || "Campo non valido.";
-  }
-
-  function clearAllFieldErrors_() {
-    form.querySelectorAll(".is-invalid").forEach((el) => clearFieldError_(el));
-    form.querySelectorAll(".field-error[id^='err_']").forEach((el) => el.remove());
-  }
-
-  function scrollToFirstError_() {
-    const first = form.querySelector(".is-invalid");
-    if (!first) return;
-    first.scrollIntoView({ behavior: "smooth", block: "center" });
-    const focusable = first.matches("input, select, textarea") ? first : first.querySelector("input, select, textarea");
-    if (focusable) focusable.focus();
-  }
-
-  form.addEventListener("input", (e) => {
-    const t = e.target;
-    if (!t) return;
-    clearFieldError_(t);
-  });
-
-  form.addEventListener("change", (e) => {
-    const t = e.target;
-    if (!t) return;
-    clearFieldError_(t);
-    const cb = t.closest(".checkboxRow");
-    if (cb) clearFieldError_(cb);
-  });
-
-
   function getQueryParam(name) {
     const url = new URL(window.location.href);
     return url.searchParams.get(name) || "";
@@ -131,65 +69,13 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2
     };
   }
 
-  
   function validateClientSide(data) {
-    clearAllFieldErrors_();
-
-    let firstMsg = "";
-
-    function mark(id, msg) {
-      const el = document.getElementById(id);
-      setFieldError_(el, id, msg);
-      if (!firstMsg) firstMsg = msg;
-    }
-
-    // Required fields
+    const missing = [];
     const required = ["paymentEmail","plan","invoiceName","vatNumber","taxCode","invoiceAddress","invoiceZip","invoiceCity","invoiceProvince","billingEmail"];
+
     required.forEach((k) => {
-      if (!data[k] || String(data[k]).trim() === "") {
-        mark(k, "Campo obbligatorio.");
-      }
+      if (!data[k] || String(data[k]).trim() === "") missing.push(k);
     });
-
-    // Province 2 letters
-    if ((data.invoiceProvince || "").length !== 2) {
-      mark("invoiceProvince", "Provincia non valida: 2 lettere (es. MI).");
-    }
-
-    // SDI or PEC at least one
-    if (!data.sdi && !data.pec) {
-      setFieldError_(document.getElementById("sdi"), "sdi", "Inserisci SDI o PEC (almeno uno).");
-      setFieldError_(document.getElementById("pec"), "pec", "Inserisci SDI o PEC (almeno uno).");
-      if (!firstMsg) firstMsg = "Inserisci SDI o PEC.";
-    }
-
-    // Confirm checkbox
-    if (!data.confirmFiscal) {
-      const wrap = form.querySelector(".checkboxRow") || document.getElementById("confirmFiscal");
-      setFieldError_(wrap, "confirmFiscal", "Devi confermare che i dati fiscali sono corretti.");
-      if (!firstMsg) firstMsg = "Devi confermare i dati fiscali.";
-    }
-
-    // Email format checks
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (data.paymentEmail && !emailRe.test(String(data.paymentEmail))) {
-      mark("paymentEmail", "Email pagamento non valida.");
-    }
-    if (data.billingEmail && !emailRe.test(String(data.billingEmail))) {
-      mark("billingEmail", "Email per fatturazione non valida.");
-    }
-    if (data.pec && !emailRe.test(String(data.pec))) {
-      mark("pec", "PEC non valida.");
-    }
-
-    if (form.querySelector(".is-invalid")) {
-      setAlert("err", firstMsg || "Compila correttamente i campi evidenziati in rosso.");
-      scrollToFirstError_();
-      return false;
-    }
-    return true;
-  }
-);
 
     if (!data.sdi && !data.pec) missing.push("sdi/pec");
     if (!data.confirmFiscal) missing.push("confirmFiscal");
@@ -217,6 +103,10 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2
   }
 
   form.addEventListener("submit", async (e) => {
+    // Anti-doppio click: disabilita subito il submit
+    const __submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (__submitBtn) __submitBtn.disabled = true;
+
     e.preventDefault();
     clearAlert();
 
@@ -231,6 +121,8 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwn7Na8vjBSPcl4cH2
       window.location.href = "conferma-dati.html";
       return;
     } catch (err) {
+      if (typeof __submitBtn !== 'undefined' && __submitBtn) __submitBtn.disabled = false;
+
       const msg = (err && err.message) ? err.message : "Errore durante l’invio.";
       setAlert("err", msg);
     } finally {

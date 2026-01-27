@@ -95,7 +95,8 @@
   }
 
   
-    window.openCookiePreferences = function openCookiePreferences() {
+      window.openCookiePreferences = function openCookiePreferences() {
+    try { localStorage.removeItem('cookieConsent'); } catch (e) {}
     var el = document.getElementById('cookieBanner');
     if (!el) return;
     el.style.display = 'block';

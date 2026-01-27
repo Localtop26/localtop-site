@@ -212,6 +212,15 @@ function initCookieBannerAndGA() {
 
   document.addEventListener('DOMContentLoaded', initCookieBannerAndGA);
 
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-reopen-cookie]');
+    if(!btn) return;
+    e.preventDefault();
+    try { localStorage.removeItem('cookieConsent'); } catch(e2){}
+    location.reload();
+  });
+
+
   setActiveLinks();
   initMobileMenu();
   initPremiumEntryFlag();

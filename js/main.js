@@ -132,6 +132,24 @@
     hideCookieBanner();
   };
 
+
+  function initPremiumEntryFlag() {
+    var KEY = 'lt_premium_entry';
+    var links = Array.from(document.querySelectorAll('a[href]'));
+    links.forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href) return;
+      var u;
+      try { u = new URL(href, window.location.origin); } catch (e) { return; }
+      if (u.pathname !== '/premium-demo') return;
+      a.addEventListener('click', function () {
+        try {
+          localStorage.setItem(KEY, JSON.stringify({ v: 1, ts: Date.now() }));
+        } catch (e) {}
+      });
+    });
+  }
+
   function initCookieBannerAndGA() {
     var hostAllowed = isHostAllowed();
     if (hostAllowed) ensureGtagStub();
@@ -201,4 +219,6 @@
 
   setActiveLinks();
   initMobileMenu();
+
+  initPremiumEntryFlag();
 })();

@@ -666,14 +666,14 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     /* Home – search flow (5 cards: 3 sopra, 2 sotto centrati su desktop) */
     .searchFlow{margin-bottom:26px}
     .flowGrid{display:grid; gap:14px; margin-top:16px}
-    .searchFlow .card p{font-weight:700}
+    .searchFlow .card p{font-weight:400}
     @media(min-width:980px){
       .flowGrid{grid-template-columns:repeat(6, 1fr); gap:16px}
       .flowGrid > .card{grid-column:span 2}
       .flowGrid > .card:nth-child(4){grid-column:2 / span 2}
       .flowGrid > .card:nth-child(5){grid-column:4 / span 2}
     }
-    .flowEmphasis{font-weight:900; color:var(--ink)}
+    .flowEmphasis{font-weight:650; color:var(--ink)}
     .flowConclusion{
       margin-top:22px;
       color:var(--ink);

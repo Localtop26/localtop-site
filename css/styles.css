@@ -666,6 +666,7 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     /* Home – search flow (5 cards: 3 sopra, 2 sotto centrati su desktop) */
     .searchFlow{margin-bottom:26px}
     .flowGrid{display:grid; gap:14px; margin-top:16px}
+    .searchFlow .card p{font-weight:700}
     @media(min-width:980px){
       .flowGrid{grid-template-columns:repeat(6, 1fr); gap:16px}
       .flowGrid > .card{grid-column:span 2}

@@ -663,41 +663,25 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     @media(min-width:980px){ .grid3{grid-template-columns:repeat(3, 1fr); gap:16px} }
     .grid4{display:grid; gap:14px; margin-top:16px}
     @media(min-width:980px){ .grid4{grid-template-columns:repeat(4, 1fr); gap:16px} }
-    
-    /* Home — customer search steps */
-    .searchSteps{margin-top:22px}
-    .searchStepsCards{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      margin-top:16px;
-    }
+    /* Home – search flow (5 cards: 3 sopra, 2 sotto centrati su desktop) */
+    .searchFlow{margin-bottom:26px}
+    .flowGrid{display:grid; gap:14px; margin-top:16px}
     @media(min-width:980px){
-      .searchStepsCards{
-        flex-direction:row;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:16px;
-      }
-      .searchStepCard{
-        flex:0 1 calc((100% - 32px) / 3);
-        max-width:calc((100% - 32px) / 3);
-      }
+      .flowGrid{grid-template-columns:repeat(6, 1fr); gap:16px}
+      .flowGrid > .card{grid-column:span 2}
+      .flowGrid > .card:nth-child(4){grid-column:2 / span 2}
+      .flowGrid > .card:nth-child(5){grid-column:4 / span 2}
     }
-    .searchStepCard .pill{margin-bottom:12px}
-    .searchStepCard h4{margin-top:0}
-    .searchStepsClosing{
-      margin:18px 0 0;
-      padding:14px 16px;
-      border-radius: var(--r);
-      border:1px solid rgba(15,118,110,.22);
-      background: var(--plus-100);
-      color:#0F3D3A;
+    .flowEmphasis{font-weight:900; color:var(--ink)}
+    .flowConclusion{
+      margin-top:22px;
+      color:var(--ink);
       font-weight:900;
-      line-height:1.35;
+      line-height:1.45;
+      max-width:860px;
     }
 
-.card{
+    .card{
       background: var(--card);
       border:1px solid var(--line);
       border-radius: var(--r);

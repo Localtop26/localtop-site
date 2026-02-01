@@ -663,16 +663,41 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     @media(min-width:980px){ .grid3{grid-template-columns:repeat(3, 1fr); gap:16px} }
     .grid4{display:grid; gap:14px; margin-top:16px}
     @media(min-width:980px){ .grid4{grid-template-columns:repeat(4, 1fr); gap:16px} }
-
-    .grid5{display:grid; gap:14px; margin-top:16px}
-    @media(min-width:980px){
-      .grid5{grid-template-columns:repeat(12, 1fr); gap:16px}
-      .grid5 > .card{grid-column:span 4}
-      .grid5 > .card:nth-child(4){grid-column:3 / span 4}
-      .grid5 > .card:nth-child(5){grid-column:7 / span 4}
+    
+    /* Home — customer search steps */
+    .searchSteps{margin-top:22px}
+    .searchStepsCards{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-top:16px;
     }
-    .compareClose{margin:14px 0 0; max-width:980px}
-    .card{
+    @media(min-width:980px){
+      .searchStepsCards{
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:16px;
+      }
+      .searchStepCard{
+        flex:0 1 calc((100% - 32px) / 3);
+        max-width:calc((100% - 32px) / 3);
+      }
+    }
+    .searchStepCard .pill{margin-bottom:12px}
+    .searchStepCard h4{margin-top:0}
+    .searchStepsClosing{
+      margin:18px 0 0;
+      padding:14px 16px;
+      border-radius: var(--r);
+      border:1px solid rgba(15,118,110,.22);
+      background: var(--plus-100);
+      color:#0F3D3A;
+      font-weight:900;
+      line-height:1.35;
+    }
+
+.card{
       background: var(--card);
       border:1px solid var(--line);
       border-radius: var(--r);

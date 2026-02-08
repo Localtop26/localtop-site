@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kensho Academy | Arti Marziali & Difesa Personale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0d0d0d; color: #e5e7eb; }
+        h1, h2, h3, .font-warrior { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+        .text-crimson { color: #dc2626; }
+        .bg-crimson { background-color: #dc2626; }
+        .hero-dojo { 
+            background: linear-gradient(rgba(13,13,13,0.7), rgba(13,13,13,0.5)), 
+            url('https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=1600&auto=format&fit=crop'); 
+            background-size: cover; background-position: center; 
+        }
+        .discipline-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: #1a1a1a; border: 1px solid #262626; }
+        .discipline-card:hover { border-color: #dc2626; transform: scale(1.02); }
+        .brush-effect { border-bottom: 4px solid #dc2626; width: 60px; margin-top: 10px; }
+    </style>
+</head>
+<body class="selection:bg-crimson selection:text-white">
+
+    <div class="bg-crimson text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4">
+        🥋 NUOVI CORSI 2026: Prova gratuita di una settimana per tutte le discipline 🥋
+    </div>
+
+    <nav class="sticky top-0 z-[100] bg-black/90 backdrop-blur-md h-20 flex items-center border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 border-2 border-crimson flex items-center justify-center rotate-45">
+                    <i data-lucide="swords" class="text-crimson w-6 h-6 -rotate-45"></i>
+                </div>
+                <div class="flex flex-col leading-none ml-1">
+                    <span class="text-2xl font-warrior font-bold text-white tracking-tighter">KENSHO<span class="text-crimson">ACADEMY</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-500">The Path of Mastery</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400">
+                <a href="#discipline" class="hover:text-crimson transition">Discipline</a>
+                <a href="#filosofia" class="hover:text-crimson transition">Filosofia</a>
+                <a href="#maestri" class="hover:text-crimson transition">Maestri</a>
+                <a href="#orari" class="hover:text-crimson transition">Orari</a>
+            </div>
+
+            <a href="#iscriviti" class="bg-crimson text-white px-8 py-3 rounded-sm text-[11px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-lg">
+                Inizia il Viaggio
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-dojo overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-8 animate-fade-in">
+                <h1 class="text-7xl md:text-[110px] font-warrior font-bold text-white leading-[0.85] tracking-tight">
+                    Domina la <br> <span class="text-crimson italic">Mente,</span> Forgia il <span class="text-crimson italic">Corpo.</span>
+                </h1>
+                <p class="text-xl text-zinc-300 font-light max-w-lg leading-relaxed italic border-l-4 border-crimson pl-8">
+                    Molto più di una palestra. Un luogo dove la tradizione millenaria incontra la preparazione atletica moderna. Trova il tuo centro, impara a difenderti, diventa la versione migliore di te.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#discipline" class="bg-crimson text-white px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-all">Scegli la tua Via</a>
+                    <a href="#orari" class="bg-transparent border-2 border-white text-white px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-all">Vedi il Calendario</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="discipline" class="py-32 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl font-warrior text-white">Le Nostre <span class="text-crimson">Vie.</span></h2>
+                <div class="brush-effect mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 discipline-card rounded-xl group">
+                    <i data-lucide="award" class="w-12 h-12 text-crimson mb-6"></i>
+                    <h3 class="text-3xl font-warrior mb-4">Karate Shotokan</h3>
+                    <p class="text-sm text-zinc-400 font-light italic">Disciplina, precisione e potenza. La via della mano vuota per grandi e piccoli.</p>
+                </div>
+                <div class="p-10 discipline-card rounded-xl group border-crimson/50">
+                    <i data-lucide="shield-check" class="w-12 h-12 text-crimson mb-6"></i>
+                    <h3 class="text-3xl font-warrior mb-4">Brazilian Jiu-Jitsu</h3>
+                    <p class="text-sm text-zinc-400 font-light italic">L'arte della lotta a terra. Tecnica e strategia che superano la forza bruta.</p>
+                </div>
+                <div class="p-10 discipline-card rounded-xl group">
+                    <i data-lucide="zap" class="w-12 h-12 text-crimson mb-6"></i>
+                    <h3 class="text-3xl font-warrior mb-4">Muay Thai</h3>
+                    <p class="text-sm text-zinc-400 font-light italic">L'arte delle otto membra. Preparazione fisica intensa e colpi devastanti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-black overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=800" class="rounded-sm shadow-2xl grayscale" alt="Dojo Interior">
+                <div class="absolute -bottom-8 -right-8 bg-crimson text-white p-12 shadow-2xl">
+                    <p class="font-warrior text-4xl italic">RESPECT.</p>
+                    <p class="text-[9px] uppercase tracking-widest mt-1 font-bold">The First Rule of the Dojo</p>
+                </div>
+            </div>
+            <div class="space-y-10">
+                <h2 class="text-6xl font-warrior text-white leading-none">Non è solo <br><span class="text-crimson">Combattimento.</span></h2>
+                <p class="text-zinc-400 text-lg font-light leading-relaxed italic border-l-4 border-crimson pl-8">
+                    La Kensho Academy non forma solo atleti, ma persone consapevoli. Integrità, umiltà e autocontrollo sono i pilastri del nostro insegnamento. Insegniamo la forza affinché non sia mai necessario usarla.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="heart" class="text-crimson"></i> Salute Mentale</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="dribbble" class="text-crimson"></i> Agilità Fisica</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="focus" class="text-crimson"></i> Concentrazione</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="users" class="text-crimson"></i> Comunità</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="maestri" class="py-32 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl font-warrior text-center mb-24 uppercase">I Nostri <span class="text-crimson">Istruttori</span></h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <div class="aspect-[3/4] bg-zinc-900 overflow-hidden rounded-sm mb-6 grayscale group-hover:grayscale-0 transition duration-700">
+                        <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=400" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-warrior text-2xl">Sensei Tanaka</h4>
+                    <p class="text-[9px] uppercase tracking-widest text-crimson font-bold mt-1 italic">Cintura Nera VI Dan</p>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-crimson text-white">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-warrior italic tracking-tighter">Sicurezza <span class="text-black">Reale.</span></h2>
+            <p class="text-white/80 text-xl font-light italic leading-relaxed">Corsi di difesa personale urbana e antibullismo. Metodi testati per gestire situazioni di stress e pericolo reale, adatti a donne, uomini e ragazzi di ogni corporatura.</p>
+            <div class="flex justify-center gap-8">
+                <button class="bg-black text-white px-10 py-4 font-warrior text-xl tracking-widest hover:bg-white hover:text-black transition-all">Scopri il Metodo</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="orari" class="py-32 bg-black border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-warrior text-center mb-16">Pianifica la tua <span class="text-crimson">Settimana.</span></h2>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center p-6 bg-zinc-900/50 border-l-4 border-crimson">
+                    <span class="font-warrior text-xl">Mattina (07:00 - 09:00)</span>
+                    <span class="text-[10px] font-bold uppercase text-zinc-500">BJJ & Yoga Combat</span>
+                </div>
+                <div class="flex justify-between items-center p-6 bg-zinc-900/50 border-l-4 border-crimson">
+                    <span class="font-warrior text-xl">Pomeriggio (16:00 - 18:00)</span>
+                    <span class="text-[10px] font-bold uppercase text-zinc-500">Corsi Bambini & Juniores</span>
+                </div>
+                <div class="flex justify-between items-center p-6 bg-zinc-900/50 border-l-4 border-crimson">
+                    <span class="font-warrior text-xl">Sera (19:00 - 21:30)</span>
+                    <span class="text-[10px] font-bold uppercase text-zinc-500">Muay Thai, Karate, MMA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="iscriviti" class="py-32 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-8xl font-warrior text-white leading-[0.85] tracking-tighter italic">Join the <br><span class="text-crimson">Tribe.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-crimson text-white rounded-sm flex items-center justify-center shadow-xl rotate-12"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1">Il nostro Dojo</p><p class="text-2xl font-warrior">Via della Forza 12, 20100 Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-white text-black rounded-sm flex items-center justify-center shadow-xl -rotate-12"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1">Contatto Diretto</p><p class="text-2xl font-warrior">02 987 654 32</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-zinc-900 p-12 rounded-sm border-t-8 border-crimson shadow-2xl space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-crimson mb-6 text-center italic">Prenota ora la tua prima lezione gratuita</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-black border border-zinc-800 outline-none focus:border-crimson transition text-[10px] font-bold tracking-widest uppercase text-white">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-black border border-zinc-800 outline-none focus:border-crimson transition text-[10px] font-bold tracking-widest uppercase text-white">
+                </div>
+                <select class="w-full p-4 bg-black border border-zinc-800 outline-none focus:border-crimson transition text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    <option>QUALE DISCIPLINA TI INTERESSA?</option>
+                    <option>KARATE</option>
+                    <option>BRAZILIAN JIU-JITSU</option>
+                    <option>MUAY THAI / KICKBOXING</option>
+                    <option>DIFESA PERSONALE</option>
+                    <option>KIDS CLASS</option>
+                </select>
+                <textarea placeholder="INSERISCI DOMANDE O EVENTUALI ESPERIENZE PREGRESSE..." rows="3" class="w-full p-4 bg-black border border-zinc-800 outline-none focus:border-crimson transition text-[10px] font-bold tracking-widest uppercase text-white"></textarea>
+                <button class="w-full bg-crimson text-white py-6 text-[12px] font-bold uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all">Inizia la tua Trasformazione</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-black border-t border-white/5 text-center">
+        <p class="text-zinc-600 text-[9px] uppercase tracking-[0.6em] font-bold">
+            &copy; 2026 Kensho Academy | Arti Marziali Tradizionali & Moderne | P.IVA 0123456789
+        </p>
+    </footer>
+
+    <a href="https://wa.me/390298765432" class="fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 transition-transform z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -57,17 +57,7 @@
 
     const title = document.createElement("h3");
     title.className = "demoCard__title";
-    const titleLink = document.createElement("a");
-    titleLink.className = "demoCard__titleLink";
-    titleLink.href = demo.href;
-    titleLink.target = "_self";
-    titleLink.textContent = demo.title;
-    titleLink.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
-    title.appendChild(titleLink);
-
-    const cat = document.createElement("div");
-    cat.className = "demoCard__cat";
-    cat.textContent = (demo.category || "").toUpperCase();
+    title.textContent = demo.title;
 
     const btnWrap = document.createElement("div");
     btnWrap.className = "demoCard__actions";
@@ -89,7 +79,6 @@
     btnWrap.appendChild(btnView);
     btnWrap.appendChild(btnActivate);
     body.appendChild(title);
-    body.appendChild(cat);
     body.appendChild(btnWrap);
 
     card.appendChild(mediaLink);

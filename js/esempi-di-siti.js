@@ -32,6 +32,7 @@
     const mediaLink = document.createElement("a");
     mediaLink.className = "demoCard__mediaLink";
     mediaLink.href = demo.href;
+    mediaLink.target = "_self";
     mediaLink.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
 
     const media = document.createElement("div");
@@ -59,6 +60,7 @@
     const titleLink = document.createElement("a");
     titleLink.className = "demoCard__titleLink";
     titleLink.href = demo.href;
+    titleLink.target = "_self";
     titleLink.textContent = demo.title;
     titleLink.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
     title.appendChild(titleLink);
@@ -73,12 +75,14 @@
     const btnView = document.createElement("a");
     btnView.className = "btn demoCard__btn";
     btnView.href = demo.href;
+    btnView.target = "_self";
     btnView.textContent = "Vedi sito";
     btnView.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
 
     const btnActivate = document.createElement("a");
     btnActivate.className = "btn primary demoCard__btn";
     btnActivate.href = "https://localtop.it/checkout";
+    btnActivate.target = "_self";
     btnActivate.textContent = "Attiva Servizio";
     btnActivate.setAttribute("aria-label", "Attiva Servizio");
 

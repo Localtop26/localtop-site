@@ -2819,6 +2819,8 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
 .demoCard__btn{
   flex:1;
   border-radius:12px;
+  justify-content:center;
+  text-align:center;
 }
 .examplesMore{
   display:flex;

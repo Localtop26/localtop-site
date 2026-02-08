@@ -2,18 +2,17 @@
   "use strict";
 
   const DATA_URL = "/data/demos.json";
+  const CHECKOUT_URL = "https://localtop.it/checkout";
 
   const grid = document.getElementById("examplesGrid");
-  const moreBtn = document.getElementById("examplesMoreBtn");
   const chips = Array.from(document.querySelectorAll(".examplesChips .chip"));
 
-  if (!grid || !moreBtn || chips.length === 0) return;
+  if (!grid || chips.length === 0) return;
 
+  const initialCategory = (chips[0].dataset.category || "").trim();
   const state = {
     all: [],
-    category: "Tutti",
-    perPage: 10,
-    visible: 0
+    category: initialCategory
   };
 
   function setActiveChip(category) {
@@ -25,7 +24,6 @@
   }
 
   function getFiltered() {
-    if (state.category === "Tutti") return state.all;
     return state.all.filter((d) => d.category === state.category);
   }
 
@@ -33,10 +31,12 @@
     const card = document.createElement("article");
     card.className = "demoCard";
 
-    const link = document.createElement("a");
-    link.className = "demoCard__link";
-    link.href = demo.href;
-    link.setAttribute("aria-label", `Apri demo: ${demo.title}`);
+    const cover = document.createElement("a");
+    cover.className = "demoCard__cover";
+    cover.href = demo.href;
+    cover.target = "_blank";
+    cover.rel = "noopener";
+    cover.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
 
     const media = document.createElement("div");
     media.className = "demoCard__media";
@@ -53,75 +53,83 @@
     });
 
     media.appendChild(img);
+    cover.appendChild(media);
 
     const body = document.createElement("div");
     body.className = "demoCard__body";
 
     const title = document.createElement("h3");
     title.className = "demoCard__title";
-    title.textContent = demo.title;
+
+    const titleLink = document.createElement("a");
+    titleLink.className = "demoCard__titleLink";
+    titleLink.href = demo.href;
+    titleLink.target = "_blank";
+    titleLink.rel = "noopener";
+    titleLink.textContent = demo.title;
+
+    title.appendChild(titleLink);
 
     const cat = document.createElement("div");
     cat.className = "demoCard__cat";
     cat.textContent = (demo.category || "").toUpperCase();
 
-    const btnWrap = document.createElement("div");
-    btnWrap.className = "demoCard__actions";
+    const actions = document.createElement("div");
+    actions.className = "demoCard__actions";
 
-    const btn = document.createElement("span");
-    btn.className = "btn demoCard__btn";
-    btn.textContent = "Apri demo";
+    const viewBtn = document.createElement("a");
+    viewBtn.className = "btn demoCard__btn";
+    viewBtn.href = demo.href;
+    viewBtn.target = "_blank";
+    viewBtn.rel = "noopener";
+    viewBtn.textContent = "Vedi sito";
 
-    btnWrap.appendChild(btn);
+    const activateBtn = document.createElement("a");
+    activateBtn.className = "btn primary demoCard__btn";
+    activateBtn.href = CHECKOUT_URL;
+    activateBtn.target = "_blank";
+    activateBtn.rel = "noopener";
+    activateBtn.textContent = "Attiva Servizio";
+
+    actions.appendChild(viewBtn);
+    actions.appendChild(activateBtn);
+
     body.appendChild(title);
     body.appendChild(cat);
-    body.appendChild(btnWrap);
+    body.appendChild(actions);
 
-    link.appendChild(media);
-    link.appendChild(body);
+    card.appendChild(cover);
+    card.appendChild(body);
 
-    card.appendChild(link);
     return card;
   }
 
-  function render(reset = false) {
+  function render() {
     const filtered = getFiltered();
-
-    if (reset) {
-      state.visible = 0;
-      grid.innerHTML = "";
-    }
-
-    const nextVisible = Math.min(state.visible + state.perPage, filtered.length);
-    for (let i = state.visible; i < nextVisible; i++) {
-      grid.appendChild(createCard(filtered[i]));
-    }
-    state.visible = nextVisible;
-
-    moreBtn.hidden = state.visible >= filtered.length;
+    grid.innerHTML = "";
+    filtered.forEach((demo) => grid.appendChild(createCard(demo)));
   }
 
   function onChipClick(e) {
     const btn = e.currentTarget;
-    const category = btn.dataset.category || "Tutti";
+    const category = (btn.dataset.category || "").trim();
+    if (!category || category === state.category) return;
+
     state.category = category;
     setActiveChip(category);
-    render(true);
+    render();
   }
 
   chips.forEach((btn) => btn.addEventListener("click", onChipClick));
-  moreBtn.addEventListener("click", () => render(false));
 
   fetch(DATA_URL, { cache: "no-store" })
-    .then((r) => r.ok ? r.json() : Promise.reject(new Error("Failed to load demos.json")))
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error("Failed to load demos.json"))))
     .then((data) => {
       state.all = Array.isArray(data.demos) ? data.demos : [];
-      if (typeof data.perPage === "number" && data.perPage > 0) state.perPage = data.perPage;
       setActiveChip(state.category);
-      render(true);
+      render();
     })
     .catch(() => {
-      grid.innerHTML = "<div class=\"examplesError\">Impossibile caricare le demo in questo momento.</div>";
-      moreBtn.hidden = true;
+      grid.innerHTML = '<div class="examplesError">Impossibile caricare le demo in questo momento.</div>';
     });
 })();

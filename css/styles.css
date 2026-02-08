@@ -2774,6 +2774,19 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   text-decoration:none;
   color:inherit;
 }
+
+.demoCard__cover{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+.demoCard__titleLink{
+  color:inherit;
+  text-decoration:none;
+}
+.demoCard__titleLink:hover{
+  text-decoration:underline;
+}
 .demoCard__media{
   background:linear-gradient(180deg, rgba(15,118,110,.10), rgba(15,118,110,.02));
   height:180px;
@@ -2811,11 +2824,8 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   font-weight:900;
   color:var(--accent-soft);
 }
-.demoCard__actions{margin-top:auto;}
-.demoCard__btn{
-  width:100%;
-  border-radius:12px;
-}
+.demoCard__actions{margin-top:auto;display:flex;gap:10px;}
+.demoCard__btn{flex:1;width:auto;border-radius:12px;}
 .examplesMore{
   display:flex;
   justify-content:center;

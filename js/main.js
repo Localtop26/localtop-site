@@ -132,6 +132,9 @@
     hideCookieBanner();
   };
 
+  
+  
+
 function initCookieBannerAndGA() {
     if (!isHostAllowed()) return;
 
@@ -199,4 +202,4 @@ function initCookieBannerAndGA() {
 
   setActiveLinks();
   initMobileMenu();
-})();
+  })();

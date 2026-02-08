@@ -27,7 +27,31 @@
   "logo": "https://localtop.it/assets/img/localtop-logo.png"
 }
 </script>
-<link href="/css/styles.css" rel="stylesheet"/><link href="/assets/img/favicon.png" rel="icon" type="image/png"/>
+<link href="/css/styles.css" rel="stylesheet"/><style>
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111827;background:#fff}
+.container{max-width:960px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid #e5e7eb}
+header .row{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand img{height:32px}
+main{padding:36px 0}
+h1{font-size:32px;letter-spacing:-.8px;margin:0 0 12px;font-weight:900}
+.lead{font-size:16px;color:#374151;font-weight:600;max-width:60ch}
+.muted{font-size:14px;color:#6b7280;font-weight:600;margin-top:10px}
+.grid{display:grid;gap:16px;margin-top:28px}
+@media(min-width:768px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  body{min-height:100vh;display:flex;flex-direction:column}
+  main{flex:1 0 auto}
+}
+.card{border:1px solid #e5e7eb;border-radius:16px;padding:16px}
+.card h2{margin:0 0 8px;font-size:16px;font-weight:800}
+.card p{margin:0;color:#374151;font-weight:600;font-size:14px;line-height:1.5}
+.btn{display:inline-flex;align-items:center;justify-content:center;margin-top:12px;padding:12px 16px;border-radius:999px;background:#0F766E;color:#fff;text-decoration:none;font-weight:800}
+footer{border-top:1px solid #e5e7eb;padding:18px 0;font-size:12px;color:#6b7280}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+a{color:#0F766E;text-decoration:none;font-weight:700}
+</style>
+<link href="/assets/img/favicon.png" rel="icon" type="image/png"/>
 <link href="/assets/img/favicon.png" rel="apple-touch-icon"/>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -35,7 +59,7 @@
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
 </script>
 </head>
-<body class="thankYouPage" data-purchase-success="true">
+<body data-purchase-success="true">
 <header>
 <div class="container">
 <div class="row">
@@ -59,9 +83,9 @@
 <a class="btn" href="/onboarding">Completa attivazione</a>
 </div>
 <div class="card">
-<h2>2) Personalizzazione avanzata</h2>
+<h2>2) accent / accent</h2>
 <p>
-          Se hai richiesto una personalizzazione avanzata, dopo l’invio dei dati un nostro esperto ti contatterà
+          Se hai scelto <strong>accent</strong> o <strong>accent</strong>, dopo l’invio dei dati un nostro esperto ti contatterà
           per definire insieme la struttura del sito, le sezioni aggiuntive e gli elementi extra previsti dal piano.
         </p>
 </div>

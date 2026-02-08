@@ -2768,8 +2768,6 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   overflow:hidden;
 }
 .demoCard__mediaLink{display:block;text-decoration:none;color:inherit;}
-.demoCard__titleLink{text-decoration:none;color:inherit;}
-.demoCard__titleLink:hover{color:var(--accent-soft);}
 .demoCard__media{
   background:linear-gradient(180deg, rgba(15,118,110,.10), rgba(15,118,110,.02));
   height:180px;
@@ -2788,10 +2786,10 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   display:block;
 }
 .demoCard__body{
-  padding:18px 18px 16px;
+  padding:14px 16px 12px;
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:8px;
   flex:1;
   align-items:center;
   text-align:center;
@@ -2802,12 +2800,6 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   line-height:1.2;
   font-weight:900;
   color:var(--text);
-}
-.demoCard__cat{
-  font-size:13px;
-  letter-spacing:.08em;
-  font-weight:900;
-  color:var(--accent-soft);
 }
 .demoCard__actions{
   margin-top:auto;

@@ -2,17 +2,15 @@
   "use strict";
 
   const DATA_URL = "/data/demos.json";
-  const CHECKOUT_URL = "https://localtop.it/checkout";
 
   const grid = document.getElementById("examplesGrid");
   const chips = Array.from(document.querySelectorAll(".examplesChips .chip"));
 
   if (!grid || chips.length === 0) return;
 
-  const initialCategory = (chips[0].dataset.category || "").trim();
   const state = {
     all: [],
-    category: initialCategory
+    category: chips[0].dataset.category || "",
   };
 
   function setActiveChip(category) {
@@ -31,12 +29,10 @@
     const card = document.createElement("article");
     card.className = "demoCard";
 
-    const cover = document.createElement("a");
-    cover.className = "demoCard__cover";
-    cover.href = demo.href;
-    cover.target = "_blank";
-    cover.rel = "noopener";
-    cover.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
+    const mediaLink = document.createElement("a");
+    mediaLink.className = "demoCard__mediaLink";
+    mediaLink.href = demo.href;
+    mediaLink.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
 
     const media = document.createElement("div");
     media.className = "demoCard__media";
@@ -53,68 +49,60 @@
     });
 
     media.appendChild(img);
-    cover.appendChild(media);
+    mediaLink.appendChild(media);
 
     const body = document.createElement("div");
     body.className = "demoCard__body";
 
     const title = document.createElement("h3");
     title.className = "demoCard__title";
-
     const titleLink = document.createElement("a");
     titleLink.className = "demoCard__titleLink";
     titleLink.href = demo.href;
-    titleLink.target = "_blank";
-    titleLink.rel = "noopener";
     titleLink.textContent = demo.title;
-
+    titleLink.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
     title.appendChild(titleLink);
 
     const cat = document.createElement("div");
     cat.className = "demoCard__cat";
     cat.textContent = (demo.category || "").toUpperCase();
 
-    const actions = document.createElement("div");
-    actions.className = "demoCard__actions";
+    const btnWrap = document.createElement("div");
+    btnWrap.className = "demoCard__actions";
 
-    const viewBtn = document.createElement("a");
-    viewBtn.className = "btn demoCard__btn";
-    viewBtn.href = demo.href;
-    viewBtn.target = "_blank";
-    viewBtn.rel = "noopener";
-    viewBtn.textContent = "Vedi sito";
+    const btnView = document.createElement("a");
+    btnView.className = "btn demoCard__btn";
+    btnView.href = demo.href;
+    btnView.textContent = "Vedi sito";
+    btnView.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
 
-    const activateBtn = document.createElement("a");
-    activateBtn.className = "btn primary demoCard__btn";
-    activateBtn.href = CHECKOUT_URL;
-    activateBtn.target = "_blank";
-    activateBtn.rel = "noopener";
-    activateBtn.textContent = "Attiva Servizio";
+    const btnActivate = document.createElement("a");
+    btnActivate.className = "btn primary demoCard__btn";
+    btnActivate.href = "https://localtop.it/checkout";
+    btnActivate.textContent = "Attiva Servizio";
+    btnActivate.setAttribute("aria-label", "Attiva Servizio");
 
-    actions.appendChild(viewBtn);
-    actions.appendChild(activateBtn);
-
+    btnWrap.appendChild(btnView);
+    btnWrap.appendChild(btnActivate);
     body.appendChild(title);
     body.appendChild(cat);
-    body.appendChild(actions);
+    body.appendChild(btnWrap);
 
-    card.appendChild(cover);
+    card.appendChild(mediaLink);
     card.appendChild(body);
-
     return card;
   }
 
   function render() {
     const filtered = getFiltered();
+
     grid.innerHTML = "";
-    filtered.forEach((demo) => grid.appendChild(createCard(demo)));
+    filtered.forEach((d) => grid.appendChild(createCard(d)));
   }
 
   function onChipClick(e) {
     const btn = e.currentTarget;
-    const category = (btn.dataset.category || "").trim();
-    if (!category || category === state.category) return;
-
+    const category = btn.dataset.category || "";
     state.category = category;
     setActiveChip(category);
     render();
@@ -123,13 +111,13 @@
   chips.forEach((btn) => btn.addEventListener("click", onChipClick));
 
   fetch(DATA_URL, { cache: "no-store" })
-    .then((r) => (r.ok ? r.json() : Promise.reject(new Error("Failed to load demos.json"))))
+    .then((r) => r.ok ? r.json() : Promise.reject(new Error("Failed to load demos.json")))
     .then((data) => {
       state.all = Array.isArray(data.demos) ? data.demos : [];
       setActiveChip(state.category);
       render();
     })
     .catch(() => {
-      grid.innerHTML = '<div class="examplesError">Impossibile caricare le demo in questo momento.</div>';
+      grid.innerHTML = "<div class=\"examplesError\">Impossibile caricare le demo in questo momento.</div>";
     });
 })();

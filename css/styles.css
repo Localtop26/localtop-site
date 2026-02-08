@@ -2393,7 +2393,7 @@ body.onboardingPage .radioGroup > label.radioOpt span{
   text-align: center;
 }
 
-/* --- Demo e Prezzi: CTA attivazione (sobria) --- */
+/* --- Esempi di Siti: CTA attivazione (sobria) --- */
 .checkoutCta{
   margin-top: 14px;
   padding: 16px;
@@ -2448,7 +2448,7 @@ body.onboardingPage .radioGroup > label.radioOpt span{
 }
 
 
-/* --- Demo e Prezzi: spacing refinements --- */
+/* --- Esempi di Siti: spacing refinements --- */
 .demoPricesIntro { margin-bottom: 18px; }
 .demoCompare { margin-top: 14px; }
 .demoCompareFoot { margin-top: 10px; margin-bottom: 6px; }
@@ -2499,7 +2499,7 @@ body.onboardingPage .radioGroup > label.radioOpt span{
 @media(max-width:768px){.title-desktop{display:none}.title-mobile{display:block}}
 
 
-/* --- Demo e Prezzi: gerarchia piani --- */
+/* --- Esempi di Siti: gerarchia piani --- */
 .demoCompareCardPlus{
   position: relative;
   z-index: 1;
@@ -2537,7 +2537,7 @@ body.onboardingPage .radioGroup > label.radioOpt span{
 
 
 
-/* Nav: slightly darker default color only for “Demo e Prezzi” (keeps hover/active global behavior) */
+/* Nav: slightly darker default color only for “Esempi di Siti” (keeps hover/active global behavior) */
 .navDesktop a.nav-highlight:not(.active):not(:hover),
 .navMobile a.nav-highlight:not(.active):not(:hover){
   color: var(--text);

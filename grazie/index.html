@@ -27,30 +27,7 @@
   "logo": "https://localtop.it/assets/img/localtop-logo.png"
 }
 </script>
-<link href="/css/styles.css" rel="stylesheet"/><style>
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111827;background:#fff}
-.container{max-width:960px;margin:0 auto;padding:0 16px}
-header{border-bottom:1px solid #e5e7eb}
-header .row{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.brand img{height:32px}
-main{padding:36px 0}
-h1{font-size:32px;letter-spacing:-.8px;margin:0 0 12px;font-weight:900}
-.lead{font-size:16px;color:#374151;font-weight:600;max-width:60ch}
-.muted{font-size:14px;color:#6b7280;font-weight:600;margin-top:10px}
-.grid{display:grid;gap:16px;margin-top:28px}
-@media(min-width:768px){
-  .grid{grid-template-columns:repeat(3,1fr)}
-  body{min-height:100vh;display:flex;flex-direction:column}
-  main{flex:1 0 auto}
-}
-.card{border:1px solid #e5e7eb;border-radius:16px;padding:16px}
-.card h2{margin:0 0 8px;font-size:16px;font-weight:800}
-.card p{margin:0;color:#374151;font-weight:600;font-size:14px;line-height:1.5}
-.btn{display:inline-flex;align-items:center;justify-content:center;margin-top:12px;padding:12px 16px;border-radius:999px;background:#0F766E;color:#fff;text-decoration:none;font-weight:800}
-footer{border-top:1px solid #e5e7eb;padding:18px 0;font-size:12px;color:#6b7280}
-.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-a{color:#0F766E;text-decoration:none;font-weight:700}
-</style>
+<link href="/css/styles.css" rel="stylesheet"/>
 <link href="/assets/img/favicon.png" rel="icon" type="image/png"/>
 <link href="/assets/img/favicon.png" rel="apple-touch-icon"/>
 <script>
@@ -60,40 +37,82 @@ a{color:#0F766E;text-decoration:none;font-weight:700}
 </script>
 </head>
 <body data-purchase-success="true">
-<header>
+<header aria-label="Header LocalTop" class="siteHeader">
 <div class="container">
-<div class="row">
-<div aria-label="LocalTop" class="brand"><img alt="LocalTop" src="/assets/img/localtop-logo.png"/></div>
+<div class="headerInner">
+<a aria-label="LocalTop" class="brand" href="/">
+<img alt="LocalTop" class="brandLogo" src="/assets/img/localtop-logo.png"/>
+</a>
+<button aria-controls="mobileMenu" aria-expanded="false" aria-label="Apri menu" class="menuBtn" id="menuBtn" type="button">
+<span aria-hidden="true" class="menuBars"></span>
+</button>
+<nav aria-label="Navigazione principale" class="navDesktop">
+<a data-nav="" href="/">Home</a>
+<a class="nav-highlight" data-nav="" href="/esempi-di-siti">Esempi di Siti</a>
+<a data-nav="" href="/contatti">Contatti</a>
+</nav>
+</div>
+<div class="mobileMenu" hidden="" id="mobileMenu">
+<nav aria-label="Navigazione mobile" class="navMobile">
+<a data-nav="" href="/">Home</a>
+<a class="nav-highlight" data-nav="" href="/esempi-di-siti">Esempi di Siti</a>
+<a data-nav="" href="/contatti">Contatti</a>
+</nav>
 </div>
 </div>
 </header>
-<main>
+<main class="page container">
+<section class="contact-hero">
 <h1>Pagamento confermato</h1>
-<p>Il tuo pagamento è andato a buon fine.<br>
+<p class="lead">Il tuo pagamento è andato a buon fine.<br/>
 <strong>L’attivazione del servizio è in elaborazione.</strong></p>
+</section>
 
+<section class="u-mt-22">
 <h2>Cosa succede ora</h2>
 <p>Entro 24 ore riceverai un’email con le istruzioni per inviarci tutte le informazioni e i materiali necessari all’attivazione del servizio.</p>
 <p>L’attivazione operativa inizierà solo dopo la ricezione completa dei dati richiesti.</p>
+</section>
 
+<section class="u-mt-22">
 <h2>Prossimi passaggi</h2>
+<div class="steps" role="list">
+<div class="card" role="listitem">
+<div class="stepNo">1</div>
+<h3 class="stepTitle">Ricezione email</h3>
+<p class="stepText">Riceverai un’email con le indicazioni su cosa inviarci (testi, immagini, informazioni di contatto ed eventuali preferenze).</p>
+<p class="stepHint">Se non la ricevi entro 24 ore, controlla anche la cartella spam o promozioni.</p>
+</div>
+<div class="card" role="listitem">
+<div class="stepNo">2</div>
+<h3 class="stepTitle">Invio dei materiali</h3>
+<p class="stepText">Rispondendo all’email potrai inviarci tutti i contenuti richiesti.</p>
+<p class="stepHint">Questo ci consente di lavorare in modo ordinato e di ridurre i tempi di attivazione.</p>
+</div>
+<div class="card" role="listitem">
+<div class="stepNo">3</div>
+<h3 class="stepTitle">Tempistiche</h3>
+<p class="stepText">Indicativamente, il sito viene messo online entro 7 giorni lavorativi dalla ricezione di tutti i materiali completi e utilizzabili.</p>
+<p class="stepHint">I tempi possono variare in base alla completezza e alla qualità delle informazioni fornite.</p>
+</div>
+</div>
+</section>
 
-<h3>1) Ricezione email</h3>
-<p>Riceverai un’email con le indicazioni su cosa inviarci (testi, immagini, informazioni di contatto ed eventuali preferenze).</p>
-<p>Se non la ricevi entro 24 ore, controlla anche la cartella spam o promozioni.</p>
-
-<h3>2) Invio dei materiali</h3>
-<p>Rispondendo all’email potrai inviarci tutti i contenuti richiesti.<br>
-Questo ci consente di lavorare in modo ordinato e di ridurre i tempi di attivazione.</p>
-
-<h3>3) Tempistiche</h3>
-<p>Indicativamente, il sito viene messo online entro 7 giorni lavorativi dalla ricezione di tutti i materiali completi e utilizzabili.</p>
-<p>I tempi possono variare in base alla completezza e alla qualità delle informazioni fornite.</p>
-
+<section class="u-mt-22">
 <h2>Assistenza</h2>
-<p>Per qualsiasi dubbio o necessità di chiarimento, visita la pagina <a href="/contatti/">Contatti</a>.</p>
+<p>Per qualsiasi dubbio o necessità di chiarimento, visita la pagina <a href="/contatti">Contatti</a>.</p>
+</section>
 </main>
-<footer><div class="container"><div class="footRow"><div>LocalTop © 2026 · P.IVA 01499880456</div></div></div></footer>
+<footer>
+<div class="container">
+<div class="footRow">
+<div>LocalTop © 2026 · P.IVA 01499880456</div>
+<div class="footLinks">
+<a href="/condizioni">Condizioni d’uso</a> · <a href="/privacy-e-cookie">Privacy e Cookie</a>
+</div>
+</div>
+</div>
+</footer>
 <div aria-label="Cookie banner" aria-live="polite" class="cookieBanner" id="cookieBanner" role="dialog">
 <div class="cookieBanner__inner">
 <p class="cookieBanner__text">

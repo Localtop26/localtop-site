@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Minds | Centro Studi & Corsi di Lingue - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .text-smart-blue { color: #1d4ed8; }
+        .bg-smart-blue { background-color: #1d4ed8; }
+        .text-focus-yellow { color: #facc15; }
+        .bg-focus-yellow { background-color: #facc15; }
+        
+        /* 1. Sostituzione URL Immagini con percorsi locali assets/ */
+        .hero-learning { 
+            background: linear-gradient(to right, rgba(255,255,255,1) 40%, rgba(255,255,255,0.2) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .class-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid transparent; }
+        
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 3.5rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-yellow-100 selection:text-blue-800">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-900 text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120]">
+        📚 Summer Camp 2026: Iscrizioni aperte! Impara l'inglese divertendoti al sole.
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-24 flex items-center shadow-sm mx-4 md:mx-10 rounded-2xl">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-smart-blue rounded-2xl flex items-center justify-center rotate-3 shadow-lg">
+                    <i data-lucide="graduation-cap" class="text-white w-6 h-6 md:w-7 md:h-7"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl md:text-3xl font-heading font-black text-slate-900 tracking-tighter">BRIGHT<span class="text-smart-blue">MINDS</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.5em] text-slate-400">Future Ready Education</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#inglese" class="hover:text-smart-blue transition">Inglese</a>
+                <a href="#scuola" class="hover:text-smart-blue transition">Aiuto Scuola</a>
+                <a href="#metodo" class="hover:text-smart-blue transition">Metodo</a>
+                <a href="#laboratori" class="hover:text-smart-blue transition">Laboratori</a>
+            </div>
+
+            <a href="#contatti" class="bg-focus-yellow text-slate-900 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-smart-blue hover:text-white transition-all">
+                Prenota Valutazione
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-learning overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-8 animate-fade-in">
+                <div class="inline-flex items-center gap-2 bg-blue-50 text-smart-blue px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-blue-100">
+                    Oltre il 98% di promozioni raggiunte
+                </div>
+                <h1 class="text-6xl font-heading font-black text-slate-900 leading-[0.85] tracking-tighter uppercase">
+                    Libera il <br> <span class="text-smart-blue italic">Potenziale.</span>
+                </h1>
+                <p class="text-xl text-slate-500 font-light max-w-lg leading-relaxed italic border-l-4 border-focus-yellow pl-6">
+                    Dall'inglese certificato al supporto in ogni materia scolastica. Costruiamo fiducia, autonomia e competenze per gli studenti di oggi.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#scuola" class="bg-slate-900 text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-smart-blue transition-all">Supporto Scolastico</a>
+                    <a href="#inglese" class="bg-white border border-slate-200 text-slate-900 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all">Corsi di Lingue</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="inglese" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <h2 class="text-5xl font-heading font-black text-slate-900 italic uppercase">Speak <span class="text-smart-blue underline decoration-focus-yellow">English.</span></h2>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Preparazione Cambridge & TOEFL</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-10 rounded-[3rem] class-card">
+                    <div class="w-14 h-14 bg-blue-100 text-smart-blue rounded-2xl flex items-center justify-center mb-8"><i data-lucide="baby"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 italic">Kids & Junior</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed italic">Imparare giocando. Metodo ludico-didattico per bambini dai 4 ai 12 anni. Piccoli gruppi per la massima interazione.</p>
+                </div>
+                <div class="bg-slate-50 p-10 rounded-[3rem] class-card">
+                    <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center mb-8"><i data-lucide="book-open"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 italic">Cambridge Prep</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed italic">Corso intensivo per il conseguimento delle certificazioni internazionali (KET, PET, FCE). Simulazioni d'esame reali.</p>
+                </div>
+                <div class="bg-slate-50 p-10 rounded-[3rem] class-card">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mb-8"><i data-lucide="briefcase"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 italic">Business English</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed italic">Potenzia la tua carriera. Conversazione, scrittura di email professionali e gestione di meeting in lingua.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="scuola" class="py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl w-full object-cover h-[400px] md:h-auto" alt="Students studying">
+                <div class="absolute -bottom-8 -right-8 bg-smart-blue text-white p-12 rounded-[3rem] shadow-2xl">
+                    <p class="font-heading text-4xl font-bold italic">Tutte</p>
+                    <p class="text-[9px] uppercase tracking-widest mt-2 font-bold italic">Le Materie Scolastiche</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-5xl font-heading font-black text-slate-900 leading-tight uppercase">Basta <br><span class="text-smart-blue font-light italic">Ansia da Interrogazione.</span></h2>
+                <p class="text-slate-500 text-lg leading-relaxed font-light italic border-l-4 border-focus-yellow pl-8">
+                    Matematica, Greco, Fisica o Latino? I nostri tutor specializzati aiutano gli studenti a superare le difficoltà, colmare le lacune e ritrovare la motivazione necessaria.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-smart-blue"></i> <span class="text-xs font-bold uppercase tracking-widest">Lezioni Individuali</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-smart-blue"></i> <span class="text-xs font-bold uppercase tracking-widest">Recupero Debiti</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-smart-blue"></i> <span class="text-xs font-bold uppercase tracking-widest">Doposcuola Specialistico</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-smart-blue"></i> <span class="text-xs font-bold uppercase tracking-widest">DSA & BES Welcome</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="py-32 bg-slate-900 text-white overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-16">
+            <h2 class="text-5xl font-heading font-black italic uppercase tracking-tighter">Non Studiare <span class="text-focus-yellow">Più.</span> Studia <span class="text-smart-blue">Meglio.</span></h2>
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="space-y-4">
+                    <div class="text-focus-yellow text-4xl font-black">01</div>
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Mappe Mentali</h4>
+                    <p class="text-slate-500 text-xs font-light italic">Organizza le idee visivamente.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-focus-yellow text-4xl font-black">02</div>
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Public Speaking</h4>
+                    <p class="text-slate-500 text-xs font-light italic">Gestisci l'emotività davanti alla classe.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-focus-yellow text-4xl font-black">03</div>
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Lettura Veloce</h4>
+                    <p class="text-slate-500 text-xs font-light italic">Massimizza la comprensione del testo.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-focus-yellow text-4xl font-black">04</div>
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Time Management</h4>
+                    <p class="text-slate-500 text-xs font-light italic">Bilancia studio e tempo libero.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="laboratori" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-heading font-black text-slate-900 italic uppercase">Extra <span class="text-focus-yellow">Learning</span></h2>
+                <p class="text-slate-400 font-bold uppercase tracking-widest text-xs mt-4">Sviluppare le passioni oltre i libri</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 w-full">
+                <div class="relative group h-96 rounded-[3rem] overflow-hidden shadow-xl">
+                    <img src="assets/img3.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
+                    <div class="absolute inset-0 bg-slate-900/60 p-12 flex flex-col justify-end text-white">
+                        <h4 class="text-3xl font-heading font-black italic">Coding & Robotica</h4>
+                        <p class="text-sm font-light mt-2 italic">Introduzione alla programmazione per ragazzi.</p>
+                    </div>
+                </div>
+                <div class="relative group h-96 rounded-[3rem] overflow-hidden shadow-xl">
+                    <img src="assets/img4.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
+                    <div class="absolute inset-0 bg-smart-blue/60 p-12 flex flex-col justify-end text-white">
+                        <h4 class="text-3xl font-heading font-black italic">Laboratorio di Scrittura</h4>
+                        <p class="text-sm font-light mt-2 italic">Creative writing e giornalismo per giovani autori.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl font-heading font-black text-slate-900 leading-tight uppercase italic">Educazione <br><span class="text-smart-blue font-light">Centrata sullo Studente.</span></h2>
+                <p class="text-slate-500 text-lg leading-relaxed font-light italic border-l-4 border-focus-yellow pl-8">
+                    La nostra filosofia si basa sul rispetto dei tempi individuali. Ogni studente è una mente brillante che aspetta solo gli stimoli giusti per accendersi. Non insegniamo solo contenuti, insegniamo a imparare.
+                </p>
+            </div>
+            <div class="relative">
+                <img src="assets/img5.jpg" class="rounded-[4rem] shadow-2xl w-full object-cover h-[400px]" alt="Education Philosophy">
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-heading font-black text-slate-900 leading-none tracking-tighter uppercase italic">Facciamo <br><span class="text-focus-yellow underline">Squadra.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center text-smart-blue shadow-md border border-slate-50"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">La nostra sede</p><p class="text-xl font-bold">Via dei Talenti 22, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6 text-slate-400">
+                        <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center text-smart-blue shadow-md border border-slate-50"><i data-lucide="phone"></i></div>
+                        <p class="text-xl font-bold">02 987 654 32</p>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-12 rounded-[4rem] shadow-2xl space-y-6 border border-slate-100">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-smart-blue mb-4 text-center italic">Prenota un colloquio conoscitivo gratuito (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-bold tracking-widest">
+                    <input type="text" placeholder="NOME STUDENTE" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-bold tracking-widest">
+                </div>
+                <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-bold tracking-widest">
+                <select class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>COSA STAI CERCANDO?</option>
+                    <option>CORSO DI INGLESE</option>
+                    <option>AIUTO COMPITI (MEDIE/SUPERIORI)</option>
+                    <option>METODO DI STUDIO</option>
+                    <option>PREPARAZIONE ESAMI/MATURITÀ</option>
+                </select>
+                <textarea placeholder="DICCI DI COSA HAI BISOGNO..." rows="3" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-bold tracking-widest"></textarea>
+                <button class="w-full bg-slate-900 text-white py-6 rounded-3xl font-black uppercase text-[11px] tracking-[0.3em] hover:bg-smart-blue transition-all shadow-xl">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center text-slate-300 text-[9px] uppercase tracking-[0.5em] font-bold border-t border-slate-50">
+        &copy; 2026 Bright Minds Education | Milano | P.IVA 0123456789 | Centro Certificato
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

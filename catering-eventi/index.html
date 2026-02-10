@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divino Catering | Banqueting d'Eccellenza per Eventi & Matrimoni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #fdfcf9; color: #3e3d32; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-gold { color: #b89a66; }
+        .bg-gold { background-color: #b89a66; }
+        .text-forest { color: #2d3e34; }
+        .bg-forest { background-color: #2d3e34; }
+        
+        .hero-catering { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .event-card { transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid #ede7df; background: white; }
+        .event-card:hover { border-color: #b89a66; transform: translateY(-10px); }
+        .event-card:hover img { transform: scale(1.05); transition: 1.5s; }
+
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile Migliorata */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 5rem) !important; line-height: 1 !important; }
+            h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; line-height: 1.1 !important; }
+            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+            .hero-catering { h-min: 100vh; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-gold selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Esempi
+        </a>
+    </div>
+
+    <div class="bg-forest text-stone-300 py-2 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.2em] md:tracking-[0.4em] px-4">
+        🥂 PREVENTIVI 2026: Disponibilità limitata | Contattaci 🥂
+    </div>
+
+    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-stone-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-3">
+                <div class="w-8 h-8 md:w-10 md:h-10 border border-gold flex items-center justify-center rotate-45">
+                    <i data-lucide="utensils" class="text-gold w-4 h-4 md:w-5 md:h-5 -rotate-45"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-3xl font-serif italic tracking-tighter text-forest uppercase">Divino<span class="text-gold">Catering</span></span>
+                    <span class="text-[6px] md:text-[7px] font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] text-stone-400 mt-1">Art of Banqueting</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
+                <a href="#eventi" class="hover:text-gold transition">Eventi</a>
+                <a href="#cucina" class="hover:text-gold transition">La Cucina</a>
+                <a href="#servizi" class="hover:text-gold transition">Servizi</a>
+                <a href="#wedding" class="hover:text-gold transition">Wedding</a>
+            </div>
+
+            <a href="#contatti" class="bg-forest text-white px-4 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all">
+                Contatti
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[80vh] flex items-center hero-catering overflow-hidden py-20">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
+            <div class="max-w-3xl space-y-6 md:space-y-10">
+                <span class="text-white font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] text-[9px] md:text-[10px] border-b border-gold pb-2 inline-block">Passione da Gustare</span>
+                <h1 class="text-5xl md:text-[100px] font-serif italic text-white leading-tight tracking-tighter uppercase">
+                    Il Sapore <br> dell' <span class="text-gold font-light">Emozione.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-stone-200 font-light max-w-lg leading-relaxed italic border-l-2 border-gold pl-6 md:pl-8 mx-auto md:mx-0">
+                    Catering sartoriale per matrimoni, gala aziendali e feste private d'élite.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 md:gap-6 pt-4">
+                    <a href="#wedding" class="bg-gold text-white px-8 md:px-12 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-forest transition-all">Sposarsi con Noi</a>
+                    <a href="#eventi" class="bg-transparent border border-white text-white px-8 md:px-12 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all italic">Eventi Corporate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eventi" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-forest uppercase">Soluzioni <span class="text-gold">Sartoriali.</span></h2>
+                <div class="w-16 md:w-24 h-px bg-gold mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div class="event-card group">
+                    <div class="h-56 md:h-64 overflow-hidden">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:p-10 text-center">
+                        <h4 class="text-2xl font-serif italic text-forest mb-4">Wedding Day</h4>
+                        <p class="text-sm text-stone-400 italic">Dall'aperitivo scenografico al buffet dei dolci, il menù perfetto per il vostro "Sì".</p>
+                    </div>
+                </div>
+                <div class="event-card group md:mt-16">
+                    <div class="h-56 md:h-64 overflow-hidden">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:p-10 text-center text-white bg-forest">
+                        <h4 class="text-2xl font-serif italic mb-4">Corporate & Gala</h4>
+                        <p class="text-sm text-stone-300 italic">Efficienza e stile per cene aziendali e coffee break che lasciano il segno.</p>
+                    </div>
+                </div>
+                <div class="event-card group">
+                    <div class="h-56 md:h-64 overflow-hidden">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:p-10 text-center">
+                        <h4 class="text-2xl font-serif italic text-forest mb-4">Private Parties</h4>
+                        <p class="text-sm text-stone-400 italic">Compleanni e anniversari con allestimenti creativi e alta cucina a domicilio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cucina" class="py-20 md:py-32 bg-stone-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+            <div class="relative">
+                <img src="assets/img5.jpg" class="rounded-sm shadow-2xl w-full" alt="Chef at work">
+                <div class="absolute -bottom-4 -left-4 md:-bottom-8 md:-left-8 bg-gold text-white p-6 md:p-12 shadow-2xl">
+                    <p class="font-serif text-2xl md:text-3xl italic">Km Zero</p>
+                    <p class="text-[8px] md:text-[9px] uppercase tracking-widest mt-1 font-bold">Qualità Certificata</p>
+                </div>
+            </div>
+            <div class="space-y-6 md:space-y-10 pt-10 lg:pt-0">
+                <h2 class="text-5xl md:text-6xl font-serif italic text-forest leading-none">Materia Prima <br><span class="text-gold italic">Protagonista.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-gold pl-6 md:pl-8">
+                    La nostra cucina affonda le radici nella tradizione mediterranea, elevandola con tecniche contemporanee. Solo ingredienti stagionali e produttori locali selezionati.
+                </p>
+                <div class="grid grid-cols-2 gap-4 md:gap-6 pt-4">
+                    <div class="flex items-center gap-3 border-b border-stone-200 pb-4"><i data-lucide="chef-hat" class="text-gold w-4 h-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Executive Chef</span></div>
+                    <div class="flex items-center gap-3 border-b border-stone-200 pb-4"><i data-lucide="apple" class="text-gold w-4 h-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Opzioni Veg</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-20 md:py-32 bg-forest text-stone-100">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-4xl md:text-5xl font-serif italic tracking-widest uppercase">Più del <span class="text-gold">Semplice Cibo.</span></h2>
+            <p class="text-stone-400 text-lg md:text-xl font-light italic leading-relaxed max-w-3xl mx-auto">
+                Offriamo un servizio di Banqueting completo, creando l'intera scenografia del tuo evento.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pt-10">
+                <div class="space-y-4">
+                    <i data-lucide="map" class="w-8 h-8 mx-auto text-gold"></i>
+                    <h4 class="text-[9px] font-bold uppercase tracking-[0.2em]">Location Scout</h4>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="palette" class="w-8 h-8 mx-auto text-gold"></i>
+                    <h4 class="text-[9px] font-bold uppercase tracking-[0.2em]">Mise en place</h4>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="users-2" class="w-8 h-8 mx-auto text-gold"></i>
+                    <h4 class="text-[9px] font-bold uppercase tracking-[0.2em]">Staff Pro</h4>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="wine" class="w-8 h-8 mx-auto text-gold"></i>
+                    <h4 class="text-[9px] font-bold uppercase tracking-[0.2em]">Sommelier</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wedding" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="order-2 lg:order-1 space-y-8">
+                <h2 class="text-5xl md:text-7xl font-serif italic text-forest leading-none tracking-tighter">Your Dream <br><span class="text-gold font-normal">Wedding.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-gold pl-6">Dall'aperitivo di benvenuto al taglio della torta, assicuriamo che il vostro giorno più bello sia perfetto in ogni dettaglio.</p>
+                <button class="border-b-2 border-gold pb-2 text-[10px] font-bold uppercase tracking-[0.4em] hover:text-forest transition">Brochure Wedding</button>
+            </div>
+            <div class="order-1 lg:order-2 grid grid-cols-2 gap-4 h-[300px] md:h-[500px]">
+                <img src="assets/img6.jpg" class="w-full h-full object-cover rounded-sm shadow-lg">
+                <img src="assets/img7.jpg" class="w-full h-full object-cover rounded-sm mt-8 md:mt-12 shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-12">
+                <h2 class="text-5xl md:text-7xl font-serif italic text-forest leading-none tracking-tighter uppercase">Inizia il <br><span class="text-gold font-normal italic">Racconto.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-white border border-stone-200 flex items-center justify-center rounded-full text-gold shadow-sm shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Headquarter</p><p class="text-xl md:text-2xl font-serif italic">Via dei Sapori 12, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-white border border-stone-200 flex items-center justify-center rounded-full text-gold shadow-sm shrink-0"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Ufficio Eventi</p><p class="text-xl md:text-2xl font-serif italic">02 123 456 78</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-6 md:p-12 shadow-2xl border-t-8 border-gold space-y-6">
+                <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-forest mb-6 text-center italic">Ricevi un'offerta su misura</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-3 border-b border-stone-100 bg-transparent outline-none focus:border-gold transition text-[10px] font-bold uppercase">
+                    <input type="email" placeholder="EMAIL" class="w-full p-3 border-b border-stone-100 bg-transparent outline-none focus:border-gold transition text-[10px] font-bold uppercase">
+                </div>
+                <select class="w-full p-3 border-b border-stone-100 bg-transparent outline-none focus:border-gold transition text-[10px] font-bold uppercase text-stone-400">
+                    <option>TIPOLOGIA EVENTO</option>
+                    <option>MATRIMONIO</option>
+                    <option>EVENTO AZIENDALE</option>
+                </select>
+                <textarea placeholder="DETTAGLI..." rows="2" class="w-full p-3 border-b border-stone-100 bg-transparent outline-none focus:border-gold transition text-[10px] font-bold uppercase"></textarea>
+                <button class="w-full bg-forest text-white py-5 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-gold transition shadow-xl">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center text-stone-300 text-[8px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.5em] font-bold border-t border-stone-50 px-4">
+        &copy; 2026 Divino Catering & Banqueting | P.IVA 0123456789
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

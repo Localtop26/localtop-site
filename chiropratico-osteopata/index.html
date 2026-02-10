@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Marco Alti | Chiropratica & Osteopatia Integrata - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfc; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        
+        /* Overlay Bilanciato: Immagine più visibile (ridotto al 20% il bianco solido) */
+        .hero-spine { 
+            background: linear-gradient(to right, rgba(255,255,255,0.85) 20%, rgba(255,255,255,0.1) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .clinic-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; background: white; border-radius: 1.5rem; }
+        .clinic-card:hover { border-color: #0d9488; transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(13, 148, 136, 0.05); }
+
+        /* Blocco interazioni Demo */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Responsive Title Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-teal-50 selection:text-teal-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-800 text-white py-2 text-[10px] font-black text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[110]">
+        🦴 PRIMA VISITA: Analisi posturale computerizzata inclusa | Risposta alle urgenze entro 24h 🦴
+    </div>
+
+    <nav class="sticky top-8 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-2xl mt-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i data-lucide="activity" class="text-white w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-heading font-black text-slate-800 tracking-tighter uppercase">MARCO<span class="text-teal-600">ALTI</span></span>
+                    <span class="text-[8px] font-black uppercase tracking-[0.4em] text-slate-400 italic">Structural Health Specialist</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-slate-600">
+                <a href="#chiropratica" class="hover:text-teal-600 transition">Chiropratica</a>
+                <a href="#osteopatia" class="hover:text-teal-600 transition">Osteopatia</a>
+                <a href="#filosofia" class="hover:text-teal-600 transition">Filosofia</a>
+                <a href="#patologie" class="hover:text-teal-600 transition">Cosa Curiamo</a>
+                <a href="#studio" class="hover:text-teal-600 transition">Lo Studio</a>
+            </div>
+
+            <a href="#prenota" class="bg-slate-800 text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-teal-600 transition-all shadow-md">
+                Prenota Ora
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[90vh] flex items-center hero-spine overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-5xl space-y-8">
+                <div class="inline-flex items-center gap-2 bg-teal-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.15em] border border-teal-500 shadow-sm">
+                    Membro Associazione Italiana Chiropratici
+                </div>
+                <h1 class="font-heading font-black text-slate-900 text-7xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter uppercase">
+                    Libera il tuo <br> <span class="text-teal-600 italic">Movimento.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-700 font-bold max-w-xl leading-relaxed italic border-l-8 border-teal-600 pl-8">
+                    Rallenta l'usura, elimina il dolore, ritrova l'allineamento. Trattamenti d'eccellenza focalizzati sulla colonna vertebrale e sistema nervoso.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-6">
+                    <a href="#patologie" class="bg-slate-800 text-white px-12 py-6 rounded-full font-black uppercase text-xs tracking-[0.2em] shadow-2xl hover:bg-teal-600 transition-all">Sintomi e Cause</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="chiropratica" class="py-24 bg-white relative section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-heading font-black text-slate-800 uppercase leading-none">La <br><span class="text-teal-600">Chiropratica.</span></h2>
+                <p class="text-slate-600 text-lg leading-relaxed font-bold italic">
+                    La chiropratica si concentra sulla relazione tra colonna vertebrale e sistema nervoso. Attraverso regolazioni specifiche (aggiustamenti), rimuoviamo le interferenze nervose, permettendo al corpo di funzionare al 100%.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-6">
+                        <div class="mt-1 bg-teal-50 p-2 rounded-lg text-teal-600"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+                        <div><h4 class="font-black text-lg uppercase tracking-tight">Aggiustamenti Spinali</h4><p class="text-slate-500 text-sm font-bold italic">Manipolazioni ad alta precisione per ripristinare la mobilità articolare.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl grayscale" alt="Adjustment">
+            </div>
+        </div>
+    </section>
+
+    <section id="osteopatia" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img3.jpg" class="rounded-[3rem] shadow-2xl" alt="Osteopathy">
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-6xl font-heading font-black text-slate-800 leading-none uppercase italic">L'Approccio <br><span class="text-teal-600">Osteopatico.</span></h2>
+                <p class="text-slate-600 text-lg font-bold leading-relaxed italic border-l-4 border-teal-600 pl-8">
+                    L'osteopatia guarda all'individuo nella sua totalità. Trattiamo non solo le ossa e i muscoli, ma anche il sistema fasciale, viscerale e cranio-sacrale per un equilibrio profondo.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <span class="px-6 py-4 bg-white border-2 border-slate-200 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-800 text-center">Terapia Manuale</span>
+                    <span class="px-6 py-4 bg-white border-2 border-slate-200 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-800 text-center">Viscerale</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-24 bg-white section-padding">
+        <div class="max-w-4xl mx-auto text-center space-y-8">
+            <h2 class="text-6xl font-heading font-black text-slate-800 uppercase italic">Salute <span class="text-teal-600">Integrata.</span></h2>
+            <p class="text-slate-600 text-lg font-bold leading-relaxed italic">
+                La nostra missione è fondere le migliori tecniche di manipolazione strutturale con una visione olistica del benessere. Non curiamo il dolore, ma la persona che lo manifesta, ricostruendo le basi di una postura solida e funzionale.
+            </p>
+            <img src="assets/img4.jpg" class="rounded-[3rem] shadow-xl w-full h-96 object-cover mt-10" alt="Clinic Interior">
+        </div>
+    </section>
+
+    <section id="patologie" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-6xl font-heading font-black text-slate-800 uppercase">Quando <span class="text-teal-600 italic">Contattarci?</span></h2>
+                <p class="text-slate-500 font-black tracking-[0.3em] uppercase text-xs">Interveniamo su una vasta gamma di disturbi funzionali</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="p-10 clinic-card text-center space-y-4">
+                    <i data-lucide="bone" class="w-12 h-12 mx-auto text-teal-600"></i>
+                    <h4 class="font-black text-sm uppercase tracking-tighter">Cervicalgia</h4>
+                    <p class="text-[11px] text-slate-500 font-bold italic">Dolori al collo e mal di testa tensivi.</p>
+                </div>
+                <div class="p-10 clinic-card text-center space-y-4">
+                    <i data-lucide="accessibility" class="w-12 h-12 mx-auto text-teal-600"></i>
+                    <h4 class="font-black text-sm uppercase tracking-tighter">Lombosciatalgia</h4>
+                    <p class="text-[11px] text-slate-500 font-bold italic">Ernie e blocchi della zona lombare.</p>
+                </div>
+                <div class="p-10 clinic-card text-center space-y-4">
+                    <i data-lucide="zap" class="w-12 h-12 mx-auto text-teal-600"></i>
+                    <h4 class="font-black text-sm uppercase tracking-tighter">Sport Injuries</h4>
+                    <p class="text-[11px] text-slate-500 font-bold italic">Ottimizzazione del gesto atletico.</p>
+                </div>
+                <div class="p-10 clinic-card text-center space-y-4">
+                    <i data-lucide="baby" class="w-12 h-12 mx-auto text-teal-600"></i>
+                    <h4 class="font-black text-sm uppercase tracking-tighter">Pediatria</h4>
+                    <p class="text-[11px] text-slate-500 font-bold italic">Osteopatia neonatale specialistica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prenota" class="py-32 bg-slate-900 text-white rounded-t-[5rem] section-padding">
+        <div id="studio" class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-heading font-black leading-none tracking-tighter uppercase italic">Riprendi <br><span class="text-teal-400">il Controllo.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-teal-600 text-white rounded-2xl flex items-center justify-center shadow-lg"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-black uppercase tracking-[0.3em] text-teal-400 mb-1">Lo Studio</p><p class="text-2xl font-black uppercase">C.so Vittorio Emanuele 12, Milano</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-12 rounded-[3rem] shadow-2xl space-y-6 text-slate-900">
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-teal-600 mb-4 text-center italic">Richiesta prenotazione (Modalità Demo)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-black tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-black tracking-widest">
+                </div>
+                <select class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                    <option>MOTIVO DELLA VISITA</option>
+                </select>
+                <textarea placeholder="DESCRIVI IL TUO OBIETTIVO..." rows="3" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest"></textarea>
+                <button class="w-full bg-teal-600 text-white py-6 rounded-full font-black uppercase text-[12px] tracking-[0.3em] shadow-xl">Richiedi Appuntamento</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-slate-900 text-center text-slate-500 border-t border-white/5">
+        <p class="text-[9px] uppercase tracking-[0.5em] font-black">
+            &copy; 2026 Dr. Marco Alti | Chiropratica & Osteopatia | P.IVA 0123456789
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-6 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

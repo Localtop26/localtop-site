@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Giardino dei Piccoli | Nido e Scuola dell'Infanzia - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #fffdfa; color: #4a4a4a; overflow-x: hidden; }
+        h1, h2, h3, .font-kids { font-family: 'Fredoka', sans-serif; }
+        .text-sage { color: #84a59d; }
+        .bg-sage { background-color: #84a59d; }
+        .text-clay { color: #f28482; }
+        .bg-clay { background-color: #f28482; }
+        
+        /* Ombra per rendere il testo leggibile su immagini */
+        .text-shadow-safe {
+            text-shadow: 0px 0px 20px rgba(255, 253, 250, 0.8);
+        }
+
+        /* Immagini Locali */
+        .hero-nido { 
+            background: linear-gradient(rgba(255,253,250,0.6), rgba(255,253,250,0.2)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+
+        .soft-card { background: #ffffff; border-radius: 40px; border: 2px solid #f9f4ef; transition: all 0.4s ease; }
+        .blob { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+
+        /* Demo Mode: Disabilita interazioni */
+        button, input, select, textarea, .chat-widget {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            .responsive-title { font-size: clamp(2.5rem, 12vw, 4rem) !important; line-height: 1 !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* Bottoni Floating Bottom-Left */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-sage selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-sage text-white py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[110]">
+        🌼 Open Day 2026: Prenota la tua visita individuale e scopri i nostri spazi 🌼
+    </div>
+
+    <nav class="sticky top-[35px] z-[100] bg-white/90 backdrop-blur-md h-24 flex items-center border-b border-stone-50">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-clay rounded-full flex items-center justify-center shadow-lg text-white">
+                    <i data-lucide="sun" class="w-6 h-6 md:w-7 md:h-7"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-kids font-bold text-sage">Il Giardino<span class="text-clay">dei Piccoli</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.3em] text-stone-400">Nido & Scuola Materna</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-stone-400">
+                <a href="#progetto" class="hover:text-sage transition">Progetto</a>
+                <a href="#spazi" class="hover:text-sage transition">Gli Spazi</a>
+                <a href="#metodo" class="hover:text-sage transition">Metodo</a>
+                <a href="#giornata" class="hover:text-sage transition">La Giornata</a>
+            </div>
+
+            <a href="#iscrizioni" class="bg-sage text-white px-6 md:px-8 py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-clay transition-all shadow-md">
+                Contatti
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-nido overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-6 md:space-y-8">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-sage shadow-sm border border-stone-100">
+                    Ambiente sicuro • Metodo Montessori
+                </div>
+                <h1 class="responsive-title text-6xl md:text-8xl font-kids font-bold text-slate-800 leading-[0.9] tracking-tight">
+                    Piccoli Passi, <br> <span class="text-clay">Grandi Sogni.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-black font-semibold max-w-lg leading-relaxed italic text-shadow-safe">
+                    Uno spazio a misura di bambino, dove ogni gioco è scoperta e ogni scoperta è crescita. Benvenuti nella nostra famiglia.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#progetto" class="bg-sage text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] tracking-widest shadow-xl hover:bg-clay transition-all">Scopri di più</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="progetto" class="section-padding py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-kids text-sage mb-16 md:mb-20 italic">Crescere in Armonia</h2>
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div class="p-8 md:p-12 soft-card">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-clay"><i data-lucide="heart"></i></div>
+                    <h3 class="text-2xl font-kids text-slate-700 mb-4">Amore e Cura</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed italic">Il benessere emotivo è la nostra priorità. Accogliamo ogni bambino con dolcezza.</p>
+                </div>
+                <div class="p-8 md:p-12 soft-card">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-sage"><i data-lucide="sprout"></i></div>
+                    <h3 class="text-2xl font-kids text-slate-700 mb-4">Autonomia</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed italic">Ispirati dal metodo Montessori, stimoliamo il bambino a "fare da solo".</p>
+                </div>
+                <div class="p-8 md:p-12 soft-card">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-yellow-400"><i data-lucide="palette"></i></div>
+                    <h3 class="text-2xl font-kids text-slate-700 mb-4">Creatività</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed italic">Laboratori espressivi, musica e pittura per dare voce ai linguaggi infiniti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="spazi" class="section-padding py-24 bg-stone-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="relative">
+                <div class="blob bg-sage/10 absolute -top-10 -left-10 w-full h-full -z-10"></div>
+                <img src="assets/img2.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl w-full object-cover h-[350px] md:h-auto" alt="L'Aula">
+                <div class="absolute -bottom-6 -right-6 bg-clay text-white p-8 md:p-12 rounded-full shadow-2xl">
+                    <p class="font-kids text-2xl md:text-3xl font-bold">In & Out</p>
+                    <p class="text-[8px] md:text-[9px] uppercase tracking-widest mt-1">Giardino Privato</p>
+                </div>
+            </div>
+            <div class="space-y-8 md:space-y-10">
+                <h2 class="text-4xl md:text-5xl font-kids text-sage leading-tight italic">Un Mondo a <br><span class="text-clay">Misura di Bambino.</span></h2>
+                <p class="text-stone-500 text-lg leading-relaxed font-light italic border-l-4 border-sage pl-8">
+                    Le nostre aule sono studiate per favorire il movimento e l'esplorazione. Angoli morbidi per il riposo e aree per il gioco simbolico.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                    <div class="flex items-center gap-4"><i data-lucide="check" class="text-clay"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Cucina Interna Bio</span></div>
+                    <div class="flex items-center gap-4"><i data-lucide="check" class="text-clay"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Aule Climatizzate</span></div>
+                    <div class="flex items-center gap-4"><i data-lucide="check" class="text-clay"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Area Nanna Relax</span></div>
+                    <div class="flex items-center gap-4"><i data-lucide="check" class="text-clay"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Senza Barriere</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="section-padding py-24 bg-white px-6">
+        <div class="max-w-4xl mx-auto text-center space-y-8">
+            <h2 class="text-4xl md:text-5xl font-kids text-clay italic">Il Metodo Montessori</h2>
+            <p class="text-stone-500 text-lg leading-relaxed italic">
+                "Aiutami a fare da solo". In questa frase si racchiude la nostra filosofia: l'educatore non impone, ma osserva e prepara l'ambiente affinché il bambino possa esprimere il proprio potenziale innato.
+            </p>
+            <div class="relative h-[300px] md:h-[450px] rounded-[3rem] overflow-hidden shadow-xl mt-10">
+                <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Attività Montessori">
+            </div>
+        </div>
+    </section>
+
+    <section id="giornata" class="section-padding py-24 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-4xl md:text-5xl font-kids text-sage">Il Ritmo del Sole</h2>
+                <p class="text-stone-400 mt-4 italic font-light uppercase tracking-widest text-[10px]">La routine come sicurezza</p>
+            </div>
+            <div class="space-y-10 md:space-y-12">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 items-start">
+                    <span class="text-2xl font-kids text-clay italic shrink-0">07:30 - 09:30</span>
+                    <div class="pt-1"><h4 class="font-bold uppercase text-[10px] tracking-widest mb-1">Accoglienza</h4><p class="text-stone-400 text-sm font-light italic">Il benvenuto con musica dolce e gioco libero.</p></div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 items-start">
+                    <span class="text-2xl font-kids text-clay italic shrink-0">10:00 - 11:30</span>
+                    <div class="pt-1"><h4 class="font-bold uppercase text-[10px] tracking-widest mb-1">Laboratori</h4><p class="text-stone-400 text-sm font-light italic">Inglese, manipolazione o psicomotricità.</p></div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 items-start">
+                    <span class="text-2xl font-kids text-clay italic shrink-0">12:00 - 13:30</span>
+                    <div class="pt-1"><h4 class="font-bold uppercase text-[10px] tracking-widest mb-1">Il Pranzo</h4><p class="text-stone-400 text-sm font-light italic">Menù stagionale bilanciato.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="iscrizioni" class="section-padding py-24 bg-sage/5">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-8 md:space-y-12">
+                <h2 class="responsive-title text-6xl font-kids text-sage leading-[0.85] italic tracking-tight">Unisciti alla <br><span class="text-clay">Famiglia.</span></h2>
+                <div class="space-y-6 md:space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-white rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center text-clay shadow-sm"><i data-lucide="calendar"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400">Flessibilità</p><p class="text-lg md:text-xl font-bold italic">Orari dalle 07:30 alle 18:30</p></div>
+                    </div>
+                </div>
+                <div class="h-[300px] rounded-[3rem] overflow-hidden hidden lg:block">
+                    <img src="assets/img4.jpg" class="w-full h-full object-cover" alt="Bambini Felici">
+                </div>
+            </div>
+            <div id="contatti" class="bg-white p-8 md:p-12 rounded-[3rem] md:rounded-[4rem] shadow-2xl border border-stone-50 space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-sage mb-4 italic text-center">Richiedi disponibilità</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Nome Genitore" class="w-full p-4 md:p-5 bg-stone-50 border-none rounded-2xl md:rounded-3xl outline-none text-sm">
+                    <input type="text" placeholder="Età Bambino" class="w-full p-4 md:p-5 bg-stone-50 border-none rounded-2xl md:rounded-3xl outline-none text-sm">
+                </div>
+                <select class="w-full p-4 md:p-5 bg-stone-50 border-none rounded-2xl md:rounded-3xl outline-none text-[10px] font-bold uppercase text-stone-400 tracking-widest">
+                    <option>Scegli il Percorso</option>
+                </select>
+                <textarea placeholder="Note specifiche..." rows="3" class="w-full p-4 md:p-5 bg-stone-50 border-none rounded-2xl md:rounded-3xl outline-none text-sm"></textarea>
+                <button class="w-full bg-sage text-white py-5 md:py-6 rounded-full font-bold uppercase text-[10px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-stone-100 text-center px-6">
+        <p class="text-stone-300 text-[9px] uppercase tracking-[0.5em] font-bold">
+            &copy; 2026 Il Giardino dei Piccoli | Milano | P.IVA 0123456789
+        </p>
+    </footer>
+
+    <div class="chat-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-[110]">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

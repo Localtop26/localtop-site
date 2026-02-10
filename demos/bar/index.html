@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brera Mistique | Milano Cocktail & Culture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0a0a0a; color: #d1d1d1; overflow-x: hidden; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #C5A059; }
+
+        .hero-video-overlay {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,1) 100%);
+        }
+        
+        button, input, select, textarea, .visual-widget {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .gallery-img-container {
+            overflow: hidden;
+            position: relative;
+            background-color: #1a1a1a;
+        }
+        .gallery-img-container img {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Effetto bianco e nero rimosso qui */
+        }
+        .gallery-img-container:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <nav class="fixed w-full z-[100] bg-black/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between h-24 items-center">
+            <div class="flex flex-col">
+                <span class="text-2xl font-serif font-bold tracking-[0.2em] text-white">BRERA</span>
+                <span class="text-[10px] tracking-[0.5em] text-[#C5A059] uppercase -mt-1">Mistique Milano</span>
+            </div>
+            <div class="hidden lg:flex space-x-10 text-[11px] uppercase tracking-[0.3em] font-light">
+                <a href="#storia" class="hover:text-[#C5A059] transition">La Filosofia</a>
+                <a href="#menu" class="hover:text-[#C5A059] transition">Menu</a>
+                <a href="#gallery" class="hover:text-[#C5A059] transition">Gallery</a>
+                <a href="#eventi" class="hover:text-[#C5A059] transition">Eventi</a>
+                <a href="#contatti" class="hover:text-[#C5A059] transition">Contatti</a>
+            </div>
+            <button class="bg-[#C5A059] text-black px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all duration-500">
+                Prenota
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <img src="assets/img1.jpg" class="absolute w-full h-full object-cover" alt="Brera Interior">
+        <div class="absolute inset-0 hero-video-overlay"></div>
+        <div class="relative z-10 text-center space-y-8 px-4">
+            <p class="text-[#C5A059] tracking-[0.6em] text-xs uppercase animate-pulse">Luxury Lifestyle Experience</p>
+            <h1 class="text-6xl md:text-9xl text-white font-serif italic leading-tight">Mood & <br> Mixology</h1>
+            <div class="flex justify-center gap-6">
+                <a href="#menu" class="border border-white/20 px-12 py-4 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Sfoglia la Carta</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="storia" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div class="relative gallery-img-container">
+                <img src="assets/img2.jpg" class="rounded-sm shadow-2xl w-full h-full object-cover" alt="Barman at work">
+                <div class="absolute -bottom-10 -right-10 hidden md:block w-64 h-64 border-2 border-[#C5A059] -z-10"></div>
+            </div>
+            <div class="space-y-8">
+                <h2 class="text-[#C5A059] text-xs uppercase tracking-[0.4em]">Sin dal 1994</h2>
+                <h3 class="text-5xl font-serif text-white leading-snug">L'essenza del <br>rituale Milanese.</h3>
+                <p class="text-gray-400 font-light leading-loose">
+                    Brera Mistique non è solo un bar, è un rifugio urbano. In un mondo che corre, noi celebriamo la lentezza.
+                </p>
+                <div class="pt-4 flex items-center gap-4 text-white">
+                    <span class="h-[1px] w-12 bg-[#C5A059]"></span>
+                    <span class="font-serif italic text-xl">Chef de Bar: Alessandro Vitale</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-32 bg-[#0f0f0f]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-serif text-white italic">La Nostra Selezione</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-6 p-8 border border-white/5 hover:border-[#C5A059]/30 transition">
+                    <i data-lucide="coffee" class="text-[#C5A059] w-8 h-8"></i>
+                    <h4 class="text-2xl font-serif text-white">Morning Ritual</h4>
+                    <ul class="space-y-4 text-sm text-gray-500 font-light">
+                        <li class="flex justify-between"><span>Specialty Coffee</span> <span>€2.5</span></li>
+                        <li class="flex justify-between"><span>Croissant Artigianale</span> <span>€1.8</span></li>
+                    </ul>
+                </div>
+                <div class="space-y-6 p-8 border border-[#C5A059]/50 bg-white/5 transform scale-105 shadow-2xl">
+                    <i data-lucide="glass-water" class="text-[#C5A059] w-8 h-8"></i>
+                    <h4 class="text-2xl font-serif text-white">Signature Mixology</h4>
+                    <ul class="space-y-4 text-sm text-gray-300 font-light">
+                        <li class="flex justify-between text-white font-semibold"><span>Milanese Gold (24k)</span> <span>€18</span></li>
+                        <li class="flex justify-between"><span>Smoked Old Fashioned</span> <span>€15</span></li>
+                    </ul>
+                </div>
+                <div class="space-y-6 p-8 border border-white/5 hover:border-[#C5A059]/30 transition">
+                    <i data-lucide="utensils" class="text-[#C5A059] w-8 h-8"></i>
+                    <h4 class="text-2xl font-serif text-white">After Dark Bites</h4>
+                    <ul class="space-y-4 text-sm text-gray-500 font-light">
+                        <li class="flex justify-between"><span>Ostriche Fine de Claire</span> <span>€4/pz</span></li>
+                        <li class="flex justify-between"><span>Tagliere Brera Mistique</span> <span>€22</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-32">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="space-y-4">
+                <div class="gallery-img-container"><img src="assets/img3.jpg" class="w-full h-64 object-cover" alt="Wine Details"></div>
+                <div class="gallery-img-container"><img src="assets/img4.jpg" class="w-full h-80 object-cover" alt="Bar Atmosphere"></div>
+            </div>
+            <div class="space-y-4 pt-12">
+                <div class="gallery-img-container"><img src="assets/img5.jpg" class="w-full h-96 object-cover" alt="Cocktail Art"></div>
+                <div class="gallery-img-container"><img src="assets/img6.jpg" class="w-full h-64 object-cover" alt="Social Life"></div>
+            </div>
+            <div class="space-y-4">
+                <div class="gallery-img-container"><img src="assets/img7.jpg" class="w-full h-80 object-cover" alt="Lounge Area"></div>
+                <div class="gallery-img-container"><img src="assets/img8.jpg" class="w-full h-64 object-cover" alt="Coffee Break"></div>
+            </div>
+            <div class="space-y-4 pt-12">
+                <div class="gallery-img-container"><img src="assets/img9.jpg" class="w-full h-64 object-cover" alt="Premium Gin"></div>
+                <div class="gallery-img-container"><img src="assets/img10.jpg" class="w-full h-96 object-cover" alt="Master Mixologist"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eventi" class="py-32 bg-[#C5A059] text-black">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="md:w-1/2">
+                <h2 class="text-6xl font-serif mb-6 leading-tight">I tuoi eventi <br>in Brera.</h2>
+                <ul class="space-y-4 font-semibold uppercase text-xs tracking-[0.2em]">
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4"></i> Area riservata fino a 50 persone</li>
+                    <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4"></i> Catering personalizzato</li>
+                </ul>
+            </div>
+            <div class="md:w-1/2 bg-black p-12 text-white">
+                <h4 class="text-2xl font-serif mb-6">Richiedi un preventivo</h4>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Nome Società / Privato" class="w-full bg-white/5 border border-white/10 p-4 outline-none">
+                    <input type="email" placeholder="Email" class="w-full bg-white/5 border border-white/10 p-4 outline-none">
+                    <button class="w-full bg-white text-black py-4 font-bold uppercase text-[10px] tracking-widest">Invia Richiesta</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contatti" class="py-32 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-16">
+            <div class="space-y-6">
+                <h5 class="text-[#C5A059] uppercase tracking-widest text-xs">Vieni a trovarci</h5>
+                <p class="text-gray-400 font-light">Via Brera, 12<br>20121 Milano (MI)</p>
+            </div>
+            <div class="space-y-6">
+                <h5 class="text-[#C5A059] uppercase tracking-widest text-xs">Orari</h5>
+                <ul class="text-gray-400 text-sm space-y-2">
+                    <li class="flex justify-between"><span>Lun - Sab</span> <span>07:30 - 02:00</span></li>
+                    <li class="flex justify-between"><span>Domenica</span> <span>09:00 - 00:00</span></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h5 class="text-[#C5A059] uppercase tracking-widest text-xs">Social</h5>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

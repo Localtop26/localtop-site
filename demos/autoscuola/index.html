@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Master | Autoscuola & Corsi di Guida Sicura - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, .font-road { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: -0.01em; }
+        .text-drive-yellow { color: #facc15; }
+        .bg-drive-yellow { background-color: #facc15; }
+        
+        /* 1. Immagini Locali */
+        .hero-drive { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .step-card { transition: all 0.3s ease; border-left: 4px solid transparent; }
+        .step-card:hover { border-left-color: #facc15; background: #f8fafc; transform: translateX(10px); }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-yellow-100 selection:text-slate-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-900 text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[110]">
+        🚗 NUOVI CORSI: Iscriviti entro fine mese e ricevi 2 guide omaggio | Quiz Online inclusi 🚗
+    </div>
+
+    <nav class="sticky top-[35px] z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-12 h-10 bg-slate-900 rounded flex items-center justify-center rotate-[-5deg] shadow-lg">
+                    <span class="text-white font-road text-2xl font-black italic">P</span>
+                </div>
+                <div class="flex flex-col leading-none ml-2">
+                    <span class="text-2xl font-road font-black text-slate-900 tracking-tighter uppercase">DRIVE<span class="text-drive-yellow">MASTER</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Driving Academy</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#patenti" class="hover:text-drive-yellow transition">Patenti</a>
+                <a href="#teoria" class="hover:text-drive-yellow transition">Teoria</a>
+                <a href="#pratica" class="hover:text-drive-yellow transition">Pratica</a>
+                <a href="#servizi" class="hover:text-drive-yellow transition">Servizi</a>
+            </div>
+
+            <a href="#iscriviti" class="bg-drive-yellow text-slate-900 px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-md">
+                Inizia Ora
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[80vh] flex items-center hero-drive overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-8">
+                <div class="inline-flex items-center gap-2 bg-drive-yellow/20 text-drive-yellow px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-drive-yellow/30 backdrop-blur-md">
+                    Oltre il 95% di promossi al primo esame
+                </div>
+                <h1 class="text-7xl md:text-[110px] font-road font-black text-white leading-[0.85] tracking-tighter italic">
+                    Prendi la <br> <span class="text-drive-yellow">Strada.</span>
+                </h1>
+                <p class="text-xl text-slate-100 font-light max-w-lg leading-relaxed italic border-l-4 border-drive-yellow pl-8">
+                    Sali in auto con i migliori istruttori. Metodo di apprendimento rapido, app dedicata per i quiz e flessibilità oraria per le tue guide.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="patenti" class="py-24 bg-white relative section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-5xl font-road text-slate-900">Mettiti al <span class="text-drive-yellow italic">Volante.</span></h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Ogni categoria di guida sotto controllo</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 bg-slate-50 rounded-[2.5rem] border border-slate-100 group">
+                    <i data-lucide="car" class="w-12 h-12 text-drive-yellow mb-6"></i>
+                    <h3 class="text-3xl font-road mb-4 italic">Patente B</h3>
+                    <p class="text-sm text-slate-500 italic">Auto con cambio manuale o automatico. Inizia a 17 anni con la Guida Accompagnata.</p>
+                </div>
+                <div class="p-10 bg-slate-50 rounded-[2.5rem] border border-slate-100 group">
+                    <i data-lucide="bike" class="w-12 h-12 text-drive-yellow mb-6"></i>
+                    <h3 class="text-3xl font-road mb-4 italic">Patente A / A1 / A2</h3>
+                    <p class="text-sm text-slate-500 italic">Dallo scooter 125 alle supersportive. Corsi di guida sicura su due ruote inclusi.</p>
+                </div>
+                <div class="p-10 bg-slate-50 rounded-[2.5rem] border border-slate-100 group">
+                    <i data-lucide="truck" class="w-12 h-12 text-drive-yellow mb-6"></i>
+                    <h3 class="text-3xl font-road mb-4 italic">C / D / E (Professional)</h3>
+                    <p class="text-sm text-slate-500 italic">Corsi per patenti superiori e CQC merci/persone. Diventa un professionista della strada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="teoria" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[400px] md:h-auto" alt="Digital Classroom">
+                <div class="absolute -bottom-8 -right-8 bg-drive-yellow text-slate-900 p-12 rounded-[3rem] shadow-2xl">
+                    <p class="font-road text-4xl font-black italic">100%</p>
+                    <p class="text-[9px] uppercase tracking-widest mt-1 font-bold">Quiz Online 24/7</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-6xl font-road text-slate-900 leading-none">Studia dove <br><span class="text-drive-yellow italic">Vuoi Tu.</span></h2>
+                <p class="text-slate-500 text-lg leading-relaxed font-light italic border-l-4 border-slate-900 pl-8">
+                    Lezioni in aula con schermi interattivi o in streaming da casa. Con la nostra App ufficiale puoi esercitarti sui quiz ministeriali.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-drive-yellow"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Lezioni registrate</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-drive-yellow"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Simulazioni d'esame</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pratica" class="py-24 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-road text-slate-900 mb-20 italic">Metodo <span class="text-drive-yellow">Drive Master.</span></h2>
+            <div class="space-y-6 text-left">
+                <div class="p-8 step-card">
+                    <h4 class="font-road text-2xl italic mb-2">01. Foglio Rosa</h4>
+                    <p class="text-sm text-slate-500 italic">Assistenza immediata dopo la teoria per iniziare subito le guide.</p>
+                </div>
+                <div class="p-8 step-card">
+                    <h4 class="font-road text-2xl italic mb-2">02. Guide Certificate</h4>
+                    <p class="text-sm text-slate-500 italic">Esecuzione delle guide obbligatorie (notturna, extraurbana, autostrada) in totale sicurezza.</p>
+                </div>
+            </div>
+            <div class="mt-16 rounded-[3rem] overflow-hidden">
+                <img src="assets/img3.jpg" class="w-full h-64 object-cover" alt="Pratica Guida">
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-10 overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-10">
+            <div class="grid md:grid-cols-3 gap-16 text-center">
+                <div class="space-y-6">
+                    <i data-lucide="refresh-cw" class="w-12 h-12 text-drive-yellow mx-auto"></i>
+                    <h4 class="text-2xl font-road italic">Rinnovo Patente</h4>
+                    <p class="text-slate-400 text-sm font-light italic">Medico in sede ogni martedì e venerdì. Pratiche immediate.</p>
+                </div>
+                <div class="space-y-6">
+                    <i data-lucide="plus-circle" class="w-12 h-12 text-drive-yellow mx-auto"></i>
+                    <h4 class="text-2xl font-road italic">Recupero Punti</h4>
+                    <p class="text-slate-400 text-sm font-light italic">Corsi serali e intensivi per recuperare i punti persi.</p>
+                </div>
+                <div class="space-y-6">
+                    <i data-lucide="shield-check" class="w-12 h-12 text-drive-yellow mx-auto"></i>
+                    <h4 class="text-2xl font-road italic">Guida Sicura</h4>
+                    <p class="text-slate-400 text-sm font-light italic">Corsi avanzati di controllo del veicolo per neopatentati.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="iscriviti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-8xl font-road text-slate-900 leading-none tracking-tighter italic">Contatta <br><span class="text-drive-yellow">L'Academy.</span></h2>
+                <div class="h-64 rounded-[3rem] overflow-hidden mb-8">
+                    <img src="assets/img4.jpg" class="w-full h-full object-cover" alt="Ufficio Drive Master">
+                </div>
+                <div class="space-y-4">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Sede Principale</p>
+                    <p class="text-xl font-bold italic">Via dei Motori 1, Milano</p>
+                </div>
+            </div>
+            <div class="bg-slate-50 p-12 rounded-[3rem] shadow-2xl border border-slate-100 space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-drive-yellow mb-4 text-center italic">Richiedi informazioni (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>SCEGLI IL TUO CORSO</option>
+                    <option>PATENTE B (AUTO)</option>
+                    <option>PATENTE A (MOTO)</option>
+                </select>
+                <textarea placeholder="LE TUE DOMANDE..." rows="3" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-slate-900 text-white py-6 rounded-2xl font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
+        <p class="text-stone-300 text-[9px] uppercase tracking-[0.6em] font-bold">
+            &copy; 2026 Drive Master Autoscuola | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="chat-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

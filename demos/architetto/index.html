@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Aegis | Architettura & Interior Design - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;300;400;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lexend Deca', sans-serif; background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* BLOCCO INTERAZIONI (DEMO MODE) */
+        button, input, select, textarea, .whatsapp-widget, [role="button"] {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* OTTIMIZZAZIONE MOBILE & RESPONSIVITÀ */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1.1 !important; letter-spacing: -0.02em !important; }
+            h2 { font-size: clamp(2rem, 10vw, 3.5rem) !important; line-height: 1.2 !important; }
+            .mobile-padding { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+            section { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+            .hero-container { height: auto !important; min-height: 85vh; padding-top: 7rem; }
+        }
+
+        /* BOTTONI FLOATING (BOTTOM-LEFT) */
+        .floating-demo-controls {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .project-card img { transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .project-card:hover img { transform: scale(1.05); }
+
+        .image-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+        }
+    </style>
+</head>
+<body class="selection:bg-black selection:text-white">
+
+    <div class="floating-demo-controls">
+        <a href="https://localtop.it/checkout" class="flex items-center gap-3 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center gap-3 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
+            <i data-lucide="arrow-left" class="w-4 h-4 text-[#008080]"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <nav class="fixed w-full z-[90] bg-white/80 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-gray-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 w-full flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <span class="text-xl md:text-2xl font-bold tracking-[0.3em] uppercase">Aegis<span class="font-light text-gray-400">Studio</span></span>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.4em] font-medium text-gray-500">
+                <a href="#progetti" class="hover:text-black transition">Opere</a>
+                <a href="#metodo" class="hover:text-black transition">Metodo</a>
+                <a href="#visione" class="hover:text-black transition">Visione</a>
+                <a href="#materia" class="hover:text-black transition">Materia</a>
+            </div>
+
+            <a href="#contatti" class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] border border-black px-4 md:px-6 py-2 md:py-3 hover:bg-black hover:text-white transition-all">
+                Contatti
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero-container relative min-h-screen flex items-center bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 w-full grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 md:space-y-12">
+                <h1 class="text-6xl md:text-[110px] font-light leading-[0.85] tracking-tighter text-black">
+                    Silent <br> <span class="font-serif italic text-gray-300">Space.</span>
+                </h1>
+                <p class="text-[10px] md:text-xs text-gray-500 max-w-sm leading-loose uppercase tracking-[0.2em] font-light">
+                    Architettura che non grida. Progettiamo spazi dove la luce e la materia dialogano in perfetto equilibrio.
+                </p>
+                <div class="pt-4">
+                    <a href="#progetti" class="group flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.3em]">
+                        Esplora i Progetti <span class="w-12 h-[1px] bg-black group-hover:w-20 transition-all"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="relative h-[45vh] md:h-[75vh] w-full overflow-hidden shadow-2xl">
+                <img src="assets/img1.jpg" class="w-full h-full object-cover grayscale" alt="Interior Design">
+                <div class="absolute inset-0 image-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="visione" class="py-24 md:py-40 bg-[#fbfbfb]">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-8 md:space-y-12">
+            <span class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold">La nostra filosofia</span>
+            <h2 class="text-4xl md:text-6xl font-serif italic text-black leading-tight">"L'essenziale è <br> forma e funzione."</h2>
+            <p class="text-base md:text-lg text-gray-500 font-light leading-relaxed max-w-2xl mx-auto italic">
+                Crediamo in un'architettura onesta. Ogni materiale scelto, ogni linea tracciata ha uno scopo: migliorare l'esperienza umana attraverso il silenzio visivo.
+            </p>
+        </div>
+    </section>
+
+    <section id="progetti" class="py-24 md:py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="flex justify-between items-end mb-16 md:mb-24">
+                <h2 class="text-3xl md:text-5xl font-light uppercase tracking-tighter">Opere <span class="text-gray-300 font-serif italic font-normal">Scelte</span></h2>
+                <span class="text-[9px] uppercase tracking-widest text-gray-400 font-bold hidden md:block">Portfolio 2024-2026</span>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 md:gap-20">
+                <div class="project-card space-y-6">
+                    <div class="aspect-[4/5] md:aspect-[4/3] overflow-hidden bg-gray-100">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-lg md:text-xl uppercase tracking-widest font-light italic">Residenza Pietra Bianca</h4>
+                        <span class="text-[9px] text-gray-400 uppercase tracking-widest">Ostuni, IT</span>
+                    </div>
+                </div>
+                <div class="project-card space-y-6 md:mt-32">
+                    <div class="aspect-[4/5] md:aspect-[4/3] overflow-hidden bg-gray-100">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-lg md:text-xl uppercase tracking-widest font-light italic">The Glass Pavilion</h4>
+                        <span class="text-[9px] text-gray-400 uppercase tracking-widest">Zurigo, CH</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="py-24 md:py-40 bg-[#121212] text-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-1">
+                <h2 class="text-4xl font-serif italic text-gray-500">Il Nostro <br> Processo.</h2>
+            </div>
+            <div class="lg:col-span-2 grid sm:grid-cols-2 gap-12">
+                <div class="space-y-4">
+                    <span class="text-gray-600 font-serif text-3xl">01.</span>
+                    <h5 class="text-[10px] font-bold uppercase tracking-widest">Ascolto Attivo</h5>
+                    <p class="text-gray-500 text-sm font-light leading-loose">Comprendiamo i tuoi desideri non detti per trasformarli in coordinate spaziali precise.</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-600 font-serif text-3xl">02.</span>
+                    <h5 class="text-[10px] font-bold uppercase tracking-widest">Sintesi Materica</h5>
+                    <p class="text-gray-500 text-sm font-light leading-loose">Sottraiamo il superfluo finché non resta solo la purezza della struttura e della luce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="materia" class="py-24 md:py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="h-[50vh] md:h-[60vh]">
+                    <img src="assets/img4.jpg" class="w-full h-full object-cover grayscale" alt="Focus Materia">
+                </div>
+                <div class="space-y-8">
+                    <h2 class="text-4xl md:text-5xl font-light uppercase tracking-tighter">Luce & <span class="font-serif italic text-gray-300">Materia.</span></h2>
+                    <p class="text-gray-500 leading-loose font-light">
+                        Marmo, cemento a vista, legno bruciato e vetro. La nostra ricerca si concentra sul contrasto tattile, creando ambienti che non sono solo da guardare, ma da sentire.
+                    </p>
+                    <div class="flex gap-8">
+                        <div class="text-center">
+                            <span class="block text-2xl font-light">15+</span>
+                            <span class="text-[8px] uppercase tracking-widest text-gray-400">Premi Design</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="block text-2xl font-light">120</span>
+                            <span class="text-[8px] uppercase tracking-widest text-gray-400">Progetti Unici</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-24 md:py-40 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-12">
+                <h2 class="text-5xl md:text-7xl font-light italic font-serif">Pianifica il <br><span class="text-gray-600 font-sans font-normal not-italic tracking-tighter">Tuo Spazio.</span></h2>
+                <div class="space-y-4">
+                    <p class="text-gray-400 uppercase tracking-widest text-[10px]">Via Brera 15, Milano • studio@aegis.it</p>
+                    <p class="text-gray-600 uppercase tracking-widest text-[9px] font-bold">+39 02 1234 5678</p>
+                </div>
+            </div>
+            <form class="space-y-8">
+                <div class="grid grid-cols-2 gap-8">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full bg-transparent border-b border-gray-800 py-4 outline-none text-[10px] font-bold tracking-[0.3em]">
+                    <input type="email" placeholder="LA TUA EMAIL" class="w-full bg-transparent border-b border-gray-800 py-4 outline-none text-[10px] font-bold tracking-[0.3em]">
+                </div>
+                <textarea placeholder="DESCRIZIONE DELLA TUA VISIONE..." rows="3" class="w-full bg-transparent border-b border-gray-800 py-4 outline-none text-[10px] font-bold tracking-[0.3em]"></textarea>
+                <button class="w-full bg-white text-black py-5 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-gray-200 transition-colors">Invia Richiesta (Demo)</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-black border-t border-gray-900 text-center px-6">
+        <p class="text-gray-600 text-[8px] uppercase tracking-[0.5em] font-bold leading-loose">
+            &copy; 2026 Studio Aegis Architettura | Demo Visiva per LocalTop
+        </p>
+    </footer>
+
+    <script>
+        // Inizializza Icone Lucide
+        lucide.createIcons();
+    </script>
+</body>
+</html>

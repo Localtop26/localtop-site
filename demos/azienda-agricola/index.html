@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terra Viva | Azienda Agricola & Bottega a Km 0 - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfaf7; color: #2d332d; overflow-x: hidden; }
+        .font-serif { font-family: 'Crimson Pro', serif; }
+        .text-earth { color: #8c5a3c; }
+        .bg-earth { background-color: #8c5a3c; }
+        .text-forest { color: #2d4739; }
+        .bg-forest { background-color: #2d4739; }
+        
+        /* Immagini Locali */
+        .hero-bg { 
+            background: linear-gradient(rgba(45,71,57,0.4), rgba(45,71,57,0.2)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+
+        .farm-card { transition: all 0.4s ease; border: 1px solid #e5e7eb; }
+        
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .mobile-padding { padding-left: 1.5rem; padding-right: 1.5rem; }
+            section { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* Bottoni Floating (Bottom-Left) */
+        .demo-controls {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-forest selection:text-white">
+
+    <div class="demo-controls">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
+            <i data-lucide="zap" class="w-4 h-4"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-forest text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[110]">
+        🥕 La raccolta di oggi: Asparagi selvatici e Fragole bio appena colte in Bottega
+    </div>
+
+    <nav class="sticky top-[35px] z-[100] bg-white/90 backdrop-blur-md border-b border-stone-100 h-24 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-forest rounded-full flex items-center justify-center shadow-lg">
+                    <i data-lucide="sprout" class="text-white w-6 h-6 md:w-7 md:h-7"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-serif font-bold text-forest tracking-tighter italic">Terra<span class="text-earth">Viva</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.5em] text-stone-400">Agricoltura Consapevole</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-stone-500">
+                <a href="#campi" class="hover:text-forest transition">La Tenuta</a>
+                <a href="#bottega" class="hover:text-forest transition">Bottega</a>
+                <a href="#esperienze" class="hover:text-forest transition">Esperienze</a>
+                <a href="#filosofia" class="hover:text-forest transition">Filosofia</a>
+                <a href="#natura" class="hover:text-forest transition">Natura</a>
+            </div>
+
+            <a href="#contatti" class="bg-earth text-white px-6 md:px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-forest transition-all shadow-md">
+                Ordina
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-bg overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-8">
+                <div class="inline-flex items-center gap-2 bg-white/90 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-forest shadow-sm">
+                    Dal seme alla tua tavola, senza intermediari
+                </div>
+                <h1 class="font-serif font-bold text-white leading-[0.85] tracking-tighter italic">
+                    Ritrova il <br> gusto della <span class="text-white font-normal underline decoration-earth decoration-4 underline-offset-8">Terra.</span>
+                </h1>
+                <p class="text-xl text-white font-light max-w-lg leading-relaxed italic drop-shadow-md">
+                    Benvenuti a Terra Viva. Coltiviamo con amore, rispettiamo i cicli della natura e portiamo la freschezza del campo direttamente a casa tua.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#bottega" class="bg-forest text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-2xl hover:bg-earth transition-all">Visita la Bottega</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="campi" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[400px] md:h-auto" alt="Campi">
+                <div class="absolute -bottom-8 -left-8 bg-forest text-white p-10 rounded-3xl shadow-2xl hidden md:block">
+                    <p class="font-serif text-4xl italic">30 Ettari</p>
+                    <p class="text-[9px] uppercase tracking-widest mt-2 opacity-70">Di biodiversità protetta</p>
+                </div>
+            </div>
+            <div class="space-y-8 text-center lg:text-right">
+                <h2 class="font-serif text-forest italic leading-tight">Coltiviamo il <span class="text-earth">Futuro</span> <br>custodendo il Passato.</h2>
+                <p class="text-stone-500 text-lg leading-relaxed font-light italic">
+                    Pratichiamo l'agricoltura rigenerativa per arricchire il suolo anziché sfruttarlo, garantendo prodotti sani per te e per l'ambiente.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="bottega" class="py-32 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <h2 class="text-5xl font-serif text-forest italic">Disponibili in <span class="text-earth font-normal">Bottega.</span></h2>
+                <p class="text-xs font-bold text-stone-400 uppercase tracking-widest border-b border-earth pb-2">Aperti Mar-Sab, 08:30 - 19:30</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-white rounded-3xl farm-card text-center space-y-6">
+                    <img src="assets/img3.jpg" class="w-full aspect-square object-cover rounded-2xl">
+                    <h4 class="text-xl font-serif font-bold italic">Olio Extra Vergine</h4>
+                    <span class="text-forest font-bold block">€14.00</span>
+                </div>
+                <div class="p-8 bg-white rounded-3xl farm-card text-center space-y-6 md:translate-y-12">
+                    <img src="assets/img4.jpg" class="w-full aspect-square object-cover rounded-2xl">
+                    <h4 class="text-xl font-serif font-bold italic">Cassetta Stagionale</h4>
+                    <span class="text-forest font-bold block">€22.00</span>
+                </div>
+                <div class="p-8 bg-white rounded-3xl farm-card text-center space-y-6">
+                    <img src="assets/img5.jpg" class="w-full aspect-square object-cover rounded-2xl">
+                    <h4 class="text-xl font-serif font-bold italic">Miele di Millefiori</h4>
+                    <span class="text-forest font-bold block">€8.50</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="esperienze" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-serif italic text-forest leading-none">Vivi la <br><span class="text-earth">Campagna.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 bg-stone-50 rounded-full flex items-center justify-center text-forest"><i data-lucide="camera"></i></div>
+                        <div><h4 class="font-bold uppercase text-[10px] tracking-widest text-forest">Workshop di Raccolta</h4></div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img6.jpg" class="rounded-[3rem] shadow-xl" alt="Esperienza in Tenuta">
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-serif italic text-forest">La Nostra Filosofia</h2>
+            <p class="text-stone-500 text-xl font-light leading-relaxed italic">
+                Rispettiamo i tempi della terra, non forziamo le crescite. Ogni frutto matura al sole, seguendo il ritmo delle stagioni per preservare intatto il sapore del territorio.
+            </p>
+        </div>
+    </section>
+
+    <section id="natura" class="py-32 bg-forest text-stone-200">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-serif italic text-white">Patto con la Natura</h2>
+            <p class="text-stone-400 text-xl font-light leading-relaxed">
+                Non usiamo diserbanti chimici. Utilizziamo la pacciamatura naturale e il compostaggio circolare.
+            </p>
+            <div class="flex justify-center gap-12">
+                <i data-lucide="wind" class="w-10 h-10 text-earth"></i>
+                <i data-lucide="sun" class="w-10 h-10 text-earth"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-stone-50 border-t border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-serif italic text-forest leading-none">Passa a <br><span class="text-earth font-normal">Trovarci.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-forest text-white rounded-full flex items-center justify-center"><i data-lucide="map-pin"></i></div>
+                        <p class="text-2xl font-serif italic">Strada del Podere 15, Toscana</p>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-12 rounded-[3rem] shadow-2xl space-y-6">
+                <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-stone-50 border-none outline-none text-[10px] uppercase font-bold tracking-widest">
+                <textarea placeholder="SCRIVICI LE TUE PREFERENZE..." rows="3" class="w-full p-4 bg-stone-50 border-none outline-none text-[10px] uppercase font-bold tracking-widest"></textarea>
+                <button class="w-full bg-forest text-white py-6 rounded-full font-bold uppercase text-[10px] tracking-[0.4em]">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-forest text-center text-stone-400 text-[8px] uppercase tracking-[0.5em] font-bold">
+        &copy; 2026 Terra Viva Società Agricola | Demo Mode
+    </footer>
+
+    <div class="chat-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

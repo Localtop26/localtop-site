@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Dimora del Sole | B&B di Charme & Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #fdfcf9; color: #4a453e; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-clay { color: #a68b6d; }
+        .bg-clay { background-color: #a68b6d; }
+        
+        /* Immagini Locali */
+        .hero-bb { 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .room-card { transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        
+        /* Demo Mode: Disabilita interattività */
+        button, input, select, textarea, .chat-widget {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* Bottoni Floating Bottom-Left */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-stone-200 selection:text-stone-800">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-stone-900 text-stone-300 py-2 text-[10px] font-bold text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[110]">
+        🌿 Prenota dal sito: Miglior prezzo garantito e colazione artigianale inclusa 🌿
+    </div>
+
+    <nav class="sticky top-[35px] z-[100] bg-white/80 backdrop-blur-md h-24 flex items-center border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-400">
+                <a href="#storia" class="hover:text-clay transition">Storia</a>
+                <a href="#camere" class="hover:text-clay transition">Suite</a>
+                <a href="#esperienze" class="hover:text-clay transition">Esperienze</a>
+            </div>
+            
+            <div class="text-center">
+                <span class="text-2xl md:text-3xl font-serif italic tracking-tighter text-stone-900 uppercase">La Dimora<span class="text-clay">del Sole</span></span>
+                <span class="block text-[7px] uppercase tracking-[0.6em] text-stone-400 font-bold mt-1">Guest House & Relax</span>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <a href="#contatti" class="bg-stone-900 text-white px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-clay transition-all shadow-md">
+                    Disponibilità
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-[90vh] flex items-center hero-bb overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center">
+            <div class="max-w-3xl mx-auto space-y-10">
+                <span class="text-white font-bold uppercase tracking-[0.6em] text-[10px]">L'essenza dell'ospitalità italiana</span>
+                <h1 class="text-7xl md:text-[110px] font-serif italic text-white leading-[0.85] tracking-tighter uppercase">
+                    Tempo di <br> <span class="text-clay font-light normal-case italic">Rinascere.</span>
+                </h1>
+                <p class="text-xl text-white/90 font-light leading-relaxed italic max-w-xl mx-auto">
+                    Immersi nel silenzio, circondati dalla bellezza. Un rifugio dove riprendersi il proprio tempo tra colazioni in giardino e suite di design.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="storia" class="py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-10">
+            <i data-lucide="sparkles" class="w-8 h-8 mx-auto text-clay opacity-40"></i>
+            <h2 class="text-5xl font-serif italic text-stone-900">Un'antica residenza, <br> un nuovo calore.</h2>
+            <p class="text-stone-500 text-lg font-light leading-relaxed italic">
+                Nata dal restauro conservativo di una casa padronale del XIX secolo, La Dimora del Sole unisce il fascino della pietra originale con il comfort dell'architettura moderna. Ogni angolo è stato pensato per farti sentire, semplicemente, a casa.
+            </p>
+            <div class="flex justify-center gap-12 pt-8">
+                <div class="text-center"><i data-lucide="coffee" class="mx-auto mb-4 text-clay"></i><p class="text-[9px] font-bold uppercase tracking-widest">Bio Breakfast</p></div>
+                <div class="text-center"><i data-lucide="wifi" class="mx-auto mb-4 text-clay"></i><p class="text-[9px] font-bold uppercase tracking-widest">Free Optical Wifi</p></div>
+                <div class="text-center"><i data-lucide="waves" class="mx-auto mb-4 text-clay"></i><p class="text-[9px] font-bold uppercase tracking-widest">Private Garden</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="camere" class="py-32 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-4">
+                <h2 class="text-5xl font-serif italic text-stone-900">Le Nostre <span class="text-clay">Suite.</span></h2>
+                <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest italic">Solo 4 camere, per una privacy totale</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="room-card group">
+                    <div class="aspect-video overflow-hidden rounded-sm mb-6 relative bg-stone-200">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute bottom-4 left-4 bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Suite Terrazza</div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-2xl font-serif italic">Suite "Aura"</h4>
+                        <span class="text-sm font-light italic">Da €140 / notte</span>
+                    </div>
+                </div>
+                <div class="room-card group mt-12">
+                    <div class="aspect-video overflow-hidden rounded-sm mb-6 relative bg-stone-200">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute bottom-4 left-4 bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-widest">King Size & Spa Bath</div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-2xl font-serif italic">Suite "Zefiro"</h4>
+                        <span class="text-sm font-light italic">Da €160 / notte</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-8">
+                <span class="text-clay font-bold uppercase tracking-[0.5em] text-[10px]">Good Morning Ritual</span>
+                <h2 class="text-5xl font-serif italic leading-tight text-stone-900">Il risveglio <br> ha il profumo <br> del pane caldo.</h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-2 border-clay pl-8">
+                    Ogni mattina serviamo prodotti locali a KM 0: torte fatte in casa, yogurt di fattoria, miele biologico e frutta fresca del nostro orto. Una colazione che nutre l'anima prima di esplorare il territorio.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <img src="assets/img4.jpg" class="rounded-sm shadow-xl">
+                <img src="assets/img5.jpg" class="rounded-sm shadow-xl mt-12">
+            </div>
+        </div>
+    </section>
+
+    <section id="esperienze" class="py-32 bg-stone-900 text-stone-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative h-[400px] overflow-hidden rounded-sm bg-stone-800">
+                <img src="assets/img6.jpg" class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition duration-1000">
+            </div>
+            <div class="space-y-10">
+                <h2 class="text-6xl font-serif italic text-clay leading-none">Vivi come <br> un Local.</h2>
+                <p class="text-stone-400 text-lg font-light leading-relaxed italic">Siamo pronti a svelarti i segreti del nostro territorio. Tour enogastronomici privati, trekking guidati o semplici pomeriggi di lettura nel nostro giardino segreto.</p>
+                <div class="flex flex-wrap gap-4">
+                    <span class="px-6 py-2 border border-stone-700 text-[10px] font-bold uppercase tracking-widest">Wine Tasting</span>
+                    <span class="px-6 py-2 border border-stone-700 text-[10px] font-bold uppercase tracking-widest">Bike Tour</span>
+                    <span class="px-6 py-2 border border-stone-700 text-[10px] font-bold uppercase tracking-widest">Yoga Class</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white italic text-center">
+        <div class="max-w-3xl mx-auto px-6">
+            <p class="text-2xl font-serif text-stone-400 leading-relaxed">"Un posto magico dove il tempo sembra essersi fermato. La cura di ogni dettaglio e l'accoglienza calorosa rendono questo B&B una perla rara."</p>
+            <p class="mt-8 text-clay font-bold uppercase tracking-[0.5em] text-[10px]">Sophie & Marc, Parigi</p>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-[#faf9f6]">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase">Scrivici <br><span class="text-clay font-normal italic">a Casa.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-8">
+                        <div class="w-14 h-14 bg-white border border-stone-200 flex items-center justify-center rounded-full text-clay shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Indirizzo</p><p class="text-2xl font-serif italic">Via della Pace 7, Toscana</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-14 h-14 bg-white border border-stone-200 flex items-center justify-center rounded-full text-clay shadow-sm"><i data-lucide="mail"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Scrivici</p><p class="text-2xl font-serif italic">info@ladimoradelsole.it</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-12 shadow-2xl space-y-8 rounded-sm">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="email" placeholder="EMAIL" class="w-full p-4 border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                        <label class="text-[9px] font-bold text-stone-400 uppercase tracking-widest">Check-in</label>
+                        <input type="date" class="w-full p-2 border-b border-stone-100">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[9px] font-bold text-stone-400 uppercase tracking-widest">Check-out</label>
+                        <input type="date" class="w-full p-2 border-b border-stone-100">
+                    </div>
+                </div>
+                <textarea placeholder="RICHIESTE PARTICOLARI (DIETE, TRANSFER...)" rows="3" class="w-full p-4 border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-stone-900 text-white py-6 text-[10px] font-bold uppercase tracking-[0.4em] shadow-xl">Richiedi Prenotazione</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center text-stone-300 text-[9px] uppercase tracking-[0.5em] font-bold border-t border-stone-50">
+        &copy; 2026 La Dimora del Sole | CIR 0123456789 | P.IVA 0123456789
+    </footer>
+
+    <div class="chat-widget fixed bottom-10 right-10 bg-white border border-stone-100 text-stone-900 p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-square" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        // Inizializzazione Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

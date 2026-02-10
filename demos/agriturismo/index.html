@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poggio alle Erbe | Demo Visiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfaf7; color: #3e3d32; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-olive { color: #556b2f; }
+        .bg-olive { background-color: #556b2f; }
+        .text-siena { color: #a0522d; }
+        .bg-siena { background-color: #a0522d; }
+        
+        /* Immagine Hero Locale */
+        .hero-agri { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+
+        .farm-card { border-radius: 20px; overflow: hidden; background: white; border: 1px solid #ede7df; transition: all 0.5s ease; }
+        
+        /* BLOCCO INTERAZIONI (DEMO MODE) */
+        button, input, select, textarea, .whatsapp-widget {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* OTTIMIZZAZIONE MOBILE & RESPONSIVITÀ */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 1 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .hero-agri { height: 80vh; padding-top: 2rem; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* CONTENITORE BOTTONI FLOATING (BOTTOM-LEFT) */
+        .floating-demo-nav {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body class="selection:bg-olive selection:text-white">
+
+    <div class="floating-demo-nav">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-olive text-white py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4">
+        🌾 STAGIONE 2026: Prenota il tuo pranzo della Domenica | Prodotti BIO disponibili in Bottega 🌾
+    </div>
+
+    <nav class="sticky top-0 z-[90] bg-white/90 backdrop-blur-md h-24 flex items-center border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-olive rounded-full flex items-center justify-center text-white shadow-lg">
+                    <i data-lucide="sprout" class="w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl md:text-3xl font-serif italic text-stone-900 tracking-tighter">Poggio<span class="text-siena">alle Erbe</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.5em] text-stone-400">Agriturismo & Bio Farm</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-widest text-stone-500">
+                <a href="#ospitalita" class="hover:text-olive transition">Ospitalità</a>
+                <a href="#ristorante" class="hover:text-olive transition">Ristorante</a>
+                <a href="#prodotti" class="hover:text-olive transition">I Nostri Prodotti</a>
+                <a href="#attivita" class="hover:text-olive transition">Esperienze</a>
+            </div>
+
+            <a href="#contatti" class="bg-siena text-white px-6 py-3 md:px-8 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-olive transition-all shadow-md">
+                Prenota Ora
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[80vh] flex items-center hero-agri overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-8">
+                <h1 class="text-7xl md:text-9xl font-serif italic text-white leading-[0.85] tracking-tighter">
+                    Dalla Terra <br> alla <span class="text-white underline decoration-siena decoration-4">Anima.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-white/90 font-light max-w-lg leading-relaxed italic border-l-2 border-white pl-8">
+                    Un'immersione totale nei ritmi della campagna toscana. Sapori dimenticati, panorami infiniti e il calore di una casa vera.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#ristorante" class="bg-white text-stone-900 px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase text-[10px] tracking-widest shadow-2xl hover:bg-siena hover:text-white transition-all">Il Ristorante</a>
+                    <a href="#ospitalita" class="bg-transparent border-2 border-white text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-stone-900 transition-all italic">Dormire in Fattoria</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ospitalita" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="order-2 lg:order-1 grid grid-cols-2 gap-4">
+                <img src="assets/img2.jpg" class="rounded-3xl shadow-xl w-full object-cover h-64 md:h-auto" alt="Camera Agriturismo">
+                <img src="assets/img3.jpg" class="rounded-3xl shadow-xl mt-8 md:mt-12 w-full object-cover h-64 md:h-auto" alt="Dettaglio Interno">
+            </div>
+            <div class="order-1 lg:order-2 space-y-10 text-center lg:text-left">
+                <span class="text-siena font-bold uppercase tracking-[0.5em] text-[10px]">L'arte del riposo</span>
+                <h2 class="text-5xl md:text-6xl font-serif italic text-stone-900 leading-tight">Svegliarsi con <br> il canto del <span class="text-olive">Gallo.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic">
+                    Le nostre camere, ricavate dalle antiche stalle e dai granai, mantengono travi a vista e pavimenti in cotto originale. Un comfort essenziale ma curato, dove la tecnologia lascia spazio al panorama.
+                </p>
+                <div class="grid grid-cols-2 gap-6 max-w-sm mx-auto lg:mx-0">
+                    <div class="flex items-center gap-4 border-b border-stone-100 pb-4"><i data-lucide="wind" class="text-olive w-5 h-5"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Aria di Campagna</span></div>
+                    <div class="flex items-center gap-4 border-b border-stone-100 pb-4"><i data-lucide="utensils" class="text-olive w-5 h-5"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Colazione Bio</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ristorante" class="py-20 md:py-32 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl font-serif italic text-stone-900">La Tavola del <span class="text-siena font-normal">Contadino.</span></h2>
+                <p class="text-stone-400 mt-4 uppercase tracking-widest text-[10px] font-bold">Menu stagionale e ingredienti del nostro orto</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div class="farm-card p-8 md:p-10 space-y-6">
+                    <h4 class="text-2xl font-serif italic text-olive border-b border-stone-100 pb-4">Pasta Tirata a Mano</h4>
+                    <p class="text-sm text-stone-500 italic leading-relaxed">Pici, tagliatelle e tortelli fatti ogni mattina con le uova delle nostre galline e farina macinata a pietra.</p>
+                </div>
+                <div class="farm-card p-8 md:p-10 space-y-6 bg-olive text-white shadow-2xl scale-105">
+                    <h4 class="text-2xl font-serif italic border-b border-white/20 pb-4 text-white">Carni alla Brace</h4>
+                    <p class="text-sm text-stone-200 italic leading-relaxed">Solo tagli selezionati da allevamenti locali allo stato brado, cotti sul fuoco di legna di quercia.</p>
+                </div>
+                <div class="farm-card p-8 md:p-10 space-y-6">
+                    <h4 class="text-2xl font-serif italic text-olive border-b border-stone-100 pb-4">Verdure dell'Orto</h4>
+                    <p class="text-sm text-stone-500 italic leading-relaxed">Colte e servite. Rispettiamo il ciclo naturale delle stagioni per garantirti il vero sapore della natura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prodotti" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="space-y-10 text-center lg:text-left">
+                <h2 class="text-5xl md:text-6xl font-serif italic text-stone-900">Porta a Casa <br><span class="text-siena">un pezzo di noi.</span></h2>
+                <p class="text-stone-500 text-lg leading-relaxed font-light italic border-l-4 border-olive pl-8 mx-auto lg:mx-0 max-w-xl">In bottega troverai il nostro Olio Extravergine d'Oliva spremuto a freddo, il miele selvatico, le marmellate senza zuccheri aggiunti e il vino prodotto nelle vigne che circondano il casale.</p>
+                <button class="border-b-2 border-siena text-[10px] font-black uppercase tracking-[0.4em] pb-2">Visita lo Shop Online</button>
+            </div>
+            <div class="relative">
+                <img src="assets/img4.jpg" class="rounded-[2rem] md:rounded-[4rem] shadow-2xl w-full object-cover h-[400px] md:h-auto" alt="Prodotti Bio">
+            </div>
+        </div>
+    </section>
+
+    <section id="attivita" class="py-20 md:py-32 bg-stone-900 text-stone-100">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-20">
+            <h2 class="text-4xl md:text-5xl font-serif italic tracking-widest uppercase">Vivere la <span class="text-olive">Campagna.</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div class="space-y-4">
+                    <i data-lucide="cooking-pot" class="mx-auto text-siena w-8 h-8 md:w-10 md:h-10"></i>
+                    <h4 class="font-bold text-[10px] uppercase tracking-widest">Cooking Class</h4>
+                    <p class="text-stone-400 text-[10px] italic">Impara l'arte della pasta.</p>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="grape" class="mx-auto text-siena w-8 h-8 md:w-10 md:h-10"></i>
+                    <h4 class="font-bold text-[10px] uppercase tracking-widest">Wine Tour</h4>
+                    <p class="text-stone-400 text-[10px] italic">Degustazioni tra i filari.</p>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="bike" class="mx-auto text-siena w-8 h-8 md:w-10 md:h-10"></i>
+                    <h4 class="font-bold text-[10px] uppercase tracking-widest">E-Bike Tour</h4>
+                    <p class="text-stone-400 text-[10px] italic">Esplora le colline.</p>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="tractor" class="mx-auto text-siena w-8 h-8 md:w-10 md:h-10"></i>
+                    <h4 class="font-bold text-[10px] uppercase tracking-widest">Fattoria Didattica</h4>
+                    <p class="text-stone-400 text-[10px] italic">Per i più piccoli.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20 md:py-32 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-12 text-center lg:text-left">
+                <h2 class="text-6xl md:text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase">Scrivici <br><span class="text-siena font-normal italic">in Fattoria.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex flex-col lg:flex-row items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 bg-white border border-stone-200 flex items-center justify-center rounded-full text-olive shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Località</p><p class="text-xl md:text-2xl font-serif italic">Strada delle Vigne 1, Siena</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-8 md:p-12 shadow-2xl border-l-8 border-olive space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 border-b border-stone-100 outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="email" placeholder="EMAIL" class="w-full p-4 border-b border-stone-100 outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 border-b border-stone-100 outline-none text-[10px] font-bold uppercase text-stone-400 tracking-widest">
+                    <option>COSA DESIDERI PRENOTARE?</option>
+                </select>
+                <textarea placeholder="DETTAGLI SUL TUO SOGNO RURALE..." rows="3" class="w-full p-4 border-b border-stone-100 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-siena text-white py-6 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl">Invia Messaggio (Demo)</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center text-stone-300 text-[9px] uppercase tracking-[0.5em] font-bold border-t border-stone-50">
+        &copy; 2026 Poggio alle Erbe | Demo Mode per LocalTop
+    </footer>
+
+    <div class="whatsapp-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        // Inizializzazione icone Lucide
+        lucide.createIcons();
+    </script>
+</body>
+</html>

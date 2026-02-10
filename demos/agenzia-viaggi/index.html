@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orizzonti Infiniti | Viaggi di Lusso Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfdfd; color: #1e293b; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Immagini Locali in ordine di apparizione */
+        .hero-travel { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+
+        /* Demo Mode: Disabilitazione interazioni */
+        button, input, select, textarea, .whatsapp-widget {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            .responsive-h1 { font-size: clamp(2.5rem, 12vw, 4rem) !important; line-height: 1.1 !important; }
+            .responsive-h2 { font-size: clamp(2rem, 10vw, 3rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* Floating Buttons Bottom-Left */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .dest-card { transition: all 0.5s ease; border-radius: 1.5rem; overflow: hidden; position: relative; }
+        .dest-card:hover { transform: translateY(-10px); }
+    </style>
+</head>
+<body class="selection:bg-teal-100 selection:text-teal-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-[#0f172a] text-white py-2.5 text-[9px] md:text-[11px] font-bold text-center uppercase tracking-[0.2em] md:tracking-[0.4em] px-4 sticky top-0 z-[120]">
+        🌍 NUOVE DESTINAZIONI 2026: Islanda, Polinesia e Giappone | Assistenza H24 🌍
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/90 backdrop-blur-lg h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-full mt-4">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-[#ff6b6b] rounded-full flex items-center justify-center shadow-lg text-white">
+                    <i data-lucide="compass" class="w-6 h-6"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-bold text-slate-900 tracking-tighter uppercase hidden sm:block">ORIZZONTI<span class="text-[#ff6b6b]">INFINITI</span></span>
+            </div>
+            
+            <div class="flex space-x-4 md:space-x-8 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#destinazioni" class="hover:text-[#ff6b6b] transition">Mete</a>
+                <a href="#bespoke" class="hover:text-[#ff6b6b] transition">Su Misura</a>
+                <a href="#filosofia" class="hover:text-[#ff6b6b] transition">Chi Siamo</a>
+                <a href="#contatti" class="hover:text-[#ff6b6b] transition">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-travel overflow-hidden -mt-24">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
+            <div class="max-w-3xl space-y-6 md:space-y-8">
+                <h1 class="responsive-h1 text-6xl md:text-[100px] font-serif italic text-white leading-tight tracking-tighter">
+                    Il Mondo, <br> come lo <span class="text-[#ff6b6b]">Sogni.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-white/90 font-light max-w-xl leading-relaxed border-l-2 border-[#ff6b6b] pl-6 md:pl-8 mx-auto md:mx-0">
+                    Progettiamo itinerari che non troverai in nessun catalogo. Benvenuti nel viaggio sartoriale.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="destinazioni" class="section-padding py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                <h2 class="responsive-h2 text-5xl font-serif italic text-slate-900">Destinazioni <span class="text-[#ff6b6b]">Elite.</span></h2>
+                <p class="text-slate-400 font-bold tracking-[0.2em] uppercase text-[10px]">Scopri l'inedito</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="dest-card h-[450px] md:h-[550px]">
+                    <img src="assets/img2.jpg" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-8">
+                        <h4 class="text-3xl font-serif italic text-white">Kyoto</h4>
+                        <p class="text-[#ff6b6b] font-bold text-xs uppercase tracking-widest">Tradizione & Futuro</p>
+                    </div>
+                </div>
+                <div class="dest-card h-[450px] md:h-[550px] md:mt-12">
+                    <img src="assets/img3.jpg" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-8">
+                        <h4 class="text-3xl font-serif italic text-white">Namibia</h4>
+                        <p class="text-[#ff6b6b] font-bold text-xs uppercase tracking-widest">Deserti Infiniti</p>
+                    </div>
+                </div>
+                <div class="dest-card h-[450px] md:h-[550px]">
+                    <img src="assets/img4.jpg" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-8">
+                        <h4 class="text-3xl font-serif italic text-white">Costiera</h4>
+                        <p class="text-[#ff6b6b] font-bold text-xs uppercase tracking-widest">Lusso Mediterraneo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bespoke" class="section-padding py-24 bg-slate-50 border-y border-slate-100 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <h2 class="responsive-h2 text-5xl font-serif italic text-slate-900 leading-tight">Il Viaggio <br><span class="text-[#ff6b6b]">Senza Confini.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-[#ff6b6b] pl-8">
+                    Ogni viaggiatore è unico. Per questo non esistono pacchetti pronti, solo pagine bianche da scrivere insieme ai nostri consulenti.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <div class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-slate-600"><i data-lucide="check-circle" class="text-[#ff6b6b] w-4 h-4"></i> Concierge Privato</div>
+                    <div class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-slate-600"><i data-lucide="check-circle" class="text-[#ff6b6b] w-4 h-4"></i> Accessi Esclusivi</div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img5.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[400px] md:h-[600px]">
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="section-padding py-24 bg-[#0f172a] text-white px-6">
+        <div class="max-w-5xl mx-auto text-center space-y-12">
+            <h2 class="text-[10px] font-bold text-[#ff6b6b] uppercase tracking-[0.5em]">La Nostra Essenza</h2>
+            <p class="font-serif italic text-3xl md:text-5xl leading-tight">
+                "Viaggiare non è vedere nuovi posti, ma avere nuovi occhi. Noi ti diamo la chiave per aprirli."
+            </p>
+            <div class="flex justify-center">
+                <div class="w-24 h-1 bg-[#ff6b6b]"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="section-padding py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 md:gap-24">
+            <div class="space-y-10">
+                <h2 class="responsive-h2 text-6xl font-serif text-slate-900 leading-none tracking-tighter uppercase italic">Inizia la <br><span class="text-[#ff6b6b] font-normal">Tua Storia.</span></h2>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6">
+                        <div class="w-12 h-12 bg-slate-50 flex items-center justify-center rounded-full text-[#ff6b6b] shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Atelier Milano</p><p class="text-xl font-serif italic text-slate-900">Via Montenapoleone 8</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] shadow-sm space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase shadow-sm">
+                    <input type="email" placeholder="EMAIL" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase shadow-sm">
+                </div>
+                <select class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase text-slate-400 shadow-sm">
+                    <option>Destinazione dei Sogni?</option>
+                    <option>Africa</option>
+                    <option>Asia</option>
+                    <option>Americhe</option>
+                </select>
+                <textarea placeholder="DICCI COSA CERCHI..." rows="3" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase shadow-sm"></textarea>
+                <button class="w-full bg-[#0f172a] text-white py-5 rounded-xl font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta (Demo)</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
+        <p class="text-slate-300 text-[9px] uppercase tracking-[0.4em] font-bold">
+            &copy; 2026 Orizzonti Infiniti | Eccellenza nei Viaggi | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="whatsapp-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        // Inizializzazione Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

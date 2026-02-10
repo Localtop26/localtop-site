@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinum & Co. | Enoteca d'Autore & Spirits Lab - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Outfit:wght@200;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #0d0d0d; color: #d4d4d8; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-vintage-gold { color: #c5a059; }
+        .bg-wine { background-color: #4c0519; }
+        
+        .hero-wine { 
+            background: linear-gradient(rgba(13,13,13,0.7), rgba(13,13,13,0.3)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .wine-card { background: #1a1a1a; border: 1px solid #262626; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .wine-card:hover { border-color: #c5a059; transform: translateY(-10px); }
+        .blur-overlay { backdrop-filter: blur(12px); background: rgba(13, 13, 13, 0.85); }
+
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            /* Mobile Header Fix */
+            .mobile-header-stack { height: auto !important; padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-wine selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-wine text-white py-2.5 text-[10px] font-black text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[120]">
+        🍷 ANNATA 2026: Arrivate le nuove selezioni di Champagne e Cru di Borgogna 🍷
+    </div>
+
+    <nav class="sticky top-[41px] z-[110] blur-overlay border-b border-white/5 min-h-24 flex items-center mobile-header-stack">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-wrap justify-between items-center gap-y-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-14 border border-vintage-gold flex items-center justify-center shrink-0">
+                    <i data-lucide="wine" class="text-vintage-gold w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-3xl font-serif italic text-white tracking-tighter">Vinum<span class="text-vintage-gold">&</span>Co.</span>
+                    <span class="text-[8px] font-black uppercase tracking-[0.6em] text-zinc-500">Fine Wines & Rare Spirits</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">
+                <a href="#vini" class="hover:text-vintage-gold transition">Cantina</a>
+                <a href="#spirits" class="hover:text-vintage-gold transition">Distillati</a>
+                <a href="#degustazioni" class="hover:text-vintage-gold transition">Esperienze</a>
+                <a href="#club" class="hover:text-vintage-gold transition">Wine Club</a>
+            </div>
+
+            <a href="#contatti" class="border border-vintage-gold text-vintage-gold px-8 py-3.5 text-[10px] font-black uppercase tracking-widest hover:bg-vintage-gold hover:text-black transition-all shrink-0">
+                Prenota Tavolo
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center hero-wine overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-20">
+            <div class="max-w-3xl space-y-10">
+                <div class="w-24 h-px bg-vintage-gold"></div>
+                <h1 class="text-7xl md:text-[110px] font-serif italic text-white leading-[0.85] tracking-tighter">
+                    L'Anima <br> in un <span class="text-vintage-gold">Sorso.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-zinc-300 font-bold max-w-lg leading-relaxed italic border-l border-zinc-800 pl-8">
+                    Dalle vigne eroiche ai piccoli produttori indipendenti. Una selezione curata per chi non cerca solo un vino, ma un'emozione da custodire.
+                </p>
+                <div class="flex flex-wrap gap-6 pt-6">
+                    <a href="#vini" class="bg-white text-black px-12 py-5 text-[10px] font-black uppercase tracking-widest hover:bg-vintage-gold hover:text-white transition-all shadow-2xl">Esplora la Cantina</a>
+                    <a href="#club" class="bg-transparent border border-white/20 text-white px-12 py-5 text-[10px] font-black uppercase tracking-widest hover:bg-white/5 transition-all italic">Unisciti al Club</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vini" class="py-32 bg-black section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <span class="text-vintage-gold font-black uppercase tracking-[0.5em] text-[10px]">Curated Selection</span>
+                <h2 class="text-5xl font-serif italic mt-4 text-white uppercase">Le Nostre Stanze</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="wine-card p-12 rounded-sm text-center space-y-8 group cursor-pointer">
+                    <div class="aspect-[2/3] overflow-hidden">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" alt="Vini Rossi">
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-serif italic text-white">Vini Rossi & Riserve</h4>
+                        <p class="text-[9px] uppercase tracking-widest text-zinc-500 mt-2 font-black italic">Nebbiolo, Sangiovese, Amarone</p>
+                    </div>
+                </div>
+                <div class="wine-card p-12 rounded-sm text-center space-y-8 group cursor-pointer md:mt-20">
+                    <div class="aspect-[2/3] overflow-hidden">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" alt="Bollicine">
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-serif italic text-white">Bollicine & Champagne</h4>
+                        <p class="text-[9px] uppercase tracking-widest text-zinc-500 mt-2 font-black italic">Franciacorta, Cru, Millesimati</p>
+                    </div>
+                </div>
+                <div class="wine-card p-12 rounded-sm text-center space-y-8 group cursor-pointer">
+                    <div class="aspect-[2/3] overflow-hidden">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" alt="Rare Spirits">
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-serif italic text-white">Rare Spirits</h4>
+                        <p class="text-[9px] uppercase tracking-widest text-zinc-500 mt-2 font-black italic">Whisky, Gin Sartoriali, Rum Invecchiati</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="spirits" class="py-32 bg-zinc-950 border-y border-white/5 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-serif italic text-white leading-none">Distillati di <br><span class="text-vintage-gold">puro carattere.</span></h2>
+                <p class="text-zinc-400 text-xl font-black leading-relaxed italic border-l-2 border-vintage-gold pl-8">
+                    La nostra stanza dei distillati ospita etichette introvabili: dai Single Malt delle Highlands ai Mezcal artigianali messicani, fino ai Gin prodotti in micro-lotti.
+                </p>
+                <div class="grid grid-cols-2 gap-8 pt-4">
+                    <div>
+                        <span class="text-5xl font-serif text-white italic">120+</span>
+                        <p class="text-[10px] uppercase tracking-widest text-vintage-gold mt-2 font-black">Referenze Whisky</p>
+                    </div>
+                    <div>
+                        <span class="text-5xl font-serif text-white italic">45+</span>
+                        <p class="text-[10px] uppercase tracking-widest text-vintage-gold mt-2 font-black">Etichette di Gin</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img5.jpg" class="rounded-sm shadow-2xl w-full" alt="Spirit Glass Color">
+                <div class="absolute inset-0 border border-vintage-gold/20 m-6"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-black">
+        <div class="max-w-[95%] mx-auto h-[600px] overflow-hidden rounded-sm relative group">
+            <img src="assets/img6.jpg" class="w-full h-full object-cover transition duration-[2s] group-hover:scale-105" alt="Table Experience">
+            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-10 text-center space-y-6">
+                <h2 class="text-6xl md:text-8xl font-serif italic text-white uppercase tracking-tighter">L'Arte della <span class="text-vintage-gold">Tavola.</span></h2>
+                <p class="text-xl md:text-2xl text-zinc-200 font-black italic max-w-2xl">Ogni bottiglia merita il suo rito. Dalla cristalleria soffiata a mano alla selezione di eccellenze gastronomiche locali.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="club" class="py-32 bg-wine text-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-6xl md:text-7xl font-serif italic italic">The Vintage Club</h2>
+            <p class="text-rose-100 text-xl md:text-2xl font-black italic">Ricevi ogni mese 3 bottiglie selezionate direttamente dal nostro sommelier. Accesso prioritario alle release limitate.</p>
+            <div class="grid md:grid-cols-3 gap-12 pt-8">
+                <div class="space-y-4">
+                    <i data-lucide="package" class="w-12 h-12 mx-auto text-vintage-gold"></i>
+                    <p class="text-[11px] font-black uppercase tracking-widest">Delivery Mensile</p>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="lock" class="w-12 h-12 mx-auto text-vintage-gold"></i>
+                    <p class="text-[11px] font-black uppercase tracking-widest">Private Stock</p>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="ticket" class="w-12 h-12 mx-auto text-vintage-gold"></i>
+                    <p class="text-[11px] font-black uppercase tracking-widest">Eventi VIP</p>
+                </div>
+            </div>
+            <button class="bg-white text-black px-12 py-5 text-[11px] font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-2xl">Abbonati Ora</button>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-[#0d0d0d] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-serif italic text-white leading-none tracking-tighter uppercase italic">Entra nel <br><span class="text-vintage-gold underline underline-offset-8 decoration-vintage-gold/30">Caveau.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-20 h-20 bg-zinc-900 border border-zinc-800 text-vintage-gold flex items-center justify-center rotate-3 shadow-xl shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">Concept Store</p><p class="text-3xl font-serif italic text-white">Via della Vigna 24, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-8 text-zinc-400">
+                        <div class="w-20 h-20 bg-zinc-900 border border-zinc-800 text-vintage-gold flex items-center justify-center shadow-xl shrink-0"><i data-lucide="phone" class="w-8 h-8"></i></div>
+                        <p class="text-3xl font-serif italic text-white">02 123 456 78</p>
+                    </div>
+                </div>
+            </div>
+            <form class="wine-card p-12 rounded-sm space-y-6 shadow-2xl relative overflow-hidden text-slate-100">
+                <div class="absolute top-0 right-0 bg-vintage-gold text-black px-8 py-3 text-[10px] font-black uppercase tracking-widest">
+                    Wine Experience Request
+                </div>
+                <p class="text-[11px] font-black uppercase tracking-widest text-vintage-gold text-center italic mb-4">Richiesta prenotazione (Modalità Demo)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME" class="w-full p-5 bg-transparent border-b border-zinc-800 outline-none text-[11px] font-black tracking-widest uppercase">
+                    <input type="email" placeholder="EMAIL" class="w-full p-5 bg-transparent border-b border-zinc-800 outline-none text-[11px] font-black tracking-widest uppercase">
+                </div>
+                <select class="w-full p-5 bg-transparent border-b border-zinc-800 outline-none text-[11px] font-black uppercase tracking-widest text-zinc-500">
+                    <option>TIPOLOGIA DI RICHIESTA</option>
+                    <option>PRENOTAZIONE TAVOLO</option>
+                    <option>ISCRIZIONE WINE CLUB</option>
+                </select>
+                <textarea placeholder="DETTAGLI SULLA TUA RICERCA..." rows="3" class="w-full p-5 bg-transparent border-b border-zinc-800 outline-none text-[11px] font-black uppercase tracking-widest"></textarea>
+                <button class="w-full bg-vintage-gold text-black py-6 text-[12px] font-black uppercase tracking-[0.4em] hover:bg-white transition-all shadow-xl">Richiedi l'invito</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-black border-t border-white/5 text-center px-6">
+        <p class="text-zinc-600 text-[10px] uppercase tracking-[0.6em] font-black leading-relaxed italic">
+            &copy; 2026 Vinum & Co. Milano | P.IVA 0123456789 | Bevi responsabilmente | LocalTop Demo
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-white text-black p-6 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

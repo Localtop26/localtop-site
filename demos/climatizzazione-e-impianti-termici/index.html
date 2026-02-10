@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TermoExpert | Comfort Climatico e Risparmio Energetico - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800;900&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfc; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .text-blue-pro { color: #0284c7; }
+        .bg-blue-pro { background-color: #0284c7; }
+        .text-orange-pro { color: #ea580c; }
+        .bg-orange-pro { background-color: #ea580c; }
+        
+        /* Hero: Immagine colorata e vibrante */
+        .hero-hvac { 
+            background: linear-gradient(rgba(255,255,255,0.85) 15%, rgba(255,255,255,0.4) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .tech-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; background: white; border-radius: 1.5rem; }
+        
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 13vw, 5.5rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.8rem, 11vw, 4.5rem) !important; }
+            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+            
+            /* Impedisce alla nav di sovrapporsi alla top-bar nera in modo errato */
+            .sticky-nav-fix { top: 0 !important; margin-top: 0 !important; border-radius: 0 !important; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-orange-50 selection:text-orange-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="relative bg-slate-900 text-white py-3.5 text-[10px] font-black text-center uppercase tracking-[0.2em] px-6 z-[130]">
+        🔥 SOS TECNICO: Caldaie e Condizionatori h24 | Intervento rapido in tutta la provincia 🔥
+    </div>
+
+    <nav class="sticky top-0 z-[120] bg-white/95 backdrop-blur-md h-24 flex items-center border-b border-slate-100 shadow-sm md:mx-10 md:mt-4 md:rounded-2xl sticky-nav-fix">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shrink-0">
+                    <i data-lucide="thermometer-snowflake" class="text-white w-7 h-7"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-heading font-black text-slate-900 tracking-tighter uppercase">TERMO<span class="text-blue-pro">EXPERT</span></span>
+                    <span class="text-[8px] font-black uppercase tracking-[0.4em] text-slate-400 italic">Advanced Climate Systems</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-slate-500">
+                <a href="#calore" class="hover:text-orange-pro transition">Riscaldamento</a>
+                <a href="#fresco" class="hover:text-blue-pro transition">Clima</a>
+                <a href="#rinnovabili" class="hover:text-emerald-600 transition">Rinnovabili</a>
+                <a href="#manutenzione" class="hover:text-slate-900 transition">Manutenzione</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-900 text-white px-6 md:px-8 py-4 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:bg-orange-pro transition-all shadow-md shrink-0">
+                Chiamata Rapida
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[85vh] flex items-center hero-hvac overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-16">
+            <div class="max-w-4xl space-y-8">
+                <div class="inline-flex items-center gap-2 bg-orange-50 text-orange-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-orange-100">
+                    Sconto in fattura & Detrazioni fiscali 2026
+                </div>
+                <h1 class="text-7xl md:text-9xl font-heading font-black text-slate-900 leading-[0.85] tracking-tighter uppercase">
+                    Il Clima <br> Perfetto, <span class="text-blue-pro italic font-black">Sempre.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-700 font-bold max-w-xl leading-relaxed border-l-8 border-orange-pro pl-8 italic">
+                    Soluzioni d'eccellenza: dalla sostituzione della caldaia alle pompe di calore ibride per l'indipendenza energetica.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#contatti" class="bg-orange-pro text-white px-12 py-6 rounded-full font-black uppercase text-xs tracking-[0.2em] shadow-xl hover:bg-slate-900 transition-all">Preventivo Gratuito</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calore" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="p-12 tech-card group border-orange-100">
+                    <div class="flex justify-between items-start mb-8">
+                        <i data-lucide="flame" class="w-12 h-12 text-orange-pro"></i>
+                        <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Servizio Invernale</span>
+                    </div>
+                    <h3 class="text-3xl font-heading font-black mb-4 uppercase">Riscaldamento</h3>
+                    <p class="text-sm text-slate-500 italic mb-6 leading-relaxed font-bold">Installazione caldaie a condensazione e sistemi radianti ad alta efficienza.</p>
+                    <ul class="space-y-3 text-[11px] font-black uppercase text-slate-400">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 text-orange-pro"></i> Caldaie Classe A+</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 text-orange-pro"></i> Bollino Blu Incluso</li>
+                    </ul>
+                </div>
+                <div id="fresco" class="p-12 tech-card group border-blue-100">
+                    <div class="flex justify-between items-start mb-8">
+                        <i data-lucide="snowflake" class="w-12 h-12 text-blue-pro"></i>
+                        <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Servizio Estivo</span>
+                    </div>
+                    <h3 class="text-3xl font-heading font-black mb-4 uppercase">Climatizzazione</h3>
+                    <p class="text-sm text-slate-500 italic mb-6 leading-relaxed font-bold">Sistemi Mono e Multisplit con tecnologia Inverter per il massimo risparmio.</p>
+                    <ul class="space-y-3 text-[11px] font-black uppercase text-slate-400">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 text-blue-pro"></i> Sanificazione Filtri</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 text-blue-pro"></i> Classe Energetica A+++</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rinnovabili" class="py-24 bg-slate-50 border-y border-slate-100 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-heading font-black text-slate-900 leading-none uppercase">Indipendenza <br><span class="text-emerald-600">Totale.</span></h2>
+                <p class="text-slate-700 text-lg font-bold leading-relaxed italic border-l-4 border-emerald-600 pl-8">
+                    Le pompe di calore aria-acqua eliminano definitivamente i costi della bolletta del gas sfruttando solo l'energia termica dell'aria.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border-b-4 border-emerald-500">
+                        <h4 class="text-emerald-600 font-black uppercase text-[10px] mb-2 tracking-widest">Risparmio</h4>
+                        <p class="text-4xl font-black">-65%</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border-b-4 border-emerald-500">
+                        <h4 class="text-emerald-600 font-black uppercase text-[10px] mb-2 tracking-widest">Rating</h4>
+                        <p class="text-4xl font-black">A+++</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl" alt="Heat Pump Unit">
+            </div>
+        </div>
+    </section>
+
+    <section id="manutenzione" class="py-24 bg-white section-padding">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-heading font-black text-slate-900 uppercase italic">Manutenzione <span class="text-orange-pro font-black">Certificata.</span></h2>
+            <p class="text-slate-500 text-xl font-bold leading-relaxed italic max-w-3xl mx-auto">
+                Evita sanzioni e garantisci la sicurezza della tua famiglia con il piano "Safe Home": tutto incluso per il tuo impianto.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8">
+                <div class="space-y-4"><i data-lucide="clipboard-check" class="w-10 h-10 mx-auto text-orange-pro"></i><p class="text-[10px] font-black uppercase tracking-widest">Analisi Fumi</p></div>
+                <div class="space-y-4"><i data-lucide="gauge" class="w-10 h-10 mx-auto text-orange-pro"></i><p class="text-[10px] font-black uppercase tracking-widest">Tenuta Impianto</p></div>
+                <div class="space-y-4"><i data-lucide="wind" class="w-10 h-10 mx-auto text-blue-pro"></i><p class="text-[10px] font-black uppercase tracking-widest">Igienizzazione</p></div>
+                <div class="space-y-4"><i data-lucide="shield" class="w-10 h-10 mx-auto text-blue-pro"></i><p class="text-[10px] font-black uppercase tracking-widest">Patentino F-GAS</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bonus" class="py-24 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-10 section-padding">
+        <div class="max-w-7xl mx-auto px-10 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-8">
+                <h2 class="text-6xl font-heading font-black leading-none italic uppercase">Incentivi <br><span class="text-orange-pro">Fiscali.</span></h2>
+                <p class="text-slate-300 text-lg leading-relaxed font-bold italic">Recupera il tuo investimento con le agevolazioni correnti: gestiamo noi tutta la pratica ENEA.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-6 bg-white/5 rounded-2xl border border-white/10">
+                        <span class="font-black text-[11px] uppercase tracking-widest">Eco-Bonus Efficientamento</span>
+                        <span class="text-orange-pro font-black text-2xl">65%</span>
+                    </div>
+                    <div class="flex justify-between items-center p-6 bg-white/5 rounded-2xl border border-white/10">
+                        <span class="font-black text-[11px] uppercase tracking-widest">Bonus Ristrutturazione</span>
+                        <span class="text-orange-pro font-black text-2xl">50%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white text-slate-900 p-12 rounded-[3.5rem] shadow-2xl text-center">
+                <i data-lucide="calculator" class="w-16 h-16 mx-auto mb-6 text-orange-pro"></i>
+                <h3 class="text-3xl font-heading font-black mb-4 uppercase">Zero Burocrazia</h3>
+                <p class="text-sm text-slate-500 mb-8 italic font-bold">Quanto puoi risparmiare oggi?</p>
+                <button class="w-full bg-slate-900 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] hover:bg-orange-pro transition-all shadow-xl">Contatta un esperto</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-heading font-black text-slate-900 leading-none tracking-tighter uppercase italic">Sempre <br><span class="text-blue-pro underline decoration-orange-pro underline-offset-8">Operativi.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-20 h-20 bg-slate-100 text-blue-pro rounded-3xl flex items-center justify-center shadow-sm shrink-0"><i data-lucide="map-pin" class="w-8 h-8"></i></div>
+                        <div><p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Sede Tecnica</p><p class="text-xl font-black uppercase">Via dell'Artigianato 4, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-20 h-20 bg-blue-pro text-white rounded-3xl flex items-center justify-center shadow-lg shrink-0"><i data-lucide="phone-call" class="w-8 h-8"></i></div>
+                        <div><p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Pronto Intervento H24</p><p class="text-4xl font-black italic text-slate-900 tracking-tighter">800 123 456</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-12 rounded-[4rem] shadow-2xl space-y-6 border border-slate-100">
+                <p class="text-[10px] font-black uppercase tracking-widest text-blue-pro mb-6 text-center italic">Sopralluogo gratuito entro 24 ore (Modalità Demo)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest">
+                </div>
+                <select class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                    <option>COSA DESIDERI CHIEDERE?</option>
+                    <option>NUOVA CALDAIA</option>
+                    <option>POMPA DI CALORE</option>
+                    <option>CLIMATIZZAZIONE</option>
+                </select>
+                <textarea placeholder="DETTAGLI SUL TUO IMPIANTO..." rows="3" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest"></textarea>
+                <button class="w-full bg-blue-pro text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl hover:bg-slate-900 transition-all">Invia Richiesta Tecnica</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-400 text-[9px] uppercase tracking-[0.4em] font-black px-6 leading-relaxed">
+            &copy; 2026 TermoExpert Impianti | Milano | P.IVA 0123456789 | Patentino F-GAS Certificato
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-6 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

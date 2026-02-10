@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insieme Cooperativa Sociale | Valore alla Persona & Territorio - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfdfd; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .text-coop-green { color: #10b981; }
+        .bg-coop-green { background-color: #10b981; }
+        .text-coop-orange { color: #f97316; }
+        
+        /* 1. Immagini Locali (assets/img1.jpg, ecc. in ordine di apparizione) */
+        .hero-coop { 
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.3)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .impact-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; background: white; border-radius: 1.5rem; }
+        
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-orange-100 selection:text-orange-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-900 text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[120]">
+        🌿 BILANCIO SOCIALE 2025 PUBBLICATO | Lavoriamo per un futuro inclusivo e sostenibile 🌿
+    </div>
+
+    <nav class="sticky top-8 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-2xl mt-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-coop-green rounded-xl flex items-center justify-center shadow-lg">
+                    <i data-lucide="users" class="text-white w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">INSIEME<span class="text-coop-orange">COOP</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400 italic">Cooperazione & Territorio</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#servizi" class="hover:text-coop-green transition">Cosa Facciamo</a>
+                <a href="#valori" class="hover:text-coop-green transition">I Valori</a>
+                <a href="#progetti" class="hover:text-coop-green transition">Progetti</a>
+                <a href="#lavora-con-noi" class="hover:text-coop-green transition">Lavora con noi</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-coop-green transition-all shadow-md">
+                Contattaci
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[80vh] flex items-center hero-coop overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-8 animate-fade-in">
+                <div class="inline-flex items-center gap-2 bg-emerald-50 text-coop-green px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-emerald-100">
+                    Cooperativa Sociale di Tipo A e B
+                </div>
+                <h1 class="text-6xl md:text-8xl font-heading font-bold text-slate-800 leading-[0.9] tracking-tighter uppercase">
+                    Persone al <br> <span class="text-coop-orange italic font-light italic">Centro.</span>
+                </h1>
+                <p class="text-xl text-slate-600 font-light max-w-lg leading-relaxed italic border-l-4 border-coop-green pl-8">
+                    Costruiamo percorsi di inclusione, assistenza e lavoro. Perchè nessuno resti indietro e ogni competenza trovi il suo spazio nella comunità.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#servizi" class="bg-coop-green text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">I Nostri Servizi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-white relative section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-5xl font-heading text-slate-900 uppercase italic">Aree di <span class="text-coop-orange">Intervento.</span></h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-[10px]">Dall'assistenza all'inserimento lavorativo</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 impact-card text-center group">
+                    <div class="w-16 h-16 bg-emerald-50 text-coop-green rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-coop-green group-hover:text-white transition-all"><i data-lucide="heart"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Servizi Educativi</h3>
+                    <p class="text-sm text-slate-500 italic">Centri estivi, supporto scolastico e laboratori per minori e persone con disabilità.</p>
+                </div>
+                <div class="p-10 impact-card text-center group">
+                    <div class="w-16 h-16 bg-orange-50 text-coop-orange rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-coop-orange group-hover:text-white transition-all"><i data-lucide="briefcase"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Inserimento Lavoro</h3>
+                    <p class="text-sm text-slate-500 italic">Creazione di opportunità lavorative in agricoltura bio, manutenzione e servizi.</p>
+                </div>
+                <div class="p-10 impact-card text-center group">
+                    <div class="w-16 h-16 bg-emerald-50 text-coop-green rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-coop-green group-hover:text-white transition-all"><i data-lucide="home"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Assistenza Home</h3>
+                    <p class="text-sm text-slate-500 italic">Cura domiciliare per anziani e supporto alle famiglie in situazioni di fragilità.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="valori" class="py-24 bg-slate-50 border-y border-slate-100 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-heading font-bold text-slate-900 leading-none uppercase italic">Oltre il <br><span class="text-coop-green">Profitto.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-coop-orange pl-8">
+                    La nostra forza è la cooperazione. Crediamo in un modello economico che mette la dignità del lavoro e il benessere della comunità davanti alla mera rendita finanziaria.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-3"><i data-lucide="shield-check" class="text-coop-green"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Trasparenza Totale</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="globe" class="text-coop-green"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Sostenibilità</span></div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl w-full object-cover h-[400px] md:h-auto" alt="Coop Team">
+                <div class="absolute -bottom-8 -right-8 bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
+                    <p class="font-heading text-3xl font-bold">25+</p>
+                    <p class="text-[9px] uppercase tracking-widest font-bold text-coop-orange">Anni di Attività</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="progetti" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <img src="assets/img3.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[500px]" alt="Progetti Sociali">
+                </div>
+                <div class="space-y-8 order-1 lg:order-2">
+                    <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase italic">L'Impatto <span class="text-coop-orange">Territoriale.</span></h2>
+                    <p class="text-slate-500 text-lg italic leading-relaxed">
+                        Ogni anno investiamo in nuovi progetti di riqualificazione e inclusione. Dalla gestione degli orti urbani alla creazione di co-housing sociale per giovani adulti con fragilità.
+                    </p>
+                    <div class="bg-slate-50 p-8 rounded-2xl border-l-8 border-coop-green">
+                        <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 italic">Ultimo Traguardo</p>
+                        <p class="text-lg font-bold text-slate-800 italic">"Oltre le Barriere" - 40 nuovi inserimenti lavorativi nel 2025.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lavora-con-noi" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase italic">Diventa parte della <span class="text-coop-orange">Squadra.</span></h2>
+            <p class="text-slate-500 text-xl font-light leading-relaxed italic">
+                Cerchiamo educatori, operatori socio-sanitari e persone motivate che vogliano fare la differenza. Inviaci la tua candidatura per le posizioni aperte o per un tirocinio formativo.
+            </p>
+            <div class="pt-8">
+                <a href="#contatti" class="bg-slate-900 text-white px-12 py-5 rounded-full font-black uppercase text-[11px] tracking-[0.3em] hover:bg-coop-green transition-all shadow-xl">Invia il tuo CV</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-[#fffcf9] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-heading font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Siamo <br><span class="text-coop-green underline underline-offset-8">Vicini a Te.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-emerald-50 text-coop-green rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Sede Amministrativa</p><p class="text-xl font-bold uppercase text-slate-900">Via della Cooperazione 1, 20100 Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-lg"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Centralino Unico</p><p class="text-2xl font-bold italic text-slate-900">02 123 456 78</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-coop-green mb-4 text-center italic">Richiesta informazioni in modalità Demo</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-slate-50 border-none rounded-3xl outline-none text-xs font-bold uppercase">
+                    <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="w-full p-5 bg-slate-50 border-none rounded-3xl outline-none text-xs font-bold uppercase">
+                </div>
+                <select class="w-full p-5 bg-slate-50 border-none rounded-3xl outline-none text-[10px] font-bold uppercase text-slate-400">
+                    <option>MOTIVO DEL CONTATTO</option>
+                </select>
+                <textarea placeholder="SCRIVI QUI IL TUO MESSAGGIO..." rows="3" class="w-full p-5 bg-slate-50 border-none rounded-3xl outline-none text-xs font-bold uppercase"></textarea>
+                <button class="w-full bg-slate-900 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Messaggio</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-300 text-[9px] uppercase tracking-[0.6em] font-bold">
+            &copy; 2026 Insieme Cooperativa Sociale | P.IVA 0123456789 | Albo Cooperative n. A12345 | LocalTop Demo
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltMaster | Impianti Elettrici e Domotica Milano - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Inter:wght@300;500;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1f2937; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .text-electric { color: #facc15; }
+        .bg-electric { background-color: #facc15; }
+        
+        /* Hero: Meno nero, immagine a colori (img1.jpg) */
+        .hero-bg { 
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.7) 20%, rgba(15, 23, 42, 0.2) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .nav-glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
+        .service-card:hover { border-bottom: 4px solid #facc15; transform: translateY(-5px); transition: all 0.3s ease; }
+
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 14vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 11vw, 4.5rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            /* Mobile Nav Fix */
+            .mobile-header-stack { height: auto !important; padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-yellow-400 selection:text-black">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-900 text-white py-3 text-center text-[10px] font-black uppercase tracking-[0.2em] px-4 sticky top-0 z-[110] shadow-md">
+        ⚡ PRONTO INTERVENTO ELETTRICO: Cortocircuiti e guasti risolti H24 | 📞 02 987 6543
+    </div>
+
+    <nav class="sticky top-[42px] z-[100] nav-glass border-b border-slate-100 min-h-20 flex items-center mobile-header-stack shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-wrap justify-between items-center gap-y-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center shadow-lg shrink-0">
+                    <i data-lucide="zap" class="text-yellow-400 w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-black tracking-tighter uppercase text-slate-900">Volt<span class="text-yellow-500">Master</span></span>
+                    <span class="text-[8px] font-black uppercase tracking-[0.4em] text-slate-400">Engineering & Solutions</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[11px] font-black uppercase tracking-widest text-slate-500">
+                <a href="#servizi" class="hover:text-yellow-500 transition">Impianti</a>
+                <a href="#smart" class="hover:text-yellow-500 transition">Domotica</a>
+                <a href="#energia" class="hover:text-yellow-500 transition">Fotovoltaico</a>
+                <a href="#sicurezza" class="hover:text-yellow-500 transition">Sicurezza</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-900 text-white px-8 py-3.5 rounded text-[10px] font-black uppercase tracking-widest hover:bg-yellow-400 hover:text-black transition-all shrink-0">
+                Richiedi Studio
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[90vh] flex items-center hero-bg overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-20">
+            <div class="max-w-4xl space-y-10 animate-fade-in">
+                <div class="inline-flex items-center gap-2 bg-yellow-400 text-black px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
+                    Certificazioni DM 37/08 & Abilitazioni
+                </div>
+                <h1 class="text-white uppercase tracking-tighter text-7xl md:text-8xl lg:text-9xl font-black leading-none">
+                    Energia <br> <span class="text-yellow-400 italic">Sotto Controllo.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-100 font-bold max-w-xl leading-relaxed italic border-l-8 border-yellow-400 pl-8">
+                    Progettiamo e realizziamo il cuore elettrico della tua casa e della tua azienda. Sicurezza garantita e tecnologie Smart di ultima generazione.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#servizi" class="bg-yellow-400 text-black px-12 py-6 rounded font-black uppercase text-xs tracking-[0.2em] shadow-2xl hover:bg-white transition-all">Sopralluogo Gratuito</a>
+                    <a href="tel:029876543" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-12 py-6 rounded font-black uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-all">S.O.S Elettricista</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="p-10 bg-slate-50 rounded-2xl service-card transition-all border border-slate-100">
+                    <i data-lucide="home" class="text-slate-900 mb-6 w-12 h-12"></i>
+                    <h3 class="text-2xl font-black mb-4 uppercase italic tracking-tighter">Impianti Civili</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed font-bold italic">Rifacimento completo impianti, quadri elettrici e punti luce. Rilascio dichiarazione di conformità a norma di legge.</p>
+                </div>
+                <div class="p-10 bg-slate-50 rounded-2xl service-card transition-all border border-slate-100">
+                    <i data-lucide="factory" class="text-slate-900 mb-6 w-12 h-12"></i>
+                    <h3 class="text-2xl font-black mb-4 uppercase italic tracking-tighter">Manutenzione Ind.</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed font-bold italic">Automazione, cablaggio bordo macchina e manutenzione quadri di potenza per aziende e capannoni.</p>
+                </div>
+                <div class="p-10 bg-slate-50 rounded-2xl service-card transition-all border border-slate-100">
+                    <i data-lucide="shield-check" class="text-slate-900 mb-6 w-12 h-12"></i>
+                    <h3 class="text-2xl font-black mb-4 uppercase italic tracking-tighter">Verifiche & Terra</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed font-bold italic">Analisi strumentale della resistenza di terra e protezione dalle scariche atmosferiche per condomini.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="smart" class="py-32 bg-slate-900 text-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-black tracking-tighter uppercase leading-none italic">La tua Casa <br><span class="text-yellow-400">Intelligente.</span></h2>
+                <p class="text-slate-300 text-xl font-bold leading-relaxed border-l-4 border-yellow-400 pl-8 italic">
+                    Controlla luci, tapparelle e riscaldamento direttamente dal tuo smartphone. Installiamo sistemi domotici KNX e MyHome per un comfort ed un risparmio energetico senza precedenti.
+                </p>
+                <div class="flex gap-12">
+                    <div class="text-center">
+                        <span class="text-4xl font-black block text-yellow-400">-25%</span>
+                        <span class="text-[10px] uppercase tracking-widest text-slate-500 font-black">Consumi Medi</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-4xl font-black block text-yellow-400">100%</span>
+                        <span class="text-[10px] uppercase tracking-widest text-slate-500 font-black">Controllo Remoto</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group">
+                <img src="assets/img2.jpg" class="rounded-3xl shadow-2xl w-full border border-white/5" alt="Smart Home Color">
+                <div class="absolute inset-0 border-8 border-yellow-400/20 m-4 rounded-xl pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="energia" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img3.jpg" class="rounded-[3rem] shadow-2xl w-full" alt="Pannelli Fotovoltaici Color">
+            </div>
+            <div class="order-1 lg:order-2 space-y-10 text-right">
+                <h2 class="text-6xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">L'Energia <br>del <span class="text-yellow-500">Futuro.</span></h2>
+                <p class="text-slate-500 text-xl font-bold leading-relaxed italic border-r-8 border-yellow-500 pr-8">Diventa indipendente dalla rete elettrica. Installazione pannelli fotovoltaici con sistemi di accumulo e colonnine di ricarica Wallbox.</p>
+                <div class="flex justify-end gap-8 text-[11px] font-black uppercase tracking-widest text-slate-400 italic">
+                    <span>Sistemi Accumulo</span>
+                    <span>Wallbox</span>
+                    <span>Ecobonus 50%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sicurezza" class="py-32 bg-slate-50 section-padding border-y border-slate-100">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-black uppercase italic tracking-widest">Protezione <span class="text-yellow-500">Totale</span></h2>
+            <p class="text-slate-600 text-lg font-bold leading-relaxed italic">Sistemi antintrusione filari e wireless, videosorveglianza IP ad alta risoluzione con visione notturna e controllo cloud.</p>
+            <div class="grid md:grid-cols-3 gap-12 pt-8">
+                <div><i data-lucide="eye" class="w-12 h-12 mx-auto mb-4 text-slate-900"></i><p class="text-[11px] font-black uppercase tracking-widest">Videosorveglianza</p></div>
+                <div><i data-lucide="bell-ring" class="w-12 h-12 mx-auto mb-4 text-slate-900"></i><p class="text-[11px] font-black uppercase tracking-widest">Antifurti</p></div>
+                <div><i data-lucide="fingerprint" class="w-12 h-12 mx-auto mb-4 text-slate-900"></i><p class="text-[11px] font-black uppercase tracking-widest">Controllo Accessi</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Potenzia il tuo <br><span class="text-yellow-500 underline underline-offset-8">Impianto.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-yellow-400 text-black rounded-2xl flex items-center justify-center shadow-xl"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Ufficio & SOS</p><p class="text-3xl font-black">02 987 6543</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-slate-950 text-white rounded-2xl flex items-center justify-center shadow-xl"><i data-lucide="mail"></i></div>
+                        <div><p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Richieste</p><p class="text-xl font-black italic">info@voltmaster.it</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-900 p-12 rounded-[3rem] shadow-2xl space-y-6">
+                <p class="text-[11px] font-black uppercase tracking-widest text-yellow-400 mb-4 italic text-center">Richiedi un sopralluogo tecnico gratuito (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME" class="w-full p-5 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-yellow-400 transition text-white text-[10px] font-black uppercase tracking-widest">
+                    <input type="text" placeholder="CITTA'" class="w-full p-5 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-yellow-400 transition text-white text-[10px] font-black uppercase tracking-widest">
+                </div>
+                <input type="email" placeholder="EMAIL" class="w-full p-5 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-yellow-400 transition text-white text-[10px] font-black uppercase tracking-widest">
+                <textarea placeholder="DESCRIZIONE INTERVENTO..." rows="4" class="w-full p-5 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-yellow-400 transition text-white text-[10px] font-black uppercase tracking-widest"></textarea>
+                <button class="w-full bg-yellow-400 text-black py-6 rounded-xl font-black uppercase text-[12px] tracking-[0.3em] hover:bg-white transition shadow-xl">Invia Richiesta Tecnica</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-400 text-[10px] uppercase tracking-[0.5em] font-black px-6 leading-relaxed">
+            &copy; 2026 VoltMaster Impianti Milano | P.IVA 9876543210 | Certificazioni Lettere A-B DM 37/08 | Shaping Energy Solutions
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-black text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="zap" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

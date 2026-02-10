@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riviera Motors | Concessionaria d'Eccellenza Milano - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #0f172a; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .text-accent { color: #c2a35d; }
+        .bg-accent { background-color: #c2a35d; }
+        
+        .hero-video-bg { 
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.2) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .car-card:hover img { transform: scale(1.08); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 5.5rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-slate-900 selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-950 text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[110]">
+        🏎️ DRIVE THE FUTURE: Scopri la nuova gamma elettrica 2026 | Test Drive disponibili ora
+    </div>
+
+    <nav class="sticky top-[34px] z-[100] bg-white/95 backdrop-blur-xl border-b border-slate-100 min-h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-wrap justify-between items-center py-4 md:py-0 md:h-24">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-8 bg-slate-900 flex items-center justify-center transform skew-x-[-20deg]">
+                    <i data-lucide="gauge" class="text-white w-5 h-5 transform skew-x-[20deg]"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-black tracking-tighter uppercase text-slate-950 italic">Riviera<span class="text-slate-400">Motors</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Luxury Car Experience</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#nuove" class="hover:text-slate-950 transition">Novità</a>
+                <a href="#usato" class="hover:text-slate-950 transition">Usato</a>
+                <a href="#detailing" class="hover:text-slate-950 transition">Detailing</a>
+                <a href="#noleggio" class="hover:text-slate-950 transition">Business</a>
+                <a href="#testimoni" class="hover:text-slate-950 transition">Club</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-950 text-white px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-all mt-4 md:mt-0">
+                Contatta Expert
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[90vh] flex items-center hero-video-bg overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-3xl space-y-10">
+                <div class="h-1 w-24 bg-accent"></div>
+                <h1 class="text-7xl md:text-[110px] font-black text-white leading-[0.85] tracking-tighter uppercase italic">
+                    Oltre il <br> <span class="text-accent italic font-light">Movimento.</span>
+                </h1>
+                <p class="text-xl text-slate-300 font-light max-w-lg leading-relaxed italic">
+                    Benvenuti in Riviera Motors. Più di una concessionaria, un atelier dedicato a chi cerca l'emozione pura su quattro ruote.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-6">
+                    <a href="#nuove" class="bg-white text-slate-950 px-12 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl">Vedi Inventario</a>
+                    <a href="#contatti" class="bg-transparent border border-white/30 text-white px-12 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all">Prenota Test Drive</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center md:justify-between items-center gap-12 opacity-40 transition duration-700">
+                <span class="text-2xl font-heading font-black italic">PORSCHE</span>
+                <span class="text-2xl font-heading font-black italic">BMW</span>
+                <span class="text-2xl font-heading font-black italic">AUDI</span>
+                <span class="text-2xl font-heading font-black italic">FERRARI</span>
+                <span class="text-2xl font-heading font-black italic">MASERATI</span>
+                <span class="text-2xl font-heading font-black italic">TESLA</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="nuove" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-20">
+                <h2 class="text-5xl font-black uppercase tracking-tighter italic">Selezione <span class="text-slate-400">Settimanale</span></h2>
+                <div class="text-right hidden md:block">
+                    <p class="text-xs font-bold uppercase text-accent tracking-[0.3em]">68 Veicoli Disponibili</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="car-card group cursor-pointer">
+                    <div class="overflow-hidden bg-slate-100 aspect-video mb-6 rounded-sm shadow-inner">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover transition duration-700">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="text-xl font-bold uppercase italic tracking-tight">Gran Turismo Sport</h4>
+                            <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Nuova | Full Electric</p>
+                        </div>
+                        <span class="text-lg font-black italic">€84.900</span>
+                    </div>
+                    <div class="mt-4 flex gap-4 text-[10px] font-bold uppercase text-slate-400">
+                        <span class="flex items-center gap-1"><i data-lucide="zap" class="w-3 h-3 text-accent"></i> 520 CV</span>
+                        <span class="flex items-center gap-1"><i data-lucide="timer" class="w-3 h-3 text-accent"></i> 3.2s 0-100</span>
+                    </div>
+                </div>
+                <div class="car-card group cursor-pointer">
+                    <div class="overflow-hidden bg-slate-100 aspect-video mb-6 rounded-sm">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover transition duration-700">
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold uppercase italic tracking-tight">Executive SUV</h4>
+                        <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Pronta Consegna | Hybrid</p>
+                        <span class="text-lg font-black italic mt-2 block">€52.400</span>
+                    </div>
+                </div>
+                <div id="usato" class="car-card group cursor-pointer">
+                    <div class="overflow-hidden bg-slate-100 aspect-video mb-6 rounded-sm">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-700">
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold uppercase italic tracking-tight">Legacy Coupe</h4>
+                        <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Usato Certificato | 2024</p>
+                        <span class="text-lg font-black italic mt-2 block">€31.900</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="detailing" class="py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <img src="assets/img5.jpg" class="rounded-sm shadow-2xl contrast-125" alt="Detailing">
+                <div class="absolute -top-10 -left-10 bg-accent text-white p-12 hidden md:block">
+                    <p class="font-heading text-4xl font-black italic uppercase">Shine</p>
+                    <p class="text-[9px] font-bold uppercase tracking-widest">Trattamenti Nanotecnologici</p>
+                </div>
+            </div>
+            <div class="space-y-10">
+                <h2 class="text-5xl font-black uppercase tracking-tighter italic">Cura <span class="text-accent italic font-light">Maniacale.</span></h2>
+                <p class="text-slate-500 text-lg leading-relaxed font-light italic">Proteggi il tuo investimento. Offriamo servizi di Car Detailing professionale: dalla lucidatura a specchio alla protezione ceramica della carrozzeria.</p>
+                <div class="flex gap-10">
+                    <div class="flex flex-col gap-2"><i data-lucide="shield-check" class="text-accent"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-900">Protezione PPF</span></div>
+                    <div class="flex flex-col gap-2"><i data-lucide="sparkles" class="text-accent"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-900">Interior Sanification</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="noleggio" class="py-32 bg-slate-950 text-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-12">
+                <h2 class="text-6xl font-black tracking-tighter uppercase italic leading-none">Business <br><span class="text-accent italic font-light">Solutions.</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed border-l-2 border-accent pl-8 italic">
+                    Noleggio a lungo termine e gestione flotte aziendali. Un unico canone mensile per eliminare ogni pensiero: manutenzione, bollo e assicurazione inclusi.
+                </p>
+                <a href="#contatti" class="inline-block border-b border-accent pb-2 text-xs font-bold uppercase tracking-[0.4em] text-white hover:text-accent transition">Richiedi un piano personalizzato</a>
+            </div>
+            <div class="bg-white/5 p-12 rounded-sm border border-white/5">
+                <div class="grid grid-cols-2 gap-10">
+                    <div class="space-y-2">
+                        <span class="text-4xl font-black text-accent tracking-tighter italic block">0%</span>
+                        <p class="text-[10px] uppercase font-bold text-slate-500">Anticipo Disponibile</p>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-4xl font-black text-accent tracking-tighter italic block">24h</span>
+                        <p class="text-[10px] uppercase font-bold text-slate-500">Approvazione Pratica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimoni" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <span class="text-accent font-bold uppercase tracking-[0.5em] text-[10px]">Cosa dicono i nostri membri</span>
+                <h2 class="text-5xl font-black uppercase tracking-tighter italic mt-4">Riviera <span class="text-slate-400">Club Members</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-6 italic">
+                    <div class="flex text-accent gap-1"><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i></div>
+                    <p class="text-slate-500 text-sm leading-relaxed">"Esperienza di acquisto impeccabile. Dalla scelta della vettura alla consegna, il team mi ha seguito con una professionalità mai vista prima."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="assets/img6.jpg" class="w-10 h-10 bg-slate-100 rounded-full object-cover">
+                        <span class="text-xs font-bold uppercase tracking-widest">Marco G. - Porsche Owner</span>
+                    </div>
+                </div>
+                <div class="space-y-6 italic">
+                    <div class="flex text-accent gap-1"><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i></div>
+                    <p class="text-slate-500 text-sm leading-relaxed">"Il servizio di detailing ha trasformato la mia auto. Sembra uscita oggi dal concessionario. Davvero consigliati."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="assets/img7.jpg" class="w-10 h-10 bg-slate-100 rounded-full object-cover">
+                        <span class="text-xs font-bold uppercase tracking-widest">Elena V. - Luxury SUV</span>
+                    </div>
+                </div>
+                <div class="space-y-6 italic">
+                    <div class="flex text-accent gap-1"><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i><i data-lucide="star" class="w-3 h-3 fill-accent"></i></div>
+                    <p class="text-slate-500 text-sm leading-relaxed">"Ho scelto il noleggio a lungo termine per la mia azienda. Pratica veloce e auto sostitutiva sempre al top."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="assets/img8.jpg" class="w-10 h-10 bg-slate-100 rounded-full object-cover">
+                        <span class="text-xs font-bold uppercase tracking-widest">Roberto S. - Fleet Manager</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-slate-50 border-t border-slate-200 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Entra nel <br><span class="text-accent">Club.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-slate-950 text-accent flex items-center justify-center shadow-2xl transform -rotate-3"><i data-lucide="map-pin"></i></div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Il nostro Showroom</p>
+                            <p class="text-2xl font-black italic">Viale della Libertà 100, Milano</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-8 text-slate-400">
+                        <div class="w-16 h-16 bg-white border border-slate-200 text-slate-950 flex items-center justify-center"><i data-lucide="phone"></i></div>
+                        <p class="text-2xl font-black italic">+39 02 1234 5678</p>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-12 border border-slate-100 space-y-6 shadow-2xl">
+                <p class="text-center text-[10px] font-bold uppercase tracking-widest text-slate-400 italic mb-4">Prenotazioni in modalità Demo</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Nome" class="w-full p-4 border-b border-slate-200 outline-none focus:border-accent transition text-sm">
+                    <input type="text" placeholder="Interesse (es. Porsche)" class="w-full p-4 border-b border-slate-200 outline-none focus:border-accent transition text-sm">
+                </div>
+                <input type="email" placeholder="Email o Telefono" class="w-full p-4 border-b border-slate-200 outline-none focus:border-accent transition text-sm">
+                <textarea placeholder="Scrivi qui il tuo messaggio..." rows="3" class="w-full p-4 border-b border-slate-200 outline-none focus:border-accent transition text-sm"></textarea>
+                <button class="w-full bg-slate-950 text-white py-6 font-bold uppercase text-xs tracking-[0.3em] hover:bg-accent transition-all duration-500">Invia Messaggio</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-white border-t border-slate-100 text-center px-6">
+        <p class="text-slate-400 text-[9px] uppercase tracking-[0.5em] font-bold">
+            &copy; 2026 Riviera Motors Milano | P.IVA 0123456789 | Tutti i diritti riservati
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-black text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

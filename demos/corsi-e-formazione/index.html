@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterClass Academy | Formazione Professionale & Career Coach - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800;900&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #0f172a; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .text-focus-blue { color: #2563eb; }
+        .bg-focus-blue { background-color: #2563eb; }
+        .text-accent-yellow { color: #facc15; }
+        
+        /* Hero: Immagine a colori più visibile */
+        .hero-academy { 
+            background: linear-gradient(135deg, rgba(15,23,42,0.7) 0%, rgba(30,58,138,0.4) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .course-card { transition: all 0.4s ease; border: 1px solid #f1f5f9; background: white; border-radius: 1.5rem; }
+        .course-card:hover { transform: translateY(-10px); border-color: #2563eb; box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15); }
+
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 14vw, 6rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.8rem, 11vw, 4.5rem) !important; }
+            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+            /* Mobile Header Fix */
+            .mobile-header-stack { height: auto !important; padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-100 selection:text-blue-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-blue-600 text-white py-2.5 text-[10px] font-black text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[120]">
+        🎓 CERTIFICAZIONI 2026: Nuovi corsi accreditati per il fondo nuove competenze | Iscrizioni Aperte 🎓
+    </div>
+
+    <nav class="sticky top-[41px] z-[110] bg-white/95 backdrop-blur-md min-h-20 flex items-center border-b border-slate-100 mx-0 md:mx-10 md:rounded-2xl mt-0 md:mt-4 mobile-header-stack shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-wrap justify-between items-center gap-y-4">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-focus-blue rounded-xl flex items-center justify-center shadow-lg shrink-0">
+                    <i data-lucide="graduation-cap" class="text-white w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-heading font-black text-slate-900 tracking-tighter uppercase">MASTER<span class="text-focus-blue">CLASS</span></span>
+                    <span class="text-[8px] font-black uppercase tracking-[0.4em] text-slate-400 italic">Professional Academy</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-slate-500">
+                <a href="#corsi" class="hover:text-focus-blue transition">Catalogo Corsi</a>
+                <a href="#metodo" class="hover:text-focus-blue transition">Metodo Didattico</a>
+                <a href="#placement" class="hover:text-focus-blue transition">Lavoro & Imprese</a>
+                <a href="#certificazioni" class="hover:text-focus-blue transition">Certificazioni</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-900 text-white px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-focus-blue transition-all shrink-0">
+                Richiedi Brochure
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[90vh] flex items-center hero-academy overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-20">
+            <div class="max-w-3xl space-y-8 animate-fade-in">
+                <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20 backdrop-blur-md">
+                    Ente di formazione accreditato regione & UE
+                </div>
+                <h1 class="text-7xl md:text-[110px] font-heading font-black text-white leading-[0.85] tracking-tighter uppercase">
+                    Progetta il <br> tuo <span class="text-accent-yellow italic">Futuro.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-100 font-bold max-w-xl leading-relaxed italic border-l-8 border-accent-yellow pl-8">
+                    Smetti di cercare lavoro, inizia a farti cercare. Percorsi formativi intensivi con docenti professionisti e inserimento diretto in azienda.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#corsi" class="bg-focus-blue text-white px-10 py-5 rounded-full font-black uppercase text-xs tracking-widest shadow-2xl hover:bg-white hover:text-focus-blue transition-all">Sfoglia i Corsi</a>
+                    <a href="#placement" class="bg-transparent border border-white/30 text-white px-10 py-5 rounded-full font-black uppercase text-xs tracking-widest hover:bg-white/10 transition-all italic">Placement Lavorativo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="corsi" class="py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <h2 class="text-5xl font-heading font-black text-slate-900 uppercase italic">Aree di <br><span class="text-focus-blue">Specializzazione.</span></h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-6 py-2.5 bg-white rounded-full text-[10px] font-black uppercase text-slate-600 border border-slate-200">Digital</span>
+                    <span class="px-6 py-2.5 bg-white rounded-full text-[10px] font-black uppercase text-slate-600 border border-slate-200">Business</span>
+                    <span class="px-6 py-2.5 bg-white rounded-full text-[10px] font-black uppercase text-slate-600 border border-slate-200">Tech</span>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="course-card p-12 space-y-6">
+                    <div class="w-16 h-16 bg-blue-50 text-focus-blue rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="code" class="w-8 h-8"></i></div>
+                    <h3 class="text-2xl font-heading font-black text-slate-900 uppercase tracking-tighter">Coding & Dev</h3>
+                    <p class="text-slate-500 font-bold italic leading-relaxed">Dalla programmazione web all'intelligenza artificiale. Diventa il developer richiesto dal mercato globale.</p>
+                    <button class="text-[11px] font-black uppercase tracking-widest text-focus-blue border-b-4 border-focus-blue pb-1">Dettagli Corso</button>
+                </div>
+                <div class="course-card p-12 space-y-6">
+                    <div class="w-16 h-16 bg-blue-50 text-focus-blue rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="bar-chart-3" class="w-8 h-8"></i></div>
+                    <h3 class="text-2xl font-heading font-black text-slate-900 uppercase tracking-tighter">Digital Marketing</h3>
+                    <p class="text-slate-500 font-bold italic leading-relaxed">SEO, ADV e Social Media Strategy. Impara a gestire la comunicazione dei grandi brand internazionali.</p>
+                    <button class="text-[11px] font-black uppercase tracking-widest text-focus-blue border-b-4 border-focus-blue pb-1">Dettagli Corso</button>
+                </div>
+                <div class="course-card p-12 space-y-6">
+                    <div class="w-16 h-16 bg-blue-50 text-focus-blue rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="pen-tool" class="w-8 h-8"></i></div>
+                    <h3 class="text-2xl font-heading font-black text-slate-900 uppercase tracking-tighter">UI/UX Design</h3>
+                    <p class="text-slate-500 font-bold italic leading-relaxed">Progetta esperienze digitali memorabili. Dall'idea creativa al prototipo interattivo finale.</p>
+                    <button class="text-[11px] font-black uppercase tracking-widest text-focus-blue border-b-4 border-focus-blue pb-1">Dettagli Corso</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-heading font-black text-slate-900 leading-none uppercase">Impara <br><span class="text-focus-blue italic">Facendo.</span></h2>
+                <p class="text-slate-600 text-xl font-bold leading-relaxed italic border-l-8 border-accent-yellow pl-8">
+                    La teoria è nulla senza pratica. I nostri corsi sono basati al 70% su laboratori, project work reali e case study forniti direttamente dalle aziende partner.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-blue-50 p-3 rounded-xl text-focus-blue"><i data-lucide="users"></i></div>
+                        <div><h4 class="font-black text-[11px] uppercase tracking-widest">Classi a numero chiuso</h4><p class="text-xs text-slate-400 font-bold">Massimo 15 allievi per classe.</p></div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="bg-blue-50 p-3 rounded-xl text-focus-blue"><i data-lucide="monitor"></i></div>
+                        <div><h4 class="font-black text-[11px] uppercase tracking-widest">Hybrid Learning</h4><p class="text-xs text-slate-400 font-bold">In presenza e online live.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl w-full h-full object-cover" alt="Academy Experience">
+                <div class="absolute -top-10 -right-10 bg-accent-yellow text-slate-900 p-12 rounded-full shadow-2xl border-8 border-white">
+                    <p class="font-heading text-4xl font-black">94%</p>
+                    <p class="text-[9px] uppercase tracking-widest font-black">Placement Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="placement" class="py-32 bg-slate-950 text-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-16">
+            <h2 class="text-5xl md:text-6xl font-heading font-black uppercase italic">Il Ponte verso il <span class="text-focus-blue">Lavoro.</span></h2>
+            <p class="text-slate-400 text-xl md:text-2xl font-bold italic max-w-4xl mx-auto">Collaboriamo con oltre 200 aziende leader nel settore tech e digital che scelgono i nostri studenti per i loro reparti innovazione.</p>
+            <div class="flex flex-wrap justify-center gap-12 opacity-30">
+                <span class="text-2xl font-black tracking-tighter italic">GOOGLE PARTNER</span>
+                <span class="text-2xl font-black tracking-tighter italic">MICROSOFT ACADEMY</span>
+                <span class="text-2xl font-black tracking-tighter italic">AWS CLOUD</span>
+                <span class="text-2xl font-black tracking-tighter italic">ADOBE HUB</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificazioni" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img3.jpg" class="rounded-[2.5rem] shadow-xl w-full h-[500px] object-cover" alt="Certifications">
+            </div>
+            <div class="space-y-10 order-1 lg:order-2">
+                <h2 class="text-5xl font-heading font-black text-slate-900 leading-tight uppercase italic">Titoli <br><span class="text-focus-blue">Riconosciuti.</span></h2>
+                <p class="text-slate-600 text-lg font-bold leading-relaxed italic">Al termine di ogni percorso riceverai un attestato di qualifica professionale valido ai fini europei (EQF) e le certificazioni internazionali dei vendor tecnologici.</p>
+                <ul class="space-y-5">
+                    <li class="flex items-center gap-4 font-black text-[11px] uppercase tracking-widest"><i data-lucide="check-circle-2" class="text-focus-blue"></i> Certificazione ISO 9001:2015</li>
+                    <li class="flex items-center gap-4 font-black text-[11px] uppercase tracking-widest"><i data-lucide="check-circle-2" class="text-focus-blue"></i> Accreditamento Regionale MIUR</li>
+                    <li class="flex items-center gap-4 font-black text-[11px] uppercase tracking-widest"><i data-lucide="check-circle-2" class="text-focus-blue"></i> Crediti Formativi Professionali</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl font-heading font-black text-slate-900 leading-none uppercase italic">Ispirare il <br><span class="text-focus-blue font-light">Cambiamento.</span></h2>
+                <p class="text-slate-600 text-lg font-bold leading-relaxed italic border-l-8 border-accent-yellow pl-8">
+                    La nostra filosofia si basa sul rispetto dei talenti individuali. Crediamo che l'istruzione debba evolversi alla velocità del mercato, fornendo non solo competenze tecniche, ma la mentalità necessaria per eccellere.
+                </p>
+            </div>
+            <div class="relative">
+                <img src="assets/img4.jpg" class="rounded-[4rem] shadow-2xl w-full object-cover h-[450px]" alt="Academy Life">
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-heading font-black text-slate-900 leading-none tracking-tighter uppercase italic">Prenota un <br><span class="text-focus-blue underline underline-offset-8">Colloquio.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-focus-blue shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Campus Centrale</p><p class="text-2xl font-black uppercase">Via dei Talenti 50, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-slate-950 text-white rounded-2xl flex items-center justify-center shadow-lg shrink-0"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Orientamento Studenti</p><p class="text-2xl font-black italic">02 888 777 66</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-8 md:p-12 rounded-[3.5rem] shadow-2xl border border-slate-100 space-y-6">
+                <p class="text-[11px] font-black uppercase tracking-widest text-focus-blue mb-8 text-center italic">Ricevi il catalogo e scopri le agevolazioni (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest">
+                    <input type="email" placeholder="EMAIL" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest">
+                </div>
+                <select class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                    <option>QUALE AREA TI INTERESSA?</option>
+                    <option>DEVELOPMENT & TECH</option>
+                    <option>DIGITAL MARKETING</option>
+                    <option>UI/UX & DESIGN</option>
+                </select>
+                <textarea placeholder="DICCI QUALCOSA SULLE TUE ASPIRAZIONI..." rows="4" class="w-full p-5 bg-white rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest"></textarea>
+                <button class="w-full bg-focus-blue text-white py-6 rounded-2xl font-black uppercase text-[12px] tracking-[0.3em] shadow-xl hover:bg-slate-950 transition-all">Richiedi Orientamento</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-400 text-[9px] font-black uppercase tracking-[0.5em] px-6 leading-relaxed">
+            &copy; 2026 MasterClass Academy | Accreditamento Regionale N. 98765 | P.IVA 0123456789 | Shaping Professional Careers
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-6 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

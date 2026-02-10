@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Labor | Strategie e Gestione Risorse Umane - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Lexend:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fdfdfd; color: #334155; overflow-x: hidden; }
+        h1, h2, h3, .font-lex { font-family: 'Lexend', sans-serif; }
+        .text-petrol { color: #0e7490; }
+        .bg-petrol { background-color: #0e7490; }
+        
+        /* 1. Immagini Locali (assets/img1.jpg, ecc. in ordine di apparizione) */
+        .hero-office { 
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .consult-card { transition: all 0.3s ease; border-top: 4px solid transparent; }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(2.5rem, 12vw, 4.5rem) !important; line-height: 1 !important; }
+            h2 { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-cyan-50 selection:text-cyan-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-900 text-slate-400 py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120] border-b border-white/5">
+        ⚖️ AGGIORNAMENTO NORMATIVO: Analisi Legge di Bilancio 2026 e Nuovi Esoneri Contributivi ⚖️
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 mt-4 rounded-sm">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-petrol flex items-center justify-center text-white rounded-md">
+                    <i data-lucide="briefcase" class="w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-lex font-bold text-slate-900 tracking-tighter uppercase">STUDIO<span class="text-petrol">LABOR</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.5em] text-slate-400 italic">Consulenza del Lavoro & HR</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#payroll" class="hover:text-petrol transition">Payroll</a>
+                <a href="#welfare" class="hover:text-petrol transition">Welfare</a>
+                <a href="#crisi" class="hover:text-petrol transition">Crisi d'Impresa</a>
+                <a href="#audit" class="hover:text-petrol transition">Audit</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-900 text-white px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-petrol transition-all shadow-md">
+                Richiedi Check-up
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[75vh] flex items-center hero-office overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-3xl space-y-8 animate-fade-in">
+                <h1 class="text-6xl md:text-8xl font-lex font-bold text-slate-900 leading-[0.9] tracking-tighter uppercase">
+                    Il Lavoro, <br> in <span class="text-petrol italic">Evoluzione.</span>
+                </h1>
+                <p class="text-xl text-slate-600 font-light max-w-lg leading-relaxed border-l-4 border-petrol pl-8">
+                    Oltre l'amministrazione. Supportiamo le aziende nella creazione di relazioni di lavoro sane, efficienti e conformi, ottimizzando il costo del personale attraverso leve strategiche.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#contatti" class="bg-slate-900 text-white px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-petrol transition-all">Consulenza Strategica</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="payroll" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-lex font-bold text-slate-900 uppercase italic">Gestione <span class="text-petrol">Certificata.</span></h2>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-petrol/20 inline-block pb-2">Elaborazione Buste Paga & Adempimenti</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 bg-slate-50 consult-card group">
+                    <i data-lucide="calculator" class="w-8 h-8 text-petrol mb-6"></i>
+                    <h3 class="text-xl font-lex font-bold mb-4 uppercase">Payroll Outsourcing</h3>
+                    <p class="text-sm text-slate-500 italic leading-relaxed">Elaborazione LUL, UniEmens, modelli F24 e autoliquidazione INAIL. Precisione e puntualità garantite.</p>
+                </div>
+                <div id="welfare" class="p-10 bg-slate-50 consult-card group">
+                    <i data-lucide="gift" class="w-8 h-8 text-petrol mb-6"></i>
+                    <h3 class="text-xl font-lex font-bold mb-4 uppercase">Welfare & Fringe Benefits</h3>
+                    <p class="text-sm text-slate-500 italic leading-relaxed">Progettazione di piani welfare per ridurre il cuneo fiscale e aumentare il benessere dei dipendenti.</p>
+                </div>
+                <div class="p-10 bg-slate-50 consult-card group">
+                    <i data-lucide="users" class="w-8 h-8 text-petrol mb-6"></i>
+                    <h3 class="text-xl font-lex font-bold mb-4 uppercase">Relazioni Sindacali</h3>
+                    <p class="text-sm text-slate-500 italic leading-relaxed">Assistenza in sede di contrattazione collettiva aziendale e gestione dei rapporti con gli enti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="crisi" class="py-24 bg-slate-100 border-y border-slate-200 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-lex font-bold text-slate-900 leading-none uppercase italic">Sicurezza <br><span class="text-petrol">Contrattuale.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-slate-900 pl-8">
+                    Gestiamo le fasi delicate della vita aziendale: dagli ammortizzatori sociali (CIGO/CIGS) alle procedure di licenziamento individuale e collettivo, con rigore normativo.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-3"><i data-lucide="shield" class="text-petrol"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Assistenza Vertenze</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="trending-down" class="text-petrol"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Riduzione Costi</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="file-check" class="text-petrol"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Check-up Giuslavoristico</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="database" class="text-petrol"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Data HR Analysis</span></div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-sm shadow-2xl grayscale transition duration-1000">
+            </div>
+        </div>
+    </section>
+
+    <section id="audit" class="py-24 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-4xl font-lex font-bold text-slate-900 uppercase">Audit <span class="text-petrol">del Lavoro.</span></h2>
+            <p class="text-slate-500 text-xl font-light leading-relaxed italic">
+                Verifichiamo la regolarità della tua azienda per prevenire sanzioni ispettive. Una due-diligence completa sulla documentazione e sulle procedure HR per dormire sonni tranquilli.
+            </p>
+            <div class="pt-8">
+                <span class="text-[10px] font-bold uppercase tracking-[0.4em] border border-slate-200 px-8 py-4 rounded-sm text-slate-400">Consulente Iscritto all'Ordine Nazionale</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 text-white section-padding">
+        <div class="max-w-7xl mx-auto px-10 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-8">
+                <h2 class="text-5xl font-lex font-bold leading-none uppercase italic">Cloud <br><span class="text-petrol">HR Portal.</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed">
+                    Digitalizziamo il rapporto di lavoro. Un'area riservata per dipendenti e ditta dove consultare buste paga, CU, presenze e documenti in tempo reale, 24/7.
+                </p>
+                <div class="flex gap-4">
+                    <i data-lucide="smartphone" class="text-petrol"></i>
+                    <i data-lucide="monitor" class="text-petrol"></i>
+                    <i data-lucide="lock" class="text-petrol"></i>
+                </div>
+            </div>
+            <div class="bg-white/5 p-12 rounded-sm border border-white/10 text-center">
+                <h4 class="font-lex font-bold mb-6 uppercase text-petrol">Accesso Studi</h4>
+                <p class="text-xs text-slate-400 italic mb-8">Piattaforma integrata per la gestione delle presenze e scambio documentale protetto.</p>
+                <button class="bg-petrol text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest transition">Log-in Portale</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-lex font-bold text-slate-900 leading-none tracking-tighter uppercase italic italic">Solidità <br><span class="text-petrol underline underline-offset-8">Operativa.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-slate-100 text-petrol rounded-sm flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Lo Studio</p><p class="text-2xl font-lex font-bold">Via Giotto 12, 20100 Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-slate-900 text-white rounded-sm flex items-center justify-center shadow-lg"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Centralino HR</p><p class="text-2xl font-lex font-bold italic">02 123 456 78</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-12 rounded-sm shadow-2xl space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-petrol mb-4 text-center italic">Consulenza preliminare (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="RAGIONE SOCIALE" class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="NUMERO DIPENDENTI" class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>AMBITO DI CONSULENZA</option>
+                </select>
+                <textarea placeholder="DESCRIVI BREVEMENTE LA TUA ESIGENZA..." rows="3" class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-slate-900 text-white py-6 rounded-sm font-black uppercase text-[11px] tracking-[0.3em] shadow-xl transition-all">Richiedi Fattibilità</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center px-4">
+        <p class="text-slate-300 text-[9px] uppercase tracking-[0.5em] font-bold">
+            &copy; 2026 Studio Labor | Consulenti del Lavoro Iscritti all'Ordine | P.IVA 0123456789 | Demo Mode
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-square" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

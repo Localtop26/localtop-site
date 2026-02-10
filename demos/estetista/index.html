@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Beauty & Nails | Luxury Nail Design Milano - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fffaf9; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        .text-rose { color: #c38e70; }
+        .bg-rose { background-color: #c38e70; }
+        .nav-glass { background: rgba(255, 250, 249, 0.98); backdrop-filter: blur(10px); }
+        
+        /* Hero: Estesa, a colori e con testo leggibile */
+        .hero-bg { 
+            background: linear-gradient(to right, rgba(20,20,20,0.6) 0%, rgba(20,20,20,0.1) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .nail-card:nth-child(even) { margin-top: 3rem; }
+        @media (max-width: 768px) { .nail-card:nth-child(even) { margin-top: 0; } }
+
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile & Title Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 15vw, 6rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .mobile-header-stack { height: auto !important; padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="text-slate-800 selection:bg-rose selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <nav class="fixed w-full z-[100] nav-glass border-b border-orange-100 mobile-header-stack">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center gap-y-4">
+            <div class="flex flex-col">
+                <span class="text-2xl font-serif font-bold tracking-tighter text-slate-900 uppercase leading-none">Aura<span class="text-rose">Beauty</span></span>
+                <span class="text-[9px] tracking-[0.4em] uppercase text-rose font-black italic">Nails & Skin Expert</span>
+            </div>
+            <div class="hidden lg:flex space-x-10 text-[11px] font-black uppercase tracking-widest text-slate-500">
+                <a href="#servizi" class="hover:text-rose transition">Trattamenti</a>
+                <a href="#unghie" class="hover:text-rose transition">Nail Gallery</a>
+                <a href="#filosofia" class="hover:text-rose transition">La Filosofia</a>
+                <a href="#contatti" class="hover:text-rose transition">Contatti</a>
+            </div>
+            <button class="bg-slate-900 text-white px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-rose transition-all shadow-xl shrink-0">
+                Appuntamenti
+            </button>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center hero-bg overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-20">
+            <div class="max-w-4xl space-y-10 animate-fade-in">
+                <div class="inline-flex items-center gap-2 bg-rose text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg">
+                    <i data-lucide="sparkles" class="w-3 h-3"></i> Nail Art Specialist Milano
+                </div>
+                <h1 class="font-serif leading-[0.85] text-white italic uppercase text-7xl md:text-8xl lg:text-9xl tracking-tighter">
+                    Dettagli che <br><span class="text-rose drop-shadow-sm">incantano.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-100 font-bold max-w-xl leading-relaxed italic border-l-8 border-rose pl-8">
+                    Non semplici unghie, ma un accessorio di stile unico. Scopri la perfezione della Dry Manicure e dei trattamenti avanzati.
+                </p>
+                <div class="flex flex-wrap gap-6 pt-4">
+                    <a href="#unghie" class="bg-rose text-white px-12 py-6 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-rose transition-all shadow-2xl">Guarda la Gallery</a>
+                    <div class="flex items-center gap-3">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-rose/40"></div>
+                        </div>
+                        <span class="text-[10px] font-black text-white uppercase tracking-widest italic">Oltre 500 clienti felici</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="unghie" class="py-32 bg-soft section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24 space-y-4">
+                <h2 class="text-6xl font-serif italic uppercase tracking-tighter">Perfect Shapes</h2>
+                <p class="text-slate-400 font-black tracking-widest uppercase text-xs italic">Scegli il tuo stile unico tra le nostre creazioni</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="nail-card group">
+                    <div class="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl mb-6">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" alt="French Design">
+                    </div>
+                    <h4 class="font-serif italic text-2xl text-center text-slate-800">Modern French</h4>
+                </div>
+                <div class="nail-card group">
+                    <div class="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl mb-6 border-8 border-white">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" alt="Red Nails">
+                    </div>
+                    <h4 class="font-serif italic text-2xl text-center text-slate-800">Timeless Red</h4>
+                </div>
+                <div class="nail-card group">
+                    <div class="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl mb-6">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" alt="Nude Nails">
+                    </div>
+                    <h4 class="font-serif italic text-2xl text-center text-slate-800">Quiet Luxury Nude</h4>
+                </div>
+                <div class="nail-card group">
+                    <div class="aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl mb-6 border-8 border-white">
+                        <img src="assets/img5.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110" alt="Nail Detail">
+                    </div>
+                    <h4 class="font-serif italic text-2xl text-center text-slate-800">Artistic Details</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="grid grid-cols-2 gap-6">
+                <img src="assets/img6.jpg" class="rounded-[3rem] h-80 w-full object-cover shadow-2xl" alt="Facial Treatment">
+                <img src="assets/img7.jpg" class="rounded-[3rem] h-80 w-full object-cover shadow-2xl mt-12" alt="Advanced Skincare">
+            </div>
+            <div class="space-y-10">
+                <h2 class="text-6xl font-serif italic leading-tight uppercase tracking-tighter">Non solo unghie. <br><span class="text-rose font-normal">Cura totale.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex gap-8 items-start border-b border-orange-50 pb-8">
+                        <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center shrink-0 text-rose italic font-serif text-2xl shadow-sm">01</div>
+                        <div>
+                            <h4 class="text-2xl font-black uppercase tracking-tight text-slate-900">Estetica Avanzata Viso</h4>
+                            <p class="text-slate-500 text-lg font-bold italic leading-relaxed mt-2">Trattamenti mirati con tecnologie d'avanguardia per una pelle radiosa.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 items-start">
+                        <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center shrink-0 text-rose italic font-serif text-2xl shadow-sm">02</div>
+                        <div>
+                            <h4 class="text-2xl font-black uppercase tracking-tight text-slate-900">Dry Manicure</h4>
+                            <p class="text-slate-500 text-lg font-bold italic leading-relaxed mt-2">Cuticole perfette e una durata del gel superiore alle 4 settimane.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-slate-900 text-white section-padding overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-12 relative z-10">
+                <h2 class="text-7xl font-serif italic leading-tight text-white uppercase tracking-tighter">L'Essenza <br><span class="text-rose">dell'Armonia.</span></h2>
+                <p class="text-xl text-slate-400 font-bold leading-relaxed italic border-l-4 border-rose pl-8">
+                    Utilizziamo esclusivamente prodotti certificati HEMA-free che rispettano l'integrità del derma e della lamina ungueale. Il lusso per noi è benessere consapevole.
+                </p>
+                <div class="grid grid-cols-2 gap-10">
+                    <div>
+                        <h4 class="text-rose font-black text-xs uppercase tracking-[0.4em] mb-3">Sicurezza</h4>
+                        <p class="text-[11px] text-slate-500 italic uppercase font-black">Strumenti sterilizzati in autoclave classe B.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-rose font-black text-xs uppercase tracking-[0.4em] mb-3">Qualità</h4>
+                        <p class="text-[11px] text-slate-500 italic uppercase font-black">Migliori brand premium internazionali.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img8.jpg" class="rounded-[4rem] shadow-[0_0_80px_rgba(195,142,112,0.2)] h-[600px] w-full object-cover transition duration-1000" alt="Wellness Philosophy">
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-soft section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-white rounded-[5rem] shadow-2xl overflow-hidden grid lg:grid-cols-2 border border-orange-50">
+                <div class="p-12 md:p-24 space-y-12">
+                    <h2 class="text-6xl font-serif italic uppercase leading-none tracking-tighter">Prenota la <br><span class="text-rose font-normal">Tua Pausa.</span></h2>
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-8 pb-8 border-b border-orange-50">
+                            <div class="w-14 h-14 bg-soft rounded-2xl flex items-center justify-center text-rose shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                            <div><p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Lo Studio</p><p class="text-2xl font-serif italic text-slate-800">Corso Magenta 12, Milano</p></div>
+                        </div>
+                        <div class="flex items-center gap-8">
+                            <div class="w-14 h-14 bg-soft rounded-2xl flex items-center justify-center text-rose shadow-sm shrink-0"><i data-lucide="phone"></i></div>
+                            <div><p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Contatto Diretto</p><p class="text-2xl font-serif italic text-slate-800">+39 02 8765 4321</p></div>
+                        </div>
+                    </div>
+                    <form class="space-y-6 pt-6">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-rose mb-4 text-center italic">Richiesta disponibilità (Demo Mode)</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-soft border-none rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest text-slate-600">
+                            <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-soft border-none rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest text-slate-600">
+                        </div>
+                        <button class="w-full bg-rose text-white py-6 rounded-2xl font-black uppercase text-xs tracking-[0.4em] shadow-xl hover:bg-slate-900 transition-all">Richiedi Appuntamento</button>
+                    </form>
+                </div>
+                <div class="relative">
+                    <img src="assets/img9.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Interior Design">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 text-center text-[10px] text-slate-400 uppercase tracking-[0.6em] font-black border-t border-orange-50 bg-white">
+        <p>&copy; 2026 Aura Beauty Milano | P.IVA 1234567890 | Luxury Nails Specialist | LocalTop Demo Mode</p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-6 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

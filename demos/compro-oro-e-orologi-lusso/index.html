@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aurum Elite | Compro Oro, Argento e Orologi di Lusso - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        html, body { 
+            max-width: 100%; 
+            overflow-x: hidden; 
+            position: relative;
+            background-color: #0a0a0a; 
+            color: #e2e8f0; 
+        }
+        
+        .font-serif { font-family: 'Cinzel', serif; }
+        .text-gold { color: #d4af37; }
+        .bg-gold { background-color: #d4af37; }
+        
+        .hero-vault { 
+            background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.5)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .ticker-bg { background: rgba(10, 10, 10, 0.98); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+        .item-card { transition: all 0.4s ease; background: #111111; border: 1px solid #1a1a1a; }
+        .item-card:hover { border-color: #d4af37; }
+
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(2.5rem, 10vw, 4.5rem) !important; line-height: 1.1 !important; }
+            .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+            .container-fix { padding-left: 1.25rem; padding-right: 1.25rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-gold selection:text-black">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-black text-[9px] uppercase tracking-widest shadow-2xl">
+            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border border-[#008080] text-[#008080] px-5 py-3 rounded-full font-black text-[9px] uppercase tracking-widest shadow-2xl">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Esempi
+        </a>
+    </div>
+
+    <div class="ticker-bg py-3 sticky top-0 z-[130] backdrop-blur-md w-full">
+        <div class="flex whitespace-nowrap animate-pulse justify-center gap-8 text-[9px] font-black uppercase tracking-[0.15em] text-gold px-4">
+            <span>● ORO 24K: 72.45 €/g</span>
+            <span>● ORO 18K: 54.12 €/g</span>
+            <span>● ARGENTO: 0.85 €/g</span>
+            <span class="hidden sm:inline">● VALUTAZIONE ROLEX AL TOP</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-[41px] z-[120] bg-black/95 backdrop-blur-xl border-b border-white/5 w-full">
+        <div class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 border border-gold flex items-center justify-center rotate-45 shrink-0">
+                    <i data-lucide="gem" class="text-gold w-4 h-4 -rotate-45"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-lg md:text-2xl font-serif text-white tracking-widest uppercase font-black">AURUM<span class="text-gold">ELITE</span></span>
+                    <span class="text-[6px] font-black uppercase tracking-[0.4em] text-zinc-500 mt-1">Precious Exchange</span>
+                </div>
+            </div>
+            
+            <a href="#contatti" class="bg-gold text-black px-5 md:px-8 py-3.5 rounded-sm text-[9px] md:text-[10px] font-black uppercase tracking-widest shrink-0 shadow-lg shadow-gold/10">
+                Blocca Prezzo
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[85vh] flex items-center hero-vault">
+        <div class="max-w-7xl mx-auto px-6 w-full py-20 relative z-10">
+            <div class="max-w-3xl space-y-8">
+                <h1 class="text-5xl md:text-[90px] font-serif text-white leading-[1.1] tracking-tighter uppercase italic font-black break-words">
+                    Il Tuo Valore, <br> <span class="text-gold font-light normal-case">In Mani Sicure.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-zinc-200 font-bold max-w-xl leading-relaxed italic border-l-4 border-gold pl-6">
+                    Specialisti nella valutazione di metalli preziosi e orologi. Quotazioni ufficiali aggiornate al secondo.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#contatti" class="bg-white text-black px-10 py-5 text-[10px] font-black uppercase tracking-widest">Valutazione Gratuita</a>
+                    <a href="#orologi" class="bg-transparent border border-white/30 text-white px-10 py-5 text-[10px] font-black uppercase tracking-widest italic">Orologi di Lusso</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="oro" class="py-24 bg-black section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <h2 class="text-4xl md:text-5xl font-serif text-white uppercase italic font-black">Metalli <span class="text-gold">Preziosi.</span></h2>
+                    <p class="text-zinc-400 font-bold leading-relaxed italic text-base">
+                        Acquistiamo oro in ogni forma (gioielli rotti, monete, lingotti) con bilance certificate e spettrometri per garantirti la massima purezza.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 border-b border-white/5 pb-3 font-black text-[10px] uppercase tracking-widest">
+                            <i data-lucide="check" class="text-gold w-4 h-4"></i> Oro 18k - 24k
+                        </div>
+                        <div class="flex items-center gap-3 border-b border-white/5 pb-3 font-black text-[10px] uppercase tracking-widest">
+                            <i data-lucide="check" class="text-gold w-4 h-4"></i> Argento & Platino
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="assets/img2.jpg" class="w-full h-48 md:h-64 object-cover rounded-sm" alt="Oro">
+                    <img src="assets/img3.jpg" class="w-full h-48 md:h-64 object-cover rounded-sm mt-8" alt="Monete">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="orologi" class="py-24 bg-[#050505] border-y border-white/5 section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-serif text-gold mb-16 italic uppercase font-black">Alta Orologeria.</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="item-card p-10">
+                    <h4 class="text-lg font-serif uppercase font-black text-white">Rolex</h4>
+                    <p class="text-[9px] text-zinc-500 font-black mt-2 tracking-widest uppercase italic">Submariner, GMT, Daytona</p>
+                </div>
+                <div class="item-card p-10">
+                    <h4 class="text-lg font-serif uppercase font-black text-white">Patek Philippe</h4>
+                    <p class="text-[9px] text-zinc-500 font-black mt-2 tracking-widest uppercase italic">Nautilus, Aquanaut</p>
+                </div>
+                <div class="item-card p-10">
+                    <h4 class="text-lg font-serif uppercase font-black text-white">Audemars Piguet</h4>
+                    <p class="text-[9px] text-zinc-500 font-black mt-2 tracking-widest uppercase italic">Royal Oak</p>
+                </div>
+                <div class="item-card p-10">
+                    <h4 class="text-lg font-serif uppercase font-black text-white">Omega</h4>
+                    <p class="text-[9px] text-zinc-500 font-black mt-2 tracking-widest uppercase italic">Speedmaster</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-black section-padding">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-20">
+            <div class="lg:w-1/2 space-y-10">
+                <h2 class="text-4xl font-serif text-white uppercase italic font-black">Perché Scegliere <span class="text-gold">Aurum Elite?</span></h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="w-14 h-14 bg-zinc-900 flex items-center justify-center rounded-full text-gold shrink-0 border border-white/5"><i data-lucide="shield-check" class="w-7 h-7"></i></div>
+                        <div>
+                            <h5 class="font-black text-sm uppercase tracking-widest text-white">Operatore Professionale</h5>
+                            <p class="text-[11px] text-zinc-500 font-bold italic mt-2 leading-relaxed">Iscritti al registro Banca d'Italia n. 12345 per la tua massima sicurezza legale.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-14 h-14 bg-zinc-900 flex items-center justify-center rounded-full text-gold shrink-0 border border-white/5"><i data-lucide="scale" class="w-7 h-7"></i></div>
+                        <div>
+                            <h5 class="font-black text-sm uppercase tracking-widest text-white">Quotazioni Reali</h5>
+                            <p class="text-[11px] text-zinc-500 font-bold italic mt-2 leading-relaxed">Fixing di Londra aggiornato ogni 60 secondi. Trasparenza totale senza commissioni nascoste.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2 w-full">
+                <img src="assets/img4.jpg" class="w-full rounded-sm shadow-2xl border border-gold/20" alt="Evaluation">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-zinc-950 section-padding">
+        <div class="max-w-5xl mx-auto text-center space-y-12 px-6">
+            <h2 class="text-[10px] font-black text-gold uppercase tracking-[0.5em]">L'Eccellenza dei Metalli</h2>
+            <p class="font-serif italic text-3xl md:text-5xl text-white leading-tight font-black">
+                "La fiducia è l'unico metallo prezioso che non ha prezzo."
+            </p>
+            <div class="flex justify-center"><div class="w-24 h-1 bg-gold"></div></div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-24 bg-black border-t border-white/5 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+            <div class="space-y-12">
+                <h2 class="text-5xl md:text-7xl font-serif text-white uppercase italic font-black">Dove <span class="text-gold">Siamo.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 bg-gold text-black flex items-center justify-center rounded-full shrink-0"><i data-lucide="phone" class="w-6 h-6"></i></div>
+                        <div>
+                            <p class="text-[9px] font-black uppercase text-zinc-500">Linea Diretta</p>
+                            <p class="text-xl text-white font-black italic tracking-tighter">02 987 654 32</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 border border-white/20 text-gold flex items-center justify-center rounded-full shrink-0"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+                        <div>
+                            <p class="text-[9px] font-black uppercase text-zinc-500">Boutique Exchange</p>
+                            <p class="text-xl text-white font-black italic tracking-tighter">Via della Zecca 4, Milano</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-[#111] p-8 md:p-12 border-t-4 border-gold shadow-2xl space-y-6">
+                <input type="text" placeholder="NOME E COGNOME" class="w-full bg-transparent border-b border-zinc-800 p-4 text-[10px] font-black uppercase outline-none focus:border-gold transition-colors text-white">
+                <input type="text" placeholder="TELEFONO" class="w-full bg-transparent border-b border-zinc-800 p-4 text-[10px] font-black uppercase outline-none focus:border-gold transition-colors text-white">
+                <textarea placeholder="DETTAGLI PREZIOSI (PESO, CARATURA, MARCA)" rows="2" class="w-full bg-transparent border-b border-zinc-800 p-4 text-[10px] font-black uppercase outline-none focus:border-gold transition-colors text-white"></textarea>
+                <button class="w-full bg-gold text-black py-6 text-[11px] font-black uppercase tracking-[0.3em]">Invia per Stima Istantanea</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-black border-t border-white/5 text-center px-6">
+        <p class="text-zinc-700 text-[8px] font-black uppercase tracking-[0.5em] leading-relaxed">
+            &copy; 2026 Aurum Elite | Milano | P.IVA 0123456789 | Operatore Professionale Oro n. 12345
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-8 right-8 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="camera" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

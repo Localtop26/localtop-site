@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Paradise | Il Meglio per i tuoi Amici a 4 Zampe - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #334155; overflow-x: hidden; width: 100%; }
+        h1, h2, h3, .font-pet { font-family: 'Fredoka', sans-serif; }
+        .text-coral { color: #ff7d61; }
+        .bg-coral { background-color: #ff7d61; }
+        .text-mint { color: #4ecdc4; }
+        .bg-mint { background-color: #4ecdc4; }
+        
+        /* Background Hero con immagine a colori */
+        .hero-pet { 
+            background: linear-gradient(to right, rgba(255,255,255,0.95) 20%, rgba(255,255,255,0.1) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+
+        /* Titolo Hero Gigante su Desktop */
+        .hero-title {
+            font-size: clamp(3.5rem, 12vw, 7.5rem);
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+        }
+
+        .category-card:hover { transform: scale(1.05); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        /* Blocchi interazioni demo */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Fix per Sticky Header su Mobile */
+        @media (max-width: 768px) {
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            h2 { font-size: 2.8rem !important; line-height: 1; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-mint selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-coral text-white py-2.5 text-[11px] font-bold text-center uppercase tracking-widest px-4 sticky top-0 z-[150]">
+        🐾 SPEDIZIONE GRATUITA sopra i 49€ | Raccolta Punti "Zampa d'Oro" attiva! 🐾
+    </div>
+
+    <nav class="sticky top-[36px] z-[140] bg-white/95 backdrop-blur-md border-b border-slate-100 h-24 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center gap-4">
+            <div class="flex items-center gap-3 shrink-0">
+                <div class="w-12 h-12 bg-mint rounded-2xl flex items-center justify-center rotate-6 shadow-lg shadow-mint/20">
+                    <i data-lucide="dog" class="text-white w-7 h-7"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl md:text-3xl font-pet font-bold text-slate-800 tracking-tight">Pet<span class="text-coral">Paradise</span></span>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-slate-400">Your Pet's Best Friend</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
+                <a href="#alimentazione" class="hover:text-mint transition">Alimentazione</a>
+                <a href="#accessori" class="hover:text-mint transition">Accessori & Cucce</a>
+                <a href="#igiene" class="hover:text-mint transition">Igiene</a>
+                <a href="#filosofia" class="hover:text-mint transition">Filosofia</a>
+                <a href="#servizi" class="hover:text-mint transition">Servizi</a>
+            </div>
+
+            <div class="shrink-0">
+                <a href="#contatti" class="bg-slate-800 text-white px-5 py-3 md:px-7 md:py-4 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-mint transition-all shadow-lg">
+                    Store Locator
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[90vh] flex items-center hero-pet overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-20">
+            <div class="max-w-5xl space-y-10 animate-fade-in text-center md:text-left">
+                <div class="inline-flex items-center gap-2 bg-mint/10 text-mint px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest border border-mint/20">
+                    Oltre 5000 prodotti per ogni specie
+                </div>
+                <h1 class="hero-title text-slate-800 uppercase font-bold">
+                    Solo il Meglio <br> per la <span class="text-coral italic">Suo benessere.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-500 font-light max-w-xl leading-relaxed italic border-l-4 border-mint pl-8 mx-auto md:mx-0 text-left">
+                    Dall'alimentazione grain-free alle cucce ortopediche. Trova tutto ciò che serve per farli sentire parte della famiglia.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-5 pt-4">
+                    <a href="#alimentazione" class="w-full md:w-auto bg-mint text-white px-12 py-6 rounded-full font-bold uppercase text-xs tracking-widest shadow-2xl hover:bg-coral transition-all text-center">Sfoglia il Catalogo</a>
+                    <a href="#servizi" class="w-full md:w-auto bg-white border-2 border-slate-100 text-slate-400 px-12 py-6 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic text-center">Scopri i Servizi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="category-card p-10 bg-blue-50 rounded-[3rem] text-center cursor-pointer">
+                    <i data-lucide="dog" class="w-12 h-12 mx-auto mb-4 text-blue-400"></i>
+                    <h4 class="font-pet text-xl uppercase italic">Cani</h4>
+                </div>
+                <div class="category-card p-10 bg-orange-50 rounded-[3rem] text-center cursor-pointer">
+                    <i data-lucide="cat" class="w-12 h-12 mx-auto mb-4 text-orange-400"></i>
+                    <h4 class="font-pet text-xl uppercase italic">Gatti</h4>
+                </div>
+                <div class="category-card p-10 bg-green-50 rounded-[3rem] text-center cursor-pointer">
+                    <i data-lucide="bird" class="w-12 h-12 mx-auto mb-4 text-green-400"></i>
+                    <h4 class="font-pet text-xl uppercase italic">Uccelli</h4>
+                </div>
+                <div class="category-card p-10 bg-cyan-50 rounded-[3rem] text-center cursor-pointer">
+                    <i data-lucide="fish" class="w-12 h-12 mx-auto mb-4 text-cyan-400"></i>
+                    <h4 class="font-pet text-xl uppercase italic">Pesci</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="alimentazione" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-20 gap-6">
+                <h2 class="text-5xl md:text-6xl font-pet text-slate-800 tracking-tight uppercase italic text-center md:text-left">Nutrizione <span class="text-mint">Superpremium.</span></h2>
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Top Brand: Royal Canin, Acana, Orijen</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="bg-white p-12 rounded-[3.5rem] shadow-sm hover:shadow-xl transition-all">
+                    <div class="aspect-square bg-slate-50 rounded-3xl mb-8 flex items-center justify-center p-6">
+                        <i data-lucide="apple" class="w-16 h-16 text-mint opacity-20"></i>
+                    </div>
+                    <span class="text-[9px] font-bold bg-green-100 text-green-600 px-3 py-1 rounded-full uppercase tracking-widest">Natural Bio</span>
+                    <h4 class="text-2xl font-pet mt-4 uppercase italic">Crocchette Grain-Free</h4>
+                    <p class="text-sm text-slate-400 mt-2 font-light italic leading-relaxed">Alta digeribilità per cani con sensibilità alimentari.</p>
+                </div>
+                <div class="bg-white p-12 rounded-[3.5rem] shadow-sm hover:shadow-xl transition-all md:translate-y-12">
+                    <div class="aspect-square bg-slate-50 rounded-3xl mb-8 flex items-center justify-center p-6">
+                        <i data-lucide="bone" class="w-16 h-16 text-coral opacity-20"></i>
+                    </div>
+                    <span class="text-[9px] font-bold bg-orange-100 text-orange-600 px-3 py-1 rounded-full uppercase tracking-widest">Dental Care</span>
+                    <h4 class="text-2xl font-pet mt-4 uppercase italic">Snack Igiene Dentale</h4>
+                    <p class="text-sm text-slate-400 mt-2 font-light italic leading-relaxed">Masticativi naturali per denti forti e alito fresco.</p>
+                </div>
+                <div class="bg-white p-12 rounded-[3.5rem] shadow-sm hover:shadow-xl transition-all">
+                    <div class="aspect-square bg-slate-50 rounded-3xl mb-8 flex items-center justify-center p-6">
+                        <i data-lucide="heart" class="w-16 h-16 text-blue-400 opacity-20"></i>
+                    </div>
+                    <span class="text-[9px] font-bold bg-blue-100 text-blue-600 px-3 py-1 rounded-full uppercase tracking-widest">Wellness</span>
+                    <h4 class="text-2xl font-pet mt-4 uppercase italic">Integratori & Vitamine</h4>
+                    <p class="text-sm text-slate-400 mt-2 font-light italic leading-relaxed">Supporto per articolazioni e lucentezza del mantello.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl md:text-6xl font-pet text-slate-800 uppercase italic">Il Nostro <span class="text-coral">Impegno Animale.</span></h2>
+            <p class="text-slate-500 text-xl md:text-2xl font-light italic leading-relaxed">
+                "La nostra filosofia si fonda sull'empatia e sulla trasparenza. Crediamo che onorare la vita di ogni animale sia il modo più nobile per supportare chi resta."
+            </p>
+            <div class="flex justify-center flex-wrap gap-12 pt-8">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-mint w-8 h-8"></i><p class="text-[10px] font-bold uppercase tracking-widest italic">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="leaf" class="mx-auto mb-4 text-mint w-8 h-8"></i><p class="text-[10px] font-bold uppercase tracking-widest italic">Etica Green</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-mint w-8 h-8"></i><p class="text-[10px] font-bold uppercase tracking-widest italic">Cura Artigiana</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="accessori" class="py-32 bg-slate-50 border-y border-slate-100 section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl transition duration-500" alt="Pet Accessories">
+                <div class="absolute -bottom-10 -left-6 md:-bottom-10 md:-left-10 bg-coral text-white p-10 md:p-14 rounded-[3rem] md:rounded-[4rem] shadow-2xl">
+                    <p class="font-pet text-3xl md:text-4xl font-bold italic uppercase leading-none">Nuovi arrivi!</p>
+                    <p class="text-[10px] uppercase tracking-widest mt-2 font-bold">Cucce Memory Foam</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-5xl md:text-7xl font-pet text-slate-800 leading-none uppercase italic">Il Comfort <br><span class="text-coral">che Merita.</span></h2>
+                <p class="text-slate-500 text-lg md:text-xl font-light leading-relaxed italic border-l-4 border-coral pl-8">
+                    Dalla pettorina ergonomica alle cucce invernali. Selezioniamo materiali atossici e design ergonomici per garantire il massimo benessere del tuo pet.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4 italic">
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-400"><i data-lucide="house" class="text-mint"></i> Cucce & Lettini</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-400"><i data-lucide="play-circle" class="text-mint"></i> Giochi Interattivi</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-400"><i data-lucide="grab" class="text-mint"></i> Pettorine & Guinzagli</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-400"><i data-lucide="package" class="text-mint"></i> Trasportini</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-32 bg-slate-900 text-white rounded-[4rem] md:rounded-[6rem] mx-4 md:mx-10 overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-10">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl md:text-6xl font-pet italic uppercase">Più di un <span class="text-mint">Negozio.</span></h2>
+                <p class="text-slate-400 mt-6 italic font-light text-lg">Servizi esclusivi per semplificare la tua vita e quella del tuo animale.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-16 text-center italic">
+                <div class="space-y-6">
+                    <div class="w-20 h-20 bg-mint/20 rounded-full flex items-center justify-center mx-auto border border-mint/30 shadow-lg"><i data-lucide="scissors" class="text-mint w-10 h-10"></i></div>
+                    <h4 class="text-2xl font-pet italic uppercase">Toelettatura</h4>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Bagno e taglio a forbice eseguiti da professionisti esperti certificati.</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="w-20 h-20 bg-coral/20 rounded-full flex items-center justify-center mx-auto border border-coral/30 shadow-lg"><i data-lucide="truck" class="text-coral w-10 h-10"></i></div>
+                    <h4 class="text-2xl font-pet italic uppercase">Consegna</h4>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Consegna a domicilio rapida per sacchi pesanti entro 24 ore.</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="w-20 h-20 bg-yellow-400/20 rounded-full flex items-center justify-center mx-auto border border-yellow-400/30 shadow-lg"><i data-lucide="stethoscope" class="text-yellow-400 w-10 h-10"></i></div>
+                    <h4 class="text-2xl font-pet italic uppercase">Consulenza</h4>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed">Esperti pronti ad aiutarti nella scelta della dieta perfetta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24">
+            <div class="space-y-12">
+                <h2 class="text-6xl md:text-8xl font-pet text-slate-800 leading-none tracking-tight uppercase italic text-center md:text-left">Vieni a <br><span class="text-mint underline decoration-coral underline-offset-8 font-normal">Trovarci.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-20 h-20 bg-mint text-white rounded-[2.5rem] flex items-center justify-center shadow-xl rotate-3 shrink-0"><i data-lucide="map-pin" class="w-8 h-8"></i></div>
+                        <div>
+                            <p class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">I nostri Store</p>
+                            <p class="text-2xl md:text-3xl font-pet italic">Piazza degli Amici 1, Milano</p>
+                            <p class="text-2xl md:text-3xl font-pet italic">Via del Parco 15, Roma</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-8 text-slate-400">
+                        <div class="w-20 h-20 bg-slate-50 border border-slate-100 flex items-center justify-center rounded-[2.5rem] shrink-0 shadow-sm"><i data-lucide="phone" class="text-coral w-8 h-8"></i></div>
+                        <p class="text-2xl md:text-3xl font-pet italic">Verde: 800 123 456</p>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-10 md:p-14 rounded-[4rem] shadow-2xl space-y-7 border border-slate-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-coral text-white px-8 py-3 text-[10px] font-black uppercase tracking-widest italic">Demo Mode</div>
+                <div class="grid md:grid-cols-2 gap-7">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-6 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest italic border border-slate-100">
+                    <input type="text" placeholder="SPECIE PET" class="w-full p-6 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest italic border border-slate-100">
+                </div>
+                <input type="email" placeholder="EMAIL" class="w-full p-6 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest italic border border-slate-100">
+                <textarea placeholder="DICCI TUTTO..." rows="3" class="w-full p-6 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest italic border border-slate-100"></textarea>
+                <button class="w-full bg-slate-800 text-white py-7 rounded-full font-bold uppercase text-[11px] tracking-[0.5em] shadow-2xl transition-all">Invia Messaggio</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-white border-t border-slate-100 text-center px-6">
+        <p class="text-slate-300 text-[10px] uppercase tracking-[0.5em] font-bold italic leading-relaxed">
+            &copy; 2026 Pet Paradise Store | Tutto per i tuoi animali | P.IVA 0123456789 | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-6 rounded-full shadow-2xl z-[100]">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

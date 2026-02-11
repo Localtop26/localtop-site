@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Blade | Barber Shop & Hair Cut Milano - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #d1d1d1; overflow-x: hidden; }
+        h1, h2, h3, .font-barber { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+        
+        /* 1. Immagini Locali assets/ */
+        .hero-bg { 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,1) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .text-gold { color: #d4af37; }
+        .bg-gold { background-color: #d4af37; }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 15vw, 7.5rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-gold selection:text-black">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <nav class="fixed w-full z-[100] bg-black/90 backdrop-blur-md border-b border-white/5 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i data-lucide="scissors" class="text-gold w-8 h-8 -rotate-45"></i>
+                <span class="text-3xl font-barber text-white tracking-tighter">THE <span class="text-gold">BLADE</span></span>
+            </div>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.3em] text-white/50">
+                <a href="#servizi" class="hover:text-gold transition">Servizi</a>
+                <a href="#gallery" class="hover:text-gold transition">Stile</a>
+                <a href="#filosofia" class="hover:text-gold transition">Filosofia</a>
+                <a href="#team" class="hover:text-gold transition">Barbers</a>
+                <a href="#contatti" class="hover:text-gold transition">Contatti</a>
+            </div>
+            <a href="#prenota" class="bg-gold text-black px-6 py-2.5 text-[11px] font-bold uppercase tracking-widest hover:bg-white transition-all">
+                Prenota Taglio
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center text-center hero-bg">
+        <div class="max-w-4xl px-6 space-y-6 relative z-10">
+            <span class="text-gold tracking-[0.5em] text-xs font-bold uppercase">Classic & Modern Barbering</span>
+            <h1 class="text-7xl font-barber text-white leading-none tracking-tighter">
+                Più di un <br> <span class="italic underline decoration-gold underline-offset-8">Taglio.</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                Affila il tuo stile. Maestri della sfumatura, esperti della barba e cultori della tradizione nel cuore urbano di Milano.
+            </p>
+            <div class="pt-10">
+                <button class="bg-white text-black px-12 py-4 font-bold uppercase text-xs tracking-widest hover:bg-gold transition-all">Siediti in Poltrona</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-32 px-6 bg-zinc-950 section-padding">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-12">
+                <h2 class="text-5xl font-barber text-white italic tracking-tight">I Nostri <span class="text-gold">Rituali</span></h2>
+                <div class="space-y-8">
+                    <div class="flex justify-between items-baseline border-b border-white/5 pb-4 group">
+                        <div class="text-left">
+                            <h4 class="text-xl font-barber text-white">Haircut & Fade</h4>
+                            <p class="text-xs text-gray-500 lowercase">Taglio personalizzato, sfumatura a macchinetta e rifinitura a lama.</p>
+                        </div>
+                        <span class="text-gold font-bold">€30</span>
+                    </div>
+                    <div class="flex justify-between items-baseline border-b border-white/5 pb-4 group">
+                        <div class="text-left">
+                            <h4 class="text-xl font-barber text-white">Beard Grooming</h4>
+                            <p class="text-xs text-gray-500 lowercase">Modellatura barba con panno caldo e oli essenziali.</p>
+                        </div>
+                        <span class="text-gold font-bold">€20</span>
+                    </div>
+                    <div class="flex justify-between items-baseline border-b border-white/5 pb-4 group">
+                        <div class="text-left">
+                            <h4 class="text-xl font-barber text-white">The Blade Special</h4>
+                            <p class="text-xs text-gray-500 lowercase">Taglio capelli + Barba + Trattamento viso rigenerante.</p>
+                        </div>
+                        <span class="text-gold font-bold">€45</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-sm grayscale brightness-75 border border-white/10" alt="Barber tools">
+                <div class="absolute -bottom-6 -left-6 bg-gold text-black p-8 font-barber text-3xl">Est. 2018</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-32 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="space-y-4">
+                <img src="assets/img3.jpg" class="w-full h-80 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-sm">
+                <img src="assets/img4.jpg" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-sm">
+            </div>
+            <div class="space-y-4 pt-12">
+                <img src="assets/img5.jpg" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-sm">
+                <img src="assets/img6.jpg" class="w-full h-80 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-sm">
+            </div>
+            <div class="space-y-4">
+                <img src="assets/img7.jpg" class="w-full h-80 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-sm">
+                <img src="assets/img8.jpg" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-sm">
+            </div>
+            <div class="space-y-4 pt-12">
+                <img src="assets/img9.jpg" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-sm">
+                <img src="assets/img10.jpg" class="w-full h-80 object-cover grayscale hover:grayscale-0 transition duration-700 rounded-sm">
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-black border-y border-white/5 section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-barber text-white italic uppercase tracking-tighter">L'Etica della <span class="text-gold">Lama.</span></h2>
+            <p class="text-gray-400 text-xl font-light italic leading-relaxed">
+                "La nostra filosofia si fonda sull'eccellenza e sulla trasparenza. Crediamo che onorare l'artigianalità tradizionale sia il modo migliore per riflettere l'identità di chi si affida a noi, agendo sempre con passione e precisione chirurgica."
+            </p>
+            <div class="flex justify-center gap-12 pt-8">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="users" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Elite Club</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Cura Artigiana</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-32 bg-zinc-950 section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-barber text-white mb-20 italic">I Maestri della <span class="text-gold">Lama</span></h2>
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="space-y-6">
+                    <img src="assets/img11.jpg" class="w-full aspect-square object-cover grayscale border-b-4 border-gold">
+                    <h3 class="text-2xl font-barber text-white">Danny V.</h3>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Fade & Skin Expert</p>
+                </div>
+                <div class="space-y-6">
+                    <img src="assets/img12.jpg" class="w-full aspect-square object-cover grayscale border-b-4 border-gold">
+                    <h3 class="text-2xl font-barber text-white">Luca Black</h3>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Beard Specialist</p>
+                </div>
+                <div class="space-y-6">
+                    <img src="assets/img13.jpg" class="w-full aspect-square object-cover grayscale border-b-4 border-gold">
+                    <h3 class="text-2xl font-barber text-white">Tommy Blade</h3>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Classic Scissor Cut</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prenota" class="py-32 bg-black border-t border-white/5 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-10">
+                <h2 class="text-7xl font-barber text-white leading-none italic uppercase tracking-tighter">Unisciti al <br><span class="text-gold">Club.</span></h2>
+                <div class="space-y-6 text-gray-400 font-light italic">
+                    <p class="flex items-center gap-6 text-xl"><i data-lucide="map-pin" class="text-gold"></i> Corso Garibaldi 88, Milano</p>
+                    <p class="flex items-center gap-6 text-xl"><i data-lucide="clock" class="text-gold"></i> Mar-Sab: 10:00 - 20:00</p>
+                    <p class="flex items-center gap-6 text-xl font-bold text-white"><i data-lucide="phone" class="text-gold"></i> +39 02 1234 567</p>
+                </div>
+                <div class="pt-10 flex gap-6">
+                    <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-gold transition"><i data-lucide="instagram" class="text-white w-5 h-5"></i></a>
+                    <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-gold transition"><i data-lucide="facebook" class="text-white w-5 h-5"></i></a>
+                </div>
+            </div>
+            <div class="bg-zinc-900 p-10 border border-white/5 rounded-sm shadow-2xl">
+                <h3 class="text-2xl font-barber text-white mb-8 italic uppercase tracking-widest">Prenota la tua poltrona</h3>
+                <form class="space-y-6">
+                    <p class="text-[9px] font-bold uppercase tracking-[0.5em] text-gold mb-4 text-center">Modulo in modalità Demo</p>
+                    <input type="text" placeholder="Nome" class="w-full bg-black/50 border border-white/10 p-4 text-white focus:border-gold outline-none transition">
+                    <select class="w-full bg-black/50 border border-white/10 p-4 text-white/50 focus:border-gold outline-none transition uppercase text-[10px] font-bold tracking-widest">
+                        <option>Scegli il Servizio</option>
+                        <option>Taglio Capelli</option>
+                        <option>Barba Ritual</option>
+                        <option>The Blade Special</option>
+                    </select>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="date" class="bg-black/50 border border-white/10 p-4 text-white/50 outline-none focus:border-gold transition text-xs">
+                        <input type="time" class="bg-black/50 border border-white/10 p-4 text-white/50 outline-none focus:border-gold transition text-xs">
+                    </div>
+                    <button class="w-full bg-gold text-black py-5 font-bold uppercase text-[11px] tracking-[0.4em] hover:bg-white transition-all">Conferma Appuntamento</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-700 text-[9px] uppercase tracking-[0.5em] font-bold border-t border-white/5 px-6 italic">
+        &copy; 2026 The Blade Barber Shop Milano | P.IVA 0123456789 | Sharp Style for Sharp Men | LocalTop Demo Mode
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-square" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

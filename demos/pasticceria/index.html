@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolce Segreto | Pasticceria Artigianale d'Autore - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Montserrat:wght@200;400;500;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #fffcf9; color: #43382f; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .text-chocolate { color: #5d4037; }
+        .bg-cream { background-color: #f7ede2; }
+        .bg-vanilla { background-color: #fffaf0; }
+        
+        /* 1. Immagini a colori (No Grayscale) */
+        .hero-bg { 
+            background: linear-gradient(rgba(255,252,249,0.4), rgba(255,252,249,0.1)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        img { filter: none !important; }
+
+        /* 2. TIPOGRAFIA DESKTOP POTENZIATA (Titoli Grandi) */
+        h1 { 
+            font-size: clamp(3.5rem, 14vw, 11rem) !important; 
+            line-height: 0.8; 
+            letter-spacing: -0.03em;
+        }
+        h2 { 
+            font-size: clamp(2.8rem, 9vw, 6.5rem) !important; 
+            line-height: 0.9;
+        }
+        
+        /* Sottotitoli Bold e Scuri */
+        .subtitle-text { 
+            color: #1a1a1a !important; 
+            font-weight: 700 !important; 
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            line-height: 1.5;
+        }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+        }
+
+        /* 4. Correzione Sticky Header */
+        .sticky-nav { top: 40px; } /* Sotto il banner da 40px */
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3.8rem !important; }
+            h2 { font-size: 3rem !important; }
+            .sticky-nav { top: 32px; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-orange-100 selection:text-chocolate">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-amber-100 h-8 md:h-10 flex items-center justify-center text-[9px] md:text-[11px] font-extrabold text-center uppercase tracking-[0.3em] text-amber-900 sticky top-0 z-[120] w-full px-4">
+        ✨ Produzione 100% Artigianale - Il profumo della tradizione ✨
+    </div>
+
+    <nav class="sticky sticky-nav z-[110] bg-white/95 backdrop-blur-md border-b border-orange-100 h-20 md:h-28 flex items-center mx-2 md:mx-10 rounded-3xl shadow-lg mt-2">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="hidden lg:flex space-x-10 text-[12px] font-black uppercase tracking-widest text-stone-500">
+                <a href="#creazioni" class="hover:text-chocolate transition">Creazioni</a>
+                <a href="#lievitati" class="hover:text-chocolate transition">Lievitati</a>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <span class="text-4xl md:text-5xl font-serif italic text-chocolate leading-none">Dolce</span>
+                <span class="text-sm md:text-lg font-script text-amber-600 mt-1">Segreto</span>
+            </div>
+
+            <div class="hidden lg:flex space-x-10 text-[12px] font-black uppercase tracking-widest text-stone-500">
+                <a href="#torte" class="hover:text-chocolate transition">Torte</a>
+                <a href="#contatti" class="text-chocolate border-b-2 border-chocolate">Contatti</a>
+            </div>
+            <div class="lg:hidden">
+                <i data-lucide="menu" class="text-chocolate w-8 h-8"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[90vh] flex items-center hero-bg overflow-hidden py-20">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-5xl space-y-12">
+                <h1 class="font-serif italic text-chocolate text-left">
+                    L'emozione <br> di un <span class="font-script text-amber-600 normal-case">Dolce.</span>
+                </h1>
+                <p class="subtitle-text max-w-2xl text-left border-l-8 border-amber-600 pl-10">
+                    Ingredienti rari, tecniche secolari e un pizzico di poesia. <br> Dal cuore del nostro laboratorio alla tua tavola milanese.
+                </p>
+                <div class="pt-10 flex justify-start">
+                    <a href="#creazioni" class="bg-chocolate text-white px-16 py-6 rounded-full font-black uppercase text-xs tracking-[0.3em] hover:bg-amber-800 transition-all shadow-2xl scale-110">Sfoglia il Menù</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="creazioni" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <span class="text-amber-600 font-black uppercase tracking-[0.5em] text-[12px]">Pasticceria d'autore</span>
+                <h2 class="font-serif italic mt-6 text-chocolate">Tesori da Mordere</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-20">
+                <div class="group space-y-8">
+                    <div class="aspect-square rounded-[4rem] overflow-hidden border-[16px] border-cream shadow-2xl">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-3xl font-serif italic text-chocolate">Macarons d'Autunno</h4>
+                        <p class="text-[11px] text-stone-900 mt-4 font-bold uppercase tracking-widest">Mandorla e Zafferano</p>
+                    </div>
+                </div>
+                <div class="group space-y-8 md:translate-y-20">
+                    <div class="aspect-square rounded-[4rem] overflow-hidden border-[16px] border-cream shadow-2xl">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-3xl font-serif italic text-chocolate">Mignon alla Crema</h4>
+                        <p class="text-[11px] text-stone-900 mt-4 font-bold uppercase tracking-widest">Baccelli di Vaniglia Bourbon</p>
+                    </div>
+                </div>
+                <div class="group space-y-8">
+                    <div class="aspect-square rounded-[4rem] overflow-hidden border-[16px] border-cream shadow-2xl">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-3xl font-serif italic text-chocolate">Crostatine ai Frutti</h4>
+                        <p class="text-[11px] text-stone-900 mt-4 font-bold uppercase tracking-widest">Pasta frolla al burro salato</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="laboratorio" class="py-32 bg-cream section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-16">
+                <h2 class="font-serif italic text-chocolate leading-tight">Mani in pasta, <br> <span class="font-script text-amber-600 normal-case">Anima nel gusto.</span></h2>
+                <p class="subtitle-text">
+                    Ogni nostra creazione nasce nel laboratorio a vista. Usiamo solo lievito madre rinfrescato ogni giorno, farina macinata a pietra e burro di latteria. La fretta non abita qui.
+                </p>
+                <div class="flex gap-20">
+                    <div class="text-center">
+                        <span class="text-6xl font-serif italic text-chocolate">48h</span>
+                        <p class="text-[10px] uppercase tracking-widest text-amber-800 font-black mt-3">Lievitazione</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-6xl font-serif italic text-chocolate">0</span>
+                        <p class="text-[10px] uppercase tracking-widest text-amber-800 font-black mt-3">Conservanti</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img5.jpg" class="rounded-[4rem] shadow-2xl w-full" alt="Chef at work">
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-40 bg-white text-center section-padding">
+        <div class="max-w-5xl mx-auto px-6 space-y-16">
+            <h2 class="font-serif italic text-chocolate uppercase">Passione <span class="text-amber-600 font-script normal-case">&</span> Rispetto.</h2>
+            <p class="subtitle-text text-2xl md:text-4xl leading-snug">
+                "La nostra filosofia si fonda sulla pazienza. Crediamo che onorare la materia prima sia l'unico modo per regalare un'esperienza autentica."
+            </p>
+            <div class="flex justify-center gap-16 md:gap-24 pt-10">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-6 text-amber-600 w-12 h-12"></i><p class="text-[11px] font-black uppercase tracking-widest">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="leaf" class="mx-auto mb-6 text-amber-600 w-12 h-12"></i><p class="text-[11px] font-black uppercase tracking-widest">Ingredienti Bio</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-6 text-amber-600 w-12 h-12"></i><p class="text-[11px] font-black uppercase tracking-widest">Cura Artigiana</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="torte" class="py-32 bg-vanilla section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="order-2 lg:order-1">
+                <img src="assets/img7.jpg" class="rounded-[5rem] shadow-2xl w-full" alt="Torta Speciale">
+            </div>
+            <div class="order-1 lg:order-2 space-y-12">
+                <h2 class="font-serif italic text-chocolate">Torte per <br><span class="text-amber-600 font-script normal-case">Ricordi Eterni.</span></h2>
+                <p class="subtitle-text border-l-8 border-amber-600 pl-10">
+                    Progettiamo insieme il dolce che coronerà il tuo evento. Gusto classico o design moderno, la nostra pasticceria è sartoriale e unica.
+                </p>
+                <div class="flex gap-8">
+                    <div class="w-24 h-24 bg-cream rounded-full flex items-center justify-center text-amber-700 shadow-xl"><i data-lucide="cake" class="w-10 h-10"></i></div>
+                    <div class="w-24 h-24 bg-cream rounded-full flex items-center justify-center text-amber-700 shadow-xl"><i data-lucide="palette" class="w-10 h-10"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24">
+            <div class="space-y-16">
+                <h2 class="font-serif italic text-chocolate">Un Dolce <br><span class="text-amber-600 font-script normal-case">Saluto.</span></h2>
+                <div class="space-y-12">
+                    <div class="flex items-center gap-10">
+                        <div class="w-20 h-20 bg-cream rounded-full flex items-center justify-center text-amber-800 shadow-md"><i data-lucide="map-pin" class="w-10 h-10"></i></div>
+                        <div><p class="text-[12px] font-black uppercase tracking-widest text-stone-400">Punto Vendita</p><p class="text-3xl font-serif italic text-stone-900">Via della Farina 12, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-10">
+                        <div class="w-20 h-20 bg-cream rounded-full flex items-center justify-center text-amber-800 shadow-md"><i data-lucide="phone" class="w-10 h-10"></i></div>
+                        <div><p class="text-[12px] font-black uppercase tracking-widest text-stone-400">Contatto Diretto</p><p class="text-3xl font-serif italic text-stone-900">+39 02 456 7890</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-vanilla p-12 md:p-16 rounded-[4rem] shadow-2xl border border-orange-100 space-y-8 relative">
+                <div class="absolute top-0 right-0 bg-amber-600 px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white italic">Demo Mode</div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <input type="text" placeholder="Nome" class="w-full p-6 bg-white rounded-3xl border-none outline-none shadow-sm font-bold">
+                    <input type="text" placeholder="Data Evento" class="w-full p-6 bg-white rounded-3xl border-none outline-none shadow-sm font-bold">
+                </div>
+                <textarea placeholder="DETTAGLI DELLA RICHIESTA..." rows="4" class="w-full p-6 bg-white rounded-3xl border-none outline-none shadow-sm font-bold"></textarea>
+                <button class="w-full bg-chocolate text-white py-8 rounded-3xl font-black uppercase text-sm tracking-[0.3em] shadow-2xl hover:bg-amber-900 transition-colors">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-24 bg-white border-t border-orange-50 text-center px-6">
+        <p class="text-stone-500 text-[11px] md:text-[13px] uppercase tracking-[0.6em] font-black italic">
+            &copy; 2026 Dolce Segreto Milano | Artigiani della Dolcezza | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-6 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-10 h-10"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

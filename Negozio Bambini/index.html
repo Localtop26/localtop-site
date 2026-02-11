@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mondo Bumbi | Il tuo Negozio di Fiducia a Milano - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #fffcf7; overflow-x: hidden; }
+        h1, h2, h3, .font-kids { font-family: 'Fredoka', sans-serif; }
+        .bg-pastel-blue { background-color: #e0f2fe; }
+        .bg-pastel-pink { background-color: #fdf2f8; }
+        .bg-pastel-green { background-color: #f0fdf4; }
+        .text-strawberry { color: #f43f5e; }
+        .bg-strawberry { background-color: #f43f5e; }
+        .blob-shape { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-sky-500 py-2.5 text-center text-xs font-bold text-white uppercase tracking-widest px-4 sticky top-0 z-[110]">
+        🎉 Sabato ore 16:00: Laboratorio Creativo con le bolle di sapone! Prenota ora ✨
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md border-b border-orange-100 shadow-sm mx-4 md:mx-10 rounded-2xl">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-14 h-14 bg-strawberry blob-shape flex items-center justify-center rotate-3 shadow-lg text-white">
+                    <i data-lucide="ghost" class="w-8 h-8"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-kids text-strawberry leading-none">Mondo<span class="text-sky-400">Bumbi</span></span>
+                    <span class="text-[10px] uppercase font-bold tracking-[0.2em] text-amber-500">Milano Boutique</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-slate-500">
+                <a href="#esperienze" class="hover:text-strawberry transition">Esperienze</a>
+                <a href="#servizi" class="hover:text-strawberry transition">Servizi</a>
+                <a href="#filosofia" class="hover:text-strawberry transition">Filosofia</a>
+                <a href="#marchi" class="hover:text-strawberry transition">Marchi</a>
+                <a href="#storia" class="hover:text-strawberry transition">Chi Siamo</a>
+                <a href="#contatti" class="hover:text-strawberry transition">Contatti</a>
+            </div>
+            <a href="#contatti" class="bg-sky-400 text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-sky-500 transition-all shadow-md">
+                Vieni a trovarci
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative py-24 bg-pastel-blue overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8 relative z-10 text-center lg:text-left">
+                <div class="inline-block bg-white text-strawberry px-5 py-1.5 rounded-full text-[10px] font-black uppercase shadow-sm italic">Più di un semplice negozio</div>
+                <h1 class="text-6xl font-kids text-slate-800 leading-[0.9] tracking-tight uppercase">
+                    Uno spazio da <span class="text-strawberry">sognare.</span>
+                </h1>
+                <p class="text-xl text-slate-600 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
+                    Nel cuore di Milano, un mondo incantato dove toccare, provare e scegliere i migliori giocattoli e articoli per la crescita dei tuoi bimbi.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="#esperienze" class="bg-strawberry text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:shadow-xl transition-all text-center">Esplora il Negozio</a>
+                    <div class="flex items-center justify-center gap-4 bg-white/50 p-4 rounded-full border border-white">
+                        <i data-lucide="smile" class="text-amber-500"></i>
+                        <span class="text-xs font-bold uppercase tracking-widest">Area gioco gratuita all'interno</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group">
+                <img src="assets/img1.jpg" class="rounded-[4rem] shadow-2xl relative z-10 border-[16px] border-white grayscale group-hover:grayscale-0 transition duration-1000" alt="Negozio Interno">
+                <div class="absolute -bottom-8 -left-8 bg-amber-400 text-white p-8 rounded-full shadow-2xl z-20 font-kids text-2xl rotate-12 uppercase">
+                    Aperto!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="esperienze" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="mb-24 max-w-3xl mx-auto space-y-4">
+                <h2 class="text-5xl font-kids text-slate-800 tracking-tight italic">Cosa troverai da <span class="text-sky-400">Noi</span></h2>
+                <p class="text-slate-400 font-medium">Non siamo un catalogo online, siamo un'esperienza reale fatta di sorrisi e consigli esperti.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-6 group">
+                    <div class="h-80 rounded-[3rem] overflow-hidden shadow-lg border-4 border-pastel-green">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="text-2xl font-kids text-green-600 uppercase">Giochi Educativi</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed px-4">Selezione curata di giocattoli in legno, Montessori e STEM per stimolare la creatività senza schermi.</p>
+                </div>
+                <div class="space-y-6 group">
+                    <div class="h-80 rounded-[3rem] overflow-hidden shadow-lg border-4 border-pastel-pink">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="text-2xl font-kids text-strawberry uppercase">Area Test & Prova</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed px-4">I bimbi possono provare i giochi prima di acquistarli nella nostra area dedicata sicura e colorata.</p>
+                </div>
+                <div class="space-y-6 group">
+                    <div class="h-80 rounded-[3rem] overflow-hidden shadow-lg border-4 border-pastel-blue">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <h3 class="text-2xl font-kids text-sky-500 uppercase">Corredo & Nanna</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed px-4">Dalla prima tutina alla culla: solo tessuti organici e design ergonomico per i più piccoli.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-32 bg-pastel-green/50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-12">
+                <h2 class="text-5xl font-kids text-slate-800 leading-tight uppercase">Servizi pensati per i <br><span class="text-green-600">Genitori.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center shadow-sm text-green-500 shrink-0"><i data-lucide="clipboard-list"></i></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 uppercase">Lista Nascita Personalizzata</h4>
+                            <p class="text-slate-500 text-sm">Crea la tua lista ideale con l'aiuto delle nostre consulenti. Amici e parenti potranno acquistare comodamente in negozio o al telefono.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center shadow-sm text-green-500 shrink-0"><i data-lucide="party-popper"></i></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 uppercase">Eventi & Laboratori</h4>
+                            <p class="text-slate-500 text-sm">Ogni sabato organizziamo letture animate e laboratori manuali per bimbi dai 3 agli 8 anni. Iscrizione obbligatoria!</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center shadow-sm text-green-500 shrink-0"><i data-lucide="gift"></i></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 uppercase">Confezioni Regalo Artigianali</h4>
+                            <p class="text-slate-500 text-sm">Rendiamo ogni regalo magico con carte colorate e nastri in tessuto fatti a mano, gratuitamente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <img src="assets/img5.jpg" class="rounded-[2rem] shadow-lg mt-12" alt="Dettaglio gioco">
+                <img src="assets/img6.jpg" class="rounded-[2rem] shadow-lg" alt="Laboratorio">
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-kids text-slate-800 uppercase italic">Il Cuore del <span class="text-strawberry">Nostro Impegno.</span></h2>
+            <p class="text-slate-500 text-xl font-medium leading-relaxed">
+                "Crediamo che ogni bambino meriti un'infanzia fatta di tempo, pazienza e materiali genuini. La nostra filosofia mette al centro il rispetto per le tappe di crescita e la sostenibilità delle scelte educative."
+            </p>
+            <div class="flex justify-center gap-12 pt-8">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-strawberry"></i><p class="text-[10px] font-bold uppercase tracking-widest">Qualità certificata</p></div>
+                <div class="text-center"><i data-lucide="leaf" class="mx-auto mb-4 text-strawberry"></i><p class="text-[10px] font-bold uppercase tracking-widest">Materiali Eco</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-strawberry"></i><p class="text-[10px] font-bold uppercase tracking-widest">Curato con amore</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="marchi" class="py-24 bg-slate-50 overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-amber-500">I nostri Brand Selezionati</h2>
+            <div class="flex flex-wrap justify-center gap-16 opacity-40 grayscale hover:grayscale-0 transition duration-500">
+                <span class="text-2xl font-kids">LEGO</span>
+                <span class="text-2xl font-kids italic text-sky-600">Janod</span>
+                <span class="text-2xl font-kids uppercase">Chicco</span>
+                <span class="text-2xl font-kids text-rose-500">Djeco</span>
+                <span class="text-2xl font-kids italic text-green-600">Lilliputiens</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="storia" class="py-32 bg-pastel-pink/30 section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
+            <div class="inline-block p-4 bg-white rounded-full shadow-sm">
+                <img src="assets/img7.jpg" class="w-20 h-20 rounded-full border-2 border-strawberry object-cover" alt="Titolare">
+            </div>
+            <h2 class="text-4xl font-kids text-slate-800 italic">"Ho aperto questo negozio per dare un <span class="text-strawberry">futuro al gioco</span> vero."</h2>
+            <p class="text-lg text-slate-500 leading-relaxed font-light italic">
+                Mondo Bumbi nasce nel 2015 dalla passione di Elena, mamma e pedagogista, che sognava un luogo dove i bambini potessero riscoprire la lentezza e lo stupore del gioco fisico e condiviso.
+            </p>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-10 text-center lg:text-left">
+                <h2 class="text-6xl font-kids leading-none text-slate-800 italic">Passa a <br><span class="text-sky-400">Salutarci.</span></h2>
+                <div class="space-y-6">
+                    <div class="flex items-center justify-center lg:justify-start gap-6">
+                        <div class="w-14 h-14 bg-pastel-blue text-sky-500 rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div class="text-left">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 italic">Il nostro Store</p>
+                            <p class="text-lg font-bold">Via dei Fiori 12, Milano (MI)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center lg:justify-start gap-6">
+                        <div class="w-14 h-14 bg-pastel-green text-green-500 rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="clock"></i></div>
+                        <div class="text-left">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 italic">Orari</p>
+                            <p class="text-lg font-bold">Mar-Sab: 10:00-19:30 | Lun: 15:30-19:30</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-pastel-blue p-10 rounded-[3rem] shadow-xl border border-white">
+                <p class="font-bold uppercase text-[10px] tracking-widest mb-6 text-sky-600 italic text-center">Form in modalità Demo</p>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Nome Genitore" class="w-full p-4 rounded-2xl border-none outline-none focus:ring-2 focus:ring-strawberry transition shadow-sm">
+                    <input type="email" placeholder="Email" class="w-full p-4 rounded-2xl border-none outline-none focus:ring-2 focus:ring-strawberry transition shadow-sm">
+                    <textarea placeholder="Di cosa hai bisogno? (es. Disponibilità giocattolo, Iscrizione laboratorio...)" rows="3" class="w-full p-4 rounded-2xl border-none outline-none focus:ring-2 focus:ring-strawberry transition shadow-sm"></textarea>
+                    <button class="w-full bg-strawberry text-white py-5 rounded-2xl font-bold uppercase text-xs tracking-widest hover:bg-slate-800 transition shadow-lg">Invia Messaggio</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-[10px] text-slate-400 uppercase tracking-[0.4em] font-bold border-t border-slate-100">
+        &copy; 2026 Mondo Bumbi Milano | Negozio Certificato Green Toys | P.IVA 1234567890 | LocalTop Demo Mode
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

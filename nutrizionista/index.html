@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dr.ssa Elena Riva | Biologa Nutrizionista - Nutrire il Benessere - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfdfb; color: #2d3436; overflow-x: hidden; width: 100%; }
+        h1, h2, h3, .font-heading { font-family: 'Fredoka', sans-serif; }
+        .text-vital-green { color: #2d6a4f; }
+        .bg-vital-green { background-color: #2d6a4f; }
+        .text-glow-orange { color: #f3a683; }
+        .bg-glow-orange { background-color: #f3a683; }
+        
+        .hero-nutrition { 
+            background: linear-gradient(to right, rgba(253,253,251,0.95) 25%, rgba(253,253,251,0.3) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .balance-card { transition: all 0.4s ease; border-radius: 2.5rem; background: #ffffff; border: 1px solid #f1f2f6; }
+        .balance-card:hover { transform: translateY(-10px); border-color: #2d6a4f; box-shadow: 0 20px 40px rgba(45, 106, 79, 0.08); }
+
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            
+            .hero-nutrition { 
+                background: linear-gradient(to bottom, rgba(253,253,251,0.9) 35%, rgba(253,253,251,0.6) 100%), 
+                url('assets/img1.jpg'); 
+                background-position: 75% center !important; 
+            }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-vital-green selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-vital-green text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[120]">
+        🥕 Inizia il tuo viaggio verso la salute: Prima consulenza disponibile in 7 giorni 🥕
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-2 md:mx-10 rounded-2xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-4">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-10 h-10 bg-vital-green rounded-2xl flex items-center justify-center rotate-6 shadow-md">
+                    <i data-lucide="sprout" class="text-white w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-heading font-bold text-slate-800 tracking-tight">Elena<span class="text-vital-green">Riva</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.3em] text-slate-400">Biologa Nutrizionista</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
+                <a href="#metodo" class="hover:text-vital-green transition">Metodo</a>
+                <a href="#servizi" class="hover:text-vital-green transition">Percorsi</a>
+                <a href="#filosofia" class="hover:text-vital-green transition">Filosofia</a>
+                <a href="#bio" class="hover:text-vital-green transition">Chi sono</a>
+            </div>
+
+            <a href="#contatti" class="bg-glow-orange text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-vital-green transition-all shadow-md shrink-0">
+                Prenota Visita
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[85vh] flex items-center hero-nutrition overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-3xl space-y-8 animate-fade-in text-center md:text-left">
+                <div class="inline-flex items-center gap-2 bg-emerald-50 text-vital-green px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-emerald-100">
+                    Scienza dell'alimentazione e Medicina Funzionale
+                </div>
+                <h1 class="text-slate-800 text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight">
+                    Il Cibo è la <br> tua <span class="text-vital-green italic">Energia.</span>
+                </h1>
+                <p class="text-xl text-slate-600 font-light max-w-lg leading-relaxed italic border-l-4 border-glow-orange pl-8 mx-auto md:mx-0">
+                    Basta diete restrittive. Costruiamo insieme un piano alimentare sostenibile basato sulle tue analisi cliniche e sui tuoi ritmi di vita.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+                    <a href="#servizi" class="bg-vital-green text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-800 transition-all text-center">Scegli il tuo percorso</a>
+                    <a href="#contatti" class="bg-white border-2 border-slate-100 text-slate-400 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic text-center">Parla con me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="py-24 bg-white relative section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="space-y-10">
+                    <h2 class="text-5xl font-heading text-slate-800 uppercase italic">Un Approccio <span class="text-glow-orange">Consapevole.</span></h2>
+                    <p class="text-slate-500 text-lg leading-relaxed font-light italic">
+                        Il mio lavoro non si limita al calcolo delle calorie. Analizzo la tua composizione corporea (BIA) e valuto il tuo stato infiammatorio per creare un protocollo unico.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-6">
+                            <div class="mt-1 bg-emerald-50 p-2 rounded-lg text-vital-green shrink-0"><i data-lucide="microscope" class="w-5 h-5"></i></div>
+                            <div><h4 class="font-bold text-lg uppercase">Analisi Bioimpedenziometrica</h4><p class="text-slate-500 text-sm italic">Misurazione precisa di massa grassa, magra e idratazione.</p></div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="mt-1 bg-orange-50 p-2 rounded-lg text-glow-orange shrink-0"><i data-lucide="apple" class="w-5 h-5"></i></div>
+                            <div><h4 class="font-bold text-lg uppercase">Educazione Alimentare</h4><p class="text-slate-500 text-sm italic">Impara a comporre il tuo piatto e leggere le etichette.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative px-4 md:px-0">
+                    <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl w-full" alt="Healthy Food">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-5xl font-heading text-slate-800 uppercase tracking-tighter italic">Percorsi su <span class="text-vital-green">Misura</span></h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Obiettivi diversi, stessa professionalità</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-12 balance-card text-center group">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-vital-green group-hover:bg-vital-green group-hover:text-white transition-all"><i data-lucide="trending-down"></i></div>
+                    <h3 class="text-2xl font-heading mb-4 uppercase">Weight Management</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed italic">Raggiungi il tuo peso forma senza fame e senza stress, mantenendo i risultati nel tempo.</p>
+                </div>
+                <div class="p-12 balance-card text-center group">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-glow-orange group-hover:bg-glow-orange group-hover:text-white transition-all"><i data-lucide="dumbbell"></i></div>
+                    <h3 class="text-2xl font-heading mb-4 uppercase">Nutrizione Sportiva</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed italic">Ottimizza la performance e il recupero attraverso una gestione corretta dei nutrienti.</p>
+                </div>
+                <div class="p-12 balance-card text-center group">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-vital-green group-hover:bg-vital-green group-hover:text-white transition-all"><i data-lucide="baby"></i></div>
+                    <h3 class="text-2xl font-heading mb-4 uppercase">Donna & Gravidanza</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed italic">Supporto nutrizionale per menopausa, PCOS o per il periodo della dolce attesa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-24 bg-white section-padding overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-heading text-slate-800 uppercase italic">Il Cibo come <span class="text-vital-green">Risorsa.</span></h2>
+            <p class="text-slate-500 text-xl font-light italic leading-relaxed">
+                "La mia filosofia si basa sull'idea che mangiare bene non debba essere una punizione, ma un atto di cura verso se stessi. La scienza è la base del mio lavoro, ma l'empatia è lo strumento con cui trasformo i dati in abitudini reali."
+            </p>
+            <div class="flex flex-wrap justify-center gap-12 pt-8">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-vital-green"></i><p class="text-[9px] font-bold uppercase tracking-widest italic">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-vital-green"></i><p class="text-[9px] font-bold uppercase tracking-widest italic">Approccio Empatico</p></div>
+                <div class="text-center"><i data-lucide="microscope" class="mx-auto mb-4 text-vital-green"></i><p class="text-[9px] font-bold uppercase tracking-widest italic">Basi Scientifiche</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bio" class="py-24 bg-slate-50 section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative order-2 lg:order-1 px-4 md:px-0">
+                <div class="aspect-[3/4] bg-stone-100 rounded-[5rem] overflow-hidden shadow-2xl">
+                    <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Dr.ssa Elena Riva">
+                </div>
+                <div class="absolute -top-10 -right-10 bg-vital-green text-white p-12 rounded-full shadow-2xl hidden md:block">
+                    <p class="text-3xl font-heading">PhD</p>
+                    <p class="text-[9px] uppercase font-bold tracking-widest italic">Scienza Nutrizione</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-8">
+                <h2 class="text-5xl font-heading text-slate-800 italic leading-none uppercase">La Scienza dietro <br><span class="text-vital-green underline decoration-glow-orange">il tuo Piatto.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-vital-green pl-6">
+                    Sono la Dr.ssa Elena Riva, Biologa Nutrizionista iscritta all'Ordine Nazionale (Sez. A). La mia missione è guidarti verso una scelta alimentare consapevole, dove il piacere della tavola si sposa perfettamente con la prevenzione e la salute.
+                </p>
+                <div class="flex gap-4 opacity-50">
+                    <span class="text-[10px] font-bold uppercase tracking-widest">Iscr. Albo AA_12345</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-heading text-slate-900 leading-none tracking-tighter uppercase italic">Mangia <br><span class="text-vital-green underline decoration-glow-orange">Meglio.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-emerald-50 rounded-[2rem] flex items-center justify-center text-vital-green shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Lo Studio</p><p class="text-xl font-bold uppercase italic text-slate-800">Corso Sempione 12, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-slate-900 text-white rounded-[2rem] flex items-center justify-center shadow-lg shrink-0"><i data-lucide="mail"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Scrivimi</p><p class="text-xl font-bold italic text-slate-800">elena.riva@nutrizionista.it</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-12 rounded-[4rem] shadow-2xl border border-emerald-50 space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-vital-green mb-4 text-center italic">Modulo in modalità Demo</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-5 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>DI COSA HAI BISOGNO?</option>
+                </select>
+                <textarea placeholder="OBIETTIVI O PATOLOGIE ACCERTATE..." rows="3" class="w-full p-5 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-vital-green text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-stone-100 text-center px-6">
+        <p class="text-stone-300 text-[9px] uppercase tracking-[0.6em] font-bold italic leading-relaxed">
+            &copy; 2026 Dr.ssa Elena Riva | Nutrizionista Milano | Iscr. Albo AA_12345 | P.IVA 0123456789 | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

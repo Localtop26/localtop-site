@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterRent | Noleggio Mezzi & Attrezzature - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; overflow-x: hidden; width: 100%; }
+        .text-rental-yellow { color: #fbbf24; }
+        .bg-rental-yellow { background-color: #fbbf24; }
+        
+        .hero-rent { 
+            background: linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.6)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .rent-card { transition: all 0.3s ease; border: 1px solid #e2e8f0; background: white; border-radius: 1rem; }
+        .rent-card:hover { border-color: #fbbf24; transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 12vw, 5rem) !important; line-height: 0.95 !important; }
+            h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-yellow-100 selection:text-yellow-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-rental-yellow text-slate-900 py-2 text-[10px] font-black text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[110]">
+        🚜 NOLEGGIO RAPIDO: Disponibilità immediata per Miniescavatori e Furgoni | Tariffe Weekend -20% 🚜
+    </div>
+
+    <nav class="sticky top-4 md:top-8 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-2 md:mx-10 rounded-xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-4">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center shadow-lg">
+                    <i data-lucide="truck" class="text-rental-yellow w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-black text-slate-900 tracking-tighter uppercase italic">MASTER<span class="text-rental-yellow">RENT</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Professional Equipment</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-extrabold uppercase tracking-widest text-slate-500 italic">
+                <a href="#mezzi" class="hover:text-rental-yellow transition">Parco Mezzi</a>
+                <a href="#attrezzatura" class="hover:text-rental-yellow transition">Attrezzature</a>
+                <a href="#filosofia" class="hover:text-rental-yellow transition">Filosofia</a>
+                <a href="#furgoni" class="hover:text-rental-yellow transition">Furgoni</a>
+                <a href="#servizi" class="hover:text-rental-yellow transition">Servizi</a>
+            </div>
+
+            <a href="#preventivo" class="bg-slate-900 text-white px-4 md:px-8 py-3 rounded-lg text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:bg-rental-yellow hover:text-slate-900 transition-all text-center">
+                Preventivo <span class="hidden sm:inline">Online</span>
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[85vh] flex items-center hero-rent overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center lg:text-left">
+            <div class="max-w-5xl space-y-8 animate-fade-in">
+                <h1 class="text-5xl md:text-[10rem] font-black text-white leading-[0.85] tracking-tighter uppercase">
+                    Il Mezzo Giusto, <br> <span class="text-rental-yellow italic">Sempre Pronto.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 font-light max-w-lg leading-relaxed italic border-l-4 border-rental-yellow pl-8 mx-auto lg:mx-0">
+                    Dal piccolo elettroutensile alla grande macchina movimento terra. Noleggio a breve e lungo termine con assistenza tecnica garantita in cantiere.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#mezzi" class="bg-rental-yellow text-slate-900 px-10 py-5 rounded-lg font-black uppercase text-xs tracking-widest shadow-xl hover:bg-white transition-all">Sfoglia Catalogo</a>
+                    <a href="#furgoni" class="bg-transparent border-2 border-white text-white px-10 py-5 rounded-lg font-black uppercase text-xs tracking-widest hover:bg-white hover:text-slate-900 transition-all italic">Noleggio Furgoni</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mezzi" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <h2 class="text-5xl font-black text-slate-900 uppercase italic">Soluzioni <span class="text-rental-yellow">Heavy.</span></h2>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest border-b-2 border-rental-yellow pb-2">Macchine per Edilizia e Agricoltura</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="rent-card group">
+                    <div class="h-64 overflow-hidden rounded-t-2xl"><img src="assets/img2.jpg" class="w-full h-full object-cover transition duration-700"></div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold uppercase mb-2">Escavatori</h4>
+                        <p class="text-sm text-slate-500 italic mb-6">Da 10 a 50 quintali, con kit benne incluso. Ideali per scavi di ogni dimensione.</p>
+                        <button class="w-full py-3 bg-slate-50 text-slate-900 font-bold uppercase text-[10px] tracking-widest rounded-lg group-hover:bg-rental-yellow transition-all">Dettagli e Prezzi</button>
+                    </div>
+                </div>
+                <div class="rent-card group">
+                    <div class="h-64 overflow-hidden rounded-t-2xl"><img src="assets/img3.jpg" class="w-full h-full object-cover transition duration-700"></div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold uppercase mb-2">Piattaforme Aeree</h4>
+                        <p class="text-sm text-slate-500 italic mb-6">Semoventi e autocarrate fino a 25 metri. Massima sicurezza per lavori in quota.</p>
+                        <button class="w-full py-3 bg-slate-50 text-slate-900 font-bold uppercase text-[10px] tracking-widest rounded-lg group-hover:bg-rental-yellow transition-all">Dettagli e Prezzi</button>
+                    </div>
+                </div>
+                <div class="rent-card group">
+                    <div class="h-64 overflow-hidden rounded-t-2xl"><img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-700"></div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold uppercase mb-2">Sollevatori</h4>
+                        <p class="text-sm text-slate-500 italic mb-6">Telescopici fissi o rotativi per logistica e edilizia industriale.</p>
+                        <button class="w-full py-3 bg-slate-50 text-slate-900 font-bold uppercase text-[10px] tracking-widest rounded-lg group-hover:bg-rental-yellow transition-all">Dettagli e Prezzi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="attrezzatura" class="py-24 bg-slate-900 text-white overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-black italic leading-none uppercase">Power <br><span class="text-rental-yellow">Tools.</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed border-l-4 border-rental-yellow pl-8 italic">
+                    Tutto il supporto necessario per il tuo cantiere o il tuo fai-da-te professionale. Manutenzione impeccabile dopo ogni noleggio.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-4"><i data-lucide="zap" class="text-rental-yellow"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Generatori Corrente</span></div>
+                    <div class="flex items-center gap-4"><i data-lucide="drill" class="text-rental-yellow"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Martelli Demolitori</span></div>
+                    <div class="flex items-center gap-4"><i data-lucide="layers" class="text-rental-yellow"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Trabattelli & Scale</span></div>
+                    <div class="flex items-center gap-4"><i data-lucide="thermometer" class="text-rental-yellow"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Riscaldatori Ind.</span></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 h-96">
+                <div class="bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center italic text-sm text-center px-4">Concrete Mixer</div>
+                <div class="bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center italic text-sm text-center px-4 mt-12">Compactor</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-black text-slate-900 uppercase italic">Efficienza in <span class="text-rental-yellow">Movimento.</span></h2>
+            <p class="text-slate-500 text-xl font-light italic leading-relaxed">
+                "La nostra filosofia si basa sull'eliminazione del fermo macchina. Investiamo costantemente nel rinnovo del parco mezzi per garantire ai nostri clienti macchinari sempre efficienti, sicuri e tecnologicamente all'avanguardia."
+            </p>
+            <div class="flex justify-center gap-12 pt-8">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-rental-yellow"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità DOC</p></div>
+                <div class="text-center"><i data-lucide="clock" class="mx-auto mb-4 text-rental-yellow"></i><p class="text-[9px] font-bold uppercase tracking-widest">Puntualità H24</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-rental-yellow"></i><p class="text-[9px] font-bold uppercase tracking-widest">Cura del Mezzo</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="furgoni" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img5.jpg" class="rounded-3xl shadow-2xl" alt="Rental Van">
+                <div class="absolute -bottom-4 md:-bottom-8 -right-4 md:-right-8 bg-rental-yellow text-slate-900 p-8 md:p-12 rounded-[2rem] shadow-2xl">
+                    <p class="font-black text-2xl md:text-3xl italic">PATENTE B</p>
+                    <p class="text-[9px] uppercase tracking-widest mt-1 font-bold">Noleggio Semplice</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-6xl font-black text-slate-900 leading-none italic uppercase">Logistica <br><span class="text-rental-yellow">Smart.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic">
+                    Devi traslocare o trasportare merce ingombrante? La nostra flotta di furgoni (passo corto, medio o lungo) è pronta a muoversi con te. Disponibile anche noleggio orario.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase"><i data-lucide="check" class="text-rental-yellow"></i> Assistenza Stradale 24/7</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase"><i data-lucide="check" class="text-rental-yellow"></i> Chilometraggio Illimitato (Opz.)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-16">
+            <h2 class="text-4xl font-black uppercase italic">Noleggiare è <span class="text-rental-yellow">Convenienza.</span></h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-4">
+                    <i data-lucide="shield-check" class="w-12 h-12 mx-auto text-slate-900"></i>
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Assicurazione Kasko</h4>
+                    <p class="text-sm text-slate-500 italic">Copertura totale per lavorare senza pensieri in ogni condizione.</p>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="map-pin" class="w-12 h-12 mx-auto text-slate-900"></i>
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Consegna in Loco</h4>
+                    <p class="text-sm text-slate-500 italic">Portiamo noi il mezzo direttamente nel tuo cantiere o a casa tua.</p>
+                </div>
+                <div class="space-y-4">
+                    <i data-lucide="file-text" class="w-12 h-12 mx-auto text-slate-900"></i>
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Deducibilità 100%</h4>
+                    <p class="text-sm text-slate-500 italic">Costi certi, nessun ammortamento e massima flessibilità fiscale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="preventivo" class="py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none tracking-tighter uppercase italic text-center lg:text-left">Request <br><span class="text-rental-yellow underline decoration-slate-200">Quote.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6 justify-center lg:justify-start">
+                        <div class="w-16 h-16 bg-slate-900 text-rental-yellow rounded-xl flex items-center justify-center shadow-xl rotate-6"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Headquarters</p><p class="text-xl md:text-2xl font-bold uppercase">Via del Lavoro 42, Hub Logistico</p></div>
+                    </div>
+                    <div class="flex items-center gap-6 justify-center lg:justify-start">
+                        <div class="w-16 h-16 bg-rental-yellow text-slate-900 rounded-xl flex items-center justify-center shadow-xl -rotate-6"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Booking Rapido</p><p class="text-xl md:text-2xl font-bold uppercase italic text-slate-900">800 123 456</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-6 md:p-12 rounded-[2rem] border-t-8 border-rental-yellow shadow-2xl space-y-6">
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 text-center mb-6 italic">Modulo in modalità Demo</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME / AZIENDA" class="w-full p-4 bg-slate-50 border-none rounded-lg outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-slate-50 border-none rounded-lg outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-slate-50 border-none rounded-lg outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>COSA DESIDERI NOLEGGIARE?</option>
+                </select>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="DATA INIZIO" class="w-full p-4 bg-slate-50 border-none rounded-lg outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="DATA FINE" class="w-full p-4 bg-slate-50 border-none rounded-lg outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <button class="w-full bg-slate-900 text-white py-6 rounded-lg font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
+        <p class="text-slate-300 text-[9px] uppercase tracking-[0.6em] font-bold italic leading-relaxed">
+            &copy; 2026 MasterRent Italia | Noleggio Mezzi & Attrezzature | P.IVA 0123456789 | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-square" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

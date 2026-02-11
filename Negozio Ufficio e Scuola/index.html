@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto Tratto | Cancelleria, Ufficio & Scuola - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #fdfdfd; color: #334155; overflow-x: hidden; }
+        h1, h2, h3, .font-brand { font-family: 'Space Grotesk', sans-serif; }
+        .text-paper-blue { color: #4361ee; }
+        .bg-paper-blue { background-color: #4361ee; }
+        .text-pen-yellow { color: #fee440; }
+        .bg-pen-yellow { background-color: #fee440; }
+        
+        /* 1. Immagini Locali assets/ */
+        .hero-office { 
+            background: linear-gradient(to right, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.1) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .item-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; }
+        .item-card:hover { transform: translateY(-5px); border-color: #4361ee; box-shadow: 0 15px 30px rgba(67, 97, 238, 0.08); }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 5.5rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-paper-blue selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-paper-blue text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[120]">
+        ✏️ BACK TO SCHOOL 2026: Prenota ora i tuoi libri di testo e ricevi un kit scrittura in omaggio! ✏️
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-xl">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-pen-yellow rounded-lg flex items-center justify-center rotate-3 shadow-md">
+                    <i data-lucide="pencil-line" class="text-slate-900 w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-brand font-bold text-slate-900 tracking-tighter uppercase">Punto<span class="text-paper-blue">Tratto</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Cartoleria & Forniture</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
+                <a href="#scuola" class="hover:text-paper-blue transition">Scuola</a>
+                <a href="#ufficio" class="hover:text-paper-blue transition">Ufficio & B2B</a>
+                <a href="#regalo" class="hover:text-paper-blue transition">Idee Regalo</a>
+                <a href="#filosofia" class="hover:text-paper-blue transition">Filosofia</a>
+                <a href="#servizi" class="hover:text-paper-blue transition">Servizi</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-900 text-white px-6 py-2.5 rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-paper-blue transition-all shadow-md">
+                Preventivo Aziende
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-office overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-8 animate-fade-in text-center md:text-left">
+                <div class="inline-flex items-center gap-2 bg-blue-50 text-paper-blue px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest border border-blue-100">
+                    Rivenditore autorizzato dei migliori brand
+                </div>
+                <h1 class="text-slate-900 uppercase tracking-tighter">
+                    Libera la tua <br> <span class="text-paper-blue italic">Creatività.</span>
+                </h1>
+                <p class="text-xl text-slate-500 font-light max-w-lg leading-relaxed border-l-4 border-paper-blue pl-6">
+                    Dagli zaini hi-tech agli articoli per l'ufficio. Punto Tratto è il partner ideale per studenti, creativi e professionisti che cercano qualità e innovazione.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+                    <a href="#scuola" class="bg-paper-blue text-white px-10 py-5 rounded-md font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Collezione Scuola</a>
+                    <a href="#ufficio" class="bg-white border-2 border-slate-100 text-slate-500 px-10 py-5 rounded-md font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Forniture Ufficio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="scuola" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-20">
+                <h2 class="text-4xl font-brand font-bold text-slate-900 uppercase italic">Zaino in <span class="text-paper-blue">Spalla.</span></h2>
+                <p class="text-xs font-bold text-slate-300 uppercase tracking-widest hidden md:block">Eastpak, Seven, Invicta e altri</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="item-card p-10 bg-slate-50 rounded-2xl text-center space-y-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto text-paper-blue shadow-sm"><i data-lucide="backpack"></i></div>
+                    <h4 class="font-bold uppercase text-sm italic">Zaini & Trolley</h4>
+                    <p class="text-xs text-slate-400">Ergonomici e resistenti per ogni età.</p>
+                </div>
+                <div class="item-card p-10 bg-slate-50 rounded-2xl text-center space-y-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto text-paper-blue shadow-sm"><i data-lucide="book"></i></div>
+                    <h4 class="font-bold uppercase text-sm italic">Diari & Agende</h4>
+                    <p class="text-xs text-slate-400">I brand più amati per pianificare l'anno.</p>
+                </div>
+                <div class="item-card p-10 bg-slate-50 rounded-2xl text-center space-y-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto text-paper-blue shadow-sm"><i data-lucide="palette"></i></div>
+                    <h4 class="font-bold uppercase text-sm italic">Disegno & Arte</h4>
+                    <p class="text-xs text-slate-400">Pennarelli, tempere e tutto per le medie.</p>
+                </div>
+                <div class="item-card p-10 bg-slate-50 rounded-2xl text-center space-y-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto text-paper-blue shadow-sm"><i data-lucide="library"></i></div>
+                    <h4 class="font-bold uppercase text-sm italic">Libri di Testo</h4>
+                    <p class="text-xs text-slate-400">Servizio prenotazione e foderatura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ufficio" class="py-32 bg-slate-900 text-white overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl font-brand font-bold uppercase leading-none italic">Efficient <br><span class="text-pen-yellow">Workspace.</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed border-l-4 border-pen-yellow pl-8 italic">
+                    Ottimizziamo il lavoro del tuo studio o della tua azienda. Dalla carta per fotocopie ai toner originali, fino alla modulistica fiscale. Offriamo listini personalizzati e consegne programmate in ufficio.
+                </p>
+                <div class="grid grid-cols-2 gap-8 pt-4 italic">
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="check-circle" class="text-pen-yellow"></i> Carta & Archiviazione</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="check-circle" class="text-pen-yellow"></i> Toner & Cartucce</div>
+                </div>
+                <button class="bg-pen-yellow text-slate-900 px-10 py-5 rounded-md font-bold uppercase text-xs tracking-widest shadow-xl">Area B2B Aziende</button>
+            </div>
+            <div class="relative group">
+                <img src="assets/img2.jpg" class="rounded-3xl opacity-60 grayscale hover:grayscale-0 transition duration-1000 shadow-2xl" alt="Office Supplies">
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-brand font-bold text-slate-900 uppercase italic">Il Tratto della <span class="text-paper-blue">Qualità.</span></h2>
+            <p class="text-slate-500 text-xl font-light italic leading-relaxed">
+                "Crediamo che ogni riga scritta e ogni progetto ideato meritino il supporto dei migliori strumenti. La nostra missione è accompagnare la crescita di studenti e professionisti milanesi con prodotti che uniscono ergonomia, design e durata nel tempo."
+            </p>
+            <div class="flex justify-center gap-12 pt-8">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-paper-blue"></i><p class="text-[9px] font-bold uppercase tracking-widest">Brand Premium</p></div>
+                <div class="text-center"><i data-lucide="truck" class="mx-auto mb-4 text-paper-blue"></i><p class="text-[9px] font-bold uppercase tracking-widest">Consegna Rapida</p></div>
+                <div class="text-center"><i data-lucide="users" class="mx-auto mb-4 text-paper-blue"></i><p class="text-[9px] font-bold uppercase tracking-widest">Servizio B2B</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="regalo" class="py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-brand font-bold text-slate-900 mb-20 uppercase italic">Oggetti di <span class="text-paper-blue">Scrittura.</span></h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="relative group h-96 rounded-3xl overflow-hidden shadow-lg">
+                    <img src="assets/img3.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent p-12 flex flex-col justify-end text-left">
+                        <h4 class="text-2xl font-brand font-bold text-white uppercase italic">Penne di Pregio</h4>
+                        <p class="text-slate-300 text-sm font-light mt-2 italic">Montblanc, Parker e Lamy per un regalo indimenticabile.</p>
+                    </div>
+                </div>
+                <div class="relative group h-96 rounded-3xl overflow-hidden shadow-lg">
+                    <img src="assets/img4.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-paper-blue/80 to-transparent p-12 flex flex-col justify-end text-left">
+                        <h4 class="text-2xl font-brand font-bold text-white uppercase italic">Cartotecnica Fine</h4>
+                        <p class="text-white/80 text-sm font-light mt-2 italic">Taccuini Moleskine, carta Amalfi e biglietti d'auguri artigianali.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="space-y-6 text-center">
+                    <div class="w-16 h-16 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center mx-auto text-paper-blue"><i data-lucide="copy"></i></div>
+                    <h4 class="font-bold uppercase text-xs tracking-widest italic">Fotocopie & Stampa</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Stampa da USB, email o WhatsApp. Rilegature tesi e plastificazioni veloci.</p>
+                </div>
+                <div class="space-y-6 text-center">
+                    <div class="w-16 h-16 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center mx-auto text-paper-blue"><i data-lucide="mail"></i></div>
+                    <h4 class="font-bold uppercase text-xs tracking-widest italic">Punto Ritiro</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Siamo punto di ritiro Amazon, GLS e BRT per i tuoi acquisti online.</p>
+                </div>
+                <div class="space-y-6 text-center">
+                    <div class="w-16 h-16 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center mx-auto text-paper-blue"><i data-lucide="stamp"></i></div>
+                    <h4 class="font-bold uppercase text-xs tracking-widest italic">Timbri & Targhe</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Realizzazione timbri autoinchiostranti professionali in 24 ore.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-brand font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Mettiti in <br><span class="text-paper-blue underline decoration-slate-100 underline-offset-8">Riga.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-pen-yellow rounded-xl flex items-center justify-center shadow-lg rotate-3"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">La nostra sede</p><p class="text-2xl font-brand italic text-slate-900">Via delle Lettere 4, 20100 Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-slate-900 text-white rounded-xl flex items-center justify-center shadow-lg"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">WhatsApp Ordini</p><p class="text-2xl font-brand italic text-slate-900">02 987 654 32</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-12 rounded-[2.5rem] border-t-8 border-paper-blue shadow-2xl space-y-6">
+                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-paper-blue mb-8 text-center italic">Modulo in modalità Demo</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-white border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-white border-none outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>DI COSA HAI BISOGNO?</option>
+                </select>
+                <textarea placeholder="ELENCA I PRODOTTI O LE TUE NECESSITÀ..." rows="3" class="w-full p-4 bg-white border-none outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-paper-blue text-white py-6 rounded-md font-black uppercase text-[11px] tracking-[0.4em] shadow-xl">Invia Messaggio</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
+        <p class="text-slate-400 text-[9px] uppercase tracking-[0.5em] font-bold italic leading-relaxed">
+            &copy; 2026 Punto Tratto Milano | Cartoleria & Service Office | P.IVA 0123456789 | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

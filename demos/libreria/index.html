@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orizzonti Narrativi | Libreria, Giochi & Concept Store - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: #fdfaf6; 
+            color: #1e293b; 
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        .font-serif { font-family: 'Crimson Pro', serif; }
+        .text-ink { color: #0f172a; }
+        .bg-ink { background-color: #0f172a; }
+        .text-mustard { color: #eab308; }
+        .bg-mustard { background-color: #eab308; }
+        
+        .hero-book { 
+            background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.4)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+
+        .reading-section-img {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/img2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Fix per la Sticky Bar che non si incastra sotto il banner */
+        .sticky-nav {
+            top: 45px; /* Offset per farla stare sotto il banner nero */
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 0.95 !important; }
+            h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .reading-section-img { background-attachment: scroll; height: 350px; }
+            .sticky-nav { top: 50px; } /* Leggero aggiustamento per mobile */
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 1rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-width: calc(100% - 2rem);
+        }
+    </style>
+</head>
+<body class="selection:bg-mustard selection:text-ink">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 whitespace-nowrap">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 whitespace-nowrap">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-ink text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 border-b border-white/10 sticky top-0 z-[110] min-h-[40px] flex items-center justify-center">
+        📖 EVENTO: Giovedì ore 18:30 Presentazione Letteraria 📖
+    </div>
+
+    <nav class="sticky sticky-nav z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 h-20 md:h-24 flex items-center mx-2 md:mx-10 rounded-xl md:rounded-2xl shadow-md transition-all">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-2">
+            <div class="flex items-center gap-2 md:gap-4 shrink">
+                <div class="w-9 h-9 md:w-12 md:h-12 bg-mustard rounded-lg flex items-center justify-center rotate-3 shadow-lg shrink-0">
+                    <i data-lucide="book-marked" class="text-ink w-5 h-5 md:w-7 md:h-7"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-lg md:text-3xl font-serif italic text-ink tracking-tighter whitespace-nowrap">Orizzonti<span class="text-mustard">Narrativi</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.5em] text-slate-400 hidden sm:block">Books & Creative Play</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#lettura" class="hover:text-mustard transition">Vieni a Leggere</a>
+                <a href="#giochi" class="hover:text-mustard transition">Board Games</a>
+                <a href="#filosofia" class="hover:text-mustard transition">Filosofia</a>
+                <a href="#cartoleria" class="hover:text-mustard transition">Store</a>
+                <a href="#eventi" class="hover:text-mustard transition">Eventi</a>
+            </div>
+
+            <a href="#contatti" class="bg-ink text-white px-3 md:px-8 py-2.5 md:py-3.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-mustard hover:text-ink transition-all shadow-md shrink-0">
+                Prenota Testo
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-book overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-4xl space-y-6 md:space-y-10 animate-fade-in">
+                <div class="inline-flex items-center gap-2 bg-mustard/20 text-mustard px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-mustard/30 backdrop-blur-md">
+                    Spazio alla tua immaginazione
+                </div>
+                <h1 class="font-serif italic text-white leading-[0.85] tracking-tighter text-6xl md:text-8xl lg:text-9xl">
+                    Tuffati in <br> un'altra <span class="text-mustard">Storia.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-100 font-light max-w-lg leading-relaxed italic border-l-2 border-mustard pl-6 md:pl-8">
+                    Dalle ultime uscite editoriali ai giochi da tavolo pluripremiati. Orizzonti Narrativi è il tuo rifugio quotidiano nel cuore della città.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#lettura" class="bg-white text-ink px-10 py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-2xl hover:bg-mustard transition-all">Area Lettura</a>
+                    <a href="#giochi" class="bg-ink text-white px-10 py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl border border-white/10 hover:bg-slate-800 transition-all">Area Giochi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lettura" class="py-24 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-5xl md:text-7xl font-serif italic text-ink leading-none">Vieni a <span class="text-mustard">Leggere</span> da noi.</h2>
+                <p class="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-[0.3em]">Il tuo angolo di pace nel caos cittadino</p>
+            </div>
+            
+            <div class="relative w-full h-[500px] md:h-[700px] rounded-[2rem] md:rounded-[4rem] overflow-hidden shadow-2xl reading-section-img flex items-center justify-center">
+                <div class="bg-white/90 backdrop-blur-md p-8 md:p-12 m-6 rounded-3xl max-w-xl text-center space-y-6 shadow-xl border border-white/20">
+                    <i data-lucide="coffee" class="w-10 h-10 mx-auto text-mustard"></i>
+                    <h3 class="text-3xl md:text-4xl font-serif italic text-ink">Un caffè, un libro, il tuo tempo.</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">Abbiamo creato uno spazio dedicato a chi cerca il silenzio e la bellezza delle pagine. Divani accoglienti, luce naturale e una selezione infinita di storie ti aspettano.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="giochi" class="py-24 bg-ink text-white rounded-[2rem] md:rounded-[4rem] mx-2 md:mx-10 section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="order-2 lg:order-1 relative">
+                <img src="assets/img6.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl rotate-2 w-full" alt="Board Games">
+                <div class="absolute -bottom-6 -left-2 md:-left-6 bg-mustard text-ink p-6 md:p-8 rounded-2xl shadow-xl max-w-[85%]">
+                    <p class="text-xl md:text-2xl font-black italic uppercase">Game Night</p>
+                    <p class="text-[9px] uppercase tracking-widest font-bold">Vieni a provare i titoli in store</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-8 md:space-y-10">
+                <h2 class="text-4xl md:text-6xl font-serif italic leading-tight uppercase">Spegni lo schermo, <br><span class="text-mustard">Mettiti in gioco.</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed italic border-l-4 border-mustard pl-8">Dai party game veloci per tutta la famiglia ai complessi gestionali per veterani. Abbiamo una selezione curata di titoli per ogni tipo di sfida.</p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><i data-lucide="dice-5" class="text-mustard shrink-0"></i> <span class="text-xs font-bold uppercase tracking-widest">Strategy</span></div>
+                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><i data-lucide="users-2" class="text-mustard shrink-0"></i> <span class="text-xs font-bold uppercase tracking-widest">Party</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-4xl md:text-6xl font-serif italic text-ink uppercase tracking-tighter leading-none">Curiamo <span class="text-mustard">Pensieri</span> <br> e Immaginazione.</h2>
+                <p class="text-slate-500 text-lg leading-relaxed font-light italic border-l-4 border-mustard pl-8">
+                    La nostra filosofia mette al centro l'oggetto libro come manufatto di valore e il gioco come momento di connessione umana autentica. Non siamo solo un negozio, siamo una comunità di curiosi.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <span class="px-6 py-2 border border-slate-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-400">Editoria Indipendente</span>
+                    <span class="px-6 py-2 border border-slate-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-400">Sostenibilità Culturale</span>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img7.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full h-[400px] md:h-[500px] object-cover" alt="Library Interior">
+            </div>
+        </div>
+    </section>
+
+    <section id="cartoleria" class="py-32 bg-[#fdfaf6] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="grid grid-cols-2 gap-4 order-2 lg:order-1">
+                <div class="h-48 md:h-64 bg-slate-100 rounded-3xl overflow-hidden shadow-lg"><img src="assets/img8.jpg" class="w-full h-full object-cover grayscale"></div>
+                <div class="h-48 md:h-64 bg-slate-100 rounded-3xl overflow-hidden mt-12 shadow-lg"><img src="assets/img9.jpg" class="w-full h-full object-cover grayscale"></div>
+            </div>
+            <div class="space-y-10 order-1 lg:order-2">
+                <h2 class="text-4xl md:text-6xl font-serif italic text-ink uppercase tracking-tighter">Piccoli <span class="text-mustard">Oggetti</span> <br> di Desiderio.</h2>
+                <p class="text-slate-500 text-lg leading-relaxed font-light italic">Scopri la nostra selezione di cartoleria di design, candele profumate ispirate ai classici, tazze artigianali e vinili selezionati per accompagnerai le tue letture.</p>
+                <div class="flex flex-wrap gap-4">
+                    <span class="px-6 py-2 border border-slate-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-400 italic">Moleskine</span>
+                    <span class="px-6 py-2 border border-slate-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-400 italic">Lamy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eventi" class="py-24 bg-ink text-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <i data-lucide="coffee" class="w-12 h-12 mx-auto text-mustard opacity-50"></i>
+            <h2 class="text-4xl md:text-6xl font-serif italic text-white italic leading-none uppercase">Cultura in <span class="text-mustard">Movimento.</span></h2>
+            <p class="text-slate-400 text-xl font-light leading-relaxed italic">Il nostro caffè letterario ospita ogni settimana firmacopie, club del libro e tornei di giochi da tavolo. Un espresso, un libro, un'idea.</p>
+            <div class="pt-6">
+                <span class="text-[10px] font-black uppercase tracking-[0.4em] text-mustard border-b-2 border-mustard pb-2">Consulta il Calendario Eventi in Store</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-5xl md:text-7xl font-serif italic text-ink leading-none tracking-tighter uppercase italic">Vieni a <br><span class="text-mustard underline underline-offset-8">Sfogliare.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-ink text-white rounded-xl flex items-center justify-center shadow-xl rotate-3 shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Il nostro Concept Store</p><p class="text-2xl font-serif italic text-ink">Via dei Narratori 12, Milano</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-[#faf9f6] p-8 md:p-12 shadow-2xl border-t-4 border-mustard space-y-6 rounded-2xl">
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-6 text-center italic">Richiesta prenotazione titolo (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>COSA STAI CERCANDO?</option>
+                </select>
+                <textarea placeholder="SCRIVI QUI IL TITOLO O LA TUA RICHIESTA..." rows="3" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-ink text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Messaggio</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center text-slate-300 text-[9px] uppercase tracking-[0.6em] font-bold border-t border-stone-50 px-4">
+        &copy; 2026 Orizzonti Narrativi | Books & Games Specialist | P.IVA 0123456789 | LocalTop Demo Mode
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Abita & Design | Arredamenti, Cucine e Interior Design - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #faf9f6; color: #333333; overflow-x: hidden; width: 100%; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .text-clay { color: #a68b6d; }
+        .bg-clay { background-color: #a68b6d; }
+        
+        .hero-home { 
+            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.05)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .reveal-card:hover img { transform: scale(1.05); transition: all 1s ease; }
+        
+        /* Brand Loghi Colorati (Richiesta correzione grayscale) */
+        .brand-logo { opacity: 0.9; transition: 0.3s; filter: none !important; }
+        .brand-logo:hover { opacity: 1; }
+
+        /* Blocco Interazioni Demo */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* --- CORREZIONE TITOLO HERO DESKTOP (DIMENSIONI MASSIME) --- */
+        h1 { 
+            font-size: clamp(3.2rem, 12vw, 10rem); /* Molto grande su schermi ampi */
+            line-height: 0.8; 
+            letter-spacing: -0.05em;
+            font-weight: 700; /* Grassetto deciso */
+        }
+        
+        /* Sottotitolo scuro e leggibile, peso bilanciato */
+        .hero-subtitle {
+            font-weight: 500;
+            color: #1a1a1a; /* Quasi nero per contrasto */
+            line-height: 1.4;
+        }
+
+        @media (min-width: 1280px) {
+            h1 { font-size: 10rem !important; } /* Forza 160px su Desktop */
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3.5rem !important; line-height: 0.9 !important; }
+            h2 { font-size: 2.5rem !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .hero-subtitle { font-size: 1.15rem; color: #333; }
+        }
+
+        /* Container Navigazione Demo */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        /* Header Mobile Friendly Fix */
+        .max-w-7xl { width: 100%; overflow: hidden; }
+    </style>
+</head>
+<body class="selection:bg-stone-200 selection:text-stone-800">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-stone-900 text-stone-300 py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[110]">
+        ✨ Promo 2026: Sconto 20% su Cucine da Esposizione e Arredo Bagno ✨
+    </div>
+
+    <nav class="sticky top-[34px] z-[100] bg-white/95 backdrop-blur-md h-24 flex items-center border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center gap-4">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-10 h-10 border border-stone-800 flex items-center justify-center">
+                    <i data-lucide="layout" class="text-stone-800 w-5 h-5"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-serif italic tracking-tighter text-stone-900">Abita<span class="text-clay">&</span>Design</span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.5em] text-stone-400">Architettura d'interni</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex space-x-8 text-[9px] font-bold uppercase tracking-[0.3em] text-stone-500">
+                <a href="#cucine" class="hover:text-stone-900 transition">Cucine</a>
+                <a href="#living" class="hover:text-stone-900 transition">Divani</a>
+                <a href="#notte" class="hover:text-stone-900 transition">Zona Notte</a>
+                <a href="#camerette" class="hover:text-stone-900 transition">Camerette</a>
+                <a href="#materiali" class="hover:text-stone-900 transition">Materia</a>
+                <a href="#progetti" class="hover:text-stone-900 transition">Realizzazioni</a>
+            </div>
+            <a href="#contatti" class="bg-stone-900 text-white px-5 md:px-8 py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-clay transition-all shadow-md shrink-0">
+                Contattaci
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[90vh] flex items-center hero-home overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-5xl space-y-12 animate-fade-in">
+                <h1 class="font-serif italic text-stone-900">
+                    Vestiamo il <br> tuo <span class="text-clay">Abitare.</span>
+                </h1>
+                <p class="hero-subtitle text-xl md:text-3xl max-w-2xl italic border-l-4 border-clay pl-8">
+                    Dal singolo arredo alla ristrutturazione completa. Un viaggio nel design italiano dove ogni dettaglio racconta la tua storia.
+                </p>
+                <div class="flex gap-4 pt-4">
+                    <a href="#contatti" class="bg-stone-900 text-white px-10 md:px-14 py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-clay transition-all">Prenota Consulenza</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center md:justify-between items-center gap-10">
+                <span class="text-xl font-serif italic text-stone-900 brand-logo">Ernestomeda</span>
+                <span class="text-xl font-serif italic text-stone-900 brand-logo">Molteni&C</span>
+                <span class="text-xl font-serif italic text-stone-900 brand-logo">Cattelan Italia</span>
+                <span class="text-xl font-serif italic text-stone-900 brand-logo">Lago</span>
+                <span class="text-xl font-serif italic text-stone-900 brand-logo">Novamobili</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="cucine" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl font-serif italic text-stone-900">Cucine da <br> <span class="text-clay">Vivere.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed">Sistemi modulari che uniscono ergonomia e bellezza. Soluzioni a isola, penisola o a scomparsa, integrate con domotica di ultima generazione.</p>
+                <div class="flex gap-8">
+                    <div class="text-center"><i data-lucide="check-circle" class="text-clay mx-auto mb-2"></i><p class="text-[9px] font-bold uppercase tracking-widest">Top in Quarzo</p></div>
+                    <div class="text-center"><i data-lucide="check-circle" class="text-clay mx-auto mb-2"></i><p class="text-[9px] font-bold uppercase tracking-widest">Elettrodomestici A+++</p></div>
+                </div>
+            </div>
+            <div class="reveal-card overflow-hidden shadow-2xl">
+                <img src="assets/img2.jpg" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section id="living" class="py-32 bg-stone-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-serif italic text-stone-900">Area Living & Comfort</h2>
+                <p class="text-stone-400 uppercase tracking-widest text-[10px] mt-4 font-bold">Il relax incontra il design</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <img src="assets/img3.jpg" class="w-full h-80 object-cover rounded-sm shadow-lg">
+                    <h3 class="text-2xl font-serif italic">Divani Sartoriali</h3>
+                    <p class="text-stone-500 text-sm italic">Oltre 200 varianti di tessuti antimacchia e pelli pregiate.</p>
+                </div>
+                <div class="space-y-6">
+                    <img src="assets/img4.jpg" class="w-full h-80 object-cover rounded-sm shadow-lg">
+                    <h3 class="text-2xl font-serif italic">Pareti Attrezzate</h3>
+                    <p class="text-stone-500 text-sm italic">Sistemi giorno sospesi o a terra per organizzare lo spazio con eleganza.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="notte" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="order-2 lg:order-1">
+                <img src="assets/img5.jpg" class="w-full h-[500px] object-cover rounded-sm shadow-2xl">
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-5xl font-serif italic text-stone-900 leading-none">Notte <br><span class="text-clay">Rigenerante.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-clay pl-8">Letti tessili con contenitore, gruppi notte coordinati e cabine armadio progettate al millimetro.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between border-b border-stone-100 pb-2 text-[10px] font-bold uppercase tracking-widest text-stone-400">
+                        <span>Armadi su misura</span>
+                        <span>Cabine Light</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="materiali" class="py-32 bg-stone-900 text-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-8">
+                    <h2 class="text-4xl font-serif italic">Materia e Finitura.</h2>
+                    <p class="text-stone-400 font-light leading-relaxed">Il nostro "Materioteca" è il luogo dove il progetto prende vita. Potrai toccare con mano le laccature opache e i legni fiammati.</p>
+                    <div class="flex gap-4">
+                        <div class="w-16 h-16 bg-stone-800 rounded-sm"></div>
+                        <div class="w-16 h-16 bg-clay rounded-sm"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-8 border border-stone-800 text-center"><i data-lucide="layers" class="mx-auto mb-4 text-clay"></i><p class="text-[9px] uppercase tracking-[0.3em]">Campionari Infiniti</p></div>
+                    <div class="p-8 border border-stone-800 text-center"><i data-lucide="feather" class="mx-auto mb-4 text-clay"></i><p class="text-[9px] uppercase tracking-[0.3em]">Tessuti Ecosostenibili</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="camerette" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-serif italic text-stone-900 mb-20">Spazio ai Piccoli <span class="text-clay">Grandi Sogni.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="reveal-card">
+                    <img src="assets/img6.jpg" class="rounded-sm mb-6 w-full h-64 object-cover">
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Soluzioni Salvaspazio</h4>
+                </div>
+                <div class="reveal-card">
+                    <img src="assets/img7.jpg" class="rounded-sm mb-6 w-full h-64 object-cover">
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Zone Studio Ergononimiche</h4>
+                </div>
+                <div class="reveal-card">
+                    <img src="assets/img8.jpg" class="rounded-sm mb-6 w-full h-64 object-cover">
+                    <h4 class="font-bold uppercase text-xs tracking-widest">Design Montessori</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="progetti" class="py-32 bg-stone-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-4xl font-serif italic">Case Realizzate</h2>
+                <a href="#" class="text-[10px] font-bold uppercase tracking-widest border-b border-stone-300 pb-1">Vedi Archivio</a>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="relative group cursor-pointer overflow-hidden">
+                    <img src="assets/img9.jpg" class="w-full h-96 object-cover transition duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-stone-900/40 p-10 flex flex-col justify-end text-white opacity-0 group-hover:opacity-100 transition">
+                        <p class="text-xs uppercase tracking-widest mb-2 italic">Villa Contemporanea • Milano</p>
+                        <h4 class="text-2xl font-serif">Progetto Living & Cucina Open Space</h4>
+                    </div>
+                </div>
+                <div class="relative group cursor-pointer overflow-hidden">
+                    <img src="assets/img10.jpg" class="w-full h-96 object-cover transition duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-stone-900/40 p-10 flex flex-col justify-end text-white opacity-0 group-hover:opacity-100 transition">
+                        <p class="text-xs uppercase tracking-widest mb-2 italic">Attico Minimal • Torino</p>
+                        <h4 class="text-2xl font-serif">Zona Notte e Arredo Bagno</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="progetto-3d" class="py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <i data-lucide="monitor" class="w-12 h-12 mx-auto text-clay"></i>
+            <h2 class="text-5xl font-serif italic">Guarda la tua casa <br> <span class="text-clay">prima di abitarla.</span></h2>
+            <p class="text-stone-400 text-lg font-light leading-relaxed italic">Trasformiamo le tue misure in rendering fotorealistici per una scelta consapevole di colori e volumi.</p>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-[#faf9f6] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-6xl md:text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase">Inizia il <br><span class="text-clay font-normal">Tuo Abitare.</span></h2>
+                <div class="space-y-8 text-stone-600">
+                    <div class="flex items-center gap-6"><i data-lucide="map-pin" class="text-clay"></i><p class="text-xl font-serif italic">Via Milano 12, 20100 MI</p></div>
+                    <div class="flex items-center gap-6"><i data-lucide="phone" class="text-clay"></i><p class="text-xl font-serif italic">02 123 456 78</p></div>
+                </div>
+            </div>
+            <form class="bg-white p-10 shadow-2xl space-y-8 rounded-sm">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <input type="text" placeholder="NOME" class="w-full p-4 border-b border-stone-200 outline-none focus:border-clay transition text-[10px] font-bold uppercase tracking-widest">
+                    <input type="email" placeholder="EMAIL" class="w-full p-4 border-b border-stone-200 outline-none focus:border-clay transition text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 border-b border-stone-200 outline-none focus:border-clay transition text-[10px] font-bold uppercase text-stone-400 tracking-widest">
+                    <option>COSA DESIDERI ARREDARE?</option>
+                    <option>CUCINA</option>
+                    <option>INTERA CASA</option>
+                </select>
+                <textarea placeholder="DETTAGLI DEL PROGETTO..." rows="3" class="w-full p-4 border-b border-stone-200 outline-none focus:border-clay transition text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-stone-900 text-white py-6 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-clay transition shadow-xl">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center text-stone-300 text-[9px] uppercase tracking-[0.5em] font-bold border-t border-stone-50">
+        &copy; 2026 Abita & Design Milano | Arredamenti Completi | P.IVA 0123456789 | LocalTop Demo Mode
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

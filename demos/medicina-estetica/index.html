@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dr.ssa Aura Grace | Medicina Estetica & Anti-Aging - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fefcfb; color: #4a453e; overflow-x: hidden; width: 100%; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-champagne { color: #c5a059; }
+        .bg-champagne { background-color: #c5a059; }
+        
+        /* 1. Immagini Locali assets/ - COLORI ORIGINALI */
+        .hero-aesthetic { 
+            background: linear-gradient(to right, rgba(254,252,251,0.95) 20%, rgba(254,252,251,0.1) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .treatment-card { transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); border-radius: 2.5rem; background: white; border: 1px solid #f3ecec; }
+        .treatment-card:hover { transform: translateY(-10px); border-color: #c5a059; box-shadow: 0 20px 40px rgba(197, 160, 89, 0.1); }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.2rem, 16vw, 5rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.4rem, 11vw, 3.5rem) !important; line-height: 1.1 !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .hero-aesthetic { 
+                background: linear-gradient(to bottom, rgba(254,252,251,0.9) 30%, rgba(254,252,251,0.2) 100%), 
+                url('assets/img1.jpg'); 
+                background-position: 70% center;
+                align-items: flex-start !important; /* Sposta contenuto in alto */
+                padding-top: 2rem;
+            }
+            .hero-container { padding-top: 2rem !important; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-stone-200 selection:text-stone-800">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-stone-900 text-stone-300 py-2 text-[10px] font-bold text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[120]">
+        ✨ RITROVA LA TUA LUCE: Scopri i nuovi protocolli Skin-Revive per la primavera ✨
+    </div>
+
+    <nav class="sticky top-4 md:top-10 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-3 md:mx-10 rounded-2xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 w-full flex justify-between items-center gap-4">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-9 h-9 md:w-10 md:h-10 border border-champagne rounded-full flex items-center justify-center text-champagne">
+                    <i data-lucide="sparkles" class="w-4 h-4 md:w-5 md:h-5"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-serif italic text-stone-900 tracking-tighter uppercase">Aura<span class="text-champagne font-light">Grace</span></span>
+                    <span class="text-[6px] md:text-[7px] font-bold uppercase tracking-[0.5em] text-stone-400 mt-1">Aesthetic Medicine</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
+                <a href="#trattamenti" class="hover:text-champagne transition">Trattamenti</a>
+                <a href="#metodo" class="hover:text-champagne transition">Il Metodo</a>
+                <a href="#filosofia" class="hover:text-champagne transition">Filosofia</a>
+                <a href="#contatti" class="hover:text-champagne transition">Contatti</a>
+            </div>
+
+            <a href="#contatti" class="bg-stone-900 text-white px-5 md:px-8 py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-champagne transition-all shadow-md shrink-0">
+                Prenota
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[85vh] flex items-center hero-aesthetic overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-12 md:py-20 hero-container">
+            <div class="max-w-3xl space-y-8 md:space-y-10 animate-fade-in text-center md:text-left">
+                <span class="text-stone-400 font-bold uppercase tracking-[0.6em] text-[10px]">L'Arte del Ringiovanimento</span>
+                <h1 class="font-serif italic text-stone-900 tracking-tighter uppercase text-6xl md:text-8xl lg:text-9xl leading-[0.85]">
+                    Bellezza <br> <span class="text-champagne font-light normal-case">Consapevole.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-stone-500 font-light max-w-lg leading-relaxed italic border-l-2 border-champagne pl-8 mx-auto md:mx-0">
+                    Esaltiamo i tuoi lineamenti naturali senza stravolgerli. Scienza e sensibilità artistica per un risultato armonico e senza tempo.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 pt-4">
+                    <a href="#trattamenti" class="bg-champagne text-white px-8 md:px-12 py-5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-stone-900 transition-all">Percorsi Viso</a>
+                    <a href="#contatti" class="bg-white border border-stone-200 text-stone-900 px-8 md:px-12 py-5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-stone-50 transition-all italic">Analisi della Pelle</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trattamenti" class="py-24 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 md:mb-24 space-y-4">
+                <h2 class="text-5xl md:text-6xl font-serif italic text-stone-900 uppercase">Protocolli <span class="text-champagne">Su Misura.</span></h2>
+                <p class="text-stone-400 font-bold tracking-widest uppercase text-[10px]">Scienza medica applicata all'estetica</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div class="p-8 md:p-12 treatment-card text-center space-y-6">
+                    <i data-lucide="scan-face" class="w-10 h-10 mx-auto text-champagne opacity-60"></i>
+                    <h4 class="text-2xl font-serif italic text-stone-800 uppercase">Fillers & Botox</h4>
+                    <p class="text-sm text-stone-400 leading-relaxed font-light italic">Ripristino dei volumi e distensione delle rughe d'espressione con acidi ialuronici di altissima qualità.</p>
+                </div>
+                <div class="p-8 md:p-12 treatment-card text-center space-y-6 border-champagne/30">
+                    <i data-lucide="droplets" class="w-10 h-10 mx-auto text-champagne opacity-60"></i>
+                    <h4 class="text-2xl font-serif italic text-stone-800 uppercase">Biostimolazione</h4>
+                    <p class="text-sm text-stone-400 leading-relaxed font-light italic">Riattivazione naturale del collagene per una pelle più elastica, idratata e luminosa.</p>
+                </div>
+                <div class="p-8 md:p-12 treatment-card text-center space-y-6">
+                    <i data-lucide="zap" class="w-10 h-10 mx-auto text-champagne opacity-60"></i>
+                    <h4 class="text-2xl font-serif italic text-stone-800 uppercase">Laser Terapia</h4>
+                    <p class="text-sm text-stone-400 leading-relaxed font-light italic">Trattamento di macchie, cicatrici ed epilazione medicale con tecnologie laser di ultima generazione.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="py-24 md:py-32 bg-[#fffcf9] border-y border-stone-100 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img2.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl" alt="Doctor in clinic">
+                <div class="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 bg-champagne text-white p-8 md:p-12 rounded-full shadow-2xl">
+                    <i data-lucide="award" class="w-8 h-8 md:w-10 md:h-10"></i>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-8 md:space-y-10">
+                <h2 class="text-5xl md:text-7xl font-serif italic text-stone-900 leading-none uppercase">Il Metodo <br><span class="text-champagne font-light normal-case">No-Filter.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-champagne pl-8">
+                    La vera medicina estetica non si deve vedere, si deve percepire come una pelle riposata e un viso armonico. Ogni piano terapeutico parte da un'analisi clinica approfondita della struttura ossea e dei tessuti.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 pt-4 italic text-sm text-stone-400">
+                    <div class="flex items-center gap-3"><i data-lucide="check" class="text-champagne w-4"></i> Analisi computerizzata</div>
+                    <div class="flex items-center gap-3"><i data-lucide="check" class="text-champagne w-4"></i> Follow-up post trattamento</div>
+                    <div class="flex items-center gap-3"><i data-lucide="check" class="text-champagne w-4"></i> Solo brand certificati FDA</div>
+                    <div class="flex items-center gap-3"><i data-lucide="check" class="text-champagne w-4"></i> Approccio mininvasivo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-24 md:py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900 uppercase">L'Etica della <span class="text-champagne">Rigenerazione.</span></h2>
+            <p class="text-stone-500 text-lg md:text-xl font-light italic leading-relaxed">
+                "La nostra filosofia mette al centro il rispetto dell'identità. Agire preventivamente significa preservare la qualità dei tessuti nel tempo, utilizzando solo protocolli scientificamente validati che stimolano la naturale capacità del corpo di rinnovarsi."
+            </p>
+            <div class="flex justify-center gap-8 md:gap-12 pt-8">
+                <div class="text-center"><i data-lucide="shield-check" class="mx-auto mb-4 text-champagne"></i><p class="text-[9px] font-bold uppercase tracking-widest">Sicurezza Medica</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-champagne"></i><p class="text-[9px] font-bold uppercase tracking-widest">Armonia Estetica</p></div>
+                <div class="text-center"><i data-lucide="microscope" class="mx-auto mb-4 text-champagne"></i><p class="text-[9px] font-bold uppercase tracking-widest">Innovazione</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="studio" class="py-24 md:py-32 bg-stone-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl font-serif italic text-stone-900 leading-tight uppercase">Un Ambiente di <br><span class="text-champagne">Puro Benessere.</span></h2>
+                <p class="text-stone-500 text-lg leading-relaxed italic">Il nostro hub a Milano è progettato per offrire un'esperienza di calma e discrezione. Tecnologie all'avanguardia in un contesto di design minimale e accogliente.</p>
+                <div class="relative h-64 rounded-3xl overflow-hidden shadow-xl">
+                    <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Clinic interior">
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img4.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl" alt="Technological equipment">
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-24 md:py-32 bg-[#fdfcfb] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-12">
+                <h2 class="text-6xl md:text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase italic">Scrivi la <br><span class="text-champagne font-normal">Tua Storia.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-white border border-stone-100 flex items-center justify-center rounded-full text-champagne shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1 italic">Clinic Hub</p><p class="text-xl md:text-2xl font-serif italic text-stone-900">Via della Spiga 12, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-stone-900 text-white flex items-center justify-center rounded-full shadow-2xl shrink-0"><i data-lucide="phone" class="text-champagne"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest mb-1 italic">Reception</p><p class="text-xl md:text-2xl font-serif italic text-stone-900">02 123 456 78</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl space-y-8 border border-stone-50">
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 text-center italic">Prenota una visita specialistica conoscitiva (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none transition text-[10px] font-bold uppercase tracking-widest">
+                    <input type="email" placeholder="EMAIL" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none transition text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-transparent border-b border-stone-200 outline-none transition text-[10px] font-bold uppercase tracking-widest text-stone-400">
+                    <option>DI COSA HAI BISOGNO?</option>
+                </select>
+                <textarea placeholder="DICCI COSA VORRESTI MIGLIORARE O IL TUO OBIETTIVO..." rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none transition text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-stone-900 text-white py-6 rounded-full text-[10px] font-bold uppercase tracking-[0.4em] shadow-xl transition-all">Richiedi Appuntamento</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-stone-50 text-center px-6">
+        <p class="text-stone-300 text-[9px] uppercase tracking-[0.6em] font-bold italic leading-relaxed">
+            &copy; 2026 Dr.ssa Aura Grace | Medicina Estetica & Chirurgia | P.IVA 0123456789 | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-white border border-stone-100 text-stone-800 p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

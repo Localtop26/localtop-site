@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verde Vivo | Architettura del Paesaggio & Cura del Giardino - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfdfc; color: #2d3e34; overflow-x: hidden; }
+        h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
+        .text-garden-green { color: #3a5a40; }
+        .bg-garden-green { background-color: #3a5a40; }
+        .text-earth { color: #a47148; }
+        
+        /* 1. Sostituzione URL Immagini con percorsi locali assets/ */
+        .hero-garden { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .green-card { transition: all 0.4s ease; border-radius: 2rem; background: white; border: 1px solid #e9efea; }
+        .green-card:hover { transform: translateY(-8px); border-color: #3a5a40; box-shadow: 0 20px 40px rgba(58, 90, 64, 0.1); }
+        .organic-shape { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-green-100 selection:text-green-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-garden-green text-green-100 py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120]">
+        🌿 PRIMAVERA 2026: Prenota ora la rigenerazione del manto erboso e la concimazione 🌿
+    </div>
+
+    <nav class="sticky top-8 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-green-50 shadow-sm mx-4 md:mx-10 rounded-full mt-4">
+        <div class="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-garden-green rounded-full flex items-center justify-center shadow-lg text-white">
+                    <i data-lucide="leaf" class="w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-heading font-extrabold text-slate-900 tracking-tighter">VERDE<span class="text-garden-green">VIVO</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Green Specialists</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="#design" class="hover:text-garden-green transition">Realizzazione</a>
+                <a href="#manutenzione" class="hover:text-garden-green transition">Cura</a>
+                <a href="#potatura" class="hover:text-garden-green transition">Potature</a>
+                <a href="#irrigazione" class="hover:text-garden-green transition">Sistemi</a>
+                <a href="#filosofia" class="hover:text-garden-green transition">Filosofia</a>
+            </div>
+
+            <a href="#prenota" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-garden-green transition-all">
+                Preventivo
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-garden overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
+            <div class="max-w-3xl space-y-8 animate-fade-in">
+                <h1 class="text-6xl md:text-[100px] font-heading font-extrabold text-white leading-[0.85] tracking-tighter uppercase">
+                    Il Tuo <br> Angolo di <span class="text-green-300 italic font-light italic">Paradiso.</span>
+                </h1>
+                <p class="text-xl text-white/90 font-light max-w-xl leading-relaxed border-l-2 border-green-400 pl-8 italic">
+                    Progettiamo, realizziamo e curiamo spazi verdi che respirano. Dalla manutenzione del tappeto erboso alle potature d'alto fusto, ci prendiamo cura della natura con competenza artigiana.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+                    <a href="#prenota" class="bg-garden-green text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-white hover:text-garden-green transition-all">Contattaci Ora</a>
+                    <a href="#design" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-garden-green transition-all">Vedi i Lavori</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="design" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1 h-[500px] organic-shape overflow-hidden shadow-2xl">
+                <img src="assets/img2.jpg" class="w-full h-full object-cover" alt="Garden Design">
+            </div>
+            <div class="order-1 lg:order-2 space-y-8">
+                <span class="text-earth font-bold uppercase tracking-widest text-[10px]">Architettura del Paesaggio</span>
+                <h2 class="text-5xl font-heading font-bold text-slate-900 leading-tight uppercase">Sogniamo <br><span class="text-garden-green">il Tuo Giardino.</span></h2>
+                <p class="text-slate-500 text-lg leading-relaxed italic">Non solo piante, ma armonia. Realizziamo giardini rocciosi, prati all'inglese, orti urbani e spazi outdoor di design integrando pietre naturali e architetture botaniche.</p>
+                <div class="grid grid-cols-2 gap-4 pt-4">
+                    <div class="flex items-center gap-2 text-sm font-semibold"><i data-lucide="check" class="text-garden-green"></i> Sopralluogo Gratuito</div>
+                    <div class="flex items-center gap-2 text-sm font-semibold"><i data-lucide="check" class="text-garden-green"></i> Render Progettuale</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="manutenzione" class="py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase">Cura a <span class="text-garden-green italic">360 Gradi.</span></h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Mantieni il tuo verde splendente tutto l'anno</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="p-12 green-card text-center">
+                    <i data-lucide="scissors" class="w-12 h-12 text-garden-green mx-auto mb-6"></i>
+                    <h4 class="text-xl font-bold mb-4 uppercase">Taglio & Bordure</h4>
+                    <p class="text-sm text-slate-500">Gestione regolare del prato, rifilatura bordi e rimozione erbe infestanti per un ordine perfetto.</p>
+                </div>
+                <div id="potatura" class="p-12 green-card border-earth/20 bg-emerald-50/30">
+                    <i data-lucide="tree-pine" class="w-12 h-12 text-garden-green mx-auto mb-6"></i>
+                    <h4 class="text-xl font-bold text-center mb-4 uppercase">Potature Specialistiche</h4>
+                    <p class="text-sm text-slate-500 text-center">Esperti in potatura siepi, alberi da frutto e Tree Climbing per piante ad alto fusto in sicurezza.</p>
+                </div>
+                <div id="irrigazione" class="p-12 green-card text-center">
+                    <i data-lucide="droplets" class="w-12 h-12 text-garden-green mx-auto mb-6"></i>
+                    <h4 class="text-xl font-bold mb-4 uppercase">Sistemi di Irrigazione</h4>
+                    <p class="text-sm text-slate-500">Installazione e manutenzione impianti a goccia o a pioggia con centraline smart per il risparmio idrico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-garden-green text-white overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-heading font-extrabold leading-none uppercase">Dottori <br><span class="text-green-300 italic font-light">delle Piante.</span></h2>
+                <p class="text-green-100 text-lg font-light leading-relaxed italic border-l-4 border-green-300 pl-8">
+                    La bellezza parte dalla salute. Effettuiamo trattamenti fitosanitari, concimazioni organiche e rigenerazione di manti erbosi degradati attraverso carotatura e trasemina.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                        <i data-lucide="shield-check" class="text-green-300"></i>
+                        <span class="text-xs font-bold uppercase tracking-widest">Lotta Biologica</span>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                        <i data-lucide="sprout" class="text-green-300"></i>
+                        <span class="text-xs font-bold uppercase tracking-widest">Endoterapia</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img3.jpg" class="rounded-3xl shadow-2xl opacity-80 grayscale hover:grayscale-0 transition duration-1000" alt="Plant Health">
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl font-heading font-bold text-slate-900 mb-20 text-center uppercase tracking-tighter">I Nostri <span class="text-garden-green italic">Capolavori.</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="h-64 rounded-2xl overflow-hidden group"><img src="assets/img4.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
+                <div class="h-64 rounded-2xl overflow-hidden group mt-8"><img src="assets/img5.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
+                <div class="h-64 rounded-2xl overflow-hidden group"><img src="assets/img6.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
+                <div class="h-64 rounded-2xl overflow-hidden group mt-8"><img src="assets/img7.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prenota" class="py-32 bg-slate-950 text-white rounded-t-[5rem] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-heading font-extrabold leading-none tracking-tighter uppercase italic">Fai <br><span class="text-green-400 underline decoration-green-800 underline-offset-8">Rifiorire</span> il verde.</h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-garden-green text-white rounded-2xl flex items-center justify-center shadow-lg"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Operativi in tutto il territorio di</p><p class="text-2xl font-bold uppercase">Toscana & Grosseto</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-white text-slate-900 rounded-2xl flex items-center justify-center shadow-xl"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">WhatsApp & Call</p><p class="text-2xl font-bold italic">0566 123 456</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-12 rounded-[3rem] shadow-2xl space-y-6 text-slate-900">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-garden-green mb-4 text-center italic">Richiesta sopralluogo gratuito (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none transition text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none transition text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none transition text-[10px] font-bold uppercase text-slate-400">
+                    <option>COSA DESIDERI?</option>
+                    <option>PROGETTAZIONE NUOVO GIARDINO</option>
+                    <option>MANUTENZIONE ORDINARIA</option>
+                    <option>POTATURA ALTO FUSTO</option>
+                    <option>IMPIANTO IRRIGAZIONE</option>
+                </select>
+                <textarea placeholder="DESCRIVI IL TUO SPAZIO..." rows="3" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none transition text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-garden-green text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl transition-all">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-slate-950 text-center text-slate-600 border-t border-white/5">
+        <p class="text-[9px] uppercase tracking-[0.5em] font-bold">
+            &copy; 2026 Verde Vivo Giardini | P.IVA 0123456789 | Operatori Certificati Tree Climbing | LocalTop Demo
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

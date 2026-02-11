@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Petali & Poesia | Floral Design & Boutique - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #fcfbf9; 
+            color: #444b43; 
+            overflow-x: hidden;
+            width: 100%;
+        }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-moss { color: #4a5d4e; }
+        .bg-moss { background-color: #4a5d4e; }
+        
+        /* Colore Rosso Rosa richiesto */
+        .text-rose-red { color: #be123c; } 
+        
+        /* Hero Background: Overlay leggerissimo per far risaltare il testo */
+        .hero-floral { 
+            background: linear-gradient(to bottom, rgba(252,251,249,0.4) 10%, rgba(252,251,249,0) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .flower-card { transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); background: white; border-radius: 2rem; overflow: hidden; }
+        
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Mobile */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 12vw, 6rem) !important; line-height: 0.85 !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            /* Sposta i testi in alto su mobile per evitare il vuoto bianco */
+            .hero-container { 
+                align-items: flex-start !important; 
+                padding-top: 3rem !important; 
+            }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-moss selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-moss text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[120]">
+        🌸 SAN VALENTINO 2026: Prenota ora per la consegna il 14 Febbraio 🌸
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/85 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-2 md:mx-10 rounded-full mt-4">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-9 h-9 md:w-10 md:h-10 bg-moss/10 rounded-full flex items-center justify-center text-moss">
+                    <i data-lucide="flower-2" class="w-5 h-5 md:w-6 md:h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-serif italic text-stone-900 tracking-tighter">Petali<span class="text-moss">Poesia</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.5em] text-stone-400">Boutique Floreale</span>
+                </div>
+            </div>
+            
+            <a href="#ordina" class="bg-stone-900 text-white px-5 md:px-8 py-2.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-moss transition-all">
+                Ordina Ora
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[85vh] flex items-center hero-container hero-floral overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
+            <div class="max-w-2xl space-y-6 md:space-y-8">
+                <h1 class="text-7xl md:text-9xl font-serif italic text-stone-900 leading-[0.85] tracking-tighter uppercase">
+                    Dillo con un <br> <span class="text-rose-red font-light normal-case">Fiore.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-stone-800 font-semibold max-w-lg leading-relaxed italic border-l-4 border-rose-red pl-6 md:pl-8">
+                    Creazioni botaniche uniche nate dalla passione per la natura. Dalle composizioni quotidiane agli allestimenti per i tuoi momenti indimenticabili.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4 pt-4">
+                    <a href="#bouquet" class="bg-moss text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl">Scegli il tuo Mazzo</a>
+                    <a href="#ordina" class="bg-white/90 border border-stone-200 text-stone-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest italic">A Domicilio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bouquet" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900 uppercase">I Nostri <span class="text-moss">Innamorati.</span></h2>
+                <p class="text-stone-400 font-bold tracking-widest uppercase text-[10px]">Fiori freschi di stagione, scelti ogni mattina</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="flower-card group">
+                    <div class="h-80 overflow-hidden"><img src="assets/img2.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div>
+                    <div class="p-8 text-center">
+                        <h4 class="text-2xl font-serif italic mb-2">Sogno di Primavera</h4>
+                        <p class="text-sm text-stone-500 mb-6 italic">Tulipani, anemoni e rami di pesco.</p>
+                        <span class="text-moss font-bold italic">da € 35,00</span>
+                    </div>
+                </div>
+                <div class="flower-card group">
+                    <div class="h-80 overflow-hidden"><img src="assets/img3.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div>
+                    <div class="p-8 text-center">
+                        <h4 class="text-2xl font-serif italic mb-2">Amore Infinito</h4>
+                        <p class="text-sm text-stone-500 mb-6 italic">Dodici rose rosse a gambo lungo.</p>
+                        <span class="text-moss font-bold italic">da € 60,00</span>
+                    </div>
+                </div>
+                <div class="flower-card group">
+                    <div class="h-80 overflow-hidden"><img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div>
+                    <div class="p-8 text-center">
+                        <h4 class="text-2xl font-serif italic mb-2">Eleganza Bianca</h4>
+                        <p class="text-sm text-stone-500 mb-6 italic">Gigli, lisiantus ed eucalipto.</p>
+                        <span class="text-moss font-bold italic">da € 45,00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wedding" class="py-24 bg-stone-50 border-y border-stone-100 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl md:text-6xl font-serif italic text-stone-900 leading-none">Il Tuo "Sì" <br><span class="text-moss font-light normal-case">tra i Fiori.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-moss pl-8">
+                    Progettiamo scenografie floreali che raccontano la vostra storia, trasformando ogni location in un luogo incantato.
+                </p>
+                <div class="grid grid-cols-2 gap-4 md:gap-6">
+                    <div class="flex items-center gap-3"><i data-lucide="check" class="text-moss w-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Bouquet Sposa</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="check" class="text-moss w-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Archi Floreali</span></div>
+                </div>
+                <button class="bg-stone-900 text-white px-10 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest">Prenota Consulenza</button>
+            </div>
+            <div class="relative">
+                <img src="assets/img5.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl w-full object-cover h-[400px]" alt="Wedding Flowers">
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img6.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl w-full h-[400px] md:h-[500px] object-cover" alt="Boutique Interior">
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900 uppercase">Emozioni <br><span class="text-moss font-light">Sostenibili.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-moss pl-8">
+                    Collaboriamo con coltivatori locali per ridurre l'impatto ambientale, celebrando la bellezza autentica.
+                </p>
+                <div class="flex gap-4">
+                    <span class="px-4 py-2 border border-stone-200 rounded-full text-[8px] font-bold uppercase tracking-widest text-stone-400">Zero Plastica</span>
+                    <span class="px-4 py-2 border border-stone-200 rounded-full text-[8px] font-bold uppercase tracking-widest text-stone-400">Km Zero</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ordina" class="py-24 bg-[#fdfaf8] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+            <div class="space-y-10">
+                <h2 class="text-6xl md:text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase">Invia un <br><span class="text-moss font-normal italic">Sorriso.</span></h2>
+                <div class="space-y-6 md:space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 bg-white border border-stone-100 flex items-center justify-center rounded-full text-moss shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">La Boutique</p><p class="text-xl font-serif italic">Via dei Fiori 4, Milano</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl border border-stone-50 space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-moss text-center italic">Consegna in giornata (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME" class="w-full p-4 border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <textarea placeholder="MESSAGGIO PER IL BIGLIETTINO..." rows="3" class="w-full p-4 border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-moss text-white py-5 rounded-full font-black uppercase text-[10px] tracking-[0.4em] shadow-xl">Ordina Ora</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-stone-100 text-center px-6">
+        <p class="text-stone-300 text-[8px] uppercase tracking-[0.6em] font-bold">
+            &copy; 2026 Petali & Poesia | Boutique Floreale Milano
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

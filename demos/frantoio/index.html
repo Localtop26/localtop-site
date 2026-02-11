@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terra Nobile | Olio EVO e Farine Artigianali - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfcf9; color: #2d2a26; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-olive { color: #4a5d23; }
+        .bg-olive { background-color: #4a5d23; }
+        .text-wheat { color: #d4a373; }
+        .bg-wheat { background-color: #d4a373; }
+        
+        .hero-farm { 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .product-card:hover img { transform: scale(1.05); transition: 0.8s ease; }
+
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            
+            /* Sposta testi Hero in alto su mobile */
+            .hero-farm { align-items: flex-start !important; padding-top: 5rem !important; }
+            
+            /* Header Mobile Fix: Evita collisione logo/bottone */
+            .nav-container { padding-left: 0.5rem !important; padding-right: 0.5rem !important; gap: 0.5rem; }
+            .nav-logo-text { font-size: 1.1rem !important; }
+            .nav-button { padding: 0.6rem 0.8rem !important; font-size: 8px !important; flex-shrink: 0; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-olive selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-olive text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.4em] px-4">
+        🌾 NUOVO RACCOLTO 2026: Disponibile l'Olio Nuovo e le Farine di Grani Antichi 🌾
+    </div>
+
+    <nav class="sticky top-0 z-[100] bg-white/90 backdrop-blur-md h-24 flex items-center border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center nav-container">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 md:w-10 md:h-10 border-2 border-olive flex items-center justify-center rounded-full text-olive flex-shrink-0">
+                    <i data-lucide="leaf" class="w-5 h-5 md:w-6 md:h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="nav-logo-text text-lg md:text-2xl font-serif italic text-stone-900 tracking-tighter uppercase">Terra<span class="text-olive">Nobile</span></span>
+                    <span class="text-[6px] md:text-[7px] font-bold uppercase tracking-[0.6em] text-stone-400 mt-1">Frantoio & Molino</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">
+                <a href="#olio" class="hover:text-olive transition">L'Olio</a>
+                <a href="#farine" class="hover:text-olive transition">Le Farine</a>
+                <a href="#shop" class="hover:text-olive transition">Shop</a>
+                <a href="#esperienze" class="hover:text-olive transition">Degustazioni</a>
+            </div>
+
+            <a href="#shop" class="nav-button bg-stone-900 text-white px-8 py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-olive transition-all shadow-md">
+                Acquista Online
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-farm overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-2xl space-y-10">
+                <span class="text-white font-bold uppercase tracking-[0.6em] text-[10px] border-b border-wheat pb-2">Tradizione Mediterranea</span>
+                <h1 class="text-7xl md:text-[100px] font-serif italic text-white leading-[0.85] tracking-tighter">
+                    L'Essenza <br> della <span class="text-wheat">Bontà.</span>
+                </h1>
+                <p class="text-xl text-stone-200 font-light max-w-lg leading-relaxed italic border-l-2 border-olive pl-8">
+                    Dalla premitura a freddo delle nostre olive e dalla molitura a pietra dei grani antichi, portiamo sulla tua tavola l'integrità del sapore originale.
+                </p>
+                <div class="flex flex-wrap gap-6 pt-4">
+                    <a href="#olio" class="bg-olive text-white px-10 py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-olive transition-all">Scopri l'Olio</a>
+                    <a href="#farine" class="bg-wheat text-white px-10 py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-wheat transition-all">Scopri le Farine</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="olio" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-serif italic text-stone-900 leading-none">Olio Extravergine <br><span class="text-olive font-normal">Spremitura a Freddo.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-olive pl-8">
+                    Le nostre olive vengono raccolte all'invaiatura e frante entro 4 ore. Il risultato è un olio EVO a bassissima acidità, ricco di polifenoli e dal profumo intenso di erba tagliata e mandorla.
+                </p>
+                <div class="grid grid-cols-2 gap-8 pt-4">
+                    <div class="flex items-center gap-4"><i data-lucide="award" class="text-olive"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Estratto a Freddo</span></div>
+                    <div class="flex items-center gap-4"><i data-lucide="check-circle" class="text-olive"></i> <span class="text-[9px] font-bold uppercase tracking-widest">100% Italiano</span></div>
+                </div>
+            </div>
+            <div class="relative product-card overflow-hidden rounded-sm">
+                <img src="assets/img2.jpg" class="w-full h-full object-cover shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <section id="farine" class="py-32 bg-stone-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="order-2 lg:order-1 relative product-card overflow-hidden rounded-sm">
+                <img src="assets/img3.jpg" class="w-full h-full object-cover shadow-2xl">
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-6xl font-serif italic text-stone-900 leading-none">Farine Vive <br><span class="text-wheat font-normal">Macinate a Pietra.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-wheat pl-8">
+                    Maciniamo solo grani selezionati del territorio. La pietra preserva il germe di grano e le fibre naturali, regalando una farina profumata e digeribile, ideale per pane, pizza e dolci fatti in casa.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-3"><i data-lucide="zap" class="text-wheat w-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Basso Indice Glicemico</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="target" class="text-wheat w-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Grani Antichi</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl font-serif italic text-stone-900 uppercase">La Nostra <span class="text-olive">Dispensa.</span></h2>
+                <p class="text-[10px] font-bold text-stone-300 uppercase tracking-widest mt-4">Direttamente dal produttore a casa tua</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-6 text-center group cursor-pointer">
+                    <div class="aspect-[4/5] bg-stone-50 overflow-hidden rounded-sm relative">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-700">
+                        <div class="absolute top-4 right-4 bg-olive text-white px-4 py-1 text-[8px] font-bold uppercase tracking-widest">Best Seller</div>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-serif italic">Olio EVO "Selezione" 5L</h4>
+                        <p class="text-[11px] text-stone-400 uppercase tracking-widest mt-2">Fruttato Medio • Raccolto 2026</p>
+                        <p class="text-xl font-bold mt-4 text-olive italic">€ 75.00</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-center group cursor-pointer">
+                    <div class="aspect-[4/5] bg-stone-50 overflow-hidden rounded-sm relative">
+                        <img src="assets/img5.jpg" class="w-full h-full object-cover transition duration-700">
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-serif italic">Farina Tipo 1 • 5kg</h4>
+                        <p class="text-[11px] text-stone-400 uppercase tracking-widest mt-2">Macinata a Pietra • Grano Tenero</p>
+                        <p class="text-xl font-bold mt-4 text-olive italic">€ 12.50</p>
+                    </div>
+                </div>
+                <div class="space-y-6 text-center group cursor-pointer">
+                    <div class="aspect-[4/5] bg-stone-50 overflow-hidden rounded-sm relative">
+                        <img src="assets/img6.jpg" class="w-full h-full object-cover transition duration-700">
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-serif italic">Farina di Farro BIO 1kg</h4>
+                        <p class="text-[11px] text-stone-400 uppercase tracking-widest mt-2">Antica varietà • Alto contenuto fibre</p>
+                        <p class="text-xl font-bold mt-4 text-olive italic">€ 4.50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="esperienze" class="py-32 bg-stone-900 text-stone-100 relative overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-serif italic text-wheat leading-none">Degusta <br><span class="text-white font-normal">la Campagna.</span></h2>
+                <p class="text-stone-400 text-lg font-light leading-relaxed italic border-l-2 border-wheat pl-8">Organizziamo percorsi sensoriali per farti scoprire le differenze tra le cultivar e i profumi delle farine appena molite. Bruschette calde, prodotti locali e un bicchiere di vino sotto il porticato.</p>
+                <div class="flex gap-4">
+                    <span class="px-6 py-2 border border-stone-700 text-[9px] font-bold uppercase tracking-widest">Oil Tasting</span>
+                    <span class="px-6 py-2 border border-stone-700 text-[9px] font-bold uppercase tracking-widest">Corso di Panificazione</span>
+                </div>
+            </div>
+            <div class="bg-white/5 p-12 rounded-sm border border-white/10 text-center">
+                <i data-lucide="calendar" class="w-12 h-12 mx-auto mb-8 text-wheat"></i>
+                <h3 class="text-2xl font-serif italic mb-4">Prenota la tua Visita</h3>
+                <p class="text-sm text-stone-400 italic mb-8">Disponibile dal lunedì al sabato su prenotazione per gruppi e privati.</p>
+                <a href="#contatti" class="bg-wheat text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-stone-900 transition">Richiedi Info</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase">Vieni a <br><span class="text-olive font-normal italic">Trovarci.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-8">
+                        <div class="w-14 h-14 bg-stone-50 border border-stone-100 flex items-center justify-center rounded-full text-olive shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Il Frantoio</p><p class="text-2xl font-serif italic">Via degli Ulivi 15, Val d'Orcia</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-14 h-14 bg-stone-50 border border-stone-100 flex items-center justify-center rounded-full text-olive shadow-sm"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Direct Line</p><p class="text-2xl font-serif italic">0577 123 456</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-[#fcfaf7] p-12 shadow-2xl border-l-8 border-olive space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-olive mb-4 text-center italic">Form in modalità Demo</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME" class="w-full p-4 border-b border-stone-100 bg-transparent outline-none focus:border-olive transition text-[10px] font-bold tracking-widest uppercase">
+                    <input type="email" placeholder="EMAIL" class="w-full p-4 border-b border-stone-100 bg-transparent outline-none focus:border-olive transition text-[10px] font-bold tracking-widest uppercase">
+                </div>
+                <select class="w-full p-4 border-b border-stone-100 bg-transparent outline-none focus:border-olive transition text-[10px] font-bold uppercase text-stone-400 tracking-widest">
+                    <option>COSA DESIDERI CHIEDERE?</option>
+                    <option>ORDINE OLIO / FARINE</option>
+                    <option>PRENOTAZIONE DEGUSTAZIONE</option>
+                    <option>CONSULENZA RIVENDITORI / B2B</option>
+                </select>
+                <textarea placeholder="SCRIVICI UN MESSAGGIO..." rows="3" class="w-full p-4 border-b border-stone-100 bg-transparent outline-none focus:border-olive transition text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-olive text-white py-6 text-[11px] font-black uppercase tracking-[0.4em] hover:bg-stone-900 transition shadow-xl">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-stone-50 text-center">
+        <p class="text-stone-300 text-[9px] uppercase tracking-[0.5em] font-bold px-6">
+            &copy; 2026 Terra Nobile Frantoio & Molino | P.IVA 0123456789 | Autenticità Mediterranea
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

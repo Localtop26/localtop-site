@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Storyteller | Photography & Filmmaking - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* 1. Sostituzione URL Immagini con percorsi locali assets/ */
+        .hero-bg { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .gallery-item { position: relative; overflow: hidden; cursor: default; }
+        .gallery-item img { transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-overlay { 
+            position: absolute; inset: 0; background: rgba(0,0,0,0.4); 
+            opacity: 0; transition: opacity 0.4s ease; display: flex; 
+            align-items: center; justify-content: center; 
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4.5rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-zinc-800 selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <nav class="fixed top-0 z-[100] w-full bg-black/50 backdrop-blur-lg h-20 flex items-center border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-xl font-serif italic tracking-tighter uppercase">Studio<span class="text-zinc-500">Visual</span></span>
+            </div>
+            
+            <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400">
+                <a href="#work" class="hover:text-white transition">Portfolio</a>
+                <a href="#services" class="hover:text-white transition">Servizi</a>
+                <a href="#about" class="hover:text-white transition">Approccio</a>
+                <a href="#contact" class="hover:text-white transition">Contatti</a>
+            </div>
+
+            <a href="#contact" class="bg-white text-black px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all shadow-xl">
+                Book a Session
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center hero-bg overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-3xl space-y-8 animate-fade-in">
+                <span class="text-[10px] font-bold uppercase tracking-[0.8em] text-zinc-400">Photography & Filmmaking</span>
+                <h1 class="text-6xl md:text-9xl font-serif italic leading-[0.85] tracking-tighter text-white">
+                    Catturo <br> <span class="text-white/50">L'Invisibile.</span>
+                </h1>
+                <p class="text-lg text-zinc-300 font-light max-w-lg leading-relaxed italic border-l border-white/20 pl-8">
+                    Trasformo momenti effimeri in ricordi cinematografici. Luci, ombre e storie raccontate attraverso un obiettivo.
+                </p>
+                <div class="pt-8 flex items-center gap-6">
+                    <button class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all group">
+                        <i data-lucide="play" class="fill-current"></i>
+                    </button>
+                    <span class="text-[10px] font-bold uppercase tracking-widest italic">Guarda lo Showreel 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-32 bg-[#0a0a0a] section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/5 pb-10 gap-6">
+                <h2 class="text-4xl font-serif italic uppercase tracking-tighter">Opere Selezionate.</h2>
+                <div class="flex gap-6 text-[9px] font-bold uppercase tracking-[0.3em]">
+                    <span class="text-white">All</span>
+                    <span class="text-zinc-600">Wedding</span>
+                    <span class="text-zinc-600">Editorial</span>
+                    <span class="text-zinc-600">Brand</span>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="gallery-item aspect-[4/5] bg-zinc-900">
+                    <img src="assets/img2.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+                    <div class="gallery-overlay"><span class="text-[10px] font-bold uppercase tracking-widest">Wedding in Tuscany</span></div>
+                </div>
+                <div class="gallery-item aspect-square bg-zinc-900 lg:col-span-1">
+                    <img src="assets/img3.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+                    <div class="gallery-overlay"><span class="text-[10px] font-bold uppercase tracking-widest">Fashion Editorial</span></div>
+                </div>
+                <div class="gallery-item aspect-[4/5] bg-zinc-900">
+                    <img src="assets/img4.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+                    <div class="gallery-overlay"><span class="text-[10px] font-bold uppercase tracking-widest">Landscape series</span></div>
+                </div>
+                <div class="gallery-item aspect-[16/9] bg-zinc-900 md:col-span-2">
+                    <img src="assets/img5.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+                    <div class="gallery-overlay"><span class="text-[10px] font-bold uppercase tracking-widest">Corporate Storytelling</span></div>
+                </div>
+                <div class="gallery-item aspect-[4/5] bg-zinc-900">
+                    <img src="assets/img6.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+                    <div class="gallery-overlay"><span class="text-[10px] font-bold uppercase tracking-widest">Music Video Set</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 bg-[#0f0f0f] border-y border-white/5 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-20">
+                <div class="space-y-6">
+                    <span class="text-zinc-600 font-bold text-xs uppercase tracking-widest">01.</span>
+                    <h3 class="text-2xl font-serif italic">Wedding Cinema</h3>
+                    <p class="text-sm text-zinc-500 font-light leading-relaxed italic">Film di matrimonio che non sembrano filmini. Racconti d'amore con un taglio editoriale e documentaristico.</p>
+                </div>
+                <div class="space-y-6">
+                    <span class="text-zinc-600 font-bold text-xs uppercase tracking-widest">02.</span>
+                    <h3 class="text-2xl font-serif italic">Commercial & Brand</h3>
+                    <p class="text-sm text-zinc-500 font-light leading-relaxed italic">Immagini che definiscono l'identità del tuo business. Campagne pubblicitarie e contenuti social d'impatto.</p>
+                </div>
+                <div class="space-y-6">
+                    <span class="text-zinc-600 font-bold text-xs uppercase tracking-widest">03.</span>
+                    <h3 class="text-2xl font-serif italic">Portrait & Arts</h3>
+                    <p class="text-sm text-zinc-500 font-light leading-relaxed italic">Ritratti personali o artistici in studio e in esterna. Studio della luce per esaltare l'autenticità del volto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-32 bg-black overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative">
+                <img src="assets/img7.jpg" class="rounded-sm grayscale opacity-80 shadow-2xl" alt="Camera Details">
+                <div class="absolute -bottom-10 -right-10 bg-zinc-900 p-12 hidden md:block border border-white/5 shadow-2xl">
+                    <p class="font-serif text-4xl italic">Visione.</p>
+                </div>
+            </div>
+            <div class="space-y-10">
+                <h2 class="text-5xl font-serif italic leading-none uppercase tracking-tighter">Più di un click, <br><span class="text-zinc-500">una connessione.</span></h2>
+                <p class="text-zinc-400 text-lg font-light leading-relaxed italic">
+                    Non mi piace mettermi in posa. Cerco la naturalezza del momento. Che sia un set commerciale o un altare, il mio obiettivo è scomparire per lasciare spazio alla realtà dei fatti, catturandola con la massima qualità tecnica possibile (4K RAW / Medium Format).
+                </p>
+                <div class="flex gap-12 pt-4">
+                    <div><h4 class="text-2xl font-serif italic">Sony/Red</h4><p class="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mt-2">Video Gear</p></div>
+                    <div><h4 class="text-2xl font-serif italic">PhaseOne</h4><p class="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mt-2">Photo Gear</p></div>
+                    <div><h4 class="text-2xl font-serif italic">Worldwide</h4><p class="text-[8px] uppercase tracking-widest text-zinc-600 font-bold mt-2">Disponibilità</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-[#0a0a0a] section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <i data-lucide="quote" class="w-10 h-10 mx-auto text-zinc-800"></i>
+            <p class="text-2xl md:text-4xl font-serif italic text-zinc-400 leading-relaxed uppercase tracking-tight">
+                "Lavorare con questo studio è stato incredibile. Hanno capito subito l'anima del nostro brand e l'hanno tradotta in immagini che hanno triplicato le nostre conversioni."
+            </p>
+            <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-white">— Martina Rossi, Creative Director</h4>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 bg-black border-t border-white/5 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl md:text-8xl font-serif italic leading-none tracking-tighter uppercase">Creiamo <br><span class="text-zinc-500 font-normal">Assieme.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-8">
+                        <div class="w-12 h-12 border border-white/10 flex items-center justify-center rounded-full text-zinc-400 shadow-sm"><i data-lucide="mail" class="w-5 h-5"></i></div>
+                        <p class="text-xl font-light italic">hello@studiovisual.it</p>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-12 h-12 border border-white/10 flex items-center justify-center rounded-full text-zinc-400 shadow-sm"><i data-lucide="instagram" class="w-5 h-5"></i></div>
+                        <p class="text-xl font-light italic">@studiovisual_italy</p>
+                    </div>
+                </div>
+            </div>
+            <form class="space-y-8">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-4 text-center italic">Richiesta sessione in modalità Demo</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <input type="text" placeholder="NOME" class="w-full py-4 bg-transparent border-b border-white/10 outline-none focus:border-white transition text-[10px] font-bold tracking-widest uppercase">
+                    <input type="email" placeholder="EMAIL" class="w-full py-4 bg-transparent border-b border-white/10 outline-none focus:border-white transition text-[10px] font-bold tracking-widest uppercase">
+                </div>
+                <select class="w-full py-4 bg-transparent border-b border-white/10 outline-none focus:border-white transition text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    <option>TIPOLOGIA PROGETTO</option>
+                    <option>WEDDING FILMS</option>
+                    <option>CORPORATE / BRAND</option>
+                    <option>EDITORIAL PHOTO</option>
+                    <option>ALTRO</option>
+                </select>
+                <textarea placeholder="RACCONTAMI LA TUA IDEA..." rows="4" class="w-full py-4 bg-transparent border-b border-white/10 outline-none focus:border-white transition text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="bg-white text-black px-12 py-5 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-zinc-200 transition-all shadow-xl">Invia Messaggio</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-black text-center border-t border-white/5">
+        <p class="text-zinc-700 text-[9px] uppercase tracking-[0.6em] font-bold">
+            &copy; 2026 Visual Studio Italy | Photo & Video Excellence | P.IVA 0123456789 | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-white text-black p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

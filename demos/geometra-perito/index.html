@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Tecnico Geometra | Progettazione, Catasto e Perizie - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, .font-tech { font-family: 'Space Grotesk', sans-serif; }
+        .text-tech-blue { color: #2563eb; }
+        .bg-tech-blue { background-color: #2563eb; }
+        
+        /* 1. Sostituzione URL Immagini con percorsi locali */
+        .hero-blueprint { 
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .wa-widget-demo { 
+            pointer-events: none !important; 
+            cursor: default !important; 
+            user-select: none;
+        }
+
+        .tech-card { transition: all 0.3s ease; border: 1px solid #e2e8f0; background: white; border-radius: 4px; }
+        .tech-card:hover { border-color: #2563eb; border-left-width: 6px; transform: translateX(5px); }
+        .measure-line { height: 1px; background: #2563eb; position: relative; }
+        .measure-line::before, .measure-line::after { content: ''; position: absolute; height: 10px; width: 1px; background: #2563eb; top: -5px; }
+        .measure-line::after { right: 0; }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-50 selection:text-blue-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-900 text-slate-400 py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120] border-b border-white/5">
+        📐 STUDIO TECNICO: Pratiche Superbonus, Sanatorie e Rilievi Topografici con Drone 📐
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 mt-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-slate-900 flex items-center justify-center text-white rounded-sm">
+                    <i data-lucide="ruler" class="w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-tech font-bold text-slate-900 tracking-tighter uppercase">STUDIO<span class="text-tech-blue">TECNICO</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.5em] text-slate-400">Geometra & Perito Edile</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#servizi" class="hover:text-tech-blue transition">Servizi</a>
+                <a href="#catasto" class="hover:text-tech-blue transition">Catasto</a>
+                <a href="#perizie" class="hover:text-tech-blue transition">Perizie</a>
+                <a href="#cantiere" class="hover:text-tech-blue transition">Cantiere</a>
+            </div>
+
+            <a href="#contatti" class="border-2 border-slate-900 text-slate-900 px-6 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-md">
+                Richiedi Consulenza
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[75vh] flex items-center hero-blueprint overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-3xl space-y-8 animate-fade-in">
+                <div class="measure-line w-32 mb-8"></div>
+                <h1 class="text-6xl md:text-8xl font-tech font-bold text-slate-900 leading-[0.9] tracking-tighter uppercase">
+                    Progetti <br> su <span class="text-tech-blue italic">Misura.</span>
+                </h1>
+                <p class="text-xl text-slate-600 font-light max-w-xl leading-relaxed border-l-4 border-slate-900 pl-8">
+                    Dalla conformità urbanistica alla direzione lavori. Offriamo un supporto tecnico completo per trasformare le tue idee in realtà solide, legali e certificate.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#contatti" class="bg-slate-900 text-white px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-tech-blue transition-all">Preventivo Pratica</a>
+                    <a href="#servizi" class="bg-white border border-slate-200 text-slate-400 px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all">I Nostri Servizi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <h2 class="text-4xl font-tech font-bold text-slate-900 uppercase italic">Urbanistica & <span class="text-tech-blue">Edilizia.</span></h2>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest border-b-2 border-tech-blue pb-2">CILA • SCIA • Permessi di Costruire</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 tech-card group">
+                    <i data-lucide="file-text" class="w-8 h-8 text-tech-blue mb-6"></i>
+                    <h3 class="text-xl font-tech font-bold mb-4 uppercase">Sanatorie & Conformità</h3>
+                    <p class="text-sm text-slate-500 italic">Verifica della regolarità edilizia per compravendite. Gestione pratiche di sanatoria per difformità preesistenti.</p>
+                </div>
+                <div class="p-10 tech-card group">
+                    <i data-lucide="pen-tool" class="w-8 h-8 text-tech-blue mb-6"></i>
+                    <h3 class="text-xl font-tech font-bold mb-4 uppercase">Progettazione Interni</h3>
+                    <p class="text-sm text-slate-500 italic">Ristrutturazioni chiavi in mano: ridistribuzione spazi, computi metrici e scelta dei materiali.</p>
+                </div>
+                <div id="cantiere" class="p-10 tech-card group">
+                    <i data-lucide="hard-hat" class="w-8 h-8 text-tech-blue mb-6"></i>
+                    <h3 class="text-xl font-tech font-bold mb-4 uppercase">Sicurezza Cantiere</h3>
+                    <p class="text-sm text-slate-500 italic">Coordinamento sicurezza (CSP/CSE) e gestione della documentazione di cantiere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="catasto" class="py-24 bg-slate-50 border-y border-slate-100 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-tech font-bold text-slate-900 leading-none uppercase italic">Precisione <br><span class="text-tech-blue">Topografica.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-slate-900 pl-8">
+                    Rilievi strumentali di precisione, aggiornamenti cartografici, tipi mappali e frazionamenti. Utilizziamo tecnologia GPS e Drone per mappe millimetriche.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-3"><i data-lucide="map" class="text-tech-blue"></i> <span class="text-[10px] font-bold uppercase tracking-widest">DOCFA & PREGEO</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="navigation" class="text-tech-blue"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Riconfinamenti</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="layers" class="text-tech-blue"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Planimetrie 2D/3D</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="database" class="text-tech-blue"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Visure Storiche</span></div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-sm shadow-2xl grayscale hover:grayscale-0 transition duration-1000" alt="Strumentazione">
+            </div>
+        </div>
+    </section>
+
+    <section id="perizie" class="py-24 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-4xl font-tech font-bold text-slate-900 uppercase italic">Perizie & <span class="text-tech-blue">Stime.</span></h2>
+            <p class="text-slate-500 text-xl font-light leading-relaxed italic">
+                Valutazioni immobiliari asseverate, stime del patrimonio per mutui o divisioni ereditarie. Consulenza Tecnica di Parte (CTP) in sede giudiziaria.
+            </p>
+            <div class="pt-8">
+                <span class="text-[10px] font-bold uppercase tracking-[0.4em] border border-slate-200 px-8 py-4 rounded-sm text-slate-400">Perito Iscritto all'Albo Nazionale</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 text-white section-padding">
+        <div class="max-w-7xl mx-auto px-10 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-8">
+                <h2 class="text-5xl font-tech font-bold leading-none uppercase italic">Successioni <br><span class="text-tech-blue">Ereditarie.</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed">
+                    Gestione completa delle dichiarazioni di successione e delle relative volture catastali. Un supporto discreto e professionale per risolvere le pendenze burocratiche familiari.
+                </p>
+            </div>
+            <div class="bg-white/5 p-12 rounded-sm border border-white/10">
+                <h4 class="font-tech font-bold mb-4 uppercase text-tech-blue">Cosa include il servizio:</h4>
+                <ul class="space-y-4 text-sm text-slate-300 italic">
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="text-tech-blue w-4"></i> Calcolo imposte di successione</li>
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="text-tech-blue w-4"></i> Invio telematico Agenzia delle Entrate</li>
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="text-tech-blue w-4"></i> Aggiornamento intestazioni Catasto</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-tech font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Analisi <br><span class="text-tech-blue underline decoration-slate-200 underline-offset-8">Progettuale.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-slate-100 text-tech-blue rounded-sm flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Lo Studio</p><p class="text-2xl font-tech font-bold">Via dei Progetti 14, 20100 Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 bg-slate-900 text-white rounded-sm flex items-center justify-center shadow-lg"><i data-lucide="mail"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">E-mail Professionale</p><p class="text-2xl font-tech font-bold italic text-slate-800">info@studiotecnico.it</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-12 rounded-sm shadow-2xl space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-tech-blue mb-4 text-center italic italic">Sopralluogo tecnico gratuito (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME / AZIENDA" class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>TIPOLOGIA DI PRATICA</option>
+                </select>
+                <textarea placeholder="DESCRIZIONE SINTETICA DELLA RICHIESTA..." rows="3" class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-slate-900 text-white py-6 rounded-sm font-black uppercase text-[11px] tracking-[0.3em] shadow-xl transition-all">Invia Richiesta Tecnica</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center px-4">
+        <p class="text-slate-300 text-[9px] uppercase tracking-[0.5em] font-bold leading-relaxed">
+            &copy; 2026 Studio Tecnico Geometra | Iscr. Albo n. 12345 | P.IVA 0123456789 | LocalTop Demo
+        </p>
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50 opacity-80">
+        <i data-lucide="message-square" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

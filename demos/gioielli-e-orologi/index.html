@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurea & Co. | Alta Gioielleria e Orologeria d'Élite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #ffffff; color: #1a1a1a; }
+        .font-luxury { font-family: 'Cinzel', serif; }
+        .text-gold { color: #d4af37; }
+        .bg-gold { background-color: #d4af37; }
+        
+        .hero-gold { 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .reveal-img { overflow: hidden; position: relative; border-radius: 4px; }
+        .reveal-img img { transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .reveal-img:hover img { transform: scale(1.05); }
+        .diamond-shadow { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); }
+
+        /* Rimozione restrizioni demo per rendere il sito funzionante */
+        button, input, select, textarea, a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
+        /* Fix per Mobile: previene il taglio delle sezioni e ottimizza i font */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3rem) !important; line-height: 1.2 !important; }
+            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+            .hero-section { height: auto; min-height: 100vh; padding-top: 120px; }
+        }
+
+        /* Floating Nav Bottom Left */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-stone-200 selection:text-gold">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Esempi
+        </a>
+    </div>
+
+    <div class="bg-stone-900 text-gold py-2 text-[8px] md:text-[9px] font-bold text-center uppercase tracking-[0.4em] md:tracking-[0.6em] px-4 sticky top-0 z-[110]">
+        ✨ Collezione Heritage 2026: L'arte del tempo incontra la rarità dei diamanti ✨
+    </div>
+
+    <nav class="sticky top-[34px] z-[100] bg-white/90 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.4em] font-bold text-stone-500">
+                <a href="#gioielli" class="hover:text-gold transition">Gioielli</a>
+                <a href="#orologi" class="hover:text-gold transition">Orologi</a>
+                <a href="#atelier" class="hover:text-gold transition">Atelier</a>
+            </div>
+            
+            <div class="text-center">
+                <span class="text-2xl md:text-3xl font-luxury tracking-[0.2em] text-stone-900 uppercase">Aurea<span class="text-gold">&</span>Co.</span>
+                <span class="block text-[6px] md:text-[7px] uppercase tracking-[0.6em] md:tracking-[0.8em] text-stone-400 font-bold mt-1">Milano • Parigi • Ginevra</span>
+            </div>
+
+            <div class="flex items-center">
+                <a href="#contatti" class="border border-stone-900 text-stone-900 px-4 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all">
+                    Prenota
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[85vh] flex items-center hero-gold overflow-hidden hero-section">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center lg:text-left py-20">
+            <div class="max-w-2xl space-y-8 md:space-y-10">
+                <h1 class="text-5xl md:text-7xl font-luxury text-white uppercase tracking-tighter">
+                    Luce <br> <span class="text-gold italic font-light">Eterna.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-stone-200 font-light max-w-lg leading-relaxed italic border-l-2 border-gold pl-6 md:pl-8 mx-auto lg:mx-0">
+                    Dalla purezza dei diamanti certificati alla precisione dei movimenti svizzeri. Creiamo eredità che durano per generazioni.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 md:gap-6 pt-4">
+                    <a href="#gioielli" class="bg-gold text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-white hover:text-stone-900 transition-all text-center">Esplora Gioielli</a>
+                    <a href="#orologi" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-all text-center">Collezione Orologi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gioielli" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+                <div class="space-y-8 md:space-y-12 order-2 lg:order-1">
+                    <span class="text-gold font-bold uppercase tracking-[0.5em] text-[10px]">Eterna Brillantezza</span>
+                    <h2 class="text-4xl md:text-5xl font-luxury text-stone-900 italic uppercase leading-tight">Il Fascino dei <br><span class="text-gold font-light">Preziosi.</span></h2>
+                    <p class="text-stone-500 text-base md:text-lg leading-relaxed font-light">Ogni pietra è selezionata a mano per garantire caratura, colore e purezza superiori. Creazioni che celebrano i momenti più importanti della vita.</p>
+                    <div class="grid grid-cols-2 gap-4 md:gap-8 pt-6 border-t border-stone-100">
+                        <div><h4 class="font-luxury text-lg md:text-xl text-stone-800">Diamanti GIA</h4><p class="text-[8px] md:text-[9px] uppercase tracking-widest text-stone-400">Certificazione Globale</p></div>
+                        <div><h4 class="font-luxury text-lg md:text-xl text-stone-800">Oro 18K</h4><p class="text-[8px] md:text-[9px] uppercase tracking-widest text-stone-400">Lavorazione Italiana</p></div>
+                    </div>
+                </div>
+                <div class="reveal-img shadow-2xl order-1 lg:order-2">
+                    <img src="assets/img2.jpg" class="w-full h-auto object-cover" alt="Diamond Jewelry">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="orologi" class="py-20 md:py-32 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-luxury text-stone-900 uppercase">Maestri del <span class="text-gold italic">Tempo</span></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <div class="text-center space-y-6 group">
+                    <div class="aspect-square overflow-hidden diamond-shadow bg-white p-8 md:p-12">
+                        <img src="assets/img3.jpg" class="w-full h-full object-contain transition duration-700 group-hover:scale-110">
+                    </div>
+                    <div>
+                        <h4 class="text-lg md:text-xl font-luxury uppercase tracking-widest">Grand Complication</h4>
+                        <p class="text-[9px] md:text-[10px] text-stone-400 uppercase tracking-[0.3em] mt-2">Meccanica Svizzera</p>
+                    </div>
+                </div>
+                <div class="text-center space-y-6 group md:mt-12">
+                    <div class="aspect-square overflow-hidden diamond-shadow bg-white p-8 md:p-12">
+                        <img src="assets/img4.jpg" class="w-full h-full object-contain transition duration-700 group-hover:scale-110">
+                    </div>
+                    <div>
+                        <h4 class="text-lg md:text-xl font-luxury uppercase tracking-widest">Professional Diver</h4>
+                        <p class="text-[9px] md:text-[10px] text-stone-400 uppercase tracking-[0.3em] mt-2">Ingegneria Estrema</p>
+                    </div>
+                </div>
+                <div class="text-center space-y-6 group">
+                    <div class="aspect-square overflow-hidden diamond-shadow bg-white p-8 md:p-12">
+                        <img src="assets/img5.jpg" class="w-full h-full object-contain transition duration-700 group-hover:scale-110">
+                    </div>
+                    <div>
+                        <h4 class="text-lg md:text-xl font-luxury uppercase tracking-widest">Vintage Heritage</h4>
+                        <p class="text-[9px] md:text-[10px] text-stone-400 uppercase tracking-[0.3em] mt-2">Eleganza Senza Tempo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="atelier" class="py-20 md:py-32 bg-white">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-10 md:space-y-12">
+            <h2 class="text-3xl md:text-4xl font-luxury uppercase italic tracking-widest">Il Vostro Sogno, <span class="text-gold">La Nostra Arte.</span></h2>
+            <p class="text-stone-500 text-xs md:text-sm font-light uppercase tracking-widest leading-loose max-w-3xl mx-auto italic">
+                Presso il nostro Atelier è possibile dare vita a creazioni uniche. Dal disegno a mano libera alla modellazione 3D, collaboriamo con voi per forgiare gioielli che riflettano perfettamente la vostra personalità.
+            </p>
+            <div class="flex justify-center gap-6 md:gap-12 pt-8">
+                <div class="text-center"><i data-lucide="pencil" class="mx-auto mb-3 text-gold"></i><p class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest">Sketching</p></div>
+                <div class="text-center"><i data-lucide="gem" class="mx-auto mb-3 text-gold"></i><p class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest">Selection</p></div>
+                <div class="text-center"><i data-lucide="flame" class="mx-auto mb-3 text-gold"></i><p class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest">Crafting</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 bg-stone-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-8 md:space-y-10">
+                <h2 class="text-4xl md:text-5xl font-luxury italic text-gold uppercase leading-none">Diamond <br> Investment.</h2>
+                <p class="text-stone-400 text-base md:text-lg font-light leading-relaxed">Il diamante è il bene rifugio per eccellenza. La nostra Diamond Lounge offre consulenza specializzata per l'acquisto di pietre da investimento, corredate da analisi gemmologiche internazionali.</p>
+                <div class="flex gap-6 md:gap-8">
+                    <span class="text-xl md:text-2xl font-luxury">GIA</span>
+                    <span class="text-xl md:text-2xl font-luxury">HRD</span>
+                    <span class="text-xl md:text-2xl font-luxury">IGI</span>
+                </div>
+            </div>
+            <div class="relative opacity-80">
+                <img src="assets/img6.jpg" class="rounded-sm w-full h-auto" alt="Investment Diamonds">
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20 md:py-32 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-10 md:space-y-12">
+                <h2 class="text-5xl md:text-7xl font-luxury text-stone-900 leading-none tracking-tighter uppercase italic">The Private <br><span class="text-gold font-normal">Experience.</span></h2>
+                <div class="space-y-6 md:space-y-8">
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white flex items-center justify-center diamond-shadow text-gold shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[8px] font-bold uppercase tracking-widest text-stone-400 mb-1">Maison Principale</p><p class="text-lg md:text-2xl font-luxury italic">Via Montenapoleone 1, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white flex items-center justify-center diamond-shadow text-gold shrink-0"><i data-lucide="phone"></i></div>
+                        <p class="text-lg md:text-2xl font-luxury italic text-stone-800">02 123 456 78</p>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-8 md:p-12 diamond-shadow border-t-4 border-gold space-y-6 md:space-y-8">
+                <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-stone-400 text-center italic">Richiedi un appuntamento in Boutique</p>
+                <div class="grid gap-6">
+                    <input type="text" placeholder="IL VOSTRO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition-colors">
+                    <input type="email" placeholder="IL VOSTRO INDIRIZZO EMAIL" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition-colors">
+                    <textarea placeholder="NOTE (OPZIONALE)" rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition-colors"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-stone-900 text-white py-5 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-gold transition-colors">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-stone-100 text-center px-6">
+        <p class="text-stone-400 text-[7px] md:text-[8px] uppercase tracking-[0.6em] md:tracking-[0.8em] font-bold leading-loose">
+            &copy; 2026 Aurea & Co. Milano | Haute Joaillerie & Horlogerie | P.IVA 0123456789
+        </p>
+    </footer>
+
+    <button class="fixed bottom-6 right-6 bg-stone-900 text-white p-4 rounded-full shadow-2xl z-50 hover:bg-gold transition-colors">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </button>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

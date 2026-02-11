@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Gaming | PC, PS5 & Hardware Specialist - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Rajdhani', sans-serif; background-color: #05070a; color: #e2e8f0; overflow-x: hidden; }
+        .font-cyber { font-family: 'Orbitron', sans-serif; }
+        .text-neon-blue { color: #00f2ff; text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
+        .bg-neon-blue { background-color: #00f2ff; }
+        .border-neon { border-color: #00f2ff; }
+        .card-gaming { background: #0f1218; border: 1px solid #1e293b; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card-gaming:hover { border-color: #00f2ff; transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 242, 255, 0.15); }
+        .hero-glow { background: radial-gradient(circle at 50% -20%, #0044ff44 0%, transparent 70%); }
+        .rgb-line { height: 2px; background: linear-gradient(90deg, #ff0000, #ff00ff, #00f2ff, #00ff00, #ffff00, #ff0000); background-size: 200% 100%; animation: rgb-move 5s linear infinite; }
+        @keyframes rgb-move { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-neon-blue selection:text-black">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="rgb-line"></div>
+
+    <nav class="sticky top-0 z-[100] bg-[#05070a]/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center border border-neon-blue shadow-[0_0_15px_#00f2ff]">
+                    <i data-lucide="cpu" class="text-neon-blue w-6 h-6"></i>
+                </div>
+                <span class="text-2xl font-cyber font-black tracking-tighter text-white uppercase">Nexus<span class="text-neon-blue">Lab</span></span>
+            </div>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                <a href="#console" class="hover:text-neon-blue transition">Console</a>
+                <a href="#pc" class="hover:text-neon-blue transition">PC Master</a>
+                <a href="#filosofia" class="hover:text-neon-blue transition">Filosofia</a>
+                <a href="#gear" class="hover:text-neon-blue transition">Gear</a>
+                <a href="#usato" class="hover:text-neon-blue transition">Usato</a>
+                <a href="#assistenza" class="hover:text-neon-blue transition">Assistenza</a>
+            </div>
+            <a href="#contatti" class="bg-neon-blue text-black px-6 py-2 rounded font-black uppercase text-[10px] tracking-widest hover:bg-white transition-all shadow-lg">
+                Trova Store
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[90vh] flex items-center hero-glow overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1 rounded-full mx-auto lg:mx-0">
+                    <span class="w-2 h-2 bg-neon-blue rounded-full animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">RTX 5090 Disponibile in Store</span>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-cyber font-black text-white leading-none uppercase tracking-tighter">
+                    Upgrade <br> <span class="text-neon-blue">Your Reality.</span>
+                </h1>
+                <p class="text-xl text-slate-400 font-light max-w-lg leading-relaxed mx-auto lg:mx-0">
+                    Dalla potenza bruta dei PC custom alle ultime esclusive PS5. Assemblaggio professionale, assistenza tecnica e il miglior usato garantito di Milano.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#pc" class="bg-neon-blue text-black px-10 py-5 rounded font-black uppercase text-xs tracking-widest hover:scale-105 transition shadow-2xl shadow-blue-500/20">Configura il tuo PC</a>
+                    <a href="#console" class="bg-white/5 border border-white/10 text-white px-10 py-5 rounded font-black uppercase text-xs tracking-widest hover:bg-white/10 transition">Console & Giochi</a>
+                </div>
+            </div>
+            <div class="relative group hidden lg:block">
+                <img src="assets/img1.jpg" class="rounded-2xl border border-white/10 shadow-2xl transition duration-700 group-hover:border-neon-blue/50" alt="Gaming Setup">
+                <div class="absolute -bottom-6 -right-6 bg-slate-900 border border-neon-blue p-6 rounded-xl font-cyber text-xl text-neon-blue shadow-2xl">
+                    LEVEL UP!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="console" class="py-32 bg-[#05070a] section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-cyber font-bold mb-16 uppercase tracking-tighter italic border-l-4 border-neon-blue pl-6">Next-Gen <span class="text-neon-blue">Universe</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-gaming p-8 rounded-2xl relative overflow-hidden group">
+                    <img src="assets/img2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-cyber mb-2">PlayStation 5</h3>
+                        <p class="text-slate-400 text-sm mb-6 italic">Console, DualSense e tutte le ultime uscite AAA.</p>
+                        <span class="text-neon-blue font-bold uppercase text-[10px] tracking-widest">Disponibile Subito</span>
+                    </div>
+                </div>
+                <div class="card-gaming p-8 rounded-2xl relative overflow-hidden group">
+                    <img src="assets/img3.jpg" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-cyber mb-2">Xbox Series X</h3>
+                        <p class="text-slate-400 text-sm mb-6 italic">Game Pass e potenza pura per il 4K nativo.</p>
+                        <span class="text-neon-blue font-bold uppercase text-[10px] tracking-widest">Offerta Speciale</span>
+                    </div>
+                </div>
+                <div class="card-gaming p-8 rounded-2xl relative overflow-hidden group">
+                    <img src="assets/img4.jpg" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-cyber mb-2">Nintendo Switch</h3>
+                        <p class="text-slate-400 text-sm mb-6 italic">Modelli OLED e titoli iconici per il gaming portatile.</p>
+                        <span class="text-neon-blue font-bold uppercase text-[10px] tracking-widest">Pre-order Zelda</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pc" class="py-32 bg-[#0a0c12] border-y border-white/5 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1 grid grid-cols-2 gap-4">
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5 hover:border-neon-blue transition"><img src="assets/img5.jpg" class="rounded-lg mb-4 grayscale"> <h4 class="font-cyber text-xs">GPU & CPU</h4> </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5 hover:border-neon-blue transition mt-8"><img src="assets/img6.jpg" class="rounded-lg mb-4 grayscale"> <h4 class="font-cyber text-xs">Motherboards</h4> </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-8 text-center lg:text-left">
+                <h2 class="text-5xl font-cyber text-white leading-none uppercase italic">PC Assembly <br><span class="text-neon-blue">Laboratory.</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed border-l-2 border-neon-blue pl-6">
+                    Siamo specialisti nell'assemblaggio di PC da Gaming High-End. Ogni build è testata sotto stress per 24h con gestione cavi professionale e ottimizzazione del flusso d'aria.
+                </p>
+                <div class="space-y-4 text-left inline-block">
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-white"><i data-lucide="check-circle" class="text-neon-blue"></i> Consulenza componenti gratuita</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-white"><i data-lucide="check-circle" class="text-neon-blue"></i> Cambio pasta termica e pulizia</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-white"><i data-lucide="check-circle" class="text-neon-blue"></i> Overclocking sicuro e stabile</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-[#05070a] section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-cyber text-white uppercase italic tracking-tighter">Etica <span class="text-neon-blue italic">&</span> Performance.</h2>
+            <p class="text-slate-500 text-xl font-light italic leading-relaxed border-l-4 border-neon-blue pl-8 mx-auto">
+                "La nostra filosofia si fonda sull'integrità tecnologica e sulla passione. Crediamo che onorare l'hardware di chi si affida a noi sia il modo più nobile per supportare la performance, agendo sempre con precisione chirurgica e trasparenza totale verso i nostri gamer."
+            </p>
+            <div class="flex justify-center gap-12 pt-8 italic font-bold">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-neon-blue w-8 h-8"></i><p class="text-[9px] uppercase tracking-widest">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="shield-check" class="mx-auto mb-4 text-neon-blue w-8 h-8"></i><p class="text-[9px] uppercase tracking-widest">Sicurezza Totale</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-neon-blue w-8 h-8"></i><p class="text-[9px] uppercase tracking-widest">Cura Hardware</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gear" class="py-32 bg-[#0a0c12] section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-5xl font-cyber uppercase italic">Pro <span class="text-neon-blue">Peripherals</span></h2>
+                <p class="text-slate-500 uppercase tracking-[0.3em] text-[10px] font-bold">Domina il campo di battaglia</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 italic font-bold">
+                <div class="text-center p-6 card-gaming rounded-2xl">
+                    <i data-lucide="mouse" class="text-neon-blue w-10 h-10 mx-auto mb-4"></i>
+                    <h4 class="font-cyber text-sm">Mice</h4>
+                </div>
+                <div class="text-center p-6 card-gaming rounded-2xl">
+                    <i data-lucide="keyboard" class="text-neon-blue w-10 h-10 mx-auto mb-4"></i>
+                    <h4 class="font-cyber text-sm">Keyboards</h4>
+                </div>
+                <div class="text-center p-6 card-gaming rounded-2xl">
+                    <i data-lucide="headphones" class="text-neon-blue w-10 h-10 mx-auto mb-4"></i>
+                    <h4 class="font-cyber text-sm">Audio</h4>
+                </div>
+                <div class="text-center p-6 card-gaming rounded-2xl">
+                    <i data-lucide="monitor" class="text-neon-blue w-10 h-10 mx-auto mb-4"></i>
+                    <h4 class="font-cyber text-sm">Monitors</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="usato" class="py-32 bg-neon-blue text-black section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-8 text-center lg:text-left">
+                <h2 class="text-6xl font-cyber font-black leading-none uppercase italic">Trade-in <br>Center.</h2>
+                <p class="text-black/70 text-xl font-bold">Portaci il tuo vecchio hardware o le tue console. Valutiamo il tuo usato al miglior prezzo di mercato per il tuo prossimo acquisto.</p>
+                <div class="flex justify-center lg:justify-start gap-10">
+                    <div> <span class="text-4xl font-cyber font-black">24H</span> <p class="text-[10px] uppercase font-bold tracking-widest">Test Certificati</p> </div>
+                    <div> <span class="text-4xl font-cyber font-black">12M</span> <p class="text-[10px] uppercase font-bold tracking-widest">Garanzia Usato</p> </div>
+                </div>
+            </div>
+            <div class="bg-black/10 p-10 rounded-3xl border border-black/10 backdrop-blur-sm shadow-xl">
+                <h4 class="font-cyber text-xl mb-6">Cosa cerchiamo oggi:</h4>
+                <ul class="space-y-3 font-bold uppercase text-xs tracking-widest">
+                    <li class="flex justify-between border-b border-black/10 pb-2"><span>PS4 Pro 1TB</span> <span class="text-white">€150*</span></li>
+                    <li class="flex justify-between border-b border-black/10 pb-2"><span>Nintendo Switch OLED</span> <span class="text-white">€220*</span></li>
+                    <li class="flex justify-between border-b border-black/10 pb-2"><span>GPU RTX Serie 30</span> <span class="text-white">TOP PRICE</span></li>
+                </ul>
+                <p class="text-[10px] mt-6 italic">*Valutazione soggetta a test in store.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="assistenza" class="py-32 bg-[#05070a] section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center md:text-left">
+                    <h2 class="text-4xl font-cyber uppercase tracking-tighter italic">Repair <span class="text-neon-blue">& Modding</span></h2>
+                    <p class="text-slate-400 font-light leading-relaxed border-l-4 border-neon-blue pl-6 italic">Il tuo PC scalda troppo? Il DualSense ha il drift? La nostra officina interna ripara ogni dispositivo con parti originali.</p>
+                    <div class="flex items-center gap-6 p-6 card-gaming rounded-xl text-left italic">
+                        <i data-lucide="wrench" class="text-neon-blue w-8 h-8"></i>
+                        <div><h4 class="font-bold">Riparazione HDMI PS5</h4><p class="text-xs text-slate-500 italic">Intervento rapido in 48 ore.</p></div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <img src="assets/img7.jpg" class="rounded-2xl border border-white/5 opacity-60 grayscale" alt="Repair Lab">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-[#0a0c12] border-t border-white/5 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12 text-center lg:text-left">
+                <h2 class="text-7xl font-cyber text-white leading-none italic uppercase">Raggiungi il <br><span class="text-neon-blue">Nexus.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center justify-center lg:justify-start gap-6">
+                        <div class="w-14 h-14 bg-neon-blue text-black rounded-2xl flex items-center justify-center shadow-lg rotate-12"><i data-lucide="map-pin"></i></div>
+                        <div class="text-left"><p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Main Store</p><p class="text-xl font-bold">Via dei Pro-Player 13, 20100 Milano</p></div>
+                    </div>
+                    <div class="flex items-center justify-center lg:justify-start gap-6 text-slate-400">
+                        <div class="w-14 h-14 bg-white/5 border border-white/10 text-white rounded-2xl flex items-center justify-center -rotate-12"><i data-lucide="clock"></i></div>
+                        <div class="text-left"><p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Active Hours</p><p class="text-xl font-bold italic">Lun-Sab: 10:30 - 19:30 (No-Stop)</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="card-gaming p-10 rounded-3xl space-y-4 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-neon-blue px-4 py-1 text-[8px] font-black uppercase text-black italic">Demo Mode</div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-neon-blue mb-6 italic text-center">Invia una richiesta tecnica</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Gamer Tag / Nome" class="w-full p-4 bg-black/50 border border-white/10 rounded-xl outline-none focus:border-neon-blue transition italic">
+                    <input type="email" placeholder="Email" class="w-full p-4 bg-black/50 border border-white/10 rounded-xl outline-none focus:border-neon-blue transition italic">
+                </div>
+                <select class="w-full p-4 bg-black/50 border border-white/10 rounded-xl text-slate-500 font-bold uppercase text-[10px] tracking-widest outline-none focus:border-neon-blue italic">
+                    <option>Cosa ti serve?</option>
+                    <option>Configurazione PC Custom</option>
+                    <option>Disponibilità Console</option>
+                    <option>Riparazione / Assistenza</option>
+                    <option>Valutazione Usato</option>
+                </select>
+                <textarea placeholder="Descrivi la tua build o il problema tecnico..." rows="4" class="w-full p-4 bg-black/50 border border-white/10 rounded-xl outline-none focus:border-neon-blue transition italic"></textarea>
+                <button class="w-full bg-neon-blue text-black py-5 rounded-xl font-black uppercase text-xs tracking-widest shadow-lg shadow-blue-500/20 hover:bg-white transition-all">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-black text-center text-slate-600 text-[9px] uppercase tracking-[0.5em] font-bold border-t border-white/5 px-6 italic">
+        &copy; 2026 Nexus Gaming Milano | P.IVA 11223344556 | Powered by High-Performance Hardware | LocalTop Demo Mode
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 transition-transform z-50">
+        <i data-lucide="message-square" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

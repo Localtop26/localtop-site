@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wave Master | Academy Sport Acquatici & Surf Shop - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Outfit:wght@400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --promo-height: 40px;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #020617; 
+            color: #f8fafc; 
+            overflow-x: hidden;
+            width: 100%;
+        }
+        h1, h2, h3, h4, .font-action { font-family: 'Outfit', sans-serif; }
+        
+        /* Reset Immagini - No filtri e supporto per visualizzazione completa */
+        img { 
+            filter: none !important; 
+            grayscale: 0 !important; 
+        }
+        .img-full-display {
+            object-fit: contain !important; /* Forza la visualizzazione completa senza tagli */
+            background-color: #0f172a; /* Sfondo scuro per riempire eventuali bordi se l'immagine è proporzionalmente diversa */
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+
+        /* Gestione Hero Title Responsivo */
+        .hero-title {
+            font-size: 8rem;
+            line-height: 0.85;
+        }
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 6rem; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { 
+                font-size: clamp(3rem, 12vw, 5rem); 
+                line-height: 0.9;
+            }
+        }
+
+        /* Hero Background */
+        .hero-water { 
+            background: linear-gradient(rgba(2,6,23,0.5), rgba(2,6,23,0.2)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .action-card { 
+            transition: all 0.4s ease; 
+            background: #0f172a; 
+            border: 1px solid #1e293b; 
+            border-radius: 1.5rem; 
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+        .action-card:hover { 
+            border-color: #22d3ee; 
+            transform: translateY(-10px); 
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.2); 
+        }
+        .wave-text { 
+            background: linear-gradient(to right, #22d3ee, #818cf8); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        /* Sticky Header Fix */
+        .promo-bar {
+            height: var(--promo-height);
+            z-index: 1001;
+        }
+        .main-nav {
+            top: calc(var(--promo-height) + 1rem);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-white">
+
+    <div class="promo-bar bg-cyan-600 text-white flex items-center justify-center text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] px-4 sticky top-0">
+        <span class="truncate">🌊 LIVE STATUS: Onde 1.5m • Vento 15kt NW • Acqua 18°C</span>
+    </div>
+
+    <nav class="main-nav sticky bg-slate-900/90 backdrop-blur-lg h-16 md:h-20 flex items-center border-b border-white/5 mx-2 md:mx-10 rounded-full transition-all shadow-2xl">
+        <div class="w-full px-4 md:px-8 flex justify-between items-center gap-2">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-cyan-500 rounded-lg flex items-center justify-center rotate-12 shadow-lg">
+                    <i data-lucide="waves" class="text-slate-900 w-5 h-5 md:w-6 md:h-6"></i>
+                </div>
+                <span class="text-lg md:text-2xl font-action font-black text-white tracking-tighter uppercase italic">WAVE<span class="text-cyan-400">MASTER</span></span>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="#academy" class="hover:text-cyan-400 transition">Academy</a>
+                <a href="#noleggio" class="hover:text-cyan-400 transition">Rent</a>
+                <a href="#shop" class="hover:text-cyan-400 transition">Shop</a>
+                <a href="#meteo" class="hover:text-cyan-400 transition">Meteo</a>
+            </div>
+
+            <a href="#booking" class="bg-white text-slate-900 px-4 md:px-6 py-2 md:py-2.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:bg-cyan-400 transition-all shrink-0">
+                Prenota
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center hero-water -mt-24 md:-mt-28 pt-20">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-4xl space-y-6 md:space-y-8 text-center md:text-left">
+                <h1 class="hero-title font-action font-black text-white uppercase tracking-tighter">
+                    Ride the <br> <span class="wave-text italic">Future.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 font-light max-w-xl leading-relaxed italic border-l-4 border-cyan-500 pl-6 md:pl-8 mx-auto md:mx-0">
+                    La scuola numero uno per gli amanti del mare. Surf, Kite e Foil con istruttori certificati. La tua estate inizia dove finisce la terra ferma.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 pt-4">
+                    <a href="#academy" class="bg-cyan-500 text-slate-900 px-8 md:px-12 py-4 md:py-5 rounded-full font-black uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-white transition-all">Corsi & Lezioni</a>
+                    <a href="#shop" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-slate-900 transition-all">Shop Tecnico</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="academy" class="py-20 md:py-32 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-action font-black mb-12 md:mb-20 uppercase text-center">Scegli la tua <span class="text-cyan-400 italic">Sfida.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+                <div class="action-card group">
+                    <div class="bg-slate-900 flex items-center justify-center p-2">
+                        <img src="assets/img2.jpg" class="img-full-display group-hover:scale-105 transition duration-700" alt="Surf Academy">
+                    </div>
+                    <div class="p-8 bg-slate-950 flex-grow">
+                        <h4 class="text-2xl font-bold mb-4 uppercase italic">Surf School</h4>
+                        <p class="text-sm text-slate-400 mb-6 italic">Dalla prima schiuma alla lineup. Classi divise per livello con video-analisi inclusa.</p>
+                        <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Lezioni da € 40</span>
+                    </div>
+                </div>
+                <div class="action-card group border-cyan-500/50">
+                    <div class="bg-slate-900 flex items-center justify-center p-2">
+                        <img src="assets/img3.jpg" class="img-full-display group-hover:scale-105 transition duration-700" alt="Kitesurf Academy">
+                    </div>
+                    <div class="p-8 bg-slate-950 flex-grow">
+                        <h4 class="text-2xl font-bold mb-4 uppercase italic">Kitesurf Academy</h4>
+                        <p class="text-sm text-slate-400 mb-6 italic">Impara a volare sull'acqua. Corso base in 6 ore con attrezzatura North/Duotone inclusa.</p>
+                        <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Full Course € 350</span>
+                    </div>
+                </div>
+                <div class="action-card group">
+                    <div class="bg-slate-900 flex items-center justify-center p-2">
+                        <img src="assets/img4.jpg" class="img-full-display group-hover:scale-105 transition duration-700" alt="Wings & Foil">
+                    </div>
+                    <div class="p-8 bg-slate-950 flex-grow">
+                        <h4 class="text-2xl font-bold mb-4 uppercase italic">Wings & Foil</h4>
+                        <p class="text-sm text-slate-400 mb-6 italic">La nuova frontiera del vento. Volo silenzioso sull'acqua con l'assistenza del gommone.</p>
+                        <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Intro Foil € 90</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="noleggio" class="py-20 md:py-32 bg-slate-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="space-y-8 md:space-y-10 text-center lg:text-left">
+                <h2 class="text-5xl md:text-7xl font-action font-black leading-none uppercase">Solo il <br><span class="text-cyan-400 italic">Meglio.</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed italic border-l-4 border-cyan-500 pl-8 mx-auto lg:mx-0">
+                    Non hai la tua tavola? Nessun problema. Il nostro centro test offre le ultime novità di stagione. Mute asciutte, tavole in carbonio e ali ultra-leggere.
+                </p>
+                <div class="grid grid-cols-2 gap-4 md:gap-6">
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
+                        <i data-lucide="shield-check" class="text-cyan-400 shrink-0"></i>
+                        <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Assicurazione Inclusa</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
+                        <i data-lucide="refresh-cw" class="text-cyan-400 shrink-0"></i>
+                        <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Cambio Ilimitato</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative px-4 md:px-0">
+                <div class="absolute -inset-4 bg-cyan-500/20 blur-[80px] rounded-full"></div>
+                <img src="assets/img5.jpg" class="rounded-[2rem] md:rounded-[3rem] relative z-10 w-full shadow-2xl" alt="Rental Gear">
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="py-20 md:py-32 bg-white text-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 md:mb-20 gap-8 text-center md:text-left">
+                <h2 class="text-5xl font-action font-black uppercase italic text-slate-900">The <span class="text-cyan-600">Hardware.</span></h2>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b-2 border-cyan-600 pb-2">Hardware & Apparel</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center space-y-4 group">
+                    <div class="aspect-square bg-slate-100 rounded-3xl overflow-hidden relative p-8">
+                        <img src="assets/img6.jpg" class="w-full h-full object-contain group-hover:scale-110 transition" alt="Product">
+                    </div>
+                    <h5 class="font-bold uppercase text-xs">Shortboard 6'0</h5>
+                    <p class="text-cyan-600 font-black">€ 549,00</p>
+                </div>
+                <div class="text-center space-y-4 group">
+                    <div class="aspect-square bg-slate-100 rounded-3xl overflow-hidden relative p-8">
+                        <img src="assets/img7.jpg" class="w-full h-full object-contain group-hover:scale-110 transition" alt="Product">
+                    </div>
+                    <h5 class="font-bold uppercase text-xs">Wetsuit 4/3mm</h5>
+                    <p class="text-cyan-600 font-black">€ 289,00</p>
+                </div>
+                <div class="text-center space-y-4 group">
+                    <div class="aspect-square bg-slate-100 rounded-3xl overflow-hidden relative p-8">
+                        <img src="assets/img8.jpg" class="w-full h-full object-contain group-hover:scale-110 transition" alt="Product">
+                    </div>
+                    <h5 class="font-bold uppercase text-xs">Kite Wing 5m</h5>
+                    <p class="text-cyan-600 font-black">€ 890,00</p>
+                </div>
+                <div class="flex items-center justify-center border-2 border-dashed border-slate-200 rounded-3xl p-8 min-h-[250px] md:min-h-[300px]">
+                    <button class="text-[10px] font-black uppercase tracking-widest hover:text-cyan-600 transition">Vedi tutto lo shop →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="meteo" class="py-20 md:py-32 bg-slate-950 text-white relative">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-4xl md:text-5xl font-action font-black uppercase italic">Spot <span class="text-cyan-400">Live.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5">
+                    <i data-lucide="thermometer" class="w-8 h-8 mx-auto mb-4 text-cyan-400"></i>
+                    <p class="text-4xl font-black">22°C</p>
+                    <p class="text-[9px] uppercase font-bold text-slate-500 mt-2">Temperatura Aria</p>
+                </div>
+                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5">
+                    <i data-lucide="wind" class="w-8 h-8 mx-auto mb-4 text-cyan-400"></i>
+                    <p class="text-4xl font-black">12kt</p>
+                    <p class="text-[9px] uppercase font-bold text-slate-500 mt-2">Vento Maestrale</p>
+                </div>
+                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5">
+                    <i data-lucide="video" class="w-8 h-8 mx-auto mb-4 text-cyan-400"></i>
+                    <p class="text-xl font-bold uppercase">Webcam HD</p>
+                    <p class="text-[9px] uppercase font-bold text-slate-500 mt-2 italic">Guarda lo spot ora</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="py-20 md:py-32 bg-cyan-500 text-slate-950 rounded-t-[3rem] md:rounded-t-[5rem]">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-10 md:space-y-12 text-center lg:text-left">
+                <h2 class="text-6xl md:text-8xl font-action font-black leading-none tracking-tighter uppercase italic">Join the <br><span class="text-white underline decoration-slate-950">Tribe.</span></h2>
+                <div class="space-y-8 md:space-y-10">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-slate-950 text-white rounded-2xl flex items-center justify-center shadow-2xl rotate-6 shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div class="text-center md:text-left"><p class="text-[10px] font-black uppercase tracking-widest text-cyan-900 mb-1 italic">Lo Spot</p><p class="text-xl md:text-2xl font-bold uppercase">Spiaggia di Levante, Box 42</p></div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-white text-slate-950 rounded-2xl flex items-center justify-center shadow-2xl -rotate-6 shrink-0"><i data-lucide="phone"></i></div>
+                        <div class="text-center md:text-left"><p class="text-[10px] font-black uppercase tracking-widest text-cyan-900 mb-1 italic">Infoline H24</p><p class="text-xl md:text-2xl font-bold italic">+39 333 123 4567</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-900 p-8 md:p-12 rounded-[2.5rem] md:rounded-[4rem] shadow-2xl space-y-6 text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-cyan-400 text-slate-950 px-4 py-1 text-[8px] font-black uppercase italic tracking-widest">Demo Mode</div>
+                <p class="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-4 text-center italic">Richiedi disponibilità</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-slate-800 border-none rounded-2xl outline-none focus:ring-2 focus:ring-cyan-400 text-[10px] font-black tracking-widest uppercase italic">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-slate-800 border-none rounded-2xl outline-none focus:ring-2 focus:ring-cyan-400 text-[10px] font-black tracking-widest uppercase italic">
+                </div>
+                <select class="w-full p-4 bg-slate-800 border-none rounded-2xl outline-none focus:ring-2 focus:ring-cyan-400 text-[10px] font-black uppercase text-slate-400 tracking-widest italic">
+                    <option>COSA VUOI PRENOTARE?</option>
+                    <option>CORSO SURF (PRINCIPIANTE)</option>
+                    <option>CORSO KITE (FULL PACK)</option>
+                    <option>NOLEGGIO ATTREZZATURA</option>
+                </select>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="date" class="w-full p-4 bg-slate-800 border-none rounded-2xl outline-none focus:ring-2 focus:ring-cyan-400 text-[10px] font-black uppercase text-slate-400 italic">
+                    <input type="text" placeholder="N° PERSONE" class="w-full p-4 bg-slate-800 border-none rounded-2xl outline-none focus:ring-2 focus:ring-cyan-400 text-[10px] font-black tracking-widest uppercase italic">
+                </div>
+                <button style="pointer-events: none;" class="w-full bg-cyan-400 text-slate-900 py-5 md:py-6 rounded-2xl font-black uppercase text-[11px] md:text-[12px] tracking-[0.4em] hover:bg-white transition-all shadow-xl">Invia Richiesta</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-slate-950 text-center text-slate-700 border-t border-white/5">
+        <p class="text-[8px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.5em] font-bold italic leading-relaxed px-4">
+            &copy; 2026 WaveMaster Academy | Extreme Water Sports Hub | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="demo-nav-container fixed bottom-6 left-6 z-[150] flex flex-col gap-3">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="zap" class="w-3.5 h-3.5 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Esempi
+        </a>
+    </div>
+
+    <div class="wa-widget-demo fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

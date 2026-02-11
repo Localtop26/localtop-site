@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sartoria Valenti | L'Eleganza del Su Misura - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfc; color: #2d3436; overflow-x: hidden; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-navy { color: #1a2a44; }
+        .bg-navy { background-color: #1a2a44; }
+        
+        /* Immagini a colori come richiesto */
+        .hero-sartoria { 
+            background: linear-gradient(rgba(252,252,252,0.4), rgba(252,252,252,0.1)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .craft-card { transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid #eee; background: white; }
+        .craft-card:hover { transform: translateY(-10px); border-color: #1a2a44; box-shadow: 0 30px 60px -12px rgba(26, 42, 68, 0.1); }
+
+        /* Demo Mode Constraints */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Gestione Sticky Header dinamica */
+        .sticky-nav {
+            top: 2.5rem; /* Altezza della top bar */
+        }
+        @media (max-width: 640px) {
+            .sticky-nav { top: 2rem; }
+        }
+
+        /* Navigazione Demo (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* Scaling Font e Responsività */
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 7.5rem);
+            line-height: 0.9;
+        }
+    </style>
+</head>
+<body class="selection:bg-navy selection:text-white">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-navy text-stone-300 py-2.5 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.3em] md:tracking-[0.4em] px-4 sticky top-0 z-[130]">
+        🧵 TRADIZIONE ITALIANA: Prenota la tua consulenza per il nuovo campionario 🧵
+    </div>
+
+    <nav class="sticky-nav sticky z-[120] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-2 md:mx-10 rounded-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 w-full flex justify-between items-center gap-4">
+            <div class="flex items-center gap-3 md:gap-4 min-w-0">
+                <div class="hidden sm:flex w-10 h-10 border border-navy items-center justify-center rounded-full text-navy shrink-0">
+                    <i data-lucide="scissors" class="w-5 h-5"></i>
+                </div>
+                <div class="flex flex-col leading-none truncate">
+                    <span class="text-xl md:text-2xl font-serif italic text-navy tracking-tighter uppercase">Sartoria<span class="font-light">Valenti</span></span>
+                    <span class="text-[6px] md:text-[7px] font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] text-stone-400 mt-1">Handmade Excellence</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
+                <a href="#abiti" class="hover:text-navy transition">Abiti</a>
+                <a href="#tessuti" class="hover:text-navy transition">Tessuti</a>
+                <a href="#metodo" class="hover:text-navy transition">Il Metodo</a>
+                <a href="#riparazioni" class="hover:text-navy transition">Riparazioni</a>
+            </div>
+
+            <a href="#contatti" class="bg-navy text-white px-4 md:px-8 py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md shrink-0 whitespace-nowrap">
+                Prendi Misure
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[80vh] flex items-center hero-sartoria overflow-hidden py-20">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="max-w-4xl space-y-8 md:space-y-10">
+                <span class="inline-block text-navy font-bold uppercase tracking-[0.5em] text-[10px] border-b border-navy/20 pb-2">Cucito con il Tempo</span>
+                <h1 class="hero-title font-serif italic text-navy tracking-tighter uppercase">
+                    Unicità <br> <span class="font-light normal-case">Su Misura.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-stone-600 font-light max-w-lg leading-relaxed italic border-l-2 border-navy pl-6 md:pl-8">
+                    L'abito non è un accessorio, ma la tua seconda pelle. Creiamo capi intramontabili che fondono l'antica arte sartoriale con il gusto contemporaneo.
+                </p>
+                <div class="flex flex-wrap gap-4 md:gap-6 pt-4">
+                    <a href="#abiti" class="bg-navy text-white px-8 md:px-12 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-stone-800 transition-all">Collezione</a>
+                    <a href="#contatti" class="bg-white/80 backdrop-blur border border-stone-200 text-stone-900 px-8 md:px-12 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all italic text-center">Appuntamento</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="abiti" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 md:mb-24 space-y-4">
+                <h2 class="text-4xl md:text-6xl font-serif italic text-navy">L'Arte della <span class="font-light">Creazione.</span></h2>
+                <p class="text-stone-400 font-bold tracking-widest uppercase text-[9px] md:text-[10px]">Dalla bozza al punto finale</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div class="p-8 md:p-10 craft-card text-center space-y-6">
+                    <i data-lucide="layers" class="w-10 h-10 mx-auto text-navy opacity-40"></i>
+                    <h4 class="text-2xl font-serif italic">Abiti da Sposo & Cerimonia</h4>
+                    <p class="text-sm text-stone-400 leading-relaxed font-light italic">Eleganza impeccabile per i tuoi giorni più importanti. Ogni asola è cucita a mano, ogni tela è naturale.</p>
+                </div>
+                <div class="p-8 md:p-10 craft-card text-center space-y-6 bg-stone-50 border-navy/20">
+                    <i data-lucide="pocket" class="w-10 h-10 mx-auto text-navy opacity-40"></i>
+                    <h4 class="text-2xl font-serif italic">Business Bespoke</h4>
+                    <p class="text-sm text-stone-400 leading-relaxed font-light italic">Il potere della distinzione. Abiti da lavoro che trasmettono autorevolezza e comfort assoluto.</p>
+                </div>
+                <div class="p-8 md:p-10 craft-card text-center space-y-6">
+                    <i data-lucide="shirt" class="w-10 h-10 mx-auto text-navy opacity-40"></i>
+                    <h4 class="text-2xl font-serif italic">Camiceria Fine</h4>
+                    <p class="text-sm text-stone-400 leading-relaxed font-light italic">Cotoni egiziani e doppie ritorte. Collo e polsi strutturati per una vestibilità senza compromessi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tessuti" class="py-20 md:py-32 bg-[#f8f9fa] border-y border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img2.jpg" class="rounded-sm shadow-2xl transition duration-700" alt="Dettaglio tessuti pregiati">
+                <div class="absolute -bottom-6 -left-4 md:-bottom-8 md:-left-8 bg-navy text-white p-8 md:p-12 shadow-2xl">
+                    <p class="font-serif text-2xl md:text-3xl italic">Top 1%</p>
+                    <p class="text-[8px] md:text-[9px] uppercase tracking-widest mt-1 font-bold">Loro Piana & VBC</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-8 md:space-y-10">
+                <h2 class="text-5xl md:text-7xl font-serif italic text-navy leading-none">Materia Prima <br><span class="font-light normal-case">Pregiata.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-navy pl-6 md:pl-8">
+                    La qualità di un abito inizia dal filato. Selezioniamo solo i migliori lanifici mondiali per garantirti lucentezza, resistenza e una caduta del tessuto perfetta.
+                </p>
+                <div class="grid grid-cols-2 gap-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-stone-400">
+                    <div class="flex items-center gap-3 italic"><i data-lucide="check" class="text-navy w-4"></i> Lana Super 150's</div>
+                    <div class="flex items-center gap-3 italic"><i data-lucide="check" class="text-navy w-4"></i> Cashmere & Seta</div>
+                    <div class="flex items-center gap-3 italic"><i data-lucide="check" class="text-navy w-4"></i> Lino d'Irlanda</div>
+                    <div class="flex items-center gap-3 italic"><i data-lucide="check" class="text-navy w-4"></i> Velluti a coste</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-20 md:py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
+            <h2 class="text-4xl md:text-5xl font-serif italic text-navy uppercase italic">Passione <span class="font-light">&</span> Tradizione.</h2>
+            <p class="text-stone-500 text-lg md:text-xl font-light italic leading-relaxed">
+                "La nostra filosofia si fonda sull'attesa. Crediamo che onorare i tempi della manifattura artigianale sia l'unico modo per regalare un'esperienza autentica."
+            </p>
+            <div class="flex justify-center gap-8 md:gap-12 pt-4">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-3 text-navy"></i><p class="text-[8px] font-bold uppercase tracking-widest italic">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-3 text-navy"></i><p class="text-[8px] font-bold uppercase tracking-widest italic">Passione Pura</p></div>
+                <div class="text-center"><i data-lucide="shield-check" class="mx-auto mb-3 text-navy"></i><p class="text-[8px] font-bold uppercase tracking-widest italic">Etica Bespoke</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="riparazioni" class="py-20 md:py-24 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-10">
+            <h2 class="text-3xl md:text-4xl font-serif italic text-navy uppercase">Second Life: <span class="font-light">Riparazioni di Pregio.</span></h2>
+            <p class="text-stone-400 text-lg md:text-xl font-light italic leading-relaxed">
+                Ridiamo vita ai tuoi capi preferiti. Rimessa a modello, accorciamenti e riparazioni invisibili eseguite con la stessa cura con cui creiamo un abito nuovo.
+            </p>
+            <div class="pt-4">
+                <span class="text-[9px] font-bold uppercase tracking-[0.3em] border border-stone-200 px-6 py-3 rounded-full text-stone-400 inline-block">Sartoria Rapida • Alta Manifattura</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20 md:py-32 bg-[#fdfcfb]">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-10 md:space-y-12">
+                <h2 class="text-6xl md:text-7xl font-serif italic text-navy leading-none tracking-tighter uppercase">Inizia il <br><span class="font-normal italic">Tuo Stile.</span></h2>
+                <div class="space-y-8 md:space-y-10">
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-white border border-stone-100 flex items-center justify-center rounded-full text-navy shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[8px] font-bold uppercase tracking-widest text-stone-400 mb-1">L'Atelier</p><p class="text-xl md:text-2xl font-serif italic">Viale della Moda 42, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6 md:gap-8 text-stone-400">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-navy text-white flex items-center justify-center rounded-full shadow-2xl shrink-0"><i data-lucide="calendar"></i></div>
+                        <div><p class="text-[8px] font-bold uppercase tracking-widest mb-1 italic">Solo su Appuntamento</p><p class="text-xl md:text-2xl font-serif italic text-stone-800">02 987 654 32</p></div>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="bg-white p-8 md:p-12 shadow-2xl space-y-6 md:space-y-8 border-t-8 border-navy rounded-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-navy text-white px-4 py-1 text-[8px] font-bold uppercase tracking-widest italic">Demo Mode</div>
+                <p class="text-[9px] font-bold uppercase tracking-[0.3em] text-stone-400 text-center italic">Le misure sono il primo passo</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL VOSTRO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest text-stone-400">
+                    <option>COSA DESIDERATE REALIZZARE?</option>
+                    <option>ABITO COMPLETO BESPOKE</option>
+                    <option>GIACCA / PANTALONE SINGOLO</option>
+                    <option>CAMICERIA SU MISURA</option>
+                    <option>RIPARAZIONE / RIMESSA A MODELLO</option>
+                </select>
+                <textarea placeholder="DETTAGLI AGGIUNTIVI..." rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-navy text-white py-5 md:py-6 text-[11px] font-bold uppercase tracking-[0.4em] shadow-xl">Richiedi Incontro</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center text-stone-300 text-[8px] md:text-[9px] uppercase tracking-[0.4em] md:tracking-[0.6em] font-bold border-t border-stone-50 px-4">
+        &copy; 2026 Sartoria Valenti | Custom Tailoring | P.IVA 0123456789 | Made in Italy | LocalTop Demo Mode
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-white border border-stone-100 text-stone-800 p-4 md:p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-square" class="w-6 h-6"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltAir | Energie Rinnovabili & Comfort Termico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e stabilità layout */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fcfdfd;
+            color: #1e293b;
+        }
+
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        
+        .text-energy-green { color: #10b981; }
+        .bg-energy-green { background-color: #10b981; }
+        .text-cool-blue { color: #3b82f6; }
+        .bg-cool-blue { background-color: #3b82f6; }
+        
+        /* Hero Section - Background a colori */
+        .hero-tech { 
+            background: linear-gradient(to right, rgba(255,255,255,0.95) 30%, rgba(255,255,255,0.3) 100%), 
+            url('assets/img1.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            min-height: 80vh;
+        }
+
+        /* Tipografia Adattiva */
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+        }
+
+        .tech-card { 
+            transition: all 0.3s ease; 
+            border: 1px solid #f1f5f9; 
+            background: white; 
+        }
+        .tech-card:hover { 
+            transform: translateY(-8px); 
+            border-color: #10b981; 
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.1); 
+        }
+
+        /* Sblocco interazioni globale */
+        button, a, input, select, textarea {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
+        /* Fix per elementi flottanti demo */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (max-width: 640px) {
+            .hero-title { font-size: 3rem; }
+            .demo-nav-container { bottom: 10px; left: 10px; transform: scale(0.85); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
+            <i data-lucide="zap" class="w-4 h-4"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-900 text-white py-2 text-[10px] font-bold text-center uppercase tracking-widest sticky top-0 z-[110]">
+        🌿 BONUS 2026: DETRAZIONI FINO AL 65% PER FOTOVOLTAICO E CLIMA 🌿
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-2xl">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-energy-green rounded-xl flex items-center justify-center shadow-lg">
+                    <i data-lucide="zap" class="text-white w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-heading font-black text-slate-900 uppercase">Volt<span class="text-cool-blue">Air</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Green Power</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#fotovoltaico" class="hover:text-energy-green transition">Fotovoltaico</a>
+                <a href="#clima" class="hover:text-cool-blue transition">Climatizzazione</a>
+                <a href="#manutenzione" class="hover:text-slate-900 transition">Manutenzione</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-900 text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-energy-green transition-all">
+                Preventivo
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative flex items-center hero-tech py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl space-y-8">
+                <h1 class="hero-title text-slate-900 uppercase font-black">
+                    Energia <span class="text-energy-green italic">Pulita</span> <br> 
+                    Aria <span class="text-cool-blue italic">Ideale.</span>
+                </h1>
+                <p class="text-lg md:text-2xl text-slate-500 font-light max-w-2xl leading-relaxed border-l-4 border-energy-green pl-6">
+                    Soluzioni ad alta efficienza per la tua casa. Riduci le bollette del 70% con il fotovoltaico e vivi nel massimo comfort termico.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#fotovoltaico" class="bg-energy-green text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Sistemi Solari</a>
+                    <a href="#clima" class="bg-white border-2 border-cool-blue text-cool-blue px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-cool-blue hover:text-white transition-all">Climatizzazione</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fotovoltaico" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 uppercase italic">Solare <span class="text-energy-green">Intelligente.</span></h2>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Tecnologia 2026</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-10 tech-card rounded-[2.5rem]">
+                    <div class="w-14 h-14 bg-emerald-50 text-energy-green rounded-2xl flex items-center justify-center mb-8"><i data-lucide="sun"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Pannelli Top-Tier</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Moduli monocristallini ad alta resa garantiti 25 anni per la massima produzione energetica.</p>
+                </div>
+                <div class="p-10 tech-card rounded-[2.5rem] bg-slate-50 border-energy-green">
+                    <div class="w-14 h-14 bg-emerald-50 text-energy-green rounded-2xl flex items-center justify-center mb-8"><i data-lucide="battery-charging"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Accumulo al Litio</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Batterie di ultima generazione per utilizzare l'energia solare anche di notte.</p>
+                </div>
+                <div class="p-10 tech-card rounded-[2.5rem]">
+                    <div class="w-14 h-14 bg-emerald-50 text-energy-green rounded-2xl flex items-center justify-center mb-8"><i data-lucide="gauge"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Monitoraggio Smart</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Controlla produzione e autoconsumo in tempo reale tramite la nostra app dedicata.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clima" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl w-full h-[500px] object-cover" alt="Comfort Termico">
+                <div class="absolute -bottom-8 -right-8 bg-cool-blue text-white p-12 rounded-[3rem] shadow-2xl hidden md:block">
+                    <p class="font-heading text-4xl font-black italic">A+++</p>
+                    <p class="text-[9px] uppercase tracking-widest mt-1 font-bold">Massimo Risparmio</p>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h2 class="text-5xl md:text-6xl font-heading font-black text-slate-900 leading-none uppercase italic">Clima <br><span class="text-cool-blue">Evoluto.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed border-l-4 border-cool-blue pl-8">
+                    Installiamo sistemi di climatizzazione silenziosi e intelligenti dei migliori brand mondiali. Aria pura e temperatura perfetta in ogni stagione.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="flex items-center gap-3"><i data-lucide="wind" class="text-cool-blue"></i> <span class="text-[10px] font-bold uppercase">Mono & Multi Split</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="shield-check" class="text-cool-blue"></i> <span class="text-[10px] font-bold uppercase">Sanificazione h24</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="manutenzione" class="py-24 bg-white">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 uppercase mb-8">Efficienza <span class="text-energy-green italic">Sempre Garantita.</span></h2>
+            <p class="text-slate-500 text-lg font-light mb-16">Un impianto curato dura di più e rende meglio. I nostri tecnici certificati si occupano di tutto, dalla pulizia moduli alla ricarica gas.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto text-cool-blue"><i data-lucide="activity"></i></div>
+                    <h4 class="font-bold uppercase text-[9px] tracking-widest">Check-up</h4>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto text-cool-blue"><i data-lucide="refresh-cw"></i></div>
+                    <h4 class="font-bold uppercase text-[9px] tracking-widest">Ricarica</h4>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto text-cool-blue"><i data-lucide="sparkles"></i></div>
+                    <h4 class="font-bold uppercase text-[9px] tracking-widest">Pulizia</h4>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto text-cool-blue"><i data-lucide="file-check"></i></div>
+                    <h4 class="font-bold uppercase text-[9px] tracking-widest">Pratiche</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16">
+            <div class="space-y-12">
+                <h2 class="text-6xl md:text-7xl font-heading font-black text-slate-900 leading-none tracking-tighter uppercase italic">Accendi il <br><span class="text-energy-green underline underline-offset-[10px]">Futuro.</span></h2>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-white text-energy-green rounded-2xl flex items-center justify-center shadow-md"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Sede</p><p class="text-xl font-bold">Via dell'Innovazione 1, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-md"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Contatto diretto</p><p class="text-xl font-bold">02 123 456 78</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
+                </div>
+                <input type="email" placeholder="EMAIL" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
+                <textarea placeholder="COME POSSIAMO AIUTARTI?" rows="3" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase"></textarea>
+                <button type="submit" class="w-full bg-slate-900 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-widest hover:bg-energy-green transition-all shadow-lg">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center border-t border-slate-100">
+        <p class="text-slate-400 text-[9px] uppercase tracking-[0.6em] font-bold px-4">
+            &copy; 2026 VoltAir Solutions | Energie Rinnovabili | P.IVA 0123456789
+        </p>
+    </footer>
+
+    <a href="#" class="fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

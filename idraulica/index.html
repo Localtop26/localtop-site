@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>IdroMaster | Termoidraulica Milano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* RESET GLOBALE & BLOCCO SCROLL ORIZZONTALE */
+        html, body { 
+            max-width: 100%; 
+            overflow-x: hidden; 
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #ffffff;
+        }
+
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+        .text-blue-pro { color: #0056b3; }
+        .bg-blue-pro { background-color: #0056b3; }
+        
+        /* HERO FULL ADAPTIVE */
+        .hero-bg { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* CONTAINER SICURO */
+        .content-container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* SBLOCCO INTERAZIONI */
+        * { pointer-events: auto !important; }
+        button, a, input, select, textarea { cursor: pointer !important; }
+
+        @media (max-width: 768px) {
+            .hero-section { min-height: 100vh; padding-top: 100px; padding-bottom: 60px; }
+            .hero-title { line-height: 1.1; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Esempi
+        </a>
+    </div>
+
+    <div class="bg-red-600 text-white py-3 text-center text-[10px] md:text-xs font-bold uppercase tracking-widest px-4 sticky top-0 z-[110] shadow-md">
+        🚨 PRONTO INTERVENTO H24: Arriviamo in 60 minuti | 📞 02 123 4567
+    </div>
+
+    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center shadow-sm mx-0 md:mx-4 md:rounded-2xl mt-2">
+        <div class="content-container flex justify-between items-center w-full">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-pro rounded-xl flex items-center justify-center shadow-lg shrink-0">
+                    <i data-lucide="droplets" class="text-white w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tighter">Idro<span class="text-blue-pro">Master</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Termoidraulica</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#servizi" class="hover:text-blue-pro transition">Servizi</a>
+                <a href="#caldaie" class="hover:text-blue-pro transition">Caldaie</a>
+                <a href="#ristrutturazioni" class="hover:text-blue-pro transition">Bagno</a>
+                <a href="#contatti" class="hover:text-blue-pro transition">Contatti</a>
+            </div>
+
+            <a href="#contatti" class="bg-slate-900 text-white px-6 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-blue-pro transition-all shrink-0 shadow-lg">
+                Preventivo
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero-bg min-h-[85vh] flex items-center hero-section">
+        <div class="content-container py-20">
+            <div class="max-w-4xl space-y-8">
+                <div class="inline-flex items-center gap-2 bg-blue-pro/90 backdrop-blur-md text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i> Certificati F-GAS & Patentino Caldaie
+                </div>
+                <h1 class="hero-title text-white uppercase font-black">
+                    Efficienza <br> <span class="text-blue-pro italic drop-shadow-lg">Senza Perdite.</span>
+                </h1>
+                <p class="text-lg md:text-2xl text-white font-medium max-w-2xl leading-relaxed italic border-l-4 border-blue-pro pl-6 bg-black/20 backdrop-blur-sm p-4 rounded-r-lg">
+                    Dalla riparazione urgente alla progettazione di impianti moderni. Trasparenza, rapidità e qualità garantita.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-6">
+                    <a href="#servizi" class="bg-blue-pro text-white px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest shadow-2xl hover:bg-white hover:text-blue-pro transition-all w-full sm:w-auto text-center">I Nostri Servizi</a>
+                    <a href="tel:021234567" class="bg-white/10 border-2 border-white text-white px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest backdrop-blur-md hover:bg-white hover:text-slate-900 transition-all w-full sm:w-auto text-center">Emergenza h24</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-white">
+        <div class="content-container">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase italic">Interventi Tecnici</h2>
+                <div class="h-2 w-24 bg-blue-pro mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <div class="p-10 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-pro transition-all group shadow-sm">
+                    <i data-lucide="wrench" class="text-blue-pro mb-6 w-12 h-12 group-hover:rotate-12 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4 uppercase">Riparazioni</h3>
+                    <p class="text-slate-500 italic font-light">Perdite d'acqua, scarichi ostruiti e rubinetteria. Interveniamo con ricambi originali.</p>
+                </div>
+                <div class="p-10 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-pro transition-all group shadow-sm">
+                    <i data-lucide="flame" class="text-blue-pro mb-6 w-12 h-12 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4 uppercase">Caldaie</h3>
+                    <p class="text-slate-500 italic font-light">Assistenza specializzata, bollino blu e installazione caldaie a condensazione.</p>
+                </div>
+                <div class="p-10 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-pro transition-all group shadow-sm">
+                    <i data-lucide="wind" class="text-blue-pro mb-6 w-12 h-12 group-hover:-translate-y-2 transition-transform"></i>
+                    <h3 class="text-2xl font-bold mb-4 uppercase">Climatizzazione</h3>
+                    <p class="text-slate-500 italic font-light">Installazione condizionatori mono e multisplit con certificazione F-GAS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="caldaie" class="py-24 bg-slate-900 text-white overflow-hidden">
+        <div class="content-container grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <h2 class="text-5xl md:text-6xl font-black tracking-tighter uppercase leading-none italic">Calore <br><span class="text-blue-400">Intelligente.</span></h2>
+                <p class="text-slate-400 text-lg leading-relaxed border-l-2 border-blue-400 pl-8 italic font-light">
+                    Sostituisci la caldaia e risparmia fino al 30% sui consumi. Gestiamo noi tutte le pratiche per le detrazioni fiscali 2026.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"><i data-lucide="check" class="text-blue-400 w-5 h-5"></i> Analisi Fumi</div>
+                    <div class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"><i data-lucide="check" class="text-blue-400 w-5 h-5"></i> Bollino Blu</div>
+                </div>
+            </div>
+            <div class="relative group">
+                <img src="assets/img2.jpg" class="rounded-3xl shadow-2xl w-full object-cover grayscale-0 group-hover:scale-105 transition duration-700" alt="Caldaia">
+            </div>
+        </div>
+    </section>
+
+    <section id="ristrutturazioni" class="py-24 bg-white">
+        <div class="content-container grid lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <img src="assets/img3.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover" alt="Bagno">
+            </div>
+            <div class="order-1 lg:order-2 space-y-10 lg:text-right">
+                <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Il tuo <br>Nuovo <span class="text-blue-pro">Bagno.</span></h2>
+                <p class="text-slate-500 text-xl leading-relaxed font-light italic">Dalla demolizione alla posa sanitari: trasformiamo il tuo bagno in un'oasi moderna in tempi record.</p>
+                <div class="flex flex-wrap lg:justify-end gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    <span class="bg-slate-100 px-4 py-2 rounded-full">Progetto 3D</span>
+                    <span class="bg-slate-100 px-4 py-2 rounded-full">Posa Piastrelle</span>
+                    <span class="bg-slate-100 px-4 py-2 rounded-full">Certificazioni</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-24 bg-slate-50">
+        <div class="content-container grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Fissa un <br><span class="text-blue-pro">Sopralluogo.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-blue-pro text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="phone" class="w-8 h-8"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Ufficio</p><p class="text-2xl md:text-3xl font-black">02 123 4567</p></div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="map-pin" class="w-8 h-8"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Zona Operativa</p><p class="text-xl md:text-2xl font-bold uppercase">Milano e Hinterland</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-10 md:p-12 rounded-[3rem] shadow-2xl space-y-6 border border-slate-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-pro text-xs font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-pro text-xs font-bold uppercase tracking-widest">
+                </div>
+                <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-pro text-xs font-bold uppercase tracking-widest">
+                <textarea placeholder="DETTAGLI INTERVENTO..." rows="3" class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-pro text-xs font-bold uppercase tracking-widest"></textarea>
+                <button type="submit" class="w-full bg-blue-pro text-white py-6 rounded-2xl font-black uppercase text-xs tracking-[0.2em] hover:bg-slate-900 transition-all shadow-xl">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-400 text-[9px] uppercase tracking-[0.6em] font-bold px-6 leading-loose">
+            &copy; 2026 IdroMaster Termoidraulica Milano | P.IVA 0123456789 | Tutti i diritti riservati
+        </p>
+    </footer>
+
+    <a href="#" class="fixed bottom-8 right-8 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform">
+        <i data-lucide="message-square" class="w-7 h-7"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

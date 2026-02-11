@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdilMaster | Ristrutturazioni Chiavi in Mano & Design - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfc; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Lexend', sans-serif; }
+        .text-builder-orange { color: #f97316; }
+        .bg-builder-orange { background-color: #f97316; }
+        
+        /* 1. Immagini Locali assets/ */
+        .hero-reno { 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        .reno-card { transition: all 0.4s ease; border: 1px solid #e2e8f0; background: white; border-radius: 0.5rem; }
+        .reno-card:hover { border-color: #f97316; transform: translateY(-8px); shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
+        .before-after-container { position: relative; overflow: hidden; border-radius: 1rem; }
+
+        /* 3. Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .chat-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* 5. Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+
+        /* 2. Bottoni Floating (Bottom-Left) */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-orange-100 selection:text-orange-900">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="bg-slate-900 text-white py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120]">
+        🏗️ BONUS RISTRUTTURAZIONI 2026: Recupera fino al 50% delle spese | Pratiche ENEA incluse 🏗️
+    </div>
+
+    <nav class="sticky top-8 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-xl mt-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center shadow-lg">
+                    <i data-lucide="hard-hat" class="text-builder-orange w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">EDIL<span class="text-builder-orange">MASTER</span></span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400 italic">Soluzioni Costruttive</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#servizi" class="hover:text-builder-orange transition">Servizi</a>
+                <a href="#metodo" class="hover:text-builder-orange transition">Metodo</a>
+                <a href="#filosofia" class="hover:text-builder-orange transition">Filosofia</a>
+                <a href="#progetti" class="hover:text-builder-orange transition">Progetti</a>
+                <a href="#bonus" class="hover:text-builder-orange transition">Bonus 2026</a>
+            </div>
+
+            <a href="#preventivo" class="bg-builder-orange text-white px-8 py-3 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 transition-all shadow-md">
+                Richiedi Preventivo
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center hero-reno overflow-hidden -mt-24">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
+            <div class="max-w-3xl space-y-8 animate-fade-in">
+                <h1 class="text-6xl md:text-[100px] font-heading font-bold text-white leading-[0.85] tracking-tighter uppercase">
+                    La Casa <br> dei tuoi <span class="text-builder-orange italic">Sogni.</span>
+                </h1>
+                <p class="text-xl text-white/90 font-light max-w-xl leading-relaxed border-l-4 border-builder-orange pl-8 italic">
+                    Dalla demolizione alla consegna delle chiavi. Un unico interlocutore per una ristrutturazione senza stress, con tempi certi e budget garantito.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+                    <button class="bg-white text-slate-900 px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-builder-orange hover:text-white transition-all">Sopralluogo Gratuito</button>
+                    <a href="#progetti" class="bg-transparent border-2 border-white text-white px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-slate-900 transition-all">I Nostri Lavori</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase tracking-tighter italic">Cosa <span class="text-builder-orange">Facciamo.</span></h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Qualità costruttiva e finiture di pregio</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 reno-card group">
+                    <i data-lucide="key" class="w-12 h-12 text-builder-orange mb-8"></i>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase">Chiavi in Mano</h3>
+                    <p class="text-sm text-slate-500 italic">Gestiamo tutto noi: progetto, pratiche comunali, maestranze e forniture dei materiali. Tu devi solo scegliere i colori.</p>
+                </div>
+                <div class="p-10 reno-card group border-slate-900 bg-slate-900 text-white">
+                    <i data-lucide="layout" class="w-12 h-12 text-builder-orange mb-8"></i>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase">Interior Design</h3>
+                    <p class="text-sm text-slate-300 italic">Architetti dedicati per ridisegnare i tuoi spazi in modo funzionale, moderno e su misura per le tue esigenze.</p>
+                </div>
+                <div class="p-10 reno-card group">
+                    <i data-lucide="zap" class="w-12 h-12 text-builder-orange mb-8"></i>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase">Efficientamento</h3>
+                    <p class="text-sm text-slate-500 italic">Cappotto termico, infissi ad alte prestazioni e impianti smart per ridurre drasticamente i costi in bolletta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="py-24 bg-slate-50 border-y border-slate-100 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-6xl font-heading font-bold text-slate-900 leading-none">Ristrutturare <br><span class="text-builder-orange italic">senza stress.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-builder-orange pl-8">
+                    Abbiamo eliminato il caos dal cantiere. Il nostro metodo garantisce la consegna dell'opera nel giorno pattuito, senza sorprese sul conto finale.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="clock" class="text-builder-orange"></i> Tempi Certi</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="file-check" class="text-builder-orange"></i> Unico Interlocutore</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="wallet" class="text-builder-orange"></i> Prezzo Bloccato</div>
+                    <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="shield-check" class="text-builder-orange"></i> Garanzia 10 Anni</div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl grayscale" alt="Project Planning">
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-10">
+            <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase tracking-tighter italic">La nostra <span class="text-builder-orange">Filosofia.</span></h2>
+            <p class="text-slate-500 text-lg font-light leading-relaxed max-w-3xl mx-auto italic">
+                Crediamo che ogni mattone posato sia un impegno verso il futuro dei nostri clienti. La nostra missione è unire l'artigianalità tradizionale alle più moderne tecnologie dell'abitare per creare spazi che ispirano.
+            </p>
+            <div class="flex justify-center gap-12 pt-8">
+                <div class="text-center"><i data-lucide="gem" class="w-8 h-8 mx-auto mb-4 text-builder-orange"></i><p class="text-[10px] font-bold uppercase">Eccellenza</p></div>
+                <div class="text-center"><i data-lucide="leaf" class="w-8 h-8 mx-auto mb-4 text-builder-orange"></i><p class="text-[10px] font-bold uppercase">Sostenibilità</p></div>
+                <div class="text-center"><i data-lucide="heart" class="w-8 h-8 mx-auto mb-4 text-builder-orange"></i><p class="text-[10px] font-bold uppercase">Passione</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="progetti" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-heading font-bold text-center text-slate-900 mb-20 uppercase tracking-tighter">La <span class="text-builder-orange">Trasformazione.</span></h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="space-y-4">
+                    <div class="before-after-container aspect-video">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-builder-orange text-white px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Dopo l'intervento</div>
+                    </div>
+                    <p class="font-bold text-sm uppercase">Appartamento Minimal - Milano</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="before-after-container aspect-video">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover grayscale">
+                        <div class="absolute top-4 left-4 bg-slate-500 text-white px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Lo stato originale</div>
+                    </div>
+                    <p class="font-bold text-sm uppercase">Recupero Loft Industriale - Torino</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bonus" class="py-24 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-10 overflow-hidden section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-heading font-bold uppercase">Sfrutta le <span class="text-builder-orange">Agevolazioni.</span></h2>
+            <p class="text-slate-400 text-xl font-light leading-relaxed italic">
+                Non farti spaventare dalla burocrazia. Il nostro team tecnico gestisce per te tutte le asseverazioni necessarie per le detrazioni fiscali previste per il 2026.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8">
+                <div class="p-6 border border-white/10 rounded-2xl bg-white/5"><p class="text-3xl font-bold">50%</p><p class="text-[9px] uppercase font-bold text-slate-500">Recupero Ristrutturazione</p></div>
+                <div class="p-6 border border-white/10 rounded-2xl bg-white/5"><p class="text-3xl font-bold">65%</p><p class="text-[9px] uppercase font-bold text-slate-500">Risparmio Energetico</p></div>
+                <div class="p-6 border border-white/10 rounded-2xl bg-white/5"><p class="text-3xl font-bold">36%</p><p class="text-[9px] uppercase font-bold text-slate-500">Bonus Verde & Giardini</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="preventivo" class="py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-heading font-bold text-slate-900 leading-none tracking-tighter uppercase italic italic">Crea la <br><span class="text-builder-orange underline underline-offset-8">Tua Visione.</span></h2>
+                <div class="space-y-10">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-slate-900 text-builder-orange rounded-xl flex items-center justify-center shadow-lg"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Showroom & Studio</p><p class="text-xl font-bold uppercase tracking-tighter text-slate-900">Viale dei Cantieri 8, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 bg-builder-orange text-white rounded-xl flex items-center justify-center shadow-lg"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Ufficio Commerciale</p><p class="text-2xl font-bold italic text-slate-900">02 987 654 32</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-slate-50 p-12 rounded-[3rem] shadow-2xl space-y-6">
+                <p class="text-[10px] font-black uppercase tracking-widest text-builder-orange mb-4 text-center italic">Riceverai un sopralluogo tecnico gratuito entro 48 ore</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="NOME" class="w-full p-4 bg-white rounded-xl border-none outline-none focus:ring-2 focus:ring-builder-orange transition text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white rounded-xl border-none outline-none focus:ring-2 focus:ring-builder-orange transition text-[10px] font-bold uppercase tracking-widest">
+                </div>
+                <select class="w-full p-4 bg-white rounded-xl border-none outline-none focus:ring-2 focus:ring-builder-orange transition text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                    <option>TIPOLOGIA DI INTERVENTO</option>
+                    <option>RISTRUTTURAZIONE TOTALE APPARTAMENTO</option>
+                    <option>RIFACIMENTO BAGNO / CUCINA</option>
+                    <option>FACCIATE E CAPPOTTO TERMICO</option>
+                    <option>INTERIOR DESIGN & ARREDO</option>
+                </select>
+                <textarea placeholder="DESCRIZIONE DEI MQ E DEI LAVORI DESIDERATI..." rows="3" class="w-full p-4 bg-white rounded-xl border-none outline-none focus:ring-2 focus:ring-builder-orange transition text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-slate-900 text-white py-6 rounded-xl font-black uppercase text-[11px] tracking-[0.3em] hover:bg-builder-orange transition-all shadow-xl">Invia Richiesta Sopralluogo</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-300 text-[9px] uppercase tracking-[0.6em] font-bold">
+            &copy; 2026 EdilMaster Ristrutturazioni | P.IVA 0123456789 | Quality & Safety Certified
+        </p>
+    </footer>
+
+    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-square" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etherea Weddings | Fine Art Wedding Planner - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --promo-height: 40px;
+        }
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #fffaf8; 
+            color: #2d2d2d; 
+            overflow-x: hidden; 
+            width: 100%;
+        }
+
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .text-gold { color: #c5a059; }
+        .bg-gold { background-color: #c5a059; }
+        
+        .hero-bg { 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .reveal-img { overflow: hidden; position: relative; width: 100%; }
+        .reveal-img img { 
+            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); 
+            filter: none !important; 
+        }
+        .reveal-img:hover img { transform: scale(1.08); }
+
+        img { filter: none !important; }
+
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Gestione Sticky Corretta */
+        .promo-bar {
+            height: var(--promo-height);
+            z-index: 1001;
+        }
+
+        nav.sticky-nav {
+            top: var(--promo-height);
+            z-index: 1000;
+        }
+
+        /* HERO TITLE */
+        h1 {
+            font-size: clamp(3.2rem, 12vw, 8.5rem) !important;
+            line-height: 0.9 !important;
+            letter-spacing: -0.05em !important;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Bottoni LocalTop */
+        .demo-nav-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4.5rem) !important; }
+            /* Sposta il contenuto in alto su mobile */
+            .hero-content {
+                justify-content: flex-start !important;
+                padding-top: 10vh;
+            }
+        }
+
+        .container-fix {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="selection:bg-stone-200 selection:text-stone-800 container-fix">
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        </a>
+    </div>
+
+    <div class="promo-bar sticky top-0 bg-white py-3 text-[9px] font-bold text-center uppercase tracking-[0.5em] text-stone-400 border-b border-stone-100 flex items-center justify-center">
+        Disponibilità limitata per la stagione 2027 | Planning in tutta Italia & Estero
+    </div>
+
+    <nav class="sticky-nav sticky bg-white/80 backdrop-blur-lg h-24 flex items-center border-b border-stone-50">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.4em] font-bold text-stone-500">
+                <a href="#filosofia" class="hover:text-gold transition">Filosofia</a>
+                <a href="#servizi" class="hover:text-gold transition">Servizi</a>
+                <a href="#portfolio" class="hover:text-gold transition">Storie</a>
+            </div>
+            
+            <div class="text-center">
+                <span class="text-3xl md:text-4xl font-serif italic tracking-tighter">Etherea</span>
+                <span class="block text-[8px] uppercase tracking-[0.8em] text-gold -mt-1 font-bold">Weddings & Events</span>
+            </div>
+
+            <div class="flex items-center">
+                <a href="#contatti" class="bg-stone-900 text-white px-6 md:px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all shadow-xl">
+                    Inizia il Sogno
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-[90vh] flex items-center justify-center hero-bg overflow-hidden hero-content">
+        <div class="absolute inset-0 bg-black/20 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center">
+            <div class="max-w-4xl mx-auto space-y-8">
+                <h1 class="font-serif italic text-white uppercase">
+                    L'Arte del <br> <span class="text-gold font-light normal-case">Sì Perfetto.</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-white font-medium max-w-lg mx-auto leading-relaxed italic border-y border-white/20 py-6 drop-shadow-md">
+                    Creiamo matrimoni iconici per anime ricercate. Dalla prima bozza creativa all'ultimo ballo.
+                </p>
+                
+                <div class="pt-8">
+                    <a href="#portfolio" class="inline-block bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 text-[10px] uppercase tracking-[0.5em] font-bold hover:bg-gold hover:border-gold transition-all shadow-2xl">
+                        Esplora il Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-10">
+                <span class="text-gold font-bold uppercase tracking-[0.5em] text-[10px]">La nostra visione</span>
+                <h2 class="text-6xl font-serif italic text-stone-900 leading-tight">Meno Stress, <br> <span class="font-light">Più Incanto.</span></h2>
+                <p class="text-stone-500 font-light text-lg leading-relaxed italic border-l-2 border-gold pl-6">
+                    Un matrimonio d'élite non è fatto solo di fiori e cristalli, ma di un'armonia invisibile. Il nostro approccio "Fine Art" garantisce un'estetica impeccabile.
+                </p>
+                <div class="grid grid-cols-2 gap-12 pt-4">
+                    <div class="space-y-2">
+                        <span class="text-3xl font-serif italic text-stone-900">01.</span>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-gold">Design Su Misura</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-3xl font-serif italic text-stone-900">02.</span>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-gold">Elite Vendors</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal-img shadow-2xl">
+                <img src="assets/img2.jpg" class="w-full h-auto" alt="Wedding Detail">
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-32 bg-[#fffcfb]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl font-serif italic text-stone-900">Esperienze di Planning</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-px bg-stone-100 border border-stone-100">
+                <div class="bg-white p-12 space-y-8 hover:bg-stone-50 transition">
+                    <i data-lucide="sparkles" class="w-8 h-8 text-gold"></i>
+                    <h3 class="text-2xl font-serif italic">Full Planning</h3>
+                    <p class="text-[11px] text-stone-400 leading-loose uppercase tracking-widest italic">Dalla ricerca della location al coordinamento finale. Ci occupiamo di ogni singolo fornitore e contratto.</p>
+                </div>
+                <div class="bg-white p-12 space-y-8 hover:bg-stone-50 transition">
+                    <i data-lucide="palette" class="w-8 h-8 text-gold"></i>
+                    <h3 class="text-2xl font-serif italic">Wedding Design</h3>
+                    <p class="text-[11px] text-stone-400 leading-loose uppercase tracking-widest italic">Un focus esclusivo sull'estetica: moodboard, allestimenti floreali, stationary e lighting design.</p>
+                </div>
+                <div class="bg-white p-12 space-y-8 hover:bg-stone-50 transition">
+                    <i data-lucide="calendar-check" class="w-8 h-8 text-gold"></i>
+                    <h3 class="text-2xl font-serif italic">Destination Wedding</h3>
+                    <p class="text-[11px] text-stone-400 leading-loose uppercase tracking-widest italic">Specialisti per coppie straniere in Italia: gestione burocratica e logistica per ospiti internazionali.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-5xl font-serif italic text-stone-900 uppercase">L'Anima del <span class="text-gold italic">Ricevimento.</span></h2>
+            <p class="text-stone-500 text-xl font-light italic leading-relaxed">
+                "La nostra filosofia si fonda sull'integrità della bellezza. Crediamo che onorare l'artigianalità originale di ogni evento sia il modo più nobile per supportare il vostro amore."
+            </p>
+            <div class="flex justify-center gap-12 pt-8 italic font-bold">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="shield-check" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Sicurezza Totale</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Cura Artigiana</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="reveal-img group cursor-pointer">
+                    <img src="assets/img3.jpg" class="aspect-[4/5] object-cover w-full">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center p-6">
+                        <span class="text-white font-serif italic text-3xl">Villa Balbiano, Como</span>
+                    </div>
+                </div>
+                <div class="reveal-img group cursor-pointer md:mt-24">
+                    <img src="assets/img4.jpg" class="aspect-[4/5] object-cover w-full">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center p-6">
+                        <span class="text-white font-serif italic text-3xl">Amalfi Coast Dream</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12 italic">
+            <i data-lucide="quote" class="w-10 h-10 mx-auto text-gold opacity-30"></i>
+            <p class="text-3xl font-serif text-stone-800 leading-relaxed">"Senza Etherea, il nostro matrimonio sarebbe stato solo un evento. Con loro, è diventato il ricordo più prezioso della nostra vita."</p>
+            <span class="block text-[10px] font-bold uppercase tracking-[0.5em] text-stone-400">— Sophia & James</span>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h2 class="text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase italic">Scriviamo la <br><span class="text-gold font-normal">vostra Storia.</span></h2>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-8">
+                        <div class="w-16 h-16 border border-stone-100 flex items-center justify-center text-gold shadow-sm"><i data-lucide="mail"></i></div>
+                        <p class="text-2xl font-serif italic">hello@etherea-weddings.it</p>
+                    </div>
+                    <div class="flex items-center gap-8 text-stone-400">
+                        <div class="w-16 h-16 border border-stone-100 flex items-center justify-center text-gold shadow-sm"><i data-lucide="instagram"></i></div>
+                        <p class="text-2xl font-serif italic">@etherea_luxury_weddings</p>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-[#fffcfb] p-12 shadow-2xl space-y-6 border border-stone-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-gold px-4 py-1 text-[8px] font-bold text-white uppercase italic tracking-widest">Demo Mode</div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8 italic text-center">Raccontateci il vostro giorno ideale</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="I VOSTRI NOMI" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition text-[10px] uppercase font-bold tracking-widest">
+                    <input type="text" placeholder="DATA PREVISTA" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition text-[10px] uppercase font-bold tracking-widest">
+                </div>
+                <input type="text" placeholder="LOCATION DEI SOGNI" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition text-[10px] uppercase font-bold tracking-widest">
+                <textarea placeholder="PARLATECI DI VOi..." rows="4" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition text-[10px] uppercase font-bold tracking-widest"></textarea>
+                <button class="w-full bg-stone-900 text-white py-6 text-[10px] font-bold uppercase tracking-[0.5em] hover:bg-gold transition-all shadow-xl">Richiedi una Consulenza Privata</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-white border-t border-stone-100 text-center px-6">
+        <p class="text-stone-300 text-[8px] uppercase tracking-[0.8em] font-bold italic">
+            &copy; 2026 Etherea Weddings | Fine Art Wedding Planner | P.IVA 0123456789 | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-white border border-stone-100 text-stone-900 p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-5 h-5"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

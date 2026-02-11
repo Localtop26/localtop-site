@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puro Splendore | Impresa di Pulizie & Sanificazione Professionale - Demo Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #334155; overflow-x: hidden; width: 100%; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        
+        .text-pure-blue { color: #0ea5e9; }
+        .bg-pure-blue { background-color: #0ea5e9; }
+        .text-fresh-mint { color: #10b981; }
+        
+        /* Immagini a colori e Hero Background */
+        .hero-clean { 
+            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.2)), 
+            url('assets/img1.jpg'); 
+            background-size: cover; background-position: center; 
+        }
+        
+        .clean-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; background: white; border-radius: 1.5rem; }
+        .clean-card:hover { border-color: #0ea5e9; transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.1); }
+
+        /* Blocco Interazioni (Demo Mode) */
+        button, input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
+        }
+
+        /* Ottimizzazione Font Desktop vs Mobile */
+        .hero-title {
+            font-size: 12vw; /* Mobile fluido */
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: clamp(5rem, 8vw, 7.5rem); /* Desktop massiccio */
+            }
+        }
+
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        
+        @media (max-width: 768px) {
+            .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+            nav { margin: 0.5rem !important; }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-sky-100 selection:text-sky-900">
+
+    <div class="bg-slate-900 text-white py-2.5 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[140]">
+        ✨ PRONTO INTERVENTO: Pulizie post-cantiere e sgomberi in 24 ore ✨
+    </div>
+
+    <nav class="sticky top-12 z-[130] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-xl mx-2 md:mx-10 rounded-2xl mt-2">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-9 h-9 md:w-11 md:h-11 bg-pure-blue rounded-xl flex items-center justify-center shadow-lg">
+                    <i data-lucide="sparkles" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl md:text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">PURO<span class="text-pure-blue">SPLENDORE</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Cleaning Excellence</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
+                <a href="#uffici" class="hover:text-pure-blue transition">Aziende</a>
+                <a href="#condomini" class="hover:text-pure-blue transition">Condomini</a>
+                <a href="#industriale" class="hover:text-pure-blue transition">Industriale</a>
+                <a href="#speciali" class="hover:text-pure-blue transition">Servizi</a>
+            </div>
+
+            <a href="#preventivo" class="bg-slate-900 text-white px-5 md:px-8 py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-pure-blue transition-all">
+                Preventivo
+            </a>
+        </div>
+    </nav>
+
+    <div class="demo-nav-container">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-4 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
+            <i data-lucide="zap" class="w-3 h-3"></i> INIZIA ORA
+        </a>
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-4 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna
+        </a>
+    </div>
+
+    <section class="relative min-h-[85vh] flex items-center hero-clean overflow-hidden px-4 md:px-10">
+        <div class="max-w-7xl mx-auto w-full relative z-10 py-20">
+            <div class="max-w-4xl space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-sky-50 text-pure-blue px-4 py-2 rounded-full text-[10px] md:text-[11px] font-bold uppercase tracking-widest border border-sky-100">
+                    Sistemi di pulizia certificati ISO 9001
+                </div>
+                <h1 class="hero-title font-heading font-bold text-slate-900 uppercase">
+                    Igiene che <br> si <span class="text-pure-blue italic">Vede.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-600 font-light max-w-2xl leading-relaxed italic border-l-4 border-fresh-mint pl-6 md:pl-10 mx-auto lg:mx-0">
+                    La tua immagine passa per il pulito. Offriamo soluzioni professionali per aziende, condomini e privati con prodotti eco-compatibili di alta gamma.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-6">
+                    <a href="#servizi" class="bg-pure-blue text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:scale-105 transition-all">I Nostri Servizi</a>
+                    <a href="#preventivo" class="bg-white border-2 border-slate-200 text-slate-400 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Chiedi il Prezzo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-4xl md:text-6xl font-heading text-slate-900 uppercase italic">Soluzioni <span class="text-pure-blue">per ogni Spazio.</span></h2>
+                <p class="text-slate-400 font-bold tracking-[0.3em] uppercase text-xs">Professionalità al servizio del tuo ambiente</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+                <div id="uffici" class="p-10 clean-card text-center group">
+                    <div class="w-16 h-16 bg-sky-50 text-pure-blue rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-pure-blue group-hover:text-white transition-all"><i data-lucide="building"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase italic">Uffici & Showroom</h3>
+                    <p class="text-sm text-slate-500 italic">Pulizia quotidiana o periodica per ambienti di lavoro sani e accoglienti. Cura di vetrate e scrivanie.</p>
+                </div>
+                <div id="condomini" class="p-10 clean-card text-center group">
+                    <div class="w-16 h-16 bg-sky-50 text-pure-blue rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-pure-blue group-hover:text-white transition-all"><i data-lucide="layout"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase italic">Condomini</h3>
+                    <p class="text-sm text-slate-500 italic">Manutenzione scale, aree comuni, rotazione sacchi e pulizia cortili con report periodici.</p>
+                </div>
+                <div id="industriale" class="p-10 clean-card text-center group">
+                    <div class="w-16 h-16 bg-sky-50 text-pure-blue rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-pure-blue group-hover:text-white transition-all"><i data-lucide="factory"></i></div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase italic">Industriale</h3>
+                    <p class="text-sm text-slate-500 italic">Trattamento pavimenti tecnici, capannoni e linee di produzione con macchinari uomo a bordo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold uppercase italic text-slate-900">Etica <span class="text-pure-blue">&</span> Trasparenza.</h2>
+            <p class="text-slate-500 text-xl md:text-2xl font-light italic leading-relaxed border-l-4 border-fresh-mint pl-8 mx-auto">
+                "La nostra filosofia si fonda sull'integrità. Crediamo che onorare l'ambiente di chi si affida a noi sia il modo più nobile per supportare il benessere comune, agendo sempre con precisione."
+            </p>
+        </div>
+    </section>
+
+    <section id="speciali" class="py-24 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img2.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl transition duration-700" alt="Professional Cleaning">
+                <div class="absolute -bottom-8 -right-4 md:-right-8 bg-fresh-mint text-white p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl">
+                    <p class="font-heading text-3xl font-bold">100%</p>
+                    <p class="text-[9px] uppercase tracking-widest font-bold">Eco-Sostenibile</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-10">
+                <h2 class="text-5xl md:text-7xl font-heading font-bold text-slate-900 leading-none uppercase italic">Oltre la <br><span class="text-pure-blue">Semplice Pulizia.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-fresh-mint pl-8">
+                    Interveniamo con tecniche specialistiche. Dalla cristallizzazione del marmo alla sanificazione certificata con ozono.
+                </p>
+                <div class="grid grid-cols-2 gap-6 italic">
+                    <div class="flex items-center gap-3"><i data-lucide="droplets" class="text-pure-blue w-5 h-5"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Lavaggio Moquette</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="wind" class="text-pure-blue w-5 h-5"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Trattamento Vetrate</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="shield-check" class="text-pure-blue w-5 h-5"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Sanificazione</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="trash-2" class="text-pure-blue w-5 h-5"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Sgomberi</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-16">
+            <h2 class="text-4xl font-heading font-bold uppercase text-slate-900 italic">Il Nostro <span class="text-pure-blue">Impegno.</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto text-pure-blue shadow-inner"><i data-lucide="users"></i></div>
+                    <h4 class="font-bold uppercase text-[9px] tracking-widest">Personale In regola</h4>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto text-pure-blue shadow-inner"><i data-lucide="shield"></i></div>
+                    <h4 class="font-bold uppercase text-[9px] tracking-widest">Assicurazione RCT</h4>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto text-pure-blue shadow-inner"><i data-lucide="clock"></i></div>
+                    <h4 class="font-bold uppercase text-[9px] tracking-widest">Puntualità</h4>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto text-pure-blue shadow-inner"><i data-lucide="leaf"></i></div>
+                    <h4 class="font-bold uppercase text-[9px] tracking-widest">Zero Impatto</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="preventivo" class="py-32 bg-slate-900 text-white md:rounded-t-[5rem] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+            <div class="space-y-12 text-center lg:text-left">
+                <h2 class="text-6xl md:text-8xl font-heading font-bold leading-[0.85] tracking-tighter uppercase italic">Fai <br><span class="text-pure-blue underline decoration-fresh-mint underline-offset-8">Brillare</span> tutto.</h2>
+                <div class="space-y-8">
+                    <div class="flex items-center justify-center lg:justify-start gap-6">
+                        <div class="w-16 h-16 bg-pure-blue text-white rounded-2xl flex items-center justify-center shadow-lg rotate-3"><i data-lucide="map-pin"></i></div>
+                        <div class="text-left"><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Sede Operativa</p><p class="text-xl font-bold italic">Milano</p></div>
+                    </div>
+                    <div class="flex items-center justify-center lg:justify-start gap-6">
+                        <div class="w-16 h-16 bg-white text-slate-900 rounded-2xl flex items-center justify-center shadow-lg -rotate-3"><i data-lucide="phone"></i></div>
+                        <div class="text-left"><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Ufficio Commerciale</p><p class="text-2xl font-bold italic">02 123 456 78</p></div>
+                    </div>
+                </div>
+            </div>
+            <form class="bg-white p-8 md:p-12 rounded-[3rem] md:rounded-[4rem] shadow-2xl space-y-6 text-slate-900 relative">
+                <div class="absolute top-6 right-8 text-pure-blue font-black italic text-[10px] uppercase tracking-widest opacity-40">Demo Mode</div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-pure-blue text-center italic">Preventivo gratuito in 12 ore</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="NOME" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-xs font-bold uppercase">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-xs font-bold uppercase">
+                </div>
+                <select class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase text-slate-400">
+                    <option>COSA DESIDERI PULIRE?</option>
+                    <option>UFFICI / AZIENDA</option>
+                    <option>CONDOMINIO</option>
+                    <option>SANIFICAZIONE</option>
+                </select>
+                <textarea placeholder="DETTAGLI..." rows="3" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-xs font-bold uppercase"></textarea>
+                <button class="w-full bg-pure-blue text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-slate-900 text-center text-slate-500 border-t border-white/5">
+        <p class="text-[9px] uppercase tracking-[0.4em] font-bold italic px-6 leading-relaxed">
+            &copy; 2026 Puro Splendore S.R.L. | P.IVA 0123456789 | Quality Certified | LocalTop Demo Mode
+        </p>
+    </footer>
+
+    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

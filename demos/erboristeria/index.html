@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfcf9; color: #354231; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfcf9; color: #354231; overflow-x: hidden; width: 100%; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .text-botanical { color: #2d4739; }
         .bg-botanical { background-color: #2d4739; }
@@ -24,18 +24,17 @@
         .herb-card { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid #f1eeea; background: white; }
         .herb-card:hover { transform: translateY(-8px); border-color: #bc8a5f; }
 
-        button, input, select, textarea, .chat-widget-demo {
+        /* Demo restrictions: non-nav elements are static */
+        input, select, textarea, .chat-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: clamp(3.5rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
+            h1 { font-size: clamp(3rem, 10vw, 5rem) !important; line-height: 1 !important; }
             h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
-            /* Mobile Header Fix */
-            .mobile-header-stack { height: auto !important; padding-top: 1.5rem; padding-bottom: 1.5rem; }
         }
 
         .demo-nav-container {
@@ -47,9 +46,44 @@
             flex-direction: column;
             gap: 0.75rem;
         }
+
+        .promo-bar {
+            position: sticky;
+            top: 0;
+            z-index: 130;
+        }
+        .main-nav {
+            position: sticky;
+            top: 41px; 
+            z-index: 120;
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="selection:bg-botanical selection:text-white">
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[200] flex flex-col p-8">
+        <div class="flex justify-end">
+            <button id="close-menu" class="text-botanical p-2">
+                <i data-lucide="x" class="w-10 h-10"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center justify-center flex-grow space-y-8 text-center">
+            <a href="#rimedi" class="mobile-link text-3xl font-serif italic text-botanical">Rimedi</a>
+            <a href="#cosmesi" class="mobile-link text-3xl font-serif italic text-botanical">Fitocosmesi</a>
+            <a href="#integrazione" class="mobile-link text-3xl font-serif italic text-botanical">Integrazione</a>
+            <a href="#laboratorio" class="mobile-link text-3xl font-serif italic text-botanical">Il Lab</a>
+            <a href="#contatti" class="mobile-link bg-botanical text-white px-8 py-4 rounded-full font-black uppercase text-[10px] tracking-widest shadow-xl">Chiedi un Consiglio</a>
+        </div>
+    </div>
 
     <div class="demo-nav-container">
         <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
@@ -60,18 +94,18 @@
         </a>
     </div>
 
-    <div class="bg-botanical text-white py-2.5 text-[10px] font-black text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[120]">
+    <div class="promo-bar bg-botanical text-white py-2.5 text-[10px] font-black text-center uppercase tracking-[0.4em] px-4">
         🌿 LA NATURA CURA: Disponibili i nuovi preparati per le difese immunitarie 🌿
     </div>
 
-    <nav class="sticky top-[41px] z-[100] bg-white/80 backdrop-blur-md min-h-24 flex items-center border-b border-stone-100 mobile-header-stack">
-        <div class="max-w-7xl mx-auto px-6 w-full flex flex-wrap justify-between items-center gap-y-4">
+    <nav class="main-nav bg-white/80 backdrop-blur-md border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-botanical rounded-full flex items-center justify-center shadow-lg text-white shrink-0">
-                    <i data-lucide="leaf" class="w-6 h-6"></i>
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-botanical rounded-full flex items-center justify-center shadow-lg text-white shrink-0">
+                    <i data-lucide="leaf" class="w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-3xl font-serif italic text-botanical tracking-tighter">Anima<span class="text-clay">Verde</span></span>
+                    <span class="text-2xl md:text-3xl font-serif italic text-botanical tracking-tighter">Anima<span class="text-clay">Verde</span></span>
                     <span class="text-[8px] font-black uppercase tracking-[0.5em] text-stone-400">Botanical Wisdom</span>
                 </div>
             </div>
@@ -83,9 +117,14 @@
                 <a href="#laboratorio" class="hover:text-botanical transition">Il Lab</a>
             </div>
 
-            <a href="#contatti" class="bg-botanical text-white px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-clay transition-all shadow-md shrink-0">
-                Chiedi un Consiglio
-            </a>
+            <div class="flex items-center">
+                <a href="#contatti" class="hidden md:block bg-botanical text-white px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-clay transition-all shadow-md">
+                    Chiedi un Consiglio
+                </a>
+                <button id="open-menu" class="md:hidden text-botanical p-2 pointer-events-auto cursor-pointer">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -120,8 +159,8 @@
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
-                <img src="assets/img2.jpg" class="rounded-3xl shadow-xl transition duration-1000" alt="Herbal 1">
-                <img src="assets/img3.jpg" class="rounded-3xl shadow-xl mt-12 transition duration-1000" alt="Herbal 2">
+                <img src="assets/img2.jpg" class="rounded-3xl shadow-xl" alt="Herbal 1">
+                <img src="assets/img3.jpg" class="rounded-3xl shadow-xl mt-12" alt="Herbal 2">
             </div>
         </div>
     </section>
@@ -156,7 +195,7 @@
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
             <div class="space-y-10">
                 <h2 class="text-5xl font-serif italic text-white leading-none uppercase">Integrazione <br><span class="text-clay font-normal">Consapevole.</span></h2>
-                <p class="text-stone-300 text-lg font-bold leading-relaxed italic border-l-2 border-clay pl-8">Supportiamo il tuo organismo con gemmoderivati e integratori formulati per rispettare la fisiologia umana. Un approccio olistico per ritrovare l'energia vitale.</p>
+                <p class="text-stone-300 text-lg font-bold leading-relaxed italic border-l-2 border-clay pl-8">Supportiamo il tuo organismo con gemmoderivati e integratori formulati per rispettare la fisiologia umana.</p>
                 <ul class="space-y-6">
                     <li class="flex items-center gap-6 border-b border-white/10 pb-4">
                         <i data-lucide="shield-check" class="text-clay"></i>
@@ -164,11 +203,11 @@
                     </li>
                     <li class="flex items-center gap-6 border-b border-white/10 pb-4">
                         <i data-lucide="battery-charging" class="text-clay"></i>
-                        <span class="text-[10px] font-black uppercase tracking-widest">Energia & Focus Mentale</span>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-white">Energia & Focus Mentale</span>
                     </li>
                     <li class="flex items-center gap-6 border-b border-white/10 pb-4">
                         <i data-lucide="moon" class="text-clay"></i>
-                        <span class="text-[10px] font-black uppercase tracking-widest">Qualità del Sonno</span>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-white">Qualità del Sonno</span>
                     </li>
                 </ul>
             </div>
@@ -181,17 +220,17 @@
     <section id="laboratorio" class="py-32 bg-[#f4f1ee] section-padding">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl font-serif italic text-botanical uppercase tracking-widest">L'Arte della <span class="text-clay">Miscela.</span></h2>
-            <p class="text-stone-600 text-lg font-bold leading-relaxed max-w-2xl mx-auto italic">Prepariamo tisane personalizzate e fiori di Bach. Scopri l'Angolo del Tè: una selezione di tè rari dai giardini più prestigiosi del mondo.</p>
+            <p class="text-stone-600 text-lg font-bold leading-relaxed max-w-2xl mx-auto italic">Prepariamo tisane personalizzate e fiori di Bach. Scopri l'Angolo del Tè.</p>
             <div class="grid md:grid-cols-2 gap-12 pt-10">
                 <div class="bg-white p-12 rounded-[2rem] shadow-sm">
                     <i data-lucide="flask-conical" class="w-8 h-8 mx-auto mb-6 text-clay"></i>
                     <h4 class="font-black uppercase text-[11px] tracking-widest">Miscele Personalizzate</h4>
-                    <p class="text-xs text-stone-400 mt-4 leading-relaxed italic font-bold">Create al momento in base alle tue specifiche esigenze di salute.</p>
+                    <p class="text-xs text-stone-400 mt-4 leading-relaxed italic font-bold text-center">Create per le tue specifiche esigenze.</p>
                 </div>
                 <div class="bg-white p-12 rounded-[2rem] shadow-sm">
                     <i data-lucide="coffee" class="w-8 h-8 mx-auto mb-6 text-clay"></i>
                     <h4 class="font-black uppercase text-[11px] tracking-widest">Tè dal Mondo</h4>
-                    <p class="text-xs text-stone-400 mt-4 leading-relaxed italic font-bold">Selezioni pregiate da infusione per momenti di puro relax.</p>
+                    <p class="text-xs text-stone-400 mt-4 leading-relaxed italic font-bold text-center">Selezioni pregiate da infusione.</p>
                 </div>
             </div>
         </div>
@@ -206,10 +245,6 @@
                         <div class="w-16 h-16 bg-botanical text-white flex items-center justify-center rounded-full shadow-xl shadow-botanical/20 shrink-0"><i data-lucide="map-pin"></i></div>
                         <div><p class="text-[9px] font-black uppercase tracking-widest text-stone-400 mb-1">Il Santuario</p><p class="text-2xl font-serif italic font-bold uppercase">Viale delle Erbe 7, Milano</p></div>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-white border border-stone-100 text-botanical flex items-center justify-center rounded-full shadow-sm shrink-0"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[9px] font-black uppercase tracking-widest text-stone-400 mb-1">Supporto Erboristico</p><p class="text-2xl font-serif italic font-bold">02 123 456 78</p></div>
-                    </div>
                 </div>
             </div>
             <form class="bg-stone-50 p-12 rounded-[4rem] border border-stone-100 space-y-6 shadow-2xl">
@@ -218,12 +253,6 @@
                     <input type="text" placeholder="NOME" class="w-full p-4 border-b border-stone-200 bg-transparent outline-none text-[10px] font-black uppercase tracking-widest">
                     <input type="email" placeholder="EMAIL" class="w-full p-4 border-b border-stone-200 bg-transparent outline-none text-[10px] font-black uppercase tracking-widest">
                 </div>
-                <select class="w-full p-4 border-b border-stone-200 bg-transparent outline-none text-[10px] font-black uppercase tracking-widest text-stone-400">
-                    <option>DI COSA HAI BISOGNO?</option>
-                    <option>CONSULENZA FITOTERAPICA</option>
-                    <option>COSMESI PERSONALIZZATA</option>
-                </select>
-                <textarea placeholder="DETTAGLI DELLA TUA RICHIESTA..." rows="3" class="w-full p-4 border-b border-stone-200 bg-transparent outline-none text-[10px] font-black uppercase tracking-widest"></textarea>
                 <button class="w-full bg-botanical text-white py-6 rounded-full font-black uppercase text-[10px] tracking-[0.4em] shadow-xl">Invia Messaggio</button>
             </form>
         </div>
@@ -231,7 +260,7 @@
 
     <footer class="py-12 bg-white border-t border-stone-100 text-center px-6">
         <p class="text-stone-300 text-[9px] uppercase tracking-[0.6em] font-black leading-relaxed">
-            &copy; 2026 Anima Verde Erboristeria | Natura & Scienza | P.IVA 0123456789 | LocalTop Demo
+            &copy; 2026 Anima Verde Erboristeria | LocalTop Demo
         </p>
     </footer>
 
@@ -241,6 +270,29 @@
 
     <script>
         lucide.createIcons();
+
+        // Menu Logic
+        const openBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            // Toggle scroll lock on body
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        openBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
     </script>
 </body>
 </html>

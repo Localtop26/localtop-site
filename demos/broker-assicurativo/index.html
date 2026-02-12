@@ -2,78 +2,111 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Elite Broker | Assicurazioni e Gestione del Rischio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfdfd; color: #1e293b; overflow-x: hidden; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #fcfdfd; 
+            color: #1e293b; 
+            overflow-x: hidden; 
+            width: 100%;
+        }
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
         .text-royal-blue { color: #1e3a8a; }
         .bg-royal-blue { background-color: #1e3a8a; }
         .text-accent-gold { color: #bba14f; }
         .border-accent-gold { border-color: #bba14f; }
         
-        /* 1. Immagini Locali */
+        /* Background Hero */
         .hero-shield { 
             background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.6)), 
             url('assets/img1.jpg'); 
-            background-size: cover; background-position: center; 
+            background-size: cover; 
+            background-position: center; 
         }
-        .insurance-card { transition: all 0.4s ease; border: 1px solid #f1f5f9; background: white; border-radius: 1rem; }
-        .insurance-card:hover { border-color: #1e3a8a; transform: translateY(-8px); box-shadow: 0 25px 30px -10px rgba(30, 58, 138, 0.1); }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
+        /* Card Hover Effects */
+        .insurance-card { 
+            transition: all 0.4s ease; 
+            border: 1px solid #f1f5f9; 
+            background: white; 
+            border-radius: 1rem; 
+        }
+        @media (min-width: 769px) {
+            .insurance-card:hover { 
+                border-color: #1e3a8a; 
+                transform: translateY(-8px); 
+                box-shadow: 0 25px 30px -10px rgba(30, 58, 138, 0.1); 
+            }
+        }
+
+        /* Blocco Interazioni (Demo Mode) */
         button, input, select, textarea, .chat-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 12vw, 5.5rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        /* Gestione Sticky Corretta */
+        .promo-banner {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
+        /* Fix per evitare l'overflow laterale su elementi decorativi */
+        * { box-sizing: border-box; }
+
+        /* Ottimizzazione Mobile & Font Scaling */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1 !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3rem) !important; line-height: 1.1 !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .hero-shield { height: auto; min-height: 90vh; padding-top: 80px; padding-bottom: 60px; }
+        }
+
+        /* Floating Nav (Bottom-Left) */
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 150;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 200;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
+            max-width: 180px;
         }
     </style>
 </head>
 <body class="selection:bg-blue-50 selection:text-blue-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
+            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna
         </a>
     </div>
 
-    <div class="bg-royal-blue text-white py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120]">
-        🛡️ INDIPENDENZA E TUTELA: Confrontiamo oltre 25 compagnie per garantirti la polizza migliore 🛡️
+    <div class="promo-banner bg-royal-blue text-white py-2 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.2em] md:tracking-[0.3em] px-4 sticky top-0 z-[130] w-full">
+        🛡️ Oltre 25 compagnie per la tua tutela 🛡️
     </div>
 
-    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-2xl mt-4">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-royal-blue rounded-xl flex items-center justify-center shadow-lg">
-                    <i data-lucide="shield-check" class="text-white w-6 h-6"></i>
+    <nav class="sticky top-[40px] z-[120] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-0 md:mx-10 md:rounded-2xl md:mt-4 transition-all">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-4">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-royal-blue rounded-lg md:rounded-xl flex items-center justify-center shadow-lg">
+                    <i data-lucide="shield-check" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">ELITE<span class="text-accent-gold italic">BROKER</span></span>
-                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Consulting & Risk Management</span>
+                    <span class="text-lg md:text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">ELITE<span class="text-accent-gold italic">BROKER</span></span>
+                    <span class="hidden md:block text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Consulting & Risk Management</span>
                 </div>
             </div>
             
@@ -82,74 +115,73 @@
                 <a href="#business" class="hover:text-royal-blue transition">Azienda</a>
                 <a href="#auto" class="hover:text-royal-blue transition">Auto</a>
                 <a href="#sinistri" class="hover:text-royal-blue transition">Assistenza</a>
-                <a href="#previdenza" class="hover:text-royal-blue transition">Previdenza</a>
             </div>
 
-            <a href="#contatti" class="bg-slate-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-royal-blue transition-all">
-                Analisi del Rischio
+            <a href="#contatti" class="bg-slate-900 text-white px-4 md:px-8 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-royal-blue transition-all shrink-0 text-center">
+                Analisi Rischio
             </a>
         </div>
     </nav>
 
-    <section class="relative h-[80vh] flex items-center hero-shield overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <div class="max-w-3xl space-y-10">
-                <div class="inline-flex items-center gap-2 bg-blue-50 text-royal-blue px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-blue-100">
+    <section class="relative flex items-center hero-shield overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-12 md:py-24">
+            <div class="max-w-3xl space-y-6 md:space-y-10">
+                <div class="inline-flex items-center gap-2 bg-blue-50 text-royal-blue px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest border border-blue-100">
                     Broker Indipendente Iscritto al RUI
                 </div>
-                <h1 class="text-6xl md:text-8xl font-heading font-bold text-slate-900 leading-[0.9] tracking-tighter uppercase">
+                <h1 class="text-slate-900 font-heading font-bold uppercase">
                     Difendiamo <br> il Tuo <span class="text-accent-gold italic font-light italic">Presente.</span>
                 </h1>
-                <p class="text-xl text-slate-600 font-light max-w-xl leading-relaxed border-l-4 border-accent-gold pl-8">
-                    Essere un broker significa stare dalla tua parte, non da quella delle compagnie. Analizziamo i tuoi rischi reali per offrirti coperture sartoriali al miglior prezzo di mercato.
+                <p class="text-lg md:text-xl text-slate-600 font-light max-w-xl leading-relaxed border-l-4 border-accent-gold pl-6 md:pl-8">
+                    Essere un broker significa stare dalla tua parte. Analizziamo i rischi reali per offrirti coperture sartoriali al miglior prezzo.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#contatti" class="bg-royal-blue text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Consulenza Gratuita</a>
-                    <a href="#business" class="bg-white border-2 border-slate-100 text-slate-400 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Servizi per Imprese</a>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#contatti" class="bg-royal-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-full text-center font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Consulenza Gratuita</a>
+                    <a href="#business" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full text-center font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all italic">Servizi Imprese</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="privati" class="py-24 bg-white section-padding">
+    <section id="privati" class="py-20 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 space-y-4">
-                <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase">Protezione <span class="text-royal-blue italic">Persona.</span></h2>
-                <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">La tua vita merita una difesa professionale</p>
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-slate-900 font-heading font-bold uppercase">Protezione <span class="text-royal-blue italic">Persona.</span></h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-[10px]">La tua vita merita una difesa professionale</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-10 insurance-card group">
-                    <i data-lucide="home" class="w-10 h-10 text-royal-blue mb-8"></i>
-                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase">Casa & Patrimonio</h3>
-                    <p class="text-sm text-slate-500 italic">Danni da incendio, furto e responsabilità civile verso terzi per la tua abitazione e i tuoi beni.</p>
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                <div class="p-8 md:p-10 insurance-card">
+                    <i data-lucide="home" class="w-10 h-10 text-royal-blue mb-6 md:mb-8"></i>
+                    <h3 class="text-xl md:text-2xl font-heading font-bold mb-4 uppercase">Casa & Patrimonio</h3>
+                    <p class="text-sm text-slate-500 italic">Danni da incendio, furto e responsabilità civile verso terzi per la tua abitazione.</p>
                 </div>
-                <div class="p-10 insurance-card group border-accent-gold/30">
-                    <i data-lucide="heart-pulse" class="w-10 h-10 text-royal-blue mb-8"></i>
-                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase">Salute & Infortuni</h3>
+                <div class="p-8 md:p-10 insurance-card border-accent-gold/30">
+                    <i data-lucide="heart-pulse" class="w-10 h-10 text-royal-blue mb-6 md:mb-8"></i>
+                    <h3 class="text-xl md:text-2xl font-heading font-bold mb-4 uppercase">Salute & Infortuni</h3>
                     <p class="text-sm text-slate-500 italic">Rimborso spese mediche d'élite e tutela economica in caso di imprevisti fisici.</p>
                 </div>
-                <div class="p-10 insurance-card group">
-                    <i data-lucide="graduation-cap" class="w-10 h-10 text-royal-blue mb-8"></i>
-                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase">Vita & Futuro</h3>
-                    <p class="text-sm text-slate-500 italic">Proteggi il tenore di vita dei tuoi cari e pianifica l'eredità con strumenti fiscalmente efficienti.</p>
+                <div class="p-8 md:p-10 insurance-card">
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-royal-blue mb-6 md:mb-8"></i>
+                    <h3 class="text-xl md:text-2xl font-heading font-bold mb-4 uppercase">Vita & Futuro</h3>
+                    <p class="text-sm text-slate-500 italic">Proteggi il tenore di vita dei tuoi cari e pianifica l'eredità in modo efficiente.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="business" class="py-24 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-10 overflow-hidden section-padding">
-        <div class="max-w-7xl mx-auto px-10 grid lg:grid-cols-2 gap-24 items-center">
-            <div class="space-y-10 py-12">
-                <h2 class="text-6xl font-heading font-bold leading-none uppercase italic">Business <br><span class="text-accent-gold">Risk Management.</span></h2>
-                <p class="text-slate-300 text-lg font-light leading-relaxed italic border-l-4 border-royal-blue pl-8">
-                    Dalla piccola impresa alla multinazionale: identifichiamo i rischi operativi, informatici e legali della tua attività per garantire la continuità del business.
+    <section id="business" class="py-20 bg-slate-900 text-white md:rounded-[4rem] mx-0 md:mx-6 lg:mx-10 overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="space-y-8 md:space-y-10 py-8 md:py-12">
+                <h2 class="text-4xl md:text-6xl font-heading font-bold leading-none uppercase italic">Business <br><span class="text-accent-gold">Risk Management.</span></h2>
+                <p class="text-slate-300 text-base md:text-lg font-light leading-relaxed italic border-l-4 border-royal-blue pl-6 md:pl-8">
+                    Identifichiamo i rischi operativi, informatici e legali della tua attività per garantire la continuità del business.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="flex items-center gap-3"><i data-lucide="shield-alert" class="text-accent-gold"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Cyber Risk</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="briefcase" class="text-accent-gold"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Responsabilità D&O</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="factory" class="text-accent-gold"></i> <span class="text-[10px] font-bold uppercase tracking-widest">All Risks Industriale</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="coins" class="text-accent-gold"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Fideiussioni & Cauzioni</span></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                    <div class="flex items-center gap-3"><i data-lucide="shield-alert" class="text-accent-gold w-4 h-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Cyber Risk</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="briefcase" class="text-accent-gold w-4 h-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Responsabilità D&O</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="factory" class="text-accent-gold w-4 h-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">All Risks Industriale</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="coins" class="text-accent-gold w-4 h-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Fideiussioni</span></div>
                 </div>
             </div>
             <div class="relative hidden lg:block">
@@ -158,99 +190,99 @@
         </div>
     </section>
 
-    <section id="auto" class="py-24 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-            <div class="relative">
-                <img src="assets/img3.jpg" class="rounded-[3rem] shadow-2xl" alt="Premium Car">
-                <div class="absolute -bottom-8 -right-8 bg-royal-blue text-white p-10 rounded-3xl shadow-2xl">
-                    <p class="text-3xl font-bold italic">-20%</p>
-                    <p class="text-[9px] uppercase tracking-widest font-bold text-accent-gold">Risparmio Medio RCA</p>
+    <section id="auto" class="py-20 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="assets/img3.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full" alt="Premium Car">
+                <div class="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 bg-royal-blue text-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-2xl">
+                    <p class="text-2xl md:text-3xl font-bold italic">-20%</p>
+                    <p class="text-[8px] md:text-[9px] uppercase tracking-widest font-bold text-accent-gold whitespace-nowrap">Risparmio Medio RCA</p>
                 </div>
             </div>
-            <div class="space-y-8">
-                <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase italic">Mobilità <span class="text-royal-blue font-normal">Intelligente.</span></h2>
-                <p class="text-slate-500 text-lg italic">Non limitarti al prezzo più basso. Verifichiamo le franchigie, le clausole di rivalsa e i servizi di assistenza stradale per farti viaggiare senza brutte sorprese.</p>
-                <ul class="space-y-4">
-                    <li class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="check" class="text-royal-blue"></i> Flotte Aziendali</li>
-                    <li class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="check" class="text-royal-blue"></i> Auto di Lusso & Epoca</li>
-                    <li class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><i data-lucide="check" class="text-royal-blue"></i> Natanti & Yacht</li>
+            <div class="space-y-6 md:space-y-8 order-1 lg:order-2">
+                <h2 class="text-slate-900 font-heading font-bold uppercase italic">Mobilità <span class="text-royal-blue font-normal">Intelligente.</span></h2>
+                <p class="text-slate-500 text-base md:text-lg italic">Non limitarti al prezzo più basso. Verifichiamo le clausole di rivalsa e i servizi di assistenza stradale per farti viaggiare sereno.</p>
+                <ul class="space-y-3 md:space-y-4">
+                    <li class="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest"><i data-lucide="check" class="text-royal-blue w-4 h-4"></i> Flotte Aziendali</li>
+                    <li class="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest"><i data-lucide="check" class="text-royal-blue w-4 h-4"></i> Auto di Lusso & Epoca</li>
+                    <li class="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest"><i data-lucide="check" class="text-royal-blue w-4 h-4"></i> Natanti & Yacht</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section id="previdenza" class="py-24 bg-slate-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-            <div class="space-y-10">
-                <h2 class="text-6xl font-heading font-bold text-slate-900 leading-none uppercase">Pianifica il <br><span class="text-royal-blue italic">Domani.</span></h2>
-                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-accent-gold pl-8">
-                    La previdenza complementare non è solo una scelta finanziaria, è la garanzia della tua libertà futura. Ottimizza il carico fiscale e costruisci una pensione serena.
+    <section id="previdenza" class="py-20 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+            <div class="space-y-8 md:space-y-10">
+                <h2 class="text-slate-900 font-heading font-bold uppercase">Pianifica il <br><span class="text-royal-blue italic">Domani.</span></h2>
+                <p class="text-slate-500 text-base md:text-lg font-light leading-relaxed italic border-l-4 border-accent-gold pl-6 md:pl-8">
+                    La previdenza complementare è la garanzia della tua libertà futura. Ottimizza il carico fiscale e costruisci una pensione serena.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-                    <div class="flex items-center gap-3"><i data-lucide="piggy-bank" class="text-royal-blue"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Fondi Pensione</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="trending-up" class="text-royal-blue"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Piani di Accumulo</span></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 pt-2">
+                    <div class="flex items-center gap-3"><i data-lucide="piggy-bank" class="text-royal-blue w-5 h-5"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Fondi Pensione</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="trending-up" class="text-royal-blue w-5 h-5"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Piani di Accumulo</span></div>
                 </div>
             </div>
             <div class="relative">
-                <img src="assets/img4.jpg" class="rounded-[3rem] shadow-2xl" alt="Pension Planning">
+                <img src="assets/img4.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full" alt="Pension Planning">
             </div>
         </div>
     </section>
 
-    <section id="sinistri" class="py-24 bg-white border-y border-slate-100 section-padding">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-10">
-            <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase">Al Tuo Fianco, <br><span class="text-royal-blue italic">Sempre.</span></h2>
-            <p class="text-slate-500 text-xl font-light leading-relaxed italic">
-                La polizza si valuta nel momento del bisogno. Il nostro ufficio sinistri dedicato gestisce per te tutta la burocrazia, interloquendo direttamente con i periti per massimizzare il tuo indennizzo.
+    <section id="sinistri" class="py-20 bg-white border-y border-slate-100 section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-8 md:space-y-10">
+            <h2 class="text-slate-900 font-heading font-bold uppercase">Al Tuo Fianco, <br><span class="text-royal-blue italic">Sempre.</span></h2>
+            <p class="text-slate-500 text-lg md:text-xl font-light leading-relaxed italic">
+                Il nostro ufficio sinistri dedicato gestisce per te tutta la burocrazia, interloquendo direttamente con i periti per massimizzare il tuo indennizzo.
             </p>
             <div class="pt-4">
-                <span class="text-[10px] font-bold uppercase tracking-[0.4em] border border-royal-blue/20 px-8 py-4 rounded-full text-royal-blue">Supporto Legale & Peritale Incluso</span>
+                <span class="inline-block text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.4em] border border-royal-blue/20 px-6 md:px-8 py-3 md:py-4 rounded-full text-royal-blue">Supporto Legale & Peritale Incluso</span>
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-7xl font-heading font-bold text-slate-900 leading-none tracking-tighter uppercase italic italic">Proteggi <br><span class="text-royal-blue underline decoration-accent-gold underline-offset-8">Ora.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-slate-100 text-royal-blue rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">HQ Division</p><p class="text-xl font-bold uppercase tracking-tighter text-slate-900">Corso Europa 15, Milano</p></div>
+    <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-10 md:space-y-12 text-center lg:text-left">
+                <h2 class="text-5xl md:text-7xl font-heading font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Proteggi <br><span class="text-royal-blue underline decoration-accent-gold underline-offset-8">Ora.</span></h2>
+                <div class="space-y-6 md:space-y-8 inline-block lg:block">
+                    <div class="flex items-center gap-6 text-left">
+                        <div class="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-slate-100 text-royal-blue rounded-xl md:rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">HQ Division</p><p class="text-lg md:text-xl font-bold uppercase tracking-tighter text-slate-900">Corso Europa 15, Milano</p></div>
                     </div>
-                    <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-royal-blue text-white rounded-2xl flex items-center justify-center shadow-lg"><i data-lucide="mail"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Corporate & Personal</p><p class="text-xl font-bold italic text-slate-900">info@elitebroker.it</p></div>
+                    <div class="flex items-center gap-6 text-left">
+                        <div class="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-royal-blue text-white rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg"><i data-lucide="mail"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Corporate & Personal</p><p class="text-lg md:text-xl font-bold italic text-slate-900">info@elitebroker.it</p></div>
                     </div>
                 </div>
             </div>
-            <form class="bg-slate-50 p-12 rounded-[3rem] shadow-2xl space-y-6">
-                <p class="text-[10px] font-black uppercase tracking-widest text-royal-blue mb-4 text-center italic">Richiedi una revisione delle tue polizze attuali (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="NOME E COGNOME" class="w-full p-4 bg-white rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+            <form class="bg-slate-50 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl space-y-4 md:space-y-6">
+                <p class="text-[9px] font-black uppercase tracking-widest text-royal-blue mb-2 text-center italic">Richiedi revisione polizze (Demo Mode)</p>
+                <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+                    <input type="text" placeholder="NOME E COGNOME" class="w-full p-4 bg-white rounded-xl md:rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white rounded-xl md:rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
                 </div>
-                <select class="w-full p-4 bg-white rounded-2xl border-none outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                <select class="w-full p-4 bg-white rounded-xl md:rounded-2xl border-none outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
                     <option>AMBITO DI PROTEZIONE</option>
                     <option>AZIENDA & PROFESSIONE</option>
                     <option>SALUTE & PERSONA</option>
                     <option>VEICOLI & MOBILITÀ</option>
                     <option>PREVIDENZA & RISPARMIO</option>
                 </select>
-                <textarea placeholder="DESCRIVI LE TUE NECESSITÀ..." rows="3" class="w-full p-4 bg-white rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-royal-blue text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Richiedi Analisi del Rischio</button>
+                <textarea placeholder="DESCRIVI LE TUE NECESSITÀ..." rows="3" class="w-full p-4 bg-white rounded-xl md:rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-royal-blue text-white py-5 md:py-6 rounded-full font-black uppercase text-[10px] md:text-[11px] tracking-[0.2em] md:tracking-[0.3em] shadow-xl">Richiedi Analisi del Rischio</button>
             </form>
         </div>
     </section>
 
-    <footer class="py-12 bg-white border-t border-slate-100 text-center">
-        <p class="text-slate-300 text-[9px] uppercase tracking-[0.6em] font-bold">
+    <footer class="py-10 bg-white border-t border-slate-100 text-center px-4">
+        <p class="text-slate-300 text-[8px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.6em] font-bold leading-loose">
             &copy; 2026 Elite Broker Consulting | Iscr. RUI n. B012345678 | P.IVA 0123456789
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    <div class="chat-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-[150]">
+        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>

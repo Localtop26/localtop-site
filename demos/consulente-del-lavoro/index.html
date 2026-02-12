@@ -8,12 +8,11 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Lexend:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fdfdfd; color: #334155; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #fdfdfd; color: #334155; overflow-x: hidden; width: 100%; }
         h1, h2, h3, .font-lex { font-family: 'Lexend', sans-serif; }
         .text-petrol { color: #0e7490; }
         .bg-petrol { background-color: #0e7490; }
         
-        /* 1. Immagini Locali (assets/img1.jpg, ecc. in ordine di apparizione) */
         .hero-office { 
             background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), 
             url('assets/img1.jpg'); 
@@ -21,21 +20,31 @@
         }
         .consult-card { transition: all 0.3s ease; border-top: 4px solid transparent; }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .chat-widget-demo {
+        /* Demo Mode Constraints */
+        button:not(#menu-toggle), input, select, textarea, .chat-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(-100%);
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: clamp(2.5rem, 12vw, 4.5rem) !important; line-height: 1 !important; }
             h2 { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            
+            /* Prevent horizontal overflow on small screens */
+            .max-w-7xl { overflow-x: hidden; }
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
@@ -58,19 +67,19 @@
         </a>
     </div>
 
-    <div class="bg-slate-900 text-slate-400 py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120] border-b border-white/5">
+    <div id="promo-bar" class="bg-slate-900 text-slate-400 py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120] border-b border-white/5">
         ⚖️ AGGIORNAMENTO NORMATIVO: Analisi Legge di Bilancio 2026 e Nuovi Esoneri Contributivi ⚖️
     </div>
 
-    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 mt-4 rounded-sm">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-petrol flex items-center justify-center text-white rounded-md">
-                    <i data-lucide="briefcase" class="w-6 h-6"></i>
+    <nav class="sticky top-[35px] z-[110] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-0 md:mx-10 mt-0 md:mt-4 rounded-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-3">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-petrol flex items-center justify-center text-white rounded-md shrink-0">
+                    <i data-lucide="briefcase" class="w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-lex font-bold text-slate-900 tracking-tighter uppercase">STUDIO<span class="text-petrol">LABOR</span></span>
-                    <span class="text-[8px] font-bold uppercase tracking-[0.5em] text-slate-400 italic">Consulenza del Lavoro & HR</span>
+                    <span class="text-xl md:text-2xl font-lex font-bold text-slate-900 tracking-tighter uppercase">STUDIO<span class="text-petrol">LABOR</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] text-slate-400 italic">Consulenza del Lavoro & HR</span>
                 </div>
             </div>
             
@@ -81,11 +90,26 @@
                 <a href="#audit" class="hover:text-petrol transition">Audit</a>
             </div>
 
-            <a href="#contatti" class="bg-slate-900 text-white px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-petrol transition-all shadow-md">
-                Richiedi Check-up
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#contatti" class="hidden sm:inline-block bg-slate-900 text-white px-6 md:px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-petrol transition-all shadow-md">
+                    Richiedi Check-up
+                </a>
+                <button id="menu-toggle" class="lg:hidden text-slate-900 p-2 pointer-events-auto cursor-pointer">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[105] bg-white pt-32 px-10 lg:hidden">
+        <div class="flex flex-col space-y-8 text-center">
+            <a href="#payroll" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Payroll</a>
+            <a href="#welfare" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Welfare</a>
+            <a href="#crisi" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Crisi d'Impresa</a>
+            <a href="#audit" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Audit</a>
+            <a href="#contatti" class="mobile-link bg-petrol text-white py-4 rounded-sm font-bold uppercase tracking-widest text-sm">Contattaci Ora</a>
+        </div>
+    </div>
 
     <section class="relative h-[75vh] flex items-center hero-office overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
@@ -131,13 +155,13 @@
     </section>
 
     <section id="crisi" class="py-24 bg-slate-100 border-y border-slate-200 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <div class="space-y-10">
-                <h2 class="text-6xl font-lex font-bold text-slate-900 leading-none uppercase italic">Sicurezza <br><span class="text-petrol">Contrattuale.</span></h2>
+                <h2 class="text-5xl md:text-6xl font-lex font-bold text-slate-900 leading-none uppercase italic">Sicurezza <br><span class="text-petrol">Contrattuale.</span></h2>
                 <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-slate-900 pl-8">
                     Gestiamo le fasi delicate della vita aziendale: dagli ammortizzatori sociali (CIGO/CIGS) alle procedure di licenziamento individuale e collettivo, con rigore normativo.
                 </p>
-                <div class="grid grid-cols-2 gap-6 pt-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
                     <div class="flex items-center gap-3"><i data-lucide="shield" class="text-petrol"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Assistenza Vertenze</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="trending-down" class="text-petrol"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Riduzione Costi</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="file-check" class="text-petrol"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Check-up Giuslavoristico</span></div>
@@ -145,7 +169,7 @@
                 </div>
             </div>
             <div class="relative">
-                <img src="assets/img2.jpg" class="rounded-sm shadow-2xl grayscale transition duration-1000">
+                <img src="assets/img2.jpg" class="w-full h-auto rounded-sm shadow-2xl grayscale transition duration-1000" alt="Consultancy Image">
             </div>
         </div>
     </section>
@@ -157,13 +181,13 @@
                 Verifichiamo la regolarità della tua azienda per prevenire sanzioni ispettive. Una due-diligence completa sulla documentazione e sulle procedure HR per dormire sonni tranquilli.
             </p>
             <div class="pt-8">
-                <span class="text-[10px] font-bold uppercase tracking-[0.4em] border border-slate-200 px-8 py-4 rounded-sm text-slate-400">Consulente Iscritto all'Ordine Nazionale</span>
+                <span class="text-[10px] font-bold uppercase tracking-[0.4em] border border-slate-200 px-8 py-4 rounded-sm text-slate-400 block sm:inline-block">Consulente Iscritto all'Ordine Nazionale</span>
             </div>
         </div>
     </section>
 
     <section class="py-24 bg-slate-900 text-white section-padding">
-        <div class="max-w-7xl mx-auto px-10 grid lg:grid-cols-2 gap-20 items-center">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div class="space-y-8">
                 <h2 class="text-5xl font-lex font-bold leading-none uppercase italic">Cloud <br><span class="text-petrol">HR Portal.</span></h2>
                 <p class="text-slate-400 text-lg font-light leading-relaxed">
@@ -175,30 +199,30 @@
                     <i data-lucide="lock" class="text-petrol"></i>
                 </div>
             </div>
-            <div class="bg-white/5 p-12 rounded-sm border border-white/10 text-center">
+            <div class="bg-white/5 p-8 md:p-12 rounded-sm border border-white/10 text-center">
                 <h4 class="font-lex font-bold mb-6 uppercase text-petrol">Accesso Studi</h4>
                 <p class="text-xs text-slate-400 italic mb-8">Piattaforma integrata per la gestione delle presenze e scambio documentale protetto.</p>
-                <button class="bg-petrol text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest transition">Log-in Portale</button>
+                <button class="w-full sm:w-auto bg-petrol text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest transition">Log-in Portale</button>
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+    <section id="contatti" class="py-24 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20">
             <div class="space-y-12">
-                <h2 class="text-7xl font-lex font-bold text-slate-900 leading-none tracking-tighter uppercase italic italic">Solidità <br><span class="text-petrol underline underline-offset-8">Operativa.</span></h2>
+                <h2 class="text-5xl md:text-7xl font-lex font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Solidità <br><span class="text-petrol underline underline-offset-8">Operativa.</span></h2>
                 <div class="space-y-10">
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-slate-100 text-petrol rounded-sm flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Lo Studio</p><p class="text-2xl font-lex font-bold">Via Giotto 12, 20100 Milano</p></div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8">
+                        <div class="w-16 h-16 bg-slate-100 text-petrol rounded-sm flex items-center justify-center shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Lo Studio</p><p class="text-xl md:text-2xl font-lex font-bold">Via Giotto 12, 20100 Milano</p></div>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-slate-900 text-white rounded-sm flex items-center justify-center shadow-lg"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Centralino HR</p><p class="text-2xl font-lex font-bold italic">02 123 456 78</p></div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8">
+                        <div class="w-16 h-16 bg-slate-900 text-white rounded-sm flex items-center justify-center shadow-lg shrink-0"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Centralino HR</p><p class="text-xl md:text-2xl font-lex font-bold italic">02 123 456 78</p></div>
                     </div>
                 </div>
             </div>
-            <form class="bg-slate-50 p-12 rounded-sm shadow-2xl space-y-6">
+            <form class="bg-slate-50 p-8 md:p-12 rounded-sm shadow-2xl space-y-6">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-petrol mb-4 text-center italic">Consulenza preliminare (Demo Mode)</p>
                 <div class="grid md:grid-cols-2 gap-6">
                     <input type="text" placeholder="RAGIONE SOCIALE" class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase tracking-widest">
@@ -224,7 +248,40 @@
     </div>
 
     <script>
+        // Initialize Icons
         lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const menuIcon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const isActive = mobileMenu.classList.contains('active');
+            
+            // Toggle body scroll
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
+            
+            // Change icon
+            if (isActive) {
+                menuToggle.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+            } else {
+                menuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+            }
+            lucide.createIcons();
+        });
+
+        // Close menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                menuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                lucide.createIcons();
+            });
+        });
     </script>
 </body>
 </html>

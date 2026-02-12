@@ -2,115 +2,133 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Credit Solution | Broker Mutui & Consulenza Creditizia - Demo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #ffffff; 
+            color: #1e293b; 
+            overflow-x: hidden; 
+            width: 100%;
+        }
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
         .text-emerald-finance { color: #059669; }
         .bg-emerald-finance { background-color: #059669; }
         
-        /* 1. Sostituzione Immagini con percorsi locali */
+        /* Background Hero */
         .hero-finance { 
-            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), 
+            background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.8)), 
             url('assets/img1.jpg'); 
-            background-size: cover; background-position: center; 
+            background-size: cover; 
+            background-position: center; 
         }
+
         .finance-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; background: white; border-radius: 1rem; }
         .finance-card:hover { border-color: #059669; transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(5, 150, 105, 0.1); }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
+        /* Blocco Interazioni (Demo Mode) */
         button, input, select, textarea, .chat-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
-        }
-
-        /* 2. Bottoni Floating (Bottom-Left) */
+        /* Navigazione Floating */
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 150;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 200;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
+            max-width: calc(100vw - 3rem);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .hero-finance { min-height: 90vh; }
+        }
+
+        /* Prevenzione overflow orizzontale stretto */
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
         }
     </style>
 </head>
 <body class="selection:bg-emerald-50 selection:text-emerald-900">
 
+    <div class="bg-slate-900 text-white py-2.5 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.15em] px-4 sticky top-0 z-[150] w-full">
+        🏦 AGGIORNAMENTO TASSI 2026: Mutui Under 36 e Green 🏦
+    </div>
+
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform active:scale-95">
+            <i data-lucide="zap" class="w-3.5 h-3.5"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform active:scale-95">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Esempi
         </a>
     </div>
 
-    <div class="bg-slate-900 text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[120]">
-        🏦 AGGIORNAMENTO TASSI 2026: Scopri le nuove agevolazioni per Mutui Under 36 e Green 🏦
-    </div>
-
-    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-xl mt-4">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-emerald-finance rounded-lg flex items-center justify-center shadow-lg">
-                    <i data-lucide="bar-chart-3" class="text-white w-6 h-6"></i>
+    <nav class="sticky top-[34px] z-[140] bg-white/95 backdrop-blur-md h-16 md:h-20 flex items-center border-b border-slate-100 shadow-sm mx-2 md:mx-10 rounded-xl mt-3">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-2">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-emerald-finance rounded-lg flex items-center justify-center shadow-lg">
+                    <i data-lucide="bar-chart-3" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">CREDIT<span class="text-emerald-finance">SOLUTION</span></span>
-                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Mediazione Creditizia Professionale</span>
+                    <span class="text-lg md:text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">CREDIT<span class="text-emerald-finance">SOLUTION</span></span>
+                    <span class="text-[6px] md:text-[8px] font-bold uppercase tracking-[0.2em] md:tracking-[0.4em] text-slate-400">Broker Professionale</span>
                 </div>
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="#mutui" class="hover:text-emerald-finance transition">Mutui</a>
-                <a href="#cessione" class="hover:text-emerald-finance transition">Cessione Quinto</a>
+                <a href="#cessione" class="hover:text-emerald-finance transition">Cessione</a>
                 <a href="#prestiti" class="hover:text-emerald-finance transition">Prestiti</a>
                 <a href="#consolidamento" class="hover:text-emerald-finance transition">Consolidamento</a>
             </div>
 
-            <a href="#contatti" class="bg-slate-900 text-white px-8 py-3 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-emerald-finance transition-all shadow-md">
-                Verifica Fattibilità
+            <a href="#contatti" class="bg-slate-900 text-white px-4 md:px-8 py-2.5 md:py-3 rounded-lg text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-emerald-finance transition-all shadow-md whitespace-nowrap">
+                Verifica <span class="hidden xs:inline">Fattibilità</span>
             </a>
         </div>
     </nav>
 
-    <section class="relative h-[80vh] flex items-center hero-finance overflow-hidden section-padding">
+    <section class="relative min-h-[80vh] flex items-center hero-finance overflow-hidden py-12">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <div class="max-w-3xl space-y-8">
-                <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-finance px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-emerald-100">
-                    Oltre 15 Istituti Bancari in Convenzione
+            <div class="max-w-3xl space-y-6 md:space-y-8">
+                <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-finance px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest border border-emerald-100">
+                    Oltre 15 Istituti Bancari
                 </div>
-                <h1 class="text-6xl md:text-8xl font-heading font-bold text-slate-900 leading-[0.9] tracking-tighter uppercase">
+                <h1 class="text-5xl md:text-8xl font-heading font-bold text-slate-900 leading-[0.95] tracking-tighter uppercase">
                     Il Tuo Mutuo, <br> alle <span class="text-emerald-finance italic">Tue Condizioni.</span>
                 </h1>
-                <p class="text-xl text-slate-600 font-light max-w-xl leading-relaxed border-l-4 border-emerald-finance pl-8">
-                    Non farti dire di no dalla tua banca. Analizziamo il tuo profilo per trovare il tasso più basso e la banca più incline a finanziare il tuo progetto immobiliare o personale.
+                <p class="text-lg md:text-xl text-slate-600 font-light max-w-xl leading-relaxed border-l-4 border-emerald-finance pl-6 md:pl-8">
+                    Non farti dire di no dalla tua banca. Troviamo il tasso più basso e la banca più incline a finanziare il tuo progetto.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#contatti" class="bg-emerald-finance text-white px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Consulenza Gratuita</a>
-                    <a href="#mutui" class="bg-white border-2 border-slate-100 text-slate-400 px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Scopri i Servizi</a>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#contatti" class="bg-emerald-finance text-white px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase text-xs tracking-widest shadow-xl text-center">Consulenza Gratuita</a>
+                    <a href="#mutui" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase text-xs tracking-widest text-center italic">Scopri i Servizi</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="mutui" class="py-24 bg-white section-padding">
+    <section id="mutui" class="py-16 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="p-8 finance-card group">
                     <i data-lucide="home" class="w-10 h-10 text-emerald-finance mb-6"></i>
                     <h3 class="text-xl font-heading font-bold mb-4 uppercase">Mutuo Acquisto</h3>
@@ -119,7 +137,7 @@
                 <div id="cessione" class="p-8 finance-card group">
                     <i data-lucide="pie-chart" class="w-10 h-10 text-emerald-finance mb-6"></i>
                     <h3 class="text-xl font-heading font-bold mb-4 uppercase">Cessione Quinto</h3>
-                    <p class="text-sm text-slate-500 italic">Per dipendenti e pensionati. Liquidità immediata senza motivazione d'acquisto.</p>
+                    <p class="text-sm text-slate-500 italic">Per dipendenti e pensionati. Liquidità immediata senza motivazione.</p>
                 </div>
                 <div id="prestiti" class="p-8 finance-card group">
                     <i data-lucide="wallet" class="w-10 h-10 text-emerald-finance mb-6"></i>
@@ -129,106 +147,106 @@
                 <div id="consolidamento" class="p-8 finance-card group">
                     <i data-lucide="git-merge" class="w-10 h-10 text-emerald-finance mb-6"></i>
                     <h3 class="text-xl font-heading font-bold mb-4 uppercase">Consolidamento</h3>
-                    <p class="text-sm text-slate-500 italic">Unisci tutti i tuoi piccoli prestiti in un'unica rata mensile più bassa.</p>
+                    <p class="text-sm text-slate-500 italic">Unisci tutti i tuoi prestiti in un'unica rata mensile più bassa.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-slate-50 border-y border-slate-100 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-            <div class="space-y-10">
-                <h2 class="text-6xl font-heading font-bold text-slate-900 leading-none uppercase italic">Più Scelta, <br><span class="text-emerald-finance">Meno Pensieri.</span></h2>
-                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-emerald-finance pl-8">
-                    Perché limitarsi a una sola banca? Il Broker agisce nel tuo interesse, confrontando decine di istituti per garantirti le migliori condizioni di mercato in termini di TAN, TAEG e costi accessori.
+    <section class="py-16 md:py-24 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+            <div class="space-y-8 md:space-y-10">
+                <h2 class="text-5xl md:text-6xl font-heading font-bold text-slate-900 leading-none uppercase italic">Più Scelta, <br><span class="text-emerald-finance">Meno Pensieri.</span></h2>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-emerald-finance pl-6 md:pl-8">
+                    Il Broker agisce nel tuo interesse, confrontando decine di istituti per garantirti le migliori condizioni di mercato.
                 </p>
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="flex items-center gap-3"><i data-lucide="shield-check" class="text-emerald-finance"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Iscrizione OAM</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="trending-down" class="text-emerald-finance"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Tassi Agevolati</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="clock" class="text-emerald-finance"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Esito in 48 Ore</span></div>
-                    <div class="flex items-center gap-3"><i data-lucide="heart-handshake" class="text-emerald-finance"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">Zero Spese Anticipate</span></div>
+                <div class="grid grid-cols-2 gap-4 md:gap-6">
+                    <div class="flex items-center gap-3"><i data-lucide="shield-check" class="text-emerald-finance w-5 h-5"></i> <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-600">Iscrizione OAM</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="trending-down" class="text-emerald-finance w-5 h-5"></i> <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-600">Tassi Agevolati</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="clock" class="text-emerald-finance w-5 h-5"></i> <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-600">Esito 48 Ore</span></div>
+                    <div class="flex items-center gap-3"><i data-lucide="heart-handshake" class="text-emerald-finance w-5 h-5"></i> <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-600">Zero Spese Ant.</span></div>
                 </div>
             </div>
-            <div class="relative">
-                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[400px] md:h-auto" alt="Consultancy">
+            <div class="relative mt-8 lg:mt-0">
+                <img src="assets/img2.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover h-[300px] md:h-[500px]" alt="Consultancy">
             </div>
         </div>
     </section>
 
-    <section id="convenzioni" class="py-24 bg-white section-padding">
+    <section id="convenzioni" class="py-16 md:py-24 bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-4xl font-heading font-bold text-slate-900 uppercase italic">I Nostri <span class="text-emerald-finance">Partner.</span></h2>
-            <p class="text-slate-400 text-xl font-light leading-relaxed italic">
-                Collaboriamo con i principali gruppi bancari nazionali ed internazionali per offrirti canali preferenziali e tempi di istruttoria ridotti.
-            </p>
-            <div class="flex flex-wrap justify-center gap-12 opacity-30 grayscale group-hover:grayscale-0 transition duration-1000">
-                <span class="text-2xl font-black italic tracking-tighter">BancaIntesa</span>
-                <span class="text-2xl font-black italic tracking-tighter">UniCredit</span>
-                <span class="text-2xl font-black italic tracking-tighter">BNL-Paribas</span>
-                <span class="text-2xl font-black italic tracking-tighter">Credem</span>
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-slate-900 uppercase italic">I Nostri <span class="text-emerald-finance">Partner.</span></h2>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-30 grayscale">
+                <span class="text-xl md:text-2xl font-black italic tracking-tighter uppercase">BancaIntesa</span>
+                <span class="text-xl md:text-2xl font-black italic tracking-tighter uppercase">UniCredit</span>
+                <span class="text-xl md:text-2xl font-black italic tracking-tighter uppercase">BNL-Paribas</span>
+                <span class="text-xl md:text-2xl font-black italic tracking-tighter uppercase">Credem</span>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-10 section-padding">
+    <section class="py-16 md:py-24 bg-slate-900 text-white rounded-[2.5rem] md:rounded-[4rem] mx-4 md:mx-10">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
-            <i data-lucide="quote" class="w-12 h-12 mx-auto text-emerald-finance opacity-50"></i>
-            <h2 class="text-3xl font-heading font-bold uppercase italic">"Grazie a loro ho ottenuto il mutuo per la mia prima casa quando la mia banca storica mi aveva rifiutato."</h2>
+            <i data-lucide="quote" class="w-10 h-10 md:w-12 md:h-12 mx-auto text-emerald-finance opacity-50"></i>
+            <h2 class="text-2xl md:text-3xl font-heading font-bold uppercase italic leading-tight">"Grazie a loro ho ottenuto il mutuo per la mia prima casa quando la mia banca storica mi aveva rifiutato."</h2>
             <div class="flex items-center justify-center gap-4">
-                <div class="w-12 h-12 bg-emerald-finance rounded-full"></div>
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-finance rounded-full"></div>
                 <div class="text-left leading-none">
-                    <p class="font-bold uppercase text-xs">Marco Valenti</p>
-                    <p class="text-[9px] text-slate-400 mt-1">Acquisto Prima Casa 2026</p>
+                    <p class="font-bold uppercase text-[10px] md:text-xs">Marco Valenti</p>
+                    <p class="text-[8px] md:text-[9px] text-slate-400 mt-1">Acquisto Prima Casa 2026</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-7xl font-heading font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Analisi <br><span class="text-emerald-finance underline underline-offset-8">Gratuita.</span></h2>
-                <div class="space-y-10">
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-slate-900 text-emerald-finance rounded-xl flex items-center justify-center shadow-lg"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Ufficio Consulenza</p><p class="text-xl font-bold uppercase tracking-tighter text-slate-900">Via del Risparmio 22, Milano</p></div>
+    <section id="contatti" class="py-16 md:py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
+            <div class="space-y-8 md:space-y-12">
+                <h2 class="text-5xl md:text-7xl font-heading font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Analisi <br><span class="text-emerald-finance underline underline-offset-8">Gratuita.</span></h2>
+                <div class="space-y-8 md:space-y-10">
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-slate-900 text-emerald-finance rounded-xl flex items-center justify-center shadow-lg shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Ufficio Consulenza</p><p class="text-lg md:text-xl font-bold uppercase tracking-tighter text-slate-900">Via del Risparmio 22, Milano</p></div>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-emerald-finance text-white rounded-xl flex items-center justify-center shadow-lg"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Consulente Diretto</p><p class="text-2xl font-bold italic text-slate-900">02 876 543 21</p></div>
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-emerald-finance text-white rounded-xl flex items-center justify-center shadow-lg shrink-0"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Consulente Diretto</p><p class="text-xl md:text-2xl font-bold italic text-slate-900">02 876 543 21</p></div>
                     </div>
                 </div>
-                <div class="h-64 rounded-3xl overflow-hidden hidden md:block">
+                <div class="h-64 rounded-3xl overflow-hidden hidden lg:block">
                     <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Team Office">
                 </div>
             </div>
-            <form class="bg-slate-50 p-12 rounded-[3rem] shadow-2xl space-y-6">
-                <p class="text-[10px] font-bold uppercase tracking-widest text-emerald-finance mb-4 text-center italic">Richiedi un'analisi di fattibilità (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="NOME E COGNOME" class="w-full p-4 bg-white rounded-xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white rounded-xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
-                </div>
-                <select class="w-full p-4 bg-white rounded-xl border-none outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
-                    <option>DI QUANTA LIQUIDITÀ HAI BISOGNO?</option>
-                    <option>FINO A 30.000 € (PRESTITO)</option>
-                    <option>DA 30.000 A 100.000 €</option>
-                    <option>OLTRE 100.000 € (MUTUO)</option>
-                    <option>CONSOLIDAMENTO DEBITI</option>
-                </select>
-                <textarea placeholder="DETTAGLI AGGIUNTIVI..." rows="3" class="w-full p-4 bg-white rounded-xl border-none outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-emerald-finance text-white py-6 rounded-xl font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
-            </form>
+            
+            <div class="relative">
+                <form class="bg-slate-50 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl space-y-6 w-full">
+                    <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-emerald-finance mb-4 text-center italic">Richiedi analisi di fattibilità (Demo)</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="NOME E COGNOME" class="w-full p-4 bg-white rounded-xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                        <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white rounded-xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
+                    </div>
+                    <select class="w-full p-4 bg-white rounded-xl border-none outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                        <option>DI QUANTA LIQUIDITÀ HAI BISOGNO?</option>
+                        <option>FINO A 30.000 € (PRESTITO)</option>
+                        <option>DA 30.000 A 100.000 €</option>
+                        <option>OLTRE 100.000 € (MUTUO)</option>
+                        <option>CONSOLIDAMENTO DEBITI</option>
+                    </select>
+                    <textarea placeholder="DETTAGLI AGGIUNTIVI..." rows="3" class="w-full p-4 bg-white rounded-xl border-none outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                    <button class="w-full bg-emerald-finance text-white py-5 md:py-6 rounded-xl font-black uppercase text-[10px] md:text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
-        <p class="text-slate-300 text-[9px] uppercase tracking-[0.6em] font-bold">
+        <p class="text-slate-300 text-[8px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.6em] font-bold leading-loose">
             &copy; 2026 Credit Solution | Mediatore Creditizio OAM M123 | P.IVA 0123456789 | Trasparenza Bancaria
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    <div class="chat-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-[150]">
+        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>

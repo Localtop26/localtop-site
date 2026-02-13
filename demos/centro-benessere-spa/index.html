@@ -8,36 +8,50 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfbf9; color: #4a453e; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfbf9; color: #4a453e; overflow-x: hidden; width: 100%; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .text-sage { color: #8ba88e; }
         .bg-sage { background-color: #8ba88e; }
         
-        /* 1. Immagini Locali (assets/img1.jpg, ecc. in ordine di apparizione) */
+        /* Immagini: rimosso ogni filtro grayscale */
         .hero-spa { 
-            background: linear-gradient(rgba(252,251,249,0.4), rgba(252,251,249,0.2)), 
+            background: linear-gradient(rgba(252,251,249,0.3), rgba(252,251,249,0.1)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
         
+        img { filter: none !important; grayscale: 0 !important; }
+
         .wellness-card { transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); border-radius: 2rem; background: white; border: 1px solid #f1eeea; }
         .wellness-card:hover { transform: translateY(-10px); border-color: #8ba88e; }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .chat-widget-demo {
+        /* Interazioni Demo */
+        button, input, select, textarea, .chat-widget-demo, .mobile-nav-link {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
-
-        /* 5. Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 12vw, 5.5rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        
+        /* Sblocco il menu mobile per la navigazione demo */
+        #menu-toggle, #mobile-menu a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
+        /* Ottimizzazione Mobile */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 12vw, 5.5rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            
+            /* Bottoni Localtop più piccoli SOLO su mobile */
+            .demo-nav-container a {
+                padding: 0.75rem 1rem !important;
+                font-size: 8px !important;
+            }
+        }
+
+        /* Bottoni Localtop Desktop (Ripristinati) */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
@@ -47,32 +61,42 @@
             flex-direction: column;
             gap: 0.75rem;
         }
+
+        .demo-nav-container a {
+            padding: 1rem 1.5rem;
+            font-size: 10px;
+        }
+
+        /* Gestione Menu Mobile */
+        #mobile-menu {
+            transform: translateY(-100%);
+            transition: transform 0.4s ease-in-out;
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="selection:bg-sage selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white rounded-full font-bold uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] rounded-full font-bold uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
         </a>
     </div>
 
-    <div class="bg-sage text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[120]">
-        🌿 REGALA IL BENESSERE: Scopri i nuovi Gift Voucher digitali 🌿
-    </div>
-
-    <nav class="sticky top-10 z-[100] bg-white/80 backdrop-blur-md h-24 flex items-center border-b border-stone-100 mx-4 md:mx-10 rounded-2xl mt-4">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-sage/10 rounded-full flex items-center justify-center text-sage">
-                    <i data-lucide="flower" class="w-6 h-6"></i>
+    <nav class="sticky top-4 z-[100] bg-white/90 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-stone-100 mx-4 md:mx-10 rounded-2xl shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-3 shrink-0">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-sage/10 rounded-full flex items-center justify-center text-sage">
+                    <i data-lucide="flower" class="w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-serif italic text-stone-800 tracking-tighter">Sinfonia<span class="text-sage">Sensi</span></span>
-                    <span class="text-[8px] font-bold uppercase tracking-[0.5em] text-stone-400">Wellness Sanctuary</span>
+                    <span class="text-xl md:text-2xl font-serif italic text-stone-800 tracking-tighter">Sinfonia<span class="text-sage">Sensi</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.4em] text-stone-400">Wellness Sanctuary</span>
                 </div>
             </div>
             
@@ -83,11 +107,30 @@
                 <a href="#dayspa" class="hover:text-sage transition">Day SPA</a>
             </div>
 
-            <a href="#contatti" class="bg-stone-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-sage transition-all shadow-md">
-                Prenota un Sogno
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#contatti" class="hidden md:block bg-stone-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-sage transition-all shadow-md">
+                    Prenota un Sogno
+                </a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-stone-800">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-white lg:hidden flex flex-col p-8">
+        <div class="flex justify-between items-center mb-12">
+            <span class="text-xl font-serif italic text-stone-800">Sinfonia<span class="text-sage">Sensi</span></span>
+            <button id="menu-close" class="p-2"><i data-lucide="x" class="w-8 h-8"></i></button>
+        </div>
+        <div class="flex flex-col gap-8 text-2xl font-serif italic text-stone-800">
+            <a href="#percorso" onclick="closeMenu()">Il Percorso SPA</a>
+            <a href="#trattamenti" onclick="closeMenu()">Rituali Benessere</a>
+            <a href="#private" onclick="closeMenu()">Private Sanctuary</a>
+            <a href="#dayspa" onclick="closeMenu()">Pacchetti Day SPA</a>
+            <a href="#contatti" onclick="closeMenu()" class="text-sage">Contatti</a>
+        </div>
+    </div>
 
     <section class="relative h-[85vh] flex items-center hero-spa overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
@@ -95,7 +138,7 @@
                 <h1 class="text-7xl md:text-9xl font-serif italic text-stone-800 leading-[0.85] tracking-tighter">
                     Ritrova il tuo <br> <span class="text-sage font-light">Silenzio.</span>
                 </h1>
-                <p class="text-xl text-stone-600 font-light max-w-lg leading-relaxed italic border-l-2 border-sage pl-8">
+                <p class="text-xl text-stone-600 font-light max-w-lg leading-relaxed italic border-l-2 border-sage pl-8 mx-auto md:mx-0">
                     Un tempio moderno dedicato alla cura dell'anima. Lasciati avvolgere dal calore, dall'acqua e da mani esperte che conoscono il segreto del relax profondo.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
@@ -106,8 +149,8 @@
         </div>
     </section>
 
-    <section id="percorso" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+    <section id="percorso" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="space-y-10">
                 <span class="text-sage font-bold uppercase tracking-[0.5em] text-[10px]">The Water Ritual</span>
                 <h2 class="text-5xl font-serif italic leading-tight text-stone-800">L'armonia <br> degli Elementi.</h2>
@@ -120,18 +163,18 @@
                 </div>
             </div>
             <div class="relative">
-                <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl" alt="SPA Water">
+                <img src="assets/img2.jpg" class="rounded-[2rem] md:rounded-[4rem] shadow-2xl w-full object-cover" alt="SPA Water">
             </div>
         </div>
     </section>
 
-    <section id="trattamenti" class="py-32 bg-stone-50 section-padding">
+    <section id="trattamenti" class="py-20 md:py-32 bg-stone-50 section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
+            <div class="text-center mb-16 md:mb-24">
                 <h2 class="text-5xl font-serif italic text-stone-800">I Nostri <span class="text-sage">Rituali.</span></h2>
                 <p class="text-stone-400 mt-4 uppercase tracking-widest text-[10px] font-bold">Tecniche ancestrali per il benessere contemporaneo</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-12">
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
                 <div class="p-12 wellness-card text-center">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-sage"><i data-lucide="hand"></i></div>
                     <h4 class="text-2xl font-serif italic text-stone-800">Massaggio Olistico</h4>
@@ -151,31 +194,31 @@
         </div>
     </section>
 
-    <section id="private" class="py-32 bg-stone-900 text-stone-100 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+    <section id="private" class="py-20 md:py-32 bg-stone-900 text-stone-100 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-10">
                 <h2 class="text-5xl font-serif italic text-sage leading-none uppercase">Private <br><span class="text-white">Sanctuary.</span></h2>
                 <p class="text-stone-400 text-lg font-light leading-relaxed italic border-l-2 border-sage pl-8">Per chi cerca un'esperienza di coppia indimenticabile. Una suite privata con vasca idromassaggio, sauna e zona relax riservata. Per brindare al benessere in totale privacy.</p>
                 <button class="bg-sage text-white px-10 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest">Prenota Private SPA</button>
             </div>
             <div class="relative group">
-                <img src="assets/img3.jpg" class="rounded-[4rem] opacity-60 transition duration-1000" alt="Private SPA">
+                <img src="assets/img3.jpg" class="rounded-[2rem] md:rounded-[4rem] w-full object-cover" alt="Private SPA">
             </div>
         </div>
     </section>
 
-    <section id="dayspa" class="py-32 bg-white section-padding">
+    <section id="dayspa" class="py-20 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-serif italic text-center mb-24 text-stone-800">I Pacchetti Day SPA</h2>
+            <h2 class="text-4xl font-serif italic text-center mb-16 md:mb-24 text-stone-800">I Pacchetti Day SPA</h2>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-12 border border-stone-100 rounded-[3rem] flex justify-between items-center group hover:bg-stone-50 transition">
+                <div class="p-12 border border-stone-100 rounded-[2rem] md:rounded-[3rem] flex justify-between items-center group hover:bg-stone-50 transition">
                     <div>
                         <h4 class="text-2xl font-serif italic">Morning Glow</h4>
                         <p class="text-xs text-stone-400 uppercase tracking-widest mt-2">SPA + Massaggio 30' + Brunch Bio</p>
                     </div>
                     <span class="text-xl font-light text-sage italic">€85</span>
                 </div>
-                <div class="p-12 border border-stone-100 rounded-[3rem] flex justify-between items-center group hover:bg-stone-50 transition">
+                <div class="p-12 border border-stone-100 rounded-[2rem] md:rounded-[3rem] flex justify-between items-center group hover:bg-stone-50 transition">
                     <div>
                         <h4 class="text-2xl font-serif italic">Total Reset</h4>
                         <p class="text-xs text-stone-400 uppercase tracking-widest mt-2">SPA illimitata + Rituale Corpo 90'</p>
@@ -186,15 +229,15 @@
         </div>
     </section>
 
-    <section class="py-32 bg-stone-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-20">
+    <section class="py-20 md:py-32 bg-stone-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 md:gap-20">
             <div class="lg:w-1/2">
-                <img src="assets/img4.jpg" class="rounded-[10rem] shadow-2xl grayscale transition duration-1000" alt="Concept Store">
+                <img src="assets/img4.jpg" class="rounded-[2rem] md:rounded-[10rem] shadow-2xl w-full object-cover" alt="Concept Store">
             </div>
-            <div class="lg:w-1/2 space-y-8">
+            <div class="lg:w-1/2 space-y-8 text-center md:text-left">
                 <h2 class="text-5xl font-serif italic text-stone-900 leading-tight uppercase">Porta a casa <br><span class="text-sage">il Benessere.</span></h2>
-                <p class="text-stone-500 text-lg leading-relaxed font-light italic">Scopri la nostra linea di cosmesi naturale e candele botaniche nel nostro Concept Store. Prodotti creati con estratti biologici e oli essenziali puri, per replicare l'esperienza SPA nel comfort di casa tua.</p>
-                <div class="flex gap-4">
+                <p class="text-stone-500 text-lg leading-relaxed font-light italic">Scopri la nostra linea di cosmesi naturale e candele botaniche nel nostro Concept Store. Prodotti creati con estratti biologici e oils essenziali puri.</p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
                     <span class="px-6 py-2 border border-stone-200 rounded-full text-[10px] font-bold uppercase tracking-widest">Oli Bio</span>
                     <span class="px-6 py-2 border border-stone-200 rounded-full text-[10px] font-bold uppercase tracking-widest">Sieri Viso</span>
                     <span class="px-6 py-2 border border-stone-200 rounded-full text-[10px] font-bold uppercase tracking-widest">Tisane</span>
@@ -203,22 +246,32 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+    <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
-                <h2 class="text-7xl font-serif italic text-stone-800 leading-none tracking-tighter uppercase">Scrivi la <br><span class="text-sage font-normal">Tua Pausa.</span></h2>
+                <h2 class="text-6xl md:text-7xl font-serif italic text-stone-800 leading-none tracking-tighter uppercase">Scrivi la <br><span class="text-sage font-normal">Tua Pausa.</span></h2>
                 <div class="space-y-8">
                     <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-stone-50 border border-stone-100 flex items-center justify-center rounded-full text-sage shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Il Santuario</p><p class="text-2xl font-serif italic">Viale della Quiete 1, 20100 Milano</p></div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-stone-50 border border-stone-100 flex items-center justify-center rounded-full text-sage shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Il Santuario</p><p class="text-xl md:text-2xl font-serif italic">Viale della Quiete 1, 20100 Milano</p></div>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-stone-50 border border-stone-100 flex items-center justify-center rounded-full text-sage shadow-sm"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Prenotazioni</p><p class="text-2xl font-serif italic">02 123 456 78</p></div>
+                    
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-8">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-stone-50 border border-stone-100 flex items-center justify-center rounded-full text-sage shadow-sm shrink-0"><i data-lucide="phone"></i></div>
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Prenotazioni</p>
+                                <p class="text-xl md:text-2xl font-serif italic mb-2">02 123 456 78</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <a href="#" class="bg-sage text-white px-5 py-2.5 rounded-full text-[9px] font-bold uppercase tracking-widest flex items-center gap-2">Chiama Ora</a>
+                                    <a href="#" class="bg-[#25D366] text-white px-5 py-2.5 rounded-full text-[9px] font-bold uppercase tracking-widest flex items-center gap-2">WhatsApp</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form class="bg-[#fdfcfb] p-12 rounded-[3rem] shadow-2xl border border-stone-100 space-y-6">
+            <form class="bg-[#fdfcfb] p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-stone-100 space-y-6">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-sage mb-8 text-center italic">Riceverai conferma della disponibilità entro 1 ora (Demo Mode)</p>
                 <div class="grid md:grid-cols-2 gap-6">
                     <input type="text" placeholder="NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold tracking-widest uppercase">
@@ -238,17 +291,33 @@
     </section>
 
     <footer class="py-12 bg-white border-t border-stone-100 text-center">
-        <p class="text-stone-300 text-[9px] uppercase tracking-[0.6em] font-bold">
+        <p class="text-stone-300 text-[9px] uppercase tracking-[0.6em] font-bold px-4">
             &copy; 2026 Sinfonia di Sensi SPA | Wellness Excellence | P.IVA 0123456789
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-white border border-stone-100 text-stone-800 p-5 rounded-full shadow-2xl z-50">
+    <div class="chat-widget-demo fixed bottom-10 right-6 md:right-10 bg-white border border-stone-100 text-stone-800 p-4 md:p-5 rounded-full shadow-2xl z-50">
         <i data-lucide="message-circle" class="w-6 h-6"></i>
     </div>
 
     <script>
         lucide.createIcons();
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+        }
     </script>
 </body>
 </html>

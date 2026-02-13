@@ -12,7 +12,7 @@
             font-family: 'Inter', sans-serif; 
             background-color: #f8fafc; 
             color: #1e293b; 
-            overflow-x: hidden; /* Impedisce lo scroll orizzontale a livello globale */
+            overflow-x: hidden;
             width: 100%;
         }
         .font-racing { font-family: 'Orbitron', sans-serif; }
@@ -20,34 +20,38 @@
         .text-racing { color: #FFD700; }
         
         .hero-gradient { 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
             url('assets/img1.jpg'); 
             background-size: cover; 
             background-position: center; 
         }
 
-        /* Fix per evitare tagli su mobile mantenendo l'effetto estetico */
+        /* Rimosso grayscale - Immagini sempre a colori */
+        img, .hero-gradient {
+            filter: none !important;
+        }
+
         @media (min-width: 769px) {
-            .clip-path-slant { clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); }
+            .clip-path-slant { clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%); }
         }
 
-        /* Interazioni sbloccate */
-        button, input, select, textarea, a {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
-
-        /* Gestione Font Hero e Sezioni */
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            line-height: 1;
+            font-size: clamp(2.2rem, 8vw, 5rem);
+            line-height: 1.1;
         }
 
-        /* Prevenzione overflow per elementi inclinati */
         .skew-fix {
             display: inline-block;
             max-width: 100%;
-            overflow: hidden;
+        }
+
+        /* Menu Mobile Overlay */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
         }
 
         .demo-nav-container {
@@ -64,7 +68,8 @@
             .demo-nav-container {
                 left: 1rem;
                 bottom: 1rem;
-                scale: 0.9;
+                transform: scale(0.8);
+                transform-origin: bottom left;
             }
         }
     </style>
@@ -80,28 +85,52 @@
         </a>
     </div>
 
-    <nav class="fixed w-full z-[100] bg-black/95 border-b border-white/10 h-20 flex items-center">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-racing rounded flex items-center justify-center shrink-0">
-                    <i data-lucide="disc" class="text-black w-6 h-6"></i>
+    <nav class="fixed top-0 w-full z-[100] bg-black/95 border-b border-white/10 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-3">
+                <div class="w-9 h-9 md:w-10 md:h-10 bg-racing rounded flex items-center justify-center shrink-0">
+                    <i data-lucide="disc" class="text-black w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-tight">
-                    <span class="text-xl font-racing text-white tracking-tighter">PNEUS<span class="text-racing">EXPERT</span></span>
-                    <span class="text-[7px] md:text-[8px] text-slate-400 tracking-[0.3em] md:tracking-[0.4em] uppercase font-bold">Specialisti della strada</span>
+                    <span class="text-lg md:text-xl font-racing text-white tracking-tighter">PNEUS<span class="text-racing">EXPERT</span></span>
+                    <span class="text-[6px] md:text-[8px] text-slate-400 tracking-[0.2em] md:tracking-[0.4em] uppercase font-bold">Specialisti della strada</span>
                 </div>
             </div>
+            
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-300">
                 <a href="#servizi" class="hover:text-racing transition">Servizi</a>
                 <a href="#marche" class="hover:text-racing transition">Marche</a>
                 <a href="#tecnologia" class="hover:text-racing transition">Tecnologia</a>
                 <a href="#contatti" class="hover:text-racing transition">Contatti</a>
             </div>
-            <button class="bg-racing text-black px-4 md:px-6 py-2.5 rounded font-black uppercase text-[10px] md:text-[11px] hover:bg-white transition-all shadow-lg shrink-0">
-                S.O.S Gomme
-            </button>
+
+            <div class="flex items-center gap-3">
+                <button class="hidden sm:block bg-racing text-black px-4 md:px-6 py-2.5 rounded font-black uppercase text-[10px] md:text-[11px] hover:bg-white transition-all shadow-lg shrink-0">
+                    S.O.S Gomme
+                </button>
+                <button id="menu-btn" class="lg:hidden text-white p-2" aria-label="Menu">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-black lg:hidden">
+        <div class="flex flex-col h-full p-8">
+            <div class="flex justify-end">
+                <button id="close-menu" class="text-white p-2">
+                    <i data-lucide="x" class="w-8 h-8"></i>
+                </button>
+            </div>
+            <div class="flex flex-col items-center justify-center flex-grow space-y-8 text-2xl font-black uppercase italic text-white tracking-tighter">
+                <a href="#servizi" onclick="toggleMenu()" class="hover:text-racing">Servizi</a>
+                <a href="#marche" onclick="toggleMenu()" class="hover:text-racing">Marche</a>
+                <a href="#tecnologia" onclick="toggleMenu()" class="hover:text-racing">Tecnologia</a>
+                <a href="#contatti" onclick="toggleMenu()" class="hover:text-racing">Contatti</a>
+                <button class="bg-racing text-black px-8 py-4 rounded-sm text-sm mt-4 font-black">S.O.S GOMME</button>
+            </div>
+        </div>
+    </div>
 
     <section class="relative min-h-screen flex items-center justify-start hero-gradient clip-path-slant pt-20">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-12">
@@ -123,7 +152,7 @@
         </div>
     </section>
 
-    <section id="servizi" class="py-20 md:py-32 bg-white">
+    <section id="servizi" class="py-16 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <div class="p-8 md:p-10 bg-slate-50 border-l-4 border-racing hover:shadow-xl transition-all group">
@@ -154,31 +183,31 @@
         <div class="max-w-7xl mx-auto px-6 text-center space-y-10">
             <h2 class="text-white text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] opacity-40">I nostri partner ufficiali</h2>
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-                <span class="text-xl md:text-3xl text-white font-black italic tracking-tighter opacity-60 hover:opacity-100 transition">PIRELLI</span>
-                <span class="text-xl md:text-3xl text-white font-black italic tracking-tighter opacity-60 hover:opacity-100 transition">MICHELIN</span>
-                <span class="text-xl md:text-3xl text-white font-black italic tracking-tighter opacity-60 hover:opacity-100 transition">BRIDGESTONE</span>
-                <span class="text-xl md:text-3xl text-white font-black italic tracking-tighter opacity-60 hover:opacity-100 transition">CONTINENTAL</span>
+                <span class="text-xl md:text-3xl text-white font-black italic tracking-tighter opacity-100 transition">PIRELLI</span>
+                <span class="text-xl md:text-3xl text-white font-black italic tracking-tighter opacity-100 transition">MICHELIN</span>
+                <span class="text-xl md:text-3xl text-white font-black italic tracking-tighter opacity-100 transition">BRIDGESTONE</span>
+                <span class="text-xl md:text-3xl text-white font-black italic tracking-tighter opacity-100 transition">CONTINENTAL</span>
             </div>
         </div>
     </section>
 
-    <section id="tecnologia" class="py-20 md:py-32 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <section id="tecnologia" class="py-16 md:py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             <div class="relative group">
                 <img src="assets/img2.jpg" class="rounded-2xl shadow-2xl transition duration-700 w-full object-cover" alt="Officina">
-                <div class="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-8 bg-racing p-6 md:p-8 rounded-xl font-black text-2xl md:text-3xl shadow-2xl border-4 border-white">
+                <div class="absolute -bottom-4 -right-2 md:-bottom-8 md:-right-8 bg-racing p-5 md:p-8 rounded-xl font-black text-xl md:text-3xl shadow-2xl border-4 border-white">
                     40 min.
                     <span class="block text-[10px] uppercase tracking-widest mt-1">Media Cambio Totale</span>
                 </div>
             </div>
-            <div class="space-y-8">
-                <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight italic">
+            <div class="space-y-6 md:space-y-8">
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight italic">
                     Tecnologia ad <br>
                     <span class="skew-fix">
                         <span class="text-racing bg-black px-4 md:px-6 py-2 inline-block -skew-x-6">Alta Velocità.</span>
                     </span>
                 </h2>
-                <p class="text-slate-500 text-lg font-light leading-relaxed italic">Utilizziamo sistemi "Leverless" per preservare i tuoi cerchi e bilanciatrici a monitor per una precisione millimetrica.</p>
+                <p class="text-slate-500 text-base md:text-lg font-light leading-relaxed italic">Utilizziamo sistemi "Leverless" per preservare i tuoi cerchi e bilanciatrici a monitor per una precisione millimetrica.</p>
                 <div class="space-y-4">
                     <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-lg">
                         <i data-lucide="check-circle" class="text-racing fill-black shrink-0"></i>
@@ -193,13 +222,13 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-20 md:py-32 bg-slate-50">
+    <section id="filosofia" class="py-16 md:py-32 bg-slate-50">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
-            <h2 class="text-3xl md:text-4xl font-black uppercase italic tracking-widest">Passione per la <span class="text-racing">Strada.</span></h2>
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic tracking-widest">Passione per la <span class="text-racing">Strada.</span></h2>
             <p class="text-slate-600 text-lg md:text-xl font-light italic leading-relaxed">
                 "Non vendiamo solo pneumatici, vendiamo la tranquillità di viaggiare sicuri in ogni condizione atmosferica."
             </p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-8">
+            <div class="flex flex-wrap justify-center gap-6 md:gap-12 pt-8">
                 <div class="text-center w-24"><i data-lucide="award" class="mx-auto mb-3 text-black w-7 h-7"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità</p></div>
                 <div class="text-center w-24"><i data-lucide="timer" class="mx-auto mb-3 text-black w-7 h-7"></i><p class="text-[9px] font-bold uppercase tracking-widest">Efficienza</p></div>
                 <div class="text-center w-24"><i data-lucide="heart" class="mx-auto mb-3 text-black w-7 h-7"></i><p class="text-[9px] font-bold uppercase tracking-widest">Cura</p></div>
@@ -207,36 +236,44 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-20 md:py-32 bg-slate-900 text-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+    <section id="contatti" class="py-16 md:py-32 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
             <div class="space-y-10 md:space-y-12">
-                <h2 class="text-5xl md:text-7xl font-black uppercase italic leading-[0.9] tracking-tighter">Vieni a <br><span class="text-racing underline underline-offset-[10px] md:underline-offset-[20px]">trovarci.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-6">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-racing text-black rounded-full flex items-center justify-center shrink-0"><i data-lucide="map-pin" class="w-7 h-7"></i></div>
-                        <div>
-                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Sede Centrale</p>
-                            <p class="text-xl md:text-2xl font-black uppercase italic">Via dei Meccanici 10, Milano</p>
-                        </div>
+                <h2 class="text-4xl md:text-7xl font-black uppercase italic leading-[0.9] tracking-tighter">Vieni a <br><span class="text-racing underline underline-offset-[10px] md:underline-offset-[20px]">trovarci.</span></h2>
+                <p class="text-slate-400 text-lg italic">Siamo pronti ad assisterti con la massima professionalità e velocità.</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="flex items-center gap-6 bg-white/5 p-6 md:p-8 rounded-2xl border border-white/10">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-racing text-black rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="phone-call" class="w-7 h-7"></i>
                     </div>
-                    <div class="flex items-center gap-6">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center shrink-0"><i data-lucide="phone-call" class="text-racing w-7 h-7"></i></div>
-                        <div>
-                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Assistenza</p>
-                            <p class="text-xl md:text-2xl font-black italic">02 1234 5678</p>
-                        </div>
+                    <div>
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Assistenza Telefonica</p>
+                        <p class="text-xl md:text-2xl font-black italic">02 1234 5678</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-6 bg-white/5 p-6 md:p-8 rounded-2xl border border-white/10">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="message-circle" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">WhatsApp Fast</p>
+                        <p class="text-xl md:text-2xl font-black italic">333 123 4567</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-6 bg-white/5 p-6 md:p-8 rounded-2xl border border-white/10">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white text-black rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="map-pin" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">La nostra Sede</p>
+                        <p class="text-xl md:text-2xl font-black uppercase italic">Via dei Meccanici 10, Milano</p>
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-8 md:p-12 rounded-3xl text-slate-900 space-y-6 shadow-2xl">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Modello Auto" class="w-full p-4 bg-slate-100 rounded-lg outline-none font-bold text-sm focus:ring-2 ring-racing">
-                    <input type="text" placeholder="Misura Gomme" class="w-full p-4 bg-slate-100 rounded-lg outline-none font-bold text-sm focus:ring-2 ring-racing">
-                </div>
-                <input type="email" placeholder="Indirizzo Email" class="w-full p-4 bg-slate-100 rounded-lg outline-none font-bold text-sm focus:ring-2 ring-racing">
-                <textarea placeholder="Note aggiuntive" rows="3" class="w-full p-4 bg-slate-100 rounded-lg outline-none font-bold text-sm focus:ring-2 ring-racing"></textarea>
-                <button type="button" class="w-full bg-black text-white py-5 rounded-lg font-black uppercase tracking-[0.2em] hover:bg-racing hover:text-black transition-all">Invia Richiesta</button>
-            </form>
         </div>
     </section>
 
@@ -246,12 +283,28 @@
         </p>
     </footer>
 
-    <a href="#" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform">
+    <a href="javascript:void(0)" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50 cursor-default">
         <i data-lucide="message-square" class="w-6 h-6 md:w-7 md:h-7"></i>
     </a>
 
     <script>
         lucide.createIcons();
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
     </script>
 </body>
 </html>

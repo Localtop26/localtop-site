@@ -19,7 +19,7 @@
         .text-terracotta { color: #c26d5c; }
         .bg-terracotta { background-color: #c26d5c; }
         
-        /* 1. Immagini Hero e Background */
+        /* Immagini Hero e Background */
         .hero-fabrics { 
             background: linear-gradient(rgba(253,250,248,0.2), rgba(253,250,248,0.1)), 
             url('assets/img1.jpg'); 
@@ -27,9 +27,10 @@
             background-position: center; 
         }
         
-        /* 2. Hover e Rimozione Grayscale (Punto 3) */
-        .fabric-card img, .grayscale, .grayscale-0 {
+        /* Rimozione Grayscale e Filtri */
+        img, .fabric-card img, .grayscale, .grayscale-0 {
             filter: none !important;
+            -webkit-filter: none !important;
             transition: transform 0.8s ease;
         }
         .fabric-card:hover img { transform: scale(1.05); }
@@ -39,46 +40,71 @@
             background-size: 20px 20px; 
         }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
+        /* Blocco Interazioni (Demo Mode) */
         button, input, select, textarea, .wa-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
+        /* Eccezione per il tasto menu */
+        #menu-toggle-btn {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
 
-        /* 4. Hero Title Responsivo (Punto 2) */
+        /* Hero Title Responsivo */
         .hero-title {
-            font-size: clamp(3.5rem, 12vw, 8rem);
+            font-size: clamp(3.5rem, 10vw, 8rem);
             line-height: 0.9;
         }
 
-        /* 5. Sticky Header Offset (Punto 4) */
-        .promo-bar { height: 40px; }
-        .main-nav { top: 40px; }
-
-        /* Fix per evitare overflow orizzontale su piccoli schermi */
         .section-padding { 
-            padding-left: 1.5rem; 
-            padding-right: 1.5rem; 
+            padding-left: 1.25rem; 
+            padding-right: 1.25rem; 
         }
 
+        /* Menu Mobile Overlay */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 150;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #mobile-menu.active {
+            display: flex;
+        }
+
+        /* Sfumatura testo Hero */
+        .hero-text-overlay {
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 80%);
+            display: inline-block;
+            padding: 1rem;
+            border-radius: 2rem;
+        }
+
+        /* Bottoni Localtop Mobile */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: clamp(3rem, 15vw, 4.5rem);
+                font-size: clamp(3rem, 12vw, 4rem);
             }
-            .main-nav {
-                height: auto;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
+            .localtop-btn {
+                padding: 0.6rem 1rem !important;
+                font-size: 8px !important;
             }
         }
 
-        /* Bottoni Floating */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
-            z-index: 150;
+            z-index: 200;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -88,19 +114,16 @@
 </head>
 <body class="selection:bg-terracotta selection:text-white">
 
-    <div class="promo-bar bg-stone-900 text-stone-300 py-2 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.2em] md:tracking-[0.3em] px-4 sticky top-0 z-[120] flex items-center justify-center">
-        🧵 NUOVI ARRIVI: Sete di Como e Lini Lavati | Scampoli ogni Sabato
-    </div>
-
-    <nav class="main-nav sticky z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 min-h-[80px] flex items-center">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex flex-wrap justify-between items-center gap-4">
-            <div class="flex items-center gap-2 md:gap-3">
-                <div class="w-10 h-10 md:w-12 md:h-12 bg-terracotta rounded-full flex items-center justify-center shadow-lg text-white shrink-0">
-                    <i data-lucide="scissors" class="w-5 h-5 md:w-6 md:h-6"></i>
+    <nav class="main-nav sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 min-h-[70px] flex items-center">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-9 h-9 md:w-12 md:h-12 bg-terracotta rounded-full flex items-center justify-center shadow-lg text-white">
+                    <i data-lucide="scissors" class="w-4 h-4 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-xl md:text-3xl font-serif italic text-stone-900 tracking-tighter">Tessuti<span class="text-terracotta">&</span>Trame</span>
-                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] text-stone-400 font-sans">Pregio al centimetro</span>
+                    <span class="text-lg md:text-3xl font-serif italic text-stone-900 tracking-tighter">Tessuti<span class="text-terracotta">&</span>Trame</span>
+                    <span class="text-[6px] md:text-[8px] font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] text-stone-400 font-sans">Pregio al centimetro</span>
                 </div>
             </div>
             
@@ -108,14 +131,31 @@
                 <a href="#collezioni" class="hover:text-terracotta transition">Collezioni</a>
                 <a href="#scampoli" class="hover:text-terracotta transition">Area Scampoli</a>
                 <a href="#filosofia" class="hover:text-terracotta transition">Filosofia</a>
-                <a href="#arredamento" class="hover:text-terracotta transition">Arredo</a>
+                <a href="#contatti" class="hover:text-terracotta transition">Contatti</a>
             </div>
 
-            <a href="#contatti" class="bg-stone-900 text-white px-5 py-2.5 md:px-8 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-terracotta transition-all shadow-md whitespace-nowrap">
-                Campione
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="#contatti" class="bg-stone-900 text-white px-4 py-2 md:px-8 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-terracotta transition-all whitespace-nowrap">
+                    Campione
+                </a>
+                <button id="menu-toggle-btn" class="lg:hidden text-stone-900 p-2 relative z-[160]">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="lg:hidden">
+        <div class="flex flex-col space-y-8 text-center px-6">
+            <a href="#collezioni" class="mobile-link text-3xl font-serif italic text-stone-900">Collezioni</a>
+            <hr class="border-stone-100 w-24 mx-auto">
+            <a href="#scampoli" class="mobile-link text-3xl font-serif italic text-stone-900">Area Scampoli</a>
+            <hr class="border-stone-100 w-24 mx-auto">
+            <a href="#filosofia" class="mobile-link text-3xl font-serif italic text-stone-900">Filosofia</a>
+            <hr class="border-stone-100 w-24 mx-auto">
+            <a href="#contatti" class="mobile-link text-3xl font-serif italic text-stone-900">Contatti</a>
+        </div>
+    </div>
 
     <section class="relative min-h-[80vh] flex items-center hero-fabrics overflow-hidden section-padding py-20">
         <div class="max-w-7xl mx-auto w-full relative z-10 text-center md:text-left">
@@ -123,9 +163,13 @@
                 <h1 class="hero-title font-serif italic text-stone-900 tracking-tighter">
                     Trame che <br> raccontano <span class="text-terracotta">Storie.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-stone-600 font-light max-w-lg leading-relaxed italic border-l-2 border-terracotta pl-6 md:pl-8 mx-auto md:mx-0">
-                    Dalla seta pura ai cotoni grezzi, dagli scampoli d'alta moda alle stoffe per arredamento. Libera la tua creatività.
-                </p>
+                
+                <div class="hero-text-overlay">
+                    <p class="text-lg md:text-xl text-stone-900 font-semibold max-w-lg leading-relaxed italic border-l-4 border-terracotta pl-6 md:pl-8 mx-auto md:mx-0">
+                        Dalla seta pura ai cotoni grezzi, dagli scampoli d'alta moda alle stoffe per arredamento. Libera la tua creatività.
+                    </p>
+                </div>
+
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
                     <a href="#collezioni" class="bg-stone-900 text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-2xl hover:bg-terracotta transition-all">Vedi Tessuti</a>
                     <a href="#scampoli" class="bg-white border border-stone-200 text-stone-900 px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-stone-50 transition-all italic">Occasioni</a>
@@ -134,15 +178,15 @@
         </div>
     </section>
 
-    <section id="collezioni" class="py-20 md:py-32 bg-white section-padding">
+    <section id="collezioni" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 md:mb-24">
+            <div class="text-center mb-12 md:mb-24">
                 <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">La Nostra Selezione</h2>
                 <p class="text-stone-400 mt-4 uppercase tracking-widest text-[10px] font-bold">Qualità garantita a colori</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                <div class="fabric-card group cursor-pointer space-y-6">
+                <div class="fabric-card group space-y-6">
                     <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-stone-100 shadow-sm">
                         <img src="assets/img2.jpg" class="w-full h-full object-cover">
                     </div>
@@ -151,7 +195,7 @@
                         <p class="text-[10px] text-stone-400 uppercase tracking-widest mt-2">Seta, Chiffon, Pizzi e Lane</p>
                     </div>
                 </div>
-                <div class="fabric-card group cursor-pointer space-y-6 md:mt-16">
+                <div class="fabric-card group space-y-6 md:mt-16">
                     <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-stone-100 shadow-sm">
                         <img src="assets/img3.jpg" class="w-full h-full object-cover">
                     </div>
@@ -160,7 +204,7 @@
                         <p class="text-[10px] text-stone-400 uppercase tracking-widest mt-2">Velluti, Gobelin e Jacquard</p>
                     </div>
                 </div>
-                <div class="fabric-card group cursor-pointer space-y-6">
+                <div class="fabric-card group space-y-6">
                     <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-stone-100 shadow-sm">
                         <img src="assets/img4.jpg" class="w-full h-full object-cover">
                     </div>
@@ -173,8 +217,8 @@
         </div>
     </section>
 
-    <section id="scampoli" class="py-20 md:py-32 bg-stone-900 text-white overflow-hidden pattern-bg section-padding">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
+    <section id="scampoli" class="py-16 md:py-32 bg-stone-900 text-white overflow-hidden pattern-bg section-padding">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-8 md:space-y-10 relative z-10 text-center lg:text-left">
                 <span class="text-terracotta font-bold uppercase tracking-[0.5em] text-[10px]">Tesori di Fine Rotolo</span>
                 <h2 class="text-5xl md:text-6xl font-serif italic leading-none">L'Angolo degli <br><span class="text-terracotta">Scampoli.</span></h2>
@@ -198,25 +242,25 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
+    <section id="filosofia" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto text-center space-y-10 md:space-y-12">
             <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900 uppercase">Passione <span class="text-terracotta">&</span> Tradizione.</h2>
             <p class="text-stone-500 text-lg md:text-xl font-light italic leading-relaxed border-l-4 border-terracotta pl-6 md:pl-8 mx-auto">
                 "La nostra filosofia si fonda sull'integrità della materia prima. Crediamo che onorare la qualità di ogni fibra sia il modo più nobile per supportare la creatività."
             </p>
-            <div class="flex justify-center gap-8 md:gap-12 pt-8 italic">
-                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-terracotta w-6 h-6"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità Master</p></div>
-                <div class="text-center"><i data-lucide="leaf" class="mx-auto mb-4 text-terracotta w-6 h-6"></i><p class="text-[9px] font-bold uppercase tracking-widest">Sostenibile</p></div>
-                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-terracotta w-6 h-6"></i><p class="text-[9px] font-bold uppercase tracking-widest">Cura Artigiana</p></div>
+            <div class="flex justify-center gap-6 md:gap-12 pt-8 italic">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-terracotta w-6 h-6"></i><p class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="leaf" class="mx-auto mb-4 text-terracotta w-6 h-6"></i><p class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest">Sostenibile</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-terracotta w-6 h-6"></i><p class="text-[8px] md:text-[9px] font-bold uppercase tracking-widest">Cura Artigiana</p></div>
             </div>
         </div>
     </section>
 
-    <section id="servizi" class="py-20 md:py-32 bg-[#fdfaf8] section-padding">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+    <section id="servizi" class="py-16 md:py-32 bg-[#fdfaf8] section-padding">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="order-2 lg:order-1 relative">
                 <img src="assets/img6.jpg" class="rounded-[2.5rem] md:rounded-[4rem] shadow-xl w-full h-auto" alt="Tailoring services">
-                <div class="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 bg-terracotta text-white p-6 md:p-10 rounded-full shadow-2xl">
+                <div class="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 bg-terracotta text-white p-5 md:p-10 rounded-full shadow-2xl">
                     <i data-lucide="scissors" class="w-6 h-6 md:w-10 md:h-10"></i>
                 </div>
             </div>
@@ -235,57 +279,44 @@
         </div>
     </section>
 
-    <section class="py-20 md:py-32 bg-white section-padding">
-        <div class="max-w-5xl mx-auto text-center space-y-12">
-            <h2 class="text-3xl md:text-4xl font-serif italic tracking-widest uppercase text-stone-900">Il Dettaglio che <span class="text-terracotta">Incatena.</span></h2>
-            <p class="text-stone-500 font-light max-w-2xl mx-auto italic leading-relaxed">Completa la tua creazione con la nostra merceria d'eccellenza.</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-4">
-                <div class="text-center space-y-4">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white border border-stone-100 rounded-full flex items-center justify-center mx-auto shadow-sm text-terracotta hover:bg-terracotta hover:text-white transition-all"><i data-lucide="disc"></i></div>
-                    <p class="text-[9px] font-bold uppercase tracking-widest">Bottoni</p>
-                </div>
-                <div class="text-center space-y-4">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white border border-stone-100 rounded-full flex items-center justify-center mx-auto shadow-sm text-terracotta hover:bg-terracotta hover:text-white transition-all"><i data-lucide="activity"></i></div>
-                    <p class="text-[9px] font-bold uppercase tracking-widest">Filati</p>
-                </div>
-                <div class="text-center space-y-4">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-white border border-stone-100 rounded-full flex items-center justify-center mx-auto shadow-sm text-terracotta hover:bg-terracotta hover:text-white transition-all"><i data-lucide="pocket"></i></div>
-                    <p class="text-[9px] font-bold uppercase tracking-widest">Fodere</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
+    <section id="contatti" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-10 md:space-y-12 text-center lg:text-left">
                 <h2 class="text-6xl md:text-8xl lg:text-9xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase">Tocca con <br><span class="text-terracotta font-normal">Mano.</span></h2>
-                <div class="space-y-6 md:space-y-8">
-                    <div class="flex flex-col md:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 md:gap-8">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-stone-900 text-white rounded-full flex items-center justify-center shadow-lg rotate-12 shrink-0"><i data-lucide="map-pin"></i></div>
-                        <div class="text-center lg:text-left">
-                            <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1 italic">Lo Showroom</p>
-                            <p class="text-xl md:text-2xl font-serif italic">Via della Seta 10, 20100 Milano</p>
-                        </div>
+                <p class="text-stone-500 text-lg italic font-light">Siamo qui per guidarti nella scelta del tessuto perfetto per i tuoi progetti.</p>
+            </div>
+            
+            <div class="flex flex-col gap-4 justify-center">
+                <div class="bg-[#fdfaf8] p-6 rounded-3xl border border-stone-100 flex items-center gap-6 shadow-sm">
+                    <div class="w-14 h-14 bg-stone-900 text-white rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="map-pin"></i>
                     </div>
-                    <div class="flex flex-col md:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 md:gap-8 text-stone-400">
-                        <div class="w-14 h-14 md:w-16 md:h-16 border border-stone-100 flex items-center justify-center rounded-full -rotate-12 shadow-sm shrink-0"><i data-lucide="phone" class="text-terracotta"></i></div>
-                        <p class="text-xl md:text-2xl font-serif italic">02 888 777 66</p>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Lo Showroom</p>
+                        <p class="text-xl font-serif italic">Via della Seta 10, Milano</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#fdfaf8] p-6 rounded-3xl border border-stone-100 flex items-center gap-6 shadow-sm">
+                    <div class="w-14 h-14 bg-terracotta text-white rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="phone"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Chiamaci</p>
+                        <p class="text-xl font-serif italic">02 888 777 66</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#fdfaf8] p-6 rounded-3xl border border-stone-100 flex items-center gap-6 shadow-sm">
+                    <div class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="message-circle"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">WhatsApp</p>
+                        <p class="text-xl font-serif italic">Scrivici per info</p>
                     </div>
                 </div>
             </div>
-            
-            <form class="bg-[#fdfaf8] p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-stone-50 space-y-6 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-terracotta text-white px-4 py-1 text-[8px] font-bold uppercase tracking-widest italic">Demo Mode</div>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-terracotta mb-4 text-center italic">Consulenza tecnica personalizzata</p>
-                <div class="grid md:grid-cols-2 gap-4 md:gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 md:p-5 bg-white border-none rounded-2xl md:rounded-3xl outline-none text-[10px] uppercase font-bold tracking-widest italic">
-                    <input type="text" placeholder="TIPO DI TESSUTO" class="w-full p-4 md:p-5 bg-white border-none rounded-2xl md:rounded-3xl outline-none text-[10px] uppercase font-bold tracking-widest italic">
-                </div>
-                <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="w-full p-4 md:p-5 bg-white border-none rounded-2xl md:rounded-3xl outline-none text-[10px] uppercase font-bold tracking-widest italic">
-                <textarea placeholder="DESCRIVI COSA VUOI REALIZZARE..." rows="3" class="w-full p-4 md:p-5 bg-white border-none rounded-2xl md:rounded-3xl outline-none text-[10px] uppercase font-bold tracking-widest italic"></textarea>
-                <button class="w-full bg-stone-900 text-white py-5 md:py-6 rounded-full font-bold uppercase text-[10px] tracking-[0.4em] hover:bg-terracotta transition-all shadow-xl">Invia Messaggio</button>
-            </form>
         </div>
     </section>
 
@@ -296,10 +327,10 @@
     </footer>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 pointer-events-auto">
             <i data-lucide="zap" class="w-3.5 h-3.5 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 pointer-events-auto">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Torna agli Esempi
         </a>
     </div>
@@ -309,7 +340,46 @@
     </div>
 
     <script>
+        // Inizializza icone
         lucide.createIcons();
+
+        const menuBtn = document.getElementById('menu-toggle-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isActive = mobileMenu.classList.toggle('active');
+            
+            if (isActive) {
+                menuIcon.setAttribute('data-lucide', 'x');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menuIcon.setAttribute('data-lucide', 'menu');
+                document.body.style.overflow = '';
+            }
+            lucide.createIcons();
+        }
+
+        // Event listener per apertura/chiusura
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        // Chiudi menu quando si clicca una voce
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // Chiudi menu se si ridimensiona a desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
     </script>
 </body>
 </html>

@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #0f172a; overflow-x: hidden; width: 100%; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #0f172a; overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
         h1, h2, h3, .font-tech { font-family: 'Space Grotesk', sans-serif; }
         .text-vision { color: #2563eb; }
         .bg-vision { background-color: #2563eb; }
@@ -19,52 +19,50 @@
             background-size: cover; background-position: center; 
         }
         .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(15, 23, 42, 0.05); }
-        .optical-hover:hover img { transform: scale(1.05); filter: contrast(1.1); transition: all 1s ease; }
+        
+        img { filter: none !important; grayscale: 0 !important; }
+        .optical-hover:hover img { transform: scale(1.05); transition: all 1s ease; filter: none !important; }
 
-        /* Demo interactions block (excluding menu) */
-        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo {
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .wa-widget-demo, a:not(.mobile-link):not([href^="#"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Mobile Menu State */
-        #mobile-menu.active {
-            display: flex !important;
-        }
+        #mobile-menu.active { display: flex !important; }
+
+        .max-w-7xl { max-width: 100%; width: 100%; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; }
+        @media (min-width: 1280px) { .max-w-7xl { max-width: 80rem; } }
 
         @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .hero-optic { background: linear-gradient(to bottom, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.7) 100%), url('assets/img1.jpg'); background-position: 70% center; }
+            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .hero-optic { background: linear-gradient(to bottom, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.7) 100%), url('assets/img1.jpg'); background-position: 70% center; min-height: 70vh; }
+            .demo-nav-container a { padding: 0.75rem 1.25rem !important; font-size: 8px !important; }
         }
 
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
             z-index: 200;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
     </style>
 </head>
-<body class="selection:bg-blue-100 selection:text-blue-900 w-full overflow-x-hidden">
+<body class="selection:bg-blue-100 selection:text-blue-900">
 
-    <div id="promo-bar" class="bg-slate-900 text-white py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120] h-auto min-h-[34px] flex items-center justify-center">
-        👓 CONTROLLO DELLA VISTA GRATUITO | LENTI ZEISS E ESSILOR | APERTI OGGI 👓
-    </div>
-
-    <nav id="main-nav" class="sticky top-[34px] z-[110] bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-slate-50 transition-all">
+    <nav id="main-nav" class="sticky top-0 z-[110] bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-slate-50 transition-all">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2 md:gap-3 shrink-0">
+            <div class="flex items-center gap-2 md:gap-3 shrink-0 mr-4">
                 <div class="w-10 h-10 md:w-12 md:h-12 bg-vision rounded-full flex items-center justify-center shadow-lg shadow-blue-200">
                     <i data-lucide="eye" class="text-white w-5 h-5 md:w-7 md:h-7"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-xl md:text-2xl font-tech font-bold text-slate-900 tracking-tighter uppercase">Vision<span class="text-vision">Lab</span></span>
+                    <span class="text-lg md:text-2xl font-tech font-bold text-slate-900 tracking-tighter uppercase">Vision<span class="text-vision">Lab</span></span>
                     <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] text-slate-400">Advanced Optical Center</span>
                 </div>
             </div>
@@ -74,14 +72,14 @@
                 <a href="#lenti" class="hover:text-vision transition">Lenti</a>
                 <a href="#filosofia" class="hover:text-vision transition">Filosofia</a>
                 <a href="#controllo" class="hover:text-vision transition">Check-up</a>
-                <a href="#laboratorio" class="hover:text-vision transition">Laboratorio</a>
+                <a href="#servizi" class="hover:text-vision transition">Servizi</a>
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 md:gap-4 shrink-0">
                 <a href="#contatti" class="hidden sm:block bg-slate-900 text-white px-6 md:px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-vision transition-all">
                     Prenota Esame
                 </a>
-                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 pointer-events-auto cursor-pointer">
+                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 pointer-events-auto cursor-pointer flex items-center justify-center" aria-label="Menu">
                     <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
                 </button>
             </div>
@@ -89,22 +87,22 @@
     </nav>
 
     <div id="mobile-menu" class="fixed inset-0 bg-white z-[150] hidden flex-col items-center justify-center space-y-8 text-center px-6">
-        <button id="menu-close" class="absolute top-10 right-6 text-slate-900">
+        <button id="menu-close" class="absolute top-10 right-6 text-slate-900 pointer-events-auto cursor-pointer">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#eyewear" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter">Eyewear</a>
-        <a href="#lenti" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter">Lenti</a>
-        <a href="#filosofia" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter">Filosofia</a>
-        <a href="#controllo" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter">Check-up</a>
-        <a href="#laboratorio" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter">Laboratorio</a>
-        <a href="#contatti" class="mobile-link bg-vision text-white px-10 py-4 rounded-sm font-bold uppercase text-xs tracking-widest">Prenota Ora</a>
+        <a href="#eyewear" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Eyewear</a>
+        <a href="#lenti" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Lenti</a>
+        <a href="#filosofia" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Filosofia</a>
+        <a href="#controllo" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Check-up</a>
+        <a href="#servizi" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Servizi</a>
+        <a href="#contatti" class="mobile-link bg-vision text-white px-10 py-4 rounded-sm font-bold uppercase text-xs tracking-widest pointer-events-auto">Prenota Ora</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
         </a>
     </div>
@@ -129,16 +127,16 @@
         </div>
     </section>
 
-    <section id="eyewear" class="py-20 md:py-32 bg-white section-padding">
+    <section id="eyewear" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-24 gap-4">
                 <h2 class="text-4xl md:text-5xl font-tech font-bold text-slate-900 uppercase italic">Signature <span class="text-vision">Frames.</span></h2>
                 <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest border-b border-vision pb-2">Marchi Indipendenti & Luxury</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="optical-hover group cursor-default space-y-6">
                     <div class="aspect-[16/9] overflow-hidden bg-slate-50 rounded-lg flex items-center justify-center p-8 md:p-12">
-                        <img src="assets/img2.jpg" class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition duration-500">
+                        <img src="assets/img2.jpg" class="w-full h-full object-contain transition duration-500">
                     </div>
                     <div class="flex justify-between items-center">
                         <h4 class="text-lg md:text-xl font-tech font-bold uppercase">Heritage Metal</h4>
@@ -147,7 +145,7 @@
                 </div>
                 <div class="optical-hover group cursor-default space-y-6 md:mt-16">
                     <div class="aspect-[16/9] overflow-hidden bg-slate-50 rounded-lg flex items-center justify-center p-8 md:p-12">
-                        <img src="assets/img3.jpg" class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition duration-500">
+                        <img src="assets/img3.jpg" class="w-full h-full object-contain transition duration-500">
                     </div>
                     <div class="flex justify-between items-center">
                         <h4 class="text-lg md:text-xl font-tech font-bold uppercase">Modern Acetate</h4>
@@ -156,7 +154,7 @@
                 </div>
                 <div class="optical-hover group cursor-default space-y-6">
                     <div class="aspect-[16/9] overflow-hidden bg-slate-50 rounded-lg flex items-center justify-center p-8 md:p-12">
-                        <img src="assets/img4.jpg" class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition duration-500">
+                        <img src="assets/img4.jpg" class="w-full h-full object-contain transition duration-500">
                     </div>
                     <div class="flex justify-between items-center">
                         <h4 class="text-lg md:text-xl font-tech font-bold uppercase">Titanium Light</h4>
@@ -167,8 +165,8 @@
         </div>
     </section>
 
-    <section id="lenti" class="py-20 md:py-32 bg-slate-900 text-white overflow-hidden section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+    <section id="lenti" class="py-16 md:py-32 bg-slate-900 text-white overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="space-y-8 md:space-y-10">
                 <h2 class="text-5xl md:text-6xl font-tech font-bold italic leading-none">Alta <br><span class="text-vision">Definizione.</span></h2>
                 <p class="text-slate-400 text-base md:text-lg font-light leading-relaxed italic border-l-2 border-vision pl-6 md:pl-8">
@@ -186,12 +184,12 @@
                 </div>
             </div>
             <div class="relative">
-                <img src="assets/img5.jpg" class="rounded-lg shadow-2xl opacity-60 grayscale w-full" alt="Optical Lens Lab">
+                <img src="assets/img5.jpg" class="rounded-lg shadow-2xl w-full" alt="Optical Lens Lab">
             </div>
         </div>
     </section>
 
-    <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
+    <section id="filosofia" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
             <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic tracking-tighter">Eccellenza <span class="text-vision">Visiva.</span></h2>
             <p class="text-slate-500 text-lg md:text-xl font-light italic leading-relaxed">
@@ -205,7 +203,7 @@
         </div>
     </section>
 
-    <section id="controllo" class="py-20 md:py-32 bg-white section-padding">
+    <section id="controllo" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic tracking-tighter">Esame <span class="text-vision">Avanzato.</span></h2>
             <p class="text-slate-500 text-base md:text-lg font-light italic leading-relaxed max-w-3xl mx-auto">Sfruttiamo l'intelligenza artificiale e la scansione digitale della cornea per identificare la reale impronta ottica dei tuoi occhi.</p>
@@ -226,26 +224,46 @@
         </div>
     </section>
 
-    <section id="laboratorio" class="py-20 md:py-32 bg-white section-padding">
+    <section id="servizi" class="py-16 md:py-32 bg-slate-50 section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="bg-slate-900 p-10 md:p-24 rounded-lg flex flex-col lg:flex-row items-center gap-12 lg:gap-16 text-white shadow-2xl">
-                <div class="lg:w-1/2 space-y-6">
-                    <h2 class="text-4xl md:text-5xl font-tech font-bold italic uppercase leading-tight">Laboratorio <br> <span class="text-vision italic">On-Site.</span></h2>
-                    <p class="text-slate-400 text-base md:text-lg font-light italic">Montaggio espresso in 60 minuti per lenti monofocali in stock. Riparazioni e riassetto eseguiti dai nostri maestri ottici.</p>
-                    <div class="flex items-center gap-4 text-vision font-bold">
-                        <i data-lucide="clock"></i>
-                        <span class="text-[10px] uppercase tracking-widest">Servizio Rapido H24</span>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-tech font-bold italic uppercase tracking-tighter">Premium <span class="text-vision">Services.</span></h2>
+                <div class="w-20 h-1 bg-vision mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-10 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-4 hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-vision mb-2">
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
                     </div>
+                    <h4 class="font-tech font-bold uppercase text-sm tracking-widest">Garanzia 24 Mesi</h4>
+                    <p class="text-[10px] text-slate-400 uppercase leading-relaxed font-bold">Protezione totale su difetti di fabbrica e lenti.</p>
                 </div>
-                <div class="lg:w-1/2 grid grid-cols-2 gap-4 w-full">
-                    <div class="h-32 md:h-48 bg-white/5 border border-white/10 rounded flex items-center justify-center"><i data-lucide="tool" class="w-8 h-8 opacity-20"></i></div>
-                    <div class="h-32 md:h-48 bg-white/5 border border-white/10 rounded flex items-center justify-center mt-6 md:mt-12"><i data-lucide="layers" class="w-8 h-8 opacity-20"></i></div>
+                <div class="bg-white p-10 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-4 hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-vision mb-2">
+                        <i data-lucide="truck" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-tech font-bold uppercase text-sm tracking-widest">Consegna Rapida</h4>
+                    <p class="text-[10px] text-slate-400 uppercase leading-relaxed font-bold">Lenti monofocali pronte in giornata.</p>
+                </div>
+                <div class="bg-white p-10 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-4 hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-vision mb-2">
+                        <i data-lucide="refresh-cw" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-tech font-bold uppercase text-sm tracking-widest">Adattamento Lenti</h4>
+                    <p class="text-[10px] text-slate-400 uppercase leading-relaxed font-bold">Garanzia di adattamento su lenti progressive.</p>
+                </div>
+                <div class="bg-white p-10 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-4 hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-vision mb-2">
+                        <i data-lucide="settings" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-tech font-bold uppercase text-sm tracking-widest">Manutenzione</h4>
+                    <p class="text-[10px] text-slate-400 uppercase leading-relaxed font-bold">Assetto e pulizia ultrasonica sempre gratuiti.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
+    <section id="contatti" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20">
             <div class="space-y-10 md:space-y-12">
                 <h2 class="text-6xl md:text-8xl font-tech font-bold text-slate-900 leading-[0.8] tracking-tighter uppercase italic">Stay <br><span class="text-vision">Focused.</span></h2>
@@ -260,18 +278,18 @@
                     </div>
                 </div>
             </div>
-            <form class="bg-slate-50 p-8 md:p-12 border-t-4 border-vision shadow-2xl space-y-6">
-                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-4 text-center italic">Prenota un esame visivo (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 border-b border-slate-200 bg-transparent outline-none transition text-[10px] font-bold uppercase tracking-widest">
-                    <input type="email" placeholder="EMAIL" class="w-full p-4 border-b border-slate-200 bg-transparent outline-none transition text-[10px] font-bold uppercase tracking-widest">
+            <div class="bg-slate-50 p-8 md:p-12 border-t-4 border-vision shadow-2xl flex flex-col gap-4">
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-6 text-center italic">Contattaci Subito</p>
+                <div class="w-full bg-slate-900 text-white py-5 px-6 flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em]">
+                    <i data-lucide="phone" class="w-4 h-4"></i> Chiama lo Studio
                 </div>
-                <select class="w-full p-4 border-b border-slate-200 bg-transparent outline-none transition text-[10px] font-bold uppercase tracking-widest text-slate-500">
-                    <option>DI COSA HAI BISOGNO?</option>
-                </select>
-                <textarea placeholder="DETTAGLI AGGIUNTIVI..." rows="3" class="w-full p-4 border-b border-slate-200 bg-transparent outline-none transition text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button type="button" class="w-full bg-slate-900 text-white py-6 text-[11px] font-bold uppercase tracking-[0.4em] hover:bg-vision transition-all shadow-xl">Conferma Prenotazione</button>
-            </form>
+                <div class="w-full bg-[#25D366] text-white py-5 px-6 flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em]">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> WhatsApp
+                </div>
+                <div class="w-full bg-white border border-slate-200 text-slate-900 py-5 px-6 flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em]">
+                    <i data-lucide="map" class="w-4 h-4"></i> Ottieni Indicazioni
+                </div>
+            </div>
         </div>
     </section>
 
@@ -286,10 +304,8 @@
     </div>
 
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Mobile Menu Logic
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -298,29 +314,26 @@
         function toggleMenu() {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('active');
-            document.body.classList.toggle('overflow-hidden');
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
-        menuToggle.addEventListener('click', toggleMenu);
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+        
         menuClose.addEventListener('click', toggleMenu);
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('active');
-                document.body.classList.remove('overflow-hidden');
+                document.body.style.overflow = '';
             });
-        });
-
-        // Smooth Navbar adjustment for Promo Bar
-        window.addEventListener('scroll', () => {
-            const promoBar = document.getElementById('promo-bar');
-            const nav = document.getElementById('main-nav');
-            if (window.scrollY > 10) {
-                nav.style.top = '0';
-            } else {
-                nav.style.top = promoBar.offsetHeight + 'px';
-            }
         });
     </script>
 </body>

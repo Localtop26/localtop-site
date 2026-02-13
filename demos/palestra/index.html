@@ -19,28 +19,44 @@
         .text-neon { color: #d9f99d; }
         .bg-neon { background-color: #d9f99d; }
         
-        /* Hero Image - Colori Vividi e Posizionamento Corretto */
+        /* Hero Image - No Grayscale */
         .hero-gym { 
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
             url('assets/img1.jpg'); 
             background-size: cover; 
             background-position: center top; 
             background-repeat: no-repeat;
+            filter: none !important;
         }
         
-        .class-card { background: #171717; border: 1px solid #262626; transition: all 0.3s ease; }
-        .class-card:hover { border-color: #d9f99d; transform: scale(1.02); }
+        .class-card { background: #171717; border: 1px solid #262626; transition: all 0.3s ease; filter: none !important; }
+        .class-card:hover { border-color: #d9f99d; transform: scale(1.02); filter: none !important; }
+        img { filter: none !important; }
 
         /* Blocca interazioni Demo */
-        button, input, select, textarea, .wa-widget-demo {
+        button, input, select, textarea, .wa-widget-demo, .contact-btn {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
+        /* Mobile Menu Logic */
+        #mobile-menu {
+            display: none;
+        }
+        #mobile-menu.active {
+            display: flex;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 0.9 !important; }
-            .hero-gym { padding-top: 160px; min-height: 100vh; }
+            .hero-gym { padding-top: 120px; min-height: 100vh; }
+            
+            /* Localtop buttons scaling */
+            .demo-nav-container a {
+                padding: 0.6rem 1rem !important;
+                font-size: 8px !important;
+            }
         }
 
         .demo-nav-container {
@@ -56,12 +72,8 @@
 </head>
 <body class="selection:bg-neon selection:text-black">
 
-    <div id="promo-bar" class="bg-neon text-black py-2 text-[9px] md:text-[10px] font-black text-center uppercase tracking-[0.2em] fixed top-0 w-full z-[150] h-10 flex items-center justify-center">
-        🔥 PROVA GRATUITA: Iscriviti oggi e ricevi una sessione di Personal Training omaggio 🔥
-    </div>
-
-    <nav class="fixed top-10 z-[140] bg-black/90 backdrop-blur-md border-b border-white/5 h-20 flex items-center left-0 right-0 mx-0 md:mx-10 md:mt-4 md:rounded-xl shadow-2xl">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-4">
+    <nav class="fixed top-0 z-[140] bg-black/95 backdrop-blur-md border-b border-white/5 h-20 flex items-center left-0 right-0 mx-0 md:mx-10 md:mt-6 md:rounded-xl shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
             <div class="flex items-center gap-2 shrink-0">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-neon rounded-sm flex items-center justify-center rotate-45">
                     <i data-lucide="dumbbell" class="text-black w-5 h-5 md:w-6 md:h-6 -rotate-45"></i>
@@ -77,19 +89,35 @@
                 <a href="#contatti" class="hover:text-neon transition">Contatti</a>
             </div>
 
-            <a href="#contatti" class="bg-white text-black px-4 md:px-6 py-2 md:py-2.5 rounded-sm text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:bg-neon transition-all shrink-0">
-                Unisciti al Club
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="#contatti" class="hidden sm:block bg-white text-black px-5 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-widest hover:bg-neon transition-all">
+                    Unisciti
+                </a>
+                <button id="hamburger" class="lg:hidden text-white p-2" style="pointer-events: auto !important; cursor: pointer !important;">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex items-center hero-gym pt-40 md:pt-48 pb-20 overflow-hidden">
+    <div id="mobile-menu" class="fixed inset-0 bg-black z-[160] flex-col items-center justify-center space-y-8 text-2xl font-bold-cond italic uppercase tracking-tighter">
+        <button id="close-menu" class="absolute top-6 right-6 text-white" style="pointer-events: auto !important; cursor: pointer !important;">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <a href="#corsi" class="text-white hover:text-neon">Corsi</a>
+        <a href="#sala-pesi" class="text-white hover:text-neon">Sala Pesi</a>
+        <a href="#personal" class="text-white hover:text-neon">Personal Coach</a>
+        <a href="#prezzi" class="text-white hover:text-neon">Abbonamenti</a>
+        <a href="#contatti" class="text-white hover:text-neon">Contatti</a>
+    </div>
+
+    <section class="relative min-h-screen flex items-center hero-gym pt-32 md:pt-48 pb-20 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
             <div class="max-w-3xl space-y-6 text-center md:text-left">
                 <h1 class="text-6xl md:text-[110px] font-bold-cond text-white leading-[0.85] italic tracking-tighter drop-shadow-2xl">
                     Nessuna Scusa. <br> <span class="text-neon">Solo Risultati.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-white font-medium max-w-xl leading-relaxed italic border-l-4 border-neon pl-6 mx-auto md:mx-0 drop-shadow-lg">
+                <p class="text-lg md:text-xl text-white font-medium max-w-xl leading-relaxed italic border-l-4 border-neon pl-6 mx-auto md:mx-0 drop-shadow-lg text-left">
                     Sposta i tuoi limiti in un ambiente progettato per la performance. Attrezzature di ultima generazione, coach d'élite e una community che non molla mai.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-6">
@@ -100,7 +128,7 @@
         </div>
     </section>
 
-    <section id="corsi" class="py-24 md:py-32 bg-[#050505] overflow-hidden">
+    <section id="corsi" class="py-20 md:py-32 bg-[#050505] overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
                 <h2 class="text-5xl md:text-6xl font-bold-cond text-white italic">Corsi <span class="text-neon">High-Intensity</span></h2>
@@ -127,8 +155,8 @@
         </div>
     </section>
 
-    <section id="sala-pesi" class="py-24 md:py-32 bg-black overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <section id="sala-pesi" class="py-20 md:py-32 bg-black overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div class="order-2 lg:order-1 space-y-8">
                 <h2 class="text-5xl md:text-7xl font-bold-cond text-white leading-none italic">Area Pesi <br><span class="text-neon">Industrial Style.</span></h2>
                 <p class="text-zinc-400 text-lg font-light leading-relaxed border-l-2 border-neon pl-8 italic">
@@ -144,13 +172,13 @@
                 </div>
             </div>
             <div class="order-1 lg:order-2 relative group">
-                <img src="assets/sala-pesi.jpg" class="rounded-2xl border border-white/10 transition duration-700 shadow-2xl w-full object-cover h-[400px] md:h-[500px]" alt="Sala Pesi">
+                <img src="assets/sala-pesi.jpg" class="rounded-2xl border border-white/10 transition duration-700 shadow-2xl w-full object-cover h-[350px] md:h-[500px]" alt="Sala Pesi">
             </div>
         </div>
     </section>
 
-    <section id="personal" class="py-24 md:py-32 bg-[#050505] border-y border-white/5 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
+    <section id="personal" class="py-20 md:py-32 bg-[#050505] border-y border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
             <div class="relative group max-w-lg lg:max-w-none mx-auto lg:mx-0">
                 <img src="assets/img2.jpg" class="rounded-2xl transition duration-700 shadow-2xl w-full" alt="Personal Trainer">
                 <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-neon text-black p-6 md:p-10 rounded-sm font-bold-cond text-2xl md:text-4xl italic shadow-2xl skew-x-[-6deg]">
@@ -170,7 +198,7 @@
         </div>
     </section>
 
-    <section id="prezzi" class="py-24 md:py-32 bg-black">
+    <section id="prezzi" class="py-20 md:py-32 bg-black">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-5xl md:text-6xl font-bold-cond text-center mb-16 md:mb-24 italic uppercase tracking-tighter">Scegli la tua <span class="text-neon">Sfida.</span></h2>
             <div class="grid md:grid-cols-3 gap-8 md:gap-10">
@@ -206,43 +234,51 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-24 md:py-32 bg-[#050505] overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+    <section id="contatti" class="py-20 md:py-32 bg-[#050505] overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
             <div class="space-y-12">
                 <h2 class="text-6xl md:text-8xl font-bold-cond text-white leading-none italic tracking-tighter uppercase">Il Tuo Futuro <br><span class="text-neon underline decoration-white decoration-4 md:decoration-8 underline-offset-8">Inizia Qui.</span></h2>
-                <div class="space-y-10">
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-neon text-black rounded-sm flex items-center justify-center rotate-12 shrink-0 shadow-xl"><i data-lucide="map-pin"></i></div>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 bg-neon text-black rounded-sm flex items-center justify-center rotate-12 shrink-0 shadow-xl"><i data-lucide="map-pin"></i></div>
                         <div>
                             <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1 italic">Il Club</p>
-                            <p class="text-2xl font-bold-cond italic tracking-tight text-white">Viale della Forza 42, Milano</p>
+                            <p class="text-xl md:text-2xl font-bold-cond italic tracking-tight text-white">Viale della Forza 42, Milano</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-white/5 border border-white/10 text-neon rounded-sm flex items-center justify-center shrink-0 shadow-xl"><i data-lucide="phone"></i></div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 bg-white/5 border border-white/10 text-neon rounded-sm flex items-center justify-center shrink-0 shadow-xl"><i data-lucide="phone"></i></div>
                         <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1 italic">Contattaci</p>
-                            <p class="text-2xl font-bold-cond italic tracking-tight text-white">+39 02 987 654</p>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1 italic">Chiamaci</p>
+                            <p class="text-xl md:text-2xl font-bold-cond italic tracking-tight text-white">+39 02 987 654</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 bg-[#25D366]/20 border border-[#25D366]/20 text-[#25D366] rounded-sm flex items-center justify-center shrink-0 shadow-xl"><i data-lucide="message-circle"></i></div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1 italic">WhatsApp</p>
+                            <p class="text-xl md:text-2xl font-bold-cond italic tracking-tight text-white">Scrivici in Chat</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <form class="p-8 md:p-12 class-card rounded-[2.5rem] space-y-6 shadow-2xl border-t-8 border-neon relative">
-                <div class="absolute top-4 right-8 text-neon font-black italic text-[10px] uppercase opacity-50 tracking-[0.4em]">Demo Mode</div>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-6 text-center italic">Richiedi la tua Prova Gratuita</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-white/5 border border-white/10 rounded-sm text-[10px] font-bold uppercase tracking-widest italic outline-none focus:border-neon text-white">
-                    <input type="email" placeholder="EMAIL" class="w-full p-4 bg-white/5 border border-white/10 rounded-sm text-[10px] font-bold uppercase tracking-widest italic outline-none focus:border-neon text-white">
+
+            <div class="flex flex-col gap-4 justify-center">
+                <div class="p-8 md:p-10 class-card rounded-[2rem] border-t-4 border-neon space-y-6">
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-neon text-center italic">Prenota il tuo tour</p>
+                    <div class="space-y-4">
+                        <div class="contact-btn w-full bg-white/5 border border-white/10 text-white py-5 rounded-sm font-bold-cond text-xl italic uppercase tracking-widest flex items-center justify-center gap-3">
+                            <i data-lucide="phone-call" class="w-5 h-5"></i> Chiama Ora
+                        </div>
+                        <div class="contact-btn w-full bg-[#25D366] text-white py-5 rounded-sm font-bold-cond text-xl italic uppercase tracking-widest flex items-center justify-center gap-3">
+                            <i data-lucide="message-square" class="w-5 h-5"></i> WhatsApp
+                        </div>
+                        <div class="contact-btn w-full bg-white text-black py-5 rounded-sm font-bold-cond text-xl italic uppercase tracking-widest flex items-center justify-center gap-3">
+                            <i data-lucide="map" class="w-5 h-5"></i> Come Arrivare
+                        </div>
+                    </div>
                 </div>
-                <select class="w-full p-4 bg-white/5 border border-white/10 rounded-sm text-[10px] font-bold uppercase text-zinc-500 tracking-widest italic outline-none">
-                    <option>OBIETTIVO PRINCIPALE</option>
-                    <option>PERDITA PESO</option>
-                    <option>IPERTROFIA</option>
-                    <option>PREPARAZIONE ATLETICA</option>
-                </select>
-                <textarea placeholder="DICCI QUALI TRAGUARDI VUOI RAGGIUNGERE..." rows="3" class="w-full p-4 bg-white/5 border border-white/10 rounded-sm text-[10px] font-bold uppercase tracking-widest italic outline-none focus:border-neon text-white"></textarea>
-                <button class="w-full bg-neon text-black py-5 rounded-sm font-black uppercase text-[12px] tracking-[0.3em] shadow-xl hover:bg-white transition-all">Invia Candidatura</button>
-            </form>
+            </div>
         </div>
     </section>
 
@@ -253,10 +289,10 @@
     </footer>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 md:px-6 py-3 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 md:px-6 py-3 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95" style="pointer-events: auto !important; cursor: pointer !important;">
             <i data-lucide="zap" class="w-3 h-3 md:w-4 md:h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 md:px-6 py-3 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 md:px-6 py-3 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95" style="pointer-events: auto !important; cursor: pointer !important;">
             <i data-lucide="arrow-left" class="w-3 h-3 md:w-4 md:h-4"></i> Torna agli Esempi
         </a>
     </div>
@@ -267,6 +303,29 @@
 
     <script>
         lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
     </script>
 </body>
 </html>

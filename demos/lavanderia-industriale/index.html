@@ -8,49 +8,111 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #334155; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #334155; overflow-x: hidden; width: 100%; }
         h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
-        .text-lavender { color: #818cf8; }
-        .bg-lavender { background-color: #818cf8; }
         
-        /* 1. Immagini Locali assets/ */
+        /* Rimozione filtri immagini */
+        img, .hero-laundry { 
+            filter: none !important; 
+            grayscale: 0 !important;
+        }
+
         .hero-laundry { 
-            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.3)), 
+            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.2)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
         
         .service-card { transition: all 0.4s ease; border-radius: 2rem; background: white; border: 1px solid #f1f5f9; }
-        .service-card:hover { transform: translateY(-8px); border-color: #818cf8; box-shadow: 0 20px 40px rgba(129, 140, 248, 0.1); }
+        .service-card:hover { transform: translateY(-8px); border-color: #818cf8; box-shadow: 0 20px 40px rgba(129, 140, 248, 0.1); filter: none !important; }
         .b2b-gradient { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo {
+        /* Interazioni Demo */
+        .wa-widget-demo, .demo-nav-container a {
+            pointer-events: auto !important;
+        }
+        input, select, textarea {
             pointer-events: none !important;
-            cursor: default !important;
-            user-select: none;
         }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.85 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            h1 { font-size: clamp(3.5rem, 18vw, 6rem) !important; line-height: 0.85 !important; }
+            h2 { font-size: 2.5rem !important; line-height: 1.1 !important; }
+            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+            
+            /* Bottoni Localtop più piccoli su mobile */
+            .demo-nav-container a {
+                padding: 0.75rem 1rem !important;
+                font-size: 8px !important;
+            }
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
     </style>
 </head>
 <body class="selection:bg-indigo-50 selection:text-indigo-900">
+
+    <nav class="sticky top-4 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-lg mx-4 md:mx-10 rounded-full mt-4">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center shadow-lg text-white">
+                    <i data-lucide="waves" class="w-6 h-6"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-heading font-extrabold text-slate-900 tracking-tighter uppercase">LAVA<span class="text-indigo-500">&STIRA</span></span>
+            </div>
+            
+            <div class="hidden lg:flex space-x-6 xl:space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="#privati" class="hover:text-indigo-500 transition">Privati</a>
+                <a href="#stiro" class="hover:text-indigo-500 transition">Stireria</a>
+                <a href="#filosofia" class="hover:text-indigo-500 transition">Filosofia</a>
+                <a href="#horeca" class="hover:text-indigo-500 transition">Alberghi</a>
+                <a href="#noleggio" class="hover:text-indigo-500 transition">Noleggio</a>
+                <a href="#prezzi" class="hover:text-indigo-500 transition">Listino</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="#prenota" class="hidden sm:block bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-500 transition-all">
+                    Contatti
+                </a>
+                <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-900 pointer-events-auto cursor-pointer" id="menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[90] bg-white pt-32 px-10 lg:hidden">
+        <div class="flex flex-col gap-8 text-center">
+            <a href="#privati" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Privati</a>
+            <a href="#stiro" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Stireria</a>
+            <a href="#filosofia" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Filosofia</a>
+            <a href="#horeca" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Alberghi</a>
+            <a href="#noleggio" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Noleggio</a>
+            <a href="#prezzi" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Listino</a>
+            <a href="#prenota" onclick="toggleMenu()" class="bg-indigo-600 text-white py-4 rounded-full font-bold uppercase text-xs tracking-[0.2em]">Prenota Ritiro</a>
+        </div>
+    </div>
 
     <div class="demo-nav-container">
         <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
@@ -61,84 +123,56 @@
         </a>
     </div>
 
-    <div class="bg-indigo-600 text-white py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120]">
-        🚚 RITIRO E CONSEGNA: Privati e Aziende | Sanificazione certificata RABC 🚚
-    </div>
-
-    <nav class="sticky top-8 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-full mt-4">
-        <div class="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center shadow-lg text-white">
-                    <i data-lucide="waves" class="w-6 h-6"></i>
-                </div>
-                <span class="text-2xl font-heading font-extrabold text-slate-900 tracking-tighter uppercase">LAVA<span class="text-indigo-500">&STIRA</span></span>
-            </div>
-            
-            <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
-                <a href="#privati" class="hover:text-indigo-500 transition">Privati</a>
-                <a href="#stiro" class="hover:text-indigo-500 transition">Stireria</a>
-                <a href="#filosofia" class="hover:text-indigo-500 transition">Filosofia</a>
-                <a href="#horeca" class="hover:text-indigo-500 transition">Alberghi</a>
-                <a href="#noleggio" class="hover:text-indigo-500 transition">Noleggio</a>
-                <a href="#prezzi" class="hover:text-indigo-500 transition">Listino</a>
-            </div>
-
-            <a href="#prenota" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-500 transition-all">
-                Contatti
-            </a>
-        </div>
-    </nav>
-
-    <section class="relative h-[85vh] flex items-center hero-laundry overflow-hidden">
+    <section class="relative min-h-[85vh] flex items-center hero-laundry overflow-hidden py-20">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
-            <div class="max-w-3xl space-y-8 animate-fade-in">
+            <div class="max-w-3xl space-y-8">
                 <h1 class="text-6xl md:text-[100px] font-heading font-extrabold text-slate-900 leading-[0.85] tracking-tighter uppercase">
                     Tessuti <br> <span class="text-indigo-500 italic font-light">Impeccabili.</span>
                 </h1>
-                <p class="text-xl text-slate-600 font-light max-w-xl leading-relaxed border-l-2 border-indigo-500 pl-8 italic">
+                <p class="text-xl text-slate-600 font-light max-w-xl mx-auto md:mx-0 leading-relaxed border-l-0 md:border-l-2 border-indigo-500 md:pl-8 italic">
                     Dal guardaroba di casa alla biancheria del tuo Hotel. Un unico partner per il trattamento professionale di ogni fibra, con consegna garantita in 24/48 ore.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#horeca" class="bg-indigo-500 text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Divisione Hotel</a>
-                    <a href="#privati" class="bg-white border-2 border-slate-100 text-slate-400 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all">Servizi Privati</a>
+                    <a href="#horeca" class="bg-indigo-500 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Divisione Hotel</a>
+                    <a href="#privati" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all">Servizi Privati</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="privati" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+    <section id="privati" class="py-24 md:py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-8">
                 <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase">Lavanderia <br><span class="text-indigo-500">per la Famiglia.</span></h2>
                 <p class="text-slate-500 text-lg leading-relaxed italic">Trattiamo i tuoi capi con detergenti ecologici e tecnologie di lavaggio a secco o ad acqua che preservano i colori e la morbidezza delle fibre originali.</p>
-                <ul class="grid grid-cols-2 gap-4">
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <li class="flex items-center gap-2 text-sm font-semibold"><i data-lucide="check-circle" class="text-indigo-500"></i> Abiti da Sposa</li>
                     <li class="flex items-center gap-2 text-sm font-semibold"><i data-lucide="check-circle" class="text-indigo-500"></i> Piumoni e Trapunte</li>
                     <li class="flex items-center gap-2 text-sm font-semibold"><i data-lucide="check-circle" class="text-indigo-500"></i> Capi in Pelle</li>
                     <li class="flex items-center gap-2 text-sm font-semibold"><i data-lucide="check-circle" class="text-indigo-500"></i> Tendaggi</li>
                 </ul>
             </div>
-            <div class="h-[500px] rounded-[4rem] overflow-hidden shadow-2xl">
+            <div class="h-[400px] md:h-[500px] rounded-[3rem] md:rounded-[4rem] overflow-hidden shadow-2xl">
                 <img src="assets/img2.jpg" class="w-full h-full object-cover" alt="Lavaggio delicato">
             </div>
         </div>
     </section>
 
-    <section id="stiro" class="py-32 bg-slate-50 section-padding">
+    <section id="stiro" class="py-24 md:py-32 bg-slate-50 section-padding">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-heading font-bold text-slate-900 mb-20 uppercase">Stireria <span class="text-indigo-500 italic">a Mano.</span></h2>
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="p-12 service-card">
+            <h2 class="text-5xl font-heading font-bold text-slate-900 mb-16 md:mb-20 uppercase">Stireria <span class="text-indigo-500 italic">a Mano.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+                <div class="p-8 md:p-12 service-card">
                     <i data-lucide="award" class="w-12 h-12 text-indigo-500 mx-auto mb-6"></i>
                     <h4 class="text-xl font-bold mb-4 uppercase">Piega Impeccabile</h4>
                     <p class="text-sm text-slate-500">Ogni capo viene rifinito a mano da personale esperto per garantire l'assenza totale di grinze.</p>
                 </div>
-                <div class="p-12 service-card border-indigo-200">
+                <div class="p-8 md:p-12 service-card border-indigo-200">
                     <i data-lucide="clock" class="w-12 h-12 text-indigo-500 mx-auto mb-6"></i>
                     <h4 class="text-xl font-bold mb-4 uppercase">Business Fast</h4>
                     <p class="text-sm text-slate-500">Servizio dedicato a professionisti: camicie lavate e stirate pronte in meno di 24 ore.</p>
                 </div>
-                <div class="p-12 service-card">
+                <div class="p-8 md:p-12 service-card">
                     <i data-lucide="package" class="w-12 h-12 text-indigo-500 mx-auto mb-6"></i>
                     <h4 class="text-xl font-bold mb-4 uppercase">Packaging Bio</h4>
                     <p class="text-sm text-slate-500">Consegniamo i tuoi abiti appesi o piegati con materiali protettivi 100% biodegradabili.</p>
@@ -147,17 +181,17 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+    <section id="filosofia" class="py-24 md:py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="order-2 lg:order-1 relative">
-                <img src="assets/img3.jpg" class="rounded-[3rem] shadow-2xl w-full h-[500px] object-cover" alt="Laboratorio artigianale">
+                <img src="assets/img3.jpg" class="rounded-[2.5rem] md:rounded-[3rem] shadow-2xl w-full h-[400px] md:h-[500px] object-cover" alt="Laboratorio artigianale">
             </div>
             <div class="order-1 lg:order-2 space-y-10">
                 <h2 class="text-5xl font-heading font-extrabold leading-none uppercase">Passione <br><span class="text-indigo-500 font-light italic">Artigiana.</span></h2>
                 <p class="text-slate-500 text-lg leading-relaxed italic border-l-4 border-indigo-400 pl-8">
                     La nostra filosofia mette al centro il rispetto per il tessuto e per l'ambiente. Non siamo un'industria, siamo un laboratorio dove l'occhio umano controlla ogni singola cucitura e ogni grado di pulizia.
                 </p>
-                <div class="flex gap-4">
+                <div class="flex flex-wrap gap-4">
                     <span class="px-6 py-2 border border-slate-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-400">Detergenti Bio</span>
                     <span class="px-6 py-2 border border-slate-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-400">Zero Plastica</span>
                 </div>
@@ -165,11 +199,11 @@
         </div>
     </section>
 
-    <section id="horeca" class="py-32 b2b-gradient text-white overflow-hidden section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+    <section id="horeca" class="py-24 md:py-32 b2b-gradient text-white overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="relative grid grid-cols-2 gap-4">
-                <img src="assets/img4.jpg" class="rounded-3xl shadow-2xl mt-12" alt="Biancheria Hotel">
-                <img src="assets/img5.jpg" class="rounded-3xl shadow-2xl" alt="Lavaggio industriale">
+                <img src="assets/img4.jpg" class="rounded-2xl md:rounded-3xl shadow-2xl mt-12" alt="Biancheria Hotel">
+                <img src="assets/img5.jpg" class="rounded-2xl md:rounded-3xl shadow-2xl" alt="Lavaggio industriale">
             </div>
             <div class="space-y-10">
                 <h2 class="text-6xl font-heading font-extrabold leading-none uppercase">Divisione <br><span class="text-indigo-400 italic">Hospitality.</span></h2>
@@ -190,7 +224,7 @@
         </div>
     </section>
 
-    <section id="noleggio" class="py-32 bg-white section-padding">
+    <section id="noleggio" class="py-24 md:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-5xl font-heading font-bold text-slate-900 uppercase">Noleggio <span class="text-indigo-500">Kit Tessili.</span></h2>
             <p class="text-slate-500 text-xl font-light italic leading-relaxed">
@@ -205,47 +239,60 @@
         </div>
     </section>
 
-    <section id="prezzi" class="py-32 bg-slate-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+    <section id="prezzi" class="py-24 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
-                <h2 class="text-7xl font-heading font-extrabold text-slate-900 leading-none tracking-tighter uppercase italic">Listino <br><span class="text-indigo-500 underline decoration-indigo-200">Ordini.</span></h2>
-                <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
-                    <div class="flex justify-between py-5 border-b border-slate-50"><span class="font-bold">Camicia (lavata e stirata)</span><span class="text-indigo-600 font-bold">€ 3,50</span></div>
-                    <div class="flex justify-between py-5 border-b border-slate-50"><span class="font-bold">Completo Uomo 2 pz</span><span class="text-indigo-600 font-bold">€ 14,00</span></div>
-                    <div class="flex justify-between py-5 border-b border-slate-50"><span class="font-bold">Biancheria Hotel (al kg)</span><span class="text-indigo-600 font-bold">Su Quote</span></div>
-                    <div class="flex justify-between py-5"><span class="font-bold">Abbonamento 20 Camicie</span><span class="bg-indigo-500 text-white px-4 py-1 rounded-full text-xs font-bold">€ 60,00</span></div>
+                <h2 class="text-6xl md:text-7xl font-heading font-extrabold text-slate-900 leading-none tracking-tighter uppercase italic">Listino <br><span class="text-indigo-500 underline decoration-indigo-200">Ordini.</span></h2>
+                <div class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex justify-between py-5 border-b border-slate-50 items-center gap-4"><span class="font-bold text-sm md:text-base">Camicia (lavata e stirata)</span><span class="text-indigo-600 font-bold">€ 3,50</span></div>
+                    <div class="flex justify-between py-5 border-b border-slate-50 items-center gap-4"><span class="font-bold text-sm md:text-base">Completo Uomo 2 pz</span><span class="text-indigo-600 font-bold">€ 14,00</span></div>
+                    <div class="flex justify-between py-5 border-b border-slate-50 items-center gap-4"><span class="font-bold text-sm md:text-base">Biancheria Hotel (al kg)</span><span class="text-indigo-600 font-bold">Quote</span></div>
+                    <div class="flex justify-between py-5 items-center gap-4"><span class="font-bold text-sm md:text-base">Abbonamento 20 Camicie</span><span class="bg-indigo-500 text-white px-4 py-1 rounded-full text-[10px] font-bold">€ 60,00</span></div>
                 </div>
             </div>
-            <form id="prenota" class="bg-white p-12 rounded-[3rem] shadow-2xl space-y-6">
+            <form id="prenota" class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl space-y-6">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-indigo-600 mb-4 text-center italic">Richiesta ritiro o preventivo B2B (Demo Mode)</p>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="NOME / AZIENDA" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none transition text-[10px] font-bold uppercase tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none transition text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="NOME / AZIENDA" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest">
                 </div>
-                <select class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none transition text-[10px] font-bold uppercase text-slate-400">
+                <select class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase text-slate-400">
                     <option>TIPOLOGIA DI RICHIESTA</option>
                     <option>PRIVATO: RITIRO A DOMICILIO</option>
                     <option>AZIENDA: NOLEGGIO TESSILI</option>
                     <option>RISTORANTE: LAVAGGIO TOVAGLIE</option>
                 </select>
-                <textarea placeholder="INSERISCI INDIRIZZO E DETTAGLI..." rows="3" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none transition text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-indigo-600 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl transition-all">Invia Messaggio</button>
+                <textarea placeholder="INSERISCI INDIRIZZO E DETTAGLI..." rows="3" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button type="button" class="w-full bg-indigo-600 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Messaggio</button>
             </form>
         </div>
     </section>
 
     <footer class="py-16 bg-white border-t border-slate-100 text-center px-6">
-        <p class="text-slate-300 text-[9px] uppercase tracking-[0.6em] font-bold leading-relaxed">
+        <p class="text-slate-300 text-[9px] uppercase tracking-[0.4em] md:tracking-[0.6em] font-bold leading-relaxed">
             &copy; 2026 Lava & Stira Pro | Eccellenza nei Servizi Tessili | P.IVA 0123456789 | LocalTop Demo Mode
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>
         lucide.createIcons();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('active');
+            
+            if(menu.classList.contains('active')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>

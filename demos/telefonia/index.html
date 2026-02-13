@@ -2,15 +2,12 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Phone Master | Telefonia, Usato Garantito & Riparazioni - Demo Mode</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --promo-bar-height: 34px;
-        }
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #f8fafc; 
@@ -22,47 +19,69 @@
         .text-electric { color: #2563eb; }
         .bg-electric { background-color: #2563eb; }
         
-        .hero-gradient { 
-            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent), 
-            linear-gradient(to bottom, #ffffff, #f8fafc); 
+        /* Hero Full Background */
+        .hero-section {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background-color: #000;
         }
-        
+
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Focus 75% destro su mobile */
+            object-position: 75% center;
+            z-index: 0;
+        }
+
+        /* Overlay per leggibilità testo */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(255,255,255,0.95) 30%, rgba(255,255,255,0.4) 60%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+
+        @media (max-width: 1023px) {
+            .hero-overlay {
+                background: linear-gradient(to bottom, rgba(255,255,255,0.9) 20%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.3) 100%);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
         .phone-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #f1f5f9; background: white; }
         .phone-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); border-color: #2563eb; }
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
 
-        /* Rimozione Grayscale e filtri */
         img { filter: none !important; grayscale: 0 !important; }
 
-        /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo {
+        input, select, textarea, .wa-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
-            user-select: none;
         }
 
-        /* Gestione Hero Title - Grande su Desktop, Scalato su Mobile */
         .hero-title {
             font-size: clamp(2.5rem, 8vw, 5.5rem);
             line-height: 1.1;
             font-weight: 900;
         }
 
-        /* Sticky Logic */
-        .promo-bar {
-            height: var(--promo-bar-height);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            transform: translateX(100%);
         }
-        .main-nav {
-            top: var(--promo-bar-height);
-        }
-
-        /* Responsive Fixes */
-        @media (max-width: 768px) {
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .hero-title { line-height: 1; margin-bottom: 1.5rem; }
+        #mobile-menu.active {
+            transform: translateX(0);
         }
 
         .demo-nav-container {
@@ -75,30 +94,33 @@
             gap: 0.5rem;
             max-width: calc(100% - 3rem);
         }
+
+        @media (max-width: 640px) {
+            .demo-nav-container a {
+                padding: 0.6rem 1rem;
+                font-size: 8px;
+            }
+        }
     </style>
 </head>
 <body class="selection:bg-blue-600 selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 pointer-events-auto">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 pointer-events-auto">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
         </a>
     </div>
 
-    <div class="promo-bar bg-slate-900 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.1em] sm:tracking-[0.2em] px-4 sticky top-0 z-[130]">
-        📱 SUPERVALUTAZIONE USATO: Porta lo smartphone e ricevi un buono immediato 📱
-    </div>
-
-    <nav class="main-nav sticky z-[120] glass h-20 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center gap-4">
+    <nav class="main-nav sticky top-0 z-[120] glass h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center gap-2">
             <div class="flex items-center gap-2 shrink-0">
                 <div class="w-8 h-8 sm:w-10 sm:h-10 bg-electric rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
                     <i data-lucide="smartphone" class="text-white w-5 h-5 sm:w-6 sm:h-6"></i>
                 </div>
-                <span class="text-xl sm:text-2xl font-tech font-black tracking-tighter uppercase text-slate-900">Phone<span class="text-electric">Master</span></span>
+                <span class="text-lg sm:text-2xl font-tech font-black tracking-tighter uppercase text-slate-900">Phone<span class="text-electric">Master</span></span>
             </div>
             
             <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
@@ -109,39 +131,57 @@
                 <a href="#accessori" class="hover:text-electric transition">Accessori</a>
             </div>
 
-            <div class="flex items-center">
-                <a href="#contatti" class="bg-slate-900 text-white px-4 sm:px-6 py-2.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-widest hover:bg-electric transition-all shadow-md whitespace-nowrap">
+            <div class="flex items-center gap-3">
+                <a href="#contatti" class="hidden sm:block bg-slate-900 text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-electric transition-all shadow-md whitespace-nowrap">
                     Chiedi Prezzo
                 </a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 pointer-events-auto">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <section class="relative min-h-[70vh] lg:h-[85vh] flex items-center hero-gradient overflow-hidden section-padding">
-        <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 sm:space-y-8 animate-fade-in text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-100">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[150] lg:hidden flex flex-col p-8">
+        <div class="flex justify-end mb-12">
+            <button id="menu-close" class="p-2 pointer-events-auto">
+                <i data-lucide="x" class="w-8 h-8 text-slate-900"></i>
+            </button>
+        </div>
+        <div class="flex flex-col gap-8 text-2xl font-tech font-black uppercase italic tracking-tighter">
+            <a href="#novità" class="mobile-link">Nuovi Arrivi</a>
+            <a href="#usato" class="mobile-link">Usato Garantito</a>
+            <a href="#filosofia" class="mobile-link">Filosofia</a>
+            <a href="#riparazioni" class="mobile-link">Riparazioni</a>
+            <a href="#accessori" class="mobile-link">Accessori</a>
+            <a href="#contatti" class="mobile-link text-electric">Contatti</a>
+        </div>
+    </div>
+
+    <section class="hero-section">
+        <img src="assets/img1.jpg" class="hero-bg-image" alt="Phone Tech Background">
+        <div class="hero-overlay"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 w-full hero-content">
+            <div class="max-w-2xl space-y-6 sm:space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-blue-50/80 text-blue-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-100">
                     Centro autorizzato 2026
                 </div>
                 <h1 class="hero-title text-slate-900 uppercase tracking-tighter">
                     La tua Vita <br> <span class="text-electric italic">Sempre Connessa.</span>
                 </h1>
-                <p class="text-lg sm:text-xl text-slate-500 font-light max-w-lg leading-relaxed border-l-4 border-electric pl-6 sm:pl-8 mx-auto lg:mx-0">
+                <p class="text-lg sm:text-xl text-slate-700 font-medium max-w-lg leading-relaxed border-l-4 border-electric pl-6 sm:pl-8 mx-auto lg:mx-0 text-left">
                     Gli ultimi flagship, il miglior usato ricondizionato e riparazioni espresse in 30 minuti. Il tuo punto di riferimento tech.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                    <a href="#usato" class="bg-electric text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold uppercase text-xs tracking-widest shadow-xl shadow-blue-200 hover:bg-slate-900 transition-all">Vedi Usato</a>
-                    <a href="#riparazioni" class="bg-white border-2 border-slate-200 text-slate-900 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Riparazione Rapida</a>
+                    <a href="#usato" class="bg-electric text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold uppercase text-xs tracking-widest shadow-xl shadow-blue-200 hover:bg-slate-900 transition-all pointer-events-auto">Vedi Usato</a>
+                    <a href="#riparazioni" class="bg-white/80 border-2 border-slate-200 text-slate-900 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic pointer-events-auto">Riparazione Rapida</a>
                 </div>
-            </div>
-            <div class="relative hidden lg:block">
-                <div class="absolute -inset-4 bg-blue-400/20 blur-3xl rounded-full"></div>
-                <img src="assets/img1.jpg" class="relative rounded-[3rem] shadow-2xl rotate-3 w-full object-cover" alt="Phone Tech">
             </div>
         </div>
     </section>
 
-    <section id="novità" class="py-20 bg-white section-padding">
+    <section id="novità" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-16 gap-6 text-center sm:text-left">
                 <h2 class="text-4xl sm:text-5xl font-tech font-black uppercase italic tracking-tighter leading-none">New <span class="text-electric">Generations.</span></h2>
@@ -185,11 +225,11 @@
         </div>
     </section>
 
-    <section id="usato" class="py-24 bg-slate-900 text-white section-padding">
+    <section id="usato" class="py-24 bg-slate-900 text-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-10">
                 <h2 class="text-4xl sm:text-6xl font-tech font-black tracking-tighter uppercase italic leading-none text-center lg:text-left">Smart <span class="text-electric">Choice.</span></h2>
-                <p class="text-slate-400 text-lg font-light leading-relaxed border-l-2 border-electric pl-6 sm:pl-8 italic">
+                <p class="text-slate-400 text-lg font-light leading-relaxed border-l-2 border-electric pl-6 sm:pl-8 italic text-left">
                     Perché pagare il prezzo pieno? Il nostro usato è selezionato, testato su oltre 40 punti di controllo e garantito 12 mesi. Pari al nuovo, ma con un risparmio fino al 50%.
                 </p>
                 <div class="grid grid-cols-2 gap-6 sm:gap-8 italic">
@@ -220,7 +260,7 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-24 sm:py-32 bg-white section-padding">
+    <section id="filosofia" class="py-24 sm:py-32 bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-10 sm:space-y-12">
             <h2 class="text-4xl sm:text-5xl font-tech font-black text-slate-900 uppercase italic leading-tight">Etica <span class="text-electric italic">&</span> Tecnologia.</h2>
             <p class="text-slate-500 text-lg sm:text-xl font-light italic leading-relaxed border-l-4 border-electric pl-6 sm:pl-8 mx-auto">
@@ -234,7 +274,7 @@
         </div>
     </section>
 
-    <section id="riparazioni" class="py-24 bg-white border-y border-slate-100 section-padding">
+    <section id="riparazioni" class="py-24 bg-white border-y border-slate-100">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl font-tech font-black uppercase italic tracking-widest leading-none">Tech <span class="text-electric">Clinic</span></h2>
             <p class="text-slate-500 text-lg font-light leading-relaxed italic max-w-2xl mx-auto">Vetro rotto? Batteria esausta? Interventi veloci con ricambi originali o compatibili di alta qualità. Ripariamo smartphone, tablet e pc mentre aspetti.</p>
@@ -259,7 +299,7 @@
         </div>
     </section>
 
-    <section id="accessori" class="py-24 bg-slate-50 section-padding">
+    <section id="accessori" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
             <div class="relative order-2 lg:order-1">
                 <img src="assets/img5.jpg" class="rounded-[2rem] shadow-xl w-full object-cover" alt="Accessories">
@@ -270,7 +310,7 @@
             </div>
             <div class="order-1 lg:order-2 space-y-8 sm:space-y-10 text-center lg:text-left">
                 <h2 class="text-4xl sm:text-5xl font-tech font-black leading-tight uppercase italic">Accessori <br><span class="text-electric">& Servizi.</span></h2>
-                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-electric pl-6 sm:pl-8 mx-auto lg:mx-0">Proteggi il tuo investimento con le migliori cover e pellicole in vetro temperato applicate dai nostri tecnici. Offriamo anche attivazioni SIM e piani tariffari dei principali operatori.</p>
+                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-electric pl-6 sm:pl-8 mx-auto lg:mx-0 text-left">Proteggi il tuo investimento con le migliori cover e pellicole in vetro temperato applicate dai nostri tecnici. Offriamo anche attivazioni SIM e piani tariffari dei principali operatori.</p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-10 font-black text-xl sm:text-2xl text-slate-300 uppercase tracking-tighter">
                     <span>Cover</span>
                     <span class="text-electric">Audio</span>
@@ -281,7 +321,27 @@
         </div>
     </section>
 
-    <footer class="bg-slate-900 text-white/50 py-12 text-center section-padding">
+    <section id="contatti" class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-4xl font-tech font-black uppercase italic tracking-tighter">Contatta il <span class="text-electric">Master.</span></h2>
+            <div class="grid gap-4 max-w-md mx-auto">
+                <div class="flex items-center justify-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <i data-lucide="phone" class="text-electric w-6 h-6"></i>
+                    <span class="font-bold text-slate-900">+39 0123 456789</span>
+                </div>
+                <div class="flex items-center justify-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <i data-lucide="message-circle" class="text-green-500 w-6 h-6"></i>
+                    <span class="font-bold text-slate-900">WhatsApp Chat</span>
+                </div>
+                <div class="flex items-center justify-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <i data-lucide="map-pin" class="text-red-500 w-6 h-6"></i>
+                    <span class="font-bold text-slate-900">Via Roma 123, Milano</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white/50 py-12 text-center">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex items-center justify-center gap-2 mb-6">
                 <span class="text-xl font-tech font-black tracking-tighter uppercase text-white">Phone<span class="text-electric">Master</span></span>
@@ -296,9 +356,23 @@
     </footer>
 
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
+        }
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
     </script>
-
 </body>
 </html>

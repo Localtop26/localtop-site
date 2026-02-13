@@ -8,14 +8,13 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #f8fafc; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #f8fafc; overflow-x: hidden; width: 100%; }
         h1, h2, h3, .font-tech { font-family: 'Space Grotesk', sans-serif; }
         .text-lime { color: #bef264; }
         .bg-lime { background-color: #bef264; }
         
-        /* 1. Immagini Locali (assets/img1.jpg, ecc. in ordine di apparizione) */
         .hero-mobility { 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
@@ -23,54 +22,77 @@
         .volt-card { background: #111; border: 1px solid #222; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .volt-card:hover { border-color: #bef264; transform: translateY(-5px); background: #161616; }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .chat-widget-demo {
+        /* Rimozione filtri grayscale */
+        img { filter: none !important; grayscale: 0 !important; }
+
+        /* Blocco Interazioni (Demo Mode) - Escluso il menu mobile */
+        button:not(.menu-toggle), input, select, textarea, .chat-widget-demo, .demo-btn-fake {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 15vw, 6.5rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        /* Abilitazione specifica per il toggle del menu */
+        .menu-toggle {
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.98);
+            z-index: 90;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        #mobile-menu.active { display: flex; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3rem, 15vw, 6.5rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .localtop-btn { padding: 0.75rem 1rem !important; font-size: 8px !important; }
+        }
+
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
-            left: 2rem;
+            left: 1rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
+            max-width: 180px;
         }
     </style>
 </head>
 <body class="selection:bg-lime selection:text-black">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Esempi
         </a>
     </div>
 
-    <div class="bg-lime text-black py-2 text-[10px] font-black text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120]">
-        ⚡ ECO-BONUS 2026: Rottama il tuo vecchio mezzo e risparmia fino a 500€ su tutta la gamma ⚡
-    </div>
-
-    <nav class="fixed w-full z-[100] bg-black/80 backdrop-blur-xl border-b border-white/5 h-20 flex items-center mt-8 md:mt-10">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-lime rounded-sm flex items-center justify-center rotate-12 shadow-[0_0_20px_rgba(190,242,100,0.4)]">
-                    <i data-lucide="zap" class="text-black w-6 h-6 -rotate-12"></i>
+    <nav class="fixed top-0 w-full z-[100] bg-black/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center gap-4">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-lime rounded-sm flex items-center justify-center rotate-12 shadow-[0_0_20px_rgba(190,242,100,0.4)]">
+                    <i data-lucide="zap" class="text-black w-5 h-5 md:w-6 md:h-6 -rotate-12"></i>
                 </div>
-                <span class="text-2xl font-tech font-bold text-white tracking-tighter uppercase">Volt<span class="text-lime">Ride</span></span>
+                <span class="text-xl md:text-2xl font-tech font-bold text-white tracking-tighter uppercase">Volt<span class="text-lime">Ride</span></span>
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400">
@@ -80,76 +102,89 @@
                 <a href="#business" class="hover:text-lime transition">Business</a>
             </div>
 
-            <a href="#testride" class="bg-white text-black px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-widest hover:bg-lime transition-all">
-                Prenota Test Ride
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#testride" class="hidden sm:block bg-white text-black px-5 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-widest hover:bg-lime transition-all">
+                    Test Ride
+                </a>
+                <button onclick="toggleMenu()" class="menu-toggle lg:hidden text-white p-2 relative z-[110]">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="lg:hidden">
+        <a href="#ebike" onclick="toggleMenu()" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">E-Bike</a>
+        <a href="#scooters" onclick="toggleMenu()" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Monopattini</a>
+        <a href="#officina" onclick="toggleMenu()" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Officina</a>
+        <a href="#business" onclick="toggleMenu()" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Business</a>
+        <a href="#testride" onclick="toggleMenu()" class="bg-lime text-black px-10 py-4 rounded-sm font-black uppercase tracking-widest mt-6">Prenota Ora</a>
+    </div>
+
     <section class="relative h-screen flex items-center hero-mobility overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <div class="max-w-3xl space-y-10">
-                <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 pt-20">
+            <div class="max-w-3xl space-y-8 md:space-y-10">
+                <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-4 md:px-5 py-2 rounded-full backdrop-blur-md">
                     <span class="w-2 h-2 bg-lime rounded-full animate-ping"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-white">Disponibile Nuova Gamma Carbon 2026</span>
+                    <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-white">Nuova Gamma Carbon 2026</span>
                 </div>
-                <h1 class="font-tech font-bold text-white uppercase italic tracking-tighter">
+                <h1 class="font-tech font-bold text-white uppercase italic tracking-tighter text-6xl md:text-8xl lg:text-9xl">
                     Move <br> <span class="text-lime">Beyond.</span>
                 </h1>
-                <p class="text-xl text-zinc-400 font-light max-w-xl leading-relaxed italic border-l-2 border-lime pl-8">
-                    Ridisegna i tuoi spostamenti urbani. Potenza elettrica, zero emissioni e il piacere di muoversi senza confini. Benvenuto nella rivoluzione della Volt Ride.
+                <p class="text-lg md:text-xl text-zinc-300 font-light max-w-xl leading-relaxed italic border-l-2 border-lime pl-6 md:pl-8">
+                    Ridisegna i tuoi spostamenti urbani. Potenza elettrica, zero emissioni e il piacere di muoversi senza confini.
                 </p>
-                <div class="flex flex-wrap gap-6 pt-6">
-                    <a href="#ebike" class="bg-lime text-black px-12 py-5 rounded-sm font-black uppercase text-xs tracking-widest hover:bg-white transition-all shadow-lg shadow-lime/20">Scegli la tua E-Bike</a>
+                <div class="flex flex-wrap gap-6 pt-4">
+                    <a href="#ebike" class="bg-lime text-black px-10 py-4 md:px-12 md:py-5 rounded-sm font-black uppercase text-xs tracking-widest hover:bg-white transition-all shadow-lg shadow-lime/20">Scegli la tua E-Bike</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="ebike" class="py-32 bg-[#050505] section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+    <section id="ebike" class="py-24 md:py-32 bg-[#050505] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
             <div class="space-y-10">
-                <h2 class="text-6xl font-tech font-bold uppercase italic">Power <br><span class="text-lime">Pedaling.</span></h2>
+                <h2 class="text-5xl md:text-6xl font-tech font-bold uppercase italic leading-none">Power <br><span class="text-lime">Pedaling.</span></h2>
                 <p class="text-zinc-500 text-lg font-light leading-relaxed">Dalle e-MTB per il fuoristrada estremo alle Trekking bike per i viaggi più lunghi. Motori Bosch e Shimano di ultima generazione con autonomie fino a 150km.</p>
-                <div class="grid grid-cols-2 gap-8">
+                <div class="grid grid-cols-2 gap-4 md:gap-8">
                     <div class="volt-card p-6 rounded-lg text-center">
-                        <span class="text-3xl font-tech text-lime">85Nm</span>
+                        <span class="text-2xl md:text-3xl font-tech text-lime">85Nm</span>
                         <p class="text-[9px] uppercase tracking-widest text-zinc-500 mt-2 font-bold">Coppia Massima</p>
                     </div>
                     <div class="volt-card p-6 rounded-lg text-center">
-                        <span class="text-3xl font-tech text-lime">750Wh</span>
+                        <span class="text-2xl md:text-3xl font-tech text-lime">750Wh</span>
                         <p class="text-[9px] uppercase tracking-widest text-zinc-500 mt-2 font-bold">Batteria Integrated</p>
                     </div>
                 </div>
             </div>
             <div class="relative group overflow-hidden rounded-2xl border border-white/5">
-                <img src="assets/img2.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000" alt="E-Bike Details">
+                <img src="assets/img2.jpg" class="w-full h-full object-cover transition duration-1000" alt="E-Bike Details">
             </div>
         </div>
     </section>
 
-    <section id="scooters" class="py-32 bg-black border-y border-white/5 section-padding">
+    <section id="scooters" class="py-24 md:py-32 bg-black border-y border-white/5 section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-4">
-                <h2 class="text-5xl font-tech font-bold uppercase italic">Urban <span class="text-lime">Gliders.</span></h2>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-4">
+                <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic">Urban <span class="text-lime">Gliders.</span></h2>
                 <span class="text-xs font-bold text-zinc-600 uppercase tracking-widest">Pieghevoli, Leggeri, Veloci</span>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="volt-card p-10 rounded-2xl group space-y-6">
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                <div class="volt-card p-8 md:p-10 rounded-2xl group space-y-6">
                     <div class="w-14 h-14 bg-zinc-900 rounded flex items-center justify-center text-lime group-hover:bg-lime group-hover:text-black transition-all">
                         <i data-lucide="zap"></i>
                     </div>
                     <h3 class="text-2xl font-tech font-bold uppercase">City Flow</h3>
                     <p class="text-sm text-zinc-500 font-light italic">Il re della città. 12kg di peso, triplo sistema frenante e connettività App totale.</p>
                 </div>
-                <div class="volt-card p-10 rounded-2xl group space-y-6">
+                <div class="volt-card p-8 md:p-10 rounded-2xl group space-y-6">
                     <div class="w-14 h-14 bg-zinc-900 rounded flex items-center justify-center text-lime group-hover:bg-lime group-hover:text-black transition-all">
                         <i data-lucide="shield"></i>
                     </div>
                     <h3 class="text-2xl font-tech font-bold uppercase">Pro Guard</h3>
                     <p class="text-sm text-zinc-500 font-light italic">Ruote da 10", ammortizzatori idraulici e luci LED 360° per la massima sicurezza.</p>
                 </div>
-                <div class="volt-card p-10 rounded-2xl group space-y-6">
+                <div class="volt-card p-8 md:p-10 rounded-2xl group space-y-6">
                     <div class="w-14 h-14 bg-zinc-900 rounded flex items-center justify-center text-lime group-hover:bg-lime group-hover:text-black transition-all">
                         <i data-lucide="battery"></i>
                     </div>
@@ -160,92 +195,95 @@
         </div>
     </section>
 
-    <section id="officina" class="py-32 bg-[#050505] section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-            <div class="order-2 lg:order-1 relative h-[400px]">
-                <img src="assets/img3.jpg" class="w-full h-full object-cover rounded-2xl opacity-40 grayscale" alt="Bicycle Workshop">
+    <section id="officina" class="py-24 md:py-32 bg-[#050505] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="order-2 lg:order-1 relative h-[300px] md:h-[400px]">
+                <img src="assets/img3.jpg" class="w-full h-full object-cover rounded-2xl opacity-60" alt="Bicycle Workshop">
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="text-center p-8 bg-black/60 backdrop-blur-md border border-lime/30 rounded-sm">
-                        <p class="text-4xl font-tech font-bold text-lime">CERTIFIED</p>
+                    <div class="text-center p-6 md:p-8 bg-black/60 backdrop-blur-md border border-lime/30 rounded-sm">
+                        <p class="text-3xl md:text-4xl font-tech font-bold text-lime">CERTIFIED</p>
                         <p class="text-[9px] uppercase tracking-widest text-white">E-Bike Tech Center</p>
                     </div>
                 </div>
             </div>
             <div class="order-1 lg:order-2 space-y-10">
                 <h2 class="text-5xl font-tech font-bold italic uppercase leading-none">Volt <br><span class="text-lime">Clinic.</span></h2>
-                <p class="text-zinc-500 text-lg leading-relaxed font-light italic border-l-4 border-lime pl-8">Diagnostica software motori, rigenerazione batterie, cambio gomme e manutenzione meccanica tradizionale. Servizio ritiro e consegna a domicilio.</p>
+                <p class="text-zinc-500 text-lg leading-relaxed font-light italic border-l-4 border-lime pl-8">Diagnostica software motori, rigenerazione batterie, cambio gomme e manutenzione meccanica tradizionale.</p>
                 <div class="flex flex-wrap gap-4">
-                    <span class="px-6 py-2 bg-zinc-900 border border-white/10 rounded-sm text-[10px] font-bold uppercase tracking-widest text-zinc-400">Bosch Center</span>
-                    <span class="px-6 py-2 bg-zinc-900 border border-white/10 rounded-sm text-[10px] font-bold uppercase tracking-widest text-zinc-400">Shimano Service</span>
+                    <span class="px-4 py-2 bg-zinc-900 border border-white/10 rounded-sm text-[9px] font-bold uppercase tracking-widest text-zinc-400">Bosch Center</span>
+                    <span class="px-4 py-2 bg-zinc-900 border border-white/10 rounded-sm text-[9px] font-bold uppercase tracking-widest text-zinc-400">Shimano Service</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="business" class="py-32 bg-lime text-black section-padding">
+    <section id="business" class="py-24 md:py-32 bg-lime text-black section-padding">
         <div class="max-w-7xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-6xl font-tech font-bold uppercase italic tracking-tighter">Green Your <span class="underline decoration-2">Business.</span></h2>
-            <p class="text-black/70 text-xl font-bold max-w-3xl mx-auto">Noleggio a lungo termine di flotte e-bike per dipendenti, branding personalizzato e manutenzione inclusa. Riduci l'impatto e migliora il welfare.</p>
-            <div class="flex justify-center flex-wrap gap-12 pt-8">
-                <div><i data-lucide="trending-down" class="w-10 h-10 mx-auto mb-4"></i><p class="text-[10px] font-black uppercase tracking-widest">Vantaggi Fiscali</p></div>
-                <div><i data-lucide="leaf" class="w-10 h-10 mx-auto mb-4"></i><p class="text-[10px] font-black uppercase tracking-widest">Sustainability</p></div>
-                <div><i data-lucide="map" class="w-10 h-10 mx-auto mb-4"></i><p class="text-[10px] font-black uppercase tracking-widest">Fleet Control</p></div>
+            <h2 class="text-5xl md:text-6xl font-tech font-bold uppercase italic tracking-tighter">Green Your <span class="underline decoration-2">Business.</span></h2>
+            <p class="text-black/70 text-lg md:text-xl font-bold max-w-3xl mx-auto">Noleggio a lungo termine di flotte e-bike per dipendenti, branding personalizzato e manutenzione inclusa.</p>
+            <div class="flex justify-center flex-wrap gap-8 md:gap-12 pt-8">
+                <div><i data-lucide="trending-down" class="w-8 h-8 md:w-10 md:h-10 mx-auto mb-4"></i><p class="text-[9px] font-black uppercase tracking-widest">Vantaggi Fiscali</p></div>
+                <div><i data-lucide="leaf" class="w-8 h-8 md:w-10 md:h-10 mx-auto mb-4"></i><p class="text-[9px] font-black uppercase tracking-widest">Sustainability</p></div>
+                <div><i data-lucide="map" class="w-8 h-8 md:w-10 md:h-10 mx-auto mb-4"></i><p class="text-[9px] font-black uppercase tracking-widest">Fleet Control</p></div>
             </div>
         </div>
     </section>
 
-    <section id="accessori" class="py-32 bg-black section-padding">
+    <section id="accessori" class="py-24 md:py-32 bg-black section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                 <div class="space-y-8">
-                    <h2 class="text-5xl font-tech font-bold uppercase italic">Ride <span class="text-lime">Safe.</span></h2>
-                    <p class="text-zinc-500 font-light text-lg">Caschi con luci integrate, lucchetti hi-tech ad arco e abbigliamento tecnico catarifrangente. La sicurezza non è un opzione.</p>
+                    <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic">Ride <span class="text-lime">Safe.</span></h2>
+                    <p class="text-zinc-500 font-light text-lg">Caschi con luci integrate, lucchetti hi-tech ad arco e abbigliamento tecnico catarifrangente.</p>
                     <div class="h-[1px] w-full bg-lime/30"></div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="h-64 bg-zinc-900 border border-white/5 rounded-2xl flex items-center justify-center">
-                        <img src="assets/img4.jpg" class="w-full h-full object-cover rounded-2xl opacity-50 grayscale" alt="Accessories 1">
+                    <div class="h-48 md:h-64 bg-zinc-900 border border-white/5 rounded-2xl flex items-center justify-center overflow-hidden">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover rounded-2xl" alt="Accessories 1">
                     </div>
-                    <div class="h-64 bg-zinc-900 border border-white/5 rounded-2xl flex items-center justify-center mt-12">
-                        <img src="assets/img5.jpg" class="w-full h-full object-cover rounded-2xl opacity-50 grayscale" alt="Accessories 2">
+                    <div class="h-48 md:h-64 bg-zinc-900 border border-white/5 rounded-2xl flex items-center justify-center mt-8 md:mt-12 overflow-hidden">
+                        <img src="assets/img5.jpg" class="w-full h-full object-cover rounded-2xl" alt="Accessories 2">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="testride" class="py-32 bg-[#050505] section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+    <section id="testride" class="py-24 md:py-32 bg-[#050505] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
-                <h2 class="text-8xl font-tech font-black text-white leading-none tracking-tighter uppercase italic">Feel the <br><span class="text-lime">Volt.</span></h2>
+                <h2 class="text-6xl md:text-8xl font-tech font-black text-white leading-none tracking-tighter uppercase italic">Feel the <br><span class="text-lime">Volt.</span></h2>
                 <div class="space-y-8">
                     <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-lime text-black rounded flex items-center justify-center shadow-xl rotate-6"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Hub & Store</p><p class="text-xl md:text-2xl font-bold uppercase">Viale della Mobilità 42, Milano</p></div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-lime text-black rounded flex items-center justify-center shadow-xl rotate-6"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Hub & Store</p><p class="text-lg md:text-2xl font-bold uppercase">Viale della Mobilità 42, Milano</p></div>
                     </div>
                     <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-white/5 border border-white/10 text-lime rounded flex items-center justify-center"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Shop Online Info</p><p class="text-xl md:text-2xl font-bold uppercase italic">+39 02 444 888</p></div>
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white/5 border border-white/10 text-lime rounded flex items-center justify-center"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Shop Online Info</p><p class="text-lg md:text-2xl font-bold uppercase italic">+39 02 444 888</p></div>
                     </div>
                 </div>
             </div>
-            <form class="volt-card p-8 md:p-12 rounded-3xl space-y-6 shadow-2xl">
-                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-lime mb-6 text-center italic">Prenota il tuo test ride gratuito (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-black border border-white/10 rounded outline-none text-[10px] font-bold tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-black border border-white/10 rounded outline-none text-[10px] font-bold tracking-widest">
+            
+            <div class="volt-card p-8 md:p-12 rounded-3xl space-y-8 shadow-2xl flex flex-col justify-center">
+                <div class="text-center space-y-4">
+                    <p class="text-xs font-black uppercase tracking-[0.3em] text-lime italic">Mettiti in contatto con noi</p>
+                    <h3 class="text-2xl font-tech font-bold uppercase">Prenota una consulenza</h3>
                 </div>
-                <select class="w-full p-4 bg-black border border-white/10 rounded outline-none text-[10px] font-bold tracking-widest text-zinc-500">
-                    <option>COSA VUOI PROVARE?</option>
-                </select>
-                <textarea placeholder="DICCI QUANDO VORRESTI PASSARE..." rows="3" class="w-full p-4 bg-black border border-white/10 rounded outline-none text-[10px] font-bold tracking-widest"></textarea>
-                <button class="w-full bg-lime text-black py-6 rounded-sm font-black uppercase text-[12px] tracking-[0.4em] shadow-xl">Invia Richiesta</button>
-            </form>
+                <div class="grid gap-4">
+                    <div class="demo-btn-fake w-full bg-white text-black py-5 rounded-sm font-black uppercase text-[11px] tracking-[0.2em] flex items-center justify-center gap-3">
+                        <i data-lucide="phone" class="w-4 h-4"></i> Chiama Ora
+                    </div>
+                    <div class="demo-btn-fake w-full bg-[#25D366] text-white py-5 rounded-sm font-black uppercase text-[11px] tracking-[0.2em] flex items-center justify-center gap-3">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Chat WhatsApp
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer class="py-12 bg-black border-t border-white/5 text-center">
-        <p class="text-zinc-600 text-[9px] uppercase tracking-[0.6em] font-bold">
+        <p class="text-zinc-600 text-[9px] uppercase tracking-[0.6em] font-bold px-4">
             &copy; 2026 Volt Ride Milano | Premium E-Mobility Store | Ride Green
         </p>
     </footer>
@@ -255,7 +293,27 @@
     </div>
 
     <script>
+        // Inizializza Lucide Icons
         lucide.createIcons();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const iconElement = document.getElementById('menu-icon');
+            const isActive = menu.classList.toggle('active');
+            
+            // Cambia l'icona dinamicamente
+            if (isActive) {
+                iconElement.setAttribute('data-lucide', 'x');
+            } else {
+                iconElement.setAttribute('data-lucide', 'menu');
+            }
+            
+            // Re-inizializza le icone solo per l'elemento cambiato
+            lucide.createIcons();
+            
+            // Blocca lo scroll del body quando il menu è aperto
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
+        }
     </script>
 </body>
 </html>

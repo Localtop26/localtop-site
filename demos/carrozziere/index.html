@@ -8,26 +8,61 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; width: 100%; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #ffffff; 
+            color: #1a1a1a; 
+            overflow-x: hidden; 
+            width: 100%; 
+            margin: 0;
+            padding: 0;
+        }
         .font-luxury { font-family: 'Marcellus', serif; }
         .text-racing { color: #991b1b; } 
         .bg-racing { background-color: #991b1b; }
         
         .hero-bg { 
-            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.4)), 
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.3)), 
             url('assets/img1.jpg'); 
-            background-size: cover; background-position: center; 
+            background-size: cover; 
+            background-position: center; 
         }
 
-        /* Ottimizzazione Mobile Friendly */
+        /* Rimosso grayscale e filtri ovunque */
+        .reveal-img img, img { 
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); 
+            filter: none !important; 
+            grayscale: 0 !important;
+            -webkit-filter: grayscale(0) !important;
+        }
+        .reveal-img:hover img { transform: scale(1.05); }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        #mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Fix per scroll orizzontale */
+        * { box-sizing: border-box; }
+
         @media (max-width: 768px) {
             .responsive-h1 { 
-                font-size: clamp(2.5rem, 15vw, 4.5rem) !important; 
+                font-size: clamp(2.8rem, 12vw, 4.5rem) !important; 
                 line-height: 1.1 !important;
-                word-break: break-word;
             }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .nav-button { display: none; } /* Nasconde pulsante emergenza su mobile per pulizia */
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            
+            /* Bottoni Localtop più piccoli su mobile */
+            .demo-nav-container a {
+                padding: 0.5rem 0.8rem !important;
+                font-size: 7.5px !important;
+            }
         }
 
         .demo-nav-container {
@@ -38,14 +73,8 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            max-width: 180px;
+            max-width: 160px;
         }
-
-        .reveal-img img { transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); }
-        .reveal-img:hover img { transform: scale(1.05); }
-
-        /* Fix per scroll orizzontale */
-        * { box-sizing: border-box; }
     </style>
 </head>
 <body class="selection:bg-racing selection:text-white">
@@ -55,15 +84,17 @@
             <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
         <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform active:scale-95">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Esempi
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
         </a>
     </div>
 
-    <nav class="fixed w-full z-[100] bg-white/90 backdrop-blur-md border-b border-slate-100 h-20 md:h-24 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <span class="text-2xl md:text-3xl font-luxury text-slate-900 tracking-tighter uppercase">Atelier<span class="text-racing">Auto</span></span>
+    <nav class="fixed w-full z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 md:h-24 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center relative">
+            
+            <div class="flex items-center">
+                <span class="text-xl md:text-3xl font-luxury text-slate-900 tracking-tighter uppercase">Atelier<span class="text-racing">Auto</span></span>
             </div>
+
             <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500">
                 <a href="#servizi" class="hover:text-racing transition">Servizi</a>
                 <a href="#tecnologia" class="hover:text-racing transition">Tecnologia</a>
@@ -71,15 +102,34 @@
                 <a href="#officina" class="hover:text-racing transition">Officina</a>
                 <a href="#contatti" class="hover:text-racing transition">Contatti</a>
             </div>
-            <a href="tel:+39021234567" class="nav-button border border-slate-900 text-slate-900 px-6 py-2 md:px-8 md:py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">
-                Emergenza
-            </a>
+
+            <div class="flex items-center gap-4">
+                <a href="tel:+39021234567" class="hidden sm:inline-block border border-slate-900 text-slate-900 px-5 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">
+                    Emergenza
+                </a>
+                <button id="menu-btn" class="lg:hidden text-slate-900 p-2 focus:outline-none">
+                    <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[90] lg:hidden flex flex-col justify-center items-center text-center p-6">
+        <div class="flex flex-col gap-8">
+            <a href="#servizi" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Servizi</a>
+            <a href="#tecnologia" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Tecnologia</a>
+            <a href="#convenzioni" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Assicurazioni</a>
+            <a href="#officina" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Officina</a>
+            <a href="#contatti" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Contatti</a>
+            <div class="pt-4">
+                <a href="tel:+39021234567" class="bg-racing text-white px-8 py-4 text-xs font-bold uppercase tracking-widest block">Emergenza H24</a>
+            </div>
+        </div>
+    </div>
+
     <section class="relative min-h-screen flex items-center hero-bg pt-20">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full relative z-10">
-            <div class="max-w-2xl space-y-6 md:space-y-10">
+            <div class="max-w-3xl space-y-6 md:space-y-10">
                 <div class="w-12 md:w-16 h-[2px] bg-racing"></div>
                 <h1 class="responsive-h1 text-5xl md:text-9xl font-luxury text-slate-900 leading-[1.1] md:leading-[0.85] uppercase">
                     Riflessi di <br> <span class="text-racing italic">Perfezione.</span>
@@ -125,7 +175,7 @@
     <section id="tecnologia" class="py-20 md:py-32 bg-slate-900 text-white section-padding">
         <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="relative h-[300px] md:h-[400px] overflow-hidden rounded-sm">
-                <img src="assets/img5.jpg" class="w-full h-full object-cover opacity-60" alt="Tech">
+                <img src="assets/img5.jpg" class="w-full h-full object-cover opacity-90" alt="Tech">
                 <div class="absolute inset-0 border-[10px] md:border-[20px] border-white/5"></div>
             </div>
             <div class="space-y-8 md:space-y-10">
@@ -193,6 +243,10 @@
                         <div>
                             <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-1">Telefono</p>
                             <p class="text-2xl md:text-3xl font-luxury italic">+39 02 1234 567</p>
+                            <div class="flex flex-wrap gap-3 mt-4">
+                                <a href="tel:+39021234567" class="bg-white text-slate-900 px-6 py-3 text-[9px] font-bold uppercase tracking-widest hover:bg-racing hover:text-white transition-all">Chiama Ora</a>
+                                <div class="bg-[#25D366] text-white px-6 py-3 text-[9px] font-bold uppercase tracking-widest flex items-center gap-2">WhatsApp</div>
+                            </div>
                         </div>
                     </div>
                     <div class="flex gap-4 md:gap-8">
@@ -209,8 +263,9 @@
                     <input type="text" placeholder="Nome" class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase focus:border-racing transition-colors">
                     <input type="text" placeholder="Targa" class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase focus:border-racing transition-colors">
                 </div>
+                <input type="email" placeholder="Email" class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase focus:border-racing transition-colors">
                 <textarea placeholder="Descrizione danno..." rows="3" class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase focus:border-racing transition-colors"></textarea>
-                <button class="w-full bg-slate-900 text-white py-5 md:py-6 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-racing transition-all">Invia Richiesta</button>
+                <button type="button" class="w-full bg-slate-900 text-white py-5 md:py-6 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-racing transition-all">Invia Richiesta</button>
             </form>
         </div>
     </section>
@@ -227,6 +282,39 @@
 
     <script>
         lucide.createIcons();
+
+        // Mobile Menu Script
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.contains('active');
+            
+            if (isOpen) {
+                mobileMenu.classList.remove('active');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                document.body.style.overflow = 'auto';
+            } else {
+                mobileMenu.classList.add('active');
+                menuIcon.setAttribute('data-lucide', 'x');
+                document.body.style.overflow = 'hidden';
+            }
+            lucide.createIcons();
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Close menu on link click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                document.body.style.overflow = 'auto';
+                lucide.createIcons();
+            });
+        });
     </script>
 </body>
 </html>

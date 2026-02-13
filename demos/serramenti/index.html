@@ -18,49 +18,65 @@
         body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e293b; }
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
         
-        /* Titoli Massicci e Sicuri */
+        /* Titoli Massicci e Sicuri - Desktop invariant */
         h1 { 
-            font-size: clamp(3.2rem, 15vw, 9rem) !important; 
+            font-size: clamp(3.2rem, 12vw, 9rem) !important; 
             line-height: 0.85 !important; 
             font-weight: 900;
             letter-spacing: -0.04em;
         }
         h2 { 
-            font-size: clamp(2.5rem, 10vw, 6rem) !important; 
+            font-size: clamp(2.2rem, 8vw, 6rem) !important; 
             line-height: 0.9 !important; 
             font-weight: 900;
             letter-spacing: -0.02em;
         }
         
         .hero-bg { 
-            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.4)), 
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.3)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
         
-        /* Reset Immagini */
-        img { filter: none !important; max-width: 100%; height: auto; display: block; }
+        /* Reset Immagini - No Filtri */
+        img { filter: none !important; max-width: 100%; height: auto; display: block; transition: none !important; }
+        img:hover { filter: none !important; }
 
-        /* Banner Flessibile (Non schiacciato) */
-        .sticky-banner { 
-            min-height: 40px; 
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Navigazione Sticky */
+        .sticky-nav { 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
         }
-        
-        /* Navigazione Sticky Corretta */
-        .sticky-nav { top: 0; }
-        @media (min-width: 0px) {
-            .sticky-nav { position: sticky; top: -1px; z-index: 100; } /* Fix per evitare glitch */
+
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: white;
+            z-index: 999;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 2rem;
         }
+        #mobile-menu.active { display: flex; }
 
         @media (max-width: 768px) {
-            .hero-section { min-height: 80vh; padding-top: 4rem; padding-bottom: 4rem; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
-            /* Rimuovo i badge che escono dai bordi su mobile */
-            .absolute-badge { position: relative !important; right: 0 !important; bottom: 0 !important; margin-top: 1.5rem; display: block !important; }
+            .hero-section { min-height: 70vh; padding-top: 2rem; padding-bottom: 2rem; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .absolute-badge { position: relative !important; right: 0 !important; bottom: 0 !important; margin-top: 1.5rem; display: block !important; width: fit-content; }
+            
+            /* Bottoni Localtop più piccoli su mobile */
+            .demo-nav-container a {
+                padding: 8px 12px !important;
+                font-size: 7px !important;
+            }
         }
 
         .demo-nav-container {
@@ -73,7 +89,9 @@
             gap: 0.5rem;
         }
 
-        button, input, select, textarea { pointer-events: none !important; }
+        /* Disabilita interazioni tranne menu e link di navigazione */
+        button:not(#menu-toggle), input, select, textarea { pointer-events: none !important; }
+        .no-click { pointer-events: none !important; }
     </style>
 </head>
 <body class="selection:bg-slate-800 selection:text-white">
@@ -83,40 +101,45 @@
             <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
         <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Esempi
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
         </a>
     </div>
 
-    <div class="sticky-banner bg-slate-900 text-white text-[9px] font-bold text-center uppercase tracking-[0.15em] relative z-[110] w-full">
-        🏡 Ecobonus 2026: Recupera fino al 50%. Pensiamo noi alle pratiche ENEA.
-    </div>
-
-    <nav class="sticky-nav bg-white/95 backdrop-blur-md border-b border-slate-100 min-h-[80px] flex items-center">
+    <nav class="sticky-nav border-b border-slate-100 min-h-[80px] flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center py-3">
-            <div class="flex items-center gap-3 shrink-0">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 border-2 border-slate-900 flex items-center justify-center shrink-0">
-                    <div class="w-5 h-5 border-t-2 border-r-2 border-slate-900"></div>
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <div class="w-7 h-7 sm:w-10 sm:h-10 border-2 border-slate-900 flex items-center justify-center shrink-0">
+                    <div class="w-4 h-4 sm:w-5 sm:h-5 border-t-2 border-r-2 border-slate-900"></div>
                 </div>
                 <div class="flex flex-col leading-none whitespace-nowrap">
-                    <span class="text-xl sm:text-2xl font-black tracking-tighter uppercase text-slate-900 italic">Sinergia<span class="text-slate-400">Infissi</span></span>
-                    <span class="text-[7px] sm:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Milano</span>
+                    <span class="text-lg sm:text-2xl font-black tracking-tighter uppercase text-slate-900 italic">Sinergia<span class="text-slate-400">Infissi</span></span>
+                    <span class="text-[6px] sm:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Milano</span>
                 </div>
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
                 <a href="#serramenti" class="hover:text-slate-900 transition">Infissi</a>
                 <a href="#sicurezza" class="hover:text-slate-900 transition">Sicurezza</a>
-                <a href="#filosofia" class="hover:text-slate-900 transition">Filosofia</a>
                 <a href="#bonus" class="hover:text-slate-900 transition">Bonus</a>
+                <a href="#contatti" class="hover:text-slate-900 transition border-b-2 border-slate-900 text-slate-900">Preventivo</a>
             </div>
 
-            <a href="#contatti" class="bg-slate-900 text-white px-5 sm:px-8 py-3.5 text-[9px] sm:text-[11px] font-bold uppercase tracking-widest shrink-0">
-                Preventivo
-            </a>
+            <div class="flex items-center gap-4 lg:hidden">
+                <button id="menu-toggle" class="p-2 text-slate-900" style="pointer-events: auto !important;">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative hero-section hero-bg flex items-center">
+    <div id="mobile-menu" class="lg:hidden">
+        <a href="#serramenti" class="text-2xl font-black uppercase italic text-slate-900" onclick="toggleMenu()">Infissi</a>
+        <a href="#sicurezza" class="text-2xl font-black uppercase italic text-slate-900" onclick="toggleMenu()">Sicurezza</a>
+        <a href="#bonus" class="text-2xl font-black uppercase italic text-slate-900" onclick="toggleMenu()">Bonus</a>
+        <a href="#contatti" class="text-2xl font-black uppercase italic text-slate-900" onclick="toggleMenu()">Contatti</a>
+    </div>
+
+    <section class="relative hero-section hero-bg flex items-center py-12 lg:py-32">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
             <div class="max-w-5xl space-y-10 text-center lg:text-left">
                 <h1 class="text-slate-900 uppercase">
@@ -135,20 +158,23 @@
         </div>
     </section>
 
-    <section id="serramenti" class="py-20 sm:py-32 bg-white">
+    <section id="serramenti" class="py-16 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-3 gap-1 bg-slate-100 border border-slate-100 shadow-2xl">
-                <div class="bg-white p-10 sm:p-12 space-y-6">
+            <div class="mb-16 text-center lg:text-left">
+                <h2 class="text-slate-900 uppercase italic">Collezioni <br> <span class="text-slate-400">Senza Tempo.</span></h2>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-4 lg:gap-1 bg-slate-100 border border-slate-100 shadow-2xl">
+                <div class="bg-white p-8 lg:p-12 space-y-6">
                     <h3 class="text-3xl font-heading font-black italic">Alluminio <br> Minimal</h3>
                     <p class="text-slate-500 text-sm font-light">Profili sottili per la massima luminosità.</p>
                     <img src="assets/img2.jpg" class="w-full h-56 object-cover" alt="Alluminio">
                 </div>
-                <div class="bg-white p-10 sm:p-12 space-y-6">
+                <div class="bg-white p-8 lg:p-12 space-y-6">
                     <h3 class="text-3xl font-heading font-black italic">PVC High <br> Performance</h3>
                     <p class="text-slate-500 text-sm font-light">Il miglior rapporto qualità-prezzo sul mercato.</p>
                     <img src="assets/img3.jpg" class="w-full h-56 object-cover" alt="PVC">
                 </div>
-                <div class="bg-white p-10 sm:p-12 space-y-6">
+                <div class="bg-white p-8 lg:p-12 space-y-6">
                     <h3 class="text-3xl font-heading font-black italic">Legno <br> & Alluminio</h3>
                     <p class="text-slate-500 text-sm font-light">Calore interno e resistenza eterna esterna.</p>
                     <img src="assets/img4.jpg" class="w-full h-56 object-cover" alt="Legno">
@@ -157,24 +183,24 @@
         </div>
     </section>
 
-    <section id="sicurezza" class="py-20 sm:py-32 bg-slate-50 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <section id="sicurezza" class="py-16 lg:py-32 bg-slate-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div class="relative order-2 lg:order-1">
                 <img src="assets/img5.jpg" class="rounded-sm shadow-2xl w-full" alt="Porta Blindata">
-                <div class="absolute-badge absolute -bottom-8 -right-8 bg-slate-900 text-white p-10 hidden md:block">
-                    <p class="font-heading text-5xl font-black italic">Classe 4</p>
+                <div class="absolute-badge absolute -bottom-8 -right-8 bg-slate-900 text-white p-8 lg:p-10 hidden md:block">
+                    <p class="font-heading text-4xl lg:text-5xl font-black italic">Classe 4</p>
                     <p class="text-[10px] uppercase tracking-widest mt-2">Sicurezza Totale</p>
                 </div>
             </div>
-            <div class="order-1 lg:order-2 space-y-10 text-center lg:text-left">
+            <div class="order-1 lg:order-2 space-y-8 lg:space-y-10 text-center lg:text-left">
                 <h2 class="text-slate-900 uppercase italic">Inviolabile <br> Bellezza.</h2>
                 <p class="text-slate-600 text-xl font-light italic lg:border-l-4 border-slate-400 lg:pl-8">Le nostre porte blindate sono elementi d'arredo personalizzabili in ogni finitura.</p>
-                <div class="space-y-6 inline-block text-left w-full">
-                    <div class="flex items-center gap-4 pb-6 border-b border-slate-200">
+                <div class="space-y-4 lg:space-y-6 inline-block text-left w-full">
+                    <div class="flex items-center gap-4 pb-4 lg:pb-6 border-b border-slate-200">
                         <i data-lucide="shield-check" class="text-slate-900 w-6 h-6 shrink-0"></i>
                         <span class="text-[10px] font-black uppercase tracking-widest">Serrature biometriche</span>
                     </div>
-                    <div class="flex items-center gap-4 pb-6 border-b border-slate-200">
+                    <div class="flex items-center gap-4 pb-4 lg:pb-6 border-b border-slate-200">
                         <i data-lucide="volume-x" class="text-slate-900 w-6 h-6 shrink-0"></i>
                         <span class="text-[10px] font-black uppercase tracking-widest">Isolamento 45dB</span>
                     </div>
@@ -183,10 +209,10 @@
         </div>
     </section>
 
-    <section id="bonus" class="py-20 sm:py-32 bg-slate-900 text-white">
-        <div class="max-w-5xl mx-auto px-6 text-center space-y-16">
+    <section id="bonus" class="py-16 lg:py-32 bg-slate-900 text-white">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-12 lg:space-y-16">
             <h2 class="italic uppercase tracking-widest text-white">Sostituire conviene.</h2>
-            <div class="grid md:grid-cols-3 gap-12 sm:gap-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16">
                 <div><span class="text-5xl sm:text-7xl font-black block mb-2 text-slate-400">-40%</span> <p class="text-[10px] uppercase font-bold tracking-widest">Bollette</p></div>
                 <div><span class="text-5xl sm:text-7xl font-black block mb-2 text-slate-400">50%</span> <p class="text-[10px] uppercase font-bold tracking-widest">Detrazione</p></div>
                 <div><span class="text-5xl sm:text-7xl font-black block mb-2 text-slate-400">10 Anni</span> <p class="text-[10px] uppercase font-bold tracking-widest">Garanzia</p></div>
@@ -194,30 +220,48 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-20 sm:py-32 bg-slate-50">
+    <section id="contatti" class="py-16 lg:py-32 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div class="space-y-12 text-center lg:text-left">
                 <h2 class="text-slate-900 uppercase italic">Parliamo del <br>tuo <span class="text-slate-400">Progetto.</span></h2>
-                <div class="space-y-10 inline-block lg:block text-left w-full">
-                    <div class="flex items-center gap-6">
-                        <div class="w-14 h-14 bg-white flex items-center justify-center text-slate-900 shadow-lg shrink-0"><i data-lucide="phone" class="w-6 h-6"></i></div>
-                        <p class="text-2xl sm:text-3xl font-black italic">+39 02 1234 567</p>
-                    </div>
-                    <div class="flex items-center gap-6 text-slate-400">
-                        <div class="w-14 h-14 bg-white flex items-center justify-center shrink-0 shadow-lg"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
-                        <p class="text-lg sm:text-xl font-light italic">Via della Luce 10, Milano</p>
+                <div class="space-y-6 inline-block lg:block text-left w-full">
+                    <p class="text-slate-500 uppercase tracking-widest text-[10px] font-bold">Contattaci subito per una consulenza:</p>
+                    
+                    <div class="flex flex-col gap-4">
+                        <div class="no-click flex items-center gap-6 bg-white p-6 shadow-xl border border-slate-100">
+                            <div class="w-12 h-12 bg-slate-900 flex items-center justify-center text-white shrink-0"><i data-lucide="phone" class="w-6 h-6"></i></div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-slate-400 tracking-tighter">Telefono</p>
+                                <p class="text-xl sm:text-2xl font-black italic text-slate-900">+39 02 1234 567</p>
+                            </div>
+                        </div>
+
+                        <div class="no-click flex items-center gap-6 bg-white p-6 shadow-xl border border-slate-100">
+                            <div class="w-12 h-12 bg-green-600 flex items-center justify-center text-white shrink-0"><i data-lucide="message-circle" class="w-6 h-6"></i></div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-slate-400 tracking-tighter">WhatsApp</p>
+                                <p class="text-xl sm:text-2xl font-black italic text-slate-900">Chat Diretta</p>
+                            </div>
+                        </div>
+
+                        <div class="no-click flex items-center gap-6 bg-white p-6 shadow-xl border border-slate-100">
+                            <div class="w-12 h-12 bg-slate-400 flex items-center justify-center text-white shrink-0"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-slate-400 tracking-tighter">Sede Milano</p>
+                                <p class="text-lg sm:text-xl font-light italic text-slate-900">Via della Luce 10, Milano</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-8 sm:p-14 border border-slate-100 space-y-6 shadow-2xl relative w-full">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Nome" class="w-full p-5 bg-slate-50 border-none outline-none text-sm italic">
-                    <input type="text" placeholder="Città" class="w-full p-5 bg-slate-50 border-none outline-none text-sm italic">
-                </div>
-                <input type="email" placeholder="Email" class="w-full p-5 bg-slate-50 border-none outline-none text-sm italic">
-                <textarea placeholder="Descrivi il progetto..." rows="3" class="w-full p-5 bg-slate-50 border-none outline-none text-sm italic"></textarea>
-                <button class="w-full bg-slate-900 text-white py-6 font-black uppercase text-[10px] tracking-[0.3em]">Invia Richiesta</button>
-            </form>
+            
+            <div class="bg-slate-900 p-10 lg:p-14 text-white space-y-8 shadow-2xl flex flex-col justify-center items-center text-center">
+                <i data-lucide="calendar-check" class="w-16 h-16 text-slate-400 mb-4"></i>
+                <h3 class="text-3xl font-black italic uppercase">Richiedi un Sopralluogo Gratuito</h3>
+                <p class="text-slate-400 font-light">I nostri tecnici sono a tua disposizione per una valutazione energetica dei tuoi attuali serramenti.</p>
+                <div class="w-full h-px bg-slate-800"></div>
+                <p class="text-[10px] uppercase tracking-[0.3em] font-bold">Risposta entro 24 ore lavorative</p>
+            </div>
         </div>
     </section>
 
@@ -227,12 +271,31 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 bg-black text-white p-4 rounded-full shadow-2xl z-50">
+    <div class="wa-widget-demo fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl z-50 no-click">
         <i data-lucide="message-square" class="w-6 h-6"></i>
     </div>
 
     <script>
         lucide.createIcons();
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenu();
+        });
     </script>
 </body>
 </html>

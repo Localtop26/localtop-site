@@ -8,62 +8,69 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --promo-height: 36px;
-        }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; width: 100%; }
         .font-serif-logo { font-family: 'Cinzel', serif; }
         .bg-navy { background-color: #0f172a; }
         .text-navy { color: #0f172a; }
         .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); }
         
-        /* Demo Mode: Disabilitazione interazioni */
-        button, input, select, textarea, .wa-widget {
+        /* RIMOZIONE FILTRI IMMAGINI */
+        img { filter: none !important; grayscale: 0 !important; }
+
+        /* Demo Mode: Disabilitazione interazioni form */
+        input, select, textarea, .wa-widget {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
         /* FIX: Header Mobile & Sticky Logic */
-        .promo-bar {
-            height: var(--promo-height);
-            position: sticky;
-            top: 0;
-            z-index: 130;
-        }
-
         .sticky-header-fix { 
             position: sticky !important; 
-            top: var(--promo-height) !important; 
-            z-index: 120;
+            top: 0 !important; 
+            z-index: 100;
         }
 
-        /* Ottimizzazione Mobile */
+        /* Ottimizzazione Spazi e Mobile */
         @media (max-width: 768px) {
-            :root { --promo-height: 44px; }
-            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+            h1 { font-size: clamp(2.8rem, 14vw, 5.5rem) !important; line-height: 0.95 !important; }
+            h2 { font-size: clamp(2.2rem, 9vw, 3.8rem) !important; }
+            .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
             
-            /* Evita sovrapposizione tra logo e bottone su schermi piccoli */
-            .header-content { padding-left: 1rem; padding-right: 1rem; gap: 0.5rem; }
-            .logo-text-container { scale: 0.9; transform-origin: left; }
+            /* Prevenzione Overflow */
+            .max-w-7xl { overflow-x: hidden; }
+
+            /* Bottoni Localtop Mobile discreti */
+            .demo-nav-container a {
+                padding: 0.6rem 1rem !important;
+                font-size: 8px !important;
+            }
+            .demo-nav-container a i { display: none; }
         }
 
         /* Bottoni Floating Bottom-Left */
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
         .stat-card { border-left: 1px solid #e2e8f0; }
         @media (max-width: 640px) {
-            .stat-card { border-left: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 2rem; padding-left: 0 !important; }
+            .stat-card { border-left: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.2rem; padding-left: 0 !important; }
+        }
+
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
         }
     </style>
 </head>
@@ -78,53 +85,72 @@
         </a>
     </div>
 
-    <div class="promo-bar relative bg-slate-900 text-white py-3 text-[10px] font-black text-center uppercase tracking-[0.2em] px-6">
-        ⚖️ CONSULENZA DIREZIONALE: Strategie per l'internazionalizzazione e Tax Planning 2026
-    </div>
-
-    <nav class="sticky-header-fix w-full glass-header border-b border-slate-100 h-24 flex items-center shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center header-content">
-            <div class="flex items-center gap-3 logo-text-container">
-                <div class="w-12 h-12 bg-navy rounded flex items-center justify-center shadow-lg shrink-0">
-                    <i data-lucide="award" class="text-white w-6 h-6"></i>
+    <nav class="sticky-header-fix w-full glass-header border-b border-slate-100 h-20 md:h-24 flex items-center shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-3 shrink-0">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-navy rounded flex items-center justify-center shadow-lg">
+                    <i data-lucide="award" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-xl md:text-2xl font-serif-logo font-black tracking-widest text-navy uppercase">Valente</span>
-                    <span class="text-[9px] tracking-[0.3em] uppercase text-slate-400 mt-1 font-black italic">Studio Associato</span>
+                    <span class="text-lg md:text-2xl font-serif-logo font-black tracking-widest text-navy uppercase">Valente</span>
+                    <span class="text-[8px] md:text-[9px] tracking-[0.2em] md:tracking-[0.3em] uppercase text-slate-400 mt-1 font-black italic">Studio Associato</span>
                 </div>
             </div>
+
             <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-slate-500">
                 <a href="#aree" class="hover:text-navy transition">Attività</a>
                 <a href="#numeri" class="hover:text-navy transition">Numeri</a>
                 <a href="#digital" class="hover:text-navy transition">Digital Hub</a>
                 <a href="#storia" class="hover:text-navy transition">Storia</a>
             </div>
-            <button class="bg-navy text-white px-8 py-3.5 rounded text-[10px] font-black uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-all shrink-0">
-                Area Riservata
-            </button>
+
+            <div class="flex items-center gap-4">
+                <button class="hidden sm:block bg-navy text-white px-6 md:px-8 py-3 rounded text-[10px] font-black uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-all shrink-0">
+                    Area Riservata
+                </button>
+                <button id="menu-toggle" class="lg:hidden text-navy p-2">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[200] flex flex-col p-8 lg:hidden">
+        <div class="flex justify-end mb-8">
+            <button id="menu-close" class="text-navy">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6 text-xl font-black uppercase tracking-widest text-navy">
+            <a href="#aree" class="mobile-link border-b border-slate-100 pb-4">Attività</a>
+            <a href="#numeri" class="mobile-link border-b border-slate-100 pb-4">Numeri</a>
+            <a href="#digital" class="mobile-link border-b border-slate-100 pb-4">Digital Hub</a>
+            <a href="#storia" class="mobile-link border-b border-slate-100 pb-4">Storia</a>
+            <a href="#contatti" class="mobile-link border-b border-slate-100 pb-4">Contatti</a>
+        </div>
+        <button class="mt-auto bg-navy text-white py-5 rounded font-black uppercase tracking-widest">Area Riservata</button>
+    </div>
+
     <main>
-        <section class="relative min-h-screen flex items-center bg-white overflow-hidden">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center py-20">
-                <div class="space-y-10 z-10">
+        <section class="relative min-h-[85vh] md:min-h-screen flex items-center bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-10 md:py-20">
+                <div class="space-y-6 md:space-y-10 z-10">
                     <div class="inline-flex items-center gap-2 bg-slate-100 text-navy px-4 py-1.5 rounded text-[10px] font-black uppercase tracking-widest border border-slate-200">
                         Milano • Londra • Dubai
                     </div>
                     <h1 class="text-7xl md:text-9xl font-bold leading-[0.85] text-navy tracking-tighter uppercase">
                         Oltre la <br>norma. <br><span class="italic text-slate-300">Visione.</span>
                     </h1>
-                    <p class="text-xl md:text-2xl text-slate-600 font-bold max-w-lg leading-relaxed border-l-8 border-navy pl-8 italic">
+                    <p class="text-lg md:text-2xl text-slate-600 font-bold max-w-lg leading-relaxed border-l-4 md:border-l-8 border-navy pl-6 md:pl-8 italic">
                         Dal 1992, trasformiamo la complessità fiscale in vantaggio competitivo per le eccellenze del Made in Italy.
                     </p>
-                    <div class="flex gap-4 pt-4">
-                        <a href="#aree" class="bg-navy text-white px-12 py-6 rounded font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-slate-800 transition-all">Le Nostre Competenze</a>
+                    <div class="flex gap-4 pt-2">
+                        <a href="#aree" class="bg-navy text-white px-10 md:px-12 py-5 md:py-6 rounded font-black text-[10px] md:text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-slate-800 transition-all">Le Nostre Competenze</a>
                     </div>
                 </div>
                 <div class="relative lg:h-full">
-                    <img src="assets/img1.jpg" class="rounded-[2rem] shadow-[0_50px_100px_-20px_rgba(15,23,42,0.3)] h-[500px] lg:h-[700px] w-full object-cover" alt="Elite Business Consulting">
-                    <div class="absolute -bottom-10 -left-10 bg-white p-8 rounded-2xl shadow-2xl border border-slate-100 hidden md:block">
+                    <img src="assets/img1.jpg" class="rounded-[2rem] shadow-[0_50px_100px_-20px_rgba(15,23,42,0.3)] h-[400px] md:h-[500px] lg:h-[700px] w-full object-cover" alt="Elite Business Consulting">
+                    <div class="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 bg-white p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-100 hidden md:block">
                         <p class="text-4xl font-black text-navy leading-none">32</p>
                         <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-2">Anni di Successi</p>
                     </div>
@@ -132,85 +158,85 @@
             </div>
         </section>
 
-        <section id="numeri" class="py-24 bg-slate-50 border-y border-slate-100 section-padding">
+        <section id="numeri" class="py-16 md:py-24 bg-slate-50 border-y border-slate-100 section-padding">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
-                    <div class="stat-card pl-8">
-                        <span class="text-5xl font-black text-navy block mb-2 tracking-tighter">450+</span>
-                        <p class="text-[10px] uppercase tracking-widest font-black text-slate-400">Clienti Corporate</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    <div class="stat-card pl-4 md:pl-8">
+                        <span class="text-4xl md:text-5xl font-black text-navy block mb-2 tracking-tighter">450+</span>
+                        <p class="text-[9px] md:text-[10px] uppercase tracking-widest font-black text-slate-400">Clienti Corporate</p>
                     </div>
-                    <div class="stat-card pl-8">
-                        <span class="text-5xl font-black text-navy block mb-2 tracking-tighter">12</span>
-                        <p class="text-[10px] uppercase tracking-widest font-black text-slate-400">Partner Associati</p>
+                    <div class="stat-card pl-4 md:pl-8">
+                        <span class="text-4xl md:text-5xl font-black text-navy block mb-2 tracking-tighter">12</span>
+                        <p class="text-[9px] md:text-[10px] uppercase tracking-widest font-black text-slate-400">Partner Associati</p>
                     </div>
-                    <div class="stat-card pl-8">
-                        <span class="text-5xl font-black text-navy block mb-2 tracking-tighter">€2B+</span>
-                        <p class="text-[10px] uppercase tracking-widest font-black text-slate-400">Asset Gestiti</p>
+                    <div class="stat-card pl-4 md:pl-8">
+                        <span class="text-4xl md:text-5xl font-black text-navy block mb-2 tracking-tighter">€2B+</span>
+                        <p class="text-[9px] md:text-[10px] uppercase tracking-widest font-black text-slate-400">Asset Gestiti</p>
                     </div>
-                    <div class="stat-card pl-8">
-                        <span class="text-5xl font-black text-navy block mb-2 tracking-tighter">100%</span>
-                        <p class="text-[10px] uppercase tracking-widest font-black text-slate-400">Compliance Rate</p>
+                    <div class="stat-card pl-4 md:pl-8">
+                        <span class="text-4xl md:text-5xl font-black text-navy block mb-2 tracking-tighter">100%</span>
+                        <p class="text-[9px] md:text-[10px] uppercase tracking-widest font-black text-slate-400">Compliance Rate</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="aree" class="py-32 section-padding bg-white">
+        <section id="aree" class="py-20 md:py-32 section-padding bg-white">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-24 space-y-4">
-                    <h2 class="text-6xl font-bold text-navy italic uppercase tracking-tighter">Soluzioni <span class="text-slate-300 italic">Verticali.</span></h2>
-                    <p class="text-slate-500 uppercase tracking-[0.4em] text-[11px] font-black">Expertise multidisciplinare per scenari complessi</p>
+                <div class="text-center mb-12 md:mb-20 space-y-4">
+                    <h2 class="text-5xl md:text-6xl font-bold text-navy italic uppercase tracking-tighter">Soluzioni <span class="text-slate-300 italic">Verticali.</span></h2>
+                    <p class="text-slate-500 uppercase tracking-[0.3em] md:tracking-[0.4em] text-[10px] md:text-[11px] font-black">Expertise multidisciplinare per scenari complessi</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-10">
-                    <div class="p-12 border border-slate-100 rounded-3xl hover:shadow-3xl transition-all duration-500 bg-white group">
-                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-10 group-hover:bg-navy group-hover:text-white transition-colors shadow-sm">
+                <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+                    <div class="p-10 md:p-12 border border-slate-100 rounded-3xl hover:shadow-3xl transition-all duration-500 bg-white group">
+                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 md:mb-10 group-hover:bg-navy group-hover:text-white transition-colors shadow-sm">
                             <i data-lucide="landmark" class="w-8 h-8"></i>
                         </div>
-                        <h3 class="text-2xl font-black mb-6 uppercase tracking-tighter text-navy">Fiscalità Internazionale</h3>
-                        <p class="text-slate-500 leading-relaxed font-bold italic">Supporto strategico per l'espansione estera, gestione del transfer pricing e stabili organizzazioni.</p>
+                        <h3 class="text-2xl font-black mb-5 md:mb-6 uppercase tracking-tighter text-navy">Fiscalità Internazionale</h3>
+                        <p class="text-slate-500 leading-relaxed font-bold italic text-sm md:text-base">Supporto strategico per l'espansione estera, gestione del transfer pricing e stabili organizzazioni.</p>
                     </div>
-                    <div class="p-12 border border-slate-100 rounded-3xl hover:shadow-3xl transition-all duration-500 bg-white group">
-                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-10 group-hover:bg-navy group-hover:text-white transition-colors shadow-sm">
+                    <div class="p-10 md:p-12 border border-slate-100 rounded-3xl hover:shadow-3xl transition-all duration-500 bg-white group">
+                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 md:mb-10 group-hover:bg-navy group-hover:text-white transition-colors shadow-sm">
                             <i data-lucide="users" class="w-8 h-8"></i>
                         </div>
-                        <h3 class="text-2xl font-black mb-6 uppercase tracking-tighter text-navy">Passaggio Generazionale</h3>
-                        <p class="text-slate-500 leading-relaxed font-bold italic">Pianificazione del patrimonio, gestione patti di famiglia e protezione degli asset ereditari.</p>
+                        <h3 class="text-2xl font-black mb-5 md:mb-6 uppercase tracking-tighter text-navy">Passaggio Generazionale</h3>
+                        <p class="text-slate-500 leading-relaxed font-bold italic text-sm md:text-base">Pianificazione del patrimonio, gestione patti di famiglia e protezione degli asset ereditari.</p>
                     </div>
-                    <div class="p-12 border border-slate-100 rounded-3xl hover:shadow-3xl transition-all duration-500 bg-white group">
-                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-10 group-hover:bg-navy group-hover:text-white transition-colors shadow-sm">
+                    <div class="p-10 md:p-12 border border-slate-100 rounded-3xl hover:shadow-3xl transition-all duration-500 bg-white group">
+                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 md:mb-10 group-hover:bg-navy group-hover:text-white transition-colors shadow-sm">
                             <i data-lucide="trending-up" class="w-8 h-8"></i>
                         </div>
-                        <h3 class="text-2xl font-black mb-6 uppercase tracking-tighter text-navy">Crisi d'Impresa</h3>
-                        <p class="text-slate-500 leading-relaxed font-bold italic">Consulenza per il risanamento, ristrutturazione del debito e procedure concorsuali.</p>
+                        <h3 class="text-2xl font-black mb-5 md:mb-6 uppercase tracking-tighter text-navy">Crisi d'Impresa</h3>
+                        <p class="text-slate-500 leading-relaxed font-bold italic text-sm md:text-base">Consulenza per il risanamento, ristrutturazione del debito e procedure concorsuali.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="digital" class="py-32 bg-slate-900 text-white overflow-hidden section-padding">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-                <div class="relative">
-                    <img src="assets/img2.jpg" class="rounded-[2.5rem] shadow-inner w-full h-[500px] object-cover opacity-80" alt="Dashboard">
+        <section id="digital" class="py-20 md:py-32 bg-slate-900 text-white overflow-hidden section-padding">
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <img src="assets/img2.jpg" class="rounded-[2.5rem] shadow-inner w-full h-[400px] md:h-[500px] object-cover opacity-80" alt="Dashboard">
                     <div class="absolute inset-0 bg-navy/20 rounded-[2.5rem]"></div>
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-10 rounded-3xl shadow-2xl w-80 text-navy">
-                        <i data-lucide="cloud-lightning" class="text-blue-500 mb-6 w-10 h-10"></i>
-                        <p class="text-2xl font-black mb-2 uppercase tracking-tighter">Cloud Hub</p>
-                        <p class="text-[11px] text-slate-500 font-black italic uppercase tracking-widest">Dati protetti • Accesso H24</p>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-8 md:p-10 rounded-3xl shadow-2xl w-72 md:w-80 text-navy">
+                        <i data-lucide="cloud-lightning" class="text-blue-500 mb-4 md:mb-6 w-8 h-8 md:w-10 md:h-10"></i>
+                        <p class="text-xl md:text-2xl font-black mb-2 uppercase tracking-tighter">Cloud Hub</p>
+                        <p class="text-[10px] md:text-[11px] text-slate-500 font-black italic uppercase tracking-widest">Dati protetti • Accesso H24</p>
                     </div>
                 </div>
-                <div class="space-y-10">
-                    <h2 class="text-6xl font-bold italic uppercase leading-none tracking-tighter">Lo studio nel <br><span class="text-blue-400">tuo smartphone.</span></h2>
-                    <p class="text-slate-400 font-bold text-xl italic leading-relaxed">Digitalizziamo i flussi di lavoro per darti risposte istantanee. Addio alla burocrazia cartacea, benvenuto nell'efficienza assoluta.</p>
-                    <ul class="space-y-8">
-                        <li class="flex gap-6 items-start">
-                            <div class="bg-blue-500/10 p-2 rounded-lg"><i data-lucide="check-circle" class="text-blue-400 w-6 h-6"></i></div>
+                <div class="space-y-8 md:space-y-10 order-1 lg:order-2">
+                    <h2 class="text-5xl md:text-6xl font-bold italic uppercase leading-none tracking-tighter">Lo studio nel <br><span class="text-blue-400">tuo smartphone.</span></h2>
+                    <p class="text-slate-400 font-bold text-lg md:text-xl italic leading-relaxed">Digitalizziamo i flussi di lavoro per darti risposte istantanee. Addio alla burocrazia cartacea, benvenuto nell'efficienza assoluta.</p>
+                    <ul class="space-y-6 md:space-y-8">
+                        <li class="flex gap-4 md:gap-6 items-start">
+                            <div class="bg-blue-500/10 p-2 rounded-lg shrink-0"><i data-lucide="check-circle" class="text-blue-400 w-5 h-5 md:w-6 md:h-6"></i></div>
                             <div>
                                 <p class="text-sm font-black uppercase tracking-widest">Fatturazione Integrata</p>
                                 <p class="text-xs text-slate-500 mt-1 italic font-bold">Gestione automatizzata dei cicli attivi e passivi.</p>
                             </div>
                         </li>
-                        <li class="flex gap-6 items-start">
-                            <div class="bg-blue-500/10 p-2 rounded-lg"><i data-lucide="check-circle" class="text-blue-400 w-6 h-6"></i></div>
+                        <li class="flex gap-4 md:gap-6 items-start">
+                            <div class="bg-blue-500/10 p-2 rounded-lg shrink-0"><i data-lucide="check-circle" class="text-blue-400 w-5 h-5 md:w-6 md:h-6"></i></div>
                             <div>
                                 <p class="text-sm font-black uppercase tracking-widest">Data Room Criptata</p>
                                 <p class="text-xs text-slate-500 mt-1 italic font-bold">Scambio documenti in totale sicurezza normativa.</p>
@@ -221,79 +247,99 @@
             </div>
         </section>
 
-        <section id="storia" class="py-32 bg-white section-padding">
+        <section id="storia" class="py-20 md:py-32 bg-white section-padding">
             <div class="max-w-5xl mx-auto px-6">
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl font-black text-navy uppercase tracking-tighter">Evoluzione Professionale</h2>
+                <div class="text-center mb-12 md:mb-20">
+                    <h2 class="text-3xl md:text-4xl font-black text-navy uppercase tracking-tighter">Evoluzione Professionale</h2>
                 </div>
-                <div class="space-y-12">
-                    <div class="flex flex-col md:flex-row items-center gap-10">
-                        <div class="w-32 text-4xl font-black text-slate-200 tracking-tighter italic">1992</div>
-                        <div class="flex-1 bg-slate-50 p-10 rounded-3xl border-l-8 border-navy shadow-sm">
+                <div class="space-y-10 md:space-y-12">
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+                        <div class="w-full md:w-32 text-center md:text-left text-4xl md:text-5xl font-black text-slate-200 tracking-tighter italic">1992</div>
+                        <div class="flex-1 bg-slate-50 p-8 md:p-10 rounded-3xl border-l-8 border-navy shadow-sm w-full">
                             <h4 class="font-black uppercase text-xs mb-3 text-navy tracking-widest">Fondazione</h4>
-                            <p class="text-slate-600 font-bold italic">Il Dott. Valente inaugura la sede milanese focalizzandosi sul supporto alle PMI del territorio.</p>
+                            <p class="text-slate-600 font-bold italic text-sm md:text-base">Il Dott. Valente inaugura la sede milanese focalizzandosi sul supporto alle PMI del territorio.</p>
                         </div>
                     </div>
-                    <div class="flex flex-col md:flex-row items-center gap-10">
-                        <div class="w-32 text-4xl font-black text-slate-200 tracking-tighter italic">2026</div>
-                        <div class="flex-1 bg-slate-50 p-10 rounded-3xl border-l-8 border-navy shadow-sm">
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+                        <div class="w-full md:w-32 text-center md:text-left text-4xl md:text-5xl font-black text-slate-200 tracking-tighter italic">2026</div>
+                        <div class="flex-1 bg-slate-50 p-8 md:p-10 rounded-3xl border-l-8 border-navy shadow-sm w-full">
                             <h4 class="font-black uppercase text-xs mb-3 text-navy tracking-widest">Consulenza 4.0</h4>
-                            <p class="text-slate-600 font-bold italic">Integrazione di sistemi predittivi e digitalizzazione totale dei flussi professionali.</p>
+                            <p class="text-slate-600 font-bold italic text-sm md:text-base">Integrazione di sistemi predittivi e digitalizzazione totale dei flussi professionali.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contatti" class="py-32 bg-white section-padding border-t border-slate-100">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-                <div class="space-y-12">
-                    <h2 class="text-7xl font-bold text-navy leading-[0.9] uppercase italic tracking-tighter">Contatto <br>Analitico.</h2>
-                    <div class="space-y-10">
-                        <div class="flex items-center gap-8">
-                            <div class="w-16 h-16 bg-navy text-white rounded-2xl flex items-center justify-center shadow-xl"><i data-lucide="phone" class="w-7 h-7"></i></div>
+        <section id="contatti" class="py-20 md:py-32 bg-white section-padding border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+                <div class="space-y-10 md:space-y-12">
+                    <h2 class="text-5xl md:text-7xl font-bold text-navy leading-[0.9] uppercase italic tracking-tighter">Contatto <br>Analitico.</h2>
+                    <div class="space-y-8 md:space-y-10">
+                        <div class="flex items-center gap-6 md:gap-8">
+                            <div class="w-14 h-14 md:w-16 md:h-16 bg-navy text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="phone" class="w-6 h-6 md:w-7 md:h-7"></i></div>
                             <div>
-                                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Centralino Milano</p>
-                                <p class="text-2xl font-black text-navy">02 1234 5678</p>
+                                <p class="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Centralino Milano</p>
+                                <p class="text-xl md:text-2xl font-black text-navy">02 1234 5678</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-8">
-                            <div class="w-16 h-16 bg-white border border-slate-100 text-navy rounded-2xl flex items-center justify-center shadow-lg"><i data-lucide="map-pin" class="w-7 h-7"></i></div>
+                        <div class="flex items-center gap-6 md:gap-8">
+                            <div class="w-14 h-14 md:w-16 md:h-16 bg-white border border-slate-100 text-navy rounded-2xl flex items-center justify-center shadow-lg shrink-0"><i data-lucide="map-pin" class="w-6 h-6 md:w-7 md:h-7"></i></div>
                             <div>
-                                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Sede Legale</p>
-                                <p class="text-xl font-bold italic text-slate-700 uppercase">Via Montenapoleone 10, Milano</p>
+                                <p class="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Sede Legale</p>
+                                <p class="text-lg md:text-xl font-bold italic text-slate-700 uppercase">Via Montenapoleone 10, Milano</p>
                             </div>
                         </div>
                     </div>
-                    <img src="assets/img3.jpg" class="rounded-[2rem] shadow-2xl w-full h-80 object-cover" alt="Boardroom">
+                    <img src="assets/img3.jpg" class="rounded-[2rem] shadow-2xl w-full h-60 md:h-80 object-cover" alt="Boardroom">
                 </div>
-                <form class="bg-slate-50 p-12 rounded-[3rem] border border-slate-200 space-y-6 shadow-sm">
-                    <p class="text-[11px] font-black uppercase tracking-[0.3em] text-navy mb-6 text-center italic">Richiedi un Brief Strategico (Modalità Demo)</p>
+                <form class="bg-slate-50 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-slate-200 space-y-5 md:space-y-6 shadow-sm">
+                    <p class="text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-navy mb-4 md:mb-6 text-center italic">Richiedi un Brief Strategico (Modalità Demo)</p>
                     <div class="space-y-4">
-                        <input type="text" placeholder="REFERENTE AZIENDALE" class="w-full p-6 bg-white rounded-2xl border border-slate-200 outline-none font-black text-[10px] uppercase tracking-widest focus:border-navy transition-all">
-                        <input type="email" placeholder="EMAIL CORPORATE" class="w-full p-6 bg-white rounded-2xl border border-slate-200 outline-none font-black text-[10px] uppercase tracking-widest focus:border-navy transition-all">
-                        <textarea placeholder="DESCRIZIONE SINTETICA DEL PROGETTO..." rows="5" class="w-full p-6 bg-white rounded-2xl border border-slate-200 outline-none font-black text-[10px] uppercase tracking-widest focus:border-navy transition-all"></textarea>
+                        <input type="text" placeholder="REFERENTE AZIENDALE" class="w-full p-5 md:p-6 bg-white rounded-2xl border border-slate-200 outline-none font-black text-[10px] uppercase tracking-widest focus:border-navy transition-all">
+                        <input type="email" placeholder="EMAIL CORPORATE" class="w-full p-5 md:p-6 bg-white rounded-2xl border border-slate-200 outline-none font-black text-[10px] uppercase tracking-widest focus:border-navy transition-all">
+                        <textarea placeholder="DESCRIZIONE SINTETICA DEL PROGETTO..." rows="5" class="w-full p-5 md:p-6 bg-white rounded-2xl border border-slate-200 outline-none font-black text-[10px] uppercase tracking-widest focus:border-navy transition-all"></textarea>
                     </div>
-                    <button class="w-full bg-navy text-white py-7 rounded-2xl font-black uppercase text-xs tracking-[0.3em] shadow-xl hover:bg-slate-800 transition-all">Invia Richiesta</button>
+                    <button type="button" class="w-full bg-navy text-white py-6 md:py-7 rounded-2xl font-black uppercase text-xs tracking-[0.3em] shadow-xl hover:bg-slate-800 transition-all">Invia Richiesta</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <footer class="py-16 bg-white border-t border-slate-100 text-center">
+    <footer class="py-12 md:py-16 bg-white border-t border-slate-100 text-center">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-[10px] text-slate-400 uppercase tracking-[0.4em] font-black leading-relaxed">
+            <div class="text-[9px] md:text-[10px] text-slate-400 uppercase tracking-[0.3em] md:tracking-[0.4em] font-black leading-relaxed">
                 &copy; 2026 Studio Valente & Associati Milano | P.IVA 0123456789 | Albo ODCEC N. 1234 | LocalTop Professional Demo
             </div>
         </div>
     </footer>
 
-    <div class="wa-widget fixed bottom-10 right-10 bg-slate-900 text-white p-6 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-8 h-8"></i>
+    <div class="wa-widget fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-slate-900 text-white p-4 md:p-6 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-square" class="w-6 h-6 md:w-8 md:h-8"></i>
     </div>
 
     <script>
         lucide.createIcons();
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
     </script>
 </body>
 </html>

@@ -8,70 +8,99 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfdfd; color: #334155; overflow-x: hidden; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #fdfdfd; 
+            color: #334155; 
+            overflow-x: hidden; 
+            width: 100%;
+        }
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
         .text-care-green { color: #6b8e83; }
         .bg-care-green { background-color: #6b8e83; }
         
-        /* 1. Immagini Locali (assets/img1.jpg, ecc.) */
+        /* Immagini: Rimosso ogni filtro grayscale */
         .hero-care { 
-            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.3)), 
+            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.2)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
+            filter: none !important;
         }
+        img { filter: none !important; }
+
         .info-card { transition: all 0.3s ease; border-radius: 1.5rem; border: 1px solid #f1f5f9; background: white; }
         .info-card:hover { transform: translateY(-5px); border-color: #6b8e83; box-shadow: 0 20px 25px -5px rgba(107, 142, 131, 0.1); }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .chat-widget-demo {
+        /* Interazioni Demo */
+        button, input, select, textarea, .chat-widget-demo, .nav-link-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
-
-        /* 5. Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        
+        /* Riabilito pointer events solo per il menu mobile e i link di navigazione demo-nav */
+        .mobile-menu-toggle, .demo-nav-container a, #mobile-menu-overlay a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
+        /* Ottimizzazione Mobile */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(2.5rem, 10vw, 5rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            
+            /* Bottoni Localtop più piccoli su mobile */
+            .demo-nav-container a {
+                padding: 0.75rem 1rem !important;
+                font-size: 8px !important;
+            }
+        }
+
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 150;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 200;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
+        }
+
+        /* Menu Mobile Overlay */
+        #mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 150;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
         }
     </style>
 </head>
 <body class="selection:bg-emerald-50 selection:text-emerald-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
         </a>
     </div>
 
-    <div class="bg-slate-900 text-white py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[120]">
-        🤝 SOSTITUZIONE RAPIDA: Servizio di emergenza garantito entro 24/48 ore | Attivi in tutta Italia 🤝
-    </div>
-
-    <nav class="sticky top-10 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-2xl mt-4">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
+    <nav class="sticky top-4 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-2xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 flex-shrink-0">
                 <div class="w-10 h-10 bg-care-green rounded-xl flex items-center justify-center shadow-lg">
                     <i data-lucide="heart-handshake" class="text-white w-6 h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">CARE&<span class="text-care-green">HOME</span></span>
-                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Selezione & Assistenza</span>
+                    <span class="text-xl md:text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">CARE&<span class="text-care-green">HOME</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Selezione & Assistenza</span>
                 </div>
             </div>
             
@@ -82,13 +111,29 @@
                 <a href="#faq" class="hover:text-care-green transition">Info Utili</a>
             </div>
 
-            <a href="#contatti" class="bg-slate-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-care-green transition-all shadow-md">
-                Richiedi Assistenza
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#contatti" class="hidden md:block bg-slate-900 text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-care-green transition-all shadow-md">
+                    Richiedi Assistenza
+                </a>
+                <button onclick="toggleMenu()" class="mobile-menu-toggle lg:hidden p-2 text-slate-900">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative h-[80vh] flex items-center hero-care overflow-hidden">
+    <div id="mobile-menu-overlay">
+        <button onclick="toggleMenu()" class="absolute top-8 right-8 p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#servizi" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest">Servizi</a>
+        <a href="#metodo" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest">Il Metodo</a>
+        <a href="#selezione" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest">Selezione</a>
+        <a href="#faq" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest">Info Utili</a>
+        <a href="#contatti" onclick="toggleMenu()" class="bg-care-green text-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest">Contattaci</a>
+    </div>
+
+    <section class="relative min-h-[80vh] flex items-center hero-care overflow-hidden py-12">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
             <div class="max-w-2xl space-y-8">
                 <div class="inline-flex items-center gap-2 bg-emerald-50 text-care-green px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-emerald-100">
@@ -97,36 +142,36 @@
                 <h1 class="text-6xl md:text-8xl font-heading font-bold text-slate-800 leading-[0.9] tracking-tighter uppercase">
                     La cura di <br> chi <span class="text-care-green italic">Ami.</span>
                 </h1>
-                <p class="text-xl text-slate-600 font-light max-w-lg leading-relaxed border-l-4 border-care-green pl-8">
+                <p class="text-lg md:text-xl text-slate-600 font-light max-w-lg leading-relaxed border-l-4 border-care-green pl-6 md:pl-8">
                     Selezioniamo personale referenziato e qualificato per garantire ai tuoi cari la dignità e l'affetto di cui hanno bisogno, direttamente a casa loro.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#servizi" class="bg-care-green text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">I Nostri Servizi</a>
-                    <a href="#contatti" class="bg-white border-2 border-slate-100 text-slate-400 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Parla con noi</a>
+                    <a href="#servizi" class="bg-care-green text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">I Nostri Servizi</a>
+                    <a href="#contatti" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Parla con noi</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="servizi" class="py-24 bg-white relative">
+    <section id="servizi" class="py-20 bg-white relative">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 space-y-4">
+            <div class="text-center mb-16 space-y-4">
                 <h2 class="text-5xl font-heading text-slate-900 uppercase">Soluzioni su <span class="text-care-green italic">Misura.</span></h2>
                 <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Assistenza h24, diurna o notturna</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-10 info-card text-center group">
+                <div class="p-8 md:p-10 info-card text-center group">
                     <div class="w-16 h-16 bg-emerald-50 text-care-green rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-care-green group-hover:text-white transition-all"><i data-lucide="home"></i></div>
                     <h3 class="text-2xl font-heading font-bold mb-4 text-slate-800">Badante Convivente</h3>
                     <p class="text-sm text-slate-500 italic">Supporto h24 per anziani non autosufficienti, con vitto e alloggio presso il domicilio.</p>
                 </div>
-                <div class="p-10 info-card text-center group">
+                <div class="p-8 md:p-10 info-card text-center group">
                     <div class="w-16 h-16 bg-emerald-50 text-care-green rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-care-green group-hover:text-white transition-all"><i data-lucide="clock"></i></div>
                     <h3 class="text-2xl font-heading font-bold mb-4 text-slate-800">Assistenza a Ore</h3>
                     <p class="text-sm text-slate-500 italic">Aiuto quotidiano per igiene, pasti, compagnia e piccole commissioni domestiche.</p>
                 </div>
-                <div class="p-10 info-card text-center group">
+                <div class="p-8 md:p-10 info-card text-center group">
                     <div class="w-16 h-16 bg-emerald-50 text-care-green rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-care-green group-hover:text-white transition-all"><i data-lucide="hospital"></i></div>
                     <h3 class="text-2xl font-heading font-bold mb-4 text-slate-800">Sostituzione & Notte</h3>
                     <p class="text-sm text-slate-500 italic">Copertura ferie o week-end e assistenza notturna ospedaliera o domiciliare.</p>
@@ -135,10 +180,10 @@
         </div>
     </section>
 
-    <section id="metodo" class="py-24 bg-slate-50 border-y border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+    <section id="metodo" class="py-20 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="space-y-10">
-                <h2 class="text-6xl font-heading font-bold text-slate-900 leading-none">Sicurezza <br><span class="text-care-green">Certificata.</span></h2>
+                <h2 class="text-5xl md:text-6xl font-heading font-bold text-slate-900 leading-none">Sicurezza <br><span class="text-care-green">Certificata.</span></h2>
                 <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-care-green pl-8">
                     Non ci limitiamo a fornire un nominativo. Ogni operatore viene sottoposto a test attitudinali, verifica delle referenze e controllo dei documenti.
                 </p>
@@ -149,18 +194,18 @@
                 </ul>
             </div>
             <div class="relative">
-                <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl w-full object-cover h-[400px] md:h-auto" alt="Elderly Support">
+                <img src="assets/img2.jpg" class="rounded-[2rem] md:rounded-[4rem] shadow-2xl w-full object-cover h-[350px] md:h-auto" alt="Elderly Support">
             </div>
         </div>
     </section>
 
-    <section id="selezione" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+    <section id="selezione" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="relative order-2 lg:order-1">
-                <img src="assets/img3.jpg" class="rounded-[4rem] shadow-2xl w-full object-cover h-[400px] md:h-auto" alt="Care Selection">
+                <img src="assets/img3.jpg" class="rounded-[2rem] md:rounded-[4rem] shadow-2xl w-full object-cover h-[350px] md:h-auto" alt="Care Selection">
             </div>
             <div class="space-y-10 order-1 lg:order-2">
-                <h2 class="text-6xl font-heading font-bold text-slate-900 leading-none">Qualità <br><span class="text-care-green italic">Referenziata.</span></h2>
+                <h2 class="text-5xl md:text-6xl font-heading font-bold text-slate-900 leading-none">Qualità <br><span class="text-care-green italic">Referenziata.</span></h2>
                 <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-care-green pl-8">
                     Il nostro processo di selezione è rigoroso. Accettiamo solo il 15% delle candidature che riceviamo, per garantire alle famiglie esclusivamente profili d'eccellenza.
                 </p>
@@ -168,9 +213,9 @@
         </div>
     </section>
 
-    <section id="faq" class="py-24 bg-slate-50">
+    <section id="faq" class="py-20 bg-slate-50">
         <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-4xl font-heading text-center text-slate-800 mb-16 uppercase">Domande Frequenti</h2>
+            <h2 class="text-4xl font-heading text-center text-slate-800 mb-12 uppercase">Domande Frequenti</h2>
             <div class="space-y-8">
                 <div class="border-b border-slate-200 pb-6">
                     <h4 class="font-bold text-care-green mb-2">Quanto tempo serve per trovare una badante?</h4>
@@ -184,18 +229,22 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-[#fffcf9]">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-7xl font-heading font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Sollievo <br><span class="text-care-green underline">Immediato.</span></h2>
-                <div class="space-y-8">
+    <section id="contatti" class="py-20 bg-[#fffcf9]">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+            <div class="space-y-10">
+                <h2 class="text-6xl md:text-7xl font-heading font-bold text-slate-900 leading-none tracking-tighter uppercase italic">Sollievo <br><span class="text-care-green underline">Immediato.</span></h2>
+                <div class="space-y-6">
                     <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-emerald-50 text-care-green rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">I nostri uffici</p><p class="text-xl font-bold">Via della Cura 22, Milano</p></div>
+                        <div class="w-14 h-14 bg-emerald-50 text-care-green rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">I nostri uffici</p><p class="text-lg md:text-xl font-bold">Via della Cura 22, Milano</p></div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 bg-care-green text-white rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Chiamaci ora</p><p class="text-lg md:text-xl font-bold">+39 02 123 4567</p></div>
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 space-y-6">
+            <form class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[4rem] shadow-2xl border border-slate-100 space-y-6">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-care-green mb-4 text-center italic">Consulenza gratuita entro 2 ore (Demo Mode)</p>
                 <div class="grid md:grid-cols-2 gap-6">
                     <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-slate-50 rounded-3xl border-none outline-none text-xs font-bold uppercase">
@@ -213,17 +262,24 @@
     </section>
 
     <footer class="py-12 bg-white border-t border-slate-100 text-center">
-        <p class="text-slate-300 text-[9px] uppercase tracking-[0.5em] font-bold">
+        <p class="text-slate-300 text-[9px] uppercase tracking-[0.5em] font-bold px-4 leading-loose">
             &copy; 2026 Care & Home Assistenza | P.IVA 0123456789 | Qualità e Rispetto h24
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    <div class="chat-widget-demo fixed bottom-8 right-8 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>
         lucide.createIcons();
+
+        function toggleMenu() {
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const isVisible = overlay.style.display === 'flex';
+            overlay.style.display = isVisible ? 'none' : 'flex';
+            document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+        }
     </script>
 </body>
 </html>

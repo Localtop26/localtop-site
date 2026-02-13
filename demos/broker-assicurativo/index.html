@@ -14,6 +14,8 @@
             color: #1e293b; 
             overflow-x: hidden; 
             width: 100%;
+            margin: 0;
+            padding: 0;
         }
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
         .text-royal-blue { color: #1e3a8a; }
@@ -21,9 +23,9 @@
         .text-accent-gold { color: #bba14f; }
         .border-accent-gold { border-color: #bba14f; }
         
-        /* Background Hero */
+        /* Background Hero - Colori pieni */
         .hero-shield { 
-            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.6)), 
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.5)), 
             url('assets/img1.jpg'); 
             background-size: cover; 
             background-position: center; 
@@ -45,29 +47,50 @@
         }
 
         /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .chat-widget-demo {
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .chat-widget-demo, .call-btn-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Gestione Sticky Corretta */
-        .promo-banner {
-            height: 40px;
+        /* Reset Grayscale - Immagini a colori */
+        img { filter: none !important; grayscale: 0 !important; }
+
+        /* Mobile Menu Overlay Corretto */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 2.5rem;
         }
 
-        /* Fix per evitare l'overflow laterale su elementi decorativi */
-        * { box-sizing: border-box; }
+        #mobile-menu.active { right: 0; }
+
+        /* Fix per evitare l'overflow laterale */
+        * { box-sizing: border-box; max-width: 100%; }
 
         /* Ottimizzazione Mobile & Font Scaling */
         @media (max-width: 768px) {
-            h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2rem, 8vw, 3rem) !important; line-height: 1.1 !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .hero-shield { height: auto; min-height: 90vh; padding-top: 80px; padding-bottom: 60px; }
+            h1 { font-size: clamp(2.2rem, 9vw, 3.5rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(1.8rem, 7vw, 2.8rem) !important; line-height: 1.2 !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .hero-shield { height: auto; min-height: 80vh; padding-top: 100px; padding-bottom: 60px; }
+            
+            /* Bottoni Localtop più piccoli su mobile senza cambiare testo */
+            .localtop-btn {
+                padding: 0.6rem 1rem !important;
+                font-size: 8px !important;
+                max-width: fit-content;
+            }
         }
 
         /* Floating Nav (Bottom-Left) */
@@ -75,38 +98,34 @@
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
-            z-index: 200;
+            z-index: 300;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            max-width: 180px;
+            max-width: 200px;
         }
     </style>
 </head>
 <body class="selection:bg-blue-50 selection:text-blue-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
             <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna
+        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> TORNA AGLI ESEMPI
         </a>
     </div>
 
-    <div class="promo-banner bg-royal-blue text-white py-2 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.2em] md:tracking-[0.3em] px-4 sticky top-0 z-[130] w-full">
-        🛡️ Oltre 25 compagnie per la tua tutela 🛡️
-    </div>
-
-    <nav class="sticky top-[40px] z-[120] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-0 md:mx-10 md:rounded-2xl md:mt-4 transition-all">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-4">
+    <nav class="sticky top-0 z-[120] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm transition-all md:mx-10 md:mt-4 md:rounded-2xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            
             <div class="flex items-center gap-2 shrink-0">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-royal-blue rounded-lg md:rounded-xl flex items-center justify-center shadow-lg">
                     <i data-lucide="shield-check" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-lg md:text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">ELITE<span class="text-accent-gold italic">BROKER</span></span>
-                    <span class="hidden md:block text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Consulting & Risk Management</span>
+                    <span class="text-base md:text-2xl font-heading font-bold text-slate-900 tracking-tighter uppercase">ELITE<span class="text-accent-gold italic">BROKER</span></span>
                 </div>
             </div>
             
@@ -117,11 +136,27 @@
                 <a href="#sinistri" class="hover:text-royal-blue transition">Assistenza</a>
             </div>
 
-            <a href="#contatti" class="bg-slate-900 text-white px-4 md:px-8 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-royal-blue transition-all shrink-0 text-center">
-                Analisi Rischio
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="#contatti" class="bg-slate-900 text-white px-4 md:px-8 py-2.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-royal-blue transition-all shrink-0">
+                    Analisi Rischio
+                </a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900" style="pointer-events: auto !important; cursor: pointer !important;">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <div id="mobile-menu">
+        <button id="menu-close" class="absolute top-6 right-6 p-2" style="pointer-events: auto !important; cursor: pointer !important;">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#privati" class="mobile-link text-2xl font-heading font-bold uppercase hover:text-royal-blue">Persona</a>
+        <a href="#business" class="mobile-link text-2xl font-heading font-bold uppercase hover:text-royal-blue">Azienda</a>
+        <a href="#auto" class="mobile-link text-2xl font-heading font-bold uppercase hover:text-royal-blue">Auto</a>
+        <a href="#sinistri" class="mobile-link text-2xl font-heading font-bold uppercase hover:text-royal-blue">Assistenza</a>
+        <a href="#contatti" class="mobile-link bg-royal-blue text-white px-10 py-4 rounded-full font-bold uppercase text-xs">Richiedi Analisi</a>
+    </div>
 
     <section class="relative flex items-center hero-shield overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-12 md:py-24">
@@ -129,8 +164,8 @@
                 <div class="inline-flex items-center gap-2 bg-blue-50 text-royal-blue px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest border border-blue-100">
                     Broker Indipendente Iscritto al RUI
                 </div>
-                <h1 class="text-slate-900 font-heading font-bold uppercase">
-                    Difendiamo <br> il Tuo <span class="text-accent-gold italic font-light italic">Presente.</span>
+                <h1 class="text-slate-900 font-heading font-bold uppercase text-5xl md:text-7xl">
+                    Difendiamo <br> il Tuo <span class="text-accent-gold italic font-light">Presente.</span>
                 </h1>
                 <p class="text-lg md:text-xl text-slate-600 font-light max-w-xl leading-relaxed border-l-4 border-accent-gold pl-6 md:pl-8">
                     Essere un broker significa stare dalla tua parte. Analizziamo i rischi reali per offrirti coperture sartoriali al miglior prezzo.
@@ -185,7 +220,7 @@
                 </div>
             </div>
             <div class="relative hidden lg:block">
-                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl grayscale" alt="Corporate Building">
+                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl" alt="Corporate Building">
             </div>
         </div>
     </section>
@@ -254,6 +289,16 @@
                         <div class="w-12 h-12 md:w-16 md:h-16 shrink-0 bg-royal-blue text-white rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg"><i data-lucide="mail"></i></div>
                         <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Corporate & Personal</p><p class="text-lg md:text-xl font-bold italic text-slate-900">info@elitebroker.it</p></div>
                     </div>
+                    <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                        <div class="call-btn-demo flex items-center justify-center gap-3 bg-slate-100 p-4 rounded-2xl border border-slate-200">
+                            <i data-lucide="phone" class="w-4 h-4 text-royal-blue"></i>
+                            <span class="text-[10px] font-bold uppercase tracking-widest">02 123 4567</span>
+                        </div>
+                        <div class="call-btn-demo flex items-center justify-center gap-3 bg-slate-100 p-4 rounded-2xl border border-slate-200">
+                            <i data-lucide="smartphone" class="w-4 h-4 text-royal-blue"></i>
+                            <span class="text-[10px] font-bold uppercase tracking-widest">+39 345 678 901</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <form class="bg-slate-50 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl space-y-4 md:space-y-6">
@@ -262,6 +307,7 @@
                     <input type="text" placeholder="NOME E COGNOME" class="w-full p-4 bg-white rounded-xl md:rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
                     <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white rounded-xl md:rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
                 </div>
+                <input type="email" placeholder="EMAIL" class="w-full p-4 bg-white rounded-xl md:rounded-2xl border-none outline-none text-[10px] font-bold uppercase tracking-widest">
                 <select class="w-full p-4 bg-white rounded-xl md:rounded-2xl border-none outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
                     <option>AMBITO DI PROTEZIONE</option>
                     <option>AZIENDA & PROFESSIONE</option>
@@ -287,6 +333,22 @@
 
     <script>
         lucide.createIcons();
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        const closeAction = () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+        menuClose.addEventListener('click', closeAction);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeAction);
+        });
     </script>
 </body>
 </html>

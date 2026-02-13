@@ -2,13 +2,20 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Anima Verde | Erboristeria Tradizionale & Officina Botanica - Demo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfcf9; color: #354231; overflow-x: hidden; width: 100%; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #fdfcf9; 
+            color: #354231; 
+            overflow-x: hidden; 
+            width: 100%; 
+            -webkit-font-smoothing: antialiased;
+        }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .text-botanical { color: #2d4739; }
         .bg-botanical { background-color: #2d4739; }
@@ -16,49 +23,34 @@
         .bg-clay { background-color: #bc8a5f; }
         
         .hero-erbo { 
-            background: linear-gradient(rgba(253,252,249,0.5), rgba(253,252,249,0.1)), 
+            background: linear-gradient(rgba(253,252,249,0.3), rgba(253,252,249,0.1)), 
             url('assets/img1.jpg'); 
-            background-size: cover; background-position: center; 
+            background-size: cover; 
+            background-position: center; 
+            filter: none !important;
         }
         
-        .herb-card { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid #f1eeea; background: white; }
+        img { filter: none !important; grayscale: 0 !important; }
+
+        .herb-card { 
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            border: 1px solid #f1eeea; 
+            background: white; 
+        }
         .herb-card:hover { transform: translateY(-8px); border-color: #bc8a5f; }
 
-        /* Demo restrictions: non-nav elements are static */
         input, select, textarea, .chat-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 10vw, 5rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
-        }
-
-        .demo-nav-container {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .promo-bar {
-            position: sticky;
-            top: 0;
-            z-index: 130;
-        }
         .main-nav {
             position: sticky;
-            top: 41px; 
+            top: 0; 
             z-index: 120;
         }
 
-        /* Mobile Menu Animation */
         #mobile-menu {
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateX(100%);
@@ -66,11 +58,32 @@
         #mobile-menu.active {
             transform: translateX(0);
         }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 12vw, 5rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+            
+            .demo-nav-container a {
+                padding: 0.75rem 1.25rem !important;
+                font-size: 8px !important;
+            }
+        }
+
+        .demo-nav-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
     </style>
 </head>
 <body class="selection:bg-botanical selection:text-white">
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[200] flex flex-col p-8">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[300] flex flex-col p-8">
         <div class="flex justify-end">
             <button id="close-menu" class="text-botanical p-2">
                 <i data-lucide="x" class="w-10 h-10"></i>
@@ -81,7 +94,7 @@
             <a href="#cosmesi" class="mobile-link text-3xl font-serif italic text-botanical">Fitocosmesi</a>
             <a href="#integrazione" class="mobile-link text-3xl font-serif italic text-botanical">Integrazione</a>
             <a href="#laboratorio" class="mobile-link text-3xl font-serif italic text-botanical">Il Lab</a>
-            <a href="#contatti" class="mobile-link bg-botanical text-white px-8 py-4 rounded-full font-black uppercase text-[10px] tracking-widest shadow-xl">Chiedi un Consiglio</a>
+            <a href="#contatti" class="mobile-link bg-botanical text-white px-8 py-4 rounded-full font-black uppercase text-[10px] tracking-widest shadow-xl">Contattaci</a>
         </div>
     </div>
 
@@ -94,19 +107,15 @@
         </a>
     </div>
 
-    <div class="promo-bar bg-botanical text-white py-2.5 text-[10px] font-black text-center uppercase tracking-[0.4em] px-4">
-        🌿 LA NATURA CURA: Disponibili i nuovi preparati per le difese immunitarie 🌿
-    </div>
-
-    <nav class="main-nav bg-white/80 backdrop-blur-md border-b border-stone-100">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 md:w-12 md:h-12 bg-botanical rounded-full flex items-center justify-center shadow-lg text-white shrink-0">
-                    <i data-lucide="leaf" class="w-5 h-5 md:w-6 md:h-6"></i>
+    <nav class="main-nav bg-white/90 backdrop-blur-md border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 md:h-24 flex items-center justify-between">
+            <div class="flex items-center gap-2 md:gap-3 shrink-0">
+                <div class="w-10 h-10 bg-botanical rounded-full flex items-center justify-center shadow-lg text-white shrink-0">
+                    <i data-lucide="leaf" class="w-5 h-5"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl md:text-3xl font-serif italic text-botanical tracking-tighter">Anima<span class="text-clay">Verde</span></span>
-                    <span class="text-[8px] font-black uppercase tracking-[0.5em] text-stone-400">Botanical Wisdom</span>
+                    <span class="text-xl md:text-3xl font-serif italic text-botanical tracking-tighter">Anima<span class="text-clay">Verde</span></span>
+                    <span class="text-[7px] md:text-[8px] font-black uppercase tracking-[0.5em] text-stone-400">Botanical Wisdom</span>
                 </div>
             </div>
             
@@ -117,72 +126,72 @@
                 <a href="#laboratorio" class="hover:text-botanical transition">Il Lab</a>
             </div>
 
-            <div class="flex items-center">
+            <div class="flex items-center gap-2">
                 <a href="#contatti" class="hidden md:block bg-botanical text-white px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-clay transition-all shadow-md">
-                    Chiedi un Consiglio
+                    Contattaci
                 </a>
-                <button id="open-menu" class="md:hidden text-botanical p-2 pointer-events-auto cursor-pointer">
-                    <i data-lucide="menu" class="w-8 h-8"></i>
+                <button id="open-menu" class="lg:hidden text-botanical p-2 hover:bg-stone-50 rounded-full transition-colors" aria-label="Menu">
+                    <i data-lucide="menu" class="w-7 h-7 md:w-8 md:h-8"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <section class="relative h-[85vh] flex items-center hero-erbo overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-20">
-            <div class="max-w-2xl space-y-8 animate-fade-in">
+    <section class="relative min-h-[80vh] flex items-center hero-erbo overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 py-16 md:py-24">
+            <div class="max-w-3xl space-y-8">
                 <h1 class="text-7xl md:text-9xl font-serif italic text-botanical leading-[0.85] tracking-tighter">
                     L'Antica <br> Arte delle <span class="text-clay font-light">Erbe.</span>
                 </h1>
-                <p class="text-xl text-stone-900 font-bold max-w-lg leading-relaxed italic border-l-4 border-clay pl-8">
+                <p class="text-lg md:text-xl text-stone-900 font-bold max-w-lg leading-relaxed italic border-l-4 border-clay pl-6 md:pl-8">
                     Custodi della tradizione erboristica. Miscele personalizzate, oli essenziali puri e fitocosmesi naturale per un equilibrio consapevole tra corpo e natura.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#rimedi" class="bg-botanical text-white px-10 py-5 rounded-full font-black uppercase text-xs tracking-widest shadow-2xl hover:bg-clay transition-all">Esplora Rimedi</a>
-                    <a href="#laboratorio" class="bg-white border border-stone-200 text-stone-900 px-10 py-5 rounded-full font-black uppercase text-xs tracking-widest hover:bg-stone-50 transition-all italic">Miscele su Misura</a>
+                    <a href="#rimedi" class="bg-botanical text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-black uppercase text-xs tracking-widest shadow-2xl hover:bg-clay transition-all">Esplora Rimedi</a>
+                    <a href="#laboratorio" class="bg-white/80 backdrop-blur-sm border border-stone-200 text-stone-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-black uppercase text-xs tracking-widest hover:bg-stone-50 transition-all italic">Miscele su Misura</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="rimedi" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-            <div class="space-y-10">
+    <section id="rimedi" class="py-20 md:py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+            <div class="space-y-6 md:space-y-10">
                 <span class="text-clay font-black uppercase tracking-[0.5em] text-[10px]">Herbal Apothecary</span>
                 <h2 class="text-5xl font-serif italic leading-tight text-botanical uppercase">Infusi e Tisane <br> di Montagna.</h2>
                 <p class="text-stone-500 text-lg font-bold leading-relaxed italic">
                     Selezioniamo solo erbe da raccolta spontanea o coltivazioni biologiche certificate. Ogni miscela è studiata per massimizzare la biodisponibilità dei principi attivi.
                 </p>
-                <div class="grid grid-cols-2 gap-8 pt-6 border-t border-stone-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pt-6 border-t border-stone-100">
                     <div><h4 class="font-black text-xs uppercase text-botanical mb-2">Erbe sfuse</h4><p class="text-sm italic font-bold">Oltre 200 varietà essiccate a freddo.</p></div>
                     <div><h4 class="font-black text-xs uppercase text-botanical mb-2">Tinture Madri</h4><p class="text-sm italic font-bold">Estratti idroalcolici ad alta concentrazione.</p></div>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
-                <img src="assets/img2.jpg" class="rounded-3xl shadow-xl" alt="Herbal 1">
-                <img src="assets/img3.jpg" class="rounded-3xl shadow-xl mt-12" alt="Herbal 2">
+                <img src="assets/img2.jpg" class="rounded-2xl md:rounded-3xl shadow-xl w-full h-auto object-cover" alt="Herbal 1">
+                <img src="assets/img3.jpg" class="rounded-2xl md:rounded-3xl shadow-xl mt-8 md:mt-12 w-full h-auto object-cover" alt="Herbal 2">
             </div>
         </div>
     </section>
 
-    <section id="cosmesi" class="py-32 bg-stone-50 section-padding">
+    <section id="cosmesi" class="py-20 md:py-32 bg-stone-50 section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
+            <div class="text-center mb-16 md:mb-24">
                 <h2 class="text-5xl font-serif italic text-botanical uppercase">Pura <span class="text-clay font-normal">Fito-Bellezza.</span></h2>
                 <p class="text-stone-400 mt-4 uppercase tracking-widest text-[10px] font-black">Cosmesi viva, senza parabeni né siliconi</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="bg-white p-12 rounded-[3rem] herb-card text-center">
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] herb-card text-center">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-clay"><i data-lucide="sparkles"></i></div>
                     <h4 class="text-2xl font-serif italic text-botanical uppercase">Sieri Viso</h4>
                     <p class="text-sm text-stone-400 font-bold leading-relaxed italic">Concentrati di acido ialuronico vegetale ed estratti di rosa canina.</p>
                 </div>
-                <div class="bg-white p-12 rounded-[3rem] herb-card text-center md:mt-12">
+                <div class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] herb-card text-center md:mt-12">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-clay"><i data-lucide="flower-2"></i></div>
                     <h4 class="text-2xl font-serif italic text-botanical uppercase">Creme Officinali</h4>
                     <p class="text-sm text-stone-400 font-bold leading-relaxed italic">Formulazioni lenitive a base di calendula, arnica e iperico.</p>
                 </div>
-                <div class="bg-white p-12 rounded-[3rem] herb-card text-center">
+                <div class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] herb-card text-center">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-clay"><i data-lucide="droplet"></i></div>
                     <h4 class="text-2xl font-serif italic text-botanical uppercase">Oli Preziosi</h4>
                     <p class="text-sm text-stone-400 font-bold leading-relaxed italic">Oli di argan, jojoba e mandorle dolci pressati a freddo.</p>
@@ -191,43 +200,43 @@
         </div>
     </section>
 
-    <section id="integrazione" class="py-32 bg-botanical text-stone-100 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-            <div class="space-y-10">
+    <section id="integrazione" class="py-20 md:py-32 bg-botanical text-stone-100 section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-8 md:space-y-10">
                 <h2 class="text-5xl font-serif italic text-white leading-none uppercase">Integrazione <br><span class="text-clay font-normal">Consapevole.</span></h2>
-                <p class="text-stone-300 text-lg font-bold leading-relaxed italic border-l-2 border-clay pl-8">Supportiamo il tuo organismo con gemmoderivati e integratori formulati per rispettare la fisiologia umana.</p>
+                <p class="text-stone-300 text-lg font-bold leading-relaxed italic border-l-2 border-clay pl-6 md:pl-8">Supportiamo il tuo organismo con gemmoderivati e integratori formulati per rispettare la fisiologia umana.</p>
                 <ul class="space-y-6">
                     <li class="flex items-center gap-6 border-b border-white/10 pb-4">
-                        <i data-lucide="shield-check" class="text-clay"></i>
+                        <i data-lucide="shield-check" class="text-clay shrink-0"></i>
                         <span class="text-[10px] font-black uppercase tracking-widest text-white">Difese Immunitarie</span>
                     </li>
                     <li class="flex items-center gap-6 border-b border-white/10 pb-4">
-                        <i data-lucide="battery-charging" class="text-clay"></i>
+                        <i data-lucide="battery-charging" class="text-clay shrink-0"></i>
                         <span class="text-[10px] font-black uppercase tracking-widest text-white">Energia & Focus Mentale</span>
                     </li>
                     <li class="flex items-center gap-6 border-b border-white/10 pb-4">
-                        <i data-lucide="moon" class="text-clay"></i>
+                        <i data-lucide="moon" class="text-clay shrink-0"></i>
                         <span class="text-[10px] font-black uppercase tracking-widest text-white">Qualità del Sonno</span>
                     </li>
                 </ul>
             </div>
             <div class="relative">
-                <img src="assets/img4.jpg" class="rounded-[4rem] shadow-2xl w-full" alt="Integratori Naturali">
+                <img src="assets/img4.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl w-full h-auto object-cover" alt="Integratori Naturali">
             </div>
         </div>
     </section>
 
-    <section id="laboratorio" class="py-32 bg-[#f4f1ee] section-padding">
-        <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
+    <section id="laboratorio" class="py-20 md:py-32 bg-[#f4f1ee] section-padding">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-8 md:space-y-12">
             <h2 class="text-4xl font-serif italic text-botanical uppercase tracking-widest">L'Arte della <span class="text-clay">Miscela.</span></h2>
             <p class="text-stone-600 text-lg font-bold leading-relaxed max-w-2xl mx-auto italic">Prepariamo tisane personalizzate e fiori di Bach. Scopri l'Angolo del Tè.</p>
-            <div class="grid md:grid-cols-2 gap-12 pt-10">
-                <div class="bg-white p-12 rounded-[2rem] shadow-sm">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 pt-6">
+                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm">
                     <i data-lucide="flask-conical" class="w-8 h-8 mx-auto mb-6 text-clay"></i>
                     <h4 class="font-black uppercase text-[11px] tracking-widest">Miscele Personalizzate</h4>
                     <p class="text-xs text-stone-400 mt-4 leading-relaxed italic font-bold text-center">Create per le tue specifiche esigenze.</p>
                 </div>
-                <div class="bg-white p-12 rounded-[2rem] shadow-sm">
+                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm">
                     <i data-lucide="coffee" class="w-8 h-8 mx-auto mb-6 text-clay"></i>
                     <h4 class="font-black uppercase text-[11px] tracking-widest">Tè dal Mondo</h4>
                     <p class="text-xs text-stone-400 mt-4 leading-relaxed italic font-bold text-center">Selezioni pregiate da infusione.</p>
@@ -236,25 +245,44 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-7xl font-serif italic text-botanical leading-none tracking-tighter uppercase">Scrivici il <br><span class="text-clay font-normal">Tuo Bisogno.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-botanical text-white flex items-center justify-center rounded-full shadow-xl shadow-botanical/20 shrink-0"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-black uppercase tracking-widest text-stone-400 mb-1">Il Santuario</p><p class="text-2xl font-serif italic font-bold uppercase">Viale delle Erbe 7, Milano</p></div>
+    <section id="contatti" class="py-20 md:py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
+            <div class="space-y-8 md:space-y-12">
+                <h2 class="text-6xl md:text-7xl font-serif italic text-botanical leading-none tracking-tighter uppercase">Scrivici il <br><span class="text-clay font-normal">Tuo Bisogno.</span></h2>
+                <p class="text-stone-500 text-lg font-bold leading-relaxed italic max-w-md">Siamo qui per guidarti verso il benessere naturale. Scegli il canale che preferisci per una consulenza rapida.</p>
+            </div>
+            
+            <div class="space-y-6">
+                <a href="#" class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 hover:border-clay transition-all group shadow-sm">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white flex items-center justify-center rounded-full shadow-lg shrink-0 group-hover:scale-110 transition-transform">
+                        <i data-lucide="message-circle" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-stone-400 mb-1">WhatsApp</p>
+                        <p class="text-xl md:text-2xl font-serif italic font-bold uppercase text-botanical">+39 333 123 4567</p>
+                    </div>
+                </a>
+
+                <a href="#" class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 hover:border-clay transition-all group shadow-sm">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-botanical text-white flex items-center justify-center rounded-full shadow-lg shrink-0 group-hover:scale-110 transition-transform">
+                        <i data-lucide="phone" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-stone-400 mb-1">Chiamaci</p>
+                        <p class="text-xl md:text-2xl font-serif italic font-bold uppercase text-botanical">02 1234 5678</p>
+                    </div>
+                </a>
+
+                <div class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 shadow-sm">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-clay text-white flex items-center justify-center rounded-full shadow-lg shrink-0">
+                        <i data-lucide="map-pin" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-stone-400 mb-1">Il Santuario</p>
+                        <p class="text-xl md:text-2xl font-serif italic font-bold uppercase text-botanical">Viale delle Erbe 7, Milano</p>
                     </div>
                 </div>
             </div>
-            <form class="bg-stone-50 p-12 rounded-[4rem] border border-stone-100 space-y-6 shadow-2xl">
-                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-botanical mb-8 text-center italic">Richiedi una consulenza personalizzata (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="NOME" class="w-full p-4 border-b border-stone-200 bg-transparent outline-none text-[10px] font-black uppercase tracking-widest">
-                    <input type="email" placeholder="EMAIL" class="w-full p-4 border-b border-stone-200 bg-transparent outline-none text-[10px] font-black uppercase tracking-widest">
-                </div>
-                <button class="w-full bg-botanical text-white py-6 rounded-full font-black uppercase text-[10px] tracking-[0.4em] shadow-xl">Invia Messaggio</button>
-            </form>
         </div>
     </section>
 
@@ -264,14 +292,13 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-white border border-stone-100 text-botanical p-5 rounded-full shadow-2xl z-50">
+    <div class="chat-widget-demo fixed bottom-6 md:bottom-10 right-6 md:right-10 bg-white border border-stone-100 text-botanical p-4 md:p-5 rounded-full shadow-2xl z-50">
         <i data-lucide="message-circle" class="w-6 h-6"></i>
     </div>
 
     <script>
         lucide.createIcons();
 
-        // Menu Logic
         const openBtn = document.getElementById('open-menu');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -279,19 +306,24 @@
 
         function toggleMenu() {
             mobileMenu.classList.toggle('active');
-            // Toggle scroll lock on body
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
         }
 
         openBtn.addEventListener('click', toggleMenu);
         closeBtn.addEventListener('click', toggleMenu);
 
-        // Close menu when a link is clicked
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
                 document.body.style.overflow = 'auto';
             });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
     </script>
 </body>

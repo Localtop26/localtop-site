@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #ffffff; color: #1a1a1a; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; width: 100%; }
         .font-luxury { font-family: 'Cinzel', serif; }
         .text-gold { color: #d4af37; }
         .bg-gold { background-color: #d4af37; }
@@ -20,26 +20,21 @@
             background-position: center; 
         }
         
-        .reveal-img { overflow: hidden; position: relative; border-radius: 4px; }
-        .reveal-img img { transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        /* Rimossi filtri grayscale e transizioni di colore */
+        .reveal-img { overflow: hidden; position: relative; border-radius: 4px; filter: none !important; }
+        .reveal-img img { transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); filter: none !important; }
         .reveal-img:hover img { transform: scale(1.05); }
         .diamond-shadow { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); }
 
-        /* Rimozione restrizioni demo per rendere il sito funzionante */
-        button, input, select, textarea, a {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
-
-        /* Fix per Mobile: previene il taglio delle sezioni e ottimizza i font */
+        /* Fix per Mobile e Overflow */
         @media (max-width: 768px) {
-            h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; }
-            h2 { font-size: clamp(2rem, 8vw, 3rem) !important; line-height: 1.2 !important; }
-            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
-            .hero-section { height: auto; min-height: 100vh; padding-top: 120px; }
+            h1 { font-size: clamp(2.5rem, 8vw, 4rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(2rem, 7vw, 3rem) !important; line-height: 1.2 !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .hero-section { height: auto; min-height: 80vh; padding-top: 80px; }
+            .localtop-btn { padding: 0.5rem 1rem !important; font-size: 8px !important; }
         }
 
-        /* Floating Nav Bottom Left */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
@@ -49,46 +44,74 @@
             flex-direction: column;
             gap: 0.5rem;
         }
+
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 200;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        #mobile-menu.active { display: flex; }
     </style>
 </head>
 <body class="selection:bg-stone-200 selection:text-gold">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
             <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Esempi
+        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
         </a>
     </div>
 
-    <div class="bg-stone-900 text-gold py-2 text-[8px] md:text-[9px] font-bold text-center uppercase tracking-[0.4em] md:tracking-[0.6em] px-4 sticky top-0 z-[110]">
-        ✨ Collezione Heritage 2026: L'arte del tempo incontra la rarità dei diamanti ✨
-    </div>
+    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            
+            <button id="menu-toggle" class="lg:hidden p-2 text-stone-900">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
 
-    <nav class="sticky top-[34px] z-[100] bg-white/90 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-stone-100">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
             <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.4em] font-bold text-stone-500">
                 <a href="#gioielli" class="hover:text-gold transition">Gioielli</a>
                 <a href="#orologi" class="hover:text-gold transition">Orologi</a>
                 <a href="#atelier" class="hover:text-gold transition">Atelier</a>
             </div>
             
-            <div class="text-center">
-                <span class="text-2xl md:text-3xl font-luxury tracking-[0.2em] text-stone-900 uppercase">Aurea<span class="text-gold">&</span>Co.</span>
-                <span class="block text-[6px] md:text-[7px] uppercase tracking-[0.6em] md:tracking-[0.8em] text-stone-400 font-bold mt-1">Milano • Parigi • Ginevra</span>
+            <div class="text-center flex-grow lg:flex-grow-0">
+                <span class="text-xl md:text-3xl font-luxury tracking-[0.2em] text-stone-900 uppercase">Aurea<span class="text-gold">&</span>Co.</span>
+                <span class="block text-[5px] md:text-[7px] uppercase tracking-[0.5em] md:tracking-[0.8em] text-stone-400 font-bold mt-1">Milano • Parigi • Ginevra</span>
             </div>
 
             <div class="flex items-center">
-                <a href="#contatti" class="border border-stone-900 text-stone-900 px-4 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all">
-                    Prenota
+                <a href="#contatti" class="hidden xs:block border border-stone-900 text-stone-900 px-3 md:px-8 py-2 md:py-3 text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all">
+                    Contatti
                 </a>
             </div>
         </div>
     </nav>
 
+    <div id="mobile-menu">
+        <button id="menu-close" class="absolute top-8 right-8 text-stone-900">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#gioielli" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-stone-900">Gioielli</a>
+        <a href="#orologi" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-stone-900">Orologi</a>
+        <a href="#atelier" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-stone-900">Atelier</a>
+        <a href="#contatti" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-stone-900">Contatti</a>
+    </div>
+
     <section class="relative min-h-[85vh] flex items-center hero-gold overflow-hidden hero-section">
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center lg:text-left py-20">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center lg:text-left py-12 md:py-20">
             <div class="max-w-2xl space-y-8 md:space-y-10">
                 <h1 class="text-5xl md:text-7xl font-luxury text-white uppercase tracking-tighter">
                     Luce <br> <span class="text-gold italic font-light">Eterna.</span>
@@ -104,10 +127,10 @@
         </div>
     </section>
 
-    <section id="gioielli" class="py-20 md:py-32 bg-white">
+    <section id="gioielli" class="py-16 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
-                <div class="space-y-8 md:space-y-12 order-2 lg:order-1">
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+                <div class="space-y-6 md:space-y-12 order-2 lg:order-1">
                     <span class="text-gold font-bold uppercase tracking-[0.5em] text-[10px]">Eterna Brillantezza</span>
                     <h2 class="text-4xl md:text-5xl font-luxury text-stone-900 italic uppercase leading-tight">Il Fascino dei <br><span class="text-gold font-light">Preziosi.</span></h2>
                     <p class="text-stone-500 text-base md:text-lg leading-relaxed font-light">Ogni pietra è selezionata a mano per garantire caratura, colore e purezza superiori. Creazioni che celebrano i momenti più importanti della vita.</p>
@@ -123,9 +146,9 @@
         </div>
     </section>
 
-    <section id="orologi" class="py-20 md:py-32 bg-stone-50">
+    <section id="orologi" class="py-16 md:py-32 bg-stone-50">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 md:mb-24">
+            <div class="text-center mb-12 md:mb-24">
                 <h2 class="text-4xl md:text-5xl font-luxury text-stone-900 uppercase">Maestri del <span class="text-gold italic">Tempo</span></h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -160,7 +183,7 @@
         </div>
     </section>
 
-    <section id="atelier" class="py-20 md:py-32 bg-white">
+    <section id="atelier" class="py-16 md:py-32 bg-white">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-10 md:space-y-12">
             <h2 class="text-3xl md:text-4xl font-luxury uppercase italic tracking-widest">Il Vostro Sogno, <span class="text-gold">La Nostra Arte.</span></h2>
             <p class="text-stone-500 text-xs md:text-sm font-light uppercase tracking-widest leading-loose max-w-3xl mx-auto italic">
@@ -174,7 +197,7 @@
         </div>
     </section>
 
-    <section class="py-20 md:py-32 bg-stone-900 text-white overflow-hidden">
+    <section class="py-16 md:py-32 bg-stone-900 text-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-8 md:space-y-10">
                 <h2 class="text-4xl md:text-5xl font-luxury italic text-gold uppercase leading-none">Diamond <br> Investment.</h2>
@@ -185,36 +208,47 @@
                     <span class="text-xl md:text-2xl font-luxury">IGI</span>
                 </div>
             </div>
-            <div class="relative opacity-80">
+            <div class="relative">
                 <img src="assets/img6.jpg" class="rounded-sm w-full h-auto" alt="Investment Diamonds">
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-20 md:py-32 bg-stone-50">
+    <section id="contatti" class="py-16 md:py-32 bg-stone-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-10 md:space-y-12">
                 <h2 class="text-5xl md:text-7xl font-luxury text-stone-900 leading-none tracking-tighter uppercase italic">The Private <br><span class="text-gold font-normal">Experience.</span></h2>
-                <div class="space-y-6 md:space-y-8">
-                    <div class="flex items-center gap-6 md:gap-8">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white flex items-center justify-center diamond-shadow text-gold shrink-0"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[8px] font-bold uppercase tracking-widest text-stone-400 mb-1">Maison Principale</p><p class="text-lg md:text-2xl font-luxury italic">Via Montenapoleone 1, Milano</p></div>
+                <p class="text-stone-500 font-light max-w-md">Contattaci per una consulenza esclusiva o visita le nostre sedi internazionali.</p>
+            </div>
+            <div class="grid gap-6">
+                <div class="flex items-center gap-4 bg-white p-6 diamond-shadow border-l-4 border-gold">
+                    <div class="w-12 h-12 bg-stone-900 text-gold flex items-center justify-center shrink-0">
+                        <i data-lucide="map-pin" class="w-5 h-5"></i>
                     </div>
-                    <div class="flex items-center gap-6 md:gap-8">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white flex items-center justify-center diamond-shadow text-gold shrink-0"><i data-lucide="phone"></i></div>
-                        <p class="text-lg md:text-2xl font-luxury italic text-stone-800">02 123 456 78</p>
+                    <div>
+                        <p class="text-[8px] font-bold uppercase tracking-[0.2em] text-stone-400">Maison Principale</p>
+                        <p class="text-sm md:text-lg font-luxury uppercase">Via Montenapoleone 1, Milano</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-white p-6 diamond-shadow border-l-4 border-gold">
+                    <div class="w-12 h-12 bg-stone-900 text-gold flex items-center justify-center shrink-0">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-[8px] font-bold uppercase tracking-[0.2em] text-stone-400">Luxury Line</p>
+                        <p class="text-sm md:text-lg font-luxury uppercase">02 123 456 78</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 bg-white p-6 diamond-shadow border-l-4 border-gold">
+                    <div class="w-12 h-12 bg-stone-900 text-gold flex items-center justify-center shrink-0">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-[8px] font-bold uppercase tracking-[0.2em] text-stone-400">WhatsApp Atelier</p>
+                        <p class="text-sm md:text-lg font-luxury uppercase">+39 333 456 7890</p>
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-8 md:p-12 diamond-shadow border-t-4 border-gold space-y-6 md:space-y-8">
-                <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-stone-400 text-center italic">Richiedi un appuntamento in Boutique</p>
-                <div class="grid gap-6">
-                    <input type="text" placeholder="IL VOSTRO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition-colors">
-                    <input type="email" placeholder="IL VOSTRO INDIRIZZO EMAIL" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition-colors">
-                    <textarea placeholder="NOTE (OPZIONALE)" rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition-colors"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-stone-900 text-white py-5 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-gold transition-colors">Invia Richiesta</button>
-            </form>
         </div>
     </section>
 
@@ -230,6 +264,29 @@
 
     <script>
         lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
     </script>
 </body>
 </html>

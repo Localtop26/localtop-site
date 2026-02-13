@@ -27,14 +27,13 @@
             background-repeat: no-repeat;
         }
 
-        /* Mobile Adjustment: Immagine al 75% a destra */
         @media (max-width: 768px) {
             .hero-bg {
                 background-position: 75% center;
             }
         }
 
-        /* Rimosso ogni filtro grayscale ovunque */
+        /* Rimosso ogni filtro grayscale - Immagini a colori */
         img { filter: none !important; }
         .reveal-card:hover img { 
             transform: scale(1.05); 
@@ -42,10 +41,9 @@
         }
 
         /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo {
+        .wa-widget-demo, .contact-btn-demo {
             pointer-events: none !important;
             cursor: default !important;
-            user-select: none;
         }
 
         /* --- GESTIONE TITOLO HERO --- */
@@ -56,29 +54,43 @@
             letter-spacing: -0.02em;
         }
 
-        /* Desktop: Molto grande come richiesto */
         @media (min-width: 1024px) {
             h1 { font-size: 9rem !important; }
         }
 
-        /* Mobile: Bilanciato a 3.5rem */
         @media (max-width: 768px) {
             h1 { 
-                font-size: 3.5rem !important; 
-                line-height: 1 !important;
+                font-size: 3.2rem !important; 
+                line-height: 1.1 !important;
             }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
         }
 
-        /* Bottoni Floating */
+        /* Bottoni Floating Localtop - Più piccoli su mobile */
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .demo-nav-container a {
+                padding: 0.75rem 1rem;
+                font-size: 8px;
+            }
+        }
+
+        /* Mobile Menu Logic */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
         }
     </style>
 </head>
@@ -93,8 +105,9 @@
         </a>
     </div>
 
-    <nav class="fixed w-full z-[100] bg-white/90 backdrop-blur-md border-b border-stone-100 min-h-[80px] md:h-24 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-4">
+    <nav class="fixed w-full z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 h-20 md:h-24 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center relative">
+            
             <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.4em] font-bold text-stone-500">
                 <a href="#sposa" class="hover:text-gold transition">Sposa</a>
                 <a href="#sposo" class="hover:text-gold transition">Sposo</a>
@@ -102,18 +115,32 @@
                 <a href="#sartoria" class="hover:text-gold transition">Sartoria</a>
             </div>
             
-            <div class="text-center flex-shrink-0">
-                <span class="text-xl md:text-3xl font-atelier tracking-[0.15em] md:tracking-[0.2em] text-stone-900 uppercase">Sartoria<span class="text-gold">Reale</span></span>
-                <span class="block text-[7px] md:text-[8px] uppercase tracking-[0.5em] md:tracking-[0.8em] text-stone-400 font-bold mt-1">Milano • Torino • Roma</span>
+            <div class="text-left md:text-center flex-shrink-0">
+                <span class="text-lg md:text-3xl font-atelier tracking-[0.15em] md:tracking-[0.2em] text-stone-900 uppercase">Sartoria<span class="text-gold">Reale</span></span>
+                <span class="block text-[6px] md:text-[8px] uppercase tracking-[0.4em] md:tracking-[0.8em] text-stone-400 font-bold mt-0.5">Milano • Torino • Roma</span>
             </div>
 
-            <div class="flex items-center">
-                <a href="#appuntamento" class="border border-stone-900 text-stone-900 px-4 py-2 md:px-8 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all whitespace-nowrap">
-                    Prenota <span class="hidden sm:inline">Prova</span>
+            <div class="flex items-center gap-4">
+                <a href="#appuntamento" class="hidden sm:inline-block border border-stone-900 text-stone-900 px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all">
+                    Prenota Prova
                 </a>
+                <button id="menu-trigger" class="lg:hidden text-stone-900 p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
             </div>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[110] flex flex-col items-center justify-center space-y-8 text-center lg:hidden">
+        <button id="menu-close" class="absolute top-6 right-6 text-stone-900">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#sposa" class="text-2xl font-atelier uppercase tracking-widest text-stone-900" onclick="toggleMenu()">Sposa</a>
+        <a href="#sposo" class="text-2xl font-atelier uppercase tracking-widest text-stone-900" onclick="toggleMenu()">Sposo</a>
+        <a href="#filosofia" class="text-2xl font-atelier uppercase tracking-widest text-stone-900" onclick="toggleMenu()">Filosofia</a>
+        <a href="#sartoria" class="text-2xl font-atelier uppercase tracking-widest text-stone-900" onclick="toggleMenu()">Sartoria</a>
+        <a href="#appuntamento" class="bg-stone-900 text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest" onclick="toggleMenu()">Prenota Prova</a>
+    </div>
 
     <section class="relative h-screen flex items-center hero-bg overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
@@ -132,19 +159,19 @@
         </div>
     </section>
 
-    <section id="sposa" class="py-24 md:py-32 bg-white section-padding">
+    <section id="sposa" class="py-20 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 md:mb-24 space-y-4">
+            <div class="text-center mb-12 md:mb-24 space-y-4">
                 <h2 class="text-3xl md:text-5xl font-atelier uppercase text-stone-900 tracking-widest">White <span class="text-gold">Poetry</span></h2>
                 <p class="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold italic">L'eccellenza del pizzo e della seta</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-12 md:gap-20">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-20">
                 <div class="reveal-card group cursor-pointer space-y-6">
                     <div class="aspect-[4/5] overflow-hidden bg-stone-50">
                         <img src="assets/img2.jpg" class="w-full h-full object-cover transition-all duration-1000">
                     </div>
                     <div class="flex justify-between items-center border-b border-stone-100 pb-4">
-                        <h4 class="font-atelier text-2xl uppercase tracking-tighter">Linea Sirena "Etherea"</h4>
+                        <h4 class="font-atelier text-xl md:text-2xl uppercase tracking-tighter">Linea Sirena "Etherea"</h4>
                         <span class="text-gold"><i data-lucide="arrow-right"></i></span>
                     </div>
                 </div>
@@ -153,7 +180,7 @@
                         <img src="assets/img3.jpg" class="w-full h-full object-cover transition-all duration-1000">
                     </div>
                     <div class="flex justify-between items-center border-b border-stone-100 pb-4">
-                        <h4 class="font-atelier text-2xl uppercase tracking-tighter">Ball Gown "Princess"</h4>
+                        <h4 class="font-atelier text-xl md:text-2xl uppercase tracking-tighter">Ball Gown "Princess"</h4>
                         <span class="text-gold"><i data-lucide="arrow-right"></i></span>
                     </div>
                 </div>
@@ -161,20 +188,20 @@
         </div>
     </section>
 
-    <section id="sposo" class="py-24 md:py-32 bg-stone-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
-            <div class="space-y-10 order-2 lg:order-1">
-                <h2 class="text-4xl md:text-6xl font-atelier text-stone-900 leading-none uppercase">L'Uomo <br><span class="text-gold">Contemporaneo.</span></h2>
-                <p class="text-stone-500 text-lg md:text-xl leading-relaxed font-light italic">
+    <section id="sposo" class="py-20 md:py-32 bg-stone-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+            <div class="space-y-8 md:space-y-10 order-2 lg:order-1">
+                <h2 class="text-3xl md:text-6xl font-atelier text-stone-900 leading-none uppercase">L'Uomo <br><span class="text-gold">Contemporaneo.</span></h2>
+                <p class="text-stone-500 text-base md:text-xl leading-relaxed font-light italic">
                     Dalla classica eleganza del Tight alla modernità dello smoking su misura. Tessuti pregiati dai migliori lanifici biellesi per un look che parla di carattere e distinzione.
                 </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
                     <div class="space-y-2 border-l-2 border-gold pl-6">
-                        <h4 class="font-atelier text-xl">Tessuti Vitale Barberis</h4>
+                        <h4 class="font-atelier text-lg md:text-xl">Tessuti Vitale Barberis</h4>
                         <p class="text-[9px] uppercase tracking-widest text-stone-400 font-bold">Pura Lana Vergine</p>
                     </div>
                     <div class="space-y-2 border-l-2 border-gold pl-6">
-                        <h4 class="font-atelier text-xl">Taglio Sartoriale</h4>
+                        <h4 class="font-atelier text-lg md:text-xl">Taglio Sartoriale</h4>
                         <p class="text-[9px] uppercase tracking-widest text-stone-400 font-bold">Interamente Fatto a Mano</p>
                     </div>
                 </div>
@@ -185,52 +212,52 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-24 md:py-32 bg-white section-padding">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-4xl md:text-5xl font-atelier text-stone-900 uppercase italic">Etica <span class="text-gold italic">&</span> Eleganza.</h2>
-            <p class="text-stone-500 text-xl md:text-2xl font-light italic leading-relaxed border-l-4 border-gold pl-6 md:pl-10 mx-auto">
+    <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
+            <h2 class="text-3xl md:text-5xl font-atelier text-stone-900 uppercase italic">Etica <span class="text-gold italic">&</span> Eleganza.</h2>
+            <p class="text-stone-500 text-lg md:text-2xl font-light italic leading-relaxed border-l-4 border-gold pl-6 md:pl-10 mx-auto">
                 "La nostra filosofia si fonda sull'integrità della bellezza. Crediamo che onorare l'artigianalità originale sia il modo più nobile per supportare il giorno più importante di chi si affida a noi, agendo sempre con passione artigianale."
             </p>
-            <div class="flex flex-wrap justify-center gap-10 md:gap-16 pt-8 italic font-bold">
-                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-gold w-8 h-8"></i><p class="text-[10px] font-bold uppercase tracking-widest">Qualità Master</p></div>
-                <div class="text-center"><i data-lucide="shield-check" class="mx-auto mb-4 text-gold w-8 h-8"></i><p class="text-[10px] font-bold uppercase tracking-widest">Eccellenza Italiana</p></div>
-                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-gold w-8 h-8"></i><p class="text-[10px] font-bold uppercase tracking-widest">Cura Artigiana</p></div>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 italic font-bold">
+                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-gold w-6 h-6 md:w-8 md:h-8"></i><p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Qualità Master</p></div>
+                <div class="text-center"><i data-lucide="shield-check" class="mx-auto mb-4 text-gold w-6 h-6 md:w-8 md:h-8"></i><p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Eccellenza Italiana</p></div>
+                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-gold w-6 h-6 md:w-8 md:h-8"></i><p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Cura Artigiana</p></div>
             </div>
         </div>
     </section>
 
-    <section id="sartoria" class="py-24 md:py-32 bg-white section-padding">
-        <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
+    <section id="sartoria" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-10 md:space-y-12">
             <h2 class="text-3xl md:text-5xl font-atelier uppercase italic tracking-widest">Un Abito, <span class="text-gold">Mille Ore.</span></h2>
-            <p class="text-stone-400 text-sm md:text-base font-light uppercase tracking-[0.2em] leading-loose max-w-3xl mx-auto">
+            <p class="text-stone-400 text-[12px] md:text-base font-light uppercase tracking-[0.2em] leading-loose max-w-3xl mx-auto">
                 Non seguiamo la moda, la creiamo per te. Ogni capo della Sartoria Reale attraversa tre prove sartoriali per raggiungere la vestibilità assoluta. Sentirete la differenza sulla pelle.
             </p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 pt-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-10">
                 <div class="space-y-4">
-                    <i data-lucide="scissors" class="w-10 h-10 mx-auto text-gold"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-widest">Taglio a Mano</p>
+                    <i data-lucide="scissors" class="w-8 h-8 md:w-10 md:h-10 mx-auto text-gold"></i>
+                    <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Taglio a Mano</p>
                 </div>
                 <div class="space-y-4">
-                    <i data-lucide="drafting-compass" class="w-10 h-10 mx-auto text-gold"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-widest">Modellistica 3D</p>
+                    <i data-lucide="drafting-compass" class="w-8 h-8 md:w-10 md:h-10 mx-auto text-gold"></i>
+                    <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Modellistica 3D</p>
                 </div>
                 <div class="space-y-4">
-                    <i data-lucide="needle" class="w-10 h-10 mx-auto text-gold"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-widest">Ricamo Artigianale</p>
+                    <i data-lucide="needle" class="w-8 h-8 md:w-10 md:h-10 mx-auto text-gold"></i>
+                    <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Ricamo Artigianale</p>
                 </div>
                 <div class="space-y-4">
-                    <i data-lucide="award" class="w-10 h-10 mx-auto text-gold"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-widest">Certificato Qualità</p>
+                    <i data-lucide="award" class="w-8 h-8 md:w-10 md:h-10 mx-auto text-gold"></i>
+                    <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Certificato Qualità</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 md:py-32 bg-stone-900 text-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16 md:gap-20 items-center">
+    <section class="py-20 md:py-32 bg-stone-900 text-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 md:gap-20 items-center">
             <div class="lg:w-1/2 space-y-8">
-                <h2 class="text-4xl md:text-5xl font-atelier text-gold italic uppercase">Dettagli di <br> Luce.</h2>
-                <p class="text-stone-400 text-lg font-light leading-relaxed">Veli in seta, tiare artigianali, gemelli in argento e scarpe sartoriali. Completate il vostro outfit con una selezione di accessori curata dai nostri stylist.</p>
+                <h2 class="text-3xl md:text-5xl font-atelier text-gold italic uppercase">Dettagli di <br> Luce.</h2>
+                <p class="text-stone-400 text-base md:text-lg font-light leading-relaxed">Veli in seta, tiare artigianali, gemelli in argento e scarpe sartoriali. Completate il vostro outfit con una selezione di accessori curata dai nostri stylist.</p>
                 <button class="border-b-2 border-gold text-gold font-bold uppercase text-[10px] tracking-[0.4em] pb-2 hover:text-white hover:border-white transition">Vedi Collezione Accessori</button>
             </div>
             <div class="lg:w-1/2 grid grid-cols-2 gap-4">
@@ -240,42 +267,53 @@
         </div>
     </section>
 
-    <section id="appuntamento" class="py-24 md:py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
-            <div class="space-y-12">
-                <h2 class="text-6xl md:text-8xl font-atelier text-stone-900 leading-none uppercase italic tracking-tighter">Inizia il <br><span class="text-gold font-normal">Sogno.</span></h2>
-                <div class="space-y-8 text-stone-400">
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 border border-stone-100 flex items-center justify-center text-gold flex-shrink-0"><i data-lucide="map-pin"></i></div>
-                        <p class="text-xl md:text-2xl font-atelier italic">Via Montenapoleone 10, Milano</p>
+    <section id="appuntamento" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl md:text-8xl font-atelier text-stone-900 leading-none uppercase italic tracking-tighter">Inizia il <br><span class="text-gold font-normal">Sogno.</span></h2>
+                <p class="text-stone-500 font-light italic text-lg md:text-xl">Prenota la tua consulenza privata in atelier. La nostra sartoria riceve solo su appuntamento per garantirti l'esclusività che meriti.</p>
+            </div>
+            
+            <div class="bg-stone-50 p-8 md:p-12 shadow-2xl space-y-8 relative border-t-4 border-gold">
+                <div class="absolute top-0 right-0 bg-gold px-4 py-1 text-[8px] font-bold text-white uppercase italic tracking-widest">Demo Mode</div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 p-4 bg-white border border-stone-100 contact-btn-demo">
+                        <div class="w-12 h-12 bg-green-50 text-green-600 flex items-center justify-center rounded-full flex-shrink-0">
+                            <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-[8px] font-bold uppercase text-stone-400 tracking-widest">WhatsApp</p>
+                            <p class="text-sm md:text-lg font-atelier italic text-stone-900">+39 333 123 4567</p>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 border border-stone-100 flex items-center justify-center text-gold flex-shrink-0"><i data-lucide="phone"></i></div>
-                        <p class="text-xl md:text-2xl font-atelier italic">+39 02 123 4567</p>
+
+                    <div class="flex items-center gap-6 p-4 bg-white border border-stone-100 contact-btn-demo">
+                        <div class="w-12 h-12 bg-stone-100 text-stone-900 flex items-center justify-center rounded-full flex-shrink-0">
+                            <i data-lucide="phone" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-[8px] font-bold uppercase text-stone-400 tracking-widest">Chiamaci ora</p>
+                            <p class="text-sm md:text-lg font-atelier italic text-stone-900">+39 02 123 4567</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-6 p-4 bg-white border border-stone-100 contact-btn-demo">
+                        <div class="w-12 h-12 bg-stone-100 text-gold flex items-center justify-center rounded-full flex-shrink-0">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-[8px] font-bold uppercase text-stone-400 tracking-widest">Vieni a trovarci</p>
+                            <p class="text-sm md:text-lg font-atelier italic text-stone-900">Via Montenapoleone 10, Milano</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form class="bg-stone-50 p-8 md:p-12 shadow-2xl space-y-6 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-gold px-4 py-1 text-[8px] font-bold text-white uppercase italic tracking-widest">Demo Mode</div>
-                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-gold mb-8 italic text-center">Richiedi un appuntamento esclusivo in Atelier</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition text-[10px] uppercase font-bold tracking-widest">
-                    <select class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition text-[10px] uppercase font-bold tracking-widest text-stone-400">
-                        <option>COLLEZIONE DI INTERESSE</option>
-                        <option>SPOSA</option>
-                        <option>SPOSO</option>
-                        <option>CERIMONIA</option>
-                    </select>
-                </div>
-                <input type="text" placeholder="DATA PREVISTA NOZZE" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition text-[10px] uppercase font-bold tracking-widest">
-                <textarea placeholder="COSA CERCHI NEL TUO ABITO..." rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none focus:border-gold transition text-[10px] uppercase font-bold tracking-widest"></textarea>
-                <button class="w-full bg-stone-900 text-white py-6 text-[10px] font-bold uppercase tracking-[0.5em] hover:bg-gold transition-all">Prenota la tua Prova</button>
-            </form>
         </div>
     </section>
 
     <footer class="py-16 bg-white border-t border-stone-100 text-center px-6">
-        <p class="text-stone-400 text-[9px] uppercase tracking-[0.6em] font-bold leading-relaxed">
+        <p class="text-stone-400 text-[8px] md:text-[9px] uppercase tracking-[0.4em] md:tracking-[0.6em] font-bold leading-relaxed">
             &copy; 2026 Sartoria Reale Milano | Alta Moda Sposi | P.IVA 0123456789 | LocalTop Demo Mode
         </p>
     </footer>
@@ -286,6 +324,22 @@
 
     <script>
         lucide.createIcons();
+
+        const trigger = document.getElementById('menu-trigger');
+        const close = document.getElementById('menu-close');
+        const menu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            menu.classList.toggle('active');
+            if(menu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        trigger.addEventListener('click', toggleMenu);
+        close.addEventListener('click', toggleMenu);
     </script>
 </body>
 </html>

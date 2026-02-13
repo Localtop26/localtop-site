@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #fffcfb; color: #2d2d2d; overflow-x: hidden; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #fffcfb; color: #2d2d2d; overflow-x: hidden; width: 100%; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .text-gold { color: #c5a059; }
         .bg-gold { background-color: #c5a059; }
@@ -19,43 +19,46 @@
             background-size: cover; background-position: center; 
         }
         
-        /* TITOLO HERO: Maestoso su Desktop, Scalato su Mobile */
+        /* TITOLO HERO: Maestoso su Desktop, Scalato su Mobile senza perdere impatto */
         .hero-title { 
-            font-size: clamp(3.5rem, 12vw, 9rem); 
-            line-height: 0.85; 
+            font-size: clamp(3rem, 10vw, 9rem); 
+            line-height: 0.9; 
             letter-spacing: -0.04em;
         }
 
-        /* RIMOZIONE FILTRI GRIGI - TUTTO A COLORI */
-        img { filter: none !important; grayscale: 0 !important; }
+        /* RIMOZIONE FILTRI - TUTTO A COLORI */
+        img { filter: none !important; grayscale: 0 !important; max-width: 100%; height: auto; }
 
         .dance-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); border: 1px solid #f3ecec; overflow: hidden; }
         .dance-card:hover { border-color: #c5a059; transform: translateY(-10px); }
         .dance-card:hover img { transform: scale(1.1); }
 
-        /* Blocca interazioni Demo */
-        button, input, select, textarea {
+        /* Blocca interazioni Demo eccetto Menu */
+        input, select, textarea {
             pointer-events: none !important;
-            cursor: default !important;
         }
 
-        /* Sticky Header Fix */
-        .top-banner { height: 40px; }
-        .nav-main { top: 40px; }
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
 
         @media (max-width: 768px) {
-            .nav-main { height: auto; padding: 1rem 0; }
-            .nav-container { flex-direction: column; gap: 0.75rem; }
-            .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
             .hero-content { text-align: center; }
             .hero-text { border-left: none; padding-left: 0; border-top: 2px solid #c5a059; padding-top: 1.5rem; margin: 1.5rem auto 0; }
+            .demo-nav-container { transform: scale(0.8); left: 0.5rem !important; bottom: 1rem !important; }
         }
 
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
-            z-index: 150;
+            z-index: 200;
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
@@ -73,23 +76,20 @@
         </a>
     </div>
 
-    <div class="top-banner bg-stone-900 text-gold py-2 text-[10px] font-bold text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[120] flex items-center justify-center">
-        🩰 ISCRIZIONI SECONDO QUADRIMESTRE 2026: Prenota la tua lezione di prova gratuita 🩰
-    </div>
-
-    <nav class="nav-main sticky z-[100] bg-white/90 backdrop-blur-lg flex items-center border-b border-stone-100">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center h-24 nav-container">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 border border-gold flex items-center justify-center rotate-45">
-                    <i data-lucide="sparkles" class="text-gold w-5 h-5 -rotate-45"></i>
+    <nav class="nav-main sticky top-0 z-[150] bg-white/95 backdrop-blur-lg border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 md:h-24 flex justify-between items-center">
+            
+            <div class="flex items-center gap-2 md:gap-3 shrink-0">
+                <div class="w-8 h-8 md:w-10 md:h-10 border border-gold flex items-center justify-center rotate-45">
+                    <i data-lucide="sparkles" class="text-gold w-4 h-4 md:w-5 md:h-5 -rotate-45"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl md:text-3xl font-serif italic tracking-tighter text-stone-900 uppercase">Etoile<span class="text-gold">Academy</span></span>
-                    <span class="text-[7px] font-bold uppercase tracking-[0.8em] text-stone-400 mt-1">L'Arte del Movimento</span>
+                    <span class="text-xl md:text-3xl font-serif italic tracking-tighter text-stone-900 uppercase">Etoile<span class="text-gold">Academy</span></span>
+                    <span class="text-[6px] md:text-[7px] font-bold uppercase tracking-[0.5em] md:tracking-[0.8em] text-stone-400 mt-1">L'Arte del Movimento</span>
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
+            <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
                 <a href="#corsi" class="hover:text-gold transition">I Corsi</a>
                 <a href="#metodo" class="hover:text-gold transition">Metodo</a>
                 <a href="#staff" class="hover:text-gold transition">Docenti</a>
@@ -97,14 +97,35 @@
                 <a href="#spettacoli" class="hover:text-gold transition">Eventi</a>
             </div>
 
-            <a href="#iscrizioni" class="bg-stone-900 text-white px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all shadow-md">
-                Prova Gratuita
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#iscrizioni" class="hidden sm:block bg-stone-900 text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all">
+                    Prova Gratuita
+                </a>
+                <button id="menu-toggle" class="lg:hidden text-stone-900 p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative min-h-[90vh] flex items-center hero-dance overflow-hidden section-padding">
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 hero-content">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[300] flex flex-col p-10 lg:hidden">
+        <div class="flex justify-end">
+            <button id="menu-close" class="p-2 text-stone-900">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+        </div>
+        <div class="flex flex-col gap-8 mt-12 text-center">
+            <a href="#corsi" class="mobile-link text-2xl font-serif italic text-stone-900">I Corsi</a>
+            <a href="#metodo" class="mobile-link text-2xl font-serif italic text-stone-900">Metodo</a>
+            <a href="#staff" class="mobile-link text-2xl font-serif italic text-stone-900">Docenti</a>
+            <a href="#filosofia" class="mobile-link text-2xl font-serif italic text-stone-900">Filosofia</a>
+            <a href="#spettacoli" class="mobile-link text-2xl font-serif italic text-stone-900">Eventi</a>
+            <a href="#iscrizioni" class="mobile-link bg-gold text-white py-4 font-bold uppercase tracking-widest text-xs mt-4">Prenota Prova</a>
+        </div>
+    </div>
+
+    <section class="relative min-h-[85vh] flex items-center hero-dance overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 hero-content py-20">
             <div class="max-w-5xl space-y-10">
                 <span class="text-white font-bold uppercase tracking-[0.6em] text-[10px] border-b border-gold pb-2 inline-block">Passione • Disciplina • Arte</span>
                 <h1 class="hero-title text-white uppercase font-serif">
@@ -113,23 +134,23 @@
                 <p class="hero-text text-xl text-stone-200 font-light max-w-lg leading-relaxed italic border-l-2 border-gold pl-8">
                     Dalla grazia della danza classica all'energia dell'urban dance. Scopri il tuo potenziale espressivo in un ambiente professionale.
                 </p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-6 pt-4">
-                    <a href="#corsi" class="bg-gold text-white px-12 py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-stone-900 transition-all">Esplora i Corsi</a>
-                    <a href="#iscrizioni" class="bg-transparent border border-white text-white px-12 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all italic">Iscriviti Online</a>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 pt-4">
+                    <a href="#corsi" class="bg-gold text-white px-8 md:px-12 py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-stone-900 transition-all">Esplora i Corsi</a>
+                    <a href="#iscrizioni" class="bg-transparent border border-white text-white px-8 md:px-12 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all italic">Iscriviti Online</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="corsi" class="py-32 bg-white section-padding">
+    <section id="corsi" class="py-24 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
-                <h2 class="text-5xl font-serif italic text-stone-900 uppercase">Discipline <span class="text-gold">&</span> Stili</h2>
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900 uppercase">Discipline <span class="text-gold">&</span> Stili</h2>
                 <div class="w-24 h-px bg-gold mx-auto mt-6"></div>
             </div>
-            <div class="grid md:grid-cols-3 gap-12">
+            <div class="grid md:grid-cols-3 gap-10 md:gap-12">
                 <div class="dance-card group bg-stone-50">
-                    <div class="h-96 overflow-hidden">
+                    <div class="h-80 md:h-96 overflow-hidden">
                         <img src="assets/img2.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="p-10 text-center">
@@ -138,7 +159,7 @@
                     </div>
                 </div>
                 <div class="dance-card group bg-stone-50 md:mt-16">
-                    <div class="h-96 overflow-hidden">
+                    <div class="h-80 md:h-96 overflow-hidden">
                         <img src="assets/img3.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="p-10 text-center">
@@ -147,7 +168,7 @@
                     </div>
                 </div>
                 <div class="dance-card group bg-stone-50">
-                    <div class="h-96 overflow-hidden">
+                    <div class="h-80 md:h-96 overflow-hidden">
                         <img src="assets/img4.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="p-10 text-center">
@@ -159,41 +180,41 @@
         </div>
     </section>
 
-    <section class="py-32 bg-stone-50 section-padding overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+    <section class="py-24 md:py-32 bg-stone-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="relative">
                 <img src="assets/img5.jpg" class="rounded-sm shadow-2xl w-full" alt="Bambini Danza">
-                <div class="absolute -bottom-8 -right-8 bg-gold text-white p-12 shadow-2xl">
-                    <p class="font-serif text-3xl italic">Primi Passi</p>
+                <div class="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-8 bg-gold text-white p-8 md:p-12 shadow-2xl">
+                    <p class="font-serif text-2xl md:text-3xl italic">Primi Passi</p>
                     <p class="text-[9px] uppercase tracking-widest mt-1 font-bold">Dai 4 ai 6 anni</p>
                 </div>
             </div>
-            <div class="space-y-10">
-                <h2 class="text-6xl font-serif italic text-stone-900 leading-none uppercase">Crescere <br><span class="text-gold">Sognando.</span></h2>
-                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-gold pl-8">
+            <div class="space-y-8 md:space-y-10">
+                <h2 class="text-5xl md:text-6xl font-serif italic text-stone-900 leading-none uppercase">Crescere <br><span class="text-gold">Sognando.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-gold pl-6 md:pl-8">
                     Il corso di Propedeutica introduce i più piccoli al mondo del ritmo attraverso il gioco creativo. Sviluppiamo la consapevolezza del corpo e dello spazio.
                 </p>
-                <button class="border-b-2 border-gold pb-2 text-[10px] font-bold uppercase tracking-widest hover:text-gold transition italic">Scopri di più</button>
+                <button class="border-b-2 border-gold pb-2 text-[10px] font-bold uppercase tracking-widest hover:text-gold transition italic pointer-events-none">Scopri di più</button>
             </div>
         </div>
     </section>
 
-    <section id="filosofia" class="py-32 bg-white section-padding">
+    <section id="filosofia" class="py-24 md:py-32 bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-5xl font-serif italic text-stone-900 uppercase">Etica <span class="text-gold">&</span> Espressione.</h2>
+            <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900 uppercase">Etica <span class="text-gold">&</span> Espressione.</h2>
             <p class="text-stone-500 text-xl font-light italic leading-relaxed">
                 "La nostra filosofia si fonda sull'integrità del movimento e sull'ascolto. Crediamo che onorare l'unicità espressiva di ogni allievo sia il modo più nobile per supportare il talento."
             </p>
         </div>
     </section>
 
-    <section id="metodo" class="py-32 bg-stone-900 text-stone-100 section-padding">
+    <section id="metodo" class="py-24 md:py-32 bg-stone-900 text-stone-100">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-5xl font-serif italic tracking-widest uppercase">Il Nostro <span class="text-gold">Metodo.</span></h2>
+            <h2 class="text-4xl md:text-5xl font-serif italic tracking-widest uppercase">Il Nostro <span class="text-gold">Metodo.</span></h2>
             <p class="text-stone-400 text-xl font-light italic leading-relaxed max-w-3xl mx-auto">
                 Non insegniamo solo passi, formiamo artisti. Il nostro percorso unisce la tecnica accademica russa alla versatilità moderna.
             </p>
-            <div class="grid md:grid-cols-3 gap-12 pt-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pt-10">
                 <div class="text-center italic"><i data-lucide="award" class="mx-auto mb-4 text-gold w-10 h-10"></i><p class="text-[10px] font-bold uppercase tracking-widest">Qualifica CONI</p></div>
                 <div class="text-center italic"><i data-lucide="shield-check" class="mx-auto mb-4 text-gold w-10 h-10"></i><p class="text-[10px] font-bold uppercase tracking-widest">Esami Certificati</p></div>
                 <div class="text-center italic"><i data-lucide="music" class="mx-auto mb-4 text-gold w-10 h-10"></i><p class="text-[10px] font-bold uppercase tracking-widest">Musica Live</p></div>
@@ -201,7 +222,7 @@
         </div>
     </section>
 
-    <section id="staff" class="py-32 bg-white section-padding">
+    <section id="staff" class="py-24 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-serif italic text-center mb-16 uppercase">Maestri di <span class="text-gold">Palcoscenico</span></h2>
             <div class="max-w-4xl mx-auto">
@@ -212,8 +233,8 @@
         </div>
     </section>
 
-    <section id="spettacoli" class="py-32 bg-stone-50 border-y border-stone-100 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+    <section id="spettacoli" class="py-24 md:py-32 bg-stone-50 border-y border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
             <div class="space-y-10">
                 <h2 class="text-5xl font-serif italic text-stone-900 uppercase italic">Emozioni in <br><span class="text-gold">Scena.</span></h2>
                 <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-gold pl-8">Partecipiamo a concorsi internazionali, workshop con guest star e rassegne teatrali in tutta Italia.</p>
@@ -222,42 +243,71 @@
                     <h4 class="text-xl font-serif italic">Gala di Primavera • 2026</h4>
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-4 h-96">
+            <div class="grid grid-cols-2 gap-4 h-64 md:h-96">
                 <img src="assets/img7.jpg" class="w-full h-full object-cover rounded-sm">
-                <img src="assets/img8.jpg" class="w-full h-full object-cover rounded-sm mt-12">
+                <img src="assets/img8.jpg" class="w-full h-full object-cover rounded-sm mt-8 md:mt-12">
             </div>
         </div>
     </section>
 
-    <section id="iscrizioni" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+    <section id="iscrizioni" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
-                <h2 class="text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase italic">Inizia il <br><span class="text-gold font-normal">Tuo Viaggio.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-8">
-                        <div class="w-14 h-14 border border-stone-200 flex items-center justify-center rounded-full text-gold shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">La nostra Sede</p><p class="text-2xl font-serif italic text-stone-900">Via dell'Arte 12, Milano</p></div>
+                <h2 class="text-5xl md:text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase italic">Inizia il <br><span class="text-gold font-normal">Tuo Viaggio.</span></h2>
+                <p class="text-stone-500 italic">Contattaci per prenotare la tua settimana di prova gratuita o per ricevere il piano studi personalizzato.</p>
+            </div>
+            
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-6 bg-stone-50 p-6 rounded-sm border border-stone-100">
+                    <div class="w-12 h-12 bg-white flex items-center justify-center rounded-full text-gold shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">La nostra Sede</p>
+                        <p class="text-lg md:text-xl font-serif italic text-stone-900">Via dell'Arte 12, Milano</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 bg-stone-50 p-6 rounded-sm border border-stone-100">
+                    <div class="w-12 h-12 bg-white flex items-center justify-center rounded-full text-gold shadow-sm shrink-0"><i data-lucide="message-circle"></i></div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">WhatsApp</p>
+                        <p class="text-lg md:text-xl font-serif italic text-stone-900">+39 333 123 4567</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 bg-stone-50 p-6 rounded-sm border border-stone-100">
+                    <div class="w-12 h-12 bg-white flex items-center justify-center rounded-full text-gold shadow-sm shrink-0"><i data-lucide="phone"></i></div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Telefono</p>
+                        <p class="text-lg md:text-xl font-serif italic text-stone-900">02 9876 5432</p>
                     </div>
                 </div>
             </div>
-            <form class="bg-[#faf9f6] p-12 shadow-2xl space-y-8 rounded-sm">
-                <input type="text" placeholder="NOME ALLIEVO/A" class="w-full p-4 border-b border-stone-200 bg-transparent outline-none text-[10px] font-bold uppercase tracking-widest">
-                <select class="w-full p-4 border-b border-stone-200 bg-transparent outline-none text-[10px] font-bold uppercase tracking-widest text-stone-400">
-                    <option>SCEGLI IL CORSO</option>
-                    <option>DANZA CLASSICA</option>
-                    <option>URBAN / HIP HOP</option>
-                </select>
-                <button class="w-full bg-stone-900 text-white py-6 text-[10px] font-bold uppercase tracking-[0.4em] shadow-xl">Invia Richiesta</button>
-            </form>
         </div>
     </section>
 
-    <footer class="py-12 bg-white text-center text-stone-300 text-[9px] uppercase tracking-[0.5em] font-bold border-t border-stone-50">
+    <footer class="py-12 bg-white text-center text-stone-400 text-[9px] uppercase tracking-[0.5em] font-bold border-t border-stone-50">
         &copy; 2026 Etoile Academy Milano | Scuola di Danza Certificata
     </footer>
 
     <script>
         lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const closeMenu = () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        menuClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
     </script>
 </body>
 </html>

@@ -2,13 +2,13 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bella Napoli | Pizzeria & Ristorante Autentico - Demo Mode</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #fffcf7; color: #1e293b; overflow-x: hidden; width: 100%; }
+        body { font-family: 'Poppins', sans-serif; background-color: #fffcf7; color: #1e293b; overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
         .font-brand { font-family: 'Lobster', cursive; }
         .bg-pizza { background-color: #bc2c1a; } 
         .text-pizza { color: #bc2c1a; }
@@ -21,6 +21,9 @@
         
         .menu-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
 
+        /* Rimozione filtri immagini */
+        img { filter: none !important; grayscale: 0 !important; }
+
         /* Blocco Interazioni (Demo Mode) */
         button, input, select, textarea, .wa-widget-demo {
             pointer-events: none !important;
@@ -28,12 +31,34 @@
             user-select: none;
         }
 
+        /* Menu Mobile Overlay */
+        #mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 5rem;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 5rem);
+            background-color: white;
+            z-index: 140;
+            padding: 2rem;
+        }
+
+        #mobile-menu-overlay.active {
+            display: block;
+        }
+
         /* Ottimizzazione Mobile & Font Scaling */
         @media (max-width: 768px) {
             h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; word-break: break-word; }
             h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .nav-container { padding-left: 1rem; padding-right: 1rem; }
+            .section-padding { padding-top: 2rem; padding-bottom: 2rem; }
+            
+            /* Bottoni Localtop più piccoli su mobile */
+            .demo-nav-container a {
+                padding: 0.5rem 1rem !important;
+                font-size: 7px !important;
+            }
         }
 
         /* Bottoni Floating */
@@ -46,23 +71,31 @@
             flex-direction: column;
             gap: 0.5rem;
         }
+        
+        /* Gestione overflow */
+        .max-w-7xl { max-width: 100%; overflow-x: hidden; }
+        .container-custom { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
     </style>
 </head>
 <body class="selection:bg-red-100 selection:text-red-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform">
             <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform">
             <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
         </a>
     </div>
 
-    <nav class="fixed w-full z-[150] bg-white/95 backdrop-blur-md border-b border-orange-100 h-20 flex items-center shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center gap-2">
+    <nav class="fixed top-0 w-full z-[150] bg-white/95 backdrop-blur-md border-b border-orange-100 h-20 flex items-center shadow-sm">
+        <div class="container-custom flex justify-between items-center gap-2">
+            <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-600 pointer-events-auto" style="pointer-events: auto !important; cursor: pointer !important;">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+
             <div class="flex-shrink-0">
-                <span class="text-2xl sm:text-3xl font-brand text-pizza tracking-wide">Bella Napoli</span>
+                <span class="text-xl sm:text-3xl font-brand text-pizza tracking-wide">Bella Napoli</span>
             </div>
             
             <div class="hidden lg:flex space-x-8 text-sm font-bold uppercase tracking-widest text-slate-600">
@@ -74,12 +107,22 @@
             </div>
 
             <div class="flex-shrink-0">
-                <a href="tel:+39012345678" class="bg-pizza text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-[10px] sm:text-sm hover:scale-105 transition shadow-lg whitespace-nowrap">
+                <a href="#prenota" class="bg-pizza text-white px-3 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-[10px] sm:text-sm hover:scale-105 transition shadow-lg whitespace-nowrap">
                     Ordina Ora
                 </a>
             </div>
         </div>
     </nav>
+
+    <div id="mobile-menu-overlay" class="lg:hidden">
+        <div class="flex flex-col space-y-6 text-xl font-bold uppercase tracking-widest text-slate-800">
+            <a href="#storia" onclick="toggleMenu()" class="border-b border-orange-50 pb-2">La Nostra Storia</a>
+            <a href="#menu" onclick="toggleMenu()" class="border-b border-orange-50 pb-2">Il Menu</a>
+            <a href="#filosofia" onclick="toggleMenu()" class="border-b border-orange-50 pb-2">Filosofia</a>
+            <a href="#gallery" onclick="toggleMenu()" class="border-b border-orange-50 pb-2">Gallery</a>
+            <a href="#prenota" onclick="toggleMenu()" class="border-b border-orange-50 pb-2">Prenota</a>
+        </div>
+    </div>
 
     <section class="relative min-h-screen flex items-center justify-center text-center hero-bg pt-20">
         <div class="max-w-4xl px-6 space-y-6 relative z-10">
@@ -97,12 +140,12 @@
         </div>
     </section>
 
-    <section id="storia" class="py-24 px-6 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <section id="storia" class="py-16 md:py-24 px-6 bg-white overflow-hidden">
+        <div class="container-custom grid lg:grid-cols-2 gap-16 items-center">
             <div class="relative group">
-                <img src="assets/img2.jpg" class="rounded-[2rem] shadow-2xl transition duration-700" alt="Chef al lavoro">
-                <div class="absolute -bottom-6 -right-6 bg-white p-8 rounded-2xl shadow-xl hidden md:block border border-orange-50">
-                    <p class="text-4xl font-brand text-pizza italic">"Tradizione e Passione"</p>
+                <img src="assets/img2.jpg" class="rounded-[2rem] shadow-2xl transition duration-700 w-full" alt="Chef al lavoro">
+                <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl hidden md:block border border-orange-50">
+                    <p class="text-3xl font-brand text-pizza italic">"Tradizione e Passione"</p>
                 </div>
             </div>
             <div class="space-y-8">
@@ -122,12 +165,12 @@
         </div>
     </section>
 
-    <section id="menu" class="py-24 bg-orange-50/50 px-6">
-        <div class="max-w-7xl mx-auto text-center mb-16">
+    <section id="menu" class="py-16 md:py-24 bg-orange-50/50 px-6">
+        <div class="container-custom text-center mb-16">
             <h2 class="text-4xl font-bold mb-4 uppercase italic">I Piatti Iconici</h2>
             <div class="h-1 bg-pizza w-20 mx-auto rounded-full"></div>
         </div>
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+        <div class="container-custom grid md:grid-cols-3 gap-8">
             <div class="bg-white rounded-3xl overflow-hidden shadow-sm menu-card">
                 <img src="assets/img3.jpg" class="h-64 w-full object-cover" alt="Margherita">
                 <div class="p-8">
@@ -161,7 +204,7 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-32 bg-white px-6">
+    <section id="filosofia" class="py-20 md:py-32 bg-white px-6">
         <div class="max-w-4xl mx-auto text-center space-y-12">
             <h2 class="text-4xl md:text-5xl font-bold text-slate-900 uppercase italic">Gusto <span class="text-pizza">&</span> Rispetto.</h2>
             <p class="text-slate-500 text-lg md:text-xl font-light italic leading-relaxed">
@@ -175,8 +218,8 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-24 bg-[#fffcf7] px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+    <section id="gallery" class="py-16 md:py-24 bg-[#fffcf7] px-6">
+        <div class="container-custom grid grid-cols-2 md:grid-cols-4 gap-4">
             <img src="assets/img6.jpg" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-md transition duration-500" alt="Ambiente">
             <img src="assets/img7.jpg" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-md transition duration-500" alt="Dettaglio">
             <img src="assets/img8.jpg" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-md transition duration-500" alt="Pizza forno">
@@ -184,30 +227,40 @@
         </div>
     </section>
 
-    <section id="prenota" class="py-24 bg-pizza text-white px-6 overflow-hidden">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div class="space-y-8">
-                <h2 class="text-5xl md:text-6xl font-brand leading-none italic">Voglia di Pizza? <br>Riserva il tuo posto.</h2>
-                <p class="text-red-100 text-lg font-light italic">Siamo aperti tutte le sere. Per gruppi superiori a 10 persone, ti preghiamo di contattarci telefonicamente.</p>
+    <section id="prenota" class="py-16 md:py-24 bg-pizza text-white px-6 overflow-hidden">
+        <div class="container-custom grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8 text-center lg:text-left">
+                <h2 class="text-5xl md:text-6xl font-brand leading-none italic">Voglia di Pizza? <br>Vieni a trovarci.</h2>
+                <p class="text-red-100 text-lg font-light italic">Siamo aperti tutte le sere. Ti consigliamo di prenotare il fine settimana.</p>
                 <div class="space-y-4 italic font-bold text-sm md:text-base">
-                    <p class="flex items-center gap-4"><i data-lucide="map-pin" class="flex-shrink-0"></i> Via Toledo 12, 80100 - Napoli</p>
-                    <p class="flex items-center gap-4"><i data-lucide="phone" class="flex-shrink-0"></i> +39 012 345 678</p>
-                    <p class="flex items-center gap-4"><i data-lucide="clock" class="flex-shrink-0"></i> 19:00 - 00:00 (Chiuso Lunedì)</p>
+                    <p class="flex items-center justify-center lg:justify-start gap-4"><i data-lucide="map-pin" class="flex-shrink-0"></i> Via Toledo 12, 80100 - Napoli</p>
+                    <p class="flex items-center justify-center lg:justify-start gap-4"><i data-lucide="phone" class="flex-shrink-0"></i> +39 012 345 678</p>
+                    <p class="flex items-center justify-center lg:justify-start gap-4"><i data-lucide="clock" class="flex-shrink-0"></i> 19:00 - 00:00 (Chiuso Lunedì)</p>
                 </div>
             </div>
-            <form class="bg-white p-6 md:p-10 rounded-[2rem] text-slate-900 space-y-4 shadow-2xl relative">
-                <div class="absolute top-4 right-8 text-pizza font-bold italic text-[10px] uppercase tracking-widest opacity-40">Demo Form</div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Nome" class="w-full p-4 bg-orange-50 rounded-xl outline-none italic">
-                    <input type="date" class="w-full p-4 bg-orange-50 rounded-xl outline-none">
+            
+            <div class="bg-white p-6 md:p-10 rounded-[2rem] text-slate-900 space-y-6 shadow-2xl relative flex flex-col">
+                <div class="absolute top-4 right-8 text-pizza font-bold italic text-[10px] uppercase tracking-widest opacity-40">Contatti</div>
+                
+                <p class="text-center font-bold text-lg mb-4 italic">Contattaci subito:</p>
+                
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center justify-between bg-orange-50 p-4 rounded-xl">
+                        <span class="font-bold text-xs uppercase tracking-widest text-slate-600">Telefono</span>
+                        <span class="font-bold text-pizza">+39 012 345 678</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-orange-50 p-4 rounded-xl">
+                        <span class="font-bold text-xs uppercase tracking-widest text-slate-600">WhatsApp</span>
+                        <span class="font-bold text-green-600">+39 333 444 555</span>
+                    </div>
+                    <div class="flex flex-col bg-orange-50 p-4 rounded-xl">
+                        <span class="font-bold text-xs uppercase tracking-widest text-slate-600 mb-2">Indirizzo</span>
+                        <span class="italic text-sm">Via Toledo 12, 80100 - Napoli (NA)</span>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="number" placeholder="Persone" class="w-full p-4 bg-orange-50 rounded-xl outline-none italic">
-                    <input type="time" class="w-full p-4 bg-orange-50 rounded-xl outline-none">
-                </div>
-                <textarea placeholder="Eventuali allergie o richieste..." rows="3" class="w-full p-4 bg-orange-50 rounded-xl outline-none italic"></textarea>
-                <button class="w-full bg-pizza text-white py-5 rounded-xl font-bold uppercase tracking-widest hover:bg-slate-900 transition shadow-lg">Prenota Tavolo</button>
-            </form>
+                
+                <p class="text-[10px] text-center text-slate-400 italic">Ci trovi nel cuore della città.</p>
+            </div>
         </div>
     </section>
 
@@ -223,6 +276,21 @@
 
     <script>
         lucide.createIcons();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu-overlay');
+            const icon = document.getElementById('menu-icon');
+            const isOpen = menu.classList.contains('active');
+            
+            if (isOpen) {
+                menu.classList.remove('active');
+                icon.setAttribute('data-lucide', 'menu');
+            } else {
+                menu.classList.add('active');
+                icon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>

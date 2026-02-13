@@ -16,6 +16,7 @@
             padding: 0;
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #ffffff;
+            -webkit-text-size-adjust: 100%;
         }
 
         h1, h2, h3 { font-family: 'Outfit', sans-serif; }
@@ -43,7 +44,26 @@
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 1.25rem;
+        }
+
+        /* RESET FILTRI IMMAGINI */
+        img { 
+            filter: none !important; 
+            transition: transform 0.7s ease !important;
+        }
+        .group:hover img {
+            transform: scale(1.05);
+            filter: none !important;
+        }
+
+        /* MENU MOBILE */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
         }
 
         /* SBLOCCO INTERAZIONI */
@@ -51,8 +71,9 @@
         button, a, input, select, textarea { cursor: pointer !important; }
 
         @media (max-width: 768px) {
-            .hero-section { min-height: 100vh; padding-top: 100px; padding-bottom: 60px; }
+            .hero-section { min-height: 80vh; padding-top: 80px; padding-bottom: 40px; }
             .hero-title { line-height: 1.1; }
+            .localtop-btn { padding: 0.5rem 1rem !important; }
         }
 
         .demo-nav-container {
@@ -69,26 +90,22 @@
 <body>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Esempi
+        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
         </a>
     </div>
 
-    <div class="bg-red-600 text-white py-3 text-center text-[10px] md:text-xs font-bold uppercase tracking-widest px-4 sticky top-0 z-[110] shadow-md">
-        🚨 PRONTO INTERVENTO H24: Arriviamo in 60 minuti | 📞 02 123 4567
-    </div>
-
-    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center shadow-sm mx-0 md:mx-4 md:rounded-2xl mt-2">
+    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center shadow-sm">
         <div class="content-container flex justify-between items-center w-full">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 md:gap-3 min-w-0">
                 <div class="w-10 h-10 bg-blue-pro rounded-xl flex items-center justify-center shadow-lg shrink-0">
                     <i data-lucide="droplets" class="text-white w-6 h-6"></i>
                 </div>
-                <div class="flex flex-col leading-none">
-                    <span class="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tighter">Idro<span class="text-blue-pro">Master</span></span>
+                <div class="flex flex-col leading-none truncate">
+                    <span class="text-lg md:text-2xl font-black text-slate-900 uppercase tracking-tighter truncate">Idro<span class="text-blue-pro">Master</span></span>
                     <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Termoidraulica</span>
                 </div>
             </div>
@@ -100,14 +117,30 @@
                 <a href="#contatti" class="hover:text-blue-pro transition">Contatti</a>
             </div>
 
-            <a href="#contatti" class="bg-slate-900 text-white px-6 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-blue-pro transition-all shrink-0 shadow-lg">
-                Preventivo
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#contatti" class="hidden sm:block bg-slate-900 text-white px-6 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-blue-pro transition-all shrink-0 shadow-lg">
+                    Preventivo
+                </a>
+                <button id="menu-toggle" class="lg:hidden text-slate-900 p-2">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 z-[150] lg:hidden flex flex-col items-center justify-center space-y-8">
+        <button id="menu-close" class="absolute top-6 right-6 text-white">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <a href="#servizi" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Servizi</a>
+        <a href="#caldaie" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Caldaie</a>
+        <a href="#ristrutturazioni" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Bagno</a>
+        <a href="#contatti" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Contatti</a>
+        <a href="tel:021234567" class="bg-blue-pro text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest">Chiama Ora</a>
+    </div>
+
     <section class="hero-bg min-h-[85vh] flex items-center hero-section">
-        <div class="content-container py-20">
+        <div class="content-container py-12 md:py-20">
             <div class="max-w-4xl space-y-8">
                 <div class="inline-flex items-center gap-2 bg-blue-pro/90 backdrop-blur-md text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">
                     <i data-lucide="check-circle" class="w-4 h-4"></i> Certificati F-GAS & Patentino Caldaie
@@ -126,9 +159,9 @@
         </div>
     </section>
 
-    <section id="servizi" class="py-24 bg-white">
+    <section id="servizi" class="py-20 bg-white">
         <div class="content-container">
-            <div class="text-center mb-20">
+            <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase italic">Interventi Tecnici</h2>
                 <div class="h-2 w-24 bg-blue-pro mx-auto mt-4 rounded-full"></div>
             </div>
@@ -152,7 +185,7 @@
         </div>
     </section>
 
-    <section id="caldaie" class="py-24 bg-slate-900 text-white overflow-hidden">
+    <section id="caldaie" class="py-20 bg-slate-900 text-white overflow-hidden">
         <div class="content-container grid lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-8">
                 <h2 class="text-5xl md:text-6xl font-black tracking-tighter uppercase leading-none italic">Calore <br><span class="text-blue-400">Intelligente.</span></h2>
@@ -165,20 +198,20 @@
                 </div>
             </div>
             <div class="relative group">
-                <img src="assets/img2.jpg" class="rounded-3xl shadow-2xl w-full object-cover grayscale-0 group-hover:scale-105 transition duration-700" alt="Caldaia">
+                <img src="assets/img2.jpg" class="rounded-3xl shadow-2xl w-full object-cover" alt="Caldaia">
             </div>
         </div>
     </section>
 
-    <section id="ristrutturazioni" class="py-24 bg-white">
-        <div class="content-container grid lg:grid-cols-2 gap-16 items-center">
+    <section id="ristrutturazioni" class="py-20 bg-white">
+        <div class="content-container grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             <div class="order-2 lg:order-1">
-                <img src="assets/img3.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover" alt="Bagno">
+                <img src="assets/img3.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover" alt="Bagno">
             </div>
-            <div class="order-1 lg:order-2 space-y-10 lg:text-right">
+            <div class="order-1 lg:order-2 space-y-8 lg:text-right">
                 <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Il tuo <br>Nuovo <span class="text-blue-pro">Bagno.</span></h2>
                 <p class="text-slate-500 text-xl leading-relaxed font-light italic">Dalla demolizione alla posa sanitari: trasformiamo il tuo bagno in un'oasi moderna in tempi record.</p>
-                <div class="flex flex-wrap lg:justify-end gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <div class="flex flex-wrap lg:justify-end gap-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                     <span class="bg-slate-100 px-4 py-2 rounded-full">Progetto 3D</span>
                     <span class="bg-slate-100 px-4 py-2 rounded-full">Posa Piastrelle</span>
                     <span class="bg-slate-100 px-4 py-2 rounded-full">Certificazioni</span>
@@ -187,45 +220,77 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-24 bg-slate-50">
-        <div class="content-container grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Fissa un <br><span class="text-blue-pro">Sopralluogo.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-6">
+    <section id="contatti" class="py-20 bg-slate-50">
+        <div class="content-container">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-12">
+                    <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Fissa un <br><span class="text-blue-pro">Sopralluogo.</span></h2>
+                    <p class="text-slate-500 text-lg italic font-light max-w-md">Siamo a tua disposizione per emergenze e preventivi gratuiti a Milano e provincia.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="flex items-center gap-6 bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
                         <div class="w-16 h-16 bg-blue-pro text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="phone" class="w-8 h-8"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Ufficio</p><p class="text-2xl md:text-3xl font-black">02 123 4567</p></div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Chiama Ora</p>
+                            <p class="text-2xl md:text-3xl font-black text-slate-900">02 123 4567</p>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="map-pin" class="w-8 h-8"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Zona Operativa</p><p class="text-xl md:text-2xl font-bold uppercase">Milano e Hinterland</p></div>
+
+                    <div class="flex items-center gap-6 bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+                        <div class="w-16 h-16 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="message-circle" class="w-8 h-8"></i></div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">WhatsApp</p>
+                            <p class="text-2xl md:text-3xl font-black text-slate-900">333 123 4567</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-6 bg-slate-900 text-white p-8 rounded-[2rem] shadow-xl">
+                        <div class="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="map-pin" class="w-8 h-8"></i></div>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-1">Zona Operativa</p>
+                            <p class="text-xl md:text-2xl font-bold uppercase">Milano e Hinterland</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-10 md:p-12 rounded-[3rem] shadow-2xl space-y-6 border border-slate-100">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-pro text-xs font-bold uppercase tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-pro text-xs font-bold uppercase tracking-widest">
-                </div>
-                <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-pro text-xs font-bold uppercase tracking-widest">
-                <textarea placeholder="DETTAGLI INTERVENTO..." rows="3" class="w-full p-5 bg-slate-50 rounded-2xl outline-none focus:ring-2 ring-blue-pro text-xs font-bold uppercase tracking-widest"></textarea>
-                <button type="submit" class="w-full bg-blue-pro text-white py-6 rounded-2xl font-black uppercase text-xs tracking-[0.2em] hover:bg-slate-900 transition-all shadow-xl">Invia Richiesta</button>
-            </form>
         </div>
     </section>
 
-    <footer class="py-16 bg-white border-t border-slate-100 text-center">
+    <footer class="py-12 bg-white border-t border-slate-100 text-center">
         <p class="text-slate-400 text-[9px] uppercase tracking-[0.6em] font-bold px-6 leading-loose">
             &copy; 2026 IdroMaster Termoidraulica Milano | P.IVA 0123456789 | Tutti i diritti riservati
         </p>
     </footer>
 
-    <a href="#" class="fixed bottom-8 right-8 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform">
+    <div class="fixed bottom-8 right-8 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
         <i data-lucide="message-square" class="w-7 h-7"></i>
-    </a>
+    </div>
 
     <script>
+        // Inizializza icone
         lucide.createIcons();
+
+        // Logica Menu Mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
     </script>
 </body>
 </html>

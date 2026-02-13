@@ -25,12 +25,13 @@
         .bg-navy { background-color: #0f172a; }
         .border-gold { border-color: #9a8447; }
         
-        /* Immagini a colori e sicure */
+        /* Immagini a colori e senza filtri */
         img { 
             max-width: 100%; 
             height: auto; 
             display: block;
             filter: none !important; 
+            grayscale: 0 !important;
         }
 
         .hero-legal { 
@@ -38,67 +39,77 @@
             url('assets/img1.jpg'); 
             background-size: cover; 
             background-position: center; 
+            filter: none !important;
         }
 
-        /* Hero Title Scaling */
+        /* Hero Title Scaling Desktop */
         .hero-title {
             font-size: clamp(2.5rem, 10vw, 6rem);
             line-height: 1;
             letter-spacing: -0.02em;
         }
 
-        /* Sticky Logic */
-        .promo-bar {
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
+        /* Navbar Sticky */
         nav.sticky-nav {
-            top: 40px; 
+            top: 0; 
             width: 100%;
+            z-index: 1000;
         }
 
-        /* Mobile Adjustments */
+        /* --- MOBILE ADJUSTMENTS --- */
         @media (max-width: 768px) {
             .nav-container { 
                 padding-left: 1rem; 
                 padding-right: 1rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
             }
-            .logo-text { font-size: 1.25rem; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .hero-legal { min-height: 80vh; padding: 2rem 0; }
-            .demo-nav-container { left: 1rem; bottom: 1rem; width: calc(100% - 2rem); }
+            .hero-legal { min-height: 70vh; padding: 1rem 0; }
+            
+            /* Bottoni Localtop: SOLO SU MOBILE larghezza fissa e piccoli */
+            .demo-nav-container {
+                width: auto !important;
+                align-items: flex-start;
+            }
+            .demo-nav-container a {
+                padding: 0.6rem 0 !important;
+                font-size: 8px !important;
+                width: 160px !important; /* Larghezza fissa solo mobile */
+                justify-content: center !important;
+            }
+        }
+
+        /* Menu Mobile */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
         }
 
         /* Card Hover */
         .law-card { transition: all 0.4s ease; border-left: 3px solid transparent; }
-        .law-card:hover { border-left-color: #9a8447; background: #f8fafc; }
+        .law-card:hover { border-left-color: #9a8447; background: #f8fafc; filter: none !important; }
 
-        /* Demo restrictions */
+        /* Interazioni Demo */
         button, input, select, textarea, .wa-widget-demo {
             pointer-events: none !important;
+        }
+        .menu-toggle, #mobile-menu a, .demo-nav-container a {
+            pointer-events: auto !important;
         }
     </style>
 </head>
 <body class="selection:bg-slate-200">
 
-    <div class="promo-bar bg-navy text-slate-400 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.2em] md:tracking-[0.4em] sticky top-0 z-[130] border-b border-white/5">
-        ⚖️ CONSULENZA LEGALE: Riceviamo in sede e in videoconferenza ⚖️
-    </div>
-
-    <nav class="sticky-nav sticky z-[120] bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-slate-100">
+    <nav class="sticky-nav sticky bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-slate-100">
         <div class="max-w-7xl mx-auto w-full nav-container flex justify-between items-center px-6">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 md:gap-3 shrink-0">
                 <div class="w-8 h-10 md:w-10 md:h-14 bg-navy flex items-center justify-center text-white shrink-0">
                     <span class="font-serif text-xl md:text-2xl font-bold">V</span>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-lg md:text-2xl font-serif text-navy tracking-tighter uppercase logo-text">Valente</span>
+                    <span class="text-base md:text-2xl font-serif text-navy tracking-tighter uppercase">Valente</span>
                     <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400 mt-1">Associati</span>
                 </div>
             </div>
@@ -110,13 +121,29 @@
                 <a href="#professionisti" class="hover:text-navy transition">Team</a>
             </div>
 
-            <a href="#contatti" class="bg-navy text-white px-4 md:px-8 py-2.5 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest shadow-md shrink-0">
-                Consulenza
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#contatti" class="hidden xs:block bg-navy text-white px-4 md:px-8 py-2.5 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest shadow-md shrink-0">
+                    Consulenza
+                </a>
+                <button onclick="toggleMenu()" class="menu-toggle lg:hidden text-navy p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative h-[80vh] md:h-[85vh] flex items-center hero-legal overflow-hidden">
+    <div id="mobile-menu" class="fixed inset-0 bg-navy z-[2000] flex flex-col items-center justify-center space-y-8 lg:hidden">
+        <button onclick="toggleMenu()" class="absolute top-8 right-8 text-white">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#studio" onclick="toggleMenu()" class="text-white font-serif text-2xl uppercase italic">Lo Studio</a>
+        <a href="#competenze" onclick="toggleMenu()" class="text-white font-serif text-2xl uppercase italic">Competenze</a>
+        <a href="#filosofia" onclick="toggleMenu()" class="text-white font-serif text-2xl uppercase italic">Filosofia</a>
+        <a href="#professionisti" onclick="toggleMenu()" class="text-white font-serif text-2xl uppercase italic">Team</a>
+        <a href="#contatti" onclick="toggleMenu()" class="bg-white text-navy px-8 py-4 font-bold text-[10px] uppercase tracking-widest">Contatti</a>
+    </div>
+
+    <section class="relative h-[75vh] md:h-[85vh] flex items-center hero-legal overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
             <div class="max-w-3xl space-y-6 md:space-y-8 text-center md:text-left">
                 <h1 class="font-serif text-white uppercase hero-title">
@@ -133,9 +160,9 @@
         </div>
     </section>
 
-    <section id="competenze" class="py-16 md:py-32 bg-white">
+    <section id="competenze" class="py-12 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-24 gap-6">
                 <h2 class="text-3xl md:text-5xl font-serif text-navy uppercase italic">Competenze <span class="italic font-light text-slate-400">Legali.</span></h2>
                 <p class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-gold pb-2 italic">Soluzioni su misura</p>
             </div>
@@ -165,7 +192,7 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-16 md:py-32 bg-slate-50">
+    <section id="filosofia" class="py-12 md:py-32 bg-slate-50">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-8 md:space-y-12">
             <h2 class="text-3xl md:text-5xl font-serif text-navy uppercase italic">Etica <span class="text-slate-400 italic">&</span> Trasparenza.</h2>
             <p class="text-slate-500 text-lg md:text-xl font-light italic leading-relaxed border-l-4 border-gold pl-6 md:pl-8 mx-auto">
@@ -179,7 +206,7 @@
         </div>
     </section>
 
-    <section id="studio" class="py-16 md:py-32 bg-slate-900 text-white overflow-hidden">
+    <section id="studio" class="py-12 md:py-32 bg-slate-900 text-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="space-y-8">
                 <h2 class="text-4xl md:text-6xl font-serif italic leading-tight uppercase">Valore <br><span class="text-slate-400">Professionale.</span></h2>
@@ -206,9 +233,9 @@
         </div>
     </section>
 
-    <section id="professionisti" class="py-16 md:py-32 bg-white">
+    <section id="professionisti" class="py-12 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-serif text-center mb-16 md:mb-24 uppercase text-navy italic">I <span class="italic text-slate-400">Professionisti</span></h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12 md:mb-24 uppercase text-navy italic">I <span class="italic text-slate-400">Professionisti</span></h2>
             <div class="grid md:grid-cols-3 gap-8 md:gap-12">
                 <div class="space-y-4 text-center">
                     <div class="aspect-[3/4] bg-slate-100 overflow-hidden rounded-sm">
@@ -235,7 +262,7 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-16 md:py-32 bg-slate-50">
+    <section id="contatti" class="py-12 md:py-32 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
             <div class="space-y-10">
                 <h2 class="text-5xl md:text-7xl font-serif text-navy leading-none tracking-tighter uppercase italic">Contatto <br><span class="text-slate-400 font-normal">Diretto.</span></h2>
@@ -267,7 +294,7 @@
         </p>
     </footer>
 
-    <div class="demo-nav-container flex flex-col gap-3 fixed bottom-6 left-6 z-[150] w-[calc(100%-3rem)] md:w-auto">
+    <div class="demo-nav-container flex flex-col gap-3 fixed bottom-6 left-6 z-[150]">
         <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
@@ -282,6 +309,16 @@
 
     <script>
         lucide.createIcons();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+            if (menu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
     </script>
 </body>
 </html>

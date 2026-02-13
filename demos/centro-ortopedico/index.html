@@ -2,42 +2,61 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Orthos | Centro di Ortopedia e Traumatologia Avanzata - Demo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; width: 100%; }
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
         .text-royal { color: #1e40af; }
         .bg-royal { background-color: #1e40af; }
         
-        /* 1. Sostituzione URL Immagini con percorsi locali */
         .hero-bg { 
-            background: linear-gradient(to right, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%), 
+            background: linear-gradient(to right, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 100%), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
         
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .chat-widget-demo { 
+        /* Demo Mode Block */
+        button, input, select, textarea, .chat-widget-demo, .nav-link-mobile { 
             pointer-events: none !important; 
             cursor: default !important; 
-            user-select: none;
+        }
+        
+        /* Riattiva click solo per il menu hamburger e i link del menu mobile in questa demo */
+        #menu-toggle, .mobile-menu-container a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
         .medical-card { transition: all 0.3s ease; border-left: 4px solid transparent; }
-        .medical-card:hover { border-left-color: #1e40af; background-color: #f8fafc; transform: translateX(10px); }
+        .medical-card:hover { border-left-color: #1e40af; background-color: #f8fafc; transform: translateX(5px); }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        /* Rimosso Grayscale ovunque */
+        img, .group:hover img, .grayscale {
+            filter: none !important;
+            grayscale: 0 !important;
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 15vw, 6rem) !important; line-height: 1 !important; }
+            h2 { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .hero-bg { background: linear-gradient(to bottom, rgba(255,255,255,0.9) 40%, rgba(255,255,255,0.2) 100%), url('assets/img1.jpg'); }
+        }
+
+        /* Floating Buttons Mobile Optimization */
+        @media (max-width: 640px) {
+            .demo-nav-container {
+                left: 1rem !important;
+                bottom: 1rem !important;
+                scale: 0.85;
+                transform-origin: bottom left;
+            }
+        }
+
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
@@ -46,6 +65,15 @@
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
         }
     </style>
 </head>
@@ -60,17 +88,13 @@
         </a>
     </div>
 
-    <div class="bg-slate-900 text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[110]">
-        🩺 Eccellenza in Chirurgia Protesica e Rigenerativa | Convenzionati con i principali fondi assicurativi
-    </div>
-
-    <nav class="sticky top-[34px] z-[100] bg-white/90 backdrop-blur-md border-b border-slate-100 h-20 flex items-center">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-royal rounded-lg flex items-center justify-center shadow-lg">
-                    <i data-lucide="bone" class="text-white w-6 h-6"></i>
+    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-royal rounded-lg flex items-center justify-center shadow-lg">
+                    <i data-lucide="bone" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
-                <span class="text-2xl font-heading font-black text-slate-900 tracking-tighter uppercase">Orthos<span class="text-royal">Clinic</span></span>
+                <span class="text-xl md:text-2xl font-heading font-black text-slate-900 tracking-tighter uppercase">Orthos<span class="text-royal">Clinic</span></span>
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
@@ -80,42 +104,58 @@
                 <a href="#team" class="hover:text-royal transition">Medici</a>
             </div>
 
-            <a href="#contatti" class="bg-royal text-white px-8 py-3 rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-all shadow-md">
-                Prenota Visita
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#contatti" class="hidden sm:block bg-royal text-white px-6 py-3 rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-all shadow-md">
+                    Prenota Visita
+                </a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative h-[85vh] flex items-center hero-bg overflow-hidden section-padding">
+    <div id="mobile-menu" class="fixed inset-0 z-[120] bg-white p-8 flex flex-col justify-center items-center space-y-8 lg:hidden">
+        <button id="menu-close" class="absolute top-6 right-6 p-2 text-slate-900">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#specialità" class="text-2xl font-heading font-bold uppercase text-slate-900" onclick="closeMenu()">Specialità</a>
+        <a href="#tecnologia" class="text-2xl font-heading font-bold uppercase text-slate-900" onclick="closeMenu()">Tecnologia</a>
+        <a href="#riabilitazione" class="text-2xl font-heading font-bold uppercase text-slate-900" onclick="closeMenu()">Riabilitazione</a>
+        <a href="#team" class="text-2xl font-heading font-bold uppercase text-slate-900" onclick="closeMenu()">Medici</a>
+        <a href="#contatti" class="bg-royal text-white px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest" onclick="closeMenu()">Prenota Visita</a>
+    </div>
+
+    <section class="relative min-h-[80vh] flex items-center hero-bg overflow-hidden py-20">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <div class="max-w-2xl space-y-8 animate-fade-in">
+            <div class="max-w-2xl space-y-6 md:space-y-8">
                 <div class="inline-flex items-center gap-2 bg-blue-50 text-royal px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-100">
                     Centro d'eccellenza per la mobilità
                 </div>
                 <h1 class="text-6xl md:text-8xl font-heading font-black text-slate-900 leading-[0.9] tracking-tighter">
                     Tornare a <br> <span class="text-royal italic">Muoversi.</span>
                 </h1>
-                <p class="text-xl text-slate-500 font-light max-w-lg leading-relaxed italic">
+                <p class="text-lg md:text-xl text-slate-600 font-light max-w-lg leading-relaxed italic">
                     Specialisti in chirurgia mininvasiva, infiltrazioni ecoguidate e recupero funzionale dell'atleta. La tua articolazione merita l'eccellenza.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#specialità" class="bg-slate-900 text-white px-10 py-5 rounded-md font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-royal transition-all">Le nostre Specialità</a>
-                    <div class="flex items-center gap-3 ml-4">
-                        <i data-lucide="award" class="text-amber-500"></i>
-                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">Oltre 20.000 interventi effettuati</span>
+                <div class="flex flex-wrap gap-4 pt-4 items-center">
+                    <a href="#specialità" class="bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-md font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-royal transition-all">Le nostre Specialità</a>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="award" class="text-amber-500 w-5 h-5"></i>
+                        <span class="text-[9px] md:text-[10px] font-bold text-slate-500 uppercase tracking-widest italic leading-tight">Oltre 20.000 <br class="sm:hidden"> interventi effettuati</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="specialità" class="py-32 bg-white section-padding">
+    <section id="specialità" class="py-20 md:py-32 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-20">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
                 <div class="space-y-6">
                     <h2 class="text-4xl font-heading font-bold text-slate-900 uppercase italic">Aree di <span class="text-royal">Intervento</span></h2>
                     <p class="text-slate-400 font-medium italic">Copriamo ogni ambito della traumatologia e dell'ortopedia elettiva con chirurghi dedicati per ogni distretto anatomico.</p>
-                    <div class="space-y-4 pt-8">
+                    <div class="space-y-4 pt-6">
                         <div class="p-6 bg-slate-50 rounded-xl medical-card">
                             <h4 class="font-bold text-lg text-slate-900">Chirurgia Protesica (Anca e Ginocchio)</h4>
                             <p class="text-sm text-slate-500 mt-1">Impianti di ultima generazione con materiali biocompatibili e tecniche a risparmio tissutale.</p>
@@ -130,71 +170,71 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative flex items-center justify-center">
-                    <img src="assets/img2.jpg" class="rounded-3xl shadow-2xl grayscale" alt="Anatomia">
-                    <div class="absolute -bottom-6 -right-6 bg-royal text-white p-10 rounded-2xl shadow-2xl">
-                        <i data-lucide="activity" class="w-12 h-12 mb-4 animate-pulse"></i>
-                        <p class="font-heading font-bold text-xl uppercase">Fast Track</p>
-                        <p class="text-[9px] uppercase tracking-widest opacity-70">Recupero Rapido Post-Op</p>
+                <div class="relative flex items-center justify-center mt-12 lg:mt-0">
+                    <img src="assets/img2.jpg" class="rounded-3xl shadow-2xl w-full object-cover aspect-video lg:aspect-square" alt="Anatomia">
+                    <div class="absolute -bottom-6 -right-2 md:-right-6 bg-royal text-white p-6 md:p-10 rounded-2xl shadow-2xl">
+                        <i data-lucide="activity" class="w-8 h-8 md:w-12 md:h-12 mb-4 animate-pulse"></i>
+                        <p class="font-heading font-bold text-lg md:text-xl uppercase">Fast Track</p>
+                        <p class="text-[8px] md:text-[9px] uppercase tracking-widest opacity-70">Recupero Rapido Post-Op</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="tecnologia" class="py-32 bg-slate-50 border-y border-slate-100 section-padding">
+    <section id="tecnologia" class="py-20 md:py-32 bg-slate-50 border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
-                <h2 class="text-5xl font-heading font-black italic text-slate-900">Visione <span class="text-royal">Digitale.</span></h2>
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-heading font-black italic text-slate-900">Visione <span class="text-royal">Digitale.</span></h2>
             </div>
-            <div class="grid md:grid-cols-3 gap-12 text-center">
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12 text-center">
                 <div class="space-y-6 p-8 bg-white rounded-2xl shadow-sm border border-slate-100 transition-all hover:shadow-md">
                     <i data-lucide="cpu" class="w-12 h-12 mx-auto text-royal"></i>
-                    <h4 class="text-xl font-bold uppercase tracking-tight">Robotica Chirurgica</h4>
-                    <p class="text-sm text-slate-500 font-light">Assistenza robotica Mako e Navio per il posizionamento perfetto delle componenti protesiche.</p>
+                    <h4 class="text-xl font-bold uppercase tracking-tight text-slate-900">Robotica Chirurgica</h4>
+                    <p class="text-sm text-slate-500 font-light leading-relaxed">Assistenza robotica Mako e Navio per il posizionamento perfetto delle componenti protesiche.</p>
                 </div>
                 <div class="space-y-6 p-8 bg-white rounded-2xl shadow-sm border border-slate-100 transition-all hover:shadow-md">
                     <i data-lucide="scan-face" class="w-12 h-12 mx-auto text-royal"></i>
-                    <h4 class="text-xl font-bold uppercase tracking-tight">Risonanza Magnetica 3T</h4>
-                    <p class="text-sm text-slate-500 font-light">Imaging ad altissima risoluzione per lo studio dei tessuti molli e delle cartilagini.</p>
+                    <h4 class="text-xl font-bold uppercase tracking-tight text-slate-900">Risonanza Magnetica 3T</h4>
+                    <p class="text-sm text-slate-500 font-light leading-relaxed">Imaging ad altissima risoluzione per lo studio dei tessuti molli e delle cartilagini.</p>
                 </div>
                 <div class="space-y-6 p-8 bg-white rounded-2xl shadow-sm border border-slate-100 transition-all hover:shadow-md">
                     <i data-lucide="layers" class="w-12 h-12 mx-auto text-royal"></i>
-                    <h4 class="text-xl font-bold uppercase tracking-tight">Medicina Rigenerativa</h4>
-                    <p class="text-sm text-slate-500 font-light">Infiltrazioni di PRP e Cellule Staminali per la cura biologica dell'artrosi precoce.</p>
+                    <h4 class="text-xl font-bold uppercase tracking-tight text-slate-900">Medicina Rigenerativa</h4>
+                    <p class="text-sm text-slate-500 font-light leading-relaxed">Infiltrazioni di PRP e Cellule Staminali per la cura biologica dell'artrosi precoce.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="team" class="py-32 bg-white section-padding">
+    <section id="team" class="py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-heading font-bold mb-20 text-center uppercase italic">L'Élite della <span class="text-royal">Chirurgia</span></h2>
-            <div class="grid md:grid-cols-4 gap-8">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-16 md:mb-20 text-center uppercase italic">L'Élite della <span class="text-royal">Chirurgia</span></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
                 <div class="group text-center">
-                    <div class="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden mb-6 grayscale group-hover:grayscale-0 transition duration-700">
-                        <img src="assets/img3.jpg" class="w-full h-full object-cover">
+                    <div class="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden mb-6 shadow-lg">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover transition duration-700">
                     </div>
                     <h4 class="font-bold text-slate-900">Dr. Alessandro Grandi</h4>
                     <p class="text-[10px] text-royal font-bold uppercase tracking-widest mt-1">Chirurgia dell'Anca</p>
                 </div>
                 <div class="group text-center">
-                    <div class="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden mb-6 grayscale group-hover:grayscale-0 transition duration-700">
-                        <img src="assets/img4.jpg" class="w-full h-full object-cover">
+                    <div class="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden mb-6 shadow-lg">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-700">
                     </div>
                     <h4 class="font-bold text-slate-900">Dr.ssa Martina Sforza</h4>
                     <p class="text-[10px] text-royal font-bold uppercase tracking-widest mt-1">Chirurgia del Piede</p>
                 </div>
                 <div class="group text-center">
-                    <div class="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden mb-6 grayscale group-hover:grayscale-0 transition duration-700">
-                        <img src="assets/img5.jpg" class="w-full h-full object-cover">
+                    <div class="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden mb-6 shadow-lg">
+                        <img src="assets/img5.jpg" class="w-full h-full object-cover transition duration-700">
                     </div>
                     <h4 class="font-bold text-slate-900">Dr. Luca Brambilla</h4>
                     <p class="text-[10px] text-royal font-bold uppercase tracking-widest mt-1">Traumatologia dello Sport</p>
                 </div>
                 <div class="group text-center">
-                    <div class="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden mb-6 grayscale group-hover:grayscale-0 transition duration-700">
-                        <img src="assets/img6.jpg" class="w-full h-full object-cover">
+                    <div class="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden mb-6 shadow-lg">
+                        <img src="assets/img6.jpg" class="w-full h-full object-cover transition duration-700">
                     </div>
                     <h4 class="font-bold text-slate-900">Dr.ssa Elena Valenti</h4>
                     <p class="text-[10px] text-royal font-bold uppercase tracking-widest mt-1">Chirurgia Vertebrale</p>
@@ -203,78 +243,93 @@
         </div>
     </section>
 
-    <section id="riabilitazione" class="py-32 bg-slate-900 text-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+    <section id="riabilitazione" class="py-20 md:py-32 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div class="relative order-2 lg:order-1">
-                <img src="assets/img7.jpg" class="rounded-3xl brightness-50" alt="Fisioterapia">
+                <img src="assets/img7.jpg" class="rounded-3xl brightness-75 w-full object-cover" alt="Fisioterapia">
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="text-center p-8 border border-white/20 backdrop-blur-md rounded-2xl">
-                        <p class="text-4xl font-black text-royal">REHAB</p>
-                        <p class="text-[10px] font-bold uppercase tracking-widest">Protocolli Personalizzati</p>
+                    <div class="text-center p-6 md:p-8 border border-white/20 backdrop-blur-md rounded-2xl bg-slate-900/40">
+                        <p class="text-3xl md:text-4xl font-black text-royal">REHAB</p>
+                        <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Protocolli Personalizzati</p>
                     </div>
                 </div>
             </div>
-            <div class="space-y-10 order-1 lg:order-2">
-                <h2 class="text-5xl font-heading font-bold leading-tight italic">Il Recupero è <br><span class="text-royal">Parte della Cura.</span></h2>
-                <p class="text-slate-400 text-lg font-light leading-relaxed italic border-l-2 border-royal pl-8">
-                    La chirurgia è solo l'inizio. Il nostro reparto di fisioterapia d'eccellenza lavora in sinergia con i chirurghi per garantirti un ritorno alla vita quotidiana e allo sport nel minor tempo possibile, con protocolli basati sull'evidenza scientifica.
+            <div class="space-y-8 md:space-y-10 order-1 lg:order-2">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold leading-tight italic">Il Recupero è <br><span class="text-royal">Parte della Cura.</span></h2>
+                <p class="text-slate-300 text-base md:text-lg font-light leading-relaxed italic border-l-2 border-royal pl-6 md:pl-8">
+                    La chirurgia è solo l'inizio. Il nostro reparto di fisioterapia d'eccellenza lavora in sinergia con i chirurghi per garantirti un ritorno alla vita quotidiana e allo sport nel minor tempo possibile.
                 </p>
-                <div class="flex flex-wrap gap-8">
-                    <span class="text-xs font-bold uppercase tracking-[0.2em]"><i data-lucide="check" class="inline text-royal mr-2"></i> Tecarterapia</span>
-                    <span class="text-xs font-bold uppercase tracking-[0.2em]"><i data-lucide="check" class="inline text-royal mr-2"></i> Laser High Power</span>
-                    <span class="text-xs font-bold uppercase tracking-[0.2em]"><i data-lucide="check" class="inline text-royal mr-2"></i> Onde d'urto</span>
+                <div class="flex flex-wrap gap-4 md:gap-8">
+                    <span class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center"><i data-lucide="check" class="text-royal mr-2 w-4 h-4"></i> Tecarterapia</span>
+                    <span class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center"><i data-lucide="check" class="text-royal mr-2 w-4 h-4"></i> Laser High Power</span>
+                    <span class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center"><i data-lucide="check" class="text-royal mr-2 w-4 h-4"></i> Onde d'urto</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-7xl font-heading font-black text-slate-900 leading-[0.85] italic tracking-tighter uppercase">Affidati a <br><span class="text-royal">Professionisti.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-6">
-                        <div class="w-14 h-14 bg-blue-50 text-royal rounded-xl flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Headquarters</p><p class="text-xl font-bold">Via della Salute 100, Milano</p></div>
+    <section id="contatti" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+            <div class="space-y-10 md:space-y-12">
+                <h2 class="text-5xl md:text-7xl font-heading font-black text-slate-900 leading-[0.85] italic tracking-tighter uppercase">Affidati a <br><span class="text-royal">Professionisti.</span></h2>
+                <div class="space-y-6 md:space-y-8">
+                    <div class="flex items-center gap-5 md:gap-6">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-blue-50 text-royal rounded-xl flex items-center justify-center shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Headquarters</p><p class="text-lg md:text-xl font-bold">Via della Salute 100, Milano</p></div>
                     </div>
-                    <div class="flex items-center gap-6">
-                        <div class="w-14 h-14 bg-blue-50 text-royal rounded-xl flex items-center justify-center shadow-sm"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Segreteria</p><p class="text-xl font-bold">02 876 543 21</p></div>
+                    <div class="flex items-center gap-5 md:gap-6">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-blue-50 text-royal rounded-xl flex items-center justify-center shadow-sm shrink-0"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Segreteria</p><p class="text-lg md:text-xl font-bold">02 876 543 21</p></div>
                     </div>
                 </div>
             </div>
-            <div class="bg-slate-50 p-12 rounded-[2rem] border border-slate-100 shadow-inner space-y-6">
-                <p class="text-[10px] font-bold uppercase tracking-widest text-royal mb-4 italic text-center">Invia la tua richiesta di appuntamento (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Nome Paziente" class="w-full p-4 bg-white border-none rounded-xl outline-none text-sm">
-                    <input type="text" placeholder="Recapito Telefonico" class="w-full p-4 bg-white border-none rounded-xl outline-none text-sm">
+            
+            <div class="bg-slate-900 p-10 md:p-12 rounded-[2rem] shadow-2xl space-y-8 text-center">
+                <i data-lucide="calendar-check" class="w-16 h-16 text-royal mx-auto"></i>
+                <div class="space-y-4">
+                    <h3 class="text-white text-2xl font-heading font-bold uppercase">Pronto a recuperare la tua mobilità?</h3>
+                    <p class="text-slate-400 text-sm italic">Contattaci telefonicamente per fissare una visita specialistica con il nostro team di esperti.</p>
                 </div>
-                <select class="w-full p-4 bg-white border-none rounded-xl outline-none text-sm text-slate-400 font-bold uppercase tracking-widest">
-                    <option>Specialista Desiderato</option>
-                    <option>Chirurgia Protesica (Anca/Ginocchio)</option>
-                    <option>Ortopedia dello Sport</option>
-                    <option>Chirurgia Vertebrale</option>
-                    <option>Fisioterapia e Rehab</option>
-                </select>
-                <textarea placeholder="Descrivi brevemente la patologia o il dolore..." rows="3" class="w-full p-4 bg-white border-none rounded-xl outline-none text-sm"></textarea>
-                <button class="w-full bg-royal text-white py-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg">Invia Richiesta Prenotazione</button>
+                <div class="pt-4 space-y-4">
+                    <button class="w-full bg-royal text-white py-5 rounded-xl font-bold uppercase text-[11px] tracking-[0.2em] shadow-lg flex items-center justify-center gap-3">
+                        <i data-lucide="phone-call" class="w-4 h-4"></i> Chiama lo Studio
+                    </button>
+                    <p class="text-[9px] text-slate-500 uppercase tracking-widest">Aperto Lun - Ven | 09:00 - 19:00</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 bg-white border-t border-slate-100 text-center px-6">
-        <p class="text-slate-300 text-[9px] uppercase tracking-[0.6em] font-bold">
+    <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
+        <p class="text-slate-400 text-[8px] md:text-[9px] uppercase tracking-[0.4em] font-bold leading-loose">
             &copy; 2026 Orthos Clinic Milano | Direttore Sanitario Dr. A. Grandi | P.IVA 0123456789
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
+    <div class="chat-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-[90]">
         <i data-lucide="message-square" class="w-6 h-6"></i>
     </div>
 
     <script>
         // Inizializzazione icone
         lucide.createIcons();
+
+        // Menu Mobile Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', closeMenu);
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     </script>
 </body>
 </html>

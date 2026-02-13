@@ -8,14 +8,13 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfdfd; color: #334155; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfdfd; color: #334155; overflow-x: hidden; width: 100%; }
         .font-serif { font-family: 'Cinzel', serif; }
         .text-gold { color: #9a8447; }
         .bg-gold { background-color: #9a8447; }
         
-        /* 1. Sostituzione URL Immagini con percorsi locali assets/ */
         .hero-memorial { 
-            background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.2)), 
+            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.1)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
@@ -23,33 +22,76 @@
         .service-card { transition: all 0.5s ease; background: #ffffff; border: 1px solid #f1f5f9; }
         .service-card:hover { border-color: #9a8447; transform: translateY(-3px); }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo {
+        /* Blocco Interazioni (Demo Mode) */
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .wa-widget-demo, .contact-btn-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
+        /* Correzione Immagini: Rimosso grayscale ovunque */
+        img { filter: none !important; grayscale: 0 !important; }
+        .grayscale, .hover\:grayscale-0:hover { filter: none !important; grayscale: 0 !important; }
+
+        /* Mobile Menu Overlay */
+        #mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
             h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            
+            /* Bottoni Localtop più piccoli su mobile */
+            .demo-nav-container a {
+                padding: 0.6rem 1rem;
+                font-size: 8px;
+            }
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
-            left: 2rem;
+            left: 1rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
         }
+
+        /* Sticky Nav Fix */
+        nav.sticky {
+            top: 0 !important;
+        }
     </style>
 </head>
 <body class="selection:bg-stone-200 selection:text-stone-800">
+
+    <div id="mobile-menu-overlay">
+        <button id="menu-close" class="absolute top-8 right-8 text-stone-900 p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="flex flex-col items-center gap-8">
+            <a href="#servizi" class="menu-link text-xl font-bold uppercase tracking-widest text-stone-800">Servizi</a>
+            <a href="#casa-funeraria" class="menu-link text-xl font-bold uppercase tracking-widest text-stone-800">Casa Funeraria</a>
+            <a href="#filosofia" class="menu-link text-xl font-bold uppercase tracking-widest text-stone-800">Filosofia</a>
+            <a href="#previdenza" class="menu-link text-xl font-bold uppercase tracking-widest text-stone-800">Previdenza</a>
+            <a href="#necrologi" class="menu-link text-xl font-bold uppercase tracking-widest text-stone-800">Necrologi</a>
+            <a href="#contatti" class="menu-link text-xl font-bold uppercase tracking-widest text-gold">Contatti</a>
+        </div>
+    </div>
 
     <div class="demo-nav-container">
         <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
@@ -60,19 +102,15 @@
         </a>
     </div>
 
-    <div class="bg-stone-900 text-stone-200 py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.4em] px-4 sticky top-0 z-[120]">
-        🕊️ REPERIBILITÀ H24: Siamo al vostro fianco in ogni momento. Chiamata d'urgenza: 800 123 456 🕊️
-    </div>
-
-    <nav class="sticky top-10 z-[100] bg-white/90 backdrop-blur-md h-24 flex items-center border-b border-stone-100 shadow-sm mx-4 md:mx-10 rounded-sm">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 border border-gold flex items-center justify-center rotate-45">
-                    <i data-lucide="shield" class="text-gold w-6 h-6 -rotate-45"></i>
+    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-stone-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 md:px-10 w-full flex justify-between items-center">
+            <div class="flex items-center gap-3 md:gap-4 overflow-hidden">
+                <div class="w-10 h-10 md:w-12 md:h-12 border border-gold flex items-center justify-center rotate-45 shrink-0">
+                    <i data-lucide="shield" class="text-gold w-5 h-5 md:w-6 md:h-6 -rotate-45"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-3xl font-serif text-stone-900 tracking-tighter uppercase">LUCE</span>
-                    <span class="text-[7px] font-bold uppercase tracking-[0.6em] text-stone-400 mt-1">Onoranze Funebri</span>
+                    <span class="text-xl md:text-3xl font-serif text-stone-900 tracking-tighter uppercase">LUCE</span>
+                    <span class="text-[6px] md:text-[7px] font-bold uppercase tracking-[0.6em] text-stone-400 mt-1">Onoranze Funebri</span>
                 </div>
             </div>
             
@@ -84,49 +122,54 @@
                 <a href="#necrologi" class="hover:text-gold transition">Necrologi</a>
             </div>
 
-            <a href="#contatti" class="border border-gold text-gold px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition-all shadow-md">
-                Contattaci h24
-            </a>
+            <div class="flex items-center gap-2 md:gap-4">
+                <a href="#contatti" class="hidden sm:block border border-gold text-gold px-4 md:px-8 py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition-all">
+                    Contattaci
+                </a>
+                <button id="menu-toggle" class="lg:hidden text-stone-900 p-2 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative h-[85vh] flex items-center hero-memorial overflow-hidden section-padding">
+    <section class="relative h-[80vh] md:h-[85vh] flex items-center hero-memorial overflow-hidden section-padding">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
             <div class="max-w-2xl space-y-10 animate-fade-in text-center md:text-left">
                 <h1 class="text-6xl md:text-8xl font-serif text-stone-900 leading-[0.9] tracking-tighter">
                     L'ultimo <br> <span class="text-gold italic font-light">Omaggio.</span>
                 </h1>
-                <p class="text-xl text-stone-600 font-light max-w-lg leading-relaxed italic border-l-2 border-gold pl-8 mx-auto md:mx-0">
+                <p class="text-lg md:text-xl text-stone-600 font-light max-w-lg leading-relaxed italic border-l-0 md:border-l-2 border-gold md:pl-8 mx-auto md:mx-0">
                     Accompagniamo le famiglie con discrezione, etica e profonda dedizione, trasformando il dolore in un ricordo solenne e dignitoso.
                 </p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-6 pt-4">
-                    <a href="#servizi" class="bg-stone-900 text-white px-12 py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-gold transition-all">I Nostri Servizi</a>
-                    <a href="#contatti" class="bg-transparent border border-stone-200 text-stone-400 px-12 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-stone-50 transition-all italic">Urgenza Decesso</a>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 pt-4">
+                    <a href="#servizi" class="bg-stone-900 text-white px-8 md:px-12 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-gold transition-all">I Nostri Servizi</a>
+                    <a href="#contatti" class="bg-transparent border border-stone-300 text-stone-500 px-8 md:px-12 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-stone-50 transition-all italic">Urgenza Decesso</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="servizi" class="py-32 bg-white section-padding">
+    <section id="servizi" class="py-20 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
+            <div class="text-center mb-16 md:mb-24">
                 <h2 class="text-4xl font-serif text-stone-900 uppercase">Servizi <span class="text-gold italic">Completi.</span></h2>
                 <p class="text-[10px] font-bold text-stone-300 uppercase tracking-widest mt-4 italic">Ogni dettaglio curato con onore</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="service-card p-12 text-center space-y-6">
-                    <i data-lucide="clipboard-list" class="w-10 h-10 mx-auto text-gold opacity-50"></i>
+                <div class="service-card p-10 md:p-12 text-center space-y-6">
+                    <i data-lucide="clipboard-list" class="w-10 h-10 mx-auto text-gold opacity-80"></i>
                     <h4 class="text-xl font-serif italic text-stone-800 uppercase">Pratiche Burocratiche</h4>
                     <p class="text-sm text-stone-400 leading-relaxed font-light italic">Gestiamo ogni adempimento legale, sanitario e comunale per sollevarvi da ogni incombenza.</p>
                 </div>
-                <div class="service-card p-12 text-center space-y-6 border-gold/30">
-                    <i data-lucide="flame" class="w-10 h-10 mx-auto text-gold opacity-50"></i>
+                <div class="service-card p-10 md:p-12 text-center space-y-6">
+                    <i data-lucide="flame" class="w-10 h-10 mx-auto text-gold opacity-80"></i>
                     <h4 class="text-xl font-serif italic text-stone-800 uppercase">Cremazione & Rito</h4>
                     <p class="text-sm text-stone-400 leading-relaxed font-light italic">Assistenza completa per la cremazione e organizzazione di cerimonie laiche o religiose.</p>
                 </div>
-                <div class="service-card p-12 text-center space-y-6">
-                    <i data-lucide="flower-2" class="w-10 h-10 mx-auto text-gold opacity-50"></i>
+                <div class="service-card p-10 md:p-12 text-center space-y-6">
+                    <i data-lucide="flower-2" class="w-10 h-10 mx-auto text-gold opacity-80"></i>
                     <h4 class="text-xl font-serif italic text-stone-800 uppercase">Addobbi Floreali</h4>
                     <p class="text-sm text-stone-400 leading-relaxed font-light italic">Composizioni eleganti e personalizzate, realizzate con i migliori fiori freschi di stagione.</p>
                 </div>
@@ -134,32 +177,32 @@
         </div>
     </section>
 
-    <section id="casa-funeraria" class="py-32 bg-stone-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-            <div class="space-y-10">
+    <section id="casa-funeraria" class="py-20 md:py-32 bg-stone-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+            <div class="space-y-8 md:space-y-10 order-2 lg:order-1">
                 <span class="text-gold font-bold uppercase tracking-[0.5em] text-[10px]">Un luogo di pace</span>
-                <h2 class="text-6xl font-serif text-stone-900 leading-none">La nostra <br><span class="text-gold italic uppercase">Casa Funeraria.</span></h2>
-                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-2 border-gold pl-8">
+                <h2 class="text-5xl md:text-6xl font-serif text-stone-900 leading-none">La nostra <br><span class="text-gold italic uppercase">Casa Funeraria.</span></h2>
+                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-2 border-gold pl-6 md:pl-8">
                     Uno spazio intimo e accogliente dove poter porgere l'ultimo saluto nel massimo rispetto della privacy, lontano dalla freddezza delle strutture ospedaliere.
                 </p>
-                <div class="grid grid-cols-2 gap-6 pt-4">
+                <div class="grid grid-cols-2 gap-4 md:gap-6 pt-4">
                     <div class="flex items-center gap-3"><i data-lucide="check" class="text-gold w-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Sale Commiato Private</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="check" class="text-gold w-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Zona Ristoro</span></div>
                 </div>
             </div>
-            <div class="relative">
-                <img src="assets/img2.jpg" class="rounded-sm shadow-2xl grayscale hover:grayscale-0 transition duration-1000" alt="Funerary Home">
+            <div class="relative order-1 lg:order-2">
+                <img src="assets/img2.jpg" class="rounded-sm shadow-2xl w-full h-auto" alt="Funerary Home">
             </div>
         </div>
     </section>
 
-    <section id="filosofia" class="py-32 bg-white section-padding">
+    <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-5xl font-serif text-stone-900 uppercase italic">Etica <span class="text-gold italic">&</span> Umanità.</h2>
-            <p class="text-stone-500 text-xl font-light italic leading-relaxed">
+            <h2 class="text-4xl md:text-5xl font-serif text-stone-900 uppercase italic">Etica <span class="text-gold italic">&</span> Umanità.</h2>
+            <p class="text-stone-500 text-lg md:text-xl font-light italic leading-relaxed">
                 "La nostra filosofia si fonda sull'empatia e sulla trasparenza. Crediamo che onorare la vita di chi ci ha lasciato sia il modo più nobile per supportare chi resta, agendo sempre con la massima integrità professionale."
             </p>
-            <div class="flex justify-center gap-12 pt-8">
+            <div class="flex justify-center gap-8 md:gap-12 pt-8">
                 <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Vicinanza</p></div>
                 <div class="text-center"><i data-lucide="scale" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Trasparenza</p></div>
                 <div class="text-center"><i data-lucide="star" class="mx-auto mb-4 text-gold"></i><p class="text-[9px] font-bold uppercase tracking-widest">Eccellenza</p></div>
@@ -167,19 +210,19 @@
         </div>
     </section>
 
-    <section id="previdenza" class="py-32 bg-stone-50 section-padding">
+    <section id="previdenza" class="py-20 md:py-32 bg-stone-50 section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl font-serif text-stone-900 uppercase">Previdenza <span class="text-gold italic">Funeraria.</span></h2>
-            <p class="text-stone-400 text-xl font-light leading-relaxed italic">
+            <p class="text-stone-400 text-lg md:text-xl font-light leading-relaxed italic">
                 Pianificare oggi per non gravare domani. Un atto di amore e responsabilità verso i propri cari, garantendo l'esecuzione delle proprie volontà con contratti chiari e garantiti.
             </p>
             <div class="pt-8">
-                <a href="#contatti" class="border-b-2 border-gold pb-2 text-[10px] font-bold uppercase tracking-[0.4em] hover:text-stone-900 transition italic">Richiedi una consulenza discreta</a>
+                <span class="border-b-2 border-gold pb-2 text-[10px] font-bold uppercase tracking-[0.4em] text-stone-900 italic">Richiedi una consulenza discreta</span>
             </div>
         </div>
     </section>
 
-    <section id="necrologi" class="py-32 bg-stone-900 text-white section-padding">
+    <section id="necrologi" class="py-20 md:py-32 bg-stone-900 text-white section-padding">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <h2 class="text-4xl font-serif text-gold mb-16 uppercase">Partecipazioni <span class="text-white italic">&</span> Necrologi</h2>
             <div class="grid md:grid-cols-3 gap-8">
@@ -188,7 +231,7 @@
                     <p class="text-[10px] text-stone-500 uppercase tracking-widest">Febbraio 07, 2026</p>
                     <button class="text-[9px] font-bold text-gold uppercase tracking-widest border-b border-gold/30 pb-1">Lascia un messaggio</button>
                 </div>
-                <div class="p-8 bg-white/5 border border-white/10 text-left space-y-4 opacity-50">
+                <div class="p-8 bg-white/5 border border-white/10 text-left space-y-4">
                     <h4 class="font-serif italic text-xl">Anniversario Bianchi</h4>
                     <p class="text-[10px] text-stone-500 uppercase tracking-widest">Febbraio 05, 2026</p>
                     <button class="text-[9px] font-bold text-gold uppercase tracking-widest border-b border-gold/30 pb-1">Invia un pensiero</button>
@@ -200,33 +243,36 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-7xl md:text-8xl font-serif text-stone-900 leading-none tracking-tighter uppercase italic">Presenza <br><span class="text-gold font-normal">Costante.</span></h2>
+    <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-10 md:space-y-12">
+                <h2 class="text-6xl md:text-8xl font-serif text-stone-900 leading-none tracking-tighter uppercase italic">Presenza <br><span class="text-gold font-normal">Costante.</span></h2>
                 <div class="space-y-8">
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 border border-stone-100 flex items-center justify-center rounded-full text-gold shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1 italic">Sede Principale</p><p class="text-2xl font-serif italic text-stone-900">Viale del Commiato 1, Milano</p></div>
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 border border-stone-100 flex items-center justify-center rounded-full text-gold shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1 italic">Sede Principale</p><p class="text-xl md:text-2xl font-serif italic text-stone-900">Viale del Commiato 1, Milano</p></div>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-stone-900 text-gold flex items-center justify-center rounded-full shadow-2xl"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-gold mb-1 italic">Linea Diretta H24</p><p class="text-2xl font-serif italic text-stone-900">800 123 456</p></div>
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-stone-900 text-gold flex items-center justify-center rounded-full shadow-2xl shrink-0"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-gold mb-1 italic">Linea Diretta H24</p><p class="text-xl md:text-2xl font-serif italic text-stone-900">800 123 456</p></div>
                     </div>
                 </div>
             </div>
-            <form class="bg-stone-50 p-12 shadow-2xl space-y-8 rounded-sm border-t-4 border-gold">
-                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8 text-center italic">Modulo di contatto (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <input type="text" placeholder="IL VOSTRO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none transition text-[10px] font-bold tracking-widest uppercase">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none transition text-[10px] font-bold tracking-widest uppercase">
+            
+            <div class="flex flex-col gap-4 justify-center">
+                <div class="bg-stone-50 p-8 md:p-12 rounded-sm border-t-4 border-gold shadow-xl space-y-6">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-6 text-center italic">Contattaci Immediatamente</p>
+                    <div class="contact-btn-demo w-full bg-stone-900 text-white py-5 px-6 flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em]">
+                        <i data-lucide="phone" class="w-4 h-4"></i> Chiama Ora 800 123 456
+                    </div>
+                    <div class="contact-btn-demo w-full bg-[#25D366] text-white py-5 px-6 flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em]">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Scrivici su WhatsApp
+                    </div>
+                    <div class="contact-btn-demo w-full border border-stone-300 text-stone-600 py-5 px-6 flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em]">
+                        <i data-lucide="map" class="w-4 h-4"></i> Ottieni Indicazioni
+                    </div>
                 </div>
-                <select class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest text-stone-400">
-                    <option>MOTIVO DELLA RICHIESTA</option>
-                </select>
-                <textarea placeholder="SCRIVETECI BREVEMENTE IL VOSTRO BISOGNO..." rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-stone-900 text-white py-6 text-[10px] font-bold uppercase tracking-[0.4em] shadow-xl">Invia Messaggio</button>
-            </form>
+            </div>
         </div>
     </section>
 
@@ -237,11 +283,37 @@
     </footer>
 
     <div class="wa-widget-demo fixed bottom-10 right-10 bg-white border border-stone-100 text-stone-800 p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <i data-lucide="message-circle" class="w-6 h-6 text-[#25D366]"></i>
     </div>
 
     <script>
+        // Inizializza Lucide Icons
         lucide.createIcons();
+
+        // Elementi del Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        // Funzione per Aprire il Menu
+        menuToggle.addEventListener('click', () => {
+            menuOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Blocca scroll
+        });
+
+        // Funzione per Chiudere il Menu
+        const closeMenu = () => {
+            menuOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Ripristina scroll
+        };
+
+        menuClose.addEventListener('click', closeMenu);
+
+        // Chiudi menu al click sui link
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
     </script>
 </body>
 </html>

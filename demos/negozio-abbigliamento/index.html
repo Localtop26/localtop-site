@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth overflow-x-hidden">
+<html lang="it" class="scroll-smooth overflow-x-hidden w-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,32 +8,55 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #1a1a1a; overflow-x: hidden; width: 100%; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #fff; 
+            color: #1a1a1a; 
+            overflow-x: hidden; 
+            width: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
         .font-luxury { font-family: 'Tenor Sans', sans-serif; }
         .bg-nude { background-color: #f8f5f2; }
         
         .hero-bg { 
-            background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0)), 
+            background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0)), 
             url('assets/img1.jpg'); 
             background-size: cover; 
             background-position: center; 
         }
-        .img-hover:hover img { transform: scale(1.05); transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        button, input, select, textarea, .wa-widget-demo {
+        /* Rimozione filtri e gestione hover immagini a colori */
+        .img-hover img { 
+            filter: none !important; 
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .img-hover:hover img { transform: scale(1.05); }
+
+        /* Disabilitazione interazioni come richiesto */
+        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
+        /* Menu Mobile Overlay */
+        #mobile-menu-overlay.active {
+            display: flex;
+        }
+
         @media (max-width: 768px) {
-            /* Modifica: Inquadratura sui 3/4 a destra per mobile */
             .hero-bg { 
                 background-position: 75% center !important; 
             }
-            h1 { font-size: clamp(3.5rem, 12vw, 5rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
-            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+            h1 { font-size: clamp(3rem, 10vw, 5rem) !important; line-height: 1 !important; }
+            h2 { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            
+            /* Bottoni Localtop più piccoli su mobile */
+            .localtop-btn {
+                padding: 0.75rem 1.25rem !important;
+            }
         }
 
         .demo-nav-container {
@@ -50,28 +73,45 @@
 </head>
 <body class="selection:bg-stone-100 selection:text-stone-900">
 
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-white z-[200] hidden flex-col items-center justify-center space-y-8 text-center">
+        <button id="close-menu" class="absolute top-6 right-6">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#collezione" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Collezione</a>
+        <a href="#tessuti" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Tessuti</a>
+        <a href="#journal" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Journal</a>
+        <a href="#filosofia" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Filosofia</a>
+        <a href="#boutique" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Contatti</a>
+    </div>
+
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
         </a>
     </div>
 
     <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center gap-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center">
             <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 italic">
                 <a href="#collezione" class="hover:text-black transition">Collezione</a>
                 <a href="#tessuti" class="hover:text-black transition">Tessuti</a>
                 <a href="#journal" class="hover:text-black transition">Journal</a>
                 <a href="#filosofia" class="hover:text-black transition">Filosofia</a>
             </div>
-            <div class="flex-shrink-0">
-                <span class="text-2xl md:text-3xl font-luxury tracking-[0.2em] md:tracking-[0.3em] uppercase">Essentia</span>
+
+            <button id="menu-toggle" class="lg:hidden p-2 -ml-2">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+
+            <div class="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0">
+                <span class="text-xl md:text-3xl font-luxury tracking-[0.2em] md:tracking-[0.3em] uppercase">Essentia</span>
             </div>
+
             <div class="flex items-center gap-3 md:gap-6">
-                <a href="#boutique" class="text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1 whitespace-nowrap">Milano Store</a>
+                <a href="#boutique" class="hidden xs:inline-block text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1 whitespace-nowrap">Milano Store</a>
                 <i data-lucide="shopping-bag" class="w-4 h-4 text-slate-400"></i>
             </div>
         </div>
@@ -95,16 +135,16 @@
         </div>
     </section>
 
-    <section id="collezione" class="py-24 md:py-32 px-6 bg-white section-padding">
+    <section id="collezione" class="py-20 md:py-32 px-6 bg-white section-padding">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-4">
                 <h2 class="text-4xl font-luxury uppercase tracking-widest">Seasonal <br>Highlights</h2>
                 <span class="text-[10px] font-bold uppercase text-slate-300 tracking-[0.5em] mb-2">Primavera '26</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 <div class="img-hover overflow-hidden space-y-6">
                     <div class="aspect-[3/4] overflow-hidden bg-slate-50">
-                        <img src="assets/img2.jpg" class="w-full h-full object-cover transition duration-1000">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="flex justify-between items-center px-2">
                         <span class="text-xs uppercase font-bold tracking-widest">Cappotto Silk-Blend</span>
@@ -113,7 +153,7 @@
                 </div>
                 <div class="img-hover overflow-hidden space-y-6 lg:mt-24">
                     <div class="aspect-[3/4] overflow-hidden bg-slate-50">
-                        <img src="assets/img3.jpg" class="w-full h-full object-cover transition duration-1000">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="flex justify-between items-center px-2">
                         <span class="text-xs uppercase font-bold tracking-widest">Abito Nudo Drappeggiato</span>
@@ -122,7 +162,7 @@
                 </div>
                 <div class="img-hover overflow-hidden space-y-6">
                     <div class="aspect-[3/4] overflow-hidden bg-slate-50">
-                        <img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-1000">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="flex justify-between items-center px-2">
                         <span class="text-xs uppercase font-bold tracking-widest">Accessori Organici</span>
@@ -133,8 +173,8 @@
         </div>
     </section>
 
-    <section id="tessuti" class="py-24 md:py-32 bg-nude section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
+    <section id="tessuti" class="py-20 md:py-32 bg-nude section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-10">
                 <h2 class="text-4xl md:text-5xl font-luxury uppercase leading-tight italic">Tessuti che <br>hanno un <span class="text-slate-400">cuore.</span></h2>
                 <p class="text-slate-600 font-light text-lg leading-relaxed">
@@ -157,7 +197,7 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-24 md:py-32 bg-white section-padding">
+    <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl md:text-5xl font-luxury uppercase italic">L'Etica del <span class="text-slate-400">Bello.</span></h2>
             <p class="text-slate-500 text-lg md:text-xl font-light leading-relaxed italic">
@@ -171,13 +211,13 @@
         </div>
     </section>
 
-    <section id="journal" class="py-24 md:py-32 bg-slate-50 section-padding">
+    <section id="journal" class="py-20 md:py-32 bg-slate-50 section-padding">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-center text-3xl md:text-4xl font-luxury uppercase tracking-widest mb-16 md:mb-20 italic">The Journal</h2>
             <div class="grid md:grid-cols-2 gap-12 md:gap-16">
                 <div class="group cursor-default">
                     <div class="overflow-hidden mb-8 aspect-video">
-                        <img src="assets/img6.jpg" class="w-full h-full object-cover transition duration-1000">
+                        <img src="assets/img6.jpg" class="w-full h-full object-cover">
                     </div>
                     <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-slate-300">Style Guide</span>
                     <h3 class="text-2xl font-luxury mt-4 uppercase">Come costruire un guardaroba capsula</h3>
@@ -185,7 +225,7 @@
                 </div>
                 <div class="group cursor-default">
                     <div class="overflow-hidden mb-8 aspect-video">
-                        <img src="assets/img7.jpg" class="w-full h-full object-cover transition duration-1000">
+                        <img src="assets/img7.jpg" class="w-full h-full object-cover">
                     </div>
                     <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-slate-300">Inside the Lab</span>
                     <h3 class="text-2xl font-luxury mt-4 uppercase">L'arte della cucitura a mano</h3>
@@ -195,7 +235,7 @@
         </div>
     </section>
 
-    <section id="boutique" class="py-24 md:py-32 bg-black text-white overflow-hidden section-padding">
+    <section id="boutique" class="py-20 md:py-32 bg-black text-white overflow-hidden section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="space-y-10 order-2 lg:order-1">
                 <h2 class="text-5xl md:text-6xl font-luxury leading-tight uppercase">Visit <br> <span class="italic text-slate-500">Milano.</span></h2>
@@ -204,7 +244,15 @@
                     <p class="flex items-center gap-6"><i data-lucide="clock" class="text-white w-4 h-4"></i> Lun - Sab: 10:30 - 19:30</p>
                     <p class="flex items-center gap-6"><i data-lucide="phone" class="text-white w-4 h-4"></i> +39 02 1234 5678</p>
                 </div>
-                <button class="w-full md:w-auto border border-white/20 px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all">Prenota Private Shopping</button>
+                <div class="flex flex-col gap-4 pt-4">
+                    <button class="w-full md:w-auto border border-white/20 px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em]">Prenota Private Shopping</button>
+                    <button class="w-full md:w-auto bg-white text-black px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-3">
+                        <i data-lucide="phone" class="w-4 h-4"></i> Chiamaci Ora
+                    </button>
+                    <button class="w-full md:w-auto bg-[#25D366] text-white px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-3">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+                    </button>
+                </div>
             </div>
             <div class="relative order-1 lg:order-2">
                 <img src="assets/img8.jpg" class="rounded-sm opacity-90 w-full h-auto" alt="Boutique">
@@ -212,7 +260,7 @@
         </div>
     </section>
 
-    <footer class="py-20 md:py-24 bg-white border-t border-slate-100">
+    <footer class="py-16 md:py-24 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
             <div class="space-y-6">
                 <span class="text-2xl font-luxury uppercase tracking-widest">Essentia</span>
@@ -227,10 +275,10 @@
                 </ul>
             </div>
             <div class="space-y-6">
-                <span class="text-[10px] font-bold uppercase tracking-widest">Join Us</span>
-                <div class="flex border-b border-black pb-2">
-                    <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="flex-1 text-[9px] uppercase tracking-widest outline-none bg-transparent">
-                    <button class="text-[9px] font-bold uppercase tracking-widest">Join</button>
+                <span class="text-[10px] font-bold uppercase tracking-widest">Follow us</span>
+                <div class="flex gap-6 text-slate-400">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
                 </div>
             </div>
         </div>
@@ -239,10 +287,36 @@
         </div>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-white border border-slate-200 text-black p-4 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-5 h-5"></i>
+    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
     </div>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        // Inizializzazione icone
+        lucide.createIcons();
+
+        // Gestione Menu Mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const overlay = document.getElementById('mobile-menu-overlay');
+        const links = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
 </body>
 </html>

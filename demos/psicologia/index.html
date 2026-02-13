@@ -8,13 +8,13 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfbf9; color: #3e4c43; overflow-x: hidden; width: 100%; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfbf9; color: #3e4c43; overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
         h1, h2, h3, .font-serif { font-family: 'Crimson Pro', serif; }
         .text-sage { color: #6b8e83; }
         .bg-sage { background-color: #6b8e83; }
         
         .hero-therapy { 
-            background: linear-gradient(rgba(253,251,249,0.6), rgba(253,251,249,0.2)), 
+            background: linear-gradient(rgba(253,251,249,0.4), rgba(253,251,249,0.1)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
@@ -22,20 +22,32 @@
         .soft-card { background: #ffffff; border-radius: 2rem; border: 1px solid #eee7e0; transition: all 0.5s ease; }
         .soft-card:hover { transform: translateY(-5px); border-color: #6b8e83; }
 
+        /* Rimozione filtri immagini */
+        img { filter: none !important; grayscale: 0 !important; }
+
         /* Demo Mode Constraints */
-        button, input, select, textarea, .wa-widget-demo {
+        .wa-widget-demo, .contact-btn-static {
             pointer-events: none !important;
             cursor: default !important;
         }
 
-        /* Responsive Font Scaling & Mobile Optimization */
+        /* Mobile Menu Style */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: clamp(3.5rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
             h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; line-height: 1.1 !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            /* Bottoni Localtop più piccoli su mobile */
+            .demo-nav-container a { padding: 0.6rem 1rem !important; }
         }
 
-        /* Desktop Hero Size */
         @media (min-width: 1024px) {
             h1 { font-size: 9rem !important; }
         }
@@ -53,12 +65,8 @@
 </head>
 <body class="selection:bg-sage selection:text-white">
 
-    <div id="top-banner" class="bg-sage text-white py-2 text-[9px] sm:text-[10px] font-bold text-center uppercase tracking-[0.2em] sm:tracking-[0.3em] px-4 sticky top-0 z-[130]">
-        🌿 Disponibile per Consulenze in Studio e Online 🌿
-    </div>
-
-    <nav class="sticky top-[30px] sm:top-[34px] z-[120] bg-white/95 backdrop-blur-md h-20 sm:h-24 flex items-center border-b border-stone-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center gap-2">
+    <nav class="sticky top-0 z-[120] bg-white/95 backdrop-blur-md h-20 sm:h-24 flex items-center border-b border-stone-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center">
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <div class="w-8 h-8 sm:w-10 sm:h-10 bg-sage/10 rounded-full flex items-center justify-center text-sage">
                     <i data-lucide="wind" class="w-5 h-5 sm:w-6 sm:h-6"></i>
@@ -76,18 +84,34 @@
                 <a href="#studio" class="hover:text-sage transition">Lo Studio</a>
             </div>
 
-            <a href="#contatti" class="bg-sage text-white px-4 sm:px-8 py-2.5 sm:py-3 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md whitespace-nowrap">
-                Prenota <span class="hidden xs:inline">Ora</span>
-            </a>
+            <div class="flex items-center gap-3 sm:gap-6">
+                <a href="#contatti" class="hidden xs:block bg-sage text-white px-5 sm:px-8 py-2.5 sm:py-3 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md whitespace-nowrap">
+                    Prenota
+                </a>
+                <button id="menu-toggle" class="lg:hidden text-stone-800 p-2 focus:outline-none" style="pointer-events: auto !important; cursor: pointer !important;">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[150] lg:hidden flex flex-col items-center justify-center space-y-8">
+        <button id="menu-close" class="absolute top-8 right-8 text-stone-800" style="pointer-events: auto !important; cursor: pointer !important;">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#approccio" class="mobile-link text-2xl font-serif italic text-stone-800">L'Approccio</a>
+        <a href="#percorsi" class="mobile-link text-2xl font-serif italic text-stone-800">Percorsi</a>
+        <a href="#filosofia" class="mobile-link text-2xl font-serif italic text-stone-800">Filosofia</a>
+        <a href="#studio" class="mobile-link text-2xl font-serif italic text-stone-800">Lo Studio</a>
+        <a href="#contatti" class="mobile-link bg-sage text-white px-10 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest">Contatti</a>
+    </div>
 
     <div class="demo-nav-container">
         <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
             <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
         <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Gallery
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
         </a>
     </div>
 
@@ -108,7 +132,7 @@
         </div>
     </section>
 
-    <section id="approccio" class="py-24 sm:py-32 bg-white section-padding">
+    <section id="approccio" class="py-16 sm:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div class="space-y-8 text-center lg:text-left">
                 <span class="text-sage font-bold uppercase tracking-[0.5em] text-[10px]">Un viaggio condiviso</span>
@@ -122,7 +146,7 @@
                 </div>
             </div>
             <div class="relative px-2 sm:px-0">
-                <img src="assets/img2.jpg" class="rounded-[3rem] sm:rounded-[4rem] shadow-2xl transition duration-1000" alt="Terapia">
+                <img src="assets/img2.jpg" class="rounded-[3rem] sm:rounded-[4rem] shadow-2xl transition duration-1000 w-full" alt="Terapia">
                 <div class="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-8 bg-sage text-white p-8 sm:p-12 rounded-full shadow-2xl">
                     <i data-lucide="heart" class="w-8 h-8 sm:w-10 sm:h-10"></i>
                 </div>
@@ -130,9 +154,9 @@
         </div>
     </section>
 
-    <section id="percorsi" class="py-24 sm:py-32 bg-stone-50 section-padding">
+    <section id="percorsi" class="py-16 sm:py-32 bg-stone-50 section-padding">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl sm:text-5xl font-serif italic text-stone-800 mb-16 sm:mb-24 uppercase tracking-tighter">Aree di <span class="text-sage italic">Intervento</span></h2>
+            <h2 class="text-4xl sm:text-5xl font-serif italic text-stone-800 mb-12 sm:mb-24 uppercase tracking-tighter">Aree di <span class="text-sage italic">Intervento</span></h2>
             <div class="grid md:grid-cols-3 gap-8 sm:gap-12">
                 <div class="p-8 sm:p-12 soft-card">
                     <div class="w-14 h-14 sm:w-16 sm:h-16 bg-sage/10 text-sage rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8"><i data-lucide="user"></i></div>
@@ -153,7 +177,7 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-24 sm:py-32 bg-white section-padding">
+    <section id="filosofia" class="py-16 sm:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-10 sm:space-y-12">
             <h2 class="text-4xl sm:text-5xl font-serif italic text-stone-800 uppercase italic">Etica <span class="text-sage italic">&</span> Empatia.</h2>
             <p class="text-stone-500 text-lg sm:text-xl font-light italic leading-relaxed">
@@ -167,20 +191,20 @@
         </div>
     </section>
 
-    <section id="studio" class="py-24 sm:py-32 bg-white section-padding">
+    <section id="studio" class="py-16 sm:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-3xl sm:text-4xl font-serif italic text-stone-800 uppercase tracking-widest italic">Un ambiente accogliente.</h2>
             <p class="text-stone-400 font-light max-w-2xl mx-auto italic leading-relaxed">
                 Il mio studio è progettato per essere un luogo neutro e sereno, situato in una zona silenziosa per garantire la massima privacy.
             </p>
-            <div class="grid md:grid-cols-2 gap-4 h-[50vh] sm:h-96">
-                <img src="assets/img3.jpg" class="w-full h-full object-cover rounded-3xl transition duration-1000">
-                <img src="assets/img4.jpg" class="w-full h-full object-cover rounded-3xl transition duration-1000">
+            <div class="grid md:grid-cols-2 gap-4 h-[40vh] sm:h-96">
+                <img src="assets/img3.jpg" class="w-full h-full object-cover rounded-3xl">
+                <img src="assets/img4.jpg" class="w-full h-full object-cover rounded-3xl">
             </div>
         </div>
     </section>
 
-    <section id="faq" class="py-24 sm:py-32 bg-[#fdfcfb] border-y border-stone-100 section-padding">
+    <section id="faq" class="py-16 sm:py-32 bg-[#fdfcfb] border-y border-stone-100 section-padding">
         <div class="max-w-3xl mx-auto px-6 space-y-12 sm:space-y-16">
             <h2 class="text-4xl sm:text-5xl font-serif italic text-center text-stone-800 italic uppercase">Dubbi Comuni.</h2>
             <div class="space-y-8 italic">
@@ -200,14 +224,14 @@
         </div>
     </section>
 
-    <section class="py-24 sm:py-32 bg-stone-900 text-stone-100 text-center relative overflow-hidden">
+    <section class="py-16 sm:py-32 bg-stone-900 text-stone-100 text-center relative overflow-hidden">
         <div class="max-w-3xl mx-auto px-6 relative z-10">
             <h2 class="text-2xl sm:text-4xl font-serif italic leading-relaxed">"Curiamo noi stessi nel momento in cui decidiamo di essere visti per ciò che siamo veramente."</h2>
             <p class="mt-8 text-sage font-bold uppercase tracking-[0.5em] text-[10px]">C.G. Jung</p>
         </div>
     </section>
 
-    <section id="contatti" class="py-24 sm:py-32 bg-white section-padding px-4">
+    <section id="contatti" class="py-16 sm:py-32 bg-white section-padding px-4">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 sm:gap-20">
             <div class="space-y-10 sm:space-y-12 text-center lg:text-left">
                 <h2 class="text-5xl sm:text-7xl font-serif italic text-stone-800 leading-none tracking-tighter uppercase italic">Scrivimi un <br><span class="text-sage font-normal">Pensiero.</span></h2>
@@ -222,16 +246,22 @@
                     </div>
                 </div>
             </div>
-            <form class="bg-[#fdfaf8] p-8 sm:p-12 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl border border-stone-100 space-y-6">
-                <p class="text-[9px] font-bold uppercase tracking-widest text-sage mb-6 text-center italic">Risposta entro 24 ore (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-4 sm:gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold tracking-widest uppercase">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold tracking-widest uppercase">
+            
+            <div class="flex flex-col gap-4 justify-center items-center lg:items-stretch">
+                <div class="contact-btn-static w-full bg-[#25D366] text-white p-6 rounded-[2rem] flex items-center justify-between shadow-lg opacity-90">
+                    <span class="font-bold uppercase tracking-widest text-[10px]">WhatsApp</span>
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
                 </div>
-                <input type="email" placeholder="EMAIL" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold tracking-widest uppercase">
-                <textarea placeholder="SCRIVI QUI BREVEMENTE IL TUO BISOGNO..." rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-sage text-white py-5 sm:py-6 rounded-full font-black uppercase text-[10px] tracking-[0.4em] shadow-xl">Invia Messaggio</button>
-            </form>
+                <div class="contact-btn-static w-full bg-stone-800 text-white p-6 rounded-[2rem] flex items-center justify-between shadow-lg opacity-90">
+                    <span class="font-bold uppercase tracking-widest text-[10px]">Chiamata Diretta</span>
+                    <i data-lucide="phone" class="w-6 h-6"></i>
+                </div>
+                <div class="contact-btn-static w-full bg-sage text-white p-6 rounded-[2rem] flex items-center justify-between shadow-lg opacity-90">
+                    <span class="font-bold uppercase tracking-widest text-[10px]">Indicazioni Stradali</span>
+                    <i data-lucide="map" class="w-6 h-6"></i>
+                </div>
+                <p class="text-[9px] text-stone-400 uppercase tracking-widest text-center mt-4 italic">Contatti disponibili solo in versione live</p>
+            </div>
         </div>
     </section>
 
@@ -247,6 +277,29 @@
 
     <script>
         lucide.createIcons();
+
+        // Menu Mobile Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
     </script>
 </body>
 </html>

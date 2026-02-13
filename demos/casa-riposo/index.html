@@ -2,76 +2,89 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Villa Serena | Casa Famiglia & Residenza per la Terza Età</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfcfb; color: #4a4a4a; overflow-x: hidden; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #fdfcfb; 
+            color: #4a4a4a; 
+            overflow-x: hidden; 
+            width: 100%;
+        }
         .font-serif { font-family: 'Playfair Display', serif; }
         .text-warm { color: #c38d74; }
         .bg-warm { background-color: #c38d74; }
         
-        /* 1. Immagini Locali */
+        /* Immagini - No filtri */
         .hero-care { 
-            background: linear-gradient(rgba(253,252,251,0.6), rgba(253,252,251,0.2)), 
+            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.05)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
-        .care-card { transition: all 0.5s ease; border-radius: 2rem; border: 1px solid #f1eeea; background: white; }
-        .care-card:hover { border-color: #c38d74; transform: translateY(-5px); }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .chat-widget-demo {
-            pointer-events: none !important;
-            cursor: default !important;
-            user-select: none;
+        /* Overlay per leggibilità testo Hero */
+        .hero-text-container {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
         }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
+        /* Elementi navigazione sbloccati */
+        button, input, select, textarea, .chat-widget-demo, a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
+        /* Ottimizzazione Mobile */
         @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; color: #1a1a1a !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .hero-text-container { padding: 1.5rem; margin: 0 0.5rem; }
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
-            left: 2rem;
+            left: 1rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
+        }
+
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
         }
     </style>
 </head>
 <body class="selection:bg-warm selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
         </a>
     </div>
 
-    <div class="bg-stone-900 text-stone-200 py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 sticky top-0 z-[120]">
-        🏠 DISPONIBILITÀ: Attualmente 2 posti liberi in camera doppia | Prenota una visita guidata 🏠
-    </div>
-
-    <nav class="sticky top-10 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-4 md:mx-10 rounded-2xl mt-4">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-warm rounded-full flex items-center justify-center shadow-lg">
-                    <i data-lucide="heart" class="text-white w-6 h-6"></i>
+    <nav class="sticky top-0 z-[120] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm px-4 md:px-10">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-warm rounded-full flex items-center justify-center shadow-lg">
+                    <i data-lucide="heart" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-serif font-bold text-slate-800 tracking-tight">Villa<span class="text-warm">Serena</span></span>
-                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400 italic">Vivere con Dignità</span>
+                    <span class="text-xl md:text-2xl font-serif font-bold text-slate-800 tracking-tight">Villa<span class="text-warm">Serena</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.3em] text-slate-400 italic">Vivere con Dignità</span>
                 </div>
             </div>
             
@@ -82,70 +95,96 @@
                 <a href="#cucina" class="hover:text-warm transition">La Tavola</a>
             </div>
 
-            <a href="#contatti" class="bg-warm text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
-                Contattaci
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="#contatti" class="hidden sm:block bg-warm text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
+                    Contattaci
+                </a>
+                <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-800 relative z-[130] bg-white rounded-lg shadow-sm border border-stone-100">
+                    <i data-lucide="menu" id="menu-icon-trigger"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative h-[80vh] flex items-center hero-care overflow-hidden">
+    <div id="mobile-menu" class="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center gap-8 text-slate-800 hidden">
+        <button onclick="toggleMenu()" class="absolute top-6 right-6 p-2 bg-stone-100 rounded-full text-slate-800">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        
+        <div class="w-12 h-12 bg-warm rounded-full flex items-center justify-center mb-4">
+            <i data-lucide="heart" class="text-white w-6 h-6"></i>
+        </div>
+
+        <a href="#filosofia" onclick="toggleMenu()" class="text-3xl font-serif italic hover:text-warm transition-colors">La Casa</a>
+        <a href="#assistenza" onclick="toggleMenu()" class="text-3xl font-serif italic hover:text-warm transition-colors">Assistenza</a>
+        <a href="#attivita" onclick="toggleMenu()" class="text-3xl font-serif italic hover:text-warm transition-colors">Vita Quotidiana</a>
+        <a href="#cucina" onclick="toggleMenu()" class="text-3xl font-serif italic hover:text-warm transition-colors">La Tavola</a>
+        
+        <div class="w-16 h-px bg-stone-200 my-4"></div>
+        
+        <a href="#contatti" onclick="toggleMenu()" class="bg-warm text-white px-10 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest shadow-xl">
+            Richiedi Informazioni
+        </a>
+    </div>
+
+    <section class="relative h-[90vh] flex items-center hero-care overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <div class="max-w-2xl space-y-8 animate-fade-in">
-                <h1 class="text-6xl md:text-8xl font-serif font-bold text-slate-800 leading-[0.9] tracking-tighter">
-                    Più di una <br> residenza, <span class="text-warm italic font-light italic">una famiglia.</span>
+            <div class="max-w-2xl hero-text-container space-y-6 md:space-y-8">
+                <h1 class="text-6xl md:text-8xl font-serif font-bold text-slate-900 leading-[0.9] tracking-tighter">
+                    Più di una <br> residenza, <span class="text-warm italic font-light">una famiglia.</span>
                 </h1>
-                <p class="text-xl text-slate-600 font-light max-w-lg leading-relaxed italic border-l-4 border-warm pl-8">
+                <p class="text-lg md:text-xl text-slate-800 font-semibold max-w-lg leading-relaxed italic border-l-4 border-warm pl-6">
                     Accogliamo i nostri ospiti in un ambiente protetto e stimolante, dove l'attenzione al dettaglio e il calore umano sono la nostra prima cura.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#assistenza" class="bg-stone-800 text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-warm transition-all">I Nostri Servizi</a>
-                    <a href="#contatti" class="bg-white border-2 border-stone-100 text-stone-400 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-stone-50 transition-all italic">Prenota una Visita</a>
+                    <a href="#assistenza" class="bg-stone-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-warm transition-all">I Nostri Servizi</a>
+                    <a href="#contatti" class="bg-white border-2 border-stone-800 text-stone-800 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-stone-50 transition-all italic">Prenota una Visita</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="filosofia" class="py-24 bg-white relative section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-            <div class="space-y-10">
+    <section id="filosofia" class="py-20 md:py-24 bg-white relative section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+            <div class="space-y-8 md:space-y-10">
                 <span class="text-warm font-bold uppercase tracking-[0.5em] text-[10px]">Al centro della nostra attenzione</span>
-                <h2 class="text-5xl font-serif italic leading-tight text-slate-800">Il valore di sentirsi <br> <span class="text-warm italic font-light italic">a casa propria.</span></h2>
+                <h2 class="text-4xl md:text-5xl font-serif italic leading-tight text-slate-800">Il valore di sentirsi <br> <span class="text-warm italic font-light italic">a casa propria.</span></h2>
                 <p class="text-stone-500 text-lg font-light leading-relaxed italic">
                     Villa Serena non è un ospedale. È una dimora dove ogni ospite mantiene le proprie abitudini, i propri ricordi e la propria autonomia, supportato da un team discreto e professionale disponibile 24 ore su 24.
                 </p>
-                <div class="grid grid-cols-2 gap-8 pt-6 border-t border-stone-100">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6 border-t border-stone-100">
                     <div><h4 class="font-bold text-xs uppercase text-warm mb-2">Ambiente Familiare</h4><p class="text-sm italic">Pochi ospiti per garantire cure individuali.</p></div>
                     <div><h4 class="font-bold text-xs uppercase text-warm mb-2">Assistenza H24</h4><p class="text-sm italic">Personale qualificato sempre presente.</p></div>
                 </div>
             </div>
-            <div class="relative">
-                <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl" alt="Senior Care">
-                <div class="absolute -bottom-8 -right-8 bg-warm text-white p-12 rounded-full shadow-2xl">
-                    <i data-lucide="sun" class="w-10 h-10"></i>
+            <div class="relative mt-8 md:mt-0">
+                <img src="assets/img2.jpg" class="rounded-[2.5rem] md:rounded-[4rem] shadow-2xl w-full" alt="Senior Care">
+                <div class="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 bg-warm text-white p-8 md:p-12 rounded-full shadow-2xl">
+                    <i data-lucide="sun" class="w-6 h-6 md:w-10 md:h-10"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="assistenza" class="py-24 bg-stone-50 section-padding">
+    <section id="assistenza" class="py-20 md:py-24 bg-stone-50 section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 space-y-4">
-                <h2 class="text-5xl font-serif text-slate-900">Cura <span class="text-warm italic font-light italic">Integrale.</span></h2>
+            <div class="text-center mb-16 md:mb-20 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-serif text-slate-900">Cura <span class="text-warm italic font-light italic">Integrale.</span></h2>
                 <p class="text-stone-400 font-bold tracking-widest uppercase text-xs">Salute fisica e benessere psicologico</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-12 care-card text-center group">
+                <div class="p-10 md:p-12 care-card text-center group">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm group-hover:bg-warm group-hover:text-white transition-all"><i data-lucide="stethoscope"></i></div>
                     <h3 class="text-2xl font-serif italic mb-4">Supporto Medico</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Gestione terapie, monitoraggio parametri vitali e visite specialistiche periodiche.</p>
                 </div>
-                <div class="p-12 care-card text-center group">
+                <div class="p-10 md:p-12 care-card text-center group">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm group-hover:bg-warm group-hover:text-white transition-all"><i data-lucide="accessibility"></i></div>
                     <h3 class="text-2xl font-serif italic mb-4">Riabilitazione Dolce</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Fisioterapia in sede per il mantenimento delle capacità motorie e dell'equilibrio.</p>
                 </div>
-                <div class="p-12 care-card text-center group">
+                <div class="p-10 md:p-12 care-card text-center group">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm group-hover:bg-warm group-hover:text-white transition-all"><i data-lucide="user-check"></i></div>
                     <h3 class="text-2xl font-serif italic mb-4">Igiene & Cura</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Assistenza quotidiana alla persona, servizio lavanderia e parrucchiere in sede.</p>
@@ -154,20 +193,20 @@
         </div>
     </section>
 
-    <section id="attivita" class="py-24 bg-white overflow-hidden section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+    <section id="attivita" class="py-20 md:py-24 bg-white overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="relative order-2 lg:order-1">
-                <img src="assets/img3.jpg" class="rounded-[3rem] shadow-2xl" alt="Activities">
-                <div class="absolute -top-8 -left-8 bg-stone-900 text-white p-8 rounded-2xl shadow-2xl">
-                    <p class="text-sm font-bold uppercase tracking-widest">Insieme è meglio</p>
+                <img src="assets/img3.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full" alt="Activities">
+                <div class="absolute -top-4 -left-4 md:-top-8 md:-left-8 bg-stone-900 text-white p-6 md:p-8 rounded-2xl shadow-2xl">
+                    <p class="text-[10px] md:text-sm font-bold uppercase tracking-widest">Insieme è meglio</p>
                 </div>
             </div>
-            <div class="order-1 lg:order-2 space-y-10">
-                <h2 class="text-6xl font-serif text-slate-900 leading-none uppercase italic italic">Giornate <br><span class="text-warm">Stimolanti.</span></h2>
+            <div class="order-1 lg:order-2 space-y-8 md:space-y-10">
+                <h2 class="text-5xl md:text-6xl font-serif text-slate-900 leading-none uppercase italic">Giornate <br><span class="text-warm">Stimolanti.</span></h2>
                 <p class="text-slate-500 text-lg font-light leading-relaxed italic">
                     Combattiamo la solitudine attraverso l'animazione sociale. Laboratori creativi, ginnastica di gruppo, lettura dei giornali e pomeriggi musicali per mantenere la mente attiva e il cuore leggero.
                 </p>
-                <div class="flex gap-6">
+                <div class="flex flex-wrap gap-6">
                     <div class="flex items-center gap-3"><i data-lucide="palette" class="text-warm"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Arte Terapia</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="music" class="text-warm"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Musicoterapia</span></div>
                 </div>
@@ -175,85 +214,82 @@
         </div>
     </section>
 
-    <section id="cucina" class="py-24 bg-stone-900 text-stone-100 section-padding">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
-            <i data-lucide="utensils" class="w-12 h-12 mx-auto text-warm opacity-50"></i>
-            <h2 class="text-5xl font-serif italic tracking-tighter italic italic">Il piacere di <span class="text-warm">Mangiare Sano.</span></h2>
-            <p class="text-stone-400 text-xl font-light leading-relaxed italic">
+    <section id="cucina" class="py-20 md:py-24 bg-stone-900 text-stone-100 section-padding">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
+            <i data-lucide="utensils" class="w-10 h-10 md:w-12 md:h-12 mx-auto text-warm opacity-50"></i>
+            <h2 class="text-4xl md:text-5xl font-serif italic tracking-tighter">Il piacere di <span class="text-warm">Mangiare Sano.</span></h2>
+            <p class="text-stone-400 text-lg md:text-xl font-light leading-relaxed italic">
                 La nostra cucina interna prepara ogni giorno pasti freschi e bilanciati, rispettando le prescrizioni mediche e i gusti dei nostri ospiti. Ingredienti locali e piatti della tradizione per non rinunciare mai al gusto.
             </p>
-            <div class="pt-8">
-                <span class="text-[10px] font-bold uppercase tracking-[0.4em] border border-stone-700 px-6 py-3 rounded-full">Dieta Personalizzata • Menù Stagionale</span>
+            <div class="pt-4">
+                <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] border border-stone-700 px-5 md:px-6 py-3 rounded-full inline-block">Dieta Personalizzata • Menù Stagionale</span>
             </div>
         </div>
     </section>
 
-    <section id="filosofia-extra" class="py-24 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-            <div class="space-y-10">
-                <h2 class="text-5xl font-serif italic leading-tight text-slate-800 uppercase">Ambienti <br> <span class="text-warm">Luminosi.</span></h2>
-                <p class="text-stone-500 text-lg font-light leading-relaxed italic">
-                    Ogni camera è stata progettata per massimizzare la luce naturale, offrendo una vista rilassante sul nostro giardino interno. La sicurezza è garantita da sistemi di chiamata di emergenza in ogni stanza.
-                </p>
-            </div>
-            <div class="relative">
-                <img src="assets/img4.jpg" class="rounded-[3rem] shadow-2xl" alt="Luminous Environment">
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-white text-center italic">
-        <div class="max-w-3xl mx-auto px-6">
-            <p class="text-2xl text-stone-400 leading-relaxed font-serif">"Abbiamo trovato una serenità che non speravamo più. Sapere che nostra madre è circondata da affetto e professionalità ci permette di dormire tranquilli."</p>
-            <p class="mt-8 text-warm font-bold uppercase tracking-[0.5em] text-[10px]">— La famiglia di un nostro ospite</p>
-        </div>
-    </section>
-
-    <section id="contatti" class="py-32 bg-[#fdfaf8] section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-7xl font-serif text-slate-900 leading-none tracking-tighter uppercase italic italic italic">Contatta la <br><span class="text-warm">Residenza.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-8">
-                        <div class="w-16 h-16 bg-white border border-stone-200 flex items-center justify-center rounded-full text-warm shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Dove siamo</p><p class="text-2xl font-serif italic">Via degli Olmi 15, 20100 Milano</p></div>
+    <section id="contatti" class="py-24 md:py-32 bg-[#fdfaf8] section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+            <div class="space-y-10 md:space-y-12">
+                <h2 class="text-6xl md:text-7xl font-serif text-slate-900 leading-none tracking-tighter uppercase italic">Contatta la <br><span class="text-warm">Residenza.</span></h2>
+                
+                <div class="space-y-6 md:space-y-8">
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-white border border-stone-200 flex items-center justify-center rounded-full text-warm shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div>
+                            <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Dove siamo</p>
+                            <p class="text-xl md:text-2xl font-serif italic text-slate-800">Via degli Olmi 15, 20100 Milano</p>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-8 text-slate-400">
-                        <div class="w-16 h-16 bg-white border border-stone-200 flex items-center justify-center rounded-full"><i data-lucide="phone" class="text-warm"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest mb-1">Parla con la direttrice</p><p class="text-2xl font-serif italic text-slate-800">02 123 456 78</p></div>
+                    
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-white border border-stone-200 flex items-center justify-center rounded-full text-warm shadow-sm"><i data-lucide="phone"></i></div>
+                        <div>
+                            <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Parla con noi</p>
+                            <p class="text-xl md:text-2xl font-serif italic text-slate-800">02 123 456 78</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-6 md:gap-8">
+                        <div class="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center rounded-full text-[#25D366] shadow-sm"><i data-lucide="message-square"></i></div>
+                        <div>
+                            <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">WhatsApp</p>
+                            <p class="text-xl md:text-2xl font-serif italic text-slate-800">Scrivici un messaggio</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-12 rounded-[3rem] shadow-2xl border border-stone-100 space-y-6">
-                <p class="text-[10px] font-bold uppercase tracking-widest text-warm mb-8 text-center italic">Richiedi informazioni sulla retta o prenota una visita (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
-                </div>
-                <select class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest text-stone-400">
-                    <option>DI COSA HAI BISOGNO?</option>
-                    <option>RICHIESTA DISPONIBILITÀ POSTO</option>
-                    <option>INFORMAZIONI SULLE RETTE</option>
-                    <option>PRENOTAZIONE VISITA STRUTTURA</option>
-                </select>
-                <textarea placeholder="SCRIVICI LE TUE NECESSITÀ..." rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-warm text-white py-6 rounded-full font-black uppercase text-[10px] tracking-[0.4em] shadow-xl">Invia Messaggio</button>
+
+            <form class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-stone-100 space-y-6">
+                <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
+                <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
+                <textarea placeholder="SCRIVICI..." rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
+                <button class="w-full bg-warm text-white py-6 rounded-full font-black uppercase text-[10px] tracking-[0.4em] shadow-xl">Invia</button>
             </form>
         </div>
     </section>
 
     <footer class="py-12 bg-white border-t border-stone-100 text-center px-6">
         <p class="text-stone-300 text-[9px] uppercase tracking-[0.5em] font-bold leading-relaxed">
-            &copy; 2026 Villa Serena S.R.L. | Residenza per Anziani | P.IVA 0123456789 | Aut. Reg. N. 5678
+            &copy; 2026 Villa Serena S.R.L. | P.IVA 0123456789
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const body = document.body;
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+                body.style.overflow = 'hidden';
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+                body.style.overflow = 'auto';
+            }
+        }
     </script>
 </body>
 </html>

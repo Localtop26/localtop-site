@@ -2,13 +2,13 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Divino Catering | Banqueting d'Eccellenza per Eventi & Matrimoni</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #fdfcf9; color: #3e3d32; overflow-x: hidden; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #fdfcf9; color: #3e3d32; overflow-x: hidden; width: 100%; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .text-gold { color: #b89a66; }
         .bg-gold { background-color: #b89a66; }
@@ -16,26 +16,36 @@
         .bg-forest { background-color: #2d3e34; }
         
         .hero-catering { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
         .event-card { transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid #ede7df; background: white; }
         .event-card:hover { border-color: #b89a66; transform: translateY(-10px); }
-        .event-card:hover img { transform: scale(1.05); transition: 1.5s; }
+        
+        /* Rimozione filtri immagini */
+        img { filter: none !important; grayscale: 0 !important; }
 
-        button, input, select, textarea, .chat-widget-demo {
+        /* Disable interaction for demo except mobile menu */
+        input, select, textarea, .chat-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Ottimizzazione Mobile Migliorata */
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            transition: transform 0.4s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
         @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 15vw, 5rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; line-height: 1.1 !important; }
-            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
-            .hero-catering { h-min: 100vh; }
+            h1 { font-size: clamp(2.5rem, 12vw, 5rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; line-height: 1.2 !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
         }
 
         .demo-nav-container {
@@ -52,26 +62,22 @@
 <body class="selection:bg-gold selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-3 py-2 md:px-5 md:py-3 rounded-full font-bold text-[8px] md:text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
             <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Esempi
+        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-3 py-2 md:px-5 md:py-3 rounded-full font-bold text-[8px] md:text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
         </a>
-    </div>
-
-    <div class="bg-forest text-stone-300 py-2 text-[9px] md:text-[10px] font-bold text-center uppercase tracking-[0.2em] md:tracking-[0.4em] px-4">
-        🥂 PREVENTIVI 2026: Disponibilità limitata | Contattaci 🥂
     </div>
 
     <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-stone-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2 md:gap-3">
+            <div class="flex items-center gap-2 md:gap-3 shrink-0">
                 <div class="w-8 h-8 md:w-10 md:h-10 border border-gold flex items-center justify-center rotate-45">
                     <i data-lucide="utensils" class="text-gold w-4 h-4 md:w-5 md:h-5 -rotate-45"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-xl md:text-3xl font-serif italic tracking-tighter text-forest uppercase">Divino<span class="text-gold">Catering</span></span>
+                    <span class="text-lg md:text-3xl font-serif italic tracking-tighter text-forest uppercase">Divino<span class="text-gold">Catering</span></span>
                     <span class="text-[6px] md:text-[7px] font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] text-stone-400 mt-1">Art of Banqueting</span>
                 </div>
             </div>
@@ -83,20 +89,40 @@
                 <a href="#wedding" class="hover:text-gold transition">Wedding</a>
             </div>
 
-            <a href="#contatti" class="bg-forest text-white px-4 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all">
-                Contatti
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="#contatti" class="hidden sm:block bg-forest text-white px-4 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all">
+                    Contatti
+                </a>
+                <button id="menu-toggle" class="lg:hidden text-forest p-2 focus:outline-none" style="pointer-events: auto !important; cursor: pointer !important;">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative min-h-[80vh] flex items-center hero-catering overflow-hidden py-20">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[110] flex flex-col p-8 lg:hidden">
+        <div class="flex justify-end">
+            <button id="menu-close" class="p-2" style="pointer-events: auto !important; cursor: pointer !important;">
+                <i data-lucide="x" class="w-8 h-8 text-forest"></i>
+            </button>
+        </div>
+        <div class="flex flex-col gap-8 mt-12 text-center">
+            <a href="#eventi" class="mobile-link text-2xl font-serif italic text-forest uppercase">Eventi</a>
+            <a href="#cucina" class="mobile-link text-2xl font-serif italic text-forest uppercase">La Cucina</a>
+            <a href="#servizi" class="mobile-link text-2xl font-serif italic text-forest uppercase">Servizi</a>
+            <a href="#wedding" class="mobile-link text-2xl font-serif italic text-forest uppercase">Wedding</a>
+            <a href="#contatti" class="mobile-link text-2xl font-serif italic text-gold uppercase">Contatti</a>
+        </div>
+    </div>
+
+    <section class="relative min-h-[70vh] md:min-h-[80vh] flex items-center hero-catering overflow-hidden py-16 md:py-20">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
             <div class="max-w-3xl space-y-6 md:space-y-10">
                 <span class="text-white font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] text-[9px] md:text-[10px] border-b border-gold pb-2 inline-block">Passione da Gustare</span>
-                <h1 class="text-5xl md:text-[100px] font-serif italic text-white leading-tight tracking-tighter uppercase">
+                <h1 class="text-4xl md:text-[100px] font-serif italic text-white leading-tight tracking-tighter uppercase">
                     Il Sapore <br> dell' <span class="text-gold font-light">Emozione.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-stone-200 font-light max-w-lg leading-relaxed italic border-l-2 border-gold pl-6 md:pl-8 mx-auto md:mx-0">
+                <p class="text-base md:text-xl text-stone-200 font-light max-w-lg leading-relaxed italic border-l-2 border-gold pl-6 md:pl-8 mx-auto md:mx-0">
                     Catering sartoriale per matrimoni, gala aziendali e feste private d'élite.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 md:gap-6 pt-4">
@@ -107,11 +133,11 @@
         </div>
     </section>
 
-    <section id="eventi" class="py-20 md:py-32 bg-white">
+    <section id="eventi" class="py-16 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 md:mb-24">
-                <h2 class="text-4xl md:text-5xl font-serif italic text-forest uppercase">Soluzioni <span class="text-gold">Sartoriali.</span></h2>
-                <div class="w-16 md:w-24 h-px bg-gold mx-auto mt-6"></div>
+            <div class="text-center mb-12 md:mb-24">
+                <h2 class="text-3xl md:text-5xl font-serif italic text-forest uppercase">Soluzioni <span class="text-gold">Sartoriali.</span></h2>
+                <div class="w-16 md:w-24 h-px bg-gold mx-auto mt-4 md:mt-6"></div>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 md:gap-12">
@@ -146,7 +172,7 @@
         </div>
     </section>
 
-    <section id="cucina" class="py-20 md:py-32 bg-stone-50 overflow-hidden">
+    <section id="cucina" class="py-16 md:py-32 bg-stone-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="relative">
                 <img src="assets/img5.jpg" class="rounded-sm shadow-2xl w-full" alt="Chef at work">
@@ -156,8 +182,8 @@
                 </div>
             </div>
             <div class="space-y-6 md:space-y-10 pt-10 lg:pt-0">
-                <h2 class="text-5xl md:text-6xl font-serif italic text-forest leading-none">Materia Prima <br><span class="text-gold italic">Protagonista.</span></h2>
-                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-gold pl-6 md:pl-8">
+                <h2 class="text-4xl md:text-6xl font-serif italic text-forest leading-none">Materia Prima <br><span class="text-gold italic">Protagonista.</span></h2>
+                <p class="text-stone-500 text-base md:text-lg font-light leading-relaxed italic border-l-4 border-gold pl-6 md:pl-8">
                     La nostra cucina affonda le radici nella tradizione mediterranea, elevandola con tecniche contemporanee. Solo ingredienti stagionali e produttori locali selezionati.
                 </p>
                 <div class="grid grid-cols-2 gap-4 md:gap-6 pt-4">
@@ -168,9 +194,9 @@
         </div>
     </section>
 
-    <section id="servizi" class="py-20 md:py-32 bg-forest text-stone-100">
+    <section id="servizi" class="py-16 md:py-32 bg-forest text-stone-100">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-4xl md:text-5xl font-serif italic tracking-widest uppercase">Più del <span class="text-gold">Semplice Cibo.</span></h2>
+            <h2 class="text-3xl md:text-5xl font-serif italic tracking-widest uppercase">Più del <span class="text-gold">Semplice Cibo.</span></h2>
             <p class="text-stone-400 text-lg md:text-xl font-light italic leading-relaxed max-w-3xl mx-auto">
                 Offriamo un servizio di Banqueting completo, creando l'intera scenografia del tuo evento.
             </p>
@@ -195,32 +221,39 @@
         </div>
     </section>
 
-    <section id="wedding" class="py-20 md:py-32 bg-white">
+    <section id="wedding" class="py-16 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="order-2 lg:order-1 space-y-8">
-                <h2 class="text-5xl md:text-7xl font-serif italic text-forest leading-none tracking-tighter">Your Dream <br><span class="text-gold font-normal">Wedding.</span></h2>
-                <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-gold pl-6">Dall'aperitivo di benvenuto al taglio della torta, assicuriamo che il vostro giorno più bello sia perfetto in ogni dettaglio.</p>
+                <h2 class="text-4xl md:text-7xl font-serif italic text-forest leading-none tracking-tighter">Your Dream <br><span class="text-gold font-normal">Wedding.</span></h2>
+                <p class="text-stone-500 text-base md:text-lg font-light leading-relaxed italic border-l-4 border-gold pl-6">Dall'aperitivo di benvenuto al taglio della torta, assicuriamo che il vostro giorno più bello sia perfetto in ogni dettaglio.</p>
                 <button class="border-b-2 border-gold pb-2 text-[10px] font-bold uppercase tracking-[0.4em] hover:text-forest transition">Brochure Wedding</button>
             </div>
-            <div class="order-1 lg:order-2 grid grid-cols-2 gap-4 h-[300px] md:h-[500px]">
+            <div class="order-1 lg:order-2 grid grid-cols-2 gap-4 h-[250px] md:h-[500px]">
                 <img src="assets/img6.jpg" class="w-full h-full object-cover rounded-sm shadow-lg">
-                <img src="assets/img7.jpg" class="w-full h-full object-cover rounded-sm mt-8 md:mt-12 shadow-lg">
+                <img src="assets/img7.jpg" class="w-full h-full object-cover rounded-sm mt-6 md:mt-12 shadow-lg">
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-20 md:py-32 bg-white">
+    <section id="contatti" class="py-16 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
-                <h2 class="text-5xl md:text-7xl font-serif italic text-forest leading-none tracking-tighter uppercase">Inizia il <br><span class="text-gold font-normal italic">Racconto.</span></h2>
+                <h2 class="text-4xl md:text-7xl font-serif italic text-forest leading-none tracking-tighter uppercase">Inizia il <br><span class="text-gold font-normal italic">Racconto.</span></h2>
                 <div class="space-y-8">
                     <div class="flex items-center gap-6 md:gap-8">
                         <div class="w-12 h-12 md:w-14 md:h-14 bg-white border border-stone-200 flex items-center justify-center rounded-full text-gold shadow-sm shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Headquarter</p><p class="text-xl md:text-2xl font-serif italic">Via dei Sapori 12, Milano</p></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Headquarter</p><p class="text-lg md:text-2xl font-serif italic">Via dei Sapori 12, Milano</p></div>
                     </div>
                     <div class="flex items-center gap-6 md:gap-8">
                         <div class="w-12 h-12 md:w-14 md:h-14 bg-white border border-stone-200 flex items-center justify-center rounded-full text-gold shadow-sm shrink-0"><i data-lucide="phone" class="w-5 h-5"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Ufficio Eventi</p><p class="text-xl md:text-2xl font-serif italic">02 123 456 78</p></div>
+                        <div>
+                            <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 mb-1">Ufficio Eventi</p>
+                            <p class="text-lg md:text-2xl font-serif italic mb-2">02 123 456 78</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="inline-flex items-center gap-2 bg-stone-100 px-3 py-1 rounded-full text-[8px] font-bold uppercase tracking-widest text-stone-600"><i data-lucide="phone-call" class="w-3 h-3"></i> Chiama Ora</span>
+                                <span class="inline-flex items-center gap-2 bg-[#25D366]/10 px-3 py-1 rounded-full text-[8px] font-bold uppercase tracking-widest text-[#25D366]"><i data-lucide="message-square" class="w-3 h-3"></i> WhatsApp</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -251,6 +284,25 @@
 
     <script>
         lucide.createIcons();
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>

@@ -8,46 +8,59 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfdfe; color: #1e293b; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfdfe; color: #1e293b; overflow-x: hidden; width: 100%; }
         h1, h2, h3 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
         .text-med-blue { color: #0f4c81; }
         .bg-med-blue { background-color: #0f4c81; }
         .text-tech-cyan { color: #22d3ee; }
         .bg-tech-cyan { background-color: #22d3ee; }
         
-        /* Immagini Locali in ordine di apparizione */
+        /* Immagini: Rimosso ogni filtro grayscale, sempre a colori */
         .hero-medical { 
             background: linear-gradient(to right, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
+            filter: none !important;
         }
         
+        img { filter: none !important; }
+
         .diag-card { transition: all 0.3s ease; border-radius: 1.5rem; border: 1px solid #f1f5f9; background: white; }
         .diag-card:hover { transform: translateY(-5px); border-color: #22d3ee; box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.05); }
 
-        /* Demo Mode: Disabilitazione interattività */
-        button, input, select, textarea, .chat-widget-demo {
+        /* Demo Mode: Disabilitazione interattività tranne menu e anchor */
+        button:not(#menu-toggle), input, select, textarea, .chat-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Ottimizzazione Mobile: Font Scaling */
+        /* Mobile Menu Logic */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Ottimizzazione Mobile */
         @media (max-width: 768px) {
-            h1 { font-size: clamp(2.5rem, 12vw, 5rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+            .demo-nav-container a { padding: 0.75rem 1rem !important; } /* Bottoni Localtop più piccoli */
         }
 
         /* Bottoni Floating (Bottom-Left) */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
-            left: 2rem;
+            left: 1rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
     </style>
 </head>
@@ -62,19 +75,15 @@
         </a>
     </div>
 
-    <div class="bg-slate-900 text-white py-2.5 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[110]">
-        🔬 RITIRO REFERTI ONLINE DISPONIBILE | CONVENZIONATO CON I PRINCIPALI ENTI ASSICURATIVI 🔬
-    </div>
-
-    <nav class="sticky top-10 z-[100] bg-white/90 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-4 md:mx-10 rounded-2xl">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-med-blue rounded-xl flex items-center justify-center shadow-lg">
-                    <i data-lucide="activity" class="text-white w-6 h-6"></i>
+    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm px-4 md:px-10">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+            <div class="flex items-center gap-2 min-w-max">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-med-blue rounded-xl flex items-center justify-center shadow-lg">
+                    <i data-lucide="activity" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-black text-slate-900 tracking-tighter uppercase">MED<span class="text-tech-cyan">POINT</span></span>
-                    <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Diagnostic Center</span>
+                    <span class="text-lg md:text-2xl font-black text-slate-900 tracking-tighter uppercase">MED<span class="text-tech-cyan">POINT</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Diagnostic Center</span>
                 </div>
             </div>
             
@@ -86,13 +95,32 @@
                 <a href="#servizi" class="hover:text-med-blue transition">Convenzioni</a>
             </div>
 
-            <a href="#prenota" class="bg-tech-cyan text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-med-blue transition-all shadow-lg shadow-cyan-100">
-                Prenota Esame
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#prenota" class="hidden sm:block bg-tech-cyan text-white px-6 md:px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-med-blue transition-all shadow-lg shadow-cyan-100">
+                    Prenota
+                </a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900" aria-label="Menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative h-[80vh] flex items-center hero-medical overflow-hidden section-padding">
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-full max-w-sm bg-white z-[200] shadow-2xl p-10 flex flex-col space-y-8 lg:hidden">
+        <div class="flex justify-end">
+            <button id="menu-close" class="p-2"><i data-lucide="x" class="w-8 h-8 text-slate-900"></i></button>
+        </div>
+        <div class="flex flex-col space-y-6 text-sm font-bold uppercase tracking-[0.2em] text-slate-800">
+            <a href="#diagnostica" onclick="toggleMenu()">Diagnostica</a>
+            <a href="#specialisti" onclick="toggleMenu()">Specialisti</a>
+            <a href="#analisi" onclick="toggleMenu()">Laboratorio</a>
+            <a href="#filosofia" onclick="toggleMenu()">Filosofia</a>
+            <a href="#servizi" onclick="toggleMenu()">Convenzioni</a>
+            <a href="#prenota" onclick="toggleMenu()" class="text-tech-cyan">Prenota Ora</a>
+        </div>
+    </div>
+
+    <section class="relative min-h-[70vh] md:h-[80vh] flex items-center hero-medical overflow-hidden section-padding">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
             <div class="max-w-2xl space-y-8 animate-fade-in">
                 <div class="inline-flex items-center gap-2 bg-blue-50 text-med-blue px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-blue-100">
@@ -101,12 +129,12 @@
                 <h1 class="text-6xl md:text-8xl text-slate-900 leading-[0.9] tracking-tighter uppercase">
                     La tua salute <br> ha bisogno di <span class="text-med-blue italic">Chiarezza.</span>
                 </h1>
-                <p class="text-xl text-slate-500 font-light max-w-lg leading-relaxed border-l-4 border-tech-cyan pl-8">
+                <p class="text-lg md:text-xl text-slate-500 font-light max-w-lg leading-relaxed border-l-4 border-tech-cyan pl-8">
                     Diagnosi accurate in tempi brevi. Un team multidisciplinare e macchinari all'avanguardia per offrirti la massima precisione medica.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#diagnostica" class="bg-med-blue text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Area Diagnostica</a>
-                    <a href="#analisi" class="bg-white border-2 border-slate-200 text-slate-900 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all">Laboratorio Analisi</a>
+                    <a href="#diagnostica" class="bg-med-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Area Diagnostica</a>
+                    <a href="#analisi" class="bg-white border-2 border-slate-200 text-slate-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all">Laboratorio Analisi</a>
                 </div>
             </div>
         </div>
@@ -114,12 +142,12 @@
 
     <section id="diagnostica" class="py-24 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 space-y-4">
-                <h2 class="text-5xl text-slate-900 uppercase">Imaging <span class="text-tech-cyan italic">Avanzato</span></h2>
+            <div class="text-center mb-16 md:mb-20 space-y-4">
+                <h2 class="text-4xl md:text-5xl text-slate-900 uppercase">Imaging <span class="text-tech-cyan italic">Avanzato</span></h2>
                 <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Precisione millimetrica per la tua diagnosi</p>
             </div>
             
-            <div class="grid md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 <div class="p-8 diag-card text-center space-y-4">
                     <i data-lucide="scan" class="w-10 h-10 mx-auto text-med-blue"></i>
                     <h4 class="font-bold text-sm uppercase">Risonanza Magnetica</h4>
@@ -145,17 +173,17 @@
     </section>
 
     <section id="specialisti" class="py-24 bg-slate-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="relative order-2 lg:order-1">
-                <img src="assets/img2.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[500px]" alt="Medico Specialist">
-                <div class="absolute -bottom-8 -right-8 bg-med-blue text-white p-12 rounded-[3rem] shadow-2xl">
-                    <p class="text-4xl font-black italic">40+</p>
+                <img src="assets/img2.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover h-[400px] md:h-[500px]" alt="Medico Specialist">
+                <div class="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 bg-med-blue text-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl">
+                    <p class="text-3xl md:text-4xl font-black italic">40+</p>
                     <p class="text-[9px] uppercase tracking-widest mt-1 font-bold">Medici Specialisti</p>
                 </div>
             </div>
             <div class="order-1 lg:order-2 space-y-10">
-                <h2 class="text-6xl text-slate-900 leading-none uppercase italic">Medicina <br><span class="text-tech-cyan">D'eccellenza.</span></h2>
-                <div class="grid grid-cols-2 gap-8 pt-4">
+                <h2 class="text-5xl md:text-6xl text-slate-900 leading-none uppercase italic">Medicina <br><span class="text-tech-cyan">D'eccellenza.</span></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
                     <div class="space-y-2 border-l-2 border-tech-cyan pl-6">
                         <h4 class="font-bold text-med-blue">Cardiologia</h4>
                         <p class="text-xs text-slate-500 italic">Visite ed esami strumentali completi.</p>
@@ -179,45 +207,45 @@
 
     <section id="analisi" class="py-24 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="bg-slate-900 text-white p-12 md:p-24 rounded-[4rem] flex flex-col md:flex-row items-center gap-16 overflow-hidden relative">
+            <div class="bg-slate-900 text-white p-10 md:p-24 rounded-[3rem] md:rounded-[4rem] flex flex-col md:flex-row items-center gap-12 md:gap-16 overflow-hidden relative">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-tech-cyan/10 blur-[100px] rounded-full"></div>
-                <div class="md:w-1/2 space-y-8 relative z-10">
-                    <h2 class="text-5xl italic uppercase leading-tight">Check-up <br> <span class="text-tech-cyan">Preventivo.</span></h2>
-                    <p class="text-slate-400 text-lg font-light italic">Laboratorio interno per esami del sangue, microbiologia e genetica. Accesso diretto senza prenotazione per i prelievi standard ogni mattina dalle 07:30.</p>
-                    <div class="flex items-center gap-4 text-tech-cyan">
+                <div class="w-full md:w-1/2 space-y-8 relative z-10 text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl italic uppercase leading-tight">Check-up <br> <span class="text-tech-cyan">Preventivo.</span></h2>
+                    <p class="text-slate-400 text-base md:text-lg font-light italic">Laboratorio interno per esami del sangue, microbiologia e genetica. Accesso diretto senza prenotazione per i prelievi standard ogni mattina dalle 07:30.</p>
+                    <div class="flex items-center justify-center md:justify-start gap-4 text-tech-cyan">
                         <i data-lucide="clock"></i>
                         <span class="text-xs font-bold uppercase tracking-widest">Referti pronti in 24/48 ore</span>
                     </div>
                 </div>
-                <div class="md:w-1/2 grid grid-cols-2 gap-4">
-                    <div class="p-8 bg-white/5 border border-white/10 text-center rounded-2xl"><i data-lucide="test-tube" class="mx-auto mb-4 text-tech-cyan"></i><p class="text-[9px] uppercase font-bold tracking-widest">Punto Prelievi</p></div>
-                    <div class="p-8 bg-white/5 border border-white/10 text-center rounded-2xl"><i data-lucide="microscope" class="mx-auto mb-4 text-tech-cyan"></i><p class="text-[9px] uppercase font-bold tracking-widest">Citoistologia</p></div>
+                <div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
+                    <div class="p-6 md:p-8 bg-white/5 border border-white/10 text-center rounded-2xl"><i data-lucide="test-tube" class="mx-auto mb-4 text-tech-cyan"></i><p class="text-[9px] uppercase font-bold tracking-widest">Punto Prelievi</p></div>
+                    <div class="p-6 md:p-8 bg-white/5 border border-white/10 text-center rounded-2xl"><i data-lucide="microscope" class="mx-auto mb-4 text-tech-cyan"></i><p class="text-[9px] uppercase font-bold tracking-widest">Citoistologia</p></div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="filosofia" class="py-24 bg-slate-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="space-y-10">
-                <h2 class="text-6xl text-slate-900 leading-none uppercase italic">Evoluzione <br><span class="text-tech-cyan">Costante.</span></h2>
-                <p class="text-slate-500 text-lg font-light leading-relaxed border-l-4 border-tech-cyan pl-8">
+                <h2 class="text-5xl md:text-6xl text-slate-900 leading-none uppercase italic">Evoluzione <br><span class="text-tech-cyan">Costante.</span></h2>
+                <p class="text-slate-500 text-base md:text-lg font-light leading-relaxed border-l-4 border-tech-cyan pl-8">
                     La nostra missione è coniugare l'umanità del rapporto medico-paziente con la fredda precisione della tecnologia. Ricerchiamo costantemente protocolli diagnostici che riducano l'invasività migliorando l'accuratezza clinica.
                 </p>
-                <div class="relative h-[300px] overflow-hidden rounded-[2rem]">
+                <div class="relative h-[250px] md:h-[300px] overflow-hidden rounded-[2rem]">
                     <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Medical Technology">
                 </div>
             </div>
             <div class="relative">
-                <img src="assets/img4.jpg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[500px]" alt="Patient Care">
+                <img src="assets/img4.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover h-[400px] md:h-[500px]" alt="Patient Care">
             </div>
         </div>
     </section>
 
     <section id="servizi" class="py-24 bg-white section-padding">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-4xl uppercase tracking-tighter">I Vantaggi del <span class="text-med-blue">Network MedPoint</span></h2>
-            <div class="grid md:grid-cols-3 gap-12 pt-8">
+            <h2 class="text-3xl md:text-4xl uppercase tracking-tighter">I Vantaggi del <span class="text-med-blue">Network MedPoint</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pt-8">
                 <div class="space-y-4">
                     <i data-lucide="shield-check" class="w-10 h-10 mx-auto text-tech-cyan"></i>
                     <h4 class="font-bold uppercase text-[10px] tracking-widest">Convenzioni Dirette</h4>
@@ -237,36 +265,36 @@
         </div>
     </section>
 
-    <section id="prenota" class="py-32 bg-slate-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+    <section id="prenota" class="py-24 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
-                <h2 class="text-7xl text-slate-900 leading-none tracking-tighter uppercase italic">Scegli la <br><span class="text-med-blue underline underline-offset-8 decoration-tech-cyan">Prevenzione.</span></h2>
+                <h2 class="text-5xl md:text-7xl text-slate-900 leading-none tracking-tighter uppercase italic">Scegli la <br><span class="text-med-blue underline underline-offset-8 decoration-tech-cyan">Prevenzione.</span></h2>
                 <div class="space-y-10">
                     <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-blue-50 text-med-blue rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">La nostra sede</p><p class="text-2xl font-bold tracking-tight">Via Roma 100, 20100 Milano</p></div>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-blue-50 text-med-blue rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">La nostra sede</p><p class="text-xl md:text-2xl font-bold tracking-tight">Via Roma 100, 20100 Milano</p></div>
                     </div>
                     <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Cup Centrale</p><p class="text-2xl font-bold tracking-tight">02 987 654 32</p></div>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-sm"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Cup Centrale</p><p class="text-xl md:text-2xl font-bold tracking-tight">02 987 654 32</p></div>
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-12 rounded-[3rem] shadow-2xl space-y-6">
+            <form class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl space-y-6">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-med-blue mb-4 text-center italic">Prenota online: verrai ricontattato in meno di un'ora (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-slate-50 rounded-3xl outline-none transition text-xs font-bold uppercase">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-slate-50 rounded-3xl outline-none transition text-xs font-bold uppercase">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase">
                 </div>
-                <select class="w-full p-5 bg-slate-50 rounded-3xl outline-none transition text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                <select class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl md:rounded-3xl outline-none transition text-[10px] font-bold uppercase text-slate-400 tracking-widest">
                     <option>TIPOLOGIA DI ESAME / VISITA</option>
                     <option>DIAGNOSTICA PER IMMAGINI (TAC/RMN)</option>
                     <option>VISITA SPECIALISTICA</option>
                     <option>ESAMI DEL SANGUE</option>
                     <option>CHECK-UP AZIENDALE</option>
                 </select>
-                <textarea placeholder="INSERISCI L'ESAME INDICATO NELLA RICETTA O IL MOTIVO DELLA VISITA..." rows="3" class="w-full p-5 bg-slate-50 rounded-3xl outline-none transition text-xs font-bold uppercase"></textarea>
-                <button class="w-full bg-med-blue text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl shadow-blue-100">Richiedi Prenotazione</button>
+                <textarea placeholder="INSERISCI L'ESAME INDICATO NELLA RICETTA O IL MOTIVO DELLA VISITA..." rows="3" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase"></textarea>
+                <button class="w-full bg-med-blue text-white py-5 md:py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl shadow-blue-100">Richiedi Prenotazione</button>
             </form>
         </div>
     </section>
@@ -284,6 +312,23 @@
     <script>
         // Inizializzazione icone Lucide
         lucide.createIcons();
+
+        // Menu Mobile Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
     </script>
 </body>
 </html>

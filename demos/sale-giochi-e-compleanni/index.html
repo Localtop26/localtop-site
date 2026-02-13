@@ -2,20 +2,19 @@
 <html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MagicLand | Sale per Feste, Compleanni & Eventi Bimbi - Demo Mode</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Quicksand', sans-serif; background-color: #ffffff; color: #4b5563; overflow-x: hidden; width: 100%; }
+        body { font-family: 'Quicksand', sans-serif; background-color: #ffffff; color: #4b5563; overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
         h1, h2, h3, .font-kids { font-family: 'Fredoka', sans-serif; }
         .text-magic-blue { color: #00d2ff; }
         .bg-magic-blue { background-color: #00d2ff; }
         .text-magic-pink { color: #ff69b4; }
         .bg-magic-pink { background-color: #ff69b4; }
         
-        /* 1. Sostituzione URL Immagini con percorsi locali assets/ */
         .hero-kids { 
             background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.2)), 
             url('assets/img1.jpg'); 
@@ -25,55 +24,70 @@
         .bubble-card { border-radius: 40px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .blob { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo {
+        /* Blocco Interazioni (Demo Mode) tranne menu */
+        input, select, textarea, .wa-widget-demo, #prenota-btn-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(2.8rem, 12vw, 4rem) !important; line-height: 1 !important; }
-            h2 { font-size: clamp(2.2rem, 9vw, 3.5rem) !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .mobile-nav-fix { padding-left: 1rem; padding-right: 1rem; }
+        /* Immagini sempre a colori */
+        img { filter: none !important; transition: none !important; }
+        img:hover { filter: none !important; }
+
+        /* Mobile Nav Logic */
+        #mobile-menu {
+            display: none;
+        }
+        #mobile-menu.active {
+            display: flex;
         }
 
-        /* 2. Bottoni Floating (Bottom-Left) */
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3rem) !important; }
+            .section-padding { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+            
+            /* Bottoni Localtop più piccoli su mobile */
+            .localtop-btn {
+                padding: 0.6rem 1rem !important;
+                font-size: 8px !important;
+            }
+        }
+
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1.5rem;
+            left: 1rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
-        /* Immagini sempre a colori - Rimosso Grayscale */
-        img { filter: none !important; }
+        /* Testo Hero Sfumato Bianco */
+        .hero-subtitle {
+            background: linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="selection:bg-yellow-200 selection:text-slate-900">
 
-    <div id="promo-bar" class="bg-yellow-400 text-slate-900 py-2 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[120]">
-        🎈 PROMO SPRING 2026: Prenota il tuo compleanno infrasettimanale e l'animazione è in regalo! 🎈
-    </div>
-
-    <nav class="sticky top-[40px] z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm mx-2 md:mx-10 rounded-full mt-4">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm px-4 md:px-10">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
             <div class="flex items-center gap-2 shrink-0">
-                <div class="w-10 h-10 md:w-12 md:h-12 bg-magic-blue rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                    <i data-lucide="party-popper" class="text-white w-5 h-5 md:w-7 md:h-7"></i>
+                <div class="w-10 h-10 bg-magic-blue rounded-full flex items-center justify-center shadow-lg">
+                    <i data-lucide="party-popper" class="text-white w-5 h-5"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-xl md:text-3xl font-kids font-bold text-slate-800 tracking-tight">MAGIC<span class="text-magic-pink">LAND</span></span>
-                    <span class="hidden md:block text-[8px] font-bold uppercase tracking-[0.4em] text-slate-400">Party & Fun Center</span>
+                    <span class="text-xl md:text-2xl font-kids font-bold text-slate-800 tracking-tight">MAGIC<span class="text-magic-pink">LAND</span></span>
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
                 <a href="#sale" class="hover:text-magic-blue transition">Le Sale</a>
                 <a href="#compleanni" class="hover:text-magic-blue transition">Compleanni</a>
                 <a href="#filosofia" class="hover:text-magic-blue transition">Filosofia</a>
@@ -81,39 +95,57 @@
                 <a href="#sicurezza" class="hover:text-magic-blue transition">Sicurezza</a>
             </div>
 
-            <a href="#prenota" class="bg-magic-pink text-white px-4 py-2 md:px-8 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-magic-blue transition-all shadow-lg shrink-0">
-                Prenota
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#contatti" class="hidden sm:block bg-magic-pink text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-magic-blue transition-all">
+                    Prenota
+                </a>
+                <button onclick="toggleMenu()" class="lg:hidden text-slate-800 p-2">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative min-h-[85vh] flex items-center hero-kids overflow-hidden section-padding">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[90] flex-col items-center justify-center gap-8 text-center pt-20">
+        <a href="#sale" onclick="toggleMenu()" class="text-2xl font-kids text-slate-800 uppercase">Le Sale</a>
+        <a href="#compleanni" onclick="toggleMenu()" class="text-2xl font-kids text-slate-800 uppercase">Compleanni</a>
+        <a href="#filosofia" onclick="toggleMenu()" class="text-2xl font-kids text-slate-800 uppercase">Filosofia</a>
+        <a href="#servizi" onclick="toggleMenu()" class="text-2xl font-kids text-slate-800 uppercase">Servizi</a>
+        <a href="#sicurezza" onclick="toggleMenu()" class="text-2xl font-kids text-slate-800 uppercase">Sicurezza</a>
+        <a href="#contatti" onclick="toggleMenu()" class="bg-magic-pink text-white px-10 py-4 rounded-full font-bold uppercase text-xs">Prenota Ora</a>
+    </div>
+
+    <section class="relative min-h-[80vh] flex items-center hero-kids overflow-hidden section-padding">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
-            <div class="max-w-4xl space-y-6 md:space-y-8 animate-fade-in">
+            <div class="max-w-4xl space-y-6 md:space-y-8">
                 <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-magic-blue shadow-sm">
                     Dove ogni desiderio diventa realtà
                 </div>
                 <h1 class="text-slate-800 leading-[0.9] tracking-tight italic uppercase text-5xl md:text-[8rem]">
                     Feste <br> da <span class="text-magic-blue italic">Favola.</span>
-                               <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+                </h1>
+                <p class="hero-subtitle text-lg md:text-2xl max-w-2xl">
+                    La tua immagine passa per il pulito. Offriamo soluzioni professionali per aziende, condomini e privati con prodotti eco-compatibili di alta gamma.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
                     <a href="#sale" class="bg-magic-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl transition-all">Scegli la tua Sala</a>
-                    <a href="#prenota" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all italic">Chiedi un Preventivo</a>
+                    <a href="#contatti" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest italic">Contattaci</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="sale" class="py-16 md:py-24 bg-white section-padding">
+    <section id="sale" class="py-12 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 md:mb-20 space-y-4">
+            <div class="text-center mb-12 md:mb-20 space-y-4">
                 <h2 class="text-4xl md:text-5xl font-kids text-slate-900 uppercase italic">Spazi per <span class="text-magic-pink">Sognare.</span></h2>
                 <p class="text-slate-400 font-bold tracking-widest uppercase text-[10px] md:text-xs">Climatizzate, Sanificate e Super Colorate</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 md:gap-10">
-                <div class="bubble-card bg-blue-50 p-4 border-2 border-blue-100 group">
+                <div class="bubble-card bg-blue-50 p-4 border-2 border-blue-100">
                     <div class="h-64 rounded-[30px] overflow-hidden mb-8">
-                        <img src="assets/img2.jpg" class="w-full h-full object-cover transition duration-700">
+                        <img src="assets/img2.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="px-4 pb-4">
                         <h4 class="text-2xl font-kids text-slate-800 mb-2 uppercase">Sala Jungle</h4>
@@ -121,9 +153,9 @@
                         <span class="text-xs font-bold uppercase text-magic-blue tracking-widest">Fino a 30 Bambini</span>
                     </div>
                 </div>
-                <div class="bubble-card bg-pink-50 p-4 border-2 border-pink-100 group md:translate-y-12">
+                <div class="bubble-card bg-pink-50 p-4 border-2 border-pink-100 md:translate-y-12">
                     <div class="h-64 rounded-[30px] overflow-hidden mb-8">
-                        <img src="assets/img3.jpg" class="w-full h-full object-cover transition duration-700">
+                        <img src="assets/img3.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="px-4 pb-4">
                         <h4 class="text-2xl font-kids text-slate-800 mb-2 uppercase">Sala Castle</h4>
@@ -131,9 +163,9 @@
                         <span class="text-xs font-bold uppercase text-magic-pink tracking-widest">Fino a 40 Bambini</span>
                     </div>
                 </div>
-                <div class="bubble-card bg-yellow-50 p-4 border-2 border-yellow-100 group">
+                <div class="bubble-card bg-yellow-50 p-4 border-2 border-yellow-100">
                     <div class="h-64 rounded-[30px] overflow-hidden mb-8">
-                        <img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-700">
+                        <img src="assets/img4.jpg" class="w-full h-full object-cover">
                     </div>
                     <div class="px-4 pb-4">
                         <h4 class="text-2xl font-kids text-slate-800 mb-2 uppercase">Sala Disco</h4>
@@ -145,12 +177,12 @@
         </div>
     </section>
 
-    <section id="compleanni" class="py-16 md:py-24 bg-slate-50 relative overflow-hidden section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center relative z-10">
-            <div class="space-y-8 md:space-y-10">
+    <section id="compleanni" class="py-12 md:py-24 bg-slate-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center relative z-10">
+            <div class="space-y-8">
                 <h2 class="text-5xl md:text-6xl font-kids text-slate-900 leading-none uppercase italic">Feste <br><span class="text-magic-blue">Zero Pensieri.</span></h2>
-                <p class="text-slate-500 text-lg font-medium leading-relaxed italic border-l-4 border-yellow-400 pl-6 md:pl-8">
-                    Tu porta il festeggiato, al resto pensiamo noi! Dalla torta personalizzata all'invito digitale, organizziamo ogni dettaglio per regalare un sorriso indimenticabile.
+                <p class="text-slate-500 text-lg font-medium leading-relaxed italic border-l-4 border-yellow-400 pl-6">
+                    Tu porta il festeggiato, al resto pensiamo noi! Dalla torta personalizzata all'invito digitale, organizziamo ogni dettaglio.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 italic">
                     <div class="flex items-center gap-3"><i data-lucide="cake" class="text-magic-pink"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Catering & Torta</span></div>
@@ -158,22 +190,22 @@
                     <div class="flex items-center gap-3"><i data-lucide="sparkles" class="text-magic-pink"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Allestimenti Tematici</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="camera" class="text-magic-pink"></i> <span class="text-[10px] font-bold uppercase tracking-widest">Servizio Foto/Video</span></div>
                 </div>
-                <button class="bg-slate-900 text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-magic-pink transition-all">Scopri i Pacchetti</button>
+                <button class="bg-slate-900 text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest">Scopri i Pacchetti</button>
             </div>
-            <div class="relative group">
-                <div class="blob bg-magic-blue/20 absolute -inset-6 md:-inset-10 -z-10 animate-pulse"></div>
-                <img src="assets/img5.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl transition duration-1000 w-full" alt="Kids Party">
+            <div class="relative">
+                <div class="blob bg-magic-blue/20 absolute -inset-6 -z-10 animate-pulse"></div>
+                <img src="assets/img5.jpg" class="rounded-[3rem] shadow-2xl w-full" alt="Kids Party">
             </div>
         </div>
     </section>
 
-    <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+    <section id="filosofia" class="py-12 md:py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
             <h2 class="text-4xl md:text-5xl font-kids text-slate-800 uppercase italic">Creatività <span class="text-magic-pink italic">&</span> Gioia.</h2>
             <p class="text-slate-500 text-lg md:text-xl font-medium leading-relaxed italic">
-                "La nostra filosofia si fonda sull'incanto. Crediamo che onorare la fantasia di ogni bambino sia il modo più nobile per supportare la sua crescita, agendo sempre con integrità artigianale per proteggere il divertimento e la sicurezza di tutti i nostri piccoli ospiti."
+                "La nostra filosofia si fonda sull'incanto. Crediamo che onorare la fantasia di ogni bambino sia il modo più nobile per supportare la sua crescita."
             </p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-8">
+            <div class="flex flex-wrap justify-center gap-8 pt-8">
                 <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-magic-blue w-8 h-8"></i><p class="text-[9px] font-bold uppercase tracking-widest italic">Qualità Master</p></div>
                 <div class="text-center"><i data-lucide="shield-check" class="mx-auto mb-4 text-magic-blue w-8 h-8"></i><p class="text-[9px] font-bold uppercase tracking-widest italic">Sicurezza Totale</p></div>
                 <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-magic-blue w-8 h-8"></i><p class="text-[9px] font-bold uppercase tracking-widest italic">Cura Artigiana</p></div>
@@ -181,8 +213,8 @@
         </div>
     </section>
 
-    <section id="servizi" class="py-16 md:py-24 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 text-center space-y-16">
+    <section id="servizi" class="py-12 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-12 md:space-y-16">
             <h2 class="text-4xl md:text-5xl font-kids text-slate-900 uppercase italic">Il Tocco <span class="text-magic-blue">Magico.</span></h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 italic">
                 <div class="space-y-4">
@@ -205,11 +237,11 @@
         </div>
     </section>
 
-    <section id="sicurezza" class="py-16 md:py-24 bg-magic-blue text-white rounded-[2rem] md:rounded-[4rem] mx-4 md:mx-10 overflow-hidden relative section-padding">
-        <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+    <section id="sicurezza" class="py-12 md:py-24 bg-magic-blue text-white rounded-[2rem] md:rounded-[4rem] mx-4 md:mx-10 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8">
                 <h2 class="text-5xl md:text-6xl font-kids leading-none italic uppercase">Sicuri <br><span class="text-slate-900">al 100%.</span></h2>
-                <p class="text-white/90 text-lg md:text-xl font-medium italic">La tranquillità dei genitori è la nostra priorità. Ambienti protetti con pavimentazione anti-trauma, staff formato per il primo soccorso pediatrico e sanificazione certificata dopo ogni festa.</p>
+                <p class="text-white/90 text-lg md:text-xl font-medium italic">Ambienti protetti con pavimentazione anti-trauma, staff formato per il primo soccorso pediatrico e sanificazione certificata.</p>
                 <div class="flex flex-wrap gap-6 italic font-bold">
                     <div class="flex items-center gap-2"><i data-lucide="shield-check"></i> <span class="text-[10px] md:text-xs uppercase">VideoSorvegliata</span></div>
                     <div class="flex items-center gap-2"><i data-lucide="heart"></i> <span class="text-[10px] md:text-xs uppercase">Staff Qualificato</span></div>
@@ -217,60 +249,58 @@
             </div>
             <div class="bg-white/20 p-6 md:p-8 rounded-3xl backdrop-blur-md border border-white/30 italic">
                 <h4 class="text-2xl font-kids mb-4 uppercase">Area Genitori</h4>
-                <p class="text-sm font-medium mb-6">Mentre i bimbi giocano, rilassati nel nostro bar interno con vista sulle sale. Wi-Fi gratuito e caffè d'autore per un'attesa piacevole.</p>
+                <p class="text-sm font-medium mb-6">Mentre i bimbi giocano, rilassati nel nostro bar interno. Wi-Fi gratuito e caffè d'autore.</p>
                 <i data-lucide="coffee" class="w-10 h-10 opacity-50"></i>
             </div>
         </div>
     </section>
 
-    <section id="prenota" class="py-20 md:py-32 bg-[#fffcf9] section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
+    <section id="contatti" class="py-12 md:py-32 bg-[#fffcf9]">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-12 text-center lg:text-left">
-                <h2 class="text-6xl md:text-8xl lg:text-9xl font-kids text-slate-900 leading-none tracking-tighter uppercase italic">Fai <br><span class="text-magic-pink">Festa!</span></h2>
-                <div class="space-y-8">
-                    <div class="flex flex-col md:flex-row items-center justify-center lg:justify-start gap-4 md:gap-6">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-magic-blue text-white rounded-full flex items-center justify-center shadow-lg rotate-12"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Il nostro regno</p><p class="text-xl md:text-2xl font-kids text-slate-800 italic">Via del Divertimento 10, Milano</p></div>
+                <h2 class="text-6xl md:text-8xl lg:text-9xl font-kids text-slate-900 leading-none tracking-tighter uppercase italic">Vieni a <br><span class="text-magic-pink">Trovarci!</span></h2>
+                <p class="text-slate-500 italic font-medium">Siamo pronti a rendere magico il tuo prossimo evento. Contattaci per qualsiasi informazione.</p>
+            </div>
+            
+            <div class="flex flex-col gap-6">
+                <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-xl border border-slate-100 flex items-center gap-6">
+                    <div class="w-12 h-12 bg-magic-blue text-white rounded-full flex items-center justify-center shrink-0"><i data-lucide="map-pin"></i></div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 italic">Indirizzo</p>
+                        <p class="text-lg md:text-xl font-kids text-slate-800 italic">Via del Divertimento 10, Milano</p>
                     </div>
-                    <div class="flex flex-col md:flex-row items-center justify-center lg:justify-start gap-4 md:gap-6 text-slate-400">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-yellow-400 text-slate-900 rounded-full flex items-center justify-center shadow-lg -rotate-12"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Chiama la Fata</p><p class="text-xl md:text-2xl font-kids text-slate-800 italic">02 123 456 78</p></div>
+                </div>
+
+                <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-xl border border-slate-100 flex items-center gap-6">
+                    <div class="w-12 h-12 bg-yellow-400 text-slate-900 rounded-full flex items-center justify-center shrink-0"><i data-lucide="phone"></i></div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 italic">Telefono</p>
+                        <p class="text-lg md:text-xl font-kids text-slate-800 italic">02 123 456 78</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-xl border border-slate-100 flex items-center gap-6">
+                    <div class="w-12 h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center shrink-0"><i data-lucide="message-circle"></i></div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 italic">WhatsApp</p>
+                        <p class="text-lg md:text-xl font-kids text-slate-800 italic">Scrivici un messaggio</p>
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-8 md:p-12 rounded-[3rem] md:rounded-[4rem] shadow-2xl border border-slate-100 space-y-6 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-magic-pink text-white px-4 py-1 text-[8px] font-black uppercase tracking-widest italic">Demo Mode</div>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-magic-blue mb-4 text-center italic">Prenota una visita alle sale o chiedi un preventivo rapido</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="NOME GENITORE" class="w-full p-4 bg-slate-50 rounded-2xl md:rounded-3xl border-none outline-none focus:ring-2 focus:ring-magic-pink transition text-[11px] font-bold uppercase italic">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-slate-50 rounded-2xl md:rounded-3xl border-none outline-none focus:ring-2 focus:ring-magic-pink transition text-[11px] font-bold uppercase italic">
-                </div>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="date" class="w-full p-4 bg-slate-50 rounded-2xl md:rounded-3xl border-none outline-none focus:ring-2 focus:ring-magic-pink transition text-[11px] font-bold uppercase text-slate-400 italic">
-                    <select class="w-full p-4 bg-slate-50 rounded-2xl md:rounded-3xl border-none outline-none focus:ring-2 focus:ring-magic-pink transition text-[10px] font-bold uppercase text-slate-400 tracking-widest italic">
-                        <option>SALA DESIDERATA</option>
-                        <option>SALA JUNGLE</option>
-                        <option>SALA CASTLE</option>
-                        <option>SALA DISCO</option>
-                    </select>
-                </div>
-                <textarea placeholder="DICCI IL NOME E L'ETÀ DEL FESTEGGIATO..." rows="3" class="w-full p-4 bg-slate-50 rounded-2xl md:rounded-3xl border-none outline-none focus:ring-2 focus:ring-magic-pink transition text-[11px] font-bold uppercase italic"></textarea>
-                <button class="w-full bg-magic-pink text-white py-5 md:py-6 rounded-full font-black uppercase text-[10px] md:text-[11px] tracking-[0.3em] hover:bg-magic-blue transition-all shadow-xl shadow-pink-100">Invia Richiesta Magica</button>
-            </form>
         </div>
     </section>
 
     <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
-        <p class="text-slate-300 text-[8px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.5em] font-bold italic">
-            &copy; 2026 MagicLand Party Center | P.IVA 0123456789 | LocalTop Demo Mode | Happiness is serious business
+        <p class="text-slate-300 text-[8px] md:text-[9px] uppercase tracking-[0.3em] font-bold italic">
+            &copy; 2026 MagicLand Party Center | P.IVA 0123456789 | LocalTop Demo Mode
         </p>
     </footer>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 md:px-6 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-3 h-3 md:w-4 md:h-4 text-white"></i> INIZIA ORA
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 md:px-6 md:py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
+            <i data-lucide="zap" class="w-3 h-3 md:w-4 md:h-4"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 md:px-6 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 md:px-6 md:py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
             <i data-lucide="arrow-left" class="w-3 h-3 md:w-4 md:h-4"></i> Torna agli Esempi
         </a>
     </div>
@@ -281,6 +311,19 @@
 
     <script>
         lucide.createIcons();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('active');
+            
+            if(menu.classList.contains('active')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>

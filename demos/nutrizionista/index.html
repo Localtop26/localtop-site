@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth overflow-x-hidden">
+<html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,6 +15,9 @@
         .text-glow-orange { color: #f3a683; }
         .bg-glow-orange { background-color: #f3a683; }
         
+        /* Immagini sempre a colori, rimosso grayscale */
+        img { filter: none !important; grayscale: 0 !important; }
+        
         .hero-nutrition { 
             background: linear-gradient(to right, rgba(253,253,251,0.95) 25%, rgba(253,253,251,0.3) 100%), 
             url('assets/img1.jpg'); 
@@ -25,59 +28,70 @@
         .balance-card { transition: all 0.4s ease; border-radius: 2.5rem; background: #ffffff; border: 1px solid #f1f2f6; }
         .balance-card:hover { transform: translateY(-10px); border-color: #2d6a4f; box-shadow: 0 20px 40px rgba(45, 106, 79, 0.08); }
 
-        button, input, select, textarea, .wa-widget-demo {
+        /* Disabilita interazioni tranne menu */
+        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
         @media (max-width: 768px) {
-            h1 { font-size: clamp(3rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; }
+            h2 { font-size: clamp(2.2rem, 8vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             
             .hero-nutrition { 
                 background: linear-gradient(to bottom, rgba(253,253,251,0.9) 35%, rgba(253,253,251,0.6) 100%), 
                 url('assets/img1.jpg'); 
                 background-position: 75% center !important; 
             }
+
+            .localtop-btn {
+                padding: 0.75rem 1rem !important;
+                font-size: 8px !important;
+            }
         }
 
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1.5rem;
+            left: 1rem;
             z-index: 150;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
     </style>
 </head>
 <body class="selection:bg-vital-green selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
             <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
+        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
         </a>
     </div>
 
-    <div class="bg-vital-green text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.2em] px-4 sticky top-0 z-[120]">
-        🥕 Inizia il tuo viaggio verso la salute: Prima consulenza disponibile in 7 giorni 🥕
-    </div>
-
-    <nav class="sticky top-10 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-2 md:mx-10 rounded-2xl">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-4">
+    <nav class="sticky top-4 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-2 md:mx-10 rounded-2xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
             <div class="flex items-center gap-2 shrink-0">
                 <div class="w-10 h-10 bg-vital-green rounded-2xl flex items-center justify-center rotate-6 shadow-md">
                     <i data-lucide="sprout" class="text-white w-6 h-6"></i>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-heading font-bold text-slate-800 tracking-tight">Elena<span class="text-vital-green">Riva</span></span>
-                    <span class="text-[8px] font-bold uppercase tracking-[0.3em] text-slate-400">Biologa Nutrizionista</span>
+                    <span class="text-xl md:text-2xl font-heading font-bold text-slate-800 tracking-tight">Elena<span class="text-vital-green">Riva</span></span>
+                    <span class="text-[7px] md:text-[8px] font-bold uppercase tracking-[0.2em] text-slate-400">Biologa Nutrizionista</span>
                 </div>
             </div>
             
@@ -88,15 +102,31 @@
                 <a href="#bio" class="hover:text-vital-green transition">Chi sono</a>
             </div>
 
-            <a href="#contatti" class="bg-glow-orange text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-vital-green transition-all shadow-md shrink-0">
-                Prenota Visita
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="#contatti" class="hidden sm:block bg-glow-orange text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-vital-green transition-all shadow-md">
+                    Prenota
+                </a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-slate-800">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[200] lg:hidden flex flex-col items-center justify-center space-y-8">
+        <button id="menu-close" class="absolute top-8 right-8 p-2">
+            <i data-lucide="x" class="w-8 h-8 text-slate-800"></i>
+        </button>
+        <a href="#metodo" class="mobile-link text-2xl font-heading uppercase italic text-slate-800">Metodo</a>
+        <a href="#servizi" class="mobile-link text-2xl font-heading uppercase italic text-slate-800">Percorsi</a>
+        <a href="#filosofia" class="mobile-link text-2xl font-heading uppercase italic text-slate-800">Filosofia</a>
+        <a href="#bio" class="mobile-link text-2xl font-heading uppercase italic text-slate-800">Chi sono</a>
+        <a href="#contatti" class="mobile-link bg-vital-green text-white px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest">Contatti</a>
+    </div>
+
     <section class="relative min-h-[85vh] flex items-center hero-nutrition overflow-hidden section-padding">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <div class="max-w-3xl space-y-8 animate-fade-in text-center md:text-left">
+            <div class="max-w-3xl space-y-8 text-center md:text-left">
                 <div class="inline-flex items-center gap-2 bg-emerald-50 text-vital-green px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-emerald-100">
                     Scienza dell'alimentazione e Medicina Funzionale
                 </div>
@@ -116,7 +146,7 @@
 
     <section id="metodo" class="py-24 bg-white relative section-padding overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <div class="space-y-10">
                     <h2 class="text-5xl font-heading text-slate-800 uppercase italic">Un Approccio <span class="text-glow-orange">Consapevole.</span></h2>
                     <p class="text-slate-500 text-lg leading-relaxed font-light italic">
@@ -134,7 +164,7 @@
                     </div>
                 </div>
                 <div class="relative px-4 md:px-0">
-                    <img src="assets/img2.jpg" class="rounded-[4rem] shadow-2xl w-full" alt="Healthy Food">
+                    <img src="assets/img2.jpg" class="rounded-[3rem] md:rounded-[4rem] shadow-2xl w-full object-cover" alt="Healthy Food">
                 </div>
             </div>
         </div>
@@ -142,23 +172,23 @@
 
     <section id="servizi" class="py-24 bg-slate-50 section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 space-y-4">
+            <div class="text-center mb-16 space-y-4">
                 <h2 class="text-5xl font-heading text-slate-800 uppercase tracking-tighter italic">Percorsi su <span class="text-vital-green">Misura</span></h2>
                 <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Obiettivi diversi, stessa professionalità</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-12 balance-card text-center group">
+            <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+                <div class="p-8 lg:p-12 balance-card text-center group">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-vital-green group-hover:bg-vital-green group-hover:text-white transition-all"><i data-lucide="trending-down"></i></div>
                     <h3 class="text-2xl font-heading mb-4 uppercase">Weight Management</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Raggiungi il tuo peso forma senza fame e senza stress, mantenendo i risultati nel tempo.</p>
                 </div>
-                <div class="p-12 balance-card text-center group">
+                <div class="p-8 lg:p-12 balance-card text-center group">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-glow-orange group-hover:bg-glow-orange group-hover:text-white transition-all"><i data-lucide="dumbbell"></i></div>
                     <h3 class="text-2xl font-heading mb-4 uppercase">Nutrizione Sportiva</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Ottimizza la performance e il recupero attraverso una gestione corretta dei nutrienti.</p>
                 </div>
-                <div class="p-12 balance-card text-center group">
+                <div class="p-8 lg:p-12 balance-card text-center group">
                     <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-vital-green group-hover:bg-vital-green group-hover:text-white transition-all"><i data-lucide="baby"></i></div>
                     <h3 class="text-2xl font-heading mb-4 uppercase">Donna & Gravidanza</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Supporto nutrizionale per menopausa, PCOS o per il periodo della dolce attesa.</p>
@@ -182,13 +212,13 @@
     </section>
 
     <section id="bio" class="py-24 bg-slate-50 section-padding overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div class="relative order-2 lg:order-1 px-4 md:px-0">
-                <div class="aspect-[3/4] bg-stone-100 rounded-[5rem] overflow-hidden shadow-2xl">
+                <div class="aspect-[3/4] bg-stone-100 rounded-[3rem] md:rounded-[5rem] overflow-hidden shadow-2xl">
                     <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Dr.ssa Elena Riva">
                 </div>
-                <div class="absolute -top-10 -right-10 bg-vital-green text-white p-12 rounded-full shadow-2xl hidden md:block">
-                    <p class="text-3xl font-heading">PhD</p>
+                <div class="absolute -top-10 -right-5 bg-vital-green text-white p-8 md:p-12 rounded-full shadow-2xl hidden sm:block">
+                    <p class="text-2xl md:text-3xl font-heading">PhD</p>
                     <p class="text-[9px] uppercase font-bold tracking-widest italic">Scienza Nutrizione</p>
                 </div>
             </div>
@@ -204,48 +234,81 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-32 bg-white section-padding overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h2 class="text-7xl font-heading text-slate-900 leading-none tracking-tighter uppercase italic">Mangia <br><span class="text-vital-green underline decoration-glow-orange">Meglio.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-emerald-50 rounded-[2rem] flex items-center justify-center text-vital-green shadow-sm shrink-0"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Lo Studio</p><p class="text-xl font-bold uppercase italic text-slate-800">Corso Sempione 12, Milano</p></div>
+    <section id="contatti" class="py-24 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+            <div class="space-y-10 text-center lg:text-left">
+                <h2 class="text-6xl md:text-7xl font-heading text-slate-900 leading-none tracking-tighter uppercase italic">Mangia <br><span class="text-vital-green underline decoration-glow-orange">Meglio.</span></h2>
+                <p class="text-slate-500 italic max-w-md mx-auto lg:mx-0">Scegli il modo che preferisci per metterti in contatto con lo studio e iniziare il tuo percorso.</p>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-slate-50 p-4 md:p-6 rounded-[2.5rem] flex items-center gap-6 border border-slate-100 shadow-sm">
+                    <div class="w-14 h-14 bg-vital-green text-white rounded-2xl flex items-center justify-center shrink-0">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
                     </div>
-                    <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-slate-900 text-white rounded-[2rem] flex items-center justify-center shadow-lg shrink-0"><i data-lucide="mail"></i></div>
-                        <div><p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1 italic">Scrivimi</p><p class="text-xl font-bold italic text-slate-800">elena.riva@nutrizionista.it</p></div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400">Telefono</p>
+                        <p class="text-lg font-bold text-slate-800 uppercase italic">+39 02 1234567</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 md:p-6 rounded-[2.5rem] flex items-center gap-6 border border-slate-100 shadow-sm">
+                    <div class="w-14 h-14 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shrink-0">
+                        <i data-lucide="message-square" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400">WhatsApp</p>
+                        <p class="text-lg font-bold text-slate-800 uppercase italic">Invia un Messaggio</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 md:p-6 rounded-[2.5rem] flex items-center gap-6 border border-slate-100 shadow-sm">
+                    <div class="w-14 h-14 bg-slate-900 text-white rounded-2xl flex items-center justify-center shrink-0">
+                        <i data-lucide="map-pin" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400">Indirizzo Studio</p>
+                        <p class="text-lg font-bold text-slate-800 uppercase italic">Corso Sempione 12, Milano</p>
                     </div>
                 </div>
             </div>
-            <form class="bg-slate-50 p-12 rounded-[4rem] shadow-2xl border border-emerald-50 space-y-6">
-                <p class="text-[10px] font-bold uppercase tracking-widest text-vital-green mb-4 text-center italic">Modulo in modalità Demo</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest">
-                </div>
-                <select class="w-full p-5 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
-                    <option>DI COSA HAI BISOGNO?</option>
-                </select>
-                <textarea placeholder="OBIETTIVI O PATOLOGIE ACCERTATE..." rows="3" class="w-full p-5 bg-white rounded-3xl outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-vital-green text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
-            </form>
         </div>
     </section>
 
     <footer class="py-12 bg-white border-t border-stone-100 text-center px-6">
-        <p class="text-stone-300 text-[9px] uppercase tracking-[0.6em] font-bold italic leading-relaxed">
+        <p class="text-stone-300 text-[9px] uppercase tracking-[0.4em] md:tracking-[0.6em] font-bold italic leading-relaxed">
             &copy; 2026 Dr.ssa Elena Riva | Nutrizionista Milano | Iscr. Albo AA_12345 | P.IVA 0123456789 | LocalTop Demo Mode
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
+        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>
         lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
     </script>
 </body>
 </html>

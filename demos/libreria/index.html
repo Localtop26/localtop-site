@@ -22,6 +22,8 @@
         .text-mustard { color: #eab308; }
         .bg-mustard { background-color: #eab308; }
         
+        img { filter: none !important; }
+
         .hero-book { 
             background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.4)), 
             url('assets/img1.jpg'); 
@@ -35,23 +37,49 @@
             background-attachment: fixed;
         }
 
-        button, input, select, textarea, .wa-widget-demo {
-            pointer-events: none !important;
-            cursor: default !important;
-            user-select: none;
+        .sticky-nav {
+            top: 0;
+            transition: all 0.3s ease;
         }
 
-        /* Fix per la Sticky Bar che non si incastra sotto il banner */
-        .sticky-nav {
-            top: 45px; /* Offset per farla stare sotto il banner nero */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
         }
 
         @media (max-width: 768px) {
+            .demo-nav-container a {
+                padding: 0.5rem 1rem !important;
+                font-size: 8px !important;
+            }
+            
+            /* Modifica specifica per portare il contenuto in alto su mobile */
+            .hero-section-container {
+                align-items: flex-start !important;
+                padding-top: 4rem !important;
+            }
+
             h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 0.95 !important; }
             h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .reading-section-img { background-attachment: scroll; height: 350px; }
-            .sticky-nav { top: 50px; } /* Leggero aggiustamento per mobile */
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .reading-section-img { background-attachment: scroll; height: 400px; }
+            .max-w-7xl { overflow: hidden; }
+        }
+
+        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
         }
 
         .demo-nav-container {
@@ -77,12 +105,8 @@
         </a>
     </div>
 
-    <div class="bg-ink text-white py-2 text-[10px] font-bold text-center uppercase tracking-[0.3em] px-4 border-b border-white/10 sticky top-0 z-[110] min-h-[40px] flex items-center justify-center">
-        📖 EVENTO: Giovedì ore 18:30 Presentazione Letteraria 📖
-    </div>
-
-    <nav class="sticky sticky-nav z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 h-20 md:h-24 flex items-center mx-2 md:mx-10 rounded-xl md:rounded-2xl shadow-md transition-all">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center gap-2">
+    <nav class="sticky sticky-nav z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 h-20 md:h-24 flex items-center shadow-md transition-all px-4 md:px-10">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-4 shrink">
                 <div class="w-9 h-9 md:w-12 md:h-12 bg-mustard rounded-lg flex items-center justify-center rotate-3 shadow-lg shrink-0">
                     <i data-lucide="book-marked" class="text-ink w-5 h-5 md:w-7 md:h-7"></i>
@@ -101,15 +125,32 @@
                 <a href="#eventi" class="hover:text-mustard transition">Eventi</a>
             </div>
 
-            <a href="#contatti" class="bg-ink text-white px-3 md:px-8 py-2.5 md:py-3.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-mustard hover:text-ink transition-all shadow-md shrink-0">
-                Prenota Testo
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#contatti" class="hidden sm:block bg-ink text-white px-8 py-3.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-mustard hover:text-ink transition-all shadow-md shrink-0">
+                    Prenota Testo
+                </a>
+                <button id="menu-toggle" class="lg:hidden p-2 text-ink">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section class="relative h-[85vh] flex items-center hero-book overflow-hidden">
+    <div id="mobile-menu">
+        <button id="menu-close" class="absolute top-6 right-6 p-2 text-ink">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#lettura" class="text-2xl font-serif italic text-ink mobile-link">Vieni a Leggere</a>
+        <a href="#giochi" class="text-2xl font-serif italic text-ink mobile-link">Board Games</a>
+        <a href="#filosofia" class="text-2xl font-serif italic text-ink mobile-link">Filosofia</a>
+        <a href="#cartoleria" class="text-2xl font-serif italic text-ink mobile-link">Store</a>
+        <a href="#eventi" class="text-2xl font-serif italic text-ink mobile-link">Eventi</a>
+        <a href="#contatti" class="text-2xl font-serif italic text-mustard mobile-link">Contatti</a>
+    </div>
+
+    <section class="relative h-[85vh] flex items-center hero-book overflow-hidden hero-section-container">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <div class="max-w-4xl space-y-6 md:space-y-10 animate-fade-in">
+            <div class="max-w-4xl space-y-6 md:space-y-10">
                 <div class="inline-flex items-center gap-2 bg-mustard/20 text-mustard px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-mustard/30 backdrop-blur-md">
                     Spazio alla tua immaginazione
                 </div>
@@ -156,7 +197,7 @@
             <div class="order-1 lg:order-2 space-y-8 md:space-y-10">
                 <h2 class="text-4xl md:text-6xl font-serif italic leading-tight uppercase">Spegni lo schermo, <br><span class="text-mustard">Mettiti in gioco.</span></h2>
                 <p class="text-slate-400 text-lg font-light leading-relaxed italic border-l-4 border-mustard pl-8">Dai party game veloci per tutta la famiglia ai complessi gestionali per veterani. Abbiamo una selezione curata di titoli per ogni tipo di sfida.</p>
-                <div class="grid grid-cols-2 gap-6 pt-4">
+                <div class="grid grid-cols-2 gap-4 md:gap-6 pt-4">
                     <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><i data-lucide="dice-5" class="text-mustard shrink-0"></i> <span class="text-xs font-bold uppercase tracking-widest">Strategy</span></div>
                     <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><i data-lucide="users-2" class="text-mustard shrink-0"></i> <span class="text-xs font-bold uppercase tracking-widest">Party</span></div>
                 </div>
@@ -185,8 +226,8 @@
     <section id="cartoleria" class="py-32 bg-[#fdfaf6] section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
             <div class="grid grid-cols-2 gap-4 order-2 lg:order-1">
-                <div class="h-48 md:h-64 bg-slate-100 rounded-3xl overflow-hidden shadow-lg"><img src="assets/img8.jpg" class="w-full h-full object-cover grayscale"></div>
-                <div class="h-48 md:h-64 bg-slate-100 rounded-3xl overflow-hidden mt-12 shadow-lg"><img src="assets/img9.jpg" class="w-full h-full object-cover grayscale"></div>
+                <div class="h-48 md:h-64 bg-slate-100 rounded-3xl overflow-hidden shadow-lg"><img src="assets/img8.jpg" class="w-full h-full object-cover"></div>
+                <div class="h-48 md:h-64 bg-slate-100 rounded-3xl overflow-hidden mt-12 shadow-lg"><img src="assets/img9.jpg" class="w-full h-full object-cover"></div>
             </div>
             <div class="space-y-10 order-1 lg:order-2">
                 <h2 class="text-4xl md:text-6xl font-serif italic text-ink uppercase tracking-tighter">Piccoli <span class="text-mustard">Oggetti</span> <br> di Desiderio.</h2>
@@ -221,18 +262,36 @@
                     </div>
                 </div>
             </div>
-            <form class="bg-[#faf9f6] p-8 md:p-12 shadow-2xl border-t-4 border-mustard space-y-6 rounded-2xl">
-                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-6 text-center italic">Richiesta prenotazione titolo (Demo Mode)</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase tracking-widest">
-                    <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase tracking-widest">
+            
+            <div class="flex flex-col gap-4">
+                <div class="bg-[#faf9f6] p-4 md:p-6 rounded-2xl flex items-center gap-6 border-l-4 border-mustard">
+                    <div class="w-12 h-12 bg-ink text-white rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Telefono</p>
+                        <p class="text-lg font-bold text-ink">+39 02 1234567</p>
+                    </div>
                 </div>
-                <select class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
-                    <option>COSA STAI CERCANDO?</option>
-                </select>
-                <textarea placeholder="SCRIVI QUI IL TITOLO O LA TUA RICHIESTA..." rows="3" class="w-full p-4 bg-white border-none rounded-xl outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-ink text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Messaggio</button>
-            </form>
+                <div class="bg-[#faf9f6] p-4 md:p-6 rounded-2xl flex items-center gap-6 border-l-4 border-[#25D366]">
+                    <div class="w-12 h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">WhatsApp</p>
+                        <p class="text-lg font-bold text-ink">Invia un messaggio</p>
+                    </div>
+                </div>
+                <div class="bg-[#faf9f6] p-4 md:p-6 rounded-2xl flex items-center gap-6 border-l-4 border-ink">
+                    <div class="w-12 h-12 bg-ink text-white rounded-full flex items-center justify-center shrink-0">
+                        <i data-lucide="map" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Dove Siamo</p>
+                        <p class="text-lg font-bold text-ink">Apri in Google Maps</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -246,6 +305,24 @@
 
     <script>
         lucide.createIcons();
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        const closeMenu = () => {
+            mobileMenu.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+
+        menuClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
     </script>
 </body>
 </html>

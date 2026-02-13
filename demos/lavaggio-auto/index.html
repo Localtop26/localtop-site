@@ -17,24 +17,32 @@
             color: #f8fafc; 
             overflow-x: hidden; 
             width: 100%;
+            -webkit-font-smoothing: antialiased;
         }
+        
+        /* Rimozione filtri immagini */
+        img { 
+            filter: none !important; 
+            transition: none !important;
+        }
+
         .font-tech { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
         .text-water { color: #00d4ff; text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
 
-        /* 1. HERO LAYOUT FIX */
+        /* HERO LAYOUT */
         .hero-section {
             position: relative;
             width: 100%;
             height: 100vh;
             display: flex;
-            align-items: flex-start; /* Mobile: Testo in alto */
-            padding-top: 140px;      /* Spazio per non coprire la header */
+            align-items: flex-start;
+            padding-top: 120px;
             overflow: hidden;
         }
 
         @media (min-width: 1024px) {
             .hero-section {
-                align-items: center; /* Desktop: Testo centrato */
+                align-items: center;
                 padding-top: 0;
             }
         }
@@ -44,7 +52,7 @@
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            object-position: 50% 80%; /* Mobile: Focus sull'auto in basso */
+            object-position: 50% 80%;
         }
 
         @media (min-width: 1024px) {
@@ -53,7 +61,6 @@
 
         .hero-overlay {
             position: absolute; inset: 0;
-            /* Gradiente per leggere il testo su mobile */
             background: linear-gradient(to bottom, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.3) 40%, rgba(5,5,5,0.9) 100%);
             z-index: 2;
         }
@@ -64,9 +71,7 @@
             }
         }
 
-        /* 2. TITOLO MATEMATICO (Il Fix Definitivo) */
         .hero-title {
-            /* Mobile: 13% della larghezza schermo. IMPOSSIBILE che esca. */
             font-size: 13vw; 
             line-height: 0.85;
             font-weight: 900;
@@ -77,40 +82,86 @@
         }
 
         @media (min-width: 1024px) {
-            .hero-title { font-size: 7rem; } /* Desktop: Dimensione fissa grande */
+            .hero-title { font-size: 7rem; }
         }
 
-        /* DEMO MODE */
+        /* MOBILE MENU ANIMATION */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* DEMO MODE & FLOATING NAV */
         button, input, textarea, select { pointer-events: none !important; cursor: default !important; }
         
         .floating-nav {
             position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 9999;
-            display: flex; flex-direction: column; gap: 0.75rem;
+            display: flex; flex-direction: column; gap: 0.5rem;
+        }
+
+        /* Fix centering for Localtop buttons */
+        .localtop-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-width: 160px; /* Assicura spazio per il testo */
+        }
+
+        @media (max-width: 768px) {
+            .floating-nav a {
+                padding: 0.6rem 1.2rem;
+                font-size: 8px;
+                min-width: 140px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="floating-nav">
-        <a href="https://localtop.it/checkout" class="flex items-center gap-3 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl transition hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4"></i> INIZIA ORA
+        <a href="#" class="localtop-btn bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl gap-3">
+            <i data-lucide="zap" class="w-4 h-4"></i> <span>INIZIA ORA</span>
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center gap-3 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl transition hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="#" class="localtop-btn bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl gap-3">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> <span>Torna agli Esempi</span>
         </a>
     </div>
 
-    <nav class="fixed top-0 w-full z-[100] bg-black/80 backdrop-blur-md border-b border-white/10 h-20 flex items-center px-6">
+    <nav class="fixed top-0 w-full z-[100] bg-black/95 backdrop-blur-md border-b border-white/10 h-20 flex items-center px-4 md:px-6">
         <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-water rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.3)]">
-                    <i data-lucide="droplets" class="text-black w-6 h-6"></i>
+            <div class="flex items-center gap-2 md:gap-3">
+                <div class="w-9 h-9 md:w-11 md:h-11 bg-[#00d4ff] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.4)]">
+                    <i data-lucide="droplets" class="text-black w-5 h-5 md:w-6 md:h-6 stroke-[2.5]"></i>
                 </div>
-                <span class="text-lg font-tech font-bold text-white tracking-widest leading-none">AquaDetail</span>
+                <span class="text-sm md:text-lg font-tech font-bold text-white tracking-widest leading-none">AquaDetail</span>
             </div>
-            <a href="#contatti" class="bg-white text-black px-5 py-2 rounded-full text-[9px] font-black uppercase tracking-widest">Contatti</a>
+            
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#metodo" class="text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition">Metodo</a>
+                <a href="#ceramica" class="text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition">Ceramica</a>
+                <a href="#interni" class="text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition">Interni</a>
+                <a href="#contatti" class="bg-white text-black px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Contatti</a>
+            </div>
+
+            <button onclick="toggleMenu()" class="lg:hidden text-white p-2 pointer-events-auto !cursor-pointer" style="pointer-events: auto !important;">
+                <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+            </button>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-black z-[110] flex flex-col items-center justify-center gap-8 lg:hidden">
+        <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white pointer-events-auto !cursor-pointer" style="pointer-events: auto !important;">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#metodo" onclick="toggleMenu()" class="text-2xl font-tech text-white">Metodo</a>
+        <a href="#ceramica" onclick="toggleMenu()" class="text-2xl font-tech text-white">Ceramica</a>
+        <a href="#interni" onclick="toggleMenu()" class="text-2xl font-tech text-white">Interni</a>
+        <a href="#contatti" onclick="toggleMenu()" class="text-2xl font-tech text-water">Contatti</a>
+    </div>
 
     <section class="hero-section">
         <div class="hero-bg"><img src="assets/img1.jpg" alt="Hero Car"></div>
@@ -138,14 +189,14 @@
         </div>
     </section>
 
-    <section id="metodo" class="py-24 bg-[#050505]">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <section id="metodo" class="py-20 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8 order-2 lg:order-1">
                 <h2 class="font-tech text-4xl lg:text-6xl text-white italic">Zero <br><span class="text-water">Graffi.</span></h2>
                 <p class="text-slate-400 text-lg leading-relaxed font-light">
                     Il nostro metodo si basa sulla <strong>Tecnica dei Due Secchi</strong> e l'utilizzo esclusivo di acqua deionizzata. Ogni panno in microfibra ha una densità specifica (GSM) per evitare qualsiasi swirl sulla carrozzeria.
                 </p>
-                <div class="grid grid-cols-2 gap-6">
+                <div class="grid grid-cols-2 gap-4 md:gap-6">
                     <div class="bg-white/5 p-4 rounded-xl border border-white/10">
                         <i data-lucide="shield-check" class="text-water mb-2"></i>
                         <h4 class="font-bold uppercase text-[10px] tracking-widest text-white">Safe Wash</h4>
@@ -159,26 +210,26 @@
                 </div>
             </div>
             <div class="order-1 lg:order-2">
-                <img src="assets/img2.jpg" class="rounded-[2.5rem] w-full h-[400px] object-cover shadow-2xl border border-white/5" alt="Metodo Lavaggio">
+                <img src="assets/img2.jpg" class="rounded-[2rem] md:rounded-[2.5rem] w-full h-[300px] md:h-[400px] object-cover shadow-2xl border border-white/5" alt="Metodo Lavaggio">
             </div>
         </div>
     </section>
 
-    <section id="ceramica" class="py-24 bg-black border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <img src="assets/img3.jpg" class="rounded-[3rem] w-full h-[400px] object-cover" alt="Applicazione Ceramica">
+    <section id="ceramica" class="py-20 bg-black border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <img src="assets/img3.jpg" class="rounded-[2rem] md:rounded-[3rem] w-full h-[300px] md:h-[400px] object-cover" alt="Applicazione Ceramica">
             <div class="space-y-8">
                 <h2 class="font-tech text-4xl lg:text-6xl text-white italic">Scudo <br><span class="text-water">Nanotech.</span></h2>
-                <p class="text-slate-400 text-lg leading-relaxed italic border-l-2 border-water pl-8">
+                <p class="text-slate-400 text-lg leading-relaxed italic border-l-2 border-water pl-6 md:pl-8">
                     I nostri coating nanotecnologici creano un legame molecolare permanente con la vernice. Protezione totale dai raggi UV, piogge acide e sporco stradale con un effetto idrofobico estremo.
                 </p>
-                <div class="flex gap-6">
+                <div class="flex gap-4 md:gap-6">
                     <div class="inline-block bg-white/5 border border-white/10 px-6 py-4 rounded-2xl">
-                        <span class="block text-3xl font-tech text-white italic">9H</span>
+                        <span class="block text-2xl md:text-3xl font-tech text-white italic">9H</span>
                         <span class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Durezza</span>
                     </div>
                     <div class="inline-block bg-white/5 border border-white/10 px-6 py-4 rounded-2xl">
-                        <span class="block text-3xl font-tech text-white italic">5 ANNI</span>
+                        <span class="block text-2xl md:text-3xl font-tech text-white italic">5 ANNI</span>
                         <span class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Garanzia</span>
                     </div>
                 </div>
@@ -186,8 +237,8 @@
         </div>
     </section>
 
-    <section id="interni" class="py-24 bg-[#050505]">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <section id="interni" class="py-20 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8 order-2 lg:order-1">
                 <h2 class="font-tech text-4xl lg:text-6xl text-white italic uppercase">Atelier <br><span class="text-water">Interni.</span></h2>
                 <p class="text-slate-400 text-lg leading-relaxed">
@@ -199,14 +250,14 @@
                 </ul>
             </div>
             <div class="order-1 lg:order-2">
-                <img src="assets/img4.jpg" class="rounded-[3rem] w-full h-[400px] object-cover shadow-2xl" alt="Interni Auto">
+                <img src="assets/img4.jpg" class="rounded-[2rem] md:rounded-[3rem] w-full h-[300px] md:h-[400px] object-cover shadow-2xl" alt="Interni Auto">
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-black">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <img src="assets/img5.jpg" class="rounded-[3rem] w-full h-[400px] object-cover border border-white/5" alt="Vapore 180 gradi">
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <img src="assets/img5.jpg" class="rounded-[2rem] md:rounded-[3rem] w-full h-[300px] md:h-[400px] object-cover border border-white/5" alt="Vapore 180 gradi">
             <div class="space-y-8">
                 <h2 class="font-tech text-4xl lg:text-6xl text-white italic uppercase">Vapore <br><span class="text-water">180°C.</span></h2>
                 <p class="text-slate-400 text-lg leading-relaxed">
@@ -217,26 +268,50 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-24 bg-black px-6">
-        <div class="max-w-4xl mx-auto bg-[#0a0a0a] border border-white/10 p-10 md:p-20 rounded-[3rem] shadow-2xl">
-            <h2 class="font-tech text-4xl lg:text-6xl text-white italic text-center mb-12 uppercase">Prenota <br><span class="text-water">Ora</span></h2>
-            <form class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full bg-white/5 p-5 rounded-2xl border border-white/10 outline-none uppercase text-[10px] font-bold tracking-widest text-white">
-                    <input type="text" placeholder="MODELLO AUTO" class="w-full bg-white/5 p-5 rounded-2xl border border-white/10 outline-none uppercase text-[10px] font-bold tracking-widest text-white">
+    <section id="contatti" class="py-20 bg-black px-6">
+        <div class="max-w-4xl mx-auto bg-[#0a0a0a] border border-white/10 p-8 md:p-20 rounded-[2rem] md:rounded-[3rem] shadow-2xl text-center">
+            <h2 class="font-tech text-4xl lg:text-6xl text-white italic mb-12 uppercase">Prenota <br><span class="text-water">Ora</span></h2>
+            
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1 bg-white/5 p-6 rounded-2xl border border-white/10 flex flex-col items-center gap-3">
+                        <i data-lucide="phone" class="text-water w-6 h-6"></i>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Telefono</span>
+                        <span class="text-white font-bold">+39 02 123 4567</span>
+                    </div>
+                    <div class="flex-1 bg-white/5 p-6 rounded-2xl border border-white/10 flex flex-col items-center gap-3">
+                        <i data-lucide="message-circle" class="text-water w-6 h-6"></i>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">WhatsApp</span>
+                        <span class="text-white font-bold">+39 345 678 9012</span>
+                    </div>
                 </div>
-                <textarea placeholder="RICHIESTE PARTICOLARI (ES. RIMOZIONE GRAFFI, INTERNI...)" class="w-full bg-white/5 p-5 rounded-2xl border border-white/10 outline-none uppercase text-[10px] font-bold tracking-widest h-32 text-white"></textarea>
-                <button class="w-full bg-water text-black py-5 rounded-2xl font-black uppercase text-[10px] tracking-[0.2em] shadow-lg hover:shadow-water/50 transition-all">Invia Candidatura</button>
-            </form>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 flex flex-col items-center gap-3">
+                    <i data-lucide="map-pin" class="text-water w-6 h-6"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Indirizzo</span>
+                    <span class="text-white font-bold">Via Monte Napoleone, Milano (MI)</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer class="py-12 bg-black border-t border-white/5 text-center px-6">
-        <p class="text-slate-600 text-[9px] uppercase tracking-[0.6em] font-bold">&copy; 2026 AquaDetail Milano | LocalTop Demo Mode</p>
+        <p class="text-slate-600 text-[9px] uppercase tracking-[0.4em] md:tracking-[0.6em] font-bold">&copy; 2026 AquaDetail Milano | LocalTop Demo Mode</p>
     </footer>
 
     <script>
+        // Inizializzazione icone con opzioni per la visibilità
         lucide.createIcons();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+            
+            if (menu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
     </script>
 </body>
 </html>

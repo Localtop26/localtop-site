@@ -545,6 +545,10 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
   }
 
   /* Home hero */
+  /* Limit hero image height on tablet portrait to keep CTAs visible */
+  .home .heroSplit .heroMedia{
+    max-height:360px;
+  }
   .home .heroTitleLead{ font-size: calc(clamp(29px, 4.2vw, 49px) + 8px); }
   .home .heroTitleSub{ font-size: calc(clamp(24px, 3.6vw, 44px) + 6px); }
   .heroSub{ font-size:17px; }
@@ -596,6 +600,11 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
 
 /* Home hero: on small screens keep the descriptive text wide and readable */
 @media(max-width:640px){
+  /* Home hero: limit image height so CTAs stay above the fold */
+  .home .heroSplit .heroMedia{
+    max-height:300px;
+  }
+
   .heroSplit .heroSub{
     max-width:none;
     text-align:center;

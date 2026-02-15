@@ -36,7 +36,6 @@
 </script>
 </head>
 <body>
-
 <header aria-label="Header LocalTop" class="siteHeader">
 <div class="container">
 <div class="headerInner">
@@ -61,46 +60,57 @@
 </div>
 </div>
 </header>
-
-<main>
-
-<section class="examplesHero">
 <div class="container">
+<section aria-label="Esempi di siti" class="examplesHero">
 <h1 class="examplesTitle">
-  <span class="examplesTitleLine1">Guarda i siti. Attiva il servizio.</span>
-  <span class="examplesTitleLine2">Poi ci pensiamo noi.</span>
+<span class="examplesTitleLine1">Guarda i siti. Attiva il servizio.</span>
+<span class="examplesTitleLine2">Poi ci pensiamo noi.</span>
 </h1>
-
 <p class="examplesSub">
   Guarda esempi reali di siti per attività locali, divisi per categoria.<br>
   Il tuo sito verrà progettato su misura.
   <br>99€ / mese · Disdici quando vuoi
 </p>
+<div aria-label="Filtra per categoria" class="examplesChips" role="tablist">
 
-<div aria-label="Filtri demo" class="examplesFilters">
-  <div class="examplesSearchWrap">
-    <label class="srOnly" for="examplesSearch">Cerca</label>
-    <input id="examplesSearch" class="examplesSearch" type="search" autocomplete="off" placeholder="Cerca tipo attività (es. bar, pizzeria, dentista…)" />
-  </div>
+<button aria-selected="true" class="chip is-active" data-category="Professionisti" role="tab" type="button">
+  Professionisti
+</button>
 
-  <div class="examplesSelect">
-    <label class="examplesLabel" for="examplesCategory">Categoria</label>
-    <select id="examplesCategory" class="examplesSelectControl"></select>
-  </div>
-</div>
-</div>
+<button aria-selected="false" class="chip" data-category="Salute e Benessere" role="tab" type="button">
+  Salute e Benessere
+</button>
+
+<button aria-selected="false" class="chip" data-category="Negozi" role="tab" type="button">
+  Negozi
+</button>
+
+<button aria-selected="false" class="chip" data-category="Centri Medici e Assistenza" role="tab" type="button">
+  Centri Medici e Assistenza
+</button>
+
+<button aria-selected="false" class="chip" data-category="Edilizia e Casa" role="tab" type="button">
+  Edilizia e Casa
+</button>
+
+<button aria-selected="false" class="chip" data-category="Ristorazione" role="tab" type="button">
+  Ristorazione
+</button>
+
+<button aria-selected="false" class="chip" data-category="Auto, Moto e Trasporti" role="tab" type="button">
+  Auto, Moto e Trasporti
+</button>
+
+<button aria-selected="false" class="chip" data-category="Turismo, Eventi e Formazione" role="tab" type="button">
+  Turismo, Eventi e Formazione
+</button>
+
 </section>
-
 <section aria-label="Elenco demo" class="examplesSection">
 <div aria-live="polite" class="examplesGrid" id="examplesGrid"></div>
-
-<div class="examplesLoadMoreWrap" id="examplesLoadMoreWrap" hidden>
-  <button class="btn examplesLoadMoreBtn" id="examplesLoadMoreBtn" type="button">Mostra altri</button>
-</div>
+<!-- Mostra tutte le demo per categoria (nessuna paginazione) -->
 </section>
-
-</main>
-
+</div>
 <footer>
 <div class="container">
 <div class="footRow">
@@ -111,7 +121,19 @@
 </div>
 </div>
 </footer>
-
-<script defer src="/js/esempi-di-siti.js"></script>
+<script defer="" src="../js/esempi-di-siti.js"></script>
+<script defer="" src="/js/main.js"></script>
+<div aria-label="Cookie banner" aria-live="polite" class="cookieBanner" id="cookieBanner" role="dialog">
+<div class="cookieBanner__inner">
+<p class="cookieBanner__text">
+        Questo sito utilizza cookie tecnici e di analisi per migliorare l’esperienza di navigazione.<br/>
+        Per maggiori informazioni consulta la <a href="/privacy-e-cookie">Privacy e Cookie Policy</a>.
+      </p>
+<div class="cookieBanner__actions">
+<button class="cookieBtn cookieBtn--reject" data-cookie-action="reject" type="button">Rifiuta</button>
+<button class="cookieBtn cookieBtn--accept" data-cookie-action="accept" type="button">Accetta</button>
+</div>
+</div>
+</div>
 </body>
 </html>

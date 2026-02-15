@@ -2902,3 +2902,26 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
 .no-break{
   white-space: nowrap;
 }
+
+/* ===== Home: more vertical breathing room (no layout changes) ===== */
+body.home .heroWrap{
+  padding:18px 0 30px;
+}
+
+body.home .divider{
+  margin:34px 0;
+}
+
+body.home main.page > .container > section > h2{
+  margin-bottom:14px;
+}
+
+@media (min-width:980px){
+  body.home .heroWrap{
+    padding:24px 0 42px;
+  }
+
+  body.home .divider{
+    margin:46px 0;
+  }
+}

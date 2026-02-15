@@ -6,62 +6,58 @@
   const grid = document.getElementById("examplesGrid");
   const searchInput = document.getElementById("examplesSearch");
   const categorySelect = document.getElementById("examplesCategory");
+  const loadMoreWrap = document.getElementById("examplesLoadMoreWrap");
+  const loadMoreBtn = document.getElementById("examplesLoadMoreBtn");
 
   if (!grid || !searchInput || !categorySelect) return;
 
-  const PAGE_SIZE = 12;
-
   const state = {
     all: [],
+    filtered: [],
+    perPage: 12,
+    visible: 12,
+    query: "",
     category: "",
-    q: "",
-    visible: PAGE_SIZE,
   };
 
-  let loadMoreWrap = null;
-  let loadMoreBtn = null;
-
-  function normalizeText(value) {
-    return String(value || "")
-      .toLowerCase()
+  function normalizeStr(s) {
+    return (s || "")
+      .toString()
       .trim()
+      .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
   }
 
-  function buildHaystack(demo) {
-    const parts = [
-      demo.title,
-      demo.category,
-      demo.slug,
-    ];
-
-    if (Array.isArray(demo.tags)) {
-      parts.push(demo.tags.join(" "));
-    }
-
-    return normalizeText(parts.join(" "));
+  function buildHaystack(d) {
+    const parts = [];
+    if (d.title) parts.push(d.title);
+    if (d.category) parts.push(d.category);
+    if (d.slug) parts.push(d.slug);
+    if (Array.isArray(d.tags)) parts.push(d.tags.join(" "));
+    return normalizeStr(parts.join(" "));
   }
 
-  function matchesQuery(demo, q) {
-    if (!q) return true;
-    return (demo.__hay || "").includes(q);
+  function sortAZ(items) {
+    items.sort((a, b) => String(a.title || "").localeCompare(String(b.title || ""), "it"));
   }
 
-  function getFiltered() {
-    const q = state.q;
-    const cat = state.category;
+  function fillCategories(items) {
+    const cats = Array.from(
+      new Set(items.map((d) => d.category).filter(Boolean))
+    ).sort((a, b) => a.localeCompare(b, "it"));
 
-    return state.all
-      .filter((d) => (cat ? d.category === cat : true))
-      .filter((d) => matchesQuery(d, q));
-  }
+    categorySelect.innerHTML = "";
+    const optAll = document.createElement("option");
+    optAll.value = "";
+    optAll.textContent = "Tutte le categorie";
+    categorySelect.appendChild(optAll);
 
-  function sortAZ(list) {
-    return list.slice().sort((a, b) => {
-      const at = String(a.title || "");
-      const bt = String(b.title || "");
-      return at.localeCompare(bt, "it", { sensitivity: "base" });
+    cats.forEach((c) => {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      categorySelect.appendChild(opt);
     });
   }
 
@@ -113,11 +109,12 @@
     btnActivate.className = "btn primary demoCard__btn";
     btnActivate.href = "https://localtop.it/checkout";
     btnActivate.target = "_self";
-    btnActivate.textContent = "Attiva Servizio";
-    btnActivate.setAttribute("aria-label", "Attiva Servizio");
+    btnActivate.textContent = "Attiva il Servizio";
+    btnActivate.setAttribute("aria-label", "Attiva il Servizio");
 
     btnWrap.appendChild(btnView);
     btnWrap.appendChild(btnActivate);
+
     body.appendChild(title);
     body.appendChild(btnWrap);
 
@@ -126,103 +123,99 @@
     return card;
   }
 
-  function ensureLoadMore() {
-    if (loadMoreWrap) return;
-
-    loadMoreWrap = document.createElement("div");
-    loadMoreWrap.className = "examplesLoadMoreWrap";
-
-    loadMoreBtn = document.createElement("button");
-    loadMoreBtn.type = "button";
-    loadMoreBtn.className = "btn examplesLoadMoreBtn";
-    loadMoreBtn.textContent = "Mostra altri";
-
-    loadMoreBtn.addEventListener("click", () => {
-      state.visible = Math.min(state.visible + PAGE_SIZE, state._filteredCount || state.visible + PAGE_SIZE);
-      render();
-    });
-
-    loadMoreWrap.appendChild(loadMoreBtn);
-    grid.parentNode.appendChild(loadMoreWrap);
-  }
-
-  function updateLoadMore(filteredCount) {
-    state._filteredCount = filteredCount;
-
-    if (!loadMoreWrap) return;
-    const shouldShow = filteredCount > state.visible;
-    loadMoreWrap.style.display = shouldShow ? "" : "none";
-  }
-
-  function render() {
-    const filtered = sortAZ(getFiltered());
-    const total = filtered.length;
-
-    ensureLoadMore();
-
+  function render(items) {
     grid.innerHTML = "";
-    if (total === 0) {
-      grid.innerHTML = "<div class=\"examplesError\">Nessuna demo trovata con i filtri selezionati.</div>";
-      updateLoadMore(0);
+    items.forEach((d) => grid.appendChild(createCard(d)));
+  }
+
+  function updateLoadMoreVisibility() {
+    if (!loadMoreWrap || !loadMoreBtn) return;
+
+    const hasFilters = state.query.length > 0 || state.category.length > 0;
+    if (hasFilters) {
+      loadMoreWrap.hidden = true;
       return;
     }
 
-    const visibleItems = filtered.slice(0, state.visible);
-    visibleItems.forEach((d) => grid.appendChild(createCard(d)));
-    updateLoadMore(total);
+    loadMoreWrap.hidden = state.visible >= state.filtered.length;
   }
 
-  function populateCategories() {
-    const cats = Array.from(
-      new Set(state.all.map((d) => d.category).filter(Boolean))
-    ).sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
+  function applyFilters() {
+    const q = normalizeStr(state.query);
+    const cat = state.category;
 
-    categorySelect.innerHTML = "";
-    const optAll = document.createElement("option");
-    optAll.value = "";
-    optAll.textContent = "Tutte le categorie";
-    categorySelect.appendChild(optAll);
+    let items = state.all;
 
-    cats.forEach((c) => {
-      const opt = document.createElement("option");
-      opt.value = c;
-      opt.textContent = c;
-      categorySelect.appendChild(opt);
-    });
+    if (cat) {
+      items = items.filter((d) => d.category === cat);
+    }
+
+    if (q) {
+      items = items.filter((d) => (d.__hay || "").includes(q));
+    }
+
+    items = items.slice();
+    sortAZ(items);
+
+    state.filtered = items;
+
+    // Se l'utente sta cercando o filtrando, mostra tutto (niente paginazione)
+    const hasFilters = q.length > 0 || cat.length > 0;
+    state.visible = hasFilters ? items.length : state.perPage;
+
+    render(items.slice(0, state.visible));
+    updateLoadMoreVisibility();
   }
 
-  function resetAndRender() {
-    state.visible = PAGE_SIZE;
-    render();
+  function onLoadMore() {
+    state.visible = Math.min(state.visible + state.perPage, state.filtered.length);
+    render(state.filtered.slice(0, state.visible));
+    updateLoadMoreVisibility();
   }
 
-  function onSearch() {
-    state.q = normalizeText(searchInput.value);
-    resetAndRender();
-  }
+  searchInput.addEventListener("input", () => {
+    state.query = searchInput.value || "";
+    applyFilters();
+  });
 
-  function onCategoryChange() {
+  categorySelect.addEventListener("change", () => {
     state.category = categorySelect.value || "";
-    resetAndRender();
-  }
+    applyFilters();
+  });
 
-  searchInput.addEventListener("input", onSearch);
-  categorySelect.addEventListener("change", onCategoryChange);
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", onLoadMore);
+  }
 
   fetch(DATA_URL, { cache: "no-store" })
     .then((r) => (r.ok ? r.json() : Promise.reject(new Error("Failed to load demos.json"))))
     .then((data) => {
-      state.all = Array.isArray(data.demos) ? data.demos : [];
+      const demos = Array.isArray(data.demos) ? data.demos : [];
+      const perPage = Number(data.perPage);
 
-      // Precompute haystack for fast search
-      state.all.forEach((d) => {
-        d.__hay = buildHaystack(d);
-      });
+      state.perPage = Number.isFinite(perPage) && perPage > 0 ? perPage : 12;
 
-      populateCategories();
-      render();
+      state.all = demos.map((d) => ({
+        title: d.title || "",
+        category: d.category || "",
+        slug: d.slug || "",
+        href: d.href || "#",
+        thumb: d.thumb || "",
+        tags: Array.isArray(d.tags) ? d.tags : [],
+        __hay: buildHaystack(d),
+      }));
+
+      sortAZ(state.all);
+      fillCategories(state.all);
+
+      state.filtered = state.all.slice();
+      state.visible = state.perPage;
+
+      render(state.filtered.slice(0, state.visible));
+      updateLoadMoreVisibility();
     })
     .catch(() => {
       grid.innerHTML = "<div class=\"examplesError\">Impossibile caricare le demo in questo momento.</div>";
+      if (loadMoreWrap) loadMoreWrap.hidden = true;
     });
 })();

@@ -596,6 +596,10 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
 
 /* Home hero: on small screens keep the descriptive text wide and readable */
 @media(max-width:640px){
+  .examplesGrid{ grid-template-columns:1fr; }
+  .examplesSelect{ min-width:0; width:100%; }
+  .examplesSearchWrap{ max-width:none; }
+
   .heroSplit .heroSub{
     max-width:none;
     text-align:center;
@@ -1202,6 +1206,8 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
 
 /* === MOBILE ONLY: prezzo normale, mese grigio e senza spazio === */
 @media (max-width:979px){
+  .examplesGrid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
   .plans .price{
     font-weight:500;
   }
@@ -2737,51 +2743,53 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
 
 .examplesFilters{
   margin-top:22px;
-  width:min(980px, 100%);
-  margin-left:auto;
-  margin-right:auto;
   display:flex;
-  flex-direction:column;
-  gap:14px;
-  align-items:stretch;
+  align-items:flex-end;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
 }
 .examplesSearchWrap{
-  width:100%;
+  flex:1 1 360px;
+  max-width:520px;
 }
 .examplesSearch{
   width:100%;
-  padding:12px 14px;
-  border-radius:14px;
-  border:1px solid rgba(31,41,55,.18);
+  height:44px;
+  border-radius:12px;
+  border:1px solid rgba(17,24,39,.14);
+  padding:0 14px;
+  font-size:16px;
   background:#fff;
-  color:var(--ink);
-}
-.examplesSearch::placeholder{
-  color:rgba(31,41,55,.55);
-}
-.examplesSelects{
-  display:flex;
-  gap:12px;
-  width:100%;
-  flex-wrap:wrap;
+  color:var(--text);
 }
 .examplesSelect{
-  flex:1 1 220px;
-  min-width:220px;
+  flex:0 0 auto;
+  min-width:240px;
 }
 .examplesLabel{
   display:block;
   font-size:12px;
-  color:rgba(31,41,55,.70);
-  margin:0 0 6px;
+  color:rgba(17,24,39,.65);
+  margin:0 0 6px 2px;
 }
 .examplesSelectControl{
   width:100%;
-  padding:12px 12px;
-  border-radius:14px;
-  border:1px solid rgba(31,41,55,.18);
+  height:44px;
+  border-radius:12px;
+  border:1px solid rgba(17,24,39,.14);
+  padding:0 12px;
+  font-size:16px;
   background:#fff;
-  color:var(--ink);
+  color:var(--text);
+}
+.examplesLoadMoreWrap{
+  display:flex;
+  justify-content:center;
+  margin-top:18px;
+}
+.examplesLoadMoreBtn{
+  min-width:180px;
 }
 .chip{
   appearance:none;
@@ -2805,17 +2813,9 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
 .examplesSection{padding:28px 0 56px;}
 .examplesGrid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:28px;
   align-items:stretch;
-}
-.examplesLoadMoreWrap{
-  margin-top:26px;
-  display:flex;
-  justify-content:center;
-}
-.examplesLoadMoreBtn{
-  min-width:220px;
 }
 .demoCard{
   background:var(--card);

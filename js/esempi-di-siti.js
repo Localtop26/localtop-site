@@ -197,18 +197,24 @@
   }
 
   function onSearch() {
-    const q = normalizeText(searchInput.value);
-    state.q = q;
-    // If the user clears the search (default/empty), force "Tutte le categorie"
-    if (!q) {
-      state.category = "";
+    state.q = normalizeText(searchInput.value);
+    // Se l'utente cerca, evita combinazioni che possono portare a 0 risultati.
+    // Forza "Tutte le categorie" mantenendo il testo di ricerca.
+    if (state.q && categorySelect.value !== "") {
       categorySelect.value = "";
+      state.category = "";
     }
     resetAndRender();
   }
 
   function onCategoryChange() {
     state.category = categorySelect.value || "";
+    // Se l'utente seleziona una categoria specifica, usa solo il filtro categoria.
+    // Pulisce la ricerca per prevenire risultati vuoti dovuti a filtri combinati.
+    if (state.category && searchInput.value) {
+      searchInput.value = "";
+      state.q = "";
+    }
     resetAndRender();
   }
 

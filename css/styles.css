@@ -2899,3 +2899,6 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   color:var(--muted);
   text-align:center;
 }
+.no-break{
+  white-space: nowrap;
+}

@@ -514,6 +514,9 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
 /* Home: tablet portrait should behave like a "bigger mobile".
    Keep the mobile layout, but slightly increase hero typography for readability. */
 @media (min-width: 760px) and (max-width: 979px) and (orientation: portrait){
+  /* Esempi di siti: 2 colonne su tablet */
+  .examplesGrid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+
   /* Tablet portrait = "mobile XL"
      Layout stays mobile (hamburger + single column), but scale up type and spacing
      for better readability on 8"–9" devices. */
@@ -602,7 +605,10 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     margin-left:auto;
     margin-right:auto;
     padding-inline:8px;
-  }
+  
+  /* Esempi di siti: 1 colonna su mobile */
+  .examplesGrid{ grid-template-columns:1fr; }
+}
 }
 
 /* Hero centered copy (Home) */
@@ -2775,6 +2781,11 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   color:rgba(31,41,55,.70);
   margin:0 0 6px;
 }
+.examplesLabelHint{
+  font-weight:800;
+  color:rgba(31,41,55,.55);
+  margin-left:6px;
+}
 .examplesSelectControl{
   width:100%;
   padding:12px 12px;
@@ -2805,7 +2816,7 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
 .examplesSection{padding:28px 0 56px;}
 .examplesGrid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:28px;
   align-items:stretch;
 }
@@ -2816,6 +2827,8 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
 }
 .examplesLoadMoreBtn{
   min-width:220px;
+  text-align:center;
+  line-height:1.2;
 }
 .demoCard{
   background:var(--card);

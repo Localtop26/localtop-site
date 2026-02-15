@@ -113,8 +113,8 @@
     btnActivate.className = "btn primary demoCard__btn";
     btnActivate.href = "https://localtop.it/checkout";
     btnActivate.target = "_self";
-    btnActivate.textContent = "Attiva Servizio";
-    btnActivate.setAttribute("aria-label", "Attiva Servizio");
+    btnActivate.textContent = "Attiva il Servizio";
+    btnActivate.setAttribute("aria-label", "Attiva il Servizio");
 
     btnWrap.appendChild(btnView);
     btnWrap.appendChild(btnActivate);
@@ -197,7 +197,13 @@
   }
 
   function onSearch() {
-    state.q = normalizeText(searchInput.value);
+    const q = normalizeText(searchInput.value);
+    state.q = q;
+    // If the user clears the search (default/empty), force "Tutte le categorie"
+    if (!q) {
+      state.category = "";
+      categorySelect.value = "";
+    }
     resetAndRender();
   }
 

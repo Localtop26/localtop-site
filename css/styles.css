@@ -2734,6 +2734,55 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   gap:12px;
   flex-wrap:wrap;
 }
+
+.examplesFilters{
+  margin-top:22px;
+  width:min(980px, 100%);
+  margin-left:auto;
+  margin-right:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:stretch;
+}
+.examplesSearchWrap{
+  width:100%;
+}
+.examplesSearch{
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(31,41,55,.18);
+  background:#fff;
+  color:var(--ink);
+}
+.examplesSearch::placeholder{
+  color:rgba(31,41,55,.55);
+}
+.examplesSelects{
+  display:flex;
+  gap:12px;
+  width:100%;
+  flex-wrap:wrap;
+}
+.examplesSelect{
+  flex:1 1 220px;
+  min-width:220px;
+}
+.examplesLabel{
+  display:block;
+  font-size:12px;
+  color:rgba(31,41,55,.70);
+  margin:0 0 6px;
+}
+.examplesSelectControl{
+  width:100%;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid rgba(31,41,55,.18);
+  background:#fff;
+  color:var(--ink);
+}
 .chip{
   appearance:none;
   border:1px solid rgba(17,24,39,.14);
@@ -2759,6 +2808,14 @@ section[aria-label="Come funziona"] .card p{font-weight:400;}
   grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
   gap:28px;
   align-items:stretch;
+}
+.examplesLoadMoreWrap{
+  margin-top:26px;
+  display:flex;
+  justify-content:center;
+}
+.examplesLoadMoreBtn{
+  min-width:220px;
 }
 .demoCard{
   background:var(--card);

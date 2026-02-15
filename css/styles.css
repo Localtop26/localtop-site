@@ -547,7 +547,7 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
   /* Home hero */
   /* Limit hero image height on tablet portrait to keep CTAs visible */
   .home .heroSplit .heroMedia{
-    max-height:720px;
+    max-height:1100px;
   }
   .home .heroTitleLead{ font-size: calc(clamp(29px, 4.2vw, 49px) + 8px); }
   .home .heroTitleSub{ font-size: calc(clamp(24px, 3.6vw, 44px) + 6px); }
@@ -607,8 +607,8 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
 
   /* Home hero: reduce only the main title (lead) on mobile */
   .home .heroTitleLead{
-    font-size:26px;
-    line-height:1.12;
+    font-size:24px;
+    line-height:1.1;
   }
 
   .heroSplit .heroSub{

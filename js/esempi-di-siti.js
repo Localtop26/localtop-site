@@ -1,110 +1,133 @@
-/* LocalTop — Esempi di siti
-   - Catalogo demo da /data/demos.json
-   - Ricerca live su: title + category + slug + tags
-   - Categoria (select)
-   - Paginazione: 12 iniziali, "Mostra altri" (+12)
-   - Se l'utente scrive nella ricerca e c'è una categoria selezionata, reset automatico a "Tutte le categorie"
-*/
-
 (() => {
   "use strict";
 
   const DATA_URL = "/data/demos.json";
-  const PAGE_SIZE = 12;
 
   const grid = document.getElementById("examplesGrid");
-  const searchEl = document.getElementById("examplesSearch");
-  const categoryEl = document.getElementById("examplesCategory");
+  const searchInput = document.getElementById("examplesSearch");
+  const categorySelect = document.getElementById("examplesCategory");
 
-  if (!grid || !searchEl || !categoryEl) return;
+  if (!grid || !searchInput || !categorySelect) return;
 
-  let all = [];
-  let filtered = [];
-  let visibleCount = PAGE_SIZE;
+  const PAGE_SIZE = 12;
+
+  const state = {
+    all: [],
+    category: "",
+    q: "",
+    visible: PAGE_SIZE,
+  };
 
   let loadMoreWrap = null;
   let loadMoreBtn = null;
 
-  function normalizeStr(s) {
-    return (s || "")
-      .toString()
-      .trim()
+  function normalizeText(value) {
+    return String(value || "")
       .toLowerCase()
+      .trim()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
   }
 
-  function escapeHtml(str) {
-    return (str || "").replace(/[&<>"']/g, (m) => {
-      switch (m) {
-        case "&": return "&amp;";
-        case "<": return "&lt;";
-        case ">": return "&gt;";
-        case '"': return "&quot;";
-        case "'": return "&#39;";
-        default: return m;
-      }
+  function buildHaystack(demo) {
+    const parts = [
+      demo.title,
+      demo.category,
+      demo.slug,
+    ];
+
+    if (Array.isArray(demo.tags)) {
+      parts.push(demo.tags.join(" "));
+    }
+
+    return normalizeText(parts.join(" "));
+  }
+
+  function matchesQuery(demo, q) {
+    if (!q) return true;
+    return (demo.__hay || "").includes(q);
+  }
+
+  function getFiltered() {
+    const q = state.q;
+    const cat = state.category;
+
+    return state.all
+      .filter((d) => (cat ? d.category === cat : true))
+      .filter((d) => matchesQuery(d, q));
+  }
+
+  function sortAZ(list) {
+    return list.slice().sort((a, b) => {
+      const at = String(a.title || "");
+      const bt = String(b.title || "");
+      return at.localeCompare(bt, "it", { sensitivity: "base" });
     });
   }
 
-  function getTitle(d) {
-    return (d && d.title) ? d.title.toString() : "";
-  }
+  function createCard(demo) {
+    const card = document.createElement("article");
+    card.className = "demoCard";
 
-  function getCategory(d) {
-    return (d && d.category) ? d.category.toString().trim() : "";
-  }
+    const mediaLink = document.createElement("a");
+    mediaLink.className = "demoCard__mediaLink";
+    mediaLink.href = demo.href;
+    mediaLink.target = "_self";
+    mediaLink.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
 
-  function getHref(d) {
-    return (d && (d.href || d.url)) ? (d.href || d.url).toString() : "#";
-  }
+    const media = document.createElement("div");
+    media.className = "demoCard__media";
 
-  function getThumb(d) {
-    return (d && (d.thumb || d.thumbnail)) ? (d.thumb || d.thumbnail).toString() : "";
-  }
+    const img = document.createElement("img");
+    img.className = "demoCard__img";
+    img.loading = "lazy";
+    img.alt = `Anteprima ${demo.title}`;
+    img.src = demo.thumb;
 
-  function buildHaystack(d) {
-    const parts = [];
-    if (d.title) parts.push(d.title);
-    if (d.category) parts.push(d.category);
-    if (d.slug) parts.push(d.slug);
-    if (Array.isArray(d.tags)) parts.push(d.tags.join(" "));
-    return normalizeStr(parts.join(" "));
-  }
+    img.addEventListener("error", () => {
+      img.remove();
+      media.classList.add("is-missing");
+    });
 
-  function sortAZ(items) {
-    items.sort((a, b) => getTitle(a).localeCompare(getTitle(b), "it"));
-  }
+    media.appendChild(img);
+    mediaLink.appendChild(media);
 
-  function buildCard(demo) {
-    const title = escapeHtml(getTitle(demo) || "Demo");
-    const category = escapeHtml(getCategory(demo));
-    const href = escapeHtml(getHref(demo));
-    const thumb = getThumb(demo);
+    const body = document.createElement("div");
+    body.className = "demoCard__body";
 
-    const media = thumb
-      ? `<img class="exampleCardThumb" src="${escapeHtml(thumb)}" alt="${title}" loading="lazy" decoding="async">`
-      : `<div class="exampleCardThumb placeholder" aria-hidden="true"></div>`;
+    const title = document.createElement("h3");
+    title.className = "demoCard__title";
+    title.textContent = demo.title;
 
-    return `
-<a class="exampleCard" href="${href}" target="_blank" rel="noopener noreferrer">
-  <div class="exampleCardMedia">${media}</div>
-  <div class="exampleCardBody">
-    <div class="exampleCardTitle">${title}</div>
-    ${category ? `<div class="exampleCardMeta">${category}</div>` : ``}
-    <div class="exampleCardCta">
-      <span class="btn btn--small">Attiva il Servizio</span>
-    </div>
-  </div>
-</a>`;
-  }
+    const btnWrap = document.createElement("div");
+    btnWrap.className = "demoCard__actions";
 
-  function renderGrid(items) {
-    grid.innerHTML = items.map(buildCard).join("");
+    const btnView = document.createElement("a");
+    btnView.className = "btn demoCard__btn";
+    btnView.href = demo.href;
+    btnView.target = "_self";
+    btnView.textContent = "Vedi sito";
+    btnView.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
+
+    const btnActivate = document.createElement("a");
+    btnActivate.className = "btn primary demoCard__btn";
+    btnActivate.href = "https://localtop.it/checkout";
+    btnActivate.target = "_self";
+    btnActivate.textContent = "Attiva Servizio";
+    btnActivate.setAttribute("aria-label", "Attiva Servizio");
+
+    btnWrap.appendChild(btnView);
+    btnWrap.appendChild(btnActivate);
+    body.appendChild(title);
+    body.appendChild(btnWrap);
+
+    card.appendChild(mediaLink);
+    card.appendChild(body);
+    return card;
   }
 
   function ensureLoadMore() {
-    if (loadMoreWrap && loadMoreBtn) return;
+    if (loadMoreWrap) return;
 
     loadMoreWrap = document.createElement("div");
     loadMoreWrap.className = "examplesLoadMoreWrap";
@@ -115,89 +138,91 @@
     loadMoreBtn.textContent = "Mostra altri";
 
     loadMoreBtn.addEventListener("click", () => {
-      visibleCount = Math.min(visibleCount + PAGE_SIZE, filtered.length);
-      renderVisible();
+      state.visible = Math.min(state.visible + PAGE_SIZE, state._filteredCount || state.visible + PAGE_SIZE);
+      render();
     });
 
     loadMoreWrap.appendChild(loadMoreBtn);
     grid.parentNode.appendChild(loadMoreWrap);
   }
 
-  function updateLoadMore() {
+  function updateLoadMore(filteredCount) {
+    state._filteredCount = filteredCount;
+
     if (!loadMoreWrap) return;
-    const show = filtered.length > visibleCount;
-    loadMoreWrap.style.display = show ? "" : "none";
+    const shouldShow = filteredCount > state.visible;
+    loadMoreWrap.style.display = shouldShow ? "" : "none";
   }
 
-  function renderVisible() {
-    renderGrid(filtered.slice(0, visibleCount));
-    updateLoadMore();
+  function render() {
+    const filtered = sortAZ(getFiltered());
+    const total = filtered.length;
+
+    ensureLoadMore();
+
+    grid.innerHTML = "";
+    if (total === 0) {
+      grid.innerHTML = "<div class=\"examplesError\">Nessuna demo trovata con i filtri selezionati.</div>";
+      updateLoadMore(0);
+      return;
+    }
+
+    const visibleItems = filtered.slice(0, state.visible);
+    visibleItems.forEach((d) => grid.appendChild(createCard(d)));
+    updateLoadMore(total);
   }
 
-  function applyFilters(fromSearchInput = false) {
-    const q = normalizeStr(searchEl.value);
-    const cat = categoryEl.value.trim();
+  function populateCategories() {
+    const cats = Array.from(
+      new Set(state.all.map((d) => d.category).filter(Boolean))
+    ).sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
 
-    // Se l'utente sta scrivendo e c'è una categoria selezionata, resetta a "Tutte"
-    if (fromSearchInput && q && cat) {
-      categoryEl.value = "";
-    }
-
-    const effectiveCat = categoryEl.value.trim();
-    const effectiveQ = normalizeStr(searchEl.value);
-
-    let items = all.slice();
-
-    if (effectiveCat) {
-      items = items.filter((d) => getCategory(d) === effectiveCat);
-    }
-
-    if (effectiveQ) {
-      items = items.filter((d) => (d.__hay || "").includes(effectiveQ));
-    }
-
-    sortAZ(items);
-    filtered = items;
-    visibleCount = PAGE_SIZE;
-    renderVisible();
-  }
-
-  function fillCategories(items) {
-    const cats = Array.from(new Set(items.map(getCategory).filter(Boolean)))
-      .sort((a, b) => a.localeCompare(b, "it"));
-
-    categoryEl.innerHTML = "";
+    categorySelect.innerHTML = "";
     const optAll = document.createElement("option");
     optAll.value = "";
     optAll.textContent = "Tutte le categorie";
-    categoryEl.appendChild(optAll);
+    categorySelect.appendChild(optAll);
 
     cats.forEach((c) => {
       const opt = document.createElement("option");
       opt.value = c;
       opt.textContent = c;
-      categoryEl.appendChild(opt);
+      categorySelect.appendChild(opt);
     });
   }
 
-  async function init() {
-    const res = await fetch(DATA_URL, { cache: "no-store" });
-    const data = await res.json();
-    all = Array.isArray(data.demos) ? data.demos.slice() : [];
-
-    all.forEach((d) => { d.__hay = buildHaystack(d); });
-    sortAZ(all);
-
-    fillCategories(all);
-    ensureLoadMore();
-
-    searchEl.addEventListener("input", () => applyFilters(true));
-    categoryEl.addEventListener("change", () => applyFilters(false));
-
-    filtered = all.slice();
-    visibleCount = PAGE_SIZE;
-    renderVisible();
+  function resetAndRender() {
+    state.visible = PAGE_SIZE;
+    render();
   }
 
-  init().catch(() => {});
+  function onSearch() {
+    state.q = normalizeText(searchInput.value);
+    resetAndRender();
+  }
+
+  function onCategoryChange() {
+    state.category = categorySelect.value || "";
+    resetAndRender();
+  }
+
+  searchInput.addEventListener("input", onSearch);
+  categorySelect.addEventListener("change", onCategoryChange);
+
+  fetch(DATA_URL, { cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error("Failed to load demos.json"))))
+    .then((data) => {
+      state.all = Array.isArray(data.demos) ? data.demos : [];
+
+      // Precompute haystack for fast search
+      state.all.forEach((d) => {
+        d.__hay = buildHaystack(d);
+      });
+
+      populateCategories();
+      render();
+    })
+    .catch(() => {
+      grid.innerHTML = "<div class=\"examplesError\">Impossibile caricare le demo in questo momento.</div>";
+    });
 })();

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head>
 <meta charset="utf-8"/>
@@ -67,23 +68,26 @@
 <span class="examplesTitleLine2">Poi ci pensiamo noi.</span>
 </h1>
 <p class="examplesSub">
-  Guarda esempi reali di siti per attività locali, divisi per categoria.<br>
+  Guarda esempi reali di siti per attività locali, divisi per categoria.<br/>
   Il tuo sito verrà progettato su misura.
-  <br>99€ / mese · Disdici quando vuoi
+  <br/>99€ / mese · Disdici quando vuoi
 </p>
-<div class="examplesFilters" aria-label="Filtri demo">
-  <div class="examplesSearchWrap">
-    <label class="srOnly" for="examplesSearch">Cerca</label>
-    <input id="examplesSearch" class="examplesSearch" type="search" autocomplete="off" placeholder="Cerca un'attività..." />
-  </div>
-  <div class="examplesHint">Cerca un'attività o scegli una categoria</div>
-  <div class="examplesSelects">
-    <div class="examplesSelect">
-      <label class="examplesLabel" for="examplesCategory">Categoria</label>
-      <select id="examplesCategory" class="examplesSelectControl"></select>
-    </div>
-  </div>
+
+<div aria-label="Filtri demo" class="examplesFilters">
+<div class="examplesSearchWrap">
+<label class="srOnly" for="examplesSearch">Cerca</label>
+<input autocomplete="off" class="examplesSearch" id="examplesSearch" placeholder="Cerca tipo attività (es. bar, dentista…)" type="search"/>
 </div>
+<div class="examplesSelects">
+<div class="examplesSelect">
+<label class="examplesLabel" for="examplesCategory">Categoria</label>
+<select class="examplesSelectControl" id="examplesCategory"></select>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Elenco demo" class="examplesSection">
+<div aria-live="polite" class="examplesGrid" id="examplesGrid"></div>
 <!-- Mostra tutte le demo per categoria (nessuna paginazione) -->
 </section>
 </div>
@@ -102,9 +106,9 @@
 <div aria-label="Cookie banner" aria-live="polite" class="cookieBanner" id="cookieBanner" role="dialog">
 <div class="cookieBanner__inner">
 <p class="cookieBanner__text">
-        Questo sito utilizza cookie tecnici e di analisi per migliorare l’esperienza di navigazione.<br/>
+        Questo sito utilizza cookie tecnici e di analisi per migliorare l’esperienza di navigazione.<br>
         Per maggiori informazioni consulta la <a href="/privacy-e-cookie">Privacy e Cookie Policy</a>.
-      </p>
+      </br></p>
 <div class="cookieBanner__actions">
 <button class="cookieBtn cookieBtn--reject" data-cookie-action="reject" type="button">Rifiuta</button>
 <button class="cookieBtn cookieBtn--accept" data-cookie-action="accept" type="button">Accetta</button>

@@ -9,14 +9,16 @@
       "href": "/demos/agenzia-immobiliare/",
       "thumb": "/demos/agenzia-immobiliare/thumb.jpg",
       "tags": [
-        "affitto",
-        "agenzia",
         "agenzia immobiliare",
-        "appartamenti",
-        "casa",
+        "case in vendita",
+        "affitto",
+        "immobili",
+        "annunci immobiliari",
+        "valutazione immobile",
+        "vendita casa",
+        "agenzia",
         "immobiliare",
-        "professionisti",
-        "vendita"
+        "studio"
       ]
     },
     {
@@ -27,7 +29,14 @@
       "thumb": "/demos/architetto/thumb.jpg",
       "tags": [
         "architetto",
-        "professionisti"
+        "studio architettura",
+        "progettazione",
+        "ristrutturazione",
+        "interior design",
+        "pratiche edilizie",
+        "render",
+        "studio",
+        "consulenza"
       ]
     },
     {
@@ -37,10 +46,16 @@
       "href": "/demos/broker-assicurativo/",
       "thumb": "/demos/broker-assicurativo/thumb.jpg",
       "tags": [
-        "assicurativo",
+        "assicurazioni",
+        "polizze",
+        "rc auto",
+        "rc professionale",
+        "assicurazione casa",
+        "preventivo assicurazione",
         "broker",
-        "broker assicurativo",
-        "professionisti"
+        "assicurativo",
+        "studio",
+        "consulenza"
       ]
     },
     {
@@ -50,10 +65,16 @@
       "href": "/demos/broker-mutui/",
       "thumb": "/demos/broker-mutui/thumb.jpg",
       "tags": [
-        "broker",
-        "broker mutui",
+        "mutuo",
         "mutui",
-        "professionisti"
+        "consulenza mutuo",
+        "tasso fisso",
+        "tasso variabile",
+        "surroga",
+        "prestito casa",
+        "broker",
+        "studio",
+        "consulenza"
       ]
     },
     {
@@ -64,7 +85,14 @@
       "thumb": "/demos/commercialista/thumb.jpg",
       "tags": [
         "commercialista",
-        "professionisti"
+        "studio commercialista",
+        "contabilità",
+        "consulenza fiscale",
+        "partita iva",
+        "dichiarazione redditi",
+        "bilancio",
+        "studio",
+        "consulenza"
       ]
     },
     {
@@ -74,10 +102,16 @@
       "href": "/demos/consulente-del-lavoro/",
       "thumb": "/demos/consulente-del-lavoro/thumb.jpg",
       "tags": [
-        "consulente",
         "consulente del lavoro",
+        "buste paga",
+        "paghe e contributi",
+        "contratti",
+        "assunzioni",
+        "licenziamenti",
+        "ccnl",
+        "consulente",
         "lavoro",
-        "professionisti"
+        "studio"
       ]
     },
     {
@@ -88,9 +122,14 @@
       "thumb": "/demos/geometra-perito/thumb.jpg",
       "tags": [
         "geometra",
-        "geometra perito",
         "perito",
-        "professionisti"
+        "catasto",
+        "rilievi",
+        "pratiche edilizie",
+        "ape",
+        "successioni",
+        "studio",
+        "consulenza"
       ]
     },
     {
@@ -100,10 +139,16 @@
       "href": "/demos/green-tech/",
       "thumb": "/demos/green-tech/thumb.jpg",
       "tags": [
-        "green",
         "green tech",
-        "professionisti",
-        "tech"
+        "energie rinnovabili",
+        "fotovoltaico",
+        "sostenibilità",
+        "efficienza energetica",
+        "impianti green",
+        "smart home",
+        "green",
+        "tech",
+        "studio"
       ]
     },
     {
@@ -113,10 +158,16 @@
       "href": "/demos/onoranze/",
       "thumb": "/demos/onoranze/thumb.jpg",
       "tags": [
-        "funebri",
-        "onoranze",
         "onoranze funebri",
-        "professionisti"
+        "funerale",
+        "agenzia funebre",
+        "cremazione",
+        "camera ardente",
+        "necrologio",
+        "servizi funebri",
+        "onoranze",
+        "funebri",
+        "studio"
       ]
     },
     {
@@ -126,9 +177,16 @@
       "href": "/demos/studio-legale/",
       "thumb": "/demos/studio-legale/thumb.jpg",
       "tags": [
+        "avvocato",
+        "studio legale",
+        "consulenza legale",
+        "diritto civile",
+        "diritto penale",
+        "cause",
+        "assistenza legale",
+        "studio",
         "legale",
-        "professionisti",
-        "studio legale"
+        "consulenza"
       ]
     },
     {
@@ -138,11 +196,16 @@
       "href": "/demos/arti-marziali/",
       "thumb": "/demos/arti-marziali/thumb.jpg",
       "tags": [
-        "arti",
         "arti marziali",
-        "benessere",
+        "karate",
+        "judo",
+        "kickboxing",
+        "difesa personale",
+        "corsi adulti",
+        "corsi bambini",
+        "arti",
         "marziali",
-        "salute"
+        "benessere"
       ]
     },
     {
@@ -152,10 +215,15 @@
       "href": "/demos/centro-benessere-spa/",
       "thumb": "/demos/centro-benessere-spa/thumb.jpg",
       "tags": [
-        "benessere",
-        "centro benessere spa",
-        "salute",
-        "spa"
+        "spa",
+        "centro benessere",
+        "massaggi",
+        "sauna",
+        "bagno turco",
+        "relax",
+        "trattamenti benessere",
+        "centro",
+        "benessere"
       ]
     },
     {
@@ -165,11 +233,14 @@
       "href": "/demos/chiropratico-osteopata/",
       "thumb": "/demos/chiropratico-osteopata/thumb.jpg",
       "tags": [
-        "benessere",
-        "chiropratico",
-        "chiropratico / osteopata",
         "osteopata",
-        "salute"
+        "chiropratico",
+        "mal di schiena",
+        "postura",
+        "trattamento osteopatico",
+        "terapia manuale",
+        "cervicale",
+        "benessere"
       ]
     },
     {
@@ -179,9 +250,14 @@
       "href": "/demos/chirurgo/",
       "thumb": "/demos/chirurgo/thumb.jpg",
       "tags": [
-        "benessere",
         "chirurgo",
-        "salute"
+        "chirurgia",
+        "visita specialistica",
+        "intervento",
+        "prenotazione visita",
+        "specialista",
+        "clinica",
+        "benessere"
       ]
     },
     {
@@ -191,12 +267,14 @@
       "href": "/demos/dentista/",
       "thumb": "/demos/dentista/thumb.jpg",
       "tags": [
-        "benessere",
         "dentista",
+        "studio dentistico",
         "igiene dentale",
-        "odontoiatra",
-        "salute",
-        "studio dentistico"
+        "implantologia",
+        "ortodonzia",
+        "sbiancamento denti",
+        "dentista bambini",
+        "benessere"
       ]
     },
     {
@@ -206,9 +284,14 @@
       "href": "/demos/estetista/",
       "thumb": "/demos/estetista/thumb.jpg",
       "tags": [
-        "benessere",
         "estetista",
-        "salute"
+        "trattamenti viso",
+        "manicure",
+        "pedicure",
+        "ceretta",
+        "epilazione",
+        "centro estetico",
+        "benessere"
       ]
     },
     {
@@ -218,14 +301,16 @@
       "href": "/demos/medicina-estetica/",
       "thumb": "/demos/medicina-estetica/thumb.jpg",
       "tags": [
-        "beauty",
-        "benessere",
-        "centro estetico",
-        "estetica",
-        "medicina",
         "medicina estetica",
-        "salute",
-        "trattamenti"
+        "filler",
+        "botox",
+        "laser",
+        "ringiovanimento",
+        "trattamenti viso",
+        "biostimolazione",
+        "medicina",
+        "estetica",
+        "benessere"
       ]
     },
     {
@@ -235,9 +320,14 @@
       "href": "/demos/nutrizionista/",
       "thumb": "/demos/nutrizionista/thumb.jpg",
       "tags": [
-        "benessere",
         "nutrizionista",
-        "salute"
+        "dieta",
+        "alimentazione",
+        "dimagrimento",
+        "piano alimentare",
+        "educazione alimentare",
+        "intolleranze",
+        "benessere"
       ]
     },
     {
@@ -247,12 +337,14 @@
       "href": "/demos/palestra/",
       "thumb": "/demos/palestra/thumb.jpg",
       "tags": [
-        "allenamento",
-        "benessere",
-        "fitness",
         "palestra",
+        "fitness",
+        "allenamento",
         "personal trainer",
-        "salute"
+        "sala pesi",
+        "corsi fitness",
+        "abbonamento palestra",
+        "benessere"
       ]
     },
     {
@@ -262,15 +354,15 @@
       "href": "/demos/parrucchiere-donna/",
       "thumb": "/demos/parrucchiere-donna/thumb.jpg",
       "tags": [
-        "benessere",
-        "colore",
-        "donna",
         "parrucchiere",
         "parrucchiere donna",
+        "taglio capelli",
+        "colore",
         "piega",
+        "balayage",
         "salone",
-        "salute",
-        "taglio"
+        "donna",
+        "benessere"
       ]
     },
     {
@@ -280,15 +372,16 @@
       "href": "/demos/parrucchiere-uomo/",
       "thumb": "/demos/parrucchiere-uomo/thumb.jpg",
       "tags": [
-        "benessere",
-        "colore",
-        "parrucchiere",
+        "barbiere",
         "parrucchiere uomo",
-        "piega",
-        "salone",
-        "salute",
-        "taglio",
-        "uomo"
+        "taglio uomo",
+        "sfumatura",
+        "barba",
+        "shave",
+        "barber shop",
+        "parrucchiere",
+        "uomo",
+        "benessere"
       ]
     },
     {
@@ -298,9 +391,14 @@
       "href": "/demos/podologo/",
       "thumb": "/demos/podologo/thumb.jpg",
       "tags": [
-        "benessere",
         "podologo",
-        "salute"
+        "cura del piede",
+        "calli",
+        "unghie incarnite",
+        "plantari",
+        "visita podologica",
+        "piede diabetico",
+        "benessere"
       ]
     },
     {
@@ -310,9 +408,14 @@
       "href": "/demos/psicologia/",
       "thumb": "/demos/psicologia/thumb.jpg",
       "tags": [
-        "benessere",
+        "psicologo",
         "psicologia",
-        "salute"
+        "psicoterapia",
+        "ansia",
+        "stress",
+        "depressione",
+        "consulenza psicologica",
+        "benessere"
       ]
     },
     {
@@ -322,11 +425,15 @@
       "href": "/demos/scuola-danza/",
       "thumb": "/demos/scuola-danza/thumb.jpg",
       "tags": [
-        "benessere",
+        "scuola di danza",
         "danza",
-        "salute",
+        "hip hop",
+        "classica",
+        "moderna",
+        "corsi bambini",
+        "corsi adulti",
         "scuola",
-        "scuola danza"
+        "benessere"
       ]
     },
     {
@@ -336,11 +443,16 @@
       "href": "/demos/sport-acquatici/",
       "thumb": "/demos/sport-acquatici/thumb.jpg",
       "tags": [
-        "acquatici",
-        "benessere",
-        "salute",
+        "sport acquatici",
+        "nuoto",
+        "sub",
+        "surf",
+        "sup",
+        "corsi nuoto",
+        "escursioni mare",
         "sport",
-        "sport acquatici"
+        "acquatici",
+        "benessere"
       ]
     },
     {
@@ -350,11 +462,16 @@
       "href": "/demos/tatoo/",
       "thumb": "/demos/tatoo/thumb.jpg",
       "tags": [
-        "benessere",
-        "salute",
+        "tatuaggi",
+        "tattoo",
+        "piercing",
         "studio tattoo",
+        "tatuatore",
+        "cover up",
+        "tattoo design",
+        "studio",
         "tatoo",
-        "tattoo"
+        "benessere"
       ]
     },
     {
@@ -364,10 +481,14 @@
       "href": "/demos/compro-oro-e-orologi-lusso/",
       "thumb": "/demos/compro-oro-e-orologi-lusso/thumb.jpg",
       "tags": [
+        "compro oro",
+        "oro usato",
+        "valutazione oro",
+        "orologi di lusso",
+        "compravendita",
+        "gioielli usati",
+        "quotazione oro",
         "compro",
-        "compro oro e orologi di lusso",
-        "lusso",
-        "negozi",
         "oro",
         "orologi"
       ]
@@ -380,7 +501,14 @@
       "thumb": "/demos/erboristeria/thumb.jpg",
       "tags": [
         "erboristeria",
-        "negozi"
+        "prodotti naturali",
+        "tisane",
+        "integratori",
+        "rimedi naturali",
+        "fitoterapia",
+        "benessere",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -391,7 +519,14 @@
       "thumb": "/demos/fioraio/thumb.jpg",
       "tags": [
         "fioraio",
-        "negozi"
+        "fiori",
+        "bouquet",
+        "consegna fiori",
+        "matrimoni",
+        "composizioni floreali",
+        "piante",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -402,7 +537,14 @@
       "thumb": "/demos/fumetteria/thumb.jpg",
       "tags": [
         "fumetteria",
-        "negozi"
+        "manga",
+        "fumetti",
+        "comics",
+        "anime",
+        "collezionismo",
+        "graphic novel",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -412,10 +554,15 @@
       "href": "/demos/gioielli-e-orologi/",
       "thumb": "/demos/gioielli-e-orologi/thumb.jpg",
       "tags": [
+        "gioielleria",
         "gioielli",
-        "gioielli e orologi",
-        "negozi",
-        "orologi"
+        "orologi",
+        "anelli",
+        "collane",
+        "regali",
+        "orologeria",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -425,10 +572,16 @@
       "href": "/demos/lavanderia-industriale/",
       "thumb": "/demos/lavanderia-industriale/thumb.jpg",
       "tags": [
-        "industriale",
         "lavanderia",
         "lavanderia industriale",
-        "negozi"
+        "stireria",
+        "lavaggio biancheria",
+        "hotel",
+        "ristoranti",
+        "servizio ritiro",
+        "industriale",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -439,7 +592,14 @@
       "thumb": "/demos/libreria/thumb.jpg",
       "tags": [
         "libreria",
-        "negozi"
+        "libri",
+        "cartoleria",
+        "novità",
+        "ordine libri",
+        "eventi",
+        "lettura",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -450,9 +610,13 @@
       "thumb": "/demos/negozio-abbigliamento/thumb.jpg",
       "tags": [
         "abbigliamento",
-        "negozi",
-        "negozio",
-        "negozio abbigliamento"
+        "negozio vestiti",
+        "moda",
+        "outfit",
+        "uomo donna",
+        "nuova collezione",
+        "shop",
+        "negozio"
       ]
     },
     {
@@ -463,9 +627,14 @@
       "thumb": "/demos/negozio-bambini/thumb.jpg",
       "tags": [
         "bambini",
-        "negozi",
+        "negozio bambini",
+        "abbigliamento bimbo",
+        "puericultura",
+        "giocattoli",
+        "neonati",
+        "regali nascita",
         "negozio",
-        "negozio bambini"
+        "shop"
       ]
     },
     {
@@ -475,10 +644,15 @@
       "href": "/demos/negozio-scarpe/",
       "thumb": "/demos/negozio-scarpe/thumb.jpg",
       "tags": [
-        "negozi",
-        "negozio",
+        "scarpe",
+        "calzature",
+        "sneakers",
+        "scarpe uomo donna",
+        "sandali",
+        "stivali",
         "negozio scarpe",
-        "scarpe"
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -488,11 +662,15 @@
       "href": "/demos/negozio-ufficio-e-scuola/",
       "thumb": "/demos/negozio-ufficio-e-scuola/thumb.jpg",
       "tags": [
-        "negozi",
-        "negozio",
-        "negozio ufficio e scuola",
+        "cartoleria",
         "scuola",
-        "ufficio"
+        "ufficio",
+        "cancelleria",
+        "stampanti",
+        "quaderni",
+        "materiale scolastico",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -502,26 +680,34 @@
       "href": "/demos/ottica/",
       "thumb": "/demos/ottica/thumb.jpg",
       "tags": [
-        "negozi",
-        "ottica"
+        "ottica",
+        "occhiali",
+        "lenti a contatto",
+        "vista",
+        "controllo vista",
+        "montature",
+        "optometrista",
+        "negozio",
+        "shop"
       ]
     },
     {
       "title": "Pet Store",
-      "category": "Animali",
+      "category": "Negozi",
       "slug": "pet-store",
       "href": "/demos/pet-store/",
       "thumb": "/demos/pet-store/thumb.jpg",
       "tags": [
-        "animali",
-        "cani",
-        "gatti",
-        "pet",
+        "negozio animali",
         "pet shop",
-        "pet store",
-        "petstore",
+        "cibo cani",
+        "cibo gatti",
+        "accessori animali",
+        "toelettatura",
+        "animali domestici",
+        "pet",
         "store",
-        "veterinario"
+        "negozio"
       ]
     },
     {
@@ -531,8 +717,15 @@
       "href": "/demos/profumeria/",
       "thumb": "/demos/profumeria/thumb.jpg",
       "tags": [
-        "negozi",
-        "profumeria"
+        "profumeria",
+        "profumi",
+        "make up",
+        "cosmetici",
+        "skincare",
+        "regali",
+        "beauty",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -542,8 +735,15 @@
       "href": "/demos/sartoria/",
       "thumb": "/demos/sartoria/thumb.jpg",
       "tags": [
-        "negozi",
-        "sartoria"
+        "sartoria",
+        "abiti su misura",
+        "riparazioni",
+        "orli",
+        "cucito",
+        "tailor",
+        "modifiche abiti",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -553,10 +753,16 @@
       "href": "/demos/sigarette-elettroniche/",
       "thumb": "/demos/sigarette-elettroniche/thumb.jpg",
       "tags": [
-        "elettroniche",
-        "negozi",
+        "sigaretta elettronica",
+        "svapo",
+        "liquidi",
+        "vape",
+        "pod",
+        "accessori svapo",
+        "negozio svapo",
         "sigarette",
-        "sigarette elettroniche"
+        "elettroniche",
+        "negozio"
       ]
     },
     {
@@ -566,8 +772,15 @@
       "href": "/demos/telefonia/",
       "thumb": "/demos/telefonia/thumb.jpg",
       "tags": [
-        "negozi",
-        "telefonia"
+        "telefonia",
+        "smartphone",
+        "riparazioni",
+        "accessori telefono",
+        "cover",
+        "assistenza",
+        "tablet",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -577,8 +790,15 @@
       "href": "/demos/tessuti/",
       "thumb": "/demos/tessuti/thumb.jpg",
       "tags": [
-        "negozi",
-        "tessuti"
+        "tessuti",
+        "stoffa",
+        "merceria",
+        "tende",
+        "tappezzeria",
+        "cucito",
+        "lana",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -588,8 +808,15 @@
       "href": "/demos/videogiochi/",
       "thumb": "/demos/videogiochi/thumb.jpg",
       "tags": [
-        "negozi",
-        "videogiochi"
+        "videogiochi",
+        "console",
+        "gaming",
+        "ps5",
+        "xbox",
+        "nintendo",
+        "retrogaming",
+        "negozio",
+        "shop"
       ]
     },
     {
@@ -599,10 +826,15 @@
       "href": "/demos/badanti/",
       "thumb": "/demos/badanti/thumb.jpg",
       "tags": [
-        "assistenza",
+        "badante",
+        "assistenza anziani",
+        "cura a domicilio",
+        "assistente familiare",
+        "compagnia",
+        "h24",
+        "caregiver",
         "badanti",
-        "centri",
-        "medici"
+        "assistenza"
       ]
     },
     {
@@ -612,12 +844,16 @@
       "href": "/demos/casa-riposo/",
       "thumb": "/demos/casa-riposo/thumb.jpg",
       "tags": [
-        "assistenza",
+        "casa di riposo",
+        "rsa",
+        "residenza anziani",
+        "assistenza anziani",
+        "struttura",
+        "lungodegenza",
+        "ospiti",
         "casa",
-        "casa riposo",
-        "centri",
-        "medici",
-        "riposo"
+        "riposo",
+        "assistenza"
       ]
     },
     {
@@ -627,11 +863,16 @@
       "href": "/demos/centro-diagnostico/",
       "thumb": "/demos/centro-diagnostico/thumb.jpg",
       "tags": [
-        "assistenza",
-        "centri",
         "centro diagnostico",
+        "analisi",
+        "radiologia",
+        "ecografia",
+        "risonanza",
+        "prenotazioni",
+        "referti",
+        "centro",
         "diagnostico",
-        "medici"
+        "assistenza"
       ]
     },
     {
@@ -641,11 +882,16 @@
       "href": "/demos/centro-fisioterapico/",
       "thumb": "/demos/centro-fisioterapico/thumb.jpg",
       "tags": [
-        "assistenza",
-        "centri",
-        "centro fisioterapico",
+        "fisioterapia",
+        "riabilitazione",
+        "massoterapia",
+        "tecar",
+        "posturale",
+        "infortuni",
+        "fisioterapista",
+        "centro",
         "fisioterapico",
-        "medici"
+        "assistenza"
       ]
     },
     {
@@ -655,11 +901,16 @@
       "href": "/demos/centro-ortopedico/",
       "thumb": "/demos/centro-ortopedico/thumb.jpg",
       "tags": [
-        "assistenza",
-        "centri",
-        "centro ortopedico",
-        "medici",
-        "ortopedico"
+        "ortopedia",
+        "tutori",
+        "plantari",
+        "protesi",
+        "ausili",
+        "scarpe ortopediche",
+        "ginocchiere",
+        "centro",
+        "ortopedico",
+        "assistenza"
       ]
     },
     {
@@ -669,11 +920,14 @@
       "href": "/demos/cooperativa-sociale/",
       "thumb": "/demos/cooperativa-sociale/thumb.jpg",
       "tags": [
-        "assistenza",
-        "centri",
-        "cooperativa",
         "cooperativa sociale",
-        "medici",
+        "servizi sociali",
+        "assistenza",
+        "inclusione",
+        "progetti",
+        "comunità",
+        "terzo settore",
+        "cooperativa",
         "sociale"
       ]
     },
@@ -684,26 +938,31 @@
       "href": "/demos/farmacia/",
       "thumb": "/demos/farmacia/thumb.jpg",
       "tags": [
-        "assistenza",
-        "centri",
         "farmacia",
-        "medici"
+        "farmaci",
+        "parafarmacia",
+        "tamponi",
+        "misurazione pressione",
+        "prenotazioni",
+        "cosmesi",
+        "assistenza"
       ]
     },
     {
       "title": "Veterinario",
-      "category": "Animali",
+      "category": "Centri Medici e Assistenza",
       "slug": "veterinario",
       "href": "/demos/veterinario/",
       "thumb": "/demos/veterinario/thumb.jpg",
       "tags": [
-        "ambulatorio",
-        "animali",
-        "cani",
+        "veterinario",
         "clinica veterinaria",
+        "cani",
         "gatti",
-        "pet shop",
-        "veterinario"
+        "visite",
+        "vaccini",
+        "urgenze",
+        "assistenza"
       ]
     },
     {
@@ -713,12 +972,16 @@
       "href": "/demos/climatizzazione-e-impianti-termici/",
       "thumb": "/demos/climatizzazione-e-impianti-termici/thumb.jpg",
       "tags": [
-        "casa",
         "climatizzazione",
-        "climatizzazione e impianti termici",
-        "edilizia",
+        "condizionatori",
+        "impianti termici",
+        "caldaie",
+        "manutenzione",
+        "installazione",
+        "assistenza",
         "impianti",
-        "termici"
+        "termici",
+        "casa"
       ]
     },
     {
@@ -728,9 +991,14 @@
       "href": "/demos/elettricista/",
       "thumb": "/demos/elettricista/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
-        "elettricista"
+        "elettricista",
+        "impianto elettrico",
+        "guasti",
+        "certificazione",
+        "domotica",
+        "quadri elettrici",
+        "emergenza",
+        "casa"
       ]
     },
     {
@@ -740,9 +1008,14 @@
       "href": "/demos/giardiniere/",
       "thumb": "/demos/giardiniere/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
-        "giardiniere"
+        "giardiniere",
+        "manutenzione giardino",
+        "potatura",
+        "irrigazione",
+        "prato",
+        "siepi",
+        "cura piante",
+        "casa"
       ]
     },
     {
@@ -752,9 +1025,15 @@
       "href": "/demos/idraulica/",
       "thumb": "/demos/idraulica/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
-        "idraulica"
+        "idraulico",
+        "perdite",
+        "impianto idraulico",
+        "caldaia",
+        "scarichi",
+        "rubinetti",
+        "pronto intervento",
+        "idraulica",
+        "casa"
       ]
     },
     {
@@ -764,11 +1043,15 @@
       "href": "/demos/pulizie/",
       "thumb": "/demos/pulizie/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
-        "impresa",
         "impresa di pulizie",
-        "pulizie"
+        "pulizie",
+        "sanificazione",
+        "uffici",
+        "condomini",
+        "pulizie post cantiere",
+        "servizi",
+        "impresa",
+        "casa"
       ]
     },
     {
@@ -778,11 +1061,16 @@
       "href": "/demos/impresa-edile/",
       "thumb": "/demos/impresa-edile/thumb.jpg",
       "tags": [
-        "casa",
-        "edile",
+        "impresa edile",
         "edilizia",
+        "costruzioni",
+        "cantiere",
+        "muratore",
+        "lavori edili",
+        "preventivo",
         "impresa",
-        "impresa edile"
+        "edile",
+        "casa"
       ]
     },
     {
@@ -792,11 +1080,15 @@
       "href": "/demos/impresa-ristrutturazioni/",
       "thumb": "/demos/impresa-ristrutturazioni/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
+        "ristrutturazioni",
+        "ristrutturazione casa",
+        "bagno",
+        "chiavi in mano",
+        "detrazioni",
+        "preventivo",
+        "cantiere",
         "impresa",
-        "impresa ristrutturazioni",
-        "ristrutturazioni"
+        "casa"
       ]
     },
     {
@@ -806,11 +1098,16 @@
       "href": "/demos/magazzino-edile/",
       "thumb": "/demos/magazzino-edile/thumb.jpg",
       "tags": [
-        "casa",
-        "edile",
+        "materiali edili",
+        "magazzino edile",
+        "cemento",
+        "laterizi",
+        "attrezzi",
+        "forniture",
         "edilizia",
         "magazzino",
-        "magazzino edile"
+        "edile",
+        "casa"
       ]
     },
     {
@@ -820,9 +1117,14 @@
       "href": "/demos/mobilificio/",
       "thumb": "/demos/mobilificio/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
-        "mobilificio"
+        "mobilificio",
+        "mobili",
+        "arredamento",
+        "cucine",
+        "soggiorni",
+        "camere",
+        "su misura",
+        "casa"
       ]
     },
     {
@@ -832,11 +1134,15 @@
       "href": "/demos/outdoor-store/",
       "thumb": "/demos/outdoor-store/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
         "outdoor",
-        "outdoor store",
-        "store"
+        "trekking",
+        "camping",
+        "attrezzatura",
+        "escursionismo",
+        "abbigliamento tecnico",
+        "mountain",
+        "store",
+        "casa"
       ]
     },
     {
@@ -846,9 +1152,14 @@
       "href": "/demos/serramenti/",
       "thumb": "/demos/serramenti/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
-        "serramenti"
+        "serramenti",
+        "infissi",
+        "finestre",
+        "porte",
+        "zanzariere",
+        "persiane",
+        "installazione",
+        "casa"
       ]
     },
     {
@@ -858,11 +1169,16 @@
       "href": "/demos/sistemi-riposo/",
       "thumb": "/demos/sistemi-riposo/thumb.jpg",
       "tags": [
-        "casa",
-        "edilizia",
-        "riposo",
+        "materassi",
+        "reti",
+        "cuscini",
+        "sistemi riposo",
+        "letto",
+        "memory foam",
+        "sonno",
         "sistemi",
-        "sistemi riposo"
+        "riposo",
+        "casa"
       ]
     },
     {
@@ -872,17 +1188,14 @@
       "href": "/demos/bar/",
       "thumb": "/demos/bar/thumb.jpg",
       "tags": [
-        "aperitivo",
         "bar",
-        "caffe",
-        "cibo",
+        "caffè",
+        "colazioni",
+        "aperitivo",
         "cocktail",
-        "colazione",
-        "pizzeria",
-        "prenotazione",
-        "ristorante",
-        "ristorazione",
-        "spritz"
+        "spritz",
+        "happy hour",
+        "cibo"
       ]
     },
     {
@@ -892,15 +1205,14 @@
       "href": "/demos/catering-eventi/",
       "thumb": "/demos/catering-eventi/thumb.jpg",
       "tags": [
-        "bar",
         "catering",
-        "catering eventi",
-        "cibo",
         "eventi",
-        "pizzeria",
-        "prenotazione",
-        "ristorante",
-        "ristorazione"
+        "banqueting",
+        "buffet",
+        "matrimoni",
+        "feste",
+        "servizio catering",
+        "cibo"
       ]
     },
     {
@@ -910,13 +1222,14 @@
       "href": "/demos/enoteca/",
       "thumb": "/demos/enoteca/thumb.jpg",
       "tags": [
-        "bar",
-        "cibo",
         "enoteca",
-        "pizzeria",
-        "prenotazione",
-        "ristorante",
-        "ristorazione"
+        "vino",
+        "degustazione",
+        "cantina",
+        "vini locali",
+        "bollicine",
+        "bottiglie",
+        "cibo"
       ]
     },
     {
@@ -926,13 +1239,14 @@
       "href": "/demos/frantoio/",
       "thumb": "/demos/frantoio/thumb.jpg",
       "tags": [
-        "bar",
-        "cibo",
         "frantoio",
-        "pizzeria",
-        "prenotazione",
-        "ristorante",
-        "ristorazione"
+        "olio extravergine",
+        "olio evo",
+        "degustazione",
+        "oliveto",
+        "vendita olio",
+        "produzione",
+        "cibo"
       ]
     },
     {
@@ -942,18 +1256,15 @@
       "href": "/demos/gelateria-artigianale/",
       "thumb": "/demos/gelateria-artigianale/thumb.jpg",
       "tags": [
-        "artigianale",
-        "bar",
-        "cibo",
-        "cono",
-        "coppa",
         "gelateria",
-        "gelateria artigianale",
+        "gelato artigianale",
+        "coni",
+        "vaschette",
+        "granite",
+        "asporto",
         "gelato",
-        "pizzeria",
-        "prenotazione",
-        "ristorante",
-        "ristorazione"
+        "artigianale",
+        "cibo"
       ]
     },
     {
@@ -963,13 +1274,14 @@
       "href": "/demos/macelleria/",
       "thumb": "/demos/macelleria/thumb.jpg",
       "tags": [
-        "bar",
-        "cibo",
         "macelleria",
-        "pizzeria",
-        "prenotazione",
-        "ristorante",
-        "ristorazione"
+        "carne",
+        "carne fresca",
+        "tagli",
+        "grigliata",
+        "salumi",
+        "km0",
+        "cibo"
       ]
     },
     {
@@ -979,16 +1291,14 @@
       "href": "/demos/pasticceria/",
       "thumb": "/demos/pasticceria/thumb.jpg",
       "tags": [
-        "bar",
-        "brioche",
-        "cibo",
-        "dolci",
         "pasticceria",
-        "pizzeria",
-        "prenotazione",
-        "ristorante",
-        "ristorazione",
-        "torte"
+        "dolci",
+        "torte",
+        "biscotti",
+        "colazione",
+        "pasticceria artigianale",
+        "ordinazioni",
+        "cibo"
       ]
     },
     {
@@ -998,22 +1308,14 @@
       "href": "/demos/pizzeria-ristorante/",
       "thumb": "/demos/pizzeria-ristorante/thumb.jpg",
       "tags": [
-        "asporto",
-        "bar",
-        "cena",
-        "cibo",
-        "cucina",
-        "delivery",
-        "menu",
-        "pizza",
-        "pizze",
         "pizzeria",
-        "pizzeria – ristorante",
-        "pranzo",
-        "prenotazione",
+        "pizza",
         "ristorante",
-        "ristorazione",
-        "takeaway"
+        "menu",
+        "asporto",
+        "delivery",
+        "prenotazioni",
+        "cibo"
       ]
     },
     {
@@ -1023,15 +1325,16 @@
       "href": "/demos/street-food/",
       "thumb": "/demos/street-food/thumb.jpg",
       "tags": [
-        "bar",
-        "cibo",
-        "food",
-        "pizzeria",
-        "prenotazione",
-        "ristorante",
-        "ristorazione",
+        "street food",
+        "cibo da strada",
+        "panini",
+        "hamburger",
+        "fritture",
+        "take away",
+        "food truck",
         "street",
-        "street food"
+        "food",
+        "cibo"
       ]
     },
     {
@@ -1041,10 +1344,13 @@
       "href": "/demos/autoscuola/",
       "thumb": "/demos/autoscuola/thumb.jpg",
       "tags": [
-        "auto",
         "autoscuola",
-        "moto",
-        "trasporti"
+        "patente",
+        "quiz patente",
+        "corsi guida",
+        "esame",
+        "pratiche auto",
+        "patente b"
       ]
     },
     {
@@ -1054,13 +1360,16 @@
       "href": "/demos/bici-e-mobilità-sostenibile/",
       "thumb": "/demos/bici-e-mobilità-sostenibile/thumb.jpg",
       "tags": [
-        "auto",
+        "biciclette",
+        "bike",
+        "e-bike",
+        "mobilità sostenibile",
+        "riparazioni bici",
+        "accessori",
+        "ciclabile",
         "bici",
-        "bici e mobilità sostenibile",
-        "mobilita",
-        "moto",
-        "sostenibile",
-        "trasporti"
+        "mobilità",
+        "sostenibile"
       ]
     },
     {
@@ -1070,10 +1379,13 @@
       "href": "/demos/carrozziere/",
       "thumb": "/demos/carrozziere/thumb.jpg",
       "tags": [
-        "auto",
         "carrozziere",
-        "moto",
-        "trasporti"
+        "carrozzeria",
+        "riparazione auto",
+        "verniciatura",
+        "sinistri",
+        "grandine",
+        "preventivo"
       ]
     },
     {
@@ -1083,10 +1395,14 @@
       "href": "/demos/concessionario/",
       "thumb": "/demos/concessionario/thumb.jpg",
       "tags": [
-        "auto",
-        "concessionario",
-        "moto",
-        "trasporti"
+        "concessionaria",
+        "auto nuove",
+        "auto usate",
+        "test drive",
+        "finanziamento",
+        "permuta",
+        "vendita auto",
+        "concessionario"
       ]
     },
     {
@@ -1096,10 +1412,13 @@
       "href": "/demos/gommista/",
       "thumb": "/demos/gommista/thumb.jpg",
       "tags": [
-        "auto",
         "gommista",
-        "moto",
-        "trasporti"
+        "pneumatici",
+        "cambio gomme",
+        "convergenza",
+        "cerchi",
+        "invernali estive",
+        "assetto"
       ]
     },
     {
@@ -1109,11 +1428,14 @@
       "href": "/demos/lavaggio-auto/",
       "thumb": "/demos/lavaggio-auto/thumb.jpg",
       "tags": [
-        "auto",
-        "lavaggio",
+        "autolavaggio",
         "lavaggio auto",
-        "moto",
-        "trasporti"
+        "pulizia interni",
+        "detailing",
+        "lavaggio a mano",
+        "sanificazione",
+        "auto",
+        "lavaggio"
       ]
     },
     {
@@ -1123,10 +1445,13 @@
       "href": "/demos/logistica/",
       "thumb": "/demos/logistica/thumb.jpg",
       "tags": [
-        "auto",
         "logistica",
-        "moto",
-        "trasporti"
+        "trasporti",
+        "spedizioni",
+        "magazzino",
+        "consegne",
+        "corriere",
+        "supply chain"
       ]
     },
     {
@@ -1136,10 +1461,13 @@
       "href": "/demos/meccanico/",
       "thumb": "/demos/meccanico/thumb.jpg",
       "tags": [
-        "auto",
         "meccanico",
-        "moto",
-        "trasporti"
+        "officina",
+        "tagliando",
+        "revisione",
+        "diagnosi",
+        "riparazione auto",
+        "assistenza"
       ]
     },
     {
@@ -1149,9 +1477,13 @@
       "href": "/demos/moto/",
       "thumb": "/demos/moto/thumb.jpg",
       "tags": [
-        "auto",
         "moto",
-        "trasporti"
+        "officina moto",
+        "accessori moto",
+        "tagliando moto",
+        "scooter",
+        "caschi",
+        "riparazioni"
       ]
     },
     {
@@ -1161,10 +1493,13 @@
       "href": "/demos/noleggio/",
       "thumb": "/demos/noleggio/thumb.jpg",
       "tags": [
-        "auto",
-        "moto",
         "noleggio",
-        "trasporti"
+        "rent",
+        "auto a noleggio",
+        "furgoni",
+        "lungo termine",
+        "breve termine",
+        "prenotazione"
       ]
     },
     {
@@ -1174,18 +1509,15 @@
       "href": "/demos/noleggio-e-rimessaggio-barche/",
       "thumb": "/demos/noleggio-e-rimessaggio-barche/thumb.jpg",
       "tags": [
-        "aperitivo",
-        "auto",
-        "barche",
-        "caffe",
-        "cocktail",
-        "colazione",
-        "moto",
-        "noleggio",
-        "noleggio e rimessaggio barche",
+        "noleggio barche",
         "rimessaggio",
-        "spritz",
-        "trasporti"
+        "porto",
+        "imbarcazioni",
+        "gommone",
+        "ormeggio",
+        "barca",
+        "noleggio",
+        "barche"
       ]
     },
     {
@@ -1195,12 +1527,14 @@
       "href": "/demos/agenzia-viaggi/",
       "thumb": "/demos/agenzia-viaggi/thumb.jpg",
       "tags": [
-        "agenzia",
         "agenzia viaggi",
-        "eventi",
-        "formazione",
-        "turismo",
-        "viaggi"
+        "viaggi",
+        "vacanze",
+        "prenotazioni",
+        "voli",
+        "hotel",
+        "tour",
+        "agenzia"
       ]
     },
     {
@@ -1211,9 +1545,12 @@
       "thumb": "/demos/agriturismo/thumb.jpg",
       "tags": [
         "agriturismo",
-        "eventi",
-        "formazione",
-        "turismo"
+        "vacanze",
+        "camere",
+        "ristorante",
+        "prodotti tipici",
+        "natura",
+        "weekend"
       ]
     },
     {
@@ -1224,11 +1561,13 @@
       "thumb": "/demos/asilo-privato/thumb.jpg",
       "tags": [
         "asilo",
-        "asilo privato",
-        "eventi",
-        "formazione",
-        "privato",
-        "turismo"
+        "nido",
+        "scuola infanzia",
+        "bambini",
+        "iscrizioni",
+        "doposcuola",
+        "educazione",
+        "privato"
       ]
     },
     {
@@ -1238,12 +1577,15 @@
       "href": "/demos/azienda-agricola/",
       "thumb": "/demos/azienda-agricola/thumb.jpg",
       "tags": [
-        "agricola",
-        "azienda",
         "azienda agricola",
-        "eventi",
-        "formazione",
-        "turismo"
+        "prodotti km0",
+        "fattoria",
+        "vendita diretta",
+        "ortaggi",
+        "frutta",
+        "bio",
+        "azienda",
+        "agricola"
       ]
     },
     {
@@ -1255,31 +1597,31 @@
       "tags": [
         "b&b",
         "bed and breakfast",
-        "bnb",
+        "alloggio",
         "camere",
-        "eventi",
-        "formazione",
         "prenotazione",
-        "turismo"
+        "vacanze",
+        "ospitalità",
+        "b",
+        "bnb"
       ]
     },
     {
       "title": "Centro Cinofilo",
-      "category": "Animali",
+      "category": "Turismo, Eventi e Formazione",
       "slug": "centro-cinofilo",
       "href": "/demos/centro-cinofilo/",
       "thumb": "/demos/centro-cinofilo/thumb.jpg",
       "tags": [
-        "addestramento cani",
-        "animali",
-        "cani",
         "centro cinofilo",
-        "cinofilo",
-        "dog training",
-        "educatore cinofilo",
-        "gatti",
-        "pet shop",
-        "veterinario"
+        "addestramento cani",
+        "educatore",
+        "pensione cani",
+        "agility",
+        "corsi cuccioli",
+        "dog trainer",
+        "centro",
+        "cinofilo"
       ]
     },
     {
@@ -1290,10 +1632,14 @@
       "thumb": "/demos/centro-studi/thumb.jpg",
       "tags": [
         "centro studi",
-        "eventi",
-        "formazione",
-        "studi",
-        "turismo"
+        "doposcuola",
+        "ripetizioni",
+        "recupero debiti",
+        "tutor",
+        "lezioni",
+        "scuola",
+        "centro",
+        "studi"
       ]
     },
     {
@@ -1304,10 +1650,12 @@
       "thumb": "/demos/corsi-e-formazione/thumb.jpg",
       "tags": [
         "corsi",
-        "corsi e formazione",
-        "eventi",
         "formazione",
-        "turismo"
+        "workshop",
+        "certificazioni",
+        "lezioni",
+        "aula",
+        "online"
       ]
     },
     {
@@ -1318,9 +1666,12 @@
       "thumb": "/demos/discoteca/thumb.jpg",
       "tags": [
         "discoteca",
+        "club",
+        "serate",
+        "dj set",
+        "musica",
         "eventi",
-        "formazione",
-        "turismo"
+        "drink"
       ]
     },
     {
@@ -1330,12 +1681,13 @@
       "href": "/demos/fotografo-e-videomaker/",
       "thumb": "/demos/fotografo-e-videomaker/thumb.jpg",
       "tags": [
-        "eventi",
-        "formazione",
         "fotografo",
-        "fotografo e videomaker",
-        "turismo",
-        "videomaker"
+        "videomaker",
+        "video",
+        "matrimoni",
+        "eventi",
+        "shooting",
+        "servizi fotografici"
       ]
     },
     {
@@ -1345,13 +1697,14 @@
       "href": "/demos/sale-giochi-e-compleanni/",
       "thumb": "/demos/sale-giochi-e-compleanni/thumb.jpg",
       "tags": [
+        "sala giochi",
         "compleanni",
-        "eventi",
-        "formazione",
+        "feste bambini",
         "giochi",
-        "sale",
-        "sale giochi e compleanni",
-        "turismo"
+        "eventi",
+        "animazione",
+        "party",
+        "sale"
       ]
     },
     {
@@ -1361,12 +1714,15 @@
       "href": "/demos/stabilimento-balneare/",
       "thumb": "/demos/stabilimento-balneare/thumb.jpg",
       "tags": [
-        "balneare",
-        "eventi",
-        "formazione",
-        "stabilimento",
         "stabilimento balneare",
-        "turismo"
+        "spiaggia",
+        "ombrelloni",
+        "lettini",
+        "mare",
+        "bar spiaggia",
+        "prenotazioni",
+        "stabilimento",
+        "balneare"
       ]
     },
     {
@@ -1376,12 +1732,15 @@
       "href": "/demos/vestiti-matrimonio/",
       "thumb": "/demos/vestiti-matrimonio/thumb.jpg",
       "tags": [
-        "eventi",
-        "formazione",
-        "matrimonio",
-        "turismo",
+        "abiti da sposa",
+        "vestiti matrimonio",
+        "abiti cerimonia",
+        "sposo",
+        "atelier",
+        "prova abito",
+        "accessori",
         "vestiti",
-        "vestiti matrimonio"
+        "matrimonio"
       ]
     },
     {
@@ -1391,12 +1750,15 @@
       "href": "/demos/wedding-planner/",
       "thumb": "/demos/wedding-planner/thumb.jpg",
       "tags": [
-        "eventi",
-        "formazione",
-        "planner",
-        "turismo",
+        "wedding planner",
+        "matrimonio",
+        "organizzazione",
+        "location",
+        "fornitori",
+        "coordinamento",
+        "event planner",
         "wedding",
-        "wedding planner"
+        "planner"
       ]
     }
   ]

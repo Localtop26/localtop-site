@@ -1,116 +1,203 @@
+/* LocalTop — Esempi di siti
+   - Catalogo demo da /data/demos.json
+   - Ricerca live su: title + category + slug + tags
+   - Categoria (select)
+   - Paginazione: 12 iniziali, "Mostra altri" (+12)
+   - Se l'utente scrive nella ricerca e c'è una categoria selezionata, reset automatico a "Tutte le categorie"
+*/
+
 (() => {
   "use strict";
 
   const DATA_URL = "/data/demos.json";
+  const PAGE_SIZE = 12;
 
   const grid = document.getElementById("examplesGrid");
-  const chips = Array.from(document.querySelectorAll(".examplesChips .chip"));
+  const searchEl = document.getElementById("examplesSearch");
+  const categoryEl = document.getElementById("examplesCategory");
 
-  if (!grid || chips.length === 0) return;
+  if (!grid || !searchEl || !categoryEl) return;
 
-  const state = {
-    all: [],
-    category: chips[0].dataset.category || "",
-  };
+  let all = [];
+  let filtered = [];
+  let visibleCount = PAGE_SIZE;
 
-  function setActiveChip(category) {
-    chips.forEach((btn) => {
-      const isActive = btn.dataset.category === category;
-      btn.classList.toggle("is-active", isActive);
-      btn.setAttribute("aria-selected", String(isActive));
+  let loadMoreWrap = null;
+  let loadMoreBtn = null;
+
+  function normalizeStr(s) {
+    return (s || "")
+      .toString()
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function escapeHtml(str) {
+    return (str || "").replace(/[&<>"']/g, (m) => {
+      switch (m) {
+        case "&": return "&amp;";
+        case "<": return "&lt;";
+        case ">": return "&gt;";
+        case '"': return "&quot;";
+        case "'": return "&#39;";
+        default: return m;
+      }
     });
   }
 
-  function getFiltered() {
-    return state.all.filter((d) => d.category === state.category);
+  function getTitle(d) {
+    return (d && d.title) ? d.title.toString() : "";
   }
 
-  function createCard(demo) {
-    const card = document.createElement("article");
-    card.className = "demoCard";
+  function getCategory(d) {
+    return (d && d.category) ? d.category.toString().trim() : "";
+  }
 
-    const mediaLink = document.createElement("a");
-    mediaLink.className = "demoCard__mediaLink";
-    mediaLink.href = demo.href;
-    mediaLink.target = "_self";
-    mediaLink.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
+  function getHref(d) {
+    return (d && (d.href || d.url)) ? (d.href || d.url).toString() : "#";
+  }
 
-    const media = document.createElement("div");
-    media.className = "demoCard__media";
+  function getThumb(d) {
+    return (d && (d.thumb || d.thumbnail)) ? (d.thumb || d.thumbnail).toString() : "";
+  }
 
-    const img = document.createElement("img");
-    img.className = "demoCard__img";
-    img.loading = "lazy";
-    img.alt = `Anteprima ${demo.title}`;
-    img.src = demo.thumb;
+  function buildHaystack(d) {
+    const parts = [];
+    if (d.title) parts.push(d.title);
+    if (d.category) parts.push(d.category);
+    if (d.slug) parts.push(d.slug);
+    if (Array.isArray(d.tags)) parts.push(d.tags.join(" "));
+    return normalizeStr(parts.join(" "));
+  }
 
-    img.addEventListener("error", () => {
-      img.remove();
-      media.classList.add("is-missing");
+  function sortAZ(items) {
+    items.sort((a, b) => getTitle(a).localeCompare(getTitle(b), "it"));
+  }
+
+  function buildCard(demo) {
+    const title = escapeHtml(getTitle(demo) || "Demo");
+    const category = escapeHtml(getCategory(demo));
+    const href = escapeHtml(getHref(demo));
+    const thumb = getThumb(demo);
+
+    const media = thumb
+      ? `<img class="exampleCardThumb" src="${escapeHtml(thumb)}" alt="${title}" loading="lazy" decoding="async">`
+      : `<div class="exampleCardThumb placeholder" aria-hidden="true"></div>`;
+
+    return `
+<a class="exampleCard" href="${href}" target="_blank" rel="noopener noreferrer">
+  <div class="exampleCardMedia">${media}</div>
+  <div class="exampleCardBody">
+    <div class="exampleCardTitle">${title}</div>
+    ${category ? `<div class="exampleCardMeta">${category}</div>` : ``}
+    <div class="exampleCardCta">
+      <span class="btn btn--small">Attiva il Servizio</span>
+    </div>
+  </div>
+</a>`;
+  }
+
+  function renderGrid(items) {
+    grid.innerHTML = items.map(buildCard).join("");
+  }
+
+  function ensureLoadMore() {
+    if (loadMoreWrap && loadMoreBtn) return;
+
+    loadMoreWrap = document.createElement("div");
+    loadMoreWrap.className = "examplesLoadMoreWrap";
+
+    loadMoreBtn = document.createElement("button");
+    loadMoreBtn.type = "button";
+    loadMoreBtn.className = "btn examplesLoadMoreBtn";
+    loadMoreBtn.textContent = "Mostra altri";
+
+    loadMoreBtn.addEventListener("click", () => {
+      visibleCount = Math.min(visibleCount + PAGE_SIZE, filtered.length);
+      renderVisible();
     });
 
-    media.appendChild(img);
-    mediaLink.appendChild(media);
-
-    const body = document.createElement("div");
-    body.className = "demoCard__body";
-
-    const title = document.createElement("h3");
-    title.className = "demoCard__title";
-    title.textContent = demo.title;
-
-    const btnWrap = document.createElement("div");
-    btnWrap.className = "demoCard__actions";
-
-    const btnView = document.createElement("a");
-    btnView.className = "btn demoCard__btn";
-    btnView.href = demo.href;
-    btnView.target = "_self";
-    btnView.textContent = "Vedi sito";
-    btnView.setAttribute("aria-label", `Vedi sito: ${demo.title}`);
-
-    const btnActivate = document.createElement("a");
-    btnActivate.className = "btn primary demoCard__btn";
-    btnActivate.href = "https://localtop.it/checkout";
-    btnActivate.target = "_self";
-    btnActivate.textContent = "Attiva Servizio";
-    btnActivate.setAttribute("aria-label", "Attiva Servizio");
-
-    btnWrap.appendChild(btnView);
-    btnWrap.appendChild(btnActivate);
-    body.appendChild(title);
-    body.appendChild(btnWrap);
-
-    card.appendChild(mediaLink);
-    card.appendChild(body);
-    return card;
+    loadMoreWrap.appendChild(loadMoreBtn);
+    grid.parentNode.appendChild(loadMoreWrap);
   }
 
-  function render() {
-    const filtered = getFiltered();
-
-    grid.innerHTML = "";
-    filtered.forEach((d) => grid.appendChild(createCard(d)));
+  function updateLoadMore() {
+    if (!loadMoreWrap) return;
+    const show = filtered.length > visibleCount;
+    loadMoreWrap.style.display = show ? "" : "none";
   }
 
-  function onChipClick(e) {
-    const btn = e.currentTarget;
-    const category = btn.dataset.category || "";
-    state.category = category;
-    setActiveChip(category);
-    render();
+  function renderVisible() {
+    renderGrid(filtered.slice(0, visibleCount));
+    updateLoadMore();
   }
 
-  chips.forEach((btn) => btn.addEventListener("click", onChipClick));
+  function applyFilters(fromSearchInput = false) {
+    const q = normalizeStr(searchEl.value);
+    const cat = categoryEl.value.trim();
 
-  fetch(DATA_URL, { cache: "no-store" })
-    .then((r) => r.ok ? r.json() : Promise.reject(new Error("Failed to load demos.json")))
-    .then((data) => {
-      state.all = Array.isArray(data.demos) ? data.demos : [];
-      setActiveChip(state.category);
-      render();
-    })
-    .catch(() => {
-      grid.innerHTML = "<div class=\"examplesError\">Impossibile caricare le demo in questo momento.</div>";
+    // Se l'utente sta scrivendo e c'è una categoria selezionata, resetta a "Tutte"
+    if (fromSearchInput && q && cat) {
+      categoryEl.value = "";
+    }
+
+    const effectiveCat = categoryEl.value.trim();
+    const effectiveQ = normalizeStr(searchEl.value);
+
+    let items = all.slice();
+
+    if (effectiveCat) {
+      items = items.filter((d) => getCategory(d) === effectiveCat);
+    }
+
+    if (effectiveQ) {
+      items = items.filter((d) => (d.__hay || "").includes(effectiveQ));
+    }
+
+    sortAZ(items);
+    filtered = items;
+    visibleCount = PAGE_SIZE;
+    renderVisible();
+  }
+
+  function fillCategories(items) {
+    const cats = Array.from(new Set(items.map(getCategory).filter(Boolean)))
+      .sort((a, b) => a.localeCompare(b, "it"));
+
+    categoryEl.innerHTML = "";
+    const optAll = document.createElement("option");
+    optAll.value = "";
+    optAll.textContent = "Tutte le categorie";
+    categoryEl.appendChild(optAll);
+
+    cats.forEach((c) => {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      categoryEl.appendChild(opt);
     });
+  }
+
+  async function init() {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const data = await res.json();
+    all = Array.isArray(data.demos) ? data.demos.slice() : [];
+
+    all.forEach((d) => { d.__hay = buildHaystack(d); });
+    sortAZ(all);
+
+    fillCategories(all);
+    ensureLoadMore();
+
+    searchEl.addEventListener("input", () => applyFilters(true));
+    categoryEl.addEventListener("change", () => applyFilters(false));
+
+    filtered = all.slice();
+    visibleCount = PAGE_SIZE;
+    renderVisible();
+  }
+
+  init().catch(() => {});
 })();

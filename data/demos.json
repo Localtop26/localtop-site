@@ -1,699 +1,1403 @@
 {
   "version": 2,
-  "perPage": 10,
+  "perPage": 12,
   "demos": [
     {
       "title": "Agenzia Immobiliare",
       "category": "Professionisti",
       "slug": "agenzia-immobiliare",
       "href": "/demos/agenzia-immobiliare/",
-      "thumb": "/demos/agenzia-immobiliare/thumb.jpg"
+      "thumb": "/demos/agenzia-immobiliare/thumb.jpg",
+      "tags": [
+        "affitto",
+        "agenzia",
+        "agenzia immobiliare",
+        "appartamenti",
+        "casa",
+        "immobiliare",
+        "professionisti",
+        "vendita"
+      ]
     },
     {
       "title": "Architetto",
       "category": "Professionisti",
       "slug": "architetto",
       "href": "/demos/architetto/",
-      "thumb": "/demos/architetto/thumb.jpg"
+      "thumb": "/demos/architetto/thumb.jpg",
+      "tags": [
+        "architetto",
+        "professionisti"
+      ]
     },
     {
       "title": "Broker Assicurativo",
       "category": "Professionisti",
       "slug": "broker-assicurativo",
       "href": "/demos/broker-assicurativo/",
-      "thumb": "/demos/broker-assicurativo/thumb.jpg"
+      "thumb": "/demos/broker-assicurativo/thumb.jpg",
+      "tags": [
+        "assicurativo",
+        "broker",
+        "broker assicurativo",
+        "professionisti"
+      ]
     },
     {
       "title": "Broker Mutui",
       "category": "Professionisti",
       "slug": "broker-mutui",
       "href": "/demos/broker-mutui/",
-      "thumb": "/demos/broker-mutui/thumb.jpg"
+      "thumb": "/demos/broker-mutui/thumb.jpg",
+      "tags": [
+        "broker",
+        "broker mutui",
+        "mutui",
+        "professionisti"
+      ]
     },
     {
       "title": "Commercialista",
       "category": "Professionisti",
       "slug": "commercialista",
       "href": "/demos/commercialista/",
-      "thumb": "/demos/commercialista/thumb.jpg"
+      "thumb": "/demos/commercialista/thumb.jpg",
+      "tags": [
+        "commercialista",
+        "professionisti"
+      ]
     },
     {
       "title": "Consulente del Lavoro",
       "category": "Professionisti",
       "slug": "consulente-del-lavoro",
       "href": "/demos/consulente-del-lavoro/",
-      "thumb": "/demos/consulente-del-lavoro/thumb.jpg"
+      "thumb": "/demos/consulente-del-lavoro/thumb.jpg",
+      "tags": [
+        "consulente",
+        "consulente del lavoro",
+        "lavoro",
+        "professionisti"
+      ]
     },
     {
       "title": "Geometra Perito",
       "category": "Professionisti",
       "slug": "geometra-perito",
       "href": "/demos/geometra-perito/",
-      "thumb": "/demos/geometra-perito/thumb.jpg"
+      "thumb": "/demos/geometra-perito/thumb.jpg",
+      "tags": [
+        "geometra",
+        "geometra perito",
+        "perito",
+        "professionisti"
+      ]
     },
     {
       "title": "Green Tech",
       "category": "Professionisti",
       "slug": "green-tech",
       "href": "/demos/green-tech/",
-      "thumb": "/demos/green-tech/thumb.jpg"
+      "thumb": "/demos/green-tech/thumb.jpg",
+      "tags": [
+        "green",
+        "green tech",
+        "professionisti",
+        "tech"
+      ]
     },
     {
       "title": "Onoranze Funebri",
       "category": "Professionisti",
       "slug": "onoranze",
       "href": "/demos/onoranze/",
-      "thumb": "/demos/onoranze/thumb.jpg"
+      "thumb": "/demos/onoranze/thumb.jpg",
+      "tags": [
+        "funebri",
+        "onoranze",
+        "onoranze funebri",
+        "professionisti"
+      ]
     },
     {
       "title": "Studio Legale",
       "category": "Professionisti",
       "slug": "studio-legale",
       "href": "/demos/studio-legale/",
-      "thumb": "/demos/studio-legale/thumb.jpg"
+      "thumb": "/demos/studio-legale/thumb.jpg",
+      "tags": [
+        "legale",
+        "professionisti",
+        "studio legale"
+      ]
     },
     {
       "title": "Arti Marziali",
       "category": "Salute e Benessere",
       "slug": "arti-marziali",
       "href": "/demos/arti-marziali/",
-      "thumb": "/demos/arti-marziali/thumb.jpg"
+      "thumb": "/demos/arti-marziali/thumb.jpg",
+      "tags": [
+        "arti",
+        "arti marziali",
+        "benessere",
+        "marziali",
+        "salute"
+      ]
     },
     {
       "title": "Centro Benessere SPA",
       "category": "Salute e Benessere",
       "slug": "centro-benessere-spa",
       "href": "/demos/centro-benessere-spa/",
-      "thumb": "/demos/centro-benessere-spa/thumb.jpg"
+      "thumb": "/demos/centro-benessere-spa/thumb.jpg",
+      "tags": [
+        "benessere",
+        "centro benessere spa",
+        "salute",
+        "spa"
+      ]
     },
     {
       "title": "Chiropratico / Osteopata",
       "category": "Salute e Benessere",
       "slug": "chiropratico-osteopata",
       "href": "/demos/chiropratico-osteopata/",
-      "thumb": "/demos/chiropratico-osteopata/thumb.jpg"
+      "thumb": "/demos/chiropratico-osteopata/thumb.jpg",
+      "tags": [
+        "benessere",
+        "chiropratico",
+        "chiropratico / osteopata",
+        "osteopata",
+        "salute"
+      ]
     },
     {
       "title": "Chirurgo",
       "category": "Salute e Benessere",
       "slug": "chirurgo",
       "href": "/demos/chirurgo/",
-      "thumb": "/demos/chirurgo/thumb.jpg"
+      "thumb": "/demos/chirurgo/thumb.jpg",
+      "tags": [
+        "benessere",
+        "chirurgo",
+        "salute"
+      ]
     },
     {
       "title": "Dentista",
       "category": "Salute e Benessere",
       "slug": "dentista",
       "href": "/demos/dentista/",
-      "thumb": "/demos/dentista/thumb.jpg"
+      "thumb": "/demos/dentista/thumb.jpg",
+      "tags": [
+        "benessere",
+        "dentista",
+        "igiene dentale",
+        "odontoiatra",
+        "salute",
+        "studio dentistico"
+      ]
     },
     {
       "title": "Estetista",
       "category": "Salute e Benessere",
       "slug": "estetista",
       "href": "/demos/estetista/",
-      "thumb": "/demos/estetista/thumb.jpg"
+      "thumb": "/demos/estetista/thumb.jpg",
+      "tags": [
+        "benessere",
+        "estetista",
+        "salute"
+      ]
     },
     {
       "title": "Medicina Estetica",
       "category": "Salute e Benessere",
       "slug": "medicina-estetica",
       "href": "/demos/medicina-estetica/",
-      "thumb": "/demos/medicina-estetica/thumb.jpg"
+      "thumb": "/demos/medicina-estetica/thumb.jpg",
+      "tags": [
+        "beauty",
+        "benessere",
+        "centro estetico",
+        "estetica",
+        "medicina",
+        "medicina estetica",
+        "salute",
+        "trattamenti"
+      ]
     },
     {
       "title": "Nutrizionista",
       "category": "Salute e Benessere",
       "slug": "nutrizionista",
       "href": "/demos/nutrizionista/",
-      "thumb": "/demos/nutrizionista/thumb.jpg"
+      "thumb": "/demos/nutrizionista/thumb.jpg",
+      "tags": [
+        "benessere",
+        "nutrizionista",
+        "salute"
+      ]
     },
     {
       "title": "Palestra",
       "category": "Salute e Benessere",
       "slug": "palestra",
       "href": "/demos/palestra/",
-      "thumb": "/demos/palestra/thumb.jpg"
+      "thumb": "/demos/palestra/thumb.jpg",
+      "tags": [
+        "allenamento",
+        "benessere",
+        "fitness",
+        "palestra",
+        "personal trainer",
+        "salute"
+      ]
     },
     {
       "title": "Parrucchiere Donna",
       "category": "Salute e Benessere",
       "slug": "parrucchiere-donna",
       "href": "/demos/parrucchiere-donna/",
-      "thumb": "/demos/parrucchiere-donna/thumb.jpg"
+      "thumb": "/demos/parrucchiere-donna/thumb.jpg",
+      "tags": [
+        "benessere",
+        "colore",
+        "donna",
+        "parrucchiere",
+        "parrucchiere donna",
+        "piega",
+        "salone",
+        "salute",
+        "taglio"
+      ]
     },
     {
       "title": "Parrucchiere Uomo",
       "category": "Salute e Benessere",
       "slug": "parrucchiere-uomo",
       "href": "/demos/parrucchiere-uomo/",
-      "thumb": "/demos/parrucchiere-uomo/thumb.jpg"
+      "thumb": "/demos/parrucchiere-uomo/thumb.jpg",
+      "tags": [
+        "benessere",
+        "colore",
+        "parrucchiere",
+        "parrucchiere uomo",
+        "piega",
+        "salone",
+        "salute",
+        "taglio",
+        "uomo"
+      ]
     },
     {
       "title": "Podologo",
       "category": "Salute e Benessere",
       "slug": "podologo",
       "href": "/demos/podologo/",
-      "thumb": "/demos/podologo/thumb.jpg"
+      "thumb": "/demos/podologo/thumb.jpg",
+      "tags": [
+        "benessere",
+        "podologo",
+        "salute"
+      ]
     },
     {
       "title": "Psicologia",
       "category": "Salute e Benessere",
       "slug": "psicologia",
       "href": "/demos/psicologia/",
-      "thumb": "/demos/psicologia/thumb.jpg"
+      "thumb": "/demos/psicologia/thumb.jpg",
+      "tags": [
+        "benessere",
+        "psicologia",
+        "salute"
+      ]
     },
     {
       "title": "Scuola Danza",
       "category": "Salute e Benessere",
       "slug": "scuola-danza",
       "href": "/demos/scuola-danza/",
-      "thumb": "/demos/scuola-danza/thumb.jpg"
+      "thumb": "/demos/scuola-danza/thumb.jpg",
+      "tags": [
+        "benessere",
+        "danza",
+        "salute",
+        "scuola",
+        "scuola danza"
+      ]
     },
     {
       "title": "Sport Acquatici",
       "category": "Salute e Benessere",
       "slug": "sport-acquatici",
       "href": "/demos/sport-acquatici/",
-      "thumb": "/demos/sport-acquatici/thumb.jpg"
+      "thumb": "/demos/sport-acquatici/thumb.jpg",
+      "tags": [
+        "acquatici",
+        "benessere",
+        "salute",
+        "sport",
+        "sport acquatici"
+      ]
     },
     {
       "title": "Studio Tattoo",
       "category": "Salute e Benessere",
       "slug": "tatoo",
       "href": "/demos/tatoo/",
-      "thumb": "/demos/tatoo/thumb.jpg"
+      "thumb": "/demos/tatoo/thumb.jpg",
+      "tags": [
+        "benessere",
+        "salute",
+        "studio tattoo",
+        "tatoo",
+        "tattoo"
+      ]
     },
     {
       "title": "Compro Oro e Orologi di Lusso",
       "category": "Negozi",
       "slug": "compro-oro-e-orologi-lusso",
       "href": "/demos/compro-oro-e-orologi-lusso/",
-      "thumb": "/demos/compro-oro-e-orologi-lusso/thumb.jpg"
+      "thumb": "/demos/compro-oro-e-orologi-lusso/thumb.jpg",
+      "tags": [
+        "compro",
+        "compro oro e orologi di lusso",
+        "lusso",
+        "negozi",
+        "oro",
+        "orologi"
+      ]
     },
     {
       "title": "Erboristeria",
       "category": "Negozi",
       "slug": "erboristeria",
       "href": "/demos/erboristeria/",
-      "thumb": "/demos/erboristeria/thumb.jpg"
+      "thumb": "/demos/erboristeria/thumb.jpg",
+      "tags": [
+        "erboristeria",
+        "negozi"
+      ]
     },
     {
       "title": "Fioraio",
       "category": "Negozi",
       "slug": "fioraio",
       "href": "/demos/fioraio/",
-      "thumb": "/demos/fioraio/thumb.jpg"
+      "thumb": "/demos/fioraio/thumb.jpg",
+      "tags": [
+        "fioraio",
+        "negozi"
+      ]
     },
     {
       "title": "Fumetteria",
       "category": "Negozi",
       "slug": "fumetteria",
       "href": "/demos/fumetteria/",
-      "thumb": "/demos/fumetteria/thumb.jpg"
+      "thumb": "/demos/fumetteria/thumb.jpg",
+      "tags": [
+        "fumetteria",
+        "negozi"
+      ]
     },
     {
       "title": "Gioielli e Orologi",
       "category": "Negozi",
       "slug": "gioielli-e-orologi",
       "href": "/demos/gioielli-e-orologi/",
-      "thumb": "/demos/gioielli-e-orologi/thumb.jpg"
+      "thumb": "/demos/gioielli-e-orologi/thumb.jpg",
+      "tags": [
+        "gioielli",
+        "gioielli e orologi",
+        "negozi",
+        "orologi"
+      ]
     },
     {
       "title": "Lavanderia Industriale",
       "category": "Negozi",
       "slug": "lavanderia-industriale",
       "href": "/demos/lavanderia-industriale/",
-      "thumb": "/demos/lavanderia-industriale/thumb.jpg"
+      "thumb": "/demos/lavanderia-industriale/thumb.jpg",
+      "tags": [
+        "industriale",
+        "lavanderia",
+        "lavanderia industriale",
+        "negozi"
+      ]
     },
     {
       "title": "Libreria",
       "category": "Negozi",
       "slug": "libreria",
       "href": "/demos/libreria/",
-      "thumb": "/demos/libreria/thumb.jpg"
+      "thumb": "/demos/libreria/thumb.jpg",
+      "tags": [
+        "libreria",
+        "negozi"
+      ]
     },
     {
       "title": "Negozio Abbigliamento",
       "category": "Negozi",
       "slug": "negozio-abbigliamento",
       "href": "/demos/negozio-abbigliamento/",
-      "thumb": "/demos/negozio-abbigliamento/thumb.jpg"
+      "thumb": "/demos/negozio-abbigliamento/thumb.jpg",
+      "tags": [
+        "abbigliamento",
+        "negozi",
+        "negozio",
+        "negozio abbigliamento"
+      ]
     },
     {
       "title": "Negozio Bambini",
       "category": "Negozi",
       "slug": "negozio-bambini",
       "href": "/demos/negozio-bambini/",
-      "thumb": "/demos/negozio-bambini/thumb.jpg"
+      "thumb": "/demos/negozio-bambini/thumb.jpg",
+      "tags": [
+        "bambini",
+        "negozi",
+        "negozio",
+        "negozio bambini"
+      ]
     },
     {
       "title": "Negozio Scarpe",
       "category": "Negozi",
       "slug": "negozio-scarpe",
       "href": "/demos/negozio-scarpe/",
-      "thumb": "/demos/negozio-scarpe/thumb.jpg"
+      "thumb": "/demos/negozio-scarpe/thumb.jpg",
+      "tags": [
+        "negozi",
+        "negozio",
+        "negozio scarpe",
+        "scarpe"
+      ]
     },
     {
       "title": "Negozio Ufficio e Scuola",
       "category": "Negozi",
       "slug": "negozio-ufficio-e-scuola",
       "href": "/demos/negozio-ufficio-e-scuola/",
-      "thumb": "/demos/negozio-ufficio-e-scuola/thumb.jpg"
+      "thumb": "/demos/negozio-ufficio-e-scuola/thumb.jpg",
+      "tags": [
+        "negozi",
+        "negozio",
+        "negozio ufficio e scuola",
+        "scuola",
+        "ufficio"
+      ]
     },
     {
       "title": "Ottica",
       "category": "Negozi",
       "slug": "ottica",
       "href": "/demos/ottica/",
-      "thumb": "/demos/ottica/thumb.jpg"
+      "thumb": "/demos/ottica/thumb.jpg",
+      "tags": [
+        "negozi",
+        "ottica"
+      ]
     },
     {
       "title": "Pet Store",
-      "category": "Negozi",
+      "category": "Animali",
       "slug": "pet-store",
       "href": "/demos/pet-store/",
-      "thumb": "/demos/pet-store/thumb.jpg"
+      "thumb": "/demos/pet-store/thumb.jpg",
+      "tags": [
+        "animali",
+        "cani",
+        "gatti",
+        "pet",
+        "pet shop",
+        "pet store",
+        "petstore",
+        "store",
+        "veterinario"
+      ]
     },
     {
       "title": "Profumeria",
       "category": "Negozi",
       "slug": "profumeria",
       "href": "/demos/profumeria/",
-      "thumb": "/demos/profumeria/thumb.jpg"
+      "thumb": "/demos/profumeria/thumb.jpg",
+      "tags": [
+        "negozi",
+        "profumeria"
+      ]
     },
     {
       "title": "Sartoria",
       "category": "Negozi",
       "slug": "sartoria",
       "href": "/demos/sartoria/",
-      "thumb": "/demos/sartoria/thumb.jpg"
+      "thumb": "/demos/sartoria/thumb.jpg",
+      "tags": [
+        "negozi",
+        "sartoria"
+      ]
     },
     {
       "title": "Sigarette Elettroniche",
       "category": "Negozi",
       "slug": "sigarette-elettroniche",
       "href": "/demos/sigarette-elettroniche/",
-      "thumb": "/demos/sigarette-elettroniche/thumb.jpg"
+      "thumb": "/demos/sigarette-elettroniche/thumb.jpg",
+      "tags": [
+        "elettroniche",
+        "negozi",
+        "sigarette",
+        "sigarette elettroniche"
+      ]
     },
     {
       "title": "Telefonia",
       "category": "Negozi",
       "slug": "telefonia",
       "href": "/demos/telefonia/",
-      "thumb": "/demos/telefonia/thumb.jpg"
+      "thumb": "/demos/telefonia/thumb.jpg",
+      "tags": [
+        "negozi",
+        "telefonia"
+      ]
     },
     {
       "title": "Tessuti",
       "category": "Negozi",
       "slug": "tessuti",
       "href": "/demos/tessuti/",
-      "thumb": "/demos/tessuti/thumb.jpg"
+      "thumb": "/demos/tessuti/thumb.jpg",
+      "tags": [
+        "negozi",
+        "tessuti"
+      ]
     },
     {
       "title": "Videogiochi",
       "category": "Negozi",
       "slug": "videogiochi",
       "href": "/demos/videogiochi/",
-      "thumb": "/demos/videogiochi/thumb.jpg"
+      "thumb": "/demos/videogiochi/thumb.jpg",
+      "tags": [
+        "negozi",
+        "videogiochi"
+      ]
     },
     {
       "title": "Badanti",
       "category": "Centri Medici e Assistenza",
       "slug": "badanti",
       "href": "/demos/badanti/",
-      "thumb": "/demos/badanti/thumb.jpg"
+      "thumb": "/demos/badanti/thumb.jpg",
+      "tags": [
+        "assistenza",
+        "badanti",
+        "centri",
+        "medici"
+      ]
     },
     {
       "title": "Casa Riposo",
       "category": "Centri Medici e Assistenza",
       "slug": "casa-riposo",
       "href": "/demos/casa-riposo/",
-      "thumb": "/demos/casa-riposo/thumb.jpg"
+      "thumb": "/demos/casa-riposo/thumb.jpg",
+      "tags": [
+        "assistenza",
+        "casa",
+        "casa riposo",
+        "centri",
+        "medici",
+        "riposo"
+      ]
     },
     {
       "title": "Centro Diagnostico",
       "category": "Centri Medici e Assistenza",
       "slug": "centro-diagnostico",
       "href": "/demos/centro-diagnostico/",
-      "thumb": "/demos/centro-diagnostico/thumb.jpg"
+      "thumb": "/demos/centro-diagnostico/thumb.jpg",
+      "tags": [
+        "assistenza",
+        "centri",
+        "centro diagnostico",
+        "diagnostico",
+        "medici"
+      ]
     },
     {
       "title": "Centro Fisioterapico",
       "category": "Centri Medici e Assistenza",
       "slug": "centro-fisioterapico",
       "href": "/demos/centro-fisioterapico/",
-      "thumb": "/demos/centro-fisioterapico/thumb.jpg"
+      "thumb": "/demos/centro-fisioterapico/thumb.jpg",
+      "tags": [
+        "assistenza",
+        "centri",
+        "centro fisioterapico",
+        "fisioterapico",
+        "medici"
+      ]
     },
     {
       "title": "Centro Ortopedico",
       "category": "Centri Medici e Assistenza",
       "slug": "centro-ortopedico",
       "href": "/demos/centro-ortopedico/",
-      "thumb": "/demos/centro-ortopedico/thumb.jpg"
+      "thumb": "/demos/centro-ortopedico/thumb.jpg",
+      "tags": [
+        "assistenza",
+        "centri",
+        "centro ortopedico",
+        "medici",
+        "ortopedico"
+      ]
     },
     {
       "title": "Cooperativa Sociale",
       "category": "Centri Medici e Assistenza",
       "slug": "cooperativa-sociale",
       "href": "/demos/cooperativa-sociale/",
-      "thumb": "/demos/cooperativa-sociale/thumb.jpg"
+      "thumb": "/demos/cooperativa-sociale/thumb.jpg",
+      "tags": [
+        "assistenza",
+        "centri",
+        "cooperativa",
+        "cooperativa sociale",
+        "medici",
+        "sociale"
+      ]
     },
     {
       "title": "Farmacia",
       "category": "Centri Medici e Assistenza",
       "slug": "farmacia",
       "href": "/demos/farmacia/",
-      "thumb": "/demos/farmacia/thumb.jpg"
+      "thumb": "/demos/farmacia/thumb.jpg",
+      "tags": [
+        "assistenza",
+        "centri",
+        "farmacia",
+        "medici"
+      ]
     },
     {
       "title": "Veterinario",
-      "category": "Centri Medici e Assistenza",
+      "category": "Animali",
       "slug": "veterinario",
       "href": "/demos/veterinario/",
-      "thumb": "/demos/veterinario/thumb.jpg"
+      "thumb": "/demos/veterinario/thumb.jpg",
+      "tags": [
+        "ambulatorio",
+        "animali",
+        "cani",
+        "clinica veterinaria",
+        "gatti",
+        "pet shop",
+        "veterinario"
+      ]
     },
     {
       "title": "Climatizzazione e Impianti Termici",
       "category": "Edilizia e Casa",
       "slug": "climatizzazione-e-impianti-termici",
       "href": "/demos/climatizzazione-e-impianti-termici/",
-      "thumb": "/demos/climatizzazione-e-impianti-termici/thumb.jpg"
+      "thumb": "/demos/climatizzazione-e-impianti-termici/thumb.jpg",
+      "tags": [
+        "casa",
+        "climatizzazione",
+        "climatizzazione e impianti termici",
+        "edilizia",
+        "impianti",
+        "termici"
+      ]
     },
     {
       "title": "Elettricista",
       "category": "Edilizia e Casa",
       "slug": "elettricista",
       "href": "/demos/elettricista/",
-      "thumb": "/demos/elettricista/thumb.jpg"
+      "thumb": "/demos/elettricista/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "elettricista"
+      ]
     },
     {
       "title": "Giardiniere",
       "category": "Edilizia e Casa",
       "slug": "giardiniere",
       "href": "/demos/giardiniere/",
-      "thumb": "/demos/giardiniere/thumb.jpg"
+      "thumb": "/demos/giardiniere/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "giardiniere"
+      ]
     },
     {
       "title": "Idraulica",
       "category": "Edilizia e Casa",
       "slug": "idraulica",
       "href": "/demos/idraulica/",
-      "thumb": "/demos/idraulica/thumb.jpg"
+      "thumb": "/demos/idraulica/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "idraulica"
+      ]
     },
     {
       "title": "Impresa di Pulizie",
       "category": "Edilizia e Casa",
       "slug": "pulizie",
       "href": "/demos/pulizie/",
-      "thumb": "/demos/pulizie/thumb.jpg"
+      "thumb": "/demos/pulizie/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "impresa",
+        "impresa di pulizie",
+        "pulizie"
+      ]
     },
     {
       "title": "Impresa Edile",
       "category": "Edilizia e Casa",
       "slug": "impresa-edile",
       "href": "/demos/impresa-edile/",
-      "thumb": "/demos/impresa-edile/thumb.jpg"
+      "thumb": "/demos/impresa-edile/thumb.jpg",
+      "tags": [
+        "casa",
+        "edile",
+        "edilizia",
+        "impresa",
+        "impresa edile"
+      ]
     },
     {
       "title": "Impresa Ristrutturazioni",
       "category": "Edilizia e Casa",
       "slug": "impresa-ristrutturazioni",
       "href": "/demos/impresa-ristrutturazioni/",
-      "thumb": "/demos/impresa-ristrutturazioni/thumb.jpg"
+      "thumb": "/demos/impresa-ristrutturazioni/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "impresa",
+        "impresa ristrutturazioni",
+        "ristrutturazioni"
+      ]
     },
     {
       "title": "Magazzino Edile",
       "category": "Edilizia e Casa",
       "slug": "magazzino-edile",
       "href": "/demos/magazzino-edile/",
-      "thumb": "/demos/magazzino-edile/thumb.jpg"
+      "thumb": "/demos/magazzino-edile/thumb.jpg",
+      "tags": [
+        "casa",
+        "edile",
+        "edilizia",
+        "magazzino",
+        "magazzino edile"
+      ]
     },
     {
       "title": "Mobilificio",
       "category": "Edilizia e Casa",
       "slug": "mobilificio",
       "href": "/demos/mobilificio/",
-      "thumb": "/demos/mobilificio/thumb.jpg"
+      "thumb": "/demos/mobilificio/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "mobilificio"
+      ]
     },
     {
       "title": "Outdoor Store",
       "category": "Edilizia e Casa",
       "slug": "outdoor-store",
       "href": "/demos/outdoor-store/",
-      "thumb": "/demos/outdoor-store/thumb.jpg"
+      "thumb": "/demos/outdoor-store/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "outdoor",
+        "outdoor store",
+        "store"
+      ]
     },
     {
       "title": "Serramenti",
       "category": "Edilizia e Casa",
       "slug": "serramenti",
       "href": "/demos/serramenti/",
-      "thumb": "/demos/serramenti/thumb.jpg"
+      "thumb": "/demos/serramenti/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "serramenti"
+      ]
     },
     {
       "title": "Sistemi Riposo",
       "category": "Edilizia e Casa",
       "slug": "sistemi-riposo",
       "href": "/demos/sistemi-riposo/",
-      "thumb": "/demos/sistemi-riposo/thumb.jpg"
+      "thumb": "/demos/sistemi-riposo/thumb.jpg",
+      "tags": [
+        "casa",
+        "edilizia",
+        "riposo",
+        "sistemi",
+        "sistemi riposo"
+      ]
     },
     {
       "title": "Bar",
       "category": "Ristorazione",
       "slug": "bar",
       "href": "/demos/bar/",
-      "thumb": "/demos/bar/thumb.jpg"
+      "thumb": "/demos/bar/thumb.jpg",
+      "tags": [
+        "aperitivo",
+        "bar",
+        "caffe",
+        "cibo",
+        "cocktail",
+        "colazione",
+        "pizzeria",
+        "prenotazione",
+        "ristorante",
+        "ristorazione",
+        "spritz"
+      ]
     },
     {
       "title": "Catering Eventi",
       "category": "Ristorazione",
       "slug": "catering-eventi",
       "href": "/demos/catering-eventi/",
-      "thumb": "/demos/catering-eventi/thumb.jpg"
+      "thumb": "/demos/catering-eventi/thumb.jpg",
+      "tags": [
+        "bar",
+        "catering",
+        "catering eventi",
+        "cibo",
+        "eventi",
+        "pizzeria",
+        "prenotazione",
+        "ristorante",
+        "ristorazione"
+      ]
     },
     {
       "title": "Enoteca",
       "category": "Ristorazione",
       "slug": "enoteca",
       "href": "/demos/enoteca/",
-      "thumb": "/demos/enoteca/thumb.jpg"
+      "thumb": "/demos/enoteca/thumb.jpg",
+      "tags": [
+        "bar",
+        "cibo",
+        "enoteca",
+        "pizzeria",
+        "prenotazione",
+        "ristorante",
+        "ristorazione"
+      ]
     },
     {
       "title": "Frantoio",
       "category": "Ristorazione",
       "slug": "frantoio",
       "href": "/demos/frantoio/",
-      "thumb": "/demos/frantoio/thumb.jpg"
+      "thumb": "/demos/frantoio/thumb.jpg",
+      "tags": [
+        "bar",
+        "cibo",
+        "frantoio",
+        "pizzeria",
+        "prenotazione",
+        "ristorante",
+        "ristorazione"
+      ]
     },
     {
       "title": "Gelateria Artigianale",
       "category": "Ristorazione",
       "slug": "gelateria-artigianale",
       "href": "/demos/gelateria-artigianale/",
-      "thumb": "/demos/gelateria-artigianale/thumb.jpg"
+      "thumb": "/demos/gelateria-artigianale/thumb.jpg",
+      "tags": [
+        "artigianale",
+        "bar",
+        "cibo",
+        "cono",
+        "coppa",
+        "gelateria",
+        "gelateria artigianale",
+        "gelato",
+        "pizzeria",
+        "prenotazione",
+        "ristorante",
+        "ristorazione"
+      ]
     },
     {
       "title": "Macelleria",
       "category": "Ristorazione",
       "slug": "macelleria",
       "href": "/demos/macelleria/",
-      "thumb": "/demos/macelleria/thumb.jpg"
+      "thumb": "/demos/macelleria/thumb.jpg",
+      "tags": [
+        "bar",
+        "cibo",
+        "macelleria",
+        "pizzeria",
+        "prenotazione",
+        "ristorante",
+        "ristorazione"
+      ]
     },
     {
       "title": "Pasticceria",
       "category": "Ristorazione",
       "slug": "pasticceria",
       "href": "/demos/pasticceria/",
-      "thumb": "/demos/pasticceria/thumb.jpg"
+      "thumb": "/demos/pasticceria/thumb.jpg",
+      "tags": [
+        "bar",
+        "brioche",
+        "cibo",
+        "dolci",
+        "pasticceria",
+        "pizzeria",
+        "prenotazione",
+        "ristorante",
+        "ristorazione",
+        "torte"
+      ]
     },
     {
       "title": "Pizzeria – Ristorante",
       "category": "Ristorazione",
       "slug": "pizzeria-ristorante",
       "href": "/demos/pizzeria-ristorante/",
-      "thumb": "/demos/pizzeria-ristorante/thumb.jpg"
+      "thumb": "/demos/pizzeria-ristorante/thumb.jpg",
+      "tags": [
+        "asporto",
+        "bar",
+        "cena",
+        "cibo",
+        "cucina",
+        "delivery",
+        "menu",
+        "pizza",
+        "pizze",
+        "pizzeria",
+        "pizzeria – ristorante",
+        "pranzo",
+        "prenotazione",
+        "ristorante",
+        "ristorazione",
+        "takeaway"
+      ]
     },
     {
       "title": "Street Food",
       "category": "Ristorazione",
       "slug": "street-food",
       "href": "/demos/street-food/",
-      "thumb": "/demos/street-food/thumb.jpg"
+      "thumb": "/demos/street-food/thumb.jpg",
+      "tags": [
+        "bar",
+        "cibo",
+        "food",
+        "pizzeria",
+        "prenotazione",
+        "ristorante",
+        "ristorazione",
+        "street",
+        "street food"
+      ]
     },
     {
       "title": "Autoscuola",
       "category": "Auto, Moto e Trasporti",
       "slug": "autoscuola",
       "href": "/demos/autoscuola/",
-      "thumb": "/demos/autoscuola/thumb.jpg"
+      "thumb": "/demos/autoscuola/thumb.jpg",
+      "tags": [
+        "auto",
+        "autoscuola",
+        "moto",
+        "trasporti"
+      ]
     },
     {
       "title": "Bici e Mobilità Sostenibile",
       "category": "Auto, Moto e Trasporti",
       "slug": "bici-e-mobilità-sostenibile",
       "href": "/demos/bici-e-mobilità-sostenibile/",
-      "thumb": "/demos/bici-e-mobilità-sostenibile/thumb.jpg"
+      "thumb": "/demos/bici-e-mobilità-sostenibile/thumb.jpg",
+      "tags": [
+        "auto",
+        "bici",
+        "bici e mobilità sostenibile",
+        "mobilita",
+        "moto",
+        "sostenibile",
+        "trasporti"
+      ]
     },
     {
       "title": "Carrozziere",
       "category": "Auto, Moto e Trasporti",
       "slug": "carrozziere",
       "href": "/demos/carrozziere/",
-      "thumb": "/demos/carrozziere/thumb.jpg"
+      "thumb": "/demos/carrozziere/thumb.jpg",
+      "tags": [
+        "auto",
+        "carrozziere",
+        "moto",
+        "trasporti"
+      ]
     },
     {
       "title": "Concessionario",
       "category": "Auto, Moto e Trasporti",
       "slug": "concessionario",
       "href": "/demos/concessionario/",
-      "thumb": "/demos/concessionario/thumb.jpg"
+      "thumb": "/demos/concessionario/thumb.jpg",
+      "tags": [
+        "auto",
+        "concessionario",
+        "moto",
+        "trasporti"
+      ]
     },
     {
       "title": "Gommista",
       "category": "Auto, Moto e Trasporti",
       "slug": "gommista",
       "href": "/demos/gommista/",
-      "thumb": "/demos/gommista/thumb.jpg"
+      "thumb": "/demos/gommista/thumb.jpg",
+      "tags": [
+        "auto",
+        "gommista",
+        "moto",
+        "trasporti"
+      ]
     },
     {
       "title": "Lavaggio Auto",
       "category": "Auto, Moto e Trasporti",
       "slug": "lavaggio-auto",
       "href": "/demos/lavaggio-auto/",
-      "thumb": "/demos/lavaggio-auto/thumb.jpg"
+      "thumb": "/demos/lavaggio-auto/thumb.jpg",
+      "tags": [
+        "auto",
+        "lavaggio",
+        "lavaggio auto",
+        "moto",
+        "trasporti"
+      ]
     },
     {
       "title": "Logistica",
       "category": "Auto, Moto e Trasporti",
       "slug": "logistica",
       "href": "/demos/logistica/",
-      "thumb": "/demos/logistica/thumb.jpg"
+      "thumb": "/demos/logistica/thumb.jpg",
+      "tags": [
+        "auto",
+        "logistica",
+        "moto",
+        "trasporti"
+      ]
     },
     {
       "title": "Meccanico",
       "category": "Auto, Moto e Trasporti",
       "slug": "meccanico",
       "href": "/demos/meccanico/",
-      "thumb": "/demos/meccanico/thumb.jpg"
+      "thumb": "/demos/meccanico/thumb.jpg",
+      "tags": [
+        "auto",
+        "meccanico",
+        "moto",
+        "trasporti"
+      ]
     },
     {
       "title": "Moto",
       "category": "Auto, Moto e Trasporti",
       "slug": "moto",
       "href": "/demos/moto/",
-      "thumb": "/demos/moto/thumb.jpg"
+      "thumb": "/demos/moto/thumb.jpg",
+      "tags": [
+        "auto",
+        "moto",
+        "trasporti"
+      ]
     },
     {
       "title": "Noleggio",
       "category": "Auto, Moto e Trasporti",
       "slug": "noleggio",
       "href": "/demos/noleggio/",
-      "thumb": "/demos/noleggio/thumb.jpg"
+      "thumb": "/demos/noleggio/thumb.jpg",
+      "tags": [
+        "auto",
+        "moto",
+        "noleggio",
+        "trasporti"
+      ]
     },
     {
       "title": "Noleggio e Rimessaggio Barche",
       "category": "Auto, Moto e Trasporti",
       "slug": "noleggio-e-rimessaggio-barche",
       "href": "/demos/noleggio-e-rimessaggio-barche/",
-      "thumb": "/demos/noleggio-e-rimessaggio-barche/thumb.jpg"
+      "thumb": "/demos/noleggio-e-rimessaggio-barche/thumb.jpg",
+      "tags": [
+        "aperitivo",
+        "auto",
+        "barche",
+        "caffe",
+        "cocktail",
+        "colazione",
+        "moto",
+        "noleggio",
+        "noleggio e rimessaggio barche",
+        "rimessaggio",
+        "spritz",
+        "trasporti"
+      ]
     },
     {
       "title": "Agenzia Viaggi",
       "category": "Turismo, Eventi e Formazione",
       "slug": "agenzia-viaggi",
       "href": "/demos/agenzia-viaggi/",
-      "thumb": "/demos/agenzia-viaggi/thumb.jpg"
+      "thumb": "/demos/agenzia-viaggi/thumb.jpg",
+      "tags": [
+        "agenzia",
+        "agenzia viaggi",
+        "eventi",
+        "formazione",
+        "turismo",
+        "viaggi"
+      ]
     },
     {
       "title": "Agriturismo",
       "category": "Turismo, Eventi e Formazione",
       "slug": "agriturismo",
       "href": "/demos/agriturismo/",
-      "thumb": "/demos/agriturismo/thumb.jpg"
+      "thumb": "/demos/agriturismo/thumb.jpg",
+      "tags": [
+        "agriturismo",
+        "eventi",
+        "formazione",
+        "turismo"
+      ]
     },
     {
       "title": "Asilo Privato",
       "category": "Turismo, Eventi e Formazione",
       "slug": "asilo-privato",
       "href": "/demos/asilo-privato/",
-      "thumb": "/demos/asilo-privato/thumb.jpg"
+      "thumb": "/demos/asilo-privato/thumb.jpg",
+      "tags": [
+        "asilo",
+        "asilo privato",
+        "eventi",
+        "formazione",
+        "privato",
+        "turismo"
+      ]
     },
     {
       "title": "Azienda Agricola",
       "category": "Turismo, Eventi e Formazione",
       "slug": "azienda-agricola",
       "href": "/demos/azienda-agricola/",
-      "thumb": "/demos/azienda-agricola/thumb.jpg"
+      "thumb": "/demos/azienda-agricola/thumb.jpg",
+      "tags": [
+        "agricola",
+        "azienda",
+        "azienda agricola",
+        "eventi",
+        "formazione",
+        "turismo"
+      ]
     },
     {
       "title": "B&B",
       "category": "Turismo, Eventi e Formazione",
       "slug": "bnb",
       "href": "/demos/bnb/",
-      "thumb": "/demos/bnb/thumb.jpg"
+      "thumb": "/demos/bnb/thumb.jpg",
+      "tags": [
+        "b&b",
+        "bed and breakfast",
+        "bnb",
+        "camere",
+        "eventi",
+        "formazione",
+        "prenotazione",
+        "turismo"
+      ]
     },
     {
       "title": "Centro Cinofilo",
-      "category": "Turismo, Eventi e Formazione",
+      "category": "Animali",
       "slug": "centro-cinofilo",
       "href": "/demos/centro-cinofilo/",
-      "thumb": "/demos/centro-cinofilo/thumb.jpg"
+      "thumb": "/demos/centro-cinofilo/thumb.jpg",
+      "tags": [
+        "addestramento cani",
+        "animali",
+        "cani",
+        "centro cinofilo",
+        "cinofilo",
+        "dog training",
+        "educatore cinofilo",
+        "gatti",
+        "pet shop",
+        "veterinario"
+      ]
     },
     {
       "title": "Centro Studi",
       "category": "Turismo, Eventi e Formazione",
       "slug": "centro-studi",
       "href": "/demos/centro-studi/",
-      "thumb": "/demos/centro-studi/thumb.jpg"
+      "thumb": "/demos/centro-studi/thumb.jpg",
+      "tags": [
+        "centro studi",
+        "eventi",
+        "formazione",
+        "studi",
+        "turismo"
+      ]
     },
     {
       "title": "Corsi e Formazione",
       "category": "Turismo, Eventi e Formazione",
       "slug": "corsi-e-formazione",
       "href": "/demos/corsi-e-formazione/",
-      "thumb": "/demos/corsi-e-formazione/thumb.jpg"
+      "thumb": "/demos/corsi-e-formazione/thumb.jpg",
+      "tags": [
+        "corsi",
+        "corsi e formazione",
+        "eventi",
+        "formazione",
+        "turismo"
+      ]
     },
     {
       "title": "Discoteca",
       "category": "Turismo, Eventi e Formazione",
       "slug": "discoteca",
       "href": "/demos/discoteca/",
-      "thumb": "/demos/discoteca/thumb.jpg"
+      "thumb": "/demos/discoteca/thumb.jpg",
+      "tags": [
+        "discoteca",
+        "eventi",
+        "formazione",
+        "turismo"
+      ]
     },
     {
       "title": "Fotografo e Videomaker",
       "category": "Turismo, Eventi e Formazione",
       "slug": "fotografo-e-videomaker",
       "href": "/demos/fotografo-e-videomaker/",
-      "thumb": "/demos/fotografo-e-videomaker/thumb.jpg"
+      "thumb": "/demos/fotografo-e-videomaker/thumb.jpg",
+      "tags": [
+        "eventi",
+        "formazione",
+        "fotografo",
+        "fotografo e videomaker",
+        "turismo",
+        "videomaker"
+      ]
     },
     {
       "title": "Sale Giochi e Compleanni",
       "category": "Turismo, Eventi e Formazione",
       "slug": "sale-giochi-e-compleanni",
       "href": "/demos/sale-giochi-e-compleanni/",
-      "thumb": "/demos/sale-giochi-e-compleanni/thumb.jpg"
+      "thumb": "/demos/sale-giochi-e-compleanni/thumb.jpg",
+      "tags": [
+        "compleanni",
+        "eventi",
+        "formazione",
+        "giochi",
+        "sale",
+        "sale giochi e compleanni",
+        "turismo"
+      ]
     },
     {
       "title": "Stabilimento Balneare",
       "category": "Turismo, Eventi e Formazione",
       "slug": "stabilimento-balneare",
       "href": "/demos/stabilimento-balneare/",
-      "thumb": "/demos/stabilimento-balneare/thumb.jpg"
+      "thumb": "/demos/stabilimento-balneare/thumb.jpg",
+      "tags": [
+        "balneare",
+        "eventi",
+        "formazione",
+        "stabilimento",
+        "stabilimento balneare",
+        "turismo"
+      ]
     },
     {
       "title": "Vestiti Matrimonio",
       "category": "Turismo, Eventi e Formazione",
       "slug": "vestiti-matrimonio",
       "href": "/demos/vestiti-matrimonio/",
-      "thumb": "/demos/vestiti-matrimonio/thumb.jpg"
+      "thumb": "/demos/vestiti-matrimonio/thumb.jpg",
+      "tags": [
+        "eventi",
+        "formazione",
+        "matrimonio",
+        "turismo",
+        "vestiti",
+        "vestiti matrimonio"
+      ]
     },
     {
       "title": "Wedding Planner",
       "category": "Turismo, Eventi e Formazione",
       "slug": "wedding-planner",
       "href": "/demos/wedding-planner/",
-      "thumb": "/demos/wedding-planner/thumb.jpg"
+      "thumb": "/demos/wedding-planner/thumb.jpg",
+      "tags": [
+        "eventi",
+        "formazione",
+        "planner",
+        "turismo",
+        "wedding",
+        "wedding planner"
+      ]
     }
   ]
 }

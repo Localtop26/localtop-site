@@ -71,43 +71,19 @@
   Il tuo sito verrà progettato su misura.
   <br>99€ / mese · Disdici quando vuoi
 </p>
-<div aria-label="Filtra per categoria" class="examplesChips" role="tablist">
-
-<button aria-selected="true" class="chip is-active" data-category="Professionisti" role="tab" type="button">
-  Professionisti
-</button>
-
-<button aria-selected="false" class="chip" data-category="Salute e Benessere" role="tab" type="button">
-  Salute e Benessere
-</button>
-
-<button aria-selected="false" class="chip" data-category="Negozi" role="tab" type="button">
-  Negozi
-</button>
-
-<button aria-selected="false" class="chip" data-category="Centri Medici e Assistenza" role="tab" type="button">
-  Centri Medici e Assistenza
-</button>
-
-<button aria-selected="false" class="chip" data-category="Edilizia e Casa" role="tab" type="button">
-  Edilizia e Casa
-</button>
-
-<button aria-selected="false" class="chip" data-category="Ristorazione" role="tab" type="button">
-  Ristorazione
-</button>
-
-<button aria-selected="false" class="chip" data-category="Auto, Moto e Trasporti" role="tab" type="button">
-  Auto, Moto e Trasporti
-</button>
-
-<button aria-selected="false" class="chip" data-category="Turismo, Eventi e Formazione" role="tab" type="button">
-  Turismo, Eventi e Formazione
-</button>
-
-</section>
-<section aria-label="Elenco demo" class="examplesSection">
-<div aria-live="polite" class="examplesGrid" id="examplesGrid"></div>
+<div class="examplesFilters" aria-label="Filtri demo">
+  <div class="examplesSearchWrap">
+    <label class="srOnly" for="examplesSearch">Cerca</label>
+    <input id="examplesSearch" class="examplesSearch" type="search" autocomplete="off" placeholder="Cerca un'attività..." />
+  </div>
+  <div class="examplesHint">Cerca un'attività o scegli una categoria</div>
+  <div class="examplesSelects">
+    <div class="examplesSelect">
+      <label class="examplesLabel" for="examplesCategory">Categoria</label>
+      <select id="examplesCategory" class="examplesSelectControl"></select>
+    </div>
+  </div>
+</div>
 <!-- Mostra tutte le demo per categoria (nessuna paginazione) -->
 </section>
 </div>

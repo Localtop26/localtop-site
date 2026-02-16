@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insieme Cooperativa Sociale | Valore alla Persona & Territorio - Demo Mode</title>
@@ -14,7 +15,6 @@
         .bg-coop-green { background-color: #10b981; }
         .text-coop-orange { color: #f97316; }
         
-        /* Reset filtri immagini - Tutto a colori */
         img, .hero-coop { filter: none !important; grayscale: 0 !important; }
         
         .hero-coop { 
@@ -26,37 +26,51 @@
         .impact-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; background: white; border-radius: 1.5rem; }
         
         /* Fix Interazioni Demo */
-        button:not(#menu-toggle), input, select, textarea, .chat-widget-demo {
+        button:not(#menu-toggle), input, select, textarea, a:not([href^="#"]):not([href*="checkout"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Responsive & Font Scaling */
         @media (max-width: 768px) {
             h1 { font-size: clamp(2.5rem, 12vw, 4rem) !important; line-height: 1.1 !important; }
             h2 { font-size: clamp(2rem, 8vw, 3rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
         }
 
-        /* Bottoni Floating */
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            pointer-events: auto !important;
+            text-decoration: none;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.03); }
 
-        /* Mobile Menu Animation */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateY(-100%);
@@ -80,10 +94,12 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="#servizi" class="hover:text-coop-green transition">Cosa Facciamo</a>
+                <a href="#recensioni" class="hover:text-coop-green transition">Recensioni</a>
                 <a href="#valori" class="hover:text-coop-green transition">I Valori</a>
                 <a href="#progetti" class="hover:text-coop-green transition">Progetti</a>
+                <a href="#faq" class="hover:text-coop-green transition">FAQ</a>
                 <a href="#lavora-con-noi" class="hover:text-coop-green transition">Lavora con noi</a>
             </div>
 
@@ -99,21 +115,20 @@
 
         <div id="mobile-menu" class="fixed inset-x-0 top-0 bg-white shadow-2xl z-[-1] pt-24 pb-10 px-6 rounded-b-[2rem] lg:hidden">
             <div class="flex flex-col space-y-6 text-center font-bold uppercase tracking-widest text-sm text-slate-600">
-                <a href="#servizi" onclick="toggleMenu()" class="py-2 border-b border-slate-50">Cosa Facciamo</a>
-                <a href="#valori" onclick="toggleMenu()" class="py-2 border-b border-slate-50">I Valori</a>
-                <a href="#progetti" onclick="toggleMenu()" class="py-2 border-b border-slate-50">Progetti</a>
-                <a href="#lavora-con-noi" onclick="toggleMenu()" class="py-2 border-b border-slate-50">Lavora con noi</a>
-                <a href="#contatti" onclick="toggleMenu()" class="py-4 bg-coop-green text-white rounded-xl">Contattaci</a>
+                <a href="#servizi">Cosa Facciamo</a>
+                <a href="#recensioni">Recensioni</a>
+                <a href="#valori">I Valori</a>
+                <a href="#progetti">Progetti</a>
+                <a href="#faq">FAQ</a>
+                <a href="#lavora-con-noi">Lavora con noi</a>
+                <a href="#contatti" class="py-4 bg-coop-green text-white rounded-xl">Contattaci</a>
             </div>
         </div>
     </nav>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 pointer-events-auto" style="pointer-events: auto !important;">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 pointer-events-auto" style="pointer-events: auto !important;">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -163,6 +178,37 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading text-slate-900 uppercase italic">Dicono di <span class="text-coop-green">Noi.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-orange-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Un supporto fondamentale per la gestione di mio padre. Operatori professionali e profondamente umani."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Elena R., Milano</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-orange-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Grazie al loro percorso di inserimento lavorativo ho ritrovato fiducia e una nuova stabilità economica."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Marco T., Monza</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-orange-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Il centro estivo è stata un'esperienza meravigliosa per i nostri figli. Staff attento e creativo."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Fam. Bianchi, Legnano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="valori" class="py-16 md:py-24 bg-slate-50 border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="space-y-8 md:space-y-10">
@@ -205,7 +251,29 @@
         </div>
     </section>
 
-    <section id="lavora-con-noi" class="py-16 md:py-24 bg-slate-50">
+    <section id="faq" class="py-16 md:py-24 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-heading text-slate-900 uppercase italic">Domande <span class="text-coop-orange">Frequenti.</span></h2>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Come posso attivare l'assistenza domiciliare?</h4>
+                    <p class="text-slate-500 text-sm">Contattando il nostro centralino è possibile fissare un primo colloquio conoscitivo gratuito per valutare le esigenze specifiche.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Siete una cooperativa convenzionata con il comune?</h4>
+                    <p class="text-slate-500 text-sm">Sì, operiamo sia in regime privatistico che attraverso convenzioni e accreditamenti con gli enti locali del territorio.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Quali requisiti servono per lavorare con voi?</h4>
+                    <p class="text-slate-500 text-sm">Dipende dal ruolo. Per i servizi educativi e sanitari sono necessari i titoli di studio abilitanti (OSS, Educatore, ecc.).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lavora-con-noi" class="py-16 md:py-24 bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-8 md:space-y-12">
             <h2 class="text-4xl md:text-5xl font-heading font-bold text-slate-900 uppercase italic">Diventa parte della <span class="text-coop-orange">Squadra.</span></h2>
             <p class="text-slate-500 text-lg md:text-xl font-light leading-relaxed italic">
@@ -253,10 +321,6 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         // Init Lucide Icons
         lucide.createIcons();
@@ -282,6 +346,32 @@
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             toggleMenu();
+        });
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Se siamo in mobile menu, chiudi prima
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
 
         // Chiudi menu al click fuori

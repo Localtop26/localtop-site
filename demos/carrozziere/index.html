@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Atelier Auto | Carrozzeria d'Élite Milano</title>
@@ -28,7 +29,6 @@
             background-position: center; 
         }
 
-        /* Rimosso grayscale e filtri ovunque */
         .reveal-img img, img { 
             transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); 
             filter: none !important; 
@@ -48,7 +48,6 @@
             visibility: visible;
         }
 
-        /* Fix per scroll orizzontale */
         * { box-sizing: border-box; }
 
         @media (max-width: 768px) {
@@ -58,10 +57,18 @@
             }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
             
-            /* Bottoni Localtop più piccoli su mobile */
             .demo-nav-container a {
-                padding: 0.5rem 0.8rem !important;
-                font-size: 7.5px !important;
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .demo-nav-container a {
+                padding: 16px 28px !important;
+                font-size: 15px !important;
+                min-height: 52px !important;
             }
         }
 
@@ -70,21 +77,20 @@
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-width: 160px;
+        }
+
+        /* Disattiva interazioni superflue */
+        .pointer-none {
+            pointer-events: none;
+            cursor: default;
         }
     </style>
 </head>
 <body class="selection:bg-racing selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform active:scale-95">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform active:scale-95">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center bg-[#0F766E] text-white rounded-full font-bold shadow-2xl transition-transform active:scale-95">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -96,17 +102,19 @@
             </div>
 
             <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500">
-                <a href="#servizi" class="hover:text-racing transition">Servizi</a>
-                <a href="#tecnologia" class="hover:text-racing transition">Tecnologia</a>
-                <a href="#convenzioni" class="hover:text-racing transition">Assicurazioni</a>
-                <a href="#officina" class="hover:text-racing transition">Officina</a>
-                <a href="#contatti" class="hover:text-racing transition">Contatti</a>
+                <a href="#servizi" class="hover:text-racing transition anchor-link">Servizi</a>
+                <a href="#recensioni" class="hover:text-racing transition anchor-link">Recensioni</a>
+                <a href="#tecnologia" class="hover:text-racing transition anchor-link">Tecnologia</a>
+                <a href="#convenzioni" class="hover:text-racing transition anchor-link">Assicurazioni</a>
+                <a href="#faq" class="hover:text-racing transition anchor-link">FAQ</a>
+                <a href="#officina" class="hover:text-racing transition anchor-link">Officina</a>
+                <a href="#contatti" class="hover:text-racing transition anchor-link">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="tel:+39021234567" class="hidden sm:inline-block border border-slate-900 text-slate-900 px-5 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">
+                <span class="hidden sm:inline-block border border-slate-900 text-slate-900 px-5 py-2 text-[10px] font-bold uppercase tracking-widest pointer-none">
                     Emergenza
-                </a>
+                </span>
                 <button id="menu-btn" class="lg:hidden text-slate-900 p-2 focus:outline-none">
                     <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
                 </button>
@@ -115,14 +123,16 @@
     </nav>
 
     <div id="mobile-menu" class="fixed inset-0 bg-white z-[90] lg:hidden flex flex-col justify-center items-center text-center p-6">
-        <div class="flex flex-col gap-8">
-            <a href="#servizi" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Servizi</a>
-            <a href="#tecnologia" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Tecnologia</a>
-            <a href="#convenzioni" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Assicurazioni</a>
-            <a href="#officina" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Officina</a>
-            <a href="#contatti" class="nav-link text-2xl font-luxury uppercase tracking-widest text-slate-900">Contatti</a>
+        <div class="flex flex-col gap-6">
+            <a href="#servizi" class="anchor-link text-xl font-luxury uppercase tracking-widest text-slate-900">Servizi</a>
+            <a href="#recensioni" class="anchor-link text-xl font-luxury uppercase tracking-widest text-slate-900">Recensioni</a>
+            <a href="#tecnologia" class="anchor-link text-xl font-luxury uppercase tracking-widest text-slate-900">Tecnologia</a>
+            <a href="#convenzioni" class="anchor-link text-xl font-luxury uppercase tracking-widest text-slate-900">Assicurazioni</a>
+            <a href="#faq" class="anchor-link text-xl font-luxury uppercase tracking-widest text-slate-900">FAQ</a>
+            <a href="#officina" class="anchor-link text-xl font-luxury uppercase tracking-widest text-slate-900">Officina</a>
+            <a href="#contatti" class="anchor-link text-xl font-luxury uppercase tracking-widest text-slate-900">Contatti</a>
             <div class="pt-4">
-                <a href="tel:+39021234567" class="bg-racing text-white px-8 py-4 text-xs font-bold uppercase tracking-widest block">Emergenza H24</a>
+                <span class="bg-racing text-white px-8 py-4 text-xs font-bold uppercase tracking-widest block pointer-none">Emergenza H24</span>
             </div>
         </div>
     </div>
@@ -138,7 +148,7 @@
                     L'eccellenza della carrozzeria italiana: dal ripristino di auto d'epoca alla gestione moderna.
                 </p>
                 <div class="flex gap-4 pt-4">
-                    <a href="#contatti" class="bg-slate-900 text-white px-8 py-4 md:px-12 md:py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-racing transition-all shadow-xl">Preventivo</a>
+                    <a href="#contatti" class="anchor-link bg-slate-900 text-white px-8 py-4 md:px-12 md:py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-racing transition-all shadow-xl">Preventivo</a>
                 </div>
             </div>
         </div>
@@ -167,6 +177,49 @@
                     </div>
                     <h3 class="text-2xl font-luxury uppercase text-slate-900 tracking-tight">Restauro Conservativo</h3>
                     <p class="text-sm text-slate-500 leading-relaxed font-light italic">Riportiamo allo splendore originale icone storiche e vetture di prestigio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-luxury text-slate-900 uppercase italic">Dicono di Noi</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 border border-slate-100 shadow-sm">
+                    <div class="flex text-racing mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Verniciatura perfetta sulla mia Porsche. Non si nota alcuna differenza con l'originale. Professionalità assoluta."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-900">Marco V. - Milano</p>
+                </div>
+                <div class="bg-white p-8 border border-slate-100 shadow-sm">
+                    <div class="flex text-racing mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Gestione del sinistro impeccabile. Mi hanno dato l'auto sostitutiva subito e si sono occupati di tutto loro."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-900">Elena R. - Monza</p>
+                </div>
+                <div class="bg-white p-8 border border-slate-100 shadow-sm">
+                    <div class="flex text-racing mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Il miglior restauro conservativo in città. Hanno una cura dei dettagli che è difficile trovare oggi."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-900">Giuseppe L. - Milano</p>
                 </div>
             </div>
         </div>
@@ -221,7 +274,29 @@
         </div>
     </section>
 
-    <section id="officina" class="py-20 md:py-32 bg-white section-padding">
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-3xl mx-auto px-4 md:px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-luxury text-slate-900 uppercase italic">Domande Frequenti</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-2">Fornite un'auto sostitutiva?</h4>
+                    <p class="text-slate-500 text-sm font-light">Sì, disponiamo di una flotta di vetture di cortesia gratuite per tutta la durata della riparazione.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-2">Siete convenzionati con la mia assicurazione?</h4>
+                    <p class="text-slate-500 text-sm font-light">Collaboriamo con i principali gruppi assicurativi italiani (Generali, UnipolSai, Allianz, ecc.) gestendo il pagamento diretto.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-2">Quanto tempo serve per una verniciatura?</h4>
+                    <p class="text-slate-500 text-sm font-light">I tempi variano in base all'entità, ma generalmente un intervento standard richiede dai 3 ai 5 giorni lavorativi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="officina" class="py-20 md:py-32 bg-slate-50 section-padding">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="text-center mb-10 md:mb-16">
                 <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400">Eccellenza Artigiana</span>
@@ -244,8 +319,8 @@
                             <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-1">Telefono</p>
                             <p class="text-2xl md:text-3xl font-luxury italic">+39 02 1234 567</p>
                             <div class="flex flex-wrap gap-3 mt-4">
-                                <a href="tel:+39021234567" class="bg-white text-slate-900 px-6 py-3 text-[9px] font-bold uppercase tracking-widest hover:bg-racing hover:text-white transition-all">Chiama Ora</a>
-                                <div class="bg-[#25D366] text-white px-6 py-3 text-[9px] font-bold uppercase tracking-widest flex items-center gap-2">WhatsApp</div>
+                                <span class="bg-white text-slate-900 px-6 py-3 text-[9px] font-bold uppercase tracking-widest pointer-none">Chiama Ora</span>
+                                <div class="bg-[#25D366] text-white px-6 py-3 text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 pointer-none">WhatsApp</div>
                             </div>
                         </div>
                     </div>
@@ -258,15 +333,15 @@
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-8 md:p-12 space-y-6 text-slate-900 shadow-2xl rounded-sm">
+            <div class="bg-white p-8 md:p-12 space-y-6 text-slate-900 shadow-2xl rounded-sm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    <input type="text" placeholder="Nome" class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase focus:border-racing transition-colors">
-                    <input type="text" placeholder="Targa" class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase focus:border-racing transition-colors">
+                    <input type="text" placeholder="Nome" disabled class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase bg-transparent">
+                    <input type="text" placeholder="Targa" disabled class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase bg-transparent">
                 </div>
-                <input type="email" placeholder="Email" class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase focus:border-racing transition-colors">
-                <textarea placeholder="Descrizione danno..." rows="3" class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase focus:border-racing transition-colors"></textarea>
-                <button type="button" class="w-full bg-slate-900 text-white py-5 md:py-6 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] hover:bg-racing transition-all">Invia Richiesta</button>
-            </form>
+                <input type="email" placeholder="Email" disabled class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase bg-transparent">
+                <textarea placeholder="Descrizione danno..." rows="3" disabled class="w-full p-3 md:p-4 border-b border-slate-200 outline-none text-[10px] font-bold tracking-widest uppercase bg-transparent"></textarea>
+                <button type="button" class="w-full bg-slate-400 text-white py-5 md:py-6 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] cursor-default">Invia Richiesta</button>
+            </div>
         </div>
     </section>
 
@@ -276,22 +351,16 @@
         </p>
     </footer>
 
-    <div class="chat-widget fixed bottom-6 right-6 bg-black border border-white/10 text-white p-4 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-5 h-5"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
-        // Mobile Menu Script
+        // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
-        const navLinks = document.querySelectorAll('.nav-link');
 
         function toggleMenu() {
             const isOpen = mobileMenu.classList.contains('active');
-            
             if (isOpen) {
                 mobileMenu.classList.remove('active');
                 menuIcon.setAttribute('data-lucide', 'menu');
@@ -306,13 +375,30 @@
 
         menuBtn.addEventListener('click', toggleMenu);
 
-        // Close menu on link click
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                menuIcon.setAttribute('data-lucide', 'menu');
-                document.body.style.overflow = 'auto';
-                lucide.createIcons();
+        // Smooth Scroll Logic
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    mobileMenu.classList.remove('active');
+                    menuIcon.setAttribute('data-lucide', 'menu');
+                    document.body.style.overflow = 'auto';
+                    lucide.createIcons();
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

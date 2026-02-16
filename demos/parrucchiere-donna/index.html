@@ -35,6 +35,7 @@
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
+            display: flex !important;
         }
         #mobile-menu.active {
             transform: translateX(0);
@@ -62,10 +63,11 @@
             justify-content: center;
             transition: transform 0.3s ease;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            /* Mobile styles */
             padding: 12px 18px;
             font-size: 14px;
             min-height: 44px;
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
         @media (min-width: 768px) {
@@ -85,9 +87,9 @@
         Attiva il Servizio
     </a>
 
-    <nav class="fixed top-0 w-full z-[100] nav-glass border-b border-orange-50 h-20 md:h-24 flex items-center">
+    <nav class="fixed top-0 w-full z-[110] nav-glass border-b border-orange-50 h-20 md:h-24 flex items-center">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
-            <div class="flex flex-col leading-none z-[110]">
+            <div class="flex flex-col leading-none">
                 <span class="text-2xl md:text-3xl font-serif font-bold tracking-tight text-slate-900 uppercase leading-none">Lumière</span>
                 <span class="text-[8px] md:text-[9px] tracking-[0.4em] uppercase text-gold font-bold mt-1">Atelier Hair & Beauty</span>
             </div>
@@ -105,8 +107,9 @@
                 <a href="#contatti" class="anchor-link hidden md:block bg-slate-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all shadow-xl">
                     Prenota Atelier
                 </a>
-                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 z-[110]">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 pointer-events-auto relative z-[120]">
+                    <i data-lucide="menu" id="icon-open" class="w-6 h-6 block"></i>
+                    <i data-lucide="x" id="icon-close" class="w-6 h-6 hidden"></i>
                 </button>
             </div>
         </div>
@@ -130,7 +133,7 @@
                     Illumina la tua <br> <span class="text-gold">Bellezza.</span>
                 </h1>
                 <p class="text-slate-500 text-lg md:text-xl font-light max-w-md leading-relaxed border-l-0 md:border-l border-gold md:pl-6 mx-auto md:mx-0">
-                    Scolpiamo la luce sui tuoi capelli. Trattamenti sartoriali pensati per esaltare i tuoi lineamenti naturali attraverso l'armocromia.
+                    Scolpiamo la luce sui tuoi capelli. Trattamenti su misura pensati per esaltare i tuoi lineamenti naturali attraverso l'armocromia.
                 </p>
                 <div class="pt-6">
                     <a href="#servizi" class="anchor-link inline-flex items-center gap-6 group">
@@ -315,54 +318,67 @@
     </footer>
 
     <script>
+        // Carica Lucide inizialmente
         lucide.createIcons();
 
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const body = document.body;
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
 
-        function toggleMenu() {
-            mobileMenu.classList.toggle('active');
-            const isOpen = mobileMenu.classList.contains('active');
+        // FUNZIONE CHIUSURA/APERTURA MANUALE (Switch classi hidden)
+        function toggleMobileMenu(forceClose = false) {
+            const isActive = mobileMenu.classList.contains('active');
             
-            const icon = menuToggle.querySelector('i');
-            if(isOpen) {
-                icon.setAttribute('data-lucide', 'x');
-                body.style.overflow = 'hidden';
-            } else {
-                icon.setAttribute('data-lucide', 'menu');
+            if (isActive || forceClose) {
+                mobileMenu.classList.remove('active');
                 body.style.overflow = '';
+                // Swap icone senza ricreare Lucide
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            } else {
+                mobileMenu.classList.add('active');
+                body.style.overflow = 'hidden';
+                // Swap icone
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
             }
-            lucide.createIcons();
         }
 
-        menuToggle.addEventListener('click', toggleMenu);
+        // Click sull'hamburger
+        menuToggle.onclick = (e) => {
+            e.preventDefault();
+            toggleMobileMenu();
+        };
 
-        // Gestione Smooth Scroll Avanzata
-        document.querySelectorAll('.anchor-link').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                // Chiudi menu mobile se aperto
-                if (mobileMenu.classList.contains('active')) {
-                    toggleMenu();
+        // Gestione Click globale per le ancore
+        document.onclick = function(e) {
+            const link = e.target.closest('.anchor-link');
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Chiudi menu e resetta icona
+                        toggleMobileMenu(true);
+
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
                 }
-
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-
-                if (targetElement) {
-                    const headerOffset = 100;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                    });
-                }
-            });
-        });
+            }
+        };
     </script>
 </body>
 </html>

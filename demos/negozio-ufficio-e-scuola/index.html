@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Punto Tratto | Cancelleria, Ufficio & Scuola - Demo Mode</title>
@@ -31,31 +32,26 @@
         .item-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; }
         .item-card:hover { transform: translateY(-5px); border-color: #4361ee; box-shadow: 0 15px 30px rgba(67, 97, 238, 0.08); }
 
-        /* Rimozione totale filtri immagini */
         img { filter: none !important; grayscale: 0 !important; transition: none !important; }
         .group:hover img { filter: none !important; grayscale: 0 !important; transform: scale(1.05); }
 
-        /* Blocco Interazioni (Demo Mode) tranne menu mobile */
-        input, select, textarea, .wa-widget-demo, #contact-btns button {
+        /* Blocco Interazioni */
+        input, select, textarea, #contact-btns button, .item-card, button:not(#burger-btn):not(#close-menu) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Hero Title Scaling */
         .hero-title {
             font-size: clamp(2.5rem, 10vw, 5.5rem);
             line-height: 0.9;
             letter-spacing: -0.04em;
         }
 
-        /* Responsive Fixes */
         @media (max-width: 768px) {
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .demo-nav-container a { padding: 0.75rem 1.25rem; font-size: 8px; }
         }
 
-        /* Mobile Menu Animation */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -64,26 +60,46 @@
             transform: translateX(0);
         }
 
-        /* Floating Buttons Container */
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
             z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            text-decoration: none;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="selection:bg-paper-blue selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-4 md:px-6 py-3 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-3 h-3 md:w-4 md:h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 md:px-6 py-3 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-3 h-3 md:w-4 md:h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -105,10 +121,12 @@
                 <a href="#ufficio" class="hover:text-paper-blue transition">Ufficio</a>
                 <a href="#regalo" class="hover:text-paper-blue transition">Idee Regalo</a>
                 <a href="#servizi" class="hover:text-paper-blue transition">Servizi</a>
+                <a href="#recensioni" class="hover:text-paper-blue transition">Recensioni</a>
+                <a href="#faq" class="hover:text-paper-blue transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#contatti" class="hidden sm:block bg-slate-900 text-white px-6 py-2.5 rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-paper-blue transition-all shadow-md">
+                <a href="#contatti" class="hidden sm:block bg-slate-900 text-white px-6 py-2.5 rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-paper-blue transition-all shadow-md" style="pointer-events: auto !important;">
                     PREVENTIVO AZIENDE
                 </a>
                 <button id="burger-btn" class="lg:hidden p-2 text-slate-900 focus:outline-none" style="pointer-events: auto !important; cursor: pointer !important;">
@@ -126,6 +144,8 @@
         <a href="#ufficio" class="text-2xl font-brand font-bold uppercase italic tracking-tighter mobile-link" style="pointer-events: auto !important;">Ufficio</a>
         <a href="#regalo" class="text-2xl font-brand font-bold uppercase italic tracking-tighter mobile-link" style="pointer-events: auto !important;">Idee Regalo</a>
         <a href="#servizi" class="text-2xl font-brand font-bold uppercase italic tracking-tighter mobile-link" style="pointer-events: auto !important;">Servizi</a>
+        <a href="#recensioni" class="text-2xl font-brand font-bold uppercase italic tracking-tighter mobile-link" style="pointer-events: auto !important;">Recensioni</a>
+        <a href="#faq" class="text-2xl font-brand font-bold uppercase italic tracking-tighter mobile-link" style="pointer-events: auto !important;">FAQ</a>
         <a href="#contatti" class="text-2xl font-brand font-bold uppercase italic tracking-tighter text-pen-yellow mobile-link" style="pointer-events: auto !important;">Contatti</a>
     </div>
 
@@ -142,8 +162,8 @@
                     Dagli zaini hi-tech agli articoli per l'ufficio. Punto Tratto è il partner ideale per studenti e professionisti milanesi.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#scuola" class="bg-paper-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-md font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Collezione Scuola</a>
-                    <a href="#ufficio" class="bg-white border-2 border-slate-100 text-slate-500 px-8 md:px-10 py-4 md:py-5 rounded-md font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all italic">Forniture Ufficio</a>
+                    <a href="#scuola" class="bg-paper-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-md font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all" style="pointer-events: auto !important;">Collezione Scuola</a>
+                    <a href="#ufficio" class="bg-white border-2 border-slate-100 text-slate-500 px-8 md:px-10 py-4 md:py-5 rounded-md font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all italic" style="pointer-events: auto !important;">Forniture Ufficio</a>
                 </div>
             </div>
         </div>
@@ -257,6 +277,55 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-brand font-bold text-slate-900 mb-16 uppercase italic text-center">Cosa dicono di <span class="text-paper-blue">Noi.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-pen-yellow mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Il miglior posto a Milano per le forniture d'ufficio. Personale competente e prodotti di altissima qualità."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest">Marco R. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-pen-yellow mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ho prenotato i libri scolastici e il servizio è stato impeccabile. La foderatura è perfetta."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest">Elena V. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-pen-yellow mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Timbri pronti in pochissimo tempo. Un punto di riferimento essenziale per la mia attività professionale."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest">Studio Tecnico G. - Milano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-brand font-bold text-slate-900 mb-16 uppercase italic text-center">Domande <span class="text-paper-blue">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg mb-2">Effettuate consegne a domicilio per le aziende?</h4>
+                    <p class="text-slate-500 text-sm">Sì, offriamo un servizio di consegna rapida per tutti i nostri clienti business nel comune di Milano.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg mb-2">È possibile stampare file direttamente da email?</h4>
+                    <p class="text-slate-500 text-sm">Certamente. Puoi inviarci i tuoi documenti via email o portarli su chiavetta USB per la stampa immediata.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg mb-2">Gestite ordini per grandi quantitativi?</h4>
+                    <p class="text-slate-500 text-sm">Sì, disponiamo di un listino dedicato B2B per forniture all'ingrosso di cancelleria e carta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-20 md:py-32 bg-white border-t border-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
             <div class="space-y-12 text-center md:text-left">
@@ -294,10 +363,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-[150]">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -319,10 +384,31 @@
         burgerBtn.addEventListener('click', toggleMenu);
         closeBtn.addEventListener('click', toggleMenu);
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        // Gestione Scroll Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const id = this.getAttribute('href');
+                if (id === '#') return;
+                
+                const targetElement = document.querySelector(id);
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Se è un link del menu mobile, chiudi prima il menu
+                    if (this.classList.contains('mobile-link')) {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

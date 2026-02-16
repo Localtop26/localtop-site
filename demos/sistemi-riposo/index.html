@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sogno Profondo | Materassi d'Eccellenza & Sistemi di Riposo - Demo Mode</title>
@@ -26,7 +27,6 @@
             background-position: center; 
         }
         
-        /* Rimozione totale filtri */
         img, .group:hover img, .no-grayscale {
             filter: none !important;
             grayscale: 0 !important;
@@ -45,20 +45,17 @@
         }
         .cloud-shape { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
 
-        /* Blocco Interazioni (Demo Mode) */
         .no-click {
             pointer-events: none !important;
             cursor: default !important;
         }
 
-        /* Hero Title Responsive */
         .hero-title {
             font-size: clamp(3.5rem, 12vw, 8.5rem);
             line-height: 0.9;
             letter-spacing: -0.04em;
         }
 
-        /* Gestione Menu Mobile */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -67,13 +64,39 @@
             transform: translateX(0);
         }
 
-        /* Fix per elementi che sbordano */
         section, div, footer { max-width: 100vw; overflow-x: hidden; }
 
         @media (max-width: 768px) {
             .hero-title { line-height: 1; }
-            .localtop-btn { padding: 0.75rem 1rem !important; }
         }
+
+        /* Stile Custom Bottone Attiva Servizio */
+        .btn-attiva-servizio {
+            background-color: #0F766E !important;
+            color: white !important;
+            font-weight: 700 !important;
+            border-radius: 9999px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.4);
+            /* Mobile styles */
+            padding: 12px 18px !important;
+            font-size: 14px !important;
+            min-height: 44px !important;
+        }
+        @media (min-width: 768px) {
+            .btn-attiva-servizio {
+                padding: 16px 28px !important;
+                font-size: 15px !important;
+                min-height: 52px !important;
+            }
+        }
+        .btn-attiva-servizio:hover { transform: scale(1.05); }
+
+        .faq-item { border-bottom: 1px solid #e2e8f0; padding: 1.5rem 0; }
     </style>
 </head>
 <body class="selection:bg-blue-100 selection:text-blue-900">
@@ -91,14 +114,15 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#materassi" class="hover:text-night-blue transition">Materassi</a>
-                <a href="#letti" class="hover:text-night-blue transition">Letti</a>
-                <a href="#filosofia" class="hover:text-night-blue transition">Filosofia</a>
-                <a href="#guanciali" class="hover:text-night-blue transition">Accessori</a>
+                <a href="#materassi" class="hover:text-night-blue transition anchor-link">Materassi</a>
+                <a href="#letti" class="hover:text-night-blue transition anchor-link">Letti</a>
+                <a href="#recensioni" class="hover:text-night-blue transition anchor-link">Recensioni</a>
+                <a href="#faq" class="hover:text-night-blue transition anchor-link">FAQ</a>
+                <a href="#filosofia" class="hover:text-night-blue transition anchor-link">Filosofia</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#prenota" class="hidden sm:block bg-slate-900 text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-night-blue transition-all shadow-md">
+                <a href="#prenota" class="hidden sm:block bg-slate-900 text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-night-blue transition-all shadow-md anchor-link">
                     Consulenza
                 </a>
                 <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-900 focus:outline-none" style="pointer-events: auto !important;">
@@ -116,11 +140,12 @@
             </button>
         </div>
         <div class="flex flex-col gap-8 text-2xl font-heading font-bold uppercase italic text-slate-900">
-            <a href="#materassi" onclick="toggleMenu()">Materassi</a>
-            <a href="#letti" onclick="toggleMenu()">Letti</a>
-            <a href="#filosofia" onclick="toggleMenu()">Filosofia</a>
-            <a href="#guanciali" onclick="toggleMenu()">Accessori</a>
-            <a href="#prenota" onclick="toggleMenu()" class="text-night-blue">Contatti</a>
+            <a href="#materassi" class="anchor-link">Materassi</a>
+            <a href="#letti" class="anchor-link">Letti</a>
+            <a href="#recensioni" class="anchor-link">Recensioni</a>
+            <a href="#faq" class="anchor-link">FAQ</a>
+            <a href="#filosofia" class="anchor-link">Filosofia</a>
+            <a href="#prenota" class="text-night-blue anchor-link">Contatti</a>
         </div>
     </div>
 
@@ -137,8 +162,8 @@
                     Un buon materasso cambia la tua giornata. Scopri la fusione perfetta tra memory brevettato e tessuti traspiranti.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#materassi" class="bg-night-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Sfoglia Materassi</a>
-                    <a href="#prenota" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all italic">Prova in Negozio</a>
+                    <a href="#materassi" class="bg-night-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all anchor-link">Sfoglia Materassi</a>
+                    <a href="#prenota" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all italic anchor-link">Prova in Negozio</a>
                 </div>
             </div>
         </div>
@@ -197,7 +222,7 @@
                 <p class="text-slate-600 text-lg font-light leading-relaxed italic border-l-4 border-night-blue pl-6 md:pl-8">
                     Personalizza il tuo riposo. Letti imbottiti con contenitore salva-spazio, testate artigianali e tessuti antimacchia. Trasforma la tua camera in una suite.
                 </p>
-                <div class="grid grid-cols-2 gap-4 pt-4">
+                <div class="grid grid-cols-2 gap-4 pt-4 no-click">
                     <div class="flex items-center gap-3"><i data-lucide="bed" class="text-night-blue w-5 h-5"></i> <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Contenitore Easy-Up</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="palette" class="text-night-blue w-5 h-5"></i> <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Tessuti Lavabili</span></div>
                 </div>
@@ -244,7 +269,7 @@
                 <p class="text-blue-100 text-lg font-light leading-relaxed italic border-l-2 border-blue-300 pl-6 md:pl-8">
                     Hai un letto fuori misura? Una barca o un camper? Realizziamo materassi e guanciali di qualsiasi forma nel nostro laboratorio artigianale.
                 </p>
-                <div class="flex flex-wrap gap-4">
+                <div class="flex flex-wrap gap-4 no-click">
                     <span class="px-5 py-2 bg-white/10 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Artigianato Italiano</span>
                     <span class="px-5 py-2 bg-white/10 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Consegna Rapida</span>
                 </div>
@@ -277,6 +302,57 @@
                     <div class="w-14 h-14 bg-slate-50 rounded-full flex items-center justify-center mx-auto text-night-blue"><i data-lucide="banknote" class="w-6 h-6"></i></div>
                     <h4 class="font-bold uppercase text-[10px] md:text-xs tracking-widest italic">Finanziamento 0%</h4>
                     <p class="text-sm text-slate-500 italic">Paga comodamente in piccole rate mensili senza interessi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 uppercase italic">Esperienze di <span class="text-night-blue">Riposo.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex gap-1 mb-4 text-yellow-400 no-click">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Il modello Deep Memory ha risolto i miei problemi di mal di schiena. Professionalità eccellente."</p>
+                    <p class="font-bold text-night-blue text-xs uppercase tracking-widest">Marco R. • Milano</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex gap-1 mb-4 text-yellow-400 no-click">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ottimo servizio di consegna. Hanno ritirato il vecchio materasso senza supplementi. Molto soddisfatta."</p>
+                    <p class="font-bold text-night-blue text-xs uppercase tracking-widest">Elena V. • Monza</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex gap-1 mb-4 text-yellow-400 no-click">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"L'acquisto del letto sartoriale ha trasformato la mia camera. Tessuti di qualità superiore."</p>
+                    <p class="font-bold text-night-blue text-xs uppercase tracking-widest">Giuseppe T. • Bergamo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-heading font-black text-slate-900 uppercase italic mb-12 text-center">Domande <span class="text-night-blue">Frequenti</span></h2>
+            <div class="space-y-2">
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 uppercase text-xs tracking-widest mb-2">Qual è la durata della garanzia?</h4>
+                    <p class="text-slate-500 text-sm italic">Tutti i nostri materassi godono di una garanzia di 10 anni sulla struttura e sui materiali.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 uppercase text-xs tracking-widest mb-2">Offrite la consegna al piano?</h4>
+                    <p class="text-slate-500 text-sm italic">Sì, il nostro servizio include la consegna al piano e l'installazione gratuita del nuovo sistema di riposo.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 uppercase text-xs tracking-widest mb-2">Come funzionano le 100 notti di prova?</h4>
+                    <p class="text-slate-500 text-sm italic">Puoi provare il materasso a casa tua. Se non sei soddisfatto, provvederemo alla sostituzione con un altro modello.</p>
                 </div>
             </div>
         </div>
@@ -331,17 +407,10 @@
         </p>
     </footer>
 
-    <div class="demo-nav-container fixed bottom-6 left-6 z-[200] flex flex-col gap-3">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-4 py-3 md:px-6 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+    <div class="fixed bottom-6 left-6 z-[200]">
+        <a href="https://localtop.it/checkout" class="btn-attiva-servizio">
+            Attiva il Servizio
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 py-3 md:px-6 md:py-4 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
-
-    <div class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50 no-click">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>
@@ -354,11 +423,40 @@
             
             if(menu.classList.contains('active')) {
                 icon.setAttribute('data-lucide', 'x');
+                document.body.style.overflow = 'hidden';
             } else {
                 icon.setAttribute('data-lucide', 'menu');
+                document.body.style.overflow = '';
             }
             lucide.createIcons();
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Chiudi menu mobile se aperto
+                    const menu = document.getElementById('mobile-menu');
+                    if (menu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

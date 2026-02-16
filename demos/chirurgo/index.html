@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroSurgery Excellence | Centro di Neurochirurgia Avanzata - Demo</title>
@@ -38,7 +39,8 @@
         }
         #mobile-menu.active { display: block; }
 
-        button:not(#menu-toggle), input, select, textarea, .chat-widget-demo {
+        /* Disattivazione elementi interattivi non richiesti */
+        button:not(#menu-toggle), input, select, textarea, form {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -49,39 +51,53 @@
             h2 { font-size: clamp(2.5rem, 10vw, 4.5rem) !important; }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
             
-            /* Fix per l'errore visivo in alto dell'immagine hero su mobile */
             .hero-medical { 
                 background-image: linear-gradient(to top, rgba(255,255,255,1) 35%, rgba(255,255,255,0.1) 100%), 
                 url('assets/img1.jpg'); 
-                background-position: center top; /* Allineato in alto per evitare bordi vuoti */
+                background-position: center top; 
                 background-size: cover;
-                min-height: 80vh; /* Ridotto leggermente per migliorare la proporzione mobile */
-            }
-            .demo-nav-btn {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
+                min-height: 80vh; 
             }
         }
 
+        /* Stile Bottone Unico LocalTop */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="selection:bg-blue-100 selection:text-cobalt">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="demo-nav-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="demo-nav-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -97,15 +113,17 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-10 text-[11px] font-black uppercase tracking-widest text-slate-500">
-                <a href="#patologie" class="hover:text-cobalt transition">Patologie</a>
-                <a href="#chirurgia" class="hover:text-cobalt transition">Chirurgia</a>
-                <a href="#tecnologia" class="hover:text-cobalt transition">Tecnologia</a>
-                <a href="#profili" class="hover:text-cobalt transition">Team Medico</a>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-slate-500">
+                <a href="#patologie" class="anchor-link hover:text-cobalt transition">Patologie</a>
+                <a href="#chirurgia" class="anchor-link hover:text-cobalt transition">Chirurgia</a>
+                <a href="#tecnologia" class="anchor-link hover:text-cobalt transition">Tecnologia</a>
+                <a href="#profili" class="anchor-link hover:text-cobalt transition">Team</a>
+                <a href="#recensioni" class="anchor-link hover:text-cobalt transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-cobalt transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden sm:block bg-slate-900 text-white px-5 md:px-8 py-3 rounded-md text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:bg-cobalt transition-all shadow-md shrink-0">
+                <a href="#contatti" class="anchor-link hidden sm:block bg-slate-900 text-white px-5 md:px-8 py-3 rounded-md text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:bg-cobalt transition-all shadow-md shrink-0">
                     Prenota
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 cursor-pointer">
@@ -116,11 +134,13 @@
     </nav>
 
     <div id="mobile-menu" class="lg:hidden p-6 space-y-4 shadow-xl">
-        <a href="#patologie" class="block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50" onclick="toggleMenu()">Patologie</a>
-        <a href="#chirurgia" class="block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50" onclick="toggleMenu()">Chirurgia</a>
-        <a href="#tecnologia" class="block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50" onclick="toggleMenu()">Tecnologia</a>
-        <a href="#profili" class="block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50" onclick="toggleMenu()">Team Medico</a>
-        <a href="#contatti" class="block text-[12px] font-black uppercase tracking-widest text-cobalt py-2" onclick="toggleMenu()">Prenota Consulto</a>
+        <a href="#patologie" class="anchor-link block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50">Patologie</a>
+        <a href="#chirurgia" class="anchor-link block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50">Chirurgia</a>
+        <a href="#tecnologia" class="anchor-link block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50">Tecnologia</a>
+        <a href="#profili" class="anchor-link block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50">Team</a>
+        <a href="#recensioni" class="anchor-link block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50">Recensioni</a>
+        <a href="#faq" class="anchor-link block text-[12px] font-black uppercase tracking-widest text-slate-900 py-2 border-b border-slate-50">FAQ</a>
+        <a href="#contatti" class="anchor-link block text-[12px] font-black uppercase tracking-widest text-cobalt py-2">Prenota Consulto</a>
     </div>
 
     <section class="relative flex items-center hero-medical overflow-hidden">
@@ -136,7 +156,7 @@
                     Scegliere la neurochirurgia d'eccellenza significa affidarsi a tecnologie robotiche e competenze umane di livello mondiale.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#patologie" class="bg-cobalt text-white px-10 md:px-12 py-5 md:py-6 rounded-md font-black uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Aree di Eccellenza</a>
+                    <a href="#patologie" class="anchor-link bg-cobalt text-white px-10 md:px-12 py-5 md:py-6 rounded-md font-black uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Aree di Eccellenza</a>
                 </div>
             </div>
         </div>
@@ -165,6 +185,50 @@
                 </div>
                 <div class="relative w-full">
                     <img src="assets/img2.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full h-auto" alt="Medical Technology">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <span class="text-cobalt font-black uppercase tracking-[0.4em] text-[10px]">Testimonianze dei pazienti</span>
+                <h2 class="text-5xl md:text-6xl font-heading font-black italic uppercase text-slate-900 tracking-tighter">Esperienze <span class="text-cobalt">Reali</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4 italic">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 font-bold italic mb-6">"Grazie al Dr. Valeri sono tornato a camminare dopo anni di dolore cronico alla schiena. Un'eccellenza assoluta."</p>
+                    <p class="text-xs font-black uppercase tracking-widest text-slate-900">Giuseppe R. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4 italic">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 font-bold italic mb-6">"L'umanità e la tecnologia trovate in questo centro non hanno eguali. L'intervento al cervello è stato un successo totale."</p>
+                    <p class="text-xs font-black uppercase tracking-widest text-slate-900">Carla M. - Roma</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4 italic">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 font-bold italic mb-6">"Approccio mininvasivo incredibile. Dimesso in tempi record, staff infermieristico di altissimo livello."</p>
+                    <p class="text-xs font-black uppercase tracking-widest text-slate-900">Francesco T. - Bologna</p>
                 </div>
             </div>
         </div>
@@ -250,7 +314,30 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <span class="text-cobalt font-black uppercase tracking-[0.4em] text-[10px]">Domande Frequenti</span>
+                <h2 class="text-5xl md:text-6xl font-heading font-black italic uppercase text-slate-900 tracking-tighter">FAQ</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-black text-lg text-slate-900 uppercase tracking-tighter mb-2">Quali sono i tempi medi di recupero?</h4>
+                    <p class="text-slate-500 font-bold italic text-sm">Dipende dalla procedura. Con le tecniche mininvasive spinali, molti pazienti tornano alle attività leggere in 2-3 settimane.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-black text-lg text-slate-900 uppercase tracking-tighter mb-2">È possibile richiedere una Second Opinion?</h4>
+                    <p class="text-slate-500 font-bold italic text-sm">Certamente. Analizziamo tutta la documentazione pregressa e gli esami diagnostici per offrire un parere esperto indipendente.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-black text-lg text-slate-900 uppercase tracking-tighter mb-2">Il centro è convenzionato?</h4>
+                    <p class="text-slate-500 font-bold italic text-sm">Collaboriamo con le principali assicurazioni sanitarie internazionali e fondi integrativi. Contatti la segreteria per i dettagli.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20 md:py-32 bg-slate-50 section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
                 <h2 class="text-6xl md:text-7xl font-heading font-black text-slate-900 leading-none tracking-tighter uppercase italic">Second <br><span class="text-cobalt font-black">Opinion.</span></h2>
@@ -269,28 +356,21 @@
                             <p class="text-lg md:text-xl font-bold italic">Piazza della Scienza 1, Milano</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-6 md:gap-8">
-                        <div class="w-16 h-16 md:w-20 md:h-20 bg-blue-50 text-cobalt rounded-3xl flex items-center justify-center shadow-md shrink-0"><i data-lucide="mail" class="w-6 h-6 md:w-8 md:h-8"></i></div>
-                        <div>
-                            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Email Ufficiale</p>
-                            <p class="text-lg md:text-xl font-bold italic">info@neurosurgery-excellence.it</p>
-                        </div>
-                    </div>
                 </div>
             </div>
             
-            <form class="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border border-slate-100 shadow-2xl space-y-6">
+            <form class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border border-slate-100 shadow-2xl space-y-6">
                 <p class="text-[11px] font-black uppercase tracking-[0.3em] text-cobalt mb-6 text-center italic">Richiedi un consulto (Demo Mode)</p>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="NOME PAZIENTE" class="w-full p-4 md:p-5 bg-white rounded-2xl outline-none font-black text-[10px] uppercase tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 md:p-5 bg-white rounded-2xl outline-none font-black text-[10px] uppercase tracking-widest">
+                    <input type="text" placeholder="NOME PAZIENTE" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl outline-none font-black text-[10px] uppercase tracking-widest">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl outline-none font-black text-[10px] uppercase tracking-widest">
                 </div>
-                <select class="w-full p-4 md:p-5 bg-white rounded-2xl outline-none font-black text-[10px] uppercase tracking-widest text-slate-400">
+                <select class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl outline-none font-black text-[10px] uppercase tracking-widest text-slate-400">
                     <option>AREA DI INTERESSE</option>
                     <option>CEREBRALE</option>
                     <option>SPINALE</option>
                 </select>
-                <textarea placeholder="DESCRIZIONE QUADRO CLINICO..." rows="4" class="w-full p-4 md:p-5 bg-white rounded-2xl outline-none font-black text-[10px] uppercase tracking-widest"></textarea>
+                <textarea placeholder="DESCRIZIONE QUADRO CLINICO..." rows="4" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl outline-none font-black text-[10px] uppercase tracking-widest"></textarea>
                 <button class="w-full bg-slate-900 text-white py-5 md:py-6 rounded-2xl font-black uppercase text-[12px] tracking-[0.3em] hover:bg-cobalt transition-all shadow-xl">Invia Richiesta</button>
             </form>
         </div>
@@ -302,13 +382,10 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-white border border-slate-100 text-slate-900 p-4 md:p-6 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-6 h-6 md:w-8 md:h-8"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
+        // Hamburger Menu Logic
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -316,9 +393,32 @@
             mobileMenu.classList.toggle('active');
         });
 
-        function toggleMenu() {
-            mobileMenu.classList.remove('active');
-        }
+        // Smooth Scroll Logic with Offset
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
 
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) {

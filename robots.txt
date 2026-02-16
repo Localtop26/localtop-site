@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /grazie
-Disallow: /demos/
+Allow: /
 
 Sitemap: https://localtop.it/sitemap.xml

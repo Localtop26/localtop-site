@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drive Master | Autoscuola & Corsi di Guida Sicura - Demo</title>
@@ -13,7 +14,6 @@
         .text-drive-yellow { color: #facc15; }
         .bg-drive-yellow { background-color: #facc15; }
         
-        /* 1. Immagini - Rimosso Grayscale */
         .hero-drive { 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
             url('assets/img1.jpg'); 
@@ -25,36 +25,53 @@
         .step-card { transition: all 0.3s ease; border-left: 4px solid transparent; }
         .step-card:hover { border-left-color: #facc15; background: #f8fafc; transform: translateX(10px); }
 
-        /* 3. Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .chat-widget, .nav-menu-link {
+        /* Blocca Interazioni Elementi Non Richiesti */
+        button:not(#mobile-menu-btn), input, select, textarea, .form-button {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
-        /* Mobile Menu Exception */
-        #mobile-menu-btn { pointer-events: auto !important; cursor: pointer !important; }
-        .mobile-link { pointer-events: auto !important; }
 
-        /* 5. Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3.5rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.5rem, 8vw, 3.5rem) !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .demo-nav-container { transform: scale(0.8); left: 0.5rem; bottom: 1rem; transform-origin: bottom left; }
-        }
-
-        /* 2. Bottoni Floating */
-        .demo-nav-container {
+        /* 1. Bottone LocalTop (Unico CTA) */
+        .localtop-cta {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 1000;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            
+            /* Mobile default */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
 
-        /* Mobile Menu Overlay */
+        @media (min-width: 768px) {
+            .localtop-cta {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+        }
+
+        .localtop-cta:hover { transform: scale(1.05); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(3.5rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
+            h2 { font-size: clamp(2.5rem, 8vw, 3.5rem) !important; }
+            .localtop-cta { bottom: 1rem; left: 1rem; }
+        }
+
         #mobile-menu {
             display: none;
             position: fixed;
@@ -66,18 +83,15 @@
             border-bottom: 1px solid #f1f5f9;
         }
         #mobile-menu.active { display: block; }
+        
+        .faq-item { border-bottom: 1px solid #f1f5f9; padding: 1.5rem 0; }
     </style>
 </head>
 <body class="selection:bg-yellow-100 selection:text-slate-900">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="localtop-cta">
+        Attiva il Servizio
+    </a>
 
     <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-slate-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
@@ -91,15 +105,16 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#patenti" class="hover:text-drive-yellow transition">Patenti</a>
-                <a href="#teoria" class="hover:text-drive-yellow transition">Teoria</a>
-                <a href="#pratica" class="hover:text-drive-yellow transition">Pratica</a>
-                <a href="#servizi" class="hover:text-drive-yellow transition">Servizi</a>
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#patenti" class="nav-anchor hover:text-drive-yellow transition">Patenti</a>
+                <a href="#teoria" class="nav-anchor hover:text-drive-yellow transition">Teoria</a>
+                <a href="#servizi" class="nav-anchor hover:text-drive-yellow transition">Servizi</a>
+                <a href="#recensioni" class="nav-anchor hover:text-drive-yellow transition">Recensioni</a>
+                <a href="#faq" class="nav-anchor hover:text-drive-yellow transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#iscriviti" class="hidden sm:block bg-drive-yellow text-slate-900 px-6 md:px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-md whitespace-nowrap">
+                <a href="#iscriviti" class="nav-anchor hidden sm:block bg-drive-yellow text-slate-900 px-6 md:px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-md whitespace-nowrap">
                     Inizia Ora
                 </a>
                 <button id="mobile-menu-btn" class="lg:hidden text-slate-900 p-2">
@@ -109,13 +124,14 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="lg:hidden shadow-xl animate-in fade-in slide-in-from-top-4">
+    <div id="mobile-menu" class="lg:hidden shadow-xl">
         <div class="flex flex-col p-6 space-y-4 text-[12px] font-bold uppercase tracking-widest text-slate-600">
-            <a href="#patenti" class="mobile-link py-2 border-b border-slate-50" onclick="toggleMenu()">Patenti</a>
-            <a href="#teoria" class="mobile-link py-2 border-b border-slate-50" onclick="toggleMenu()">Teoria</a>
-            <a href="#pratica" class="mobile-link py-2 border-b border-slate-50" onclick="toggleMenu()">Pratica</a>
-            <a href="#servizi" class="mobile-link py-2 border-b border-slate-50" onclick="toggleMenu()">Servizi</a>
-            <a href="#iscriviti" class="mobile-link py-2 text-drive-yellow" onclick="toggleMenu()">Contattaci</a>
+            <a href="#patenti" class="nav-anchor py-2 border-b border-slate-50">Patenti</a>
+            <a href="#teoria" class="nav-anchor py-2 border-b border-slate-50">Teoria</a>
+            <a href="#servizi" class="nav-anchor py-2 border-b border-slate-50">Servizi</a>
+            <a href="#recensioni" class="nav-anchor py-2 border-b border-slate-50">Recensioni</a>
+            <a href="#faq" class="nav-anchor py-2 border-b border-slate-50">FAQ</a>
+            <a href="#iscriviti" class="nav-anchor py-2 text-drive-yellow">Contattaci</a>
         </div>
     </div>
 
@@ -135,7 +151,7 @@
         </div>
     </section>
 
-    <section id="patenti" class="py-16 md:py-24 bg-white relative section-padding">
+    <section id="patenti" class="py-16 md:py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12 md:mb-20 space-y-4">
                 <h2 class="text-5xl font-road text-slate-900">Mettiti al <span class="text-drive-yellow italic">Volante.</span></h2>
@@ -162,7 +178,7 @@
         </div>
     </section>
 
-    <section id="teoria" class="py-16 md:py-24 bg-slate-50 section-padding">
+    <section id="teoria" class="py-16 md:py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="relative order-2 lg:order-1">
                 <img src="assets/img2.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover h-[300px] md:h-[500px]" alt="Digital Classroom">
@@ -184,26 +200,7 @@
         </div>
     </section>
 
-    <section id="pratica" class="py-16 md:py-24 bg-white section-padding">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-road text-slate-900 mb-12 md:mb-20 italic">Metodo <span class="text-drive-yellow">Drive Master.</span></h2>
-            <div class="space-y-4 md:space-y-6 text-left">
-                <div class="p-6 md:p-8 step-card">
-                    <h4 class="font-road text-xl md:text-2xl italic mb-2">01. Foglio Rosa</h4>
-                    <p class="text-sm text-slate-500 italic">Assistenza immediata dopo la teoria per iniziare subito le guide.</p>
-                </div>
-                <div class="p-6 md:p-8 step-card">
-                    <h4 class="font-road text-xl md:text-2xl italic mb-2">02. Guide Certificate</h4>
-                    <p class="text-sm text-slate-500 italic">Esecuzione delle guide obbligatorie (notturna, extraurbana, autostrada) in totale sicurezza.</p>
-                </div>
-            </div>
-            <div class="mt-12 md:mt-16 rounded-[2rem] md:rounded-[3rem] overflow-hidden">
-                <img src="assets/img3.jpg" class="w-full h-48 md:h-64 object-cover" alt="Pratica Guida">
-            </div>
-        </div>
-    </section>
-
-    <section id="servizi" class="py-16 md:py-24 bg-slate-900 text-white rounded-[2.5rem] md:rounded-[4rem] mx-4 md:mx-10 overflow-hidden section-padding">
+    <section id="servizi" class="py-16 md:py-24 bg-slate-900 text-white rounded-[2.5rem] md:rounded-[4rem] mx-4 md:mx-10 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 md:px-10">
             <div class="grid md:grid-cols-3 gap-12 md:gap-16 text-center">
                 <div class="space-y-4 md:space-y-6">
@@ -225,7 +222,72 @@
         </div>
     </section>
 
-    <section id="iscriviti" class="py-16 md:py-32 bg-white section-padding">
+    <section id="recensioni" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-road text-slate-900 italic">Dicono di <span class="text-drive-yellow">Noi.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                    <div class="flex text-drive-yellow mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Istruttori pazienti e molto competenti. Ho preso la patente B al primo colpo grazie alla loro app dei quiz!"</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Marco R. - Milano</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                    <div class="flex text-drive-yellow mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Il corso per la patente A è stato fantastico. Lezioni di guida sicura incluse che fanno davvero la differenza."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Giulia S. - Monza</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                    <div class="flex text-drive-yellow mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Professionalità incredibile. Ho rinnovato la patente in meno di 20 minuti. Organizzazione impeccabile."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Luca M. - Rho</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-24 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-road text-slate-900 italic">Domande <span class="text-drive-yellow">Frequenti.</span></h2>
+            </div>
+            <div class="space-y-2">
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 uppercase text-sm tracking-wide mb-2">Quanto tempo ci vuole per prendere la patente B?</h4>
+                    <p class="text-slate-500 text-sm italic">In media, con il nostro metodo rapido, i nostri studenti completano il percorso in circa 3-4 mesi.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 uppercase text-sm tracking-wide mb-2">Posso seguire le lezioni di teoria online?</h4>
+                    <p class="text-slate-500 text-sm italic">Sì, offriamo sessioni in streaming live e una libreria di lezioni registrate accessibili h24.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 uppercase text-sm tracking-wide mb-2">Quando è presente il medico per i rinnovi?</h4>
+                    <p class="text-slate-500 text-sm italic">Il medico è in sede ogni martedì dalle 17:00 alle 19:00 e venerdì dalle 10:00 alle 12:00.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="iscriviti" class="py-16 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
             <div class="space-y-8 md:space-y-12">
                 <h2 class="text-6xl md:text-8xl font-road text-slate-900 leading-none tracking-tighter italic">Contatta <br><span class="text-drive-yellow">L'Academy.</span></h2>
@@ -250,8 +312,8 @@
                 </select>
                 <textarea placeholder="LE TUE DOMANDE..." rows="3" class="w-full p-4 md:p-5 bg-white rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
                 <div class="grid gap-4">
-                    <button class="w-full bg-slate-900 text-white py-5 md:py-6 rounded-2xl font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Richiesta</button>
-                    <button class="w-full bg-white border-2 border-slate-900 text-slate-900 py-5 md:py-6 rounded-2xl font-black uppercase text-[11px] tracking-[0.3em] flex items-center justify-center gap-3">
+                    <button class="w-full bg-slate-900 text-white py-5 md:py-6 rounded-2xl font-black uppercase text-[11px] tracking-[0.3em] shadow-xl form-button">Invia Richiesta</button>
+                    <button class="w-full bg-white border-2 border-slate-900 text-slate-900 py-5 md:py-6 rounded-2xl font-black uppercase text-[11px] tracking-[0.3em] flex items-center justify-center gap-3 form-button">
                         <i data-lucide="phone" class="w-4 h-4"></i> Chiama Ora
                     </button>
                 </div>
@@ -265,33 +327,50 @@
         </p>
     </footer>
 
-    <div class="chat-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
+        // Toggle Menu Mobile
         menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
+            const isActive = mobileMenu.classList.toggle('active');
+            document.body.style.overflow = isActive ? 'hidden' : '';
             const icon = menuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('active')) {
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                icon.setAttribute('data-lucide', 'menu');
-            }
+            icon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
             lucide.createIcons();
         });
 
-        function toggleMenu() {
-            mobileMenu.classList.remove('active');
-            const icon = menuBtn.querySelector('i');
-            icon.setAttribute('data-lucide', 'menu');
-            lucide.createIcons();
-        }
+        // Gestione Ancore e Scroll Fluido
+        document.querySelectorAll('.nav-anchor').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Chiudi menu mobile se aperto
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                    const icon = menuBtn.querySelector('i');
+                    icon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                }
+
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

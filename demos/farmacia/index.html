@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth overflow-x-hidden">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Farmacia Sanitas | Salute, Prevenzione e Benessere - Demo Mode</title>
@@ -12,22 +13,36 @@
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #f8fafc; 
             color: #1e293b; 
+            padding-top: 80px; /* Spazio per l'header fisso */
             overflow-x: hidden;
             width: 100%;
         }
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
         
-        /* Titolo Hero: Desktop grande come richiesto, scalabile su mobile */
         h1 { 
             font-size: clamp(3rem, 10vw, 7.5rem) !important; 
             line-height: 0.9 !important; 
             word-break: break-word;
         }
 
-        /* Immagini: Rimosso grayscale e filtri */
         img, .hero-bg {
             filter: none !important;
             grayscale: 0 !important;
+        }
+
+        /* Header Fisso */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            z-index: 150;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
         }
 
         .hero-bg { 
@@ -37,50 +52,63 @@
             background-position: center; 
         }
         
-        /* Blocco Interazioni (Demo Mode) - Escluso menu hamburger per funzionamento */
-        button, input, select, textarea, .chat-widget-demo {
+        /* Disattivazione interazioni non richieste */
+        button:not(#menu-toggle), input, select, textarea, form {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
         
-        /* Riabilita interazioni per menu e link di navigazione */
-        #mobile-menu, #menu-toggle, .nav-link, .demo-nav-container a {
+        /* Riabilita interazioni per navigazione e CTA unico */
+        #mobile-menu, #menu-toggle, .nav-link, .cta-localtop {
             pointer-events: auto !important;
             cursor: pointer !important;
         }
 
-        /* Correzioni Mobile */
         @media (max-width: 768px) {
-            .section-padding { padding-top: 2rem; padding-bottom: 2rem; }
             .hero-bg { 
                 background: linear-gradient(to bottom, rgba(255,255,255,0.85) 15%, rgba(255,255,255,0.2) 100%), 
                 url('assets/img1.jpg'); 
+                background-position: 75% center !important; 
+                background-size: cover;
             }
             .hero-container { 
                 align-items: flex-start !important; 
                 padding-top: 4rem !important; 
             }
-            .nav-container { padding-left: 1rem !important; padding-right: 1rem !important; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.5rem 1rem !important;
-                font-size: 8px !important;
-            }
         }
 
-        .demo-nav-container {
+        /* Bottone LocalTop Unico */
+        .cta-localtop {
             position: fixed;
             bottom: 1.5rem;
             left: 1rem;
             z-index: 200;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
         }
 
-        /* Menu Mobile */
+        .cta-localtop:hover { transform: scale(1.05); }
+
         #mobile-menu.active {
             display: flex !important;
         }
@@ -88,17 +116,12 @@
 </head>
 <body class="selection:bg-emerald-100 selection:text-emerald-900">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="cta-localtop">
+        Attiva il Servizio
+    </a>
 
-    <nav class="sticky top-4 z-[150] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center shadow-sm mx-2 md:mx-10 rounded-2xl">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center nav-container">
+    <nav class="main-nav shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-10 w-full flex justify-between items-center nav-container">
             <div class="flex items-center gap-2 flex-shrink-0">
                 <div class="w-9 h-9 md:w-10 md:h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200">
                     <i data-lucide="plus-square" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
@@ -109,23 +132,28 @@
                 </div>
             </div>
 
-            <div class="hidden md:flex items-center gap-8">
+            <div class="hidden lg:flex items-center gap-6">
                 <a href="#servizi" class="nav-link text-[10px] font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-500">Servizi</a>
+                <a href="#consulenza" class="nav-link text-[10px] font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-500">Consulenza</a>
+                <a href="#recensioni" class="nav-link text-[10px] font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-500">Recensioni</a>
                 <a href="#reparti" class="nav-link text-[10px] font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-500">Reparti</a>
+                <a href="#faq" class="nav-link text-[10px] font-bold uppercase tracking-widest text-slate-600 hover:text-emerald-500">FAQ</a>
                 <a href="#contatti" class="nav-link bg-slate-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-emerald-500 transition-all">
                     Prenota Esame
                 </a>
             </div>
 
-            <button id="menu-toggle" class="md:hidden p-2 text-slate-900">
+            <button id="menu-toggle" class="lg:hidden p-2 text-slate-900">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
 
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-t border-slate-100 flex-col p-6 gap-4 shadow-xl rounded-b-2xl z-[160]">
+        <div id="mobile-menu" class="hidden absolute top-[80px] left-0 w-full bg-white border-t border-slate-100 flex-col p-6 gap-4 shadow-xl z-[160]">
             <a href="#servizi" class="nav-link text-sm font-bold uppercase tracking-widest text-slate-600 py-2">Servizi</a>
+            <a href="#consulenza" class="nav-link text-sm font-bold uppercase tracking-widest text-slate-600 py-2">Consulenza</a>
+            <a href="#recensioni" class="nav-link text-sm font-bold uppercase tracking-widest text-slate-600 py-2">Recensioni</a>
             <a href="#reparti" class="nav-link text-sm font-bold uppercase tracking-widest text-slate-600 py-2">Reparti</a>
-            <a href="#noleggio" class="nav-link text-sm font-bold uppercase tracking-widest text-slate-600 py-2">Noleggio</a>
+            <a href="#faq" class="nav-link text-sm font-bold uppercase tracking-widest text-slate-600 py-2">FAQ</a>
             <a href="#contatti" class="nav-link text-sm font-bold uppercase tracking-widest text-emerald-600 py-2">Contatti</a>
         </div>
     </nav>
@@ -158,26 +186,51 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 md:p-10 bg-slate-50 border border-slate-100 text-center group hover:bg-white hover:border-emerald-500 transition-all shadow-sm rounded-3xl">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                <div class="p-8 md:p-10 bg-slate-50 border border-slate-100 text-center group rounded-3xl">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm text-emerald-500">
                         <i data-lucide="droplet"></i>
                     </div>
                     <h3 class="text-xl md:text-2xl font-heading font-bold mb-4">Autoanalisi</h3>
                     <p class="text-sm text-slate-500 italic">Glicemia, Colesterolo e Trigliceridi in soli 5 minuti.</p>
                 </div>
-                <div class="p-8 md:p-10 bg-slate-50 border border-slate-100 text-center group hover:bg-white hover:border-emerald-500 transition-all shadow-sm rounded-3xl">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                <div class="p-8 md:p-10 bg-slate-50 border border-slate-100 text-center group rounded-3xl">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm text-emerald-500">
                         <i data-lucide="heart-pulse"></i>
                     </div>
                     <h3 class="text-xl md:text-2xl font-heading font-bold mb-4">Telemedicina</h3>
                     <p class="text-sm text-slate-500 italic">ECG e Holter cardiaco con refertazione immediata specialistica.</p>
                 </div>
-                <div class="p-8 md:p-10 bg-slate-50 border border-slate-100 text-center group hover:bg-white hover:border-emerald-500 transition-all shadow-sm rounded-3xl">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                <div class="p-8 md:p-10 bg-slate-50 border border-slate-100 text-center group rounded-3xl">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm text-emerald-500">
                         <i data-lucide="test-tube-2"></i>
                     </div>
                     <h3 class="text-xl md:text-2xl font-heading font-bold mb-4">Test Intolleranze</h3>
                     <p class="text-sm text-slate-500 italic">Analisi approfondita per intolleranze alimentari e test DNA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-16 md:py-20 bg-emerald-50/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 uppercase">Dicono di <span class="text-emerald-500 italic">Noi</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="flex text-emerald-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Personale estremamente competente. Ho effettuato un ECG in telemedicina e ho ricevuto il referto in tempi record."</p>
+                    <p class="font-bold text-slate-900">Marco R. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="flex text-emerald-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Il reparto dermocosmesi è eccezionale. Le consulenti sanno davvero consigliare il prodotto giusto per ogni tipo di pelle."</p>
+                    <p class="font-bold text-slate-900">Elena V. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="flex text-emerald-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Sempre gentili e disponibili. Il servizio di noleggio tiralatte è stato fondamentale per i primi mesi del mio bimbo."</p>
+                    <p class="font-bold text-slate-900">Chiara S. - Rho</p>
                 </div>
             </div>
         </div>
@@ -208,6 +261,31 @@
         </div>
     </section>
 
+    <section id="consulenza" class="py-16 md:py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 bg-slate-900 text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em]">
+                    Focus Benessere
+                </div>
+                <h2 class="text-5xl md:text-6xl font-heading font-black text-slate-900 leading-none uppercase">Consulenza <br><span class="text-emerald-500">Privata.</span></h2>
+                <p class="text-lg text-slate-600 leading-relaxed max-w-md">Incontri dedicati con i nostri farmacisti per piani alimentari personalizzati, integrazione sportiva e analisi della pelle.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3 font-bold text-slate-800"><i data-lucide="check-circle-2" class="text-emerald-500 w-5 h-5"></i> Nutrizione Personalizzata</li>
+                    <li class="flex items-center gap-3 font-bold text-slate-800"><i data-lucide="check-circle-2" class="text-emerald-500 w-5 h-5"></i> Integrazione e Fitoterapia</li>
+                    <li class="flex items-center gap-3 font-bold text-slate-800"><i data-lucide="check-circle-2" class="text-emerald-500 w-5 h-5"></i> Check-up del Capello</li>
+                </ul>
+            </div>
+            <div class="relative">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-50"></div>
+                <img src="assets/img3.jpg" class="relative z-10 rounded-[3rem] shadow-2xl w-full h-[500px] object-cover" alt="Consulenza Farmaceutica">
+                <div class="absolute -bottom-6 -right-6 bg-emerald-500 text-white p-8 rounded-[2rem] shadow-xl z-20 hidden md:block">
+                    <i data-lucide="users" class="w-8 h-8 mb-2"></i>
+                    <p class="font-bold text-xl">Esperti al tuo servizio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="noleggio" class="py-16 md:py-20 bg-slate-900 text-white rounded-[2.5rem] md:rounded-[4rem] mx-2 md:mx-10 my-10 overflow-hidden">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-10">
             <h2 class="text-4xl md:text-5xl font-heading font-black italic uppercase tracking-tighter">Supporto <span class="text-emerald-400">Sanitario</span></h2>
@@ -228,6 +306,28 @@
                 <div class="space-y-3">
                     <i data-lucide="battery-bolt" class="w-6 h-6 mx-auto text-emerald-400"></i>
                     <p class="text-[9px] font-bold uppercase tracking-widest">Tiralatte</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 uppercase">Domande <span class="text-emerald-500 italic">Frequenti</span></h2>
+            </div>
+            <div class="space-y-4">
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">È necessaria la prenotazione per le autoanalisi?</h4>
+                    <p class="text-slate-600 text-sm">Per test rapidi come glicemia e colesterolo non è necessaria, ma consigliamo di venire a digiuno la mattina.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Quanto tempo serve per il referto di un ECG?</h4>
+                    <p class="text-slate-600 text-sm">Il referto viene fornito dal cardiologo in telemedicina in circa 15-20 minuti dalla fine dell'esame.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Quali documenti servono per il noleggio di ausili?</h4>
+                    <p class="text-slate-600 text-sm">È sufficiente un documento d'identità valido e il versamento di una cauzione che verrà restituita alla riconsegna.</p>
                 </div>
             </div>
         </div>
@@ -280,28 +380,46 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
-        // Logica Menu Mobile
+        // Logica Menu Mobile/Tablet
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.querySelectorAll('.nav-link');
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
+            if (mobileMenu.classList.contains('flex')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
 
-        // Chiudi menu al click sui link
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+        // Gestione Scroll Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Chiudi menu
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('flex');
+                document.body.style.overflow = '';
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
         });
     </script>

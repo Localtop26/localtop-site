@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PodoClinic | Centro di Podologia Avanzata - Demo Mode</title>
@@ -27,8 +28,8 @@
             cursor: default !important;
             user-select: none;
         }
-        /* Riattiva click per navigazione e menu */
-        a, #mobile-menu-btn, #mobile-menu-overlay a {
+        /* Riattiva click per navigazione, menu e CTA specifico */
+        a, #mobile-menu-btn, #mobile-menu-overlay a, .cta-active-service {
             pointer-events: auto !important;
         }
 
@@ -37,7 +38,7 @@
             h2 { font-size: clamp(1.8rem, 8vw, 2.5rem) !important; }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
             .hero-full { min-height: auto; padding-top: 8rem; padding-bottom: 4rem; }
-            .localtop-btn { padding: 10px 16px !important; font-size: 9px !important; }
+            .localtop-btn { padding: 12px 18px !important; font-size: 14px !important; }
         }
 
         .demo-nav-container {
@@ -48,6 +49,31 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+        }
+
+        /* Bottone LocalTop Unico */
+        .cta-active-service {
+            background-color: #0F766E !important;
+            color: white !important;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 9999px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        @media (min-width: 768px) {
+            .cta-active-service {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
         }
 
         .hero-full {
@@ -90,14 +116,16 @@
             </div>
 
             <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-slate-500">
-                <a href="#tecnologie" class="hover:text-blue-600 transition">Tecnologie</a>
-                <a href="#filosofia" class="hover:text-blue-600 transition">Filosofia</a>
-                <a href="#team" class="hover:text-blue-600 transition">Team</a>
-                <a href="#contatti" class="hover:text-blue-600 transition">Contatti</a>
+                <a href="#tecnologie" class="anchor-link hover:text-blue-600 transition">Tecnologie</a>
+                <a href="#filosofia" class="anchor-link hover:text-blue-600 transition">Filosofia</a>
+                <a href="#recensioni" class="anchor-link hover:text-blue-600 transition">Recensioni</a>
+                <a href="#team" class="anchor-link hover:text-blue-600 transition">Team</a>
+                <a href="#faq" class="anchor-link hover:text-blue-600 transition">FAQ</a>
+                <a href="#contatti" class="anchor-link hover:text-blue-600 transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-2">
-                <a href="#contatti" class="hidden sm:block blue-gradient text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl shadow-blue-100 transition">
+                <a href="#contatti" class="anchor-link hidden sm:block blue-gradient text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl shadow-blue-100 transition">
                     Prenota Visita
                 </a>
                 <button id="mobile-menu-btn" class="lg:hidden p-2 text-slate-900 focus:outline-none">
@@ -111,19 +139,18 @@
         <button id="close-menu-btn" class="absolute top-8 right-8 p-4">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#tecnologie" class="mobile-link text-2xl font-black uppercase italic">Tecnologie</a>
-        <a href="#filosofia" class="mobile-link text-2xl font-black uppercase italic">Filosofia</a>
-        <a href="#team" class="mobile-link text-2xl font-black uppercase italic">Team</a>
-        <a href="#contatti" class="mobile-link text-2xl font-black uppercase italic">Contatti</a>
-        <a href="#contatti" class="mobile-link blue-gradient text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest mt-4">Prenota Visita</a>
+        <a href="#tecnologie" class="anchor-link mobile-link text-2xl font-black uppercase italic">Tecnologie</a>
+        <a href="#filosofia" class="anchor-link mobile-link text-2xl font-black uppercase italic">Filosofia</a>
+        <a href="#recensioni" class="anchor-link mobile-link text-2xl font-black uppercase italic">Recensioni</a>
+        <a href="#team" class="anchor-link mobile-link text-2xl font-black uppercase italic">Team</a>
+        <a href="#faq" class="anchor-link mobile-link text-2xl font-black uppercase italic">FAQ</a>
+        <a href="#contatti" class="anchor-link mobile-link text-2xl font-black uppercase italic">Contatti</a>
+        <a href="#contatti" class="anchor-link mobile-link blue-gradient text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest mt-4">Prenota Visita</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-active-service">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -178,6 +205,50 @@
                     </div>
                     <h4 class="text-xl font-bold mb-4 uppercase italic">Chirurgia Mininvasiva</h4>
                     <p class="text-sm text-slate-500 leading-relaxed font-light italic">Interventi per alluce valgo e dita a martello con tecnica percutanea, senza punti e con cammino immediato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-24 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black tracking-tighter italic uppercase text-slate-900">Esperienze dei <span class="text-blue-600">Pazienti</span></h2>
+                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-[0.4em]">Risultati reali, vite in movimento</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6 font-light">"Dopo anni di dolore per un alluce valgo, l'intervento mininvasivo mi ha cambiato la vita. Ho camminato fin dal primo giorno!"</p>
+                    <p class="font-bold text-slate-900 uppercase text-[10px] tracking-widest">Marco R. - Milano</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6 font-light">"I plantari personalizzati realizzati con lo scanner 3D sono perfetti. Finalmente posso correre senza fastidi alle ginocchia."</p>
+                    <p class="font-bold text-slate-900 uppercase text-[10px] tracking-widest">Giulia S. - Monza</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6 font-light">"Personale gentilissimo e ambiente estremamente sterile. La cura per l'onicomicosi con il laser è stata rapidissima."</p>
+                    <p class="font-bold text-slate-900 uppercase text-[10px] tracking-widest">Alessandro V. - Legnano</p>
                 </div>
             </div>
         </div>
@@ -271,6 +342,29 @@
         </div>
     </section>
 
+    <section id="faq" class="py-24 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black tracking-tighter italic uppercase text-slate-900">Domande <span class="text-blue-600">Frequenti</span></h2>
+                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-[0.4em]">Chiarezza e trasparenza clinica</p>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2 uppercase text-sm italic">È necessaria la ricetta medica per una visita?</h4>
+                    <p class="text-sm text-slate-500 font-light">No, il podologo è un professionista sanitario che può effettuare diagnosi e trattamenti podologici in autonomia.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2 uppercase text-sm italic">Quanto dura una seduta di analisi baropodometrica?</h4>
+                    <p class="text-sm text-slate-500 font-light">L'esame completo dura circa 45 minuti e include la scansione statica, dinamica e la valutazione biomeccanica.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2 uppercase text-sm italic">La chirurgia mininvasiva è dolorosa?</h4>
+                    <p class="text-sm text-slate-500 font-light">Viene eseguita in anestesia locale. Il dolore post-operatorio è minimo e gestibile con comuni analgesici, consentendo il carico immediato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-24 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16 md:gap-20">
             <div class="lg:w-1/2 space-y-10 text-center lg:text-left">
@@ -312,10 +406,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -332,11 +422,30 @@
 
         mobileMenuBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
-        
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuOverlay.classList.remove('active');
-                document.body.classList.remove('overflow-hidden');
+
+        // Scroll Ancore con Offset e Gestione URL
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Chiudi menu se mobile
+                    if (mobileMenuOverlay.classList.contains('active')) {
+                        mobileMenuOverlay.classList.remove('active');
+                        document.body.classList.remove('overflow-hidden');
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 

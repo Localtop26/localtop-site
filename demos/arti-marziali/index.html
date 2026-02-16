@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kensho Academy | Arti Marziali & Difesa Personale - Demo Mode</title>
@@ -23,18 +24,17 @@
         .discipline-card:hover { border-color: #dc2626; transform: scale(1.02); }
         .brush-effect { border-bottom: 4px solid #dc2626; width: 60px; margin-top: 10px; }
 
-        /* Rimozione filtri grayscale ovunque */
         img, .group:hover img, .grayscale, .group-hover:grayscale-0 {
             filter: none !important;
         }
 
-        button, input, select, textarea, .whatsapp-widget, a[href^="https://wa.me/"], .no-click {
+        /* Disattivazione elementi non richiesti */
+        button:not(#menu-toggle), input, select, textarea, a:not([href^="#"]):not([href*="localtop.it"]), .no-click {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Menu Mobile */
         #mobile-menu {
             display: none;
             position: fixed;
@@ -47,31 +47,48 @@
         }
         #mobile-menu.active { display: block; }
 
+        /* Bottone LocalTop Unico */
         .floating-demo-nav {
             position: fixed;
             bottom: 1.5rem;
             left: 1rem;
             z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
 
         @media (max-width: 768px) {
             .hero-dojo { height: auto; min-height: 80vh; padding-top: 4rem; padding-bottom: 4rem; }
             h1 { font-size: 3.5rem !important; line-height: 1 !important; }
-            .floating-demo-nav a { padding: 0.75rem 1.25rem; font-size: 8px !important; }
         }
     </style>
 </head>
 <body class="selection:bg-crimson selection:text-white">
 
     <div class="floating-demo-nav">
-        <a href="https://localtop.it/checkout" class="flex items-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
-            <i data-lucide="arrow-left" class="w-3 h-3 text-[#008080]"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -88,17 +105,18 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400">
-                <a href="#discipline" class="hover:text-crimson transition">Discipline</a>
-                <a href="#filosofia" class="hover:text-crimson transition">Filosofia</a>
-                <a href="#maestri" class="hover:text-crimson transition">Maestri</a>
-                <a href="#orari" class="hover:text-crimson transition">Orari</a>
+                <a href="#discipline" class="anchor-link hover:text-crimson transition">Discipline</a>
+                <a href="#recensioni" class="anchor-link hover:text-crimson transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-crimson transition">FAQ</a>
+                <a href="#maestri" class="anchor-link hover:text-crimson transition">Maestri</a>
+                <a href="#orari" class="anchor-link hover:text-crimson transition">Orari</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#iscriviti" class="bg-crimson text-white px-4 md:px-8 py-2.5 md:py-3 rounded-sm text-[9px] md:text-[11px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-lg shrink-0">
+                <a href="#iscriviti" class="anchor-link bg-crimson text-white px-4 md:px-8 py-2.5 md:py-3 rounded-sm text-[9px] md:text-[11px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-lg shrink-0">
                     Iscriviti
                 </a>
-                <button id="menu-toggle" class="lg:hidden text-white pointer-events-auto" style="pointer-events: auto !important; cursor: pointer !important;">
+                <button id="menu-toggle" class="lg:hidden text-white pointer-events-auto">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
@@ -107,16 +125,16 @@
 
     <div id="mobile-menu" class="lg:hidden">
         <div class="flex flex-col p-6 space-y-4 text-center font-bold uppercase tracking-widest text-xs">
-            <a href="#discipline" onclick="toggleMenu()" class="py-3 border-b border-white/5">Discipline</a>
-            <a href="#filosofia" onclick="toggleMenu()" class="py-3 border-b border-white/5">Filosofia</a>
-            <a href="#maestri" onclick="toggleMenu()" class="py-3 border-b border-white/5">Maestri</a>
-            <a href="#orari" onclick="toggleMenu()" class="py-3">Orari</a>
+            <a href="#discipline" class="anchor-link py-3 border-b border-white/5">Discipline</a>
+            <a href="#recensioni" class="anchor-link py-3 border-b border-white/5">Recensioni</a>
+            <a href="#faq" class="anchor-link py-3 border-b border-white/5">FAQ</a>
+            <a href="#maestri" class="anchor-link py-3 border-b border-white/5">Maestri</a>
+            <a href="#orari" class="anchor-link py-3">Orari</a>
         </div>
     </div>
 
     <section class="relative flex flex-col justify-center hero-dojo overflow-hidden py-20">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 flex flex-col justify-center h-full">
-            
             <div class="max-w-4xl space-y-6 md:space-y-8">
                 <h1 class="font-warrior font-bold text-white leading-[0.85] tracking-tight text-6xl md:text-9xl uppercase">
                     Domina la <br> <span class="text-crimson italic">Mente,</span> <br class="hidden md:block"> Forgia il <span class="text-crimson italic">Corpo.</span>
@@ -125,12 +143,10 @@
                     Molto più di una palestra. Un luogo dove la tradizione incontra la modernità. Trova il tuo centro.
                 </p>
             </div>
-
             <div class="flex flex-wrap gap-4 mt-12">
-                <a href="#discipline" class="bg-crimson text-white px-8 py-4 rounded-sm font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all">Scegli la tua Via</a>
-                <a href="#orari" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-sm font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all">Orari</a>
+                <a href="#discipline" class="anchor-link bg-crimson text-white px-8 py-4 rounded-sm font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all">Scegli la tua Via</a>
+                <a href="#orari" class="anchor-link bg-transparent border-2 border-white text-white px-8 py-4 rounded-sm font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all">Orari</a>
             </div>
-
         </div>
     </section>
 
@@ -140,7 +156,6 @@
                 <h2 class="text-4xl md:text-5xl font-warrior text-white">Le Nostre <span class="text-crimson">Vie.</span></h2>
                 <div class="brush-effect mx-auto"></div>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-8 discipline-card rounded-xl">
                     <i data-lucide="award" class="w-10 h-10 text-crimson mb-6"></i>
@@ -161,7 +176,51 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-20 bg-black overflow-hidden">
+    <section id="recensioni" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-warrior text-white">Cosa dicono i <span class="text-crimson">Guerrieri.</span></h2>
+                <div class="brush-effect mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-zinc-900/50 border border-white/5 rounded-sm">
+                    <div class="flex text-crimson mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"Ambiente fantastico e maestri preparatissimi. Ho trovato la disciplina che cercavo."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-white">Alessandro R. - Milano</p>
+                </div>
+                <div class="p-8 bg-zinc-900/50 border border-white/5 rounded-sm">
+                    <div class="flex text-crimson mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"Il corso di BJJ è tecnico e stimolante. Rispetto e umiltà sono alla base di tutto."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-white">Elena M. - Monza</p>
+                </div>
+                <div class="p-8 bg-zinc-900/50 border border-white/5 rounded-sm">
+                    <div class="flex text-crimson mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"Istruttori di Muay Thai eccezionali. Allenamenti intensi che ti cambiano davvero."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-white">Riccardo S. - Rho</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-20 bg-zinc-950 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
             <div class="relative group">
                 <img src="assets/img2.jpg" class="rounded-sm shadow-2xl transition duration-700" alt="Dojo">
@@ -183,7 +242,7 @@
         </div>
     </section>
 
-    <section id="maestri" class="py-20 bg-zinc-950">
+    <section id="maestri" class="py-20 bg-black">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl md:text-5xl font-warrior text-center mb-16 uppercase">La Guida <span class="text-crimson">Tecnica</span></h2>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -219,7 +278,7 @@
         </div>
     </section>
 
-    <section id="orari" class="py-20 bg-black border-y border-white/5">
+    <section id="orari" class="py-20 bg-zinc-950 border-y border-white/5">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl font-warrior text-center mb-12">I Tuoi <span class="text-crimson">Allenamenti.</span></h2>
             <div class="space-y-4">
@@ -234,6 +293,29 @@
                 <div class="flex justify-between items-center p-6 bg-zinc-900/50 border-l-4 border-crimson rounded-r-md">
                     <span class="font-warrior text-lg md:text-xl">Sera (19:00 - 21:30)</span>
                     <span class="text-[9px] font-bold uppercase text-zinc-500">Discipline Pro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-black">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-warrior text-white">Domande <span class="text-crimson">Frequenti.</span></h2>
+                <div class="brush-effect mx-auto"></div>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-zinc-900/30 p-6 rounded-sm border border-white/5">
+                    <h4 class="font-bold text-white mb-2 uppercase text-sm">Devo avere esperienza precedente?</h4>
+                    <p class="text-zinc-400 text-sm italic">No, abbiamo corsi specifici per principianti assoluti in tutte le discipline.</p>
+                </div>
+                <div class="bg-zinc-900/30 p-6 rounded-sm border border-white/5">
+                    <h4 class="font-bold text-white mb-2 uppercase text-sm">Quale attrezzatura serve per iniziare?</h4>
+                    <p class="text-zinc-400 text-sm italic">Per la prima lezione bastano abiti sportivi comodi. Ti forniremo noi il necessario per provare.</p>
+                </div>
+                <div class="bg-zinc-900/30 p-6 rounded-sm border border-white/5">
+                    <h4 class="font-bold text-white mb-2 uppercase text-sm">Ci sono limiti di età?</h4>
+                    <p class="text-zinc-400 text-sm italic">Assolutamente no. Accogliamo allievi dai 5 anni fino ai corsi senior.</p>
                 </div>
             </div>
         </div>
@@ -278,10 +360,6 @@
         </p>
     </footer>
 
-    <div class="whatsapp-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -290,6 +368,11 @@
 
         function toggleMenu() {
             mobileMenu.classList.toggle('active');
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
         menuToggle.addEventListener('click', (e) => {
@@ -297,10 +380,38 @@
             toggleMenu();
         });
 
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Chiudi menu se mobile
+                if(mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
         // Chiudi menu se si clicca fuori
-        document.addEventListener('click', () => {
-            if(mobileMenu.classList.contains('active')) {
+        document.addEventListener('click', (e) => {
+            if(mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && e.target !== menuToggle) {
                 mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     </script>

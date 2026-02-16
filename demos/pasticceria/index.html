@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolce Segreto | Pasticceria Artigianale d'Autore - Demo Mode</title>
@@ -41,17 +42,17 @@
         }
 
         /* Demo Mode Constraints */
-        button, input, select, textarea, .wa-widget-demo, .contact-btn-demo {
+        button:not(.menu-toggle), input, select, textarea, .wa-widget-demo, .contact-btn-demo {
             pointer-events: none !important;
             cursor: default !important;
         }
         
         /* Overlay Hamburger attivo */
         #mobile-menu {
-            pointer-events: auto !important; /* Deve essere cliccabile */
+            pointer-events: auto !important;
         }
         #mobile-menu button, #mobile-menu a {
-            pointer-events: auto !important; /* Le voci menu devono funzionare */
+            pointer-events: auto !important;
             cursor: pointer !important;
         }
 
@@ -81,8 +82,17 @@
             h2 { font-size: 3rem !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .demo-nav-container a {
+                padding: 16px 28px !important;
+                font-size: 15px !important;
+                min-height: 52px !important;
             }
         }
 
@@ -91,13 +101,14 @@
             bottom: 2rem;
             left: 1rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
 
-        /* Fix per rendere il toggle cliccabile nonostante il blocco demo globale */
         .menu-toggle {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
+        .scroll-link {
             pointer-events: auto !important;
             cursor: pointer !important;
         }
@@ -109,26 +120,26 @@
         <button onclick="toggleMenu()" class="absolute top-8 right-8 text-chocolate menu-toggle">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <a href="#creazioni" onclick="toggleMenu()" class="text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Creazioni</a>
-        <a href="#laboratorio" onclick="toggleMenu()" class="text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Laboratorio</a>
-        <a href="#torte" onclick="toggleMenu()" class="text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Torte</a>
-        <a href="#contatti" onclick="toggleMenu()" class="text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Contatti</a>
+        <a href="#creazioni" class="scroll-link text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Creazioni</a>
+        <a href="#laboratorio" class="scroll-link text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Laboratorio</a>
+        <a href="#recensioni" class="scroll-link text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Recensioni</a>
+        <a href="#torte" class="scroll-link text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Torte</a>
+        <a href="#faq" class="scroll-link text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">FAQ</a>
+        <a href="#contatti" class="scroll-link text-2xl font-black uppercase tracking-widest text-stone-500 hover:text-chocolate">Contatti</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105" style="pointer-events: auto !important; cursor: pointer !important;">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105" style="pointer-events: auto !important; cursor: pointer !important;">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="flex items-center justify-center bg-[#0F766E] text-white rounded-full font-bold shadow-2xl transition-transform hover:scale-105" style="pointer-events: auto !important; cursor: pointer !important;">
+            Attiva il Servizio
         </a>
     </div>
 
     <nav class="sticky sticky-nav z-[110] bg-white/95 backdrop-blur-md border-b border-orange-100 h-20 md:h-28 flex items-center px-4 md:px-10 shadow-lg">
         <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
             <div class="hidden lg:flex space-x-10 text-[12px] font-black uppercase tracking-widest text-stone-500">
-                <a href="#creazioni" class="hover:text-chocolate transition">Creazioni</a>
-                <a href="#laboratorio" class="hover:text-chocolate transition">Laboratorio</a>
+                <a href="#creazioni" class="scroll-link hover:text-chocolate transition">Creazioni</a>
+                <a href="#laboratorio" class="scroll-link hover:text-chocolate transition">Laboratorio</a>
+                <a href="#recensioni" class="scroll-link hover:text-chocolate transition">Recensioni</a>
             </div>
             
             <div class="flex flex-col items-center flex-1 lg:flex-none">
@@ -137,8 +148,9 @@
             </div>
 
             <div class="hidden lg:flex space-x-10 text-[12px] font-black uppercase tracking-widest text-stone-500">
-                <a href="#torte" class="hover:text-chocolate transition">Torte</a>
-                <a href="#contatti" class="text-chocolate border-b-2 border-chocolate">Contatti</a>
+                <a href="#torte" class="scroll-link hover:text-chocolate transition">Torte</a>
+                <a href="#faq" class="scroll-link hover:text-chocolate transition">FAQ</a>
+                <a href="#contatti" class="scroll-link text-chocolate border-b-2 border-chocolate">Contatti</a>
             </div>
 
             <div class="lg:hidden flex justify-end">
@@ -159,7 +171,7 @@
                     Ingredienti rari, tecniche secolari e un pizzico di poesia. <br> Dal cuore del nostro laboratorio alla tua tavola milanese.
                 </p>
                 <div class="pt-6 md:pt-10 flex justify-start">
-                    <a href="#creazioni" class="bg-chocolate text-white px-10 md:px-16 py-4 md:py-6 rounded-full font-black uppercase text-[10px] md:text-xs tracking-[0.3em] shadow-2xl inline-block" style="pointer-events: auto !important; cursor: pointer !important;">Sfoglia il Menù</a>
+                    <a href="#creazioni" class="scroll-link bg-chocolate text-white px-10 md:px-16 py-4 md:py-6 rounded-full font-black uppercase text-[10px] md:text-xs tracking-[0.3em] shadow-2xl inline-block" style="pointer-events: auto !important; cursor: pointer !important;">Sfoglia il Menù</a>
                 </div>
             </div>
         </div>
@@ -227,6 +239,32 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 md:mb-24">
+                <span class="text-amber-600 font-black uppercase tracking-[0.5em] text-[10px] md:text-[12px]">Dicono di noi</span>
+                <h2 class="font-serif italic mt-4 md:mt-6 text-chocolate">Parole Dolci</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-vanilla p-8 rounded-[2rem] shadow-xl border border-orange-50">
+                    <div class="flex text-amber-500 mb-4 italic">★★★★★</div>
+                    <p class="italic text-stone-700 mb-6 text-sm">"I migliori macarons mai mangiati a Milano. La cura nel packaging e la freschezza degli ingredienti sono imbattibili."</p>
+                    <p class="font-black uppercase text-[10px] tracking-widest text-chocolate">Marco V. - Milano</p>
+                </div>
+                <div class="bg-vanilla p-8 rounded-[2rem] shadow-xl border border-orange-50">
+                    <div class="flex text-amber-500 mb-4 italic">★★★★★</div>
+                    <p class="italic text-stone-700 mb-6 text-sm">"Ho ordinato la torta per il mio compleanno. Oltre che bellissima, era una nuvola di piacere. Professionalità estrema."</p>
+                    <p class="font-black uppercase text-[10px] tracking-widest text-chocolate">Elena R. - Monza</p>
+                </div>
+                <div class="bg-vanilla p-8 rounded-[2rem] shadow-xl border border-orange-50">
+                    <div class="flex text-amber-500 mb-4 italic">★★★★★</div>
+                    <p class="italic text-stone-700 mb-6 text-sm">"Il laboratorio a vista trasmette una fiducia incredibile. Si sente che il burro è di altissima qualità."</p>
+                    <p class="font-black uppercase text-[10px] tracking-widest text-chocolate">Giulia B. - Milano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="torte" class="py-20 md:py-32 bg-vanilla section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="order-2 lg:order-1">
@@ -240,6 +278,28 @@
                 <div class="flex justify-center lg:justify-start gap-8">
                     <div class="w-20 h-20 md:w-24 md:h-24 bg-cream rounded-full flex items-center justify-center text-amber-700 shadow-xl"><i data-lucide="cake" class="w-8 h-8 md:w-10 md:h-10"></i></div>
                     <div class="w-20 h-20 md:w-24 md:h-24 bg-cream rounded-full flex items-center justify-center text-amber-700 shadow-xl"><i data-lucide="palette" class="w-8 h-8 md:w-10 md:h-10"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-serif italic text-chocolate">Domande Frequenti</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-orange-100 pb-4">
+                    <h4 class="font-bold text-chocolate mb-2 uppercase text-xs tracking-widest">Effettuate consegne a domicilio?</h4>
+                    <p class="text-stone-600 text-sm">Sì, consegniamo in tutta l'area urbana di Milano con mezzi refrigerati per garantire la catena del freddo.</p>
+                </div>
+                <div class="border-b border-orange-100 pb-4">
+                    <h4 class="font-bold text-chocolate mb-2 uppercase text-xs tracking-widest">Quanto tempo prima devo ordinare una torta?</h4>
+                    <p class="text-stone-600 text-sm">Per le torte personalizzate richiediamo almeno 4-5 giorni lavorativi di preavviso.</p>
+                </div>
+                <div class="border-b border-orange-100 pb-4">
+                    <h4 class="font-bold text-chocolate mb-2 uppercase text-xs tracking-widest">Avete opzioni senza glutine?</h4>
+                    <p class="text-stone-600 text-sm">Produciamo alcuni dolci senza glutine, tuttavia lavorando in un ambiente con farina, non possiamo garantire la totale assenza di contaminazioni.</p>
                 </div>
             </div>
         </div>
@@ -286,10 +346,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 md:p-6 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-8 h-8 md:w-10 md:h-10"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -302,6 +358,34 @@
                 document.body.style.overflow = 'auto';
             }
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.scroll-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Chiudi il menu mobile se aperto
+                    const menu = document.getElementById('mobile-menu');
+                    if (menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+
+                    // Scroll con offset di 100px
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - 100;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

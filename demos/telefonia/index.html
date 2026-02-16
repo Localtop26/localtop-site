@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Phone Master | Telefonia, Usato Garantito & Riparazioni - Demo Mode</title>
@@ -65,7 +66,7 @@
 
         img { filter: none !important; grayscale: 0 !important; }
 
-        input, select, textarea, .wa-widget-demo {
+        input, select, textarea, .wa-widget-demo, button:not(#menu-toggle, #menu-close) {
             pointer-events: none !important;
             cursor: default !important;
         }
@@ -84,33 +85,43 @@
             transform: translateX(0);
         }
 
+        /* Nuovo Bottone Attiva il Servizio */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-width: calc(100% - 3rem);
         }
-
-        @media (max-width: 640px) {
-            .demo-nav-container a {
-                padding: 0.6rem 1rem;
-                font-size: 8px;
+        .btn-checkout {
+            background-color: #0F766E;
+            color: white;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 9999px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            pointer-events: auto !important;
+        }
+        @media (min-width: 768px) {
+            .btn-checkout {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
         }
+        .btn-checkout:active { transform: scale(0.95); }
     </style>
 </head>
 <body class="selection:bg-blue-600 selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 pointer-events-auto">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 pointer-events-auto">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-checkout">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -126,9 +137,9 @@
             <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="#novità" class="hover:text-electric transition">Nuovi Arrivi</a>
                 <a href="#usato" class="hover:text-electric transition">Usato Garantito</a>
-                <a href="#filosofia" class="hover:text-electric transition">Filosofia</a>
                 <a href="#riparazioni" class="hover:text-electric transition">Riparazioni</a>
-                <a href="#accessori" class="hover:text-electric transition">Accessori</a>
+                <a href="#recensioni" class="hover:text-electric transition">Recensioni</a>
+                <a href="#faq" class="hover:text-electric transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-3">
@@ -149,12 +160,12 @@
             </button>
         </div>
         <div class="flex flex-col gap-8 text-2xl font-tech font-black uppercase italic tracking-tighter">
-            <a href="#novità" class="mobile-link">Nuovi Arrivi</a>
-            <a href="#usato" class="mobile-link">Usato Garantito</a>
-            <a href="#filosofia" class="mobile-link">Filosofia</a>
-            <a href="#riparazioni" class="mobile-link">Riparazioni</a>
-            <a href="#accessori" class="mobile-link">Accessori</a>
-            <a href="#contatti" class="mobile-link text-electric">Contatti</a>
+            <a href="#novità" class="anchor-link">Nuovi Arrivi</a>
+            <a href="#usato" class="anchor-link">Usato Garantito</a>
+            <a href="#riparazioni" class="anchor-link">Riparazioni</a>
+            <a href="#recensioni" class="anchor-link">Recensioni</a>
+            <a href="#faq" class="anchor-link">FAQ</a>
+            <a href="#contatti" class="anchor-link text-electric">Contatti</a>
         </div>
     </div>
 
@@ -174,8 +185,8 @@
                     Gli ultimi flagship, il miglior usato ricondizionato e riparazioni espresse in 30 minuti. Il tuo punto di riferimento tech.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                    <a href="#usato" class="bg-electric text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold uppercase text-xs tracking-widest shadow-xl shadow-blue-200 hover:bg-slate-900 transition-all pointer-events-auto">Vedi Usato</a>
-                    <a href="#riparazioni" class="bg-white/80 border-2 border-slate-200 text-slate-900 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic pointer-events-auto">Riparazione Rapida</a>
+                    <a href="#usato" class="anchor-link bg-electric text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold uppercase text-xs tracking-widest shadow-xl shadow-blue-200 hover:bg-slate-900 transition-all pointer-events-auto">Vedi Usato</a>
+                    <a href="#riparazioni" class="anchor-link bg-white/80 border-2 border-slate-200 text-slate-900 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic pointer-events-auto">Riparazione Rapida</a>
                 </div>
             </div>
         </div>
@@ -299,6 +310,29 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-tech font-black uppercase italic tracking-tighter text-center mb-16">Dicono di <span class="text-electric">Noi.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 italic">
+                    <div class="flex text-yellow-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 mb-6">"Riparazione schermo iPhone in meno di 40 minuti. Professionali e onesti nei prezzi."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">— Marco R., Milano</p>
+                </div>
+                <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 italic">
+                    <div class="flex text-yellow-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 mb-6">"Ho comprato un S24 usato grado A+++, sembra davvero uscito dalla scatola originale. Super consigliato!"</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">— Giulia V., Monza</p>
+                </div>
+                <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 italic">
+                    <div class="flex text-yellow-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 mb-6">"Ottimo servizio di permuta. Ho dato dentro il mio vecchio telefono e ho preso il nuovo a un prezzo imbattibile."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">— Alessandro T., Rho</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="accessori" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
             <div class="relative order-2 lg:order-1">
@@ -316,6 +350,26 @@
                     <span class="text-electric">Audio</span>
                     <span>Power</span>
                     <span class="text-electric">Sim</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-tech font-black uppercase italic tracking-tighter text-center mb-12">Domande <span class="text-electric">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="p-6 border-b border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 italic text-slate-900">Quanto tempo serve per cambiare una batteria?</h4>
+                    <p class="text-slate-500 font-light">Solitamente l'intervento richiede circa 30-40 minuti. Consigliamo la prenotazione per garantire la disponibilità immediata del ricambio.</p>
+                </div>
+                <div class="p-6 border-b border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 italic text-slate-900">L'usato ha la garanzia?</h4>
+                    <p class="text-slate-500 font-light">Certamente. Ogni dispositivo usato venduto da Phone Master gode di 12 mesi di garanzia legale su eventuali difetti hardware.</p>
+                </div>
+                <div class="p-6 border-b border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 italic text-slate-900">I ricambi sono originali?</h4>
+                    <p class="text-slate-500 font-light">Utilizziamo sia ricambi originali che compatibili di Grado A+, a seconda delle tue preferenze e del budget disponibile.</p>
                 </div>
             </div>
         </div>
@@ -357,20 +411,46 @@
 
     <script>
         lucide.createIcons();
+        
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
         function toggleMenu() {
             mobileMenu.classList.toggle('active');
             document.body.classList.toggle('overflow-hidden');
         }
+
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.classList.remove('overflow-hidden');
+
+        // Gestione Scroll Smooth con Offset
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Chiudi menu mobile se aperto
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        document.body.classList.remove('overflow-hidden');
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

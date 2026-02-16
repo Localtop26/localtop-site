@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaiju Stop | Manga, Comics & Otaku Culture - Demo</title>
@@ -16,24 +17,20 @@
         .card-cyber { background: #161b22; border: 1px solid #30363d; transition: all 0.3s ease; }
         .hero-mesh { background-image: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(280,80%,20%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(200,80%,20%,1) 0, transparent 50%); }
         
-        /* Titolo Desktop Enorme */
         h1 { 
             font-size: clamp(3.5rem, 12vw, 9.5rem) !important; 
             line-height: 0.85 !important; 
         }
 
-        /* Tutte le immagini a colori - Rimozione filtri */
         img { filter: none !important; grayscale: 0 !important; transition: transform 0.3s ease; }
-        img:hover { filter: none !important; grayscale: 0 !important; }
 
-        /* Blocco Interazioni (Demo Mode) tranne menu */
-        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo, .contact-btn {
+        /* Blocco Interazioni (Demo Mode) */
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .contact-btn {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Menu Mobile Overlay */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -42,40 +39,52 @@
             transform: translateX(0);
         }
 
-        /* Ottimizzazione Mobile */
         @media (max-width: 768px) {
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             .hero-section { padding-top: 5rem !important; min-height: auto !important; }
             .nav-container { padding-left: 1rem !important; padding-right: 1rem !important; }
             .logo-text { font-size: 1.4rem !important; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-btn { 
-                padding: 0.75rem 1rem !important; 
-                font-size: 8px !important; 
-            }
-            .demo-nav-container { left: 1rem; bottom: 1rem; }
         }
 
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+            text-decoration: none;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
+        .btn-localtop:active { transform: scale(0.95); }
     </style>
 </head>
 <body class="selection:bg-neon selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="demo-nav-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="demo-nav-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -88,18 +97,16 @@
                 <span class="text-2xl md:text-3xl font-anime text-white tracking-widest uppercase logo-text">Kaiju<span class="text-neon">Stop</span></span>
             </div>
 
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="#manga" class="hover:text-neon transition">Manga</a>
-                <a href="#figure" class="hover:text-neon transition">Figure</a>
-                <a href="#cards" class="hover:text-neon transition">TCG</a>
-                <a href="#gaming" class="hover:text-neon transition">Gaming</a>
-                <a href="#eventi" class="hover:text-neon transition">Eventi</a>
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="#manga" class="nav-anchor hover:text-neon transition">Manga</a>
+                <a href="#figure" class="nav-anchor hover:text-neon transition">Figure</a>
+                <a href="#cards" class="nav-anchor hover:text-neon transition">TCG</a>
+                <a href="#recensioni" class="nav-anchor hover:text-neon transition">Recensioni</a>
+                <a href="#faq" class="nav-anchor hover:text-neon transition">FAQ</a>
+                <a href="#contatti" class="nav-anchor hover:text-neon transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden md:block bg-white text-black px-6 py-2 rounded font-black uppercase text-[10px] tracking-tighter hover:bg-neon hover:text-white transition-all">
-                    Vieni in Store
-                </a>
                 <button id="menu-toggle" class="lg:hidden text-white p-2 pointer-events-auto cursor-pointer">
                     <i data-lucide="menu" class="w-8 h-8"></i>
                 </button>
@@ -111,12 +118,12 @@
         <button id="menu-close" class="absolute top-6 right-6 text-white pointer-events-auto">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <a href="#manga" class="mobile-link text-4xl font-anime text-white uppercase italic">Manga</a>
-        <a href="#figure" class="mobile-link text-4xl font-anime text-white uppercase italic">Figure</a>
-        <a href="#cards" class="mobile-link text-4xl font-anime text-white uppercase italic">TCG</a>
-        <a href="#gaming" class="mobile-link text-4xl font-anime text-white uppercase italic">Gaming</a>
-        <a href="#eventi" class="mobile-link text-4xl font-anime text-white uppercase italic">Eventi</a>
-        <a href="#contatti" class="mobile-link bg-neon text-white px-8 py-4 rounded font-black uppercase text-sm">Vieni in Store</a>
+        <a href="#manga" class="nav-anchor text-4xl font-anime text-white uppercase italic">Manga</a>
+        <a href="#figure" class="nav-anchor text-4xl font-anime text-white uppercase italic">Figure</a>
+        <a href="#cards" class="nav-anchor text-4xl font-anime text-white uppercase italic">TCG</a>
+        <a href="#recensioni" class="nav-anchor text-4xl font-anime text-white uppercase italic">Recensioni</a>
+        <a href="#faq" class="nav-anchor text-4xl font-anime text-white uppercase italic">FAQ</a>
+        <a href="#contatti" class="nav-anchor bg-neon text-white px-8 py-4 rounded font-black uppercase text-sm">Vieni in Store</a>
     </div>
 
     <section class="relative min-h-[90vh] flex items-center hero-mesh overflow-hidden section-padding hero-section">
@@ -130,8 +137,8 @@
                     Dall'ultimo volume di One Piece alle Figure in edizione limitata. Kaiju Stop è il punto di riferimento a Milano per ogni vero appassionato.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#eventi" class="bg-neon text-white px-8 md:px-10 py-4 md:py-5 rounded font-black uppercase text-xs tracking-widest shadow-[0_0_30px_rgba(188,19,254,0.4)]">Calendario Eventi</a>
-                    <a href="#contatti" class="bg-white/5 border border-white/10 px-8 md:px-10 py-4 md:py-5 rounded font-black uppercase text-xs tracking-widest">Dove Siamo</a>
+                    <a href="#eventi" class="nav-anchor bg-neon text-white px-8 md:px-10 py-4 md:py-5 rounded font-black uppercase text-xs tracking-widest shadow-[0_0_30px_rgba(188,19,254,0.4)]">Calendario Eventi</a>
+                    <a href="#contatti" class="nav-anchor bg-white/5 border border-white/10 px-8 md:px-10 py-4 md:py-5 rounded font-black uppercase text-xs tracking-widest">Dove Siamo</a>
                 </div>
             </div>
             <div class="relative">
@@ -221,6 +228,29 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-24 md:py-32 bg-[#0b0e14] section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-anime text-white uppercase italic mb-16 text-center">Community <span class="text-neon">Voice</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-cyber p-8 rounded-2xl relative">
+                    <div class="flex text-yellow-500 mb-4"><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i></div>
+                    <p class="text-slate-400 italic mb-6">"Il miglior negozio di Milano per chi cerca manga d'importazione. Personale super preparato!"</p>
+                    <div class="font-bold text-white uppercase text-xs tracking-widest">— Marco R., Milano</div>
+                </div>
+                <div class="card-cyber p-8 rounded-2xl relative border-neon">
+                    <div class="flex text-yellow-500 mb-4"><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i></div>
+                    <p class="text-slate-400 italic mb-6">"Ho trovato delle figure introvabili altrove. Prezzi onesti e imballaggio perfetto."</p>
+                    <div class="font-bold text-white uppercase text-xs tracking-widest">— Elena V., Monza</div>
+                </div>
+                <div class="card-cyber p-8 rounded-2xl relative">
+                    <div class="flex text-yellow-500 mb-4"><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i><i data-lucide="star" class="fill-current w-4"></i></div>
+                    <p class="text-slate-400 italic mb-6">"I tornei di One Piece sono organizzati benissimo. Atmosfera fantastica!"</p>
+                    <div class="font-bold text-white uppercase text-xs tracking-widest">— Luca T., Sesto SG</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="gaming" class="py-24 md:py-32 bg-[#0b0e14] section-padding">
         <div class="max-w-7xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl md:text-5xl font-anime text-white italic">Gaming <span class="text-neon">Nexus</span></h2>
@@ -258,6 +288,26 @@
                 <div class="bg-black/20 backdrop-blur-md p-6 rounded-xl flex justify-between items-center text-white border border-white/10">
                     <div><p class="text-xs font-bold uppercase opacity-60">20 Febbraio</p><h4 class="font-anime text-xl">Cosplay Workshop: Prop Making</h4></div>
                     <i data-lucide="scissors"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 md:py-32 bg-[#0b0e14] section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-anime text-neon uppercase italic mb-12 text-center">F.A.Q.</h2>
+            <div class="space-y-6">
+                <div class="card-cyber p-6 rounded-xl">
+                    <h4 class="font-bold text-white mb-2 uppercase text-sm tracking-widest">Spedite in tutta Italia?</h4>
+                    <p class="text-slate-400 text-sm">Siamo principalmente uno store fisico, ma offriamo servizio di spedizione per figure rare e box TCG tramite il nostro canale WhatsApp.</p>
+                </div>
+                <div class="card-cyber p-6 rounded-xl">
+                    <h4 class="font-bold text-white mb-2 uppercase text-sm tracking-widest">Comprate manga usati?</h4>
+                    <p class="text-slate-400 text-sm">Valutiamo collezioni complete o volumi rari in ottime condizioni. Portali in store il martedì o mercoledì per una valutazione.</p>
+                </div>
+                <div class="card-cyber p-6 rounded-xl">
+                    <h4 class="font-bold text-white mb-2 uppercase text-sm tracking-widest">Le figure sono originali?</h4>
+                    <p class="text-slate-400 text-sm">Assolutamente sì. Garantiamo l'originalità al 100% con bollini ologrammati e certificati dei produttori ufficiali giapponesi.</p>
                 </div>
             </div>
         </div>
@@ -308,10 +358,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-8 right-8 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         // Inizializza Icone
         lucide.createIcons();
@@ -320,7 +366,6 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function toggleMenu() {
             mobileMenu.classList.toggle('active');
@@ -330,10 +375,32 @@
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.nav-anchor').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Chiudi menu mobile se aperto
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
     </script>

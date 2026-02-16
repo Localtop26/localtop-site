@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Villa Serena | Casa Famiglia & Residenza per la Terza Età</title>
@@ -19,14 +20,12 @@
         .text-warm { color: #c38d74; }
         .bg-warm { background-color: #c38d74; }
         
-        /* Immagini - No filtri */
         .hero-care { 
             background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.05)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
 
-        /* Overlay per leggibilità testo Hero */
         .hero-text-container {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(12px);
@@ -36,13 +35,11 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.05);
         }
 
-        /* Elementi navigazione sbloccati */
-        button, input, select, textarea, .chat-widget-demo, a {
-            pointer-events: auto !important;
-            cursor: pointer !important;
+        /* Disattivazione elementi non richiesti */
+        button:not(#menu-trigger, #menu-close, .nav-cta), input, textarea, form, .care-card {
+            pointer-events: none !important;
         }
 
-        /* Ottimizzazione Mobile */
         @media (max-width: 768px) {
             h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; color: #1a1a1a !important; }
             h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
@@ -50,14 +47,38 @@
             .hero-text-container { padding: 1.5rem; margin: 0 0.5rem; }
         }
 
-        .demo-nav-container {
+        /* Bottone LocalTop Unico */
+        .localtop-cta {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
             z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .localtop-cta {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .localtop-cta:hover {
+            transform: scale(1.05);
         }
 
         #mobile-menu {
@@ -67,14 +88,9 @@
 </head>
 <body class="selection:bg-warm selection:text-white">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-4 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="localtop-cta">
+        Attiva il Servizio
+    </a>
 
     <nav class="sticky top-0 z-[120] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm px-4 md:px-10">
         <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
@@ -89,25 +105,26 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#filosofia" class="hover:text-warm transition">La Casa</a>
-                <a href="#assistenza" class="hover:text-warm transition">Assistenza</a>
-                <a href="#attivita" class="hover:text-warm transition">Vita Quotidiana</a>
-                <a href="#cucina" class="hover:text-warm transition">La Tavola</a>
+                <a href="#filosofia" class="anchor-link hover:text-warm transition">La Casa</a>
+                <a href="#assistenza" class="anchor-link hover:text-warm transition">Assistenza</a>
+                <a href="#recensioni" class="anchor-link hover:text-warm transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-warm transition">FAQ</a>
+                <a href="#contatti" class="anchor-link hover:text-warm transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#contatti" class="hidden sm:block bg-warm text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
+                <a href="#contatti" class="anchor-link hidden sm:block bg-warm text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-stone-800 transition-all shadow-md">
                     Contattaci
                 </a>
-                <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-800 relative z-[130] bg-white rounded-lg shadow-sm border border-stone-100">
-                    <i data-lucide="menu" id="menu-icon-trigger"></i>
+                <button id="menu-trigger" onclick="toggleMenu()" class="lg:hidden p-2 text-slate-800 relative z-[130] bg-white rounded-lg shadow-sm border border-stone-100">
+                    <i data-lucide="menu"></i>
                 </button>
             </div>
         </div>
     </nav>
 
     <div id="mobile-menu" class="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center gap-8 text-slate-800 hidden">
-        <button onclick="toggleMenu()" class="absolute top-6 right-6 p-2 bg-stone-100 rounded-full text-slate-800">
+        <button id="menu-close" onclick="toggleMenu()" class="absolute top-6 right-6 p-2 bg-stone-100 rounded-full text-slate-800">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
         
@@ -115,14 +132,15 @@
             <i data-lucide="heart" class="text-white w-6 h-6"></i>
         </div>
 
-        <a href="#filosofia" onclick="toggleMenu()" class="text-3xl font-serif italic hover:text-warm transition-colors">La Casa</a>
-        <a href="#assistenza" onclick="toggleMenu()" class="text-3xl font-serif italic hover:text-warm transition-colors">Assistenza</a>
-        <a href="#attivita" onclick="toggleMenu()" class="text-3xl font-serif italic hover:text-warm transition-colors">Vita Quotidiana</a>
-        <a href="#cucina" onclick="toggleMenu()" class="text-3xl font-serif italic hover:text-warm transition-colors">La Tavola</a>
+        <a href="#filosofia" class="anchor-link text-3xl font-serif italic hover:text-warm transition-colors">La Casa</a>
+        <a href="#assistenza" class="anchor-link text-3xl font-serif italic hover:text-warm transition-colors">Assistenza</a>
+        <a href="#recensioni" class="anchor-link text-3xl font-serif italic hover:text-warm transition-colors">Recensioni</a>
+        <a href="#faq" class="anchor-link text-3xl font-serif italic hover:text-warm transition-colors">FAQ</a>
+        <a href="#contatti" class="anchor-link text-3xl font-serif italic hover:text-warm transition-colors">Contatti</a>
         
         <div class="w-16 h-px bg-stone-200 my-4"></div>
         
-        <a href="#contatti" onclick="toggleMenu()" class="bg-warm text-white px-10 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest shadow-xl">
+        <a href="#contatti" class="anchor-link bg-warm text-white px-10 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest shadow-xl">
             Richiedi Informazioni
         </a>
     </div>
@@ -137,8 +155,8 @@
                     Accogliamo i nostri ospiti in un ambiente protetto e stimolante, dove l'attenzione al dettaglio e il calore umano sono la nostra prima cura.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#assistenza" class="bg-stone-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-warm transition-all">I Nostri Servizi</a>
-                    <a href="#contatti" class="bg-white border-2 border-stone-800 text-stone-800 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-stone-50 transition-all italic">Prenota una Visita</a>
+                    <a href="#assistenza" class="anchor-link bg-stone-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-warm transition-all">I Nostri Servizi</a>
+                    <a href="#contatti" class="anchor-link bg-white border-2 border-stone-800 text-stone-800 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-stone-50 transition-all italic">Prenota una Visita</a>
                 </div>
             </div>
         </div>
@@ -174,20 +192,51 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-10 md:p-12 care-card text-center group">
-                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm group-hover:bg-warm group-hover:text-white transition-all"><i data-lucide="stethoscope"></i></div>
+                <div class="p-10 md:p-12 bg-white rounded-3xl text-center group shadow-sm">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm"><i data-lucide="stethoscope"></i></div>
                     <h3 class="text-2xl font-serif italic mb-4">Supporto Medico</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Gestione terapie, monitoraggio parametri vitali e visite specialistiche periodiche.</p>
                 </div>
-                <div class="p-10 md:p-12 care-card text-center group">
-                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm group-hover:bg-warm group-hover:text-white transition-all"><i data-lucide="accessibility"></i></div>
+                <div class="p-10 md:p-12 bg-white rounded-3xl text-center group shadow-sm">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm"><i data-lucide="accessibility"></i></div>
                     <h3 class="text-2xl font-serif italic mb-4">Riabilitazione Dolce</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Fisioterapia in sede per il mantenimento delle capacità motorie e dell'equilibrio.</p>
                 </div>
-                <div class="p-10 md:p-12 care-card text-center group">
-                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm group-hover:bg-warm group-hover:text-white transition-all"><i data-lucide="user-check"></i></div>
+                <div class="p-10 md:p-12 bg-white rounded-3xl text-center group shadow-sm">
+                    <div class="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8 text-warm"><i data-lucide="user-check"></i></div>
                     <h3 class="text-2xl font-serif italic mb-4">Igiene & Cura</h3>
                     <p class="text-sm text-stone-400 leading-relaxed italic">Assistenza quotidiana alla persona, servizio lavanderia e parrucchiere in sede.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif text-slate-900">Parola alle <span class="text-warm italic font-light">Famiglie.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-stone-50 rounded-2xl border border-stone-100">
+                    <div class="flex gap-1 text-warm mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-600 mb-6">"Abbiamo trovato una seconda famiglia per nostra madre. L'amore e la dedizione dello staff sono commoventi."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Marco R. - Milano</p>
+                </div>
+                <div class="p-8 bg-stone-50 rounded-2xl border border-stone-100">
+                    <div class="flex gap-1 text-warm mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-600 mb-6">"Struttura pulitissima e molto accogliente. Papà è rinato grazie alle attività quotidiane e alla compagnia."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Elena V. - Monza</p>
+                </div>
+                <div class="p-8 bg-stone-50 rounded-2xl border border-stone-100">
+                    <div class="flex gap-1 text-warm mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-600 mb-6">"La cucina è ottima e l'assistenza medica è costante. Finalmente dormiamo sonni tranquilli."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Giulia M. - Rho</p>
                 </div>
             </div>
         </div>
@@ -214,15 +263,24 @@
         </div>
     </section>
 
-    <section id="cucina" class="py-20 md:py-24 bg-stone-900 text-stone-100 section-padding">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
-            <i data-lucide="utensils" class="w-10 h-10 md:w-12 md:h-12 mx-auto text-warm opacity-50"></i>
-            <h2 class="text-4xl md:text-5xl font-serif italic tracking-tighter">Il piacere di <span class="text-warm">Mangiare Sano.</span></h2>
-            <p class="text-stone-400 text-lg md:text-xl font-light leading-relaxed italic">
-                La nostra cucina interna prepara ogni giorno pasti freschi e bilanciati, rispettando le prescrizioni mediche e i gusti dei nostri ospiti. Ingredienti locali e piatti della tradizione per non rinunciare mai al gusto.
-            </p>
-            <div class="pt-4">
-                <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] border border-stone-700 px-5 md:px-6 py-3 rounded-full inline-block">Dieta Personalizzata • Menù Stagionale</span>
+    <section id="faq" class="py-20 md:py-24 bg-stone-50 section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif text-slate-900">Domande <span class="text-warm italic font-light">Frequenti.</span></h2>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-slate-800 mb-2">Quali sono gli orari di visita?</h4>
+                    <p class="text-sm text-slate-500 italic">Le visite sono libere dalle 10:00 alle 18:00 per garantire la massima flessibilità alle famiglie.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-slate-800 mb-2">È possibile personalizzare la camera?</h4>
+                    <p class="text-sm text-slate-500 italic">Certamente. Incoraggiamo gli ospiti a portare piccoli oggetti e foto per sentirsi subito a casa.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-slate-800 mb-2">Come vengono gestite le emergenze mediche?</h4>
+                    <p class="text-sm text-slate-500 italic">Abbiamo personale infermieristico H24 e protocolli immediati con le strutture ospedaliere vicine.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -248,18 +306,10 @@
                             <p class="text-xl md:text-2xl font-serif italic text-slate-800">02 123 456 78</p>
                         </div>
                     </div>
-
-                    <div class="flex items-center gap-6 md:gap-8">
-                        <div class="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center rounded-full text-[#25D366] shadow-sm"><i data-lucide="message-square"></i></div>
-                        <div>
-                            <p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">WhatsApp</p>
-                            <p class="text-xl md:text-2xl font-serif italic text-slate-800">Scrivici un messaggio</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <form class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-stone-100 space-y-6">
+            <form class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-stone-100 space-y-6 opacity-60">
                 <input type="text" placeholder="IL TUO NOME" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
                 <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest">
                 <textarea placeholder="SCRIVICI..." rows="3" class="w-full p-4 bg-transparent border-b border-stone-200 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
@@ -290,6 +340,33 @@
                 body.style.overflow = 'auto';
             }
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Se menu mobile aperto, chiudi
+                    const menu = document.getElementById('mobile-menu');
+                    if (!menu.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

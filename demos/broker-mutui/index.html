@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Credit Solution | Broker Mutui & Consulenza Creditizia - Demo</title>
@@ -30,7 +31,7 @@
         .finance-card:hover { border-color: #059669; transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(5, 150, 105, 0.1); }
 
         /* Demo Mode Restrictions */
-        input, select, textarea, .chat-widget-demo, .form-button-demo {
+        input, select, textarea, .form-button-demo, .btn-inactive {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -41,17 +42,33 @@
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
 
-        @media (max-width: 768px) {
+        .btn-activate {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            text-decoration: none;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-activate {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
             h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; }
             h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
             .hero-finance { min-height: 80vh; padding-top: 4rem; }
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a { padding: 0.6rem 1rem !important; }
         }
 
         .partner-logo { opacity: 1; filter: none !important; }
@@ -77,11 +94,8 @@
 <body class="selection:bg-emerald-50 selection:text-emerald-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform active:scale-95">
-            <i data-lucide="zap" class="w-3.5 h-3.5"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform active:scale-95">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-activate shadow-2xl active:scale-95">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -91,9 +105,8 @@
         </button>
         <nav class="flex flex-col gap-8 text-center text-2xl font-bold uppercase tracking-widest text-slate-900">
             <a href="#mutui" class="menu-link">Mutui</a>
-            <a href="#cessione" class="menu-link">Cessione</a>
-            <a href="#prestiti" class="menu-link">Prestiti</a>
-            <a href="#consolidamento" class="menu-link">Consolidamento</a>
+            <a href="#recensioni" class="menu-link">Recensioni</a>
+            <a href="#faq" class="menu-link">FAQ</a>
             <a href="#contatti" class="menu-link text-emerald-finance">Analisi Gratuita</a>
         </nav>
     </div>
@@ -111,14 +124,14 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#mutui" class="hover:text-emerald-finance transition">Mutui</a>
-                <a href="#cessione" class="hover:text-emerald-finance transition">Cessione</a>
-                <a href="#prestiti" class="hover:text-emerald-finance transition">Prestiti</a>
-                <a href="#consolidamento" class="hover:text-emerald-finance transition">Consolidamento</a>
+                <a href="#mutui" class="anchor-link hover:text-emerald-finance transition">Mutui</a>
+                <a href="#recensioni" class="anchor-link hover:text-emerald-finance transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-emerald-finance transition">FAQ</a>
+                <a href="#contatti" class="anchor-link hover:text-emerald-finance transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#contatti" class="bg-slate-900 text-white px-3 md:px-8 py-2 md:py-3 rounded-lg text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-emerald-finance transition-all shadow-md whitespace-nowrap">
+                <a href="#contatti" class="anchor-link bg-slate-900 text-white px-3 md:px-8 py-2 md:py-3 rounded-lg text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-emerald-finance transition-all shadow-md whitespace-nowrap">
                     Verifica <span class="hidden sm:inline">Fattibilità</span>
                 </a>
                 <button id="menu-toggle" class="lg:hidden text-slate-900 p-2 flex items-center justify-center">
@@ -141,8 +154,8 @@
                     Non farti dire di no dalla tua banca. Troviamo il tasso più basso e la banca più incline a finanziare il tuo progetto.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="#contatti" class="bg-emerald-finance text-white px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase text-xs tracking-widest shadow-xl text-center">Consulenza Gratuita</a>
-                    <a href="#mutui" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase text-xs tracking-widest text-center italic">Scopri i Servizi</a>
+                    <a href="#contatti" class="anchor-link bg-emerald-finance text-white px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase text-xs tracking-widest shadow-xl text-center">Consulenza Gratuita</a>
+                    <a href="#mutui" class="anchor-link bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase text-xs tracking-widest text-center italic">Scopri i Servizi</a>
                 </div>
             </div>
         </div>
@@ -175,12 +188,55 @@
         </div>
     </section>
 
-    <section class="py-12 md:py-24 bg-slate-50 border-y border-slate-100">
+    <section id="recensioni" class="py-12 md:py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-slate-900 uppercase italic">Cosa Dicono <span class="text-emerald-finance">di Noi.</span></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Professionalità incredibile. Sono riusciti a trovarmi un mutuo al 95% quando tutti gli altri mi chiedevano garanzie impossibili."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Andrea L. - Torino</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ho consolidato i miei piccoli prestiti in un'unica rata dimezzando l'esborso mensile. Finalmente respiro!"</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Elena R. - Roma</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-emerald-finance text-emerald-finance"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Tempi rapidissimi per la cessione del quinto. In meno di una settimana avevo la liquidità sul conto."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Giuseppe M. - Napoli</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-24 bg-white border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8 md:space-y-10">
                 <h2 class="text-5xl md:text-6xl font-heading font-bold text-slate-900 leading-none uppercase italic">Più Scelta, <br><span class="text-emerald-finance">Meno Pensieri.</span></h2>
                 <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-emerald-finance pl-6 md:pl-8">
-                    Il Broker agisce nel tuo interesse, confrontando decine di istituti per garantirti le migliori condizioni di mercato.
+                    Il Broker agisce nel tuo intereste, confrontando decine di istituti per garantirti le migliori condizioni di mercato.
                 </p>
                 <div class="grid grid-cols-2 gap-4 md:gap-6">
                     <div class="flex items-center gap-3"><i data-lucide="shield-check" class="text-emerald-finance w-5 h-5"></i> <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-600">Iscrizione OAM</span></div>
@@ -191,6 +247,26 @@
             </div>
             <div class="relative">
                 <img src="assets/img2.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover h-[300px] md:h-[500px]" alt="Consultancy">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-12 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-slate-900 uppercase italic text-center mb-12">Domande <span class="text-emerald-finance">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="text-lg font-bold text-slate-900 mb-2 uppercase tracking-tight">Qual è il vantaggio di un broker rispetto alla banca?</h4>
+                    <p class="text-slate-500 italic text-sm">Il broker ha accesso a decine di istituti diversi, permettendoti di confrontare i tassi reali e trovare la banca che accetta più facilmente la tua pratica.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="text-lg font-bold text-slate-900 mb-2 uppercase tracking-tight">Ci sono spese anticipate da sostenere?</h4>
+                    <p class="text-slate-500 italic text-sm">No, la nostra analisi di fattibilità è totalmente gratuita. Il compenso del broker viene corrisposto solo in caso di esito positivo del finanziamento.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="text-lg font-bold text-slate-900 mb-2 uppercase tracking-tight">Quanto tempo serve per avere una risposta?</h4>
+                    <p class="text-slate-500 italic text-sm">In genere forniamo un primo parere di fattibilità entro 48 ore lavorative dalla consegna della documentazione completa.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -236,8 +312,8 @@
                             <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Consulente Diretto</p><p class="text-xl md:text-2xl font-bold italic text-slate-900">02 876 543 21</p></div>
                         </div>
                         <div class="flex gap-2">
-                             <div class="bg-emerald-600 text-white px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 opacity-50"><i data-lucide="phone-call" class="w-4 h-4"></i> CHIAMA ORA</div>
-                             <div class="bg-slate-900 text-white px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 opacity-50"><i data-lucide="calendar" class="w-4 h-4"></i> PRENOTA</div>
+                             <div class="bg-emerald-600 text-white px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 btn-inactive opacity-50"><i data-lucide="phone-call" class="w-4 h-4"></i> CHIAMA ORA</div>
+                             <div class="bg-slate-900 text-white px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 btn-inactive opacity-50"><i data-lucide="calendar" class="w-4 h-4"></i> PRENOTA</div>
                         </div>
                     </div>
                 </div>
@@ -274,18 +350,16 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-[150]">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
+        // Menu Elements
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu-container');
-        const menuLinks = document.querySelectorAll('.menu-link');
+        const allLinks = document.querySelectorAll('a[href^="#"]');
 
+        // Toggle Mobile Menu
         menuToggle.onclick = function(e) {
             e.preventDefault();
             mobileMenu.classList.add('active');
@@ -299,9 +373,33 @@
 
         menuClose.onclick = closeMenu;
 
-        menuLinks.forEach(link => {
-            link.onclick = function() {
-                closeMenu();
+        // Custom Smooth Scroll Logic
+        allLinks.forEach(link => {
+            link.onclick = function(e) {
+                const targetId = this.getAttribute('href');
+                
+                // If it's just "#", ignore
+                if (targetId === "#") return;
+
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Close menu if open
+                    closeMenu();
+
+                    // Calculate offset position
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    // Smooth Scroll
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             };
         });
     </script>

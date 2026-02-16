@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DentalElite | Centro Odontoiatrico & Pediatrico Milano - Demo Mode</title>
@@ -18,8 +19,8 @@
         /* RIMOZIONE FILTRI IMMAGINI */
         img { filter: none !important; grayscale: 0 !important; }
 
-        /* Demo Mode: Disabilitazione interattività elementi form */
-        input, select, textarea {
+        /* Demo Mode: Disabilitazione interattività elementi form e bottoni estetici */
+        input, select, textarea, .non-interactive {
             pointer-events: none !important;
         }
 
@@ -38,38 +39,45 @@
             h2 { font-size: clamp(2.2rem, 8vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem !important;
-                font-size: 8px !important;
-            }
-            .demo-nav-container {
-                bottom: 1rem;
-                left: 1rem;
-                gap: 0.5rem;
+            .cta-localtop {
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
             }
         }
 
-        /* Bottoni Floating Bottom-Left */
+        /* Bottone Floating Bottom-Left */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
+
+        .cta-localtop {
+            background-color: #0F766E;
+            color: white;
+            padding: 16px 28px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 9999px;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.4);
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+        
+        .cta-localtop:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="bg-white text-slate-800 selection:bg-blue-100 selection:text-blue-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -83,15 +91,16 @@
             </div>
 
             <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-slate-500">
-                <a href="#servizi" class="hover:text-blue-600 transition">Servizi</a>
-                <a href="#bambini" class="hover:text-blue-600 transition text-sky-500">Area Bambini</a>
-                <a href="#filosofia" class="hover:text-blue-600 transition">Filosofia</a>
-                <a href="#tecnologie" class="hover:text-blue-600 transition">Tecnologie</a>
-                <a href="#contatti" class="hover:text-blue-600 transition">Contatti</a>
+                <a href="#servizi" class="anchor-link hover:text-blue-600 transition">Servizi</a>
+                <a href="#recensioni" class="anchor-link hover:text-blue-600 transition">Recensioni</a>
+                <a href="#bambini" class="anchor-link hover:text-blue-600 transition text-sky-500">Area Bambini</a>
+                <a href="#filosofia" class="anchor-link hover:text-blue-600 transition">Filosofia</a>
+                <a href="#faq" class="anchor-link hover:text-blue-600 transition">FAQ</a>
+                <a href="#contatti" class="anchor-link hover:text-blue-600 transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <button class="hidden sm:block bg-blue-600 text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-slate-900 transition-all shadow-md">
+                <button class="non-interactive hidden sm:block bg-blue-600 text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest shadow-md opacity-80">
                     Prenota Ora
                 </button>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors">
@@ -108,13 +117,14 @@
             </button>
         </div>
         <div class="flex flex-col space-y-8 text-2xl font-bold uppercase tracking-tighter">
-            <a href="#servizi" class="mobile-link text-slate-900">Servizi</a>
-            <a href="#bambini" class="mobile-link text-sky-500">Area Bambini</a>
-            <a href="#filosofia" class="mobile-link text-slate-900">Filosofia</a>
-            <a href="#tecnologie" class="mobile-link text-slate-900">Tecnologie</a>
-            <a href="#contatti" class="mobile-link text-slate-900">Contatti</a>
+            <a href="#servizi" class="anchor-link text-slate-900">Servizi</a>
+            <a href="#recensioni" class="anchor-link text-slate-900">Recensioni</a>
+            <a href="#bambini" class="anchor-link text-sky-500">Area Bambini</a>
+            <a href="#filosofia" class="anchor-link text-slate-900">Filosofia</a>
+            <a href="#faq" class="anchor-link text-slate-900">FAQ</a>
+            <a href="#contatti" class="anchor-link text-slate-900">Contatti</a>
         </div>
-        <button class="mt-auto w-full bg-blue-600 text-white py-6 rounded-2xl font-black text-sm uppercase tracking-widest">
+        <button class="non-interactive mt-auto w-full bg-blue-600 text-white py-6 rounded-2xl font-black text-sm uppercase tracking-widest opacity-80">
             Prenota Visita
         </button>
     </div>
@@ -130,8 +140,8 @@
                     Dalla chirurgia guidata agli apparecchi invisibili, fino alla cura dei più piccoli. Tecnologia svizzera e cuore italiano.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <button class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold hover:scale-105 transition shadow-2xl">Chiama lo Studio</button>
-                    <a href="#bambini" class="bg-sky-400 text-white px-10 py-4 rounded-2xl font-bold hover:bg-sky-500 transition shadow-xl flex items-center justify-center gap-2">
+                    <button class="non-interactive bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold shadow-2xl opacity-80">Chiama lo Studio</button>
+                    <a href="#bambini" class="anchor-link bg-sky-400 text-white px-10 py-4 rounded-2xl font-bold hover:bg-sky-500 transition shadow-xl flex items-center justify-center gap-2">
                         <i data-lucide="baby"></i> Area Bimbi
                     </a>
                 </div>
@@ -158,6 +168,35 @@
                 <i data-lucide="smile" class="w-12 h-12 text-blue-600 mx-auto mb-6"></i>
                 <h3 class="text-2xl font-bold mb-4 italic uppercase">Apparecchi Invisibili</h3>
                 <p class="text-slate-500 text-sm font-light italic">Allineamento dentale per adulti e adolescenti con mascherine trasparenti e rimovibili.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 sm:py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl sm:text-5xl font-black text-slate-900 mb-16 uppercase italic text-center">Cosa dicono <span class="text-blue-600">di noi.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Personale gentilissimo e studio all'avanguardia. Mio figlio finalmente va dal dentista senza paura!"</p>
+                    <p class="font-bold text-slate-900 text-sm uppercase">— Elena R., Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ho risolto i miei problemi di allineamento con gli apparecchi invisibili. Risultato perfetto in tempi record."</p>
+                    <p class="font-bold text-slate-900 text-sm uppercase">— Marco T., Rho</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"L'igiene orale guidata dal bio-film è stata una rivelazione. Zero dolore e denti bianchissimi."</p>
+                    <p class="font-bold text-slate-900 text-sm uppercase">— Giulia M., Sesto S.G.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -245,6 +284,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 sm:py-32 bg-white section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl sm:text-5xl font-black text-slate-900 mb-16 uppercase italic text-center">Domande <span class="text-blue-600">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg text-slate-900 mb-2 italic">A che età la prima visita per i bambini?</h4>
+                    <p class="text-slate-500 text-sm italic">Consigliamo la prima visita intorno ai 3-4 anni per familiarizzare con l'ambiente e prevenire carie precoci.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg text-slate-900 mb-2 italic">L'apparecchio invisibile funziona davvero?</h4>
+                    <p class="text-slate-500 text-sm italic">Sì, è efficace per la maggior parte dei disallineamenti dentali, con il vantaggio di essere quasi invisibile e rimovibile.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg text-slate-900 mb-2 italic">Quali metodi di pagamento accettate?</h4>
+                    <p class="text-slate-500 text-sm italic">Offriamo diverse opzioni di finanziamento a tasso agevolato e accettiamo le principali assicurazioni sanitarie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-20 sm:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
             <div class="bg-slate-50 rounded-[2.5rem] sm:rounded-[4rem] p-8 sm:p-12 lg:p-24 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center border border-slate-100 shadow-inner">
@@ -268,7 +327,7 @@
                         <option>Servizio Richiesto</option>
                     </select>
                     <textarea placeholder="Parlaci della tua necessità..." rows="3" class="w-full p-4 bg-slate-50 rounded-2xl border-none outline-none"></textarea>
-                    <button class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-blue-100">Richiedi Appuntamento</button>
+                    <button class="non-interactive w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-blue-100 opacity-80">Richiedi Appuntamento</button>
                 </div>
             </div>
         </div>
@@ -278,10 +337,6 @@
         <p>&copy; 2026 DentalElite Milano | P.IVA 0123456789 | Direttore Sanitario Dr. Marco Bianchi</p>
     </footer>
 
-    <div class="fixed bottom-6 right-6 sm:bottom-10 sm:right-10 bg-[#25D366] text-white p-4 sm:p-5 rounded-full shadow-2xl z-[90]">
-        <i data-lucide="message-circle" class="w-6 h-6 sm:w-7 h-7"></i>
-    </div>
-
     <script>
         // Inizializza icone
         lucide.createIcons();
@@ -290,7 +345,6 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         const toggleMenu = () => {
             mobileMenu.classList.toggle('active');
@@ -300,10 +354,30 @@
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+        // Scroll fluido con offset e gestione menu mobile (senza hash in URL)
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Se è aperto il menu mobile, chiudilo
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

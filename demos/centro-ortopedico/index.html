@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Orthos | Centro di Ortopedia e Traumatologia Avanzata - Demo</title>
@@ -20,13 +21,13 @@
         }
         
         /* Demo Mode Block */
-        button, input, select, textarea, .chat-widget-demo, .nav-link-mobile { 
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .nav-link-mobile:not(.anchor-link) { 
             pointer-events: none !important; 
             cursor: default !important; 
         }
         
-        /* Riattiva click solo per il menu hamburger e i link del menu mobile in questa demo */
-        #menu-toggle, .mobile-menu-container a {
+        /* Riattiva click solo per elementi necessari */
+        #menu-toggle, #menu-close, .anchor-link, .cta-localtop {
             pointer-events: auto !important;
             cursor: pointer !important;
         }
@@ -34,8 +35,7 @@
         .medical-card { transition: all 0.3s ease; border-left: 4px solid transparent; }
         .medical-card:hover { border-left-color: #1e40af; background-color: #f8fafc; transform: translateX(5px); }
 
-        /* Rimosso Grayscale ovunque */
-        img, .group:hover img, .grayscale {
+        img {
             filter: none !important;
             grayscale: 0 !important;
         }
@@ -47,25 +47,39 @@
             .hero-bg { background: linear-gradient(to bottom, rgba(255,255,255,0.9) 40%, rgba(255,255,255,0.2) 100%), url('assets/img1.jpg'); }
         }
 
-        /* Floating Buttons Mobile Optimization */
-        @media (max-width: 640px) {
-            .demo-nav-container {
-                left: 1rem !important;
-                bottom: 1rem !important;
-                scale: 0.85;
-                transform-origin: bottom left;
-            }
+        /* LocalTop Button Styling */
+        .cta-localtop {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
 
-        .demo-nav-container {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        @media (min-width: 768px) {
+            .cta-localtop {
+                bottom: 2rem;
+                left: 2rem;
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
         }
+        
+        .cta-localtop:hover { transform: scale(1.05); }
 
         /* Mobile Menu Animation */
         #mobile-menu {
@@ -79,14 +93,9 @@
 </head>
 <body class="selection:bg-blue-100 selection:text-royal">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="cta-localtop">
+        Attiva il Servizio
+    </a>
 
     <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
@@ -98,14 +107,15 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#specialità" class="hover:text-royal transition">Specialità</a>
-                <a href="#tecnologia" class="hover:text-royal transition">Tecnologia</a>
-                <a href="#riabilitazione" class="hover:text-royal transition">Riabilitazione</a>
-                <a href="#team" class="hover:text-royal transition">Medici</a>
+                <a href="#specialità" class="anchor-link hover:text-royal transition">Specialità</a>
+                <a href="#tecnologia" class="anchor-link hover:text-royal transition">Tecnologia</a>
+                <a href="#recensioni" class="anchor-link hover:text-royal transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-royal transition">FAQ</a>
+                <a href="#team" class="anchor-link hover:text-royal transition">Medici</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden sm:block bg-royal text-white px-6 py-3 rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-all shadow-md">
+                <a href="#contatti" class="anchor-link hidden sm:block bg-royal text-white px-6 py-3 rounded-md text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-all shadow-md">
                     Prenota Visita
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-900">
@@ -119,11 +129,12 @@
         <button id="menu-close" class="absolute top-6 right-6 p-2 text-slate-900">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#specialità" class="text-2xl font-heading font-bold uppercase text-slate-900" onclick="closeMenu()">Specialità</a>
-        <a href="#tecnologia" class="text-2xl font-heading font-bold uppercase text-slate-900" onclick="closeMenu()">Tecnologia</a>
-        <a href="#riabilitazione" class="text-2xl font-heading font-bold uppercase text-slate-900" onclick="closeMenu()">Riabilitazione</a>
-        <a href="#team" class="text-2xl font-heading font-bold uppercase text-slate-900" onclick="closeMenu()">Medici</a>
-        <a href="#contatti" class="bg-royal text-white px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest" onclick="closeMenu()">Prenota Visita</a>
+        <a href="#specialità" class="anchor-link text-2xl font-heading font-bold uppercase text-slate-900">Specialità</a>
+        <a href="#tecnologia" class="anchor-link text-2xl font-heading font-bold uppercase text-slate-900">Tecnologia</a>
+        <a href="#recensioni" class="anchor-link text-2xl font-heading font-bold uppercase text-slate-900">Recensioni</a>
+        <a href="#faq" class="anchor-link text-2xl font-heading font-bold uppercase text-slate-900">FAQ</a>
+        <a href="#team" class="anchor-link text-2xl font-heading font-bold uppercase text-slate-900">Medici</a>
+        <a href="#contatti" class="anchor-link bg-royal text-white px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest">Prenota Visita</a>
     </div>
 
     <section class="relative min-h-[80vh] flex items-center hero-bg overflow-hidden py-20">
@@ -139,7 +150,7 @@
                     Specialisti in chirurgia mininvasiva, infiltrazioni ecoguidate e recupero funzionale dell'atleta. La tua articolazione merita l'eccellenza.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4 items-center">
-                    <a href="#specialità" class="bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-md font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-royal transition-all">Le nostre Specialità</a>
+                    <a href="#specialità" class="anchor-link bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-md font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-royal transition-all">Le nostre Specialità</a>
                     <div class="flex items-center gap-3">
                         <i data-lucide="award" class="text-amber-500 w-5 h-5"></i>
                         <span class="text-[9px] md:text-[10px] font-bold text-slate-500 uppercase tracking-widest italic leading-tight">Oltre 20.000 <br class="sm:hidden"> interventi effettuati</span>
@@ -207,7 +218,48 @@
         </div>
     </section>
 
-    <section id="team" class="py-20 md:py-32 bg-white">
+    <section id="recensioni" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-heading font-bold text-center mb-16 italic uppercase">Cosa dicono i <span class="text-royal">Pazienti</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Intervento di protesi d'anca eseguito con tecnica mininvasiva. Dopo due settimane camminavo già senza stampelle. Professionalità assoluta."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">— Marco R., Milano</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ho risolto un problema cronico alla spalla grazie alla medicina rigenerativa. Il team mi ha seguita passo dopo passo nel recupero."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">— Elena V., Bergamo</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Centro d'eccellenza tecnologica. La risonanza 3T ha permesso una diagnosi precisa che altri centri avevano mancato. Consigliatissimo."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">— Giorgio B., Monza</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 md:py-32 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-heading font-bold mb-16 md:mb-20 text-center uppercase italic">L'Élite della <span class="text-royal">Chirurgia</span></h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
@@ -268,6 +320,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 md:py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-heading font-bold text-center mb-16 italic uppercase">Domande <span class="text-royal">Frequenti</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg text-slate-900 mb-2">È necessaria un'impegnativa per la prima visita?</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">No, Orthos Clinic è un centro privato d'eccellenza. È possibile prenotare direttamente chiamando la nostra segreteria.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg text-slate-900 mb-2">Quanto dura mediamente il recupero post-operatorio?</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Grazie ai protocolli "Fast Track", i tempi sono ridotti del 30%. Per una protesi d'anca, molti pazienti tornano alle attività quotidiane leggere in 3-4 settimane.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-lg text-slate-900 mb-2">Effettuate infiltrazioni sotto guida ecografica?</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Sì, tutti i nostri trattamenti infiltrativi (acido ialuronico, PRP) vengono eseguiti sotto guida ecografica per garantire la massima precisione.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
             <div class="space-y-10 md:space-y-12">
@@ -306,10 +378,6 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-[90]">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
-    </div>
-
     <script>
         // Inizializzazione icone
         lucide.createIcons();
@@ -319,6 +387,11 @@
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
 
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -326,10 +399,31 @@
 
         menuClose.addEventListener('click', closeMenu);
 
-        function closeMenu() {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+        // Scroll ancore interne
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Se siamo su mobile e il menu è aperto, chiudilo prima
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

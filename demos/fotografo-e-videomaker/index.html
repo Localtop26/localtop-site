@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Visual Storyteller | Photography & Filmmaking - Demo</title>
@@ -11,7 +12,6 @@
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; width: 100%; }
         .font-serif { font-family: 'Playfair Display', serif; }
         
-        /* Immagini a colori - rimosso grayscale */
         .hero-bg { 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
             url('assets/img1.jpg'); 
@@ -21,7 +21,7 @@
         .gallery-item { position: relative; overflow: hidden; cursor: default; }
         .gallery-item img { 
             transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: none !important; /* Forza colore */
+            filter: none !important;
         }
         .gallery-item:hover img { transform: scale(1.05); filter: none !important; }
         
@@ -32,8 +32,8 @@
         }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
 
-        /* Blocco Interazioni (Eccetto Menu e Anchor) */
-        button:not(#menu-toggle), input, select, textarea, .chat-widget-demo {
+        /* Blocco Interazioni (Eccetto Menu e Anchor e Bottone Servizio) */
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .chat-widget-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -44,24 +44,39 @@
             h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
             h2 { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
         }
 
-        /* Bottoni Floating */
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
 
         /* Menu Mobile Overlay */
         #mobile-menu {
@@ -76,11 +91,8 @@
 <body class="selection:bg-zinc-800 selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -91,17 +103,19 @@
             </div>
             
             <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400">
-                <a href="#work" class="hover:text-white transition">Portfolio</a>
-                <a href="#services" class="hover:text-white transition">Servizi</a>
-                <a href="#about" class="hover:text-white transition">Approccio</a>
-                <a href="#contact" class="hover:text-white transition">Contatti</a>
+                <a href="#work" class="anchor-link hover:text-white transition">Portfolio</a>
+                <a href="#services" class="anchor-link hover:text-white transition">Servizi</a>
+                <a href="#recensioni" class="anchor-link hover:text-white transition">Recensioni</a>
+                <a href="#about" class="anchor-link hover:text-white transition">Approccio</a>
+                <a href="#faq" class="anchor-link hover:text-white transition">FAQ</a>
+                <a href="#contact" class="anchor-link hover:text-white transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contact" class="hidden xs:block bg-white text-black px-4 md:px-6 py-2.5 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all shadow-xl whitespace-nowrap">
+                <a href="#contact" class="anchor-link hidden xs:block bg-white text-black px-4 md:px-6 py-2.5 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all shadow-xl whitespace-nowrap">
                     Book Session
                 </a>
-                <button id="menu-toggle" class="lg:hidden text-white p-2 pointer-events-auto!important" style="pointer-events: auto !important; cursor: pointer !important;">
+                <button id="menu-toggle" class="lg:hidden text-white p-2" style="pointer-events: auto !important; cursor: pointer !important;">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
@@ -112,10 +126,12 @@
         <button id="menu-close" class="absolute top-6 right-6 text-white" style="pointer-events: auto !important; cursor: pointer !important;">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#work" class="mobile-link text-2xl font-serif italic uppercase">Portfolio</a>
-        <a href="#services" class="mobile-link text-2xl font-serif italic uppercase">Servizi</a>
-        <a href="#about" class="mobile-link text-2xl font-serif italic uppercase">Approccio</a>
-        <a href="#contact" class="mobile-link text-2xl font-serif italic uppercase">Contatti</a>
+        <a href="#work" class="anchor-link text-2xl font-serif italic uppercase">Portfolio</a>
+        <a href="#services" class="anchor-link text-2xl font-serif italic uppercase">Servizi</a>
+        <a href="#recensioni" class="anchor-link text-2xl font-serif italic uppercase">Recensioni</a>
+        <a href="#about" class="anchor-link text-2xl font-serif italic uppercase">Approccio</a>
+        <a href="#faq" class="anchor-link text-2xl font-serif italic uppercase">FAQ</a>
+        <a href="#contact" class="anchor-link text-2xl font-serif italic uppercase">Contatti</a>
     </div>
 
     <section class="relative h-screen flex items-center hero-bg overflow-hidden pt-20">
@@ -197,6 +213,29 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-serif italic uppercase tracking-tighter mb-16 text-center">Dicono di noi.</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-zinc-900/50 border border-white/5 space-y-4">
+                    <div class="flex text-yellow-500 gap-1 italic text-xs">★★★★★</div>
+                    <p class="text-zinc-400 italic font-light text-sm leading-relaxed">"Hanno trasformato il nostro matrimonio in un film d'autore. Professionalità assoluta e discrezione incredibile."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-white">Alessandro B. — Milano</p>
+                </div>
+                <div class="p-8 bg-zinc-900/50 border border-white/5 space-y-4">
+                    <div class="flex text-yellow-500 gap-1 italic text-xs">★★★★★</div>
+                    <p class="text-zinc-400 italic font-light text-sm leading-relaxed">"Le foto per il nostro brand hanno cambiato totalmente la percezione del marchio. Un investimento necessario."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-white">Elena G. — Firenze</p>
+                </div>
+                <div class="p-8 bg-zinc-900/50 border border-white/5 space-y-4">
+                    <div class="flex text-yellow-500 gap-1 italic text-xs">★★★★★</div>
+                    <p class="text-zinc-400 italic font-light text-sm leading-relaxed">"Un approccio artistico unico. Sanno catturare l'emozione pura senza forzare mai la posa."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-white">Marco S. — Roma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="about" class="py-20 md:py-32 bg-black overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="relative">
@@ -219,13 +258,23 @@
         </div>
     </section>
 
-    <section class="py-20 md:py-32 bg-[#0a0a0a]">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
-            <i data-lucide="quote" class="w-8 h-8 md:w-10 md:h-10 mx-auto text-zinc-800"></i>
-            <p class="text-xl md:text-4xl font-serif italic text-zinc-400 leading-relaxed uppercase tracking-tight">
-                "Lavorare con questo studio è stato incredibile. Hanno capito subito l'anima del nostro brand e l'hanno tradotta in immagini che hanno triplicato le nostre conversioni."
-            </p>
-            <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-white">— Martina Rossi, Creative Director</h4>
+    <section id="faq" class="py-20 md:py-32 bg-[#0a0a0a] border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-serif italic uppercase tracking-tighter mb-16 text-center">Domande Frequenti.</h2>
+            <div class="space-y-8">
+                <div class="border-b border-white/10 pb-6">
+                    <h3 class="text-lg font-serif italic mb-2">In quali zone d'Italia lavorate?</h3>
+                    <p class="text-zinc-500 text-sm font-light italic">Siamo basati in Italia ma disponibili per progetti in tutto il mondo.</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <h3 class="text-lg font-serif italic mb-2">Quali sono i tempi di consegna?</h3>
+                    <p class="text-zinc-500 text-sm font-light italic">Solitamente 4-6 settimane per i servizi fotografici e 8-12 per i film cinematografici.</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <h3 class="text-lg font-serif italic mb-2">È possibile personalizzare i pacchetti?</h3>
+                    <p class="text-zinc-500 text-sm font-light italic">Certamente. Ogni storia è unica e creiamo preventivi su misura in base alle necessità.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -269,10 +318,6 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-white text-black p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -280,20 +325,45 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        function toggleMenu() {
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        menuToggle.addEventListener('click', toggleMenu);
-        menuClose.addEventListener('click', toggleMenu);
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        // Scroll Ancore Gestione Premium
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Chiudi menu se siamo su mobile
+                        closeMenu();
+
+                        const offset = 100;
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = targetElement.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
     </script>

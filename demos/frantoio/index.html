@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Terra Nobile | Olio EVO e Farine Artigianali - Demo</title>
@@ -21,60 +22,71 @@
             background-size: cover; background-position: center; 
         }
         
-        /* Rimozione filtri immagini */
         img { filter: none !important; grayscale: 0 !important; transition: 0.8s ease; }
         .product-card:hover img { transform: scale(1.05); filter: none !important; }
 
-        /* Disable interactions per demo come richiesto (tranne menu mobile) */
-        input, select, textarea, .chat-widget-demo {
+        /* Disable interactions */
+        input, select, textarea, button:not(#menu-toggle):not(#menu-close), a:not(.anchor-link):not(.demo-nav-btn):not(.mobile-link) {
             pointer-events: none !important;
-            cursor: default !important;
+        }
+        
+        /* Re-enable specific active elements */
+        .demo-nav-btn, #menu-toggle, #menu-close, .anchor-link, .mobile-link {
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
-        /* Mobile Menu Logic */
         #mobile-menu {
-            transition: transform 0.3s ease-in-out;
-            transform: translateX(100%);
-        }
-        #mobile-menu.active {
-            transform: translateX(0);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
 
         @media (max-width: 768px) {
             h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 0.85 !important; }
             h2 { font-size: clamp(2.2rem, 9vw, 3.5rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
             .hero-farm { align-items: center !important; text-align: center; }
-            .hero-farm .border-l-2 { border-l: 0; border-top: 2px solid #4a5d23; padding-left: 0; padding-top: 1rem; margin: 0 auto; }
-            
-            /* Header Mobile Fix */
+            .hero-farm .border-l-2 { border-left: 0; border-top: 2px solid #4a5d23; padding-left: 0; padding-top: 1rem; margin: 0 auto; }
             .nav-container { padding-left: 1rem !important; padding-right: 1rem !important; justify-content: space-between; }
             .nav-logo-text { font-size: 1.1rem !important; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-btn { padding: 0.8rem 1.2rem !important; font-size: 8px !important; }
         }
 
+        /* Bottone LocalTop */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .demo-nav-btn {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .demo-nav-btn {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .demo-nav-btn:hover { transform: scale(1.03); }
     </style>
 </head>
 <body class="selection:bg-olive selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="demo-nav-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="demo-nav-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="demo-nav-btn">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -91,32 +103,34 @@
             </div>
             
             <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">
-                <a href="#olio" class="hover:text-olive transition">L'Olio</a>
-                <a href="#farine" class="hover:text-olive transition">Le Farine</a>
-                <a href="#shop" class="hover:text-olive transition">Shop</a>
-                <a href="#esperienze" class="hover:text-olive transition">Degustazioni</a>
+                <a href="#olio" class="anchor-link hover:text-olive transition">L'Olio</a>
+                <a href="#farine" class="anchor-link hover:text-olive transition">Le Farine</a>
+                <a href="#recensioni" class="anchor-link hover:text-olive transition">Recensioni</a>
+                <a href="#shop" class="anchor-link hover:text-olive transition">Shop</a>
+                <a href="#faq" class="anchor-link hover:text-olive transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#shop" class="hidden md:block bg-stone-900 text-white px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-olive transition-all">
+                <a href="#shop" class="anchor-link hidden md:block bg-stone-900 text-white px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-olive transition-all">
                     Shop
                 </a>
-                <button id="menu-toggle" class="lg:hidden text-stone-900 p-2 pointer-events-auto">
+                <button id="menu-toggle" class="lg:hidden text-stone-900 p-2">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-stone-900 text-white flex flex-col items-center justify-center space-y-8 lg:hidden pointer-events-none opacity-0 active:pointer-events-auto active:opacity-100 transition-opacity" style="transform: translateX(100%);">
-        <button id="menu-close" class="absolute top-8 right-8 text-white pointer-events-auto">
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-stone-900 text-white flex flex-col items-center justify-center space-y-8 lg:hidden opacity-0 pointer-events-none translate-x-full">
+        <button id="menu-close" class="absolute top-8 right-8 text-white">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#olio" class="mobile-link text-2xl font-serif italic pointer-events-auto">L'Olio</a>
-        <a href="#farine" class="mobile-link text-2xl font-serif italic pointer-events-auto">Le Farine</a>
-        <a href="#shop" class="mobile-link text-2xl font-serif italic pointer-events-auto">Shop Online</a>
-        <a href="#esperienze" class="mobile-link text-2xl font-serif italic pointer-events-auto">Esperienze</a>
-        <a href="#contatti" class="mobile-link text-2xl font-serif italic pointer-events-auto">Contatti</a>
+        <a href="#olio" class="mobile-link text-2xl font-serif italic">L'Olio</a>
+        <a href="#farine" class="mobile-link text-2xl font-serif italic">Le Farine</a>
+        <a href="#recensioni" class="mobile-link text-2xl font-serif italic">Recensioni</a>
+        <a href="#shop" class="mobile-link text-2xl font-serif italic">Shop Online</a>
+        <a href="#faq" class="mobile-link text-2xl font-serif italic">FAQ</a>
+        <a href="#contatti" class="mobile-link text-2xl font-serif italic">Contatti</a>
     </div>
 
     <section class="relative h-[85vh] flex items-center hero-farm overflow-hidden">
@@ -130,8 +144,8 @@
                     Dalla premitura a freddo delle nostre olive e dalla molitura a pietra dei grani antichi, portiamo sulla tua tavola l'integrità del sapore originale.
                 </p>
                 <div class="flex flex-wrap gap-4 md:gap-6 pt-4 justify-center md:justify-start">
-                    <a href="#olio" class="bg-olive text-white px-8 md:px-10 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-olive transition-all">Scopri l'Olio</a>
-                    <a href="#farine" class="bg-wheat text-white px-8 md:px-10 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-wheat transition-all">Scopri le Farine</a>
+                    <a href="#olio" class="anchor-link bg-olive text-white px-8 md:px-10 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-olive transition-all">Scopri l'Olio</a>
+                    <a href="#farine" class="anchor-link bg-wheat text-white px-8 md:px-10 py-4 md:py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-wheat transition-all">Scopri le Farine</a>
                 </div>
             </div>
         </div>
@@ -168,6 +182,49 @@
                 <div class="grid grid-cols-2 gap-4 pt-4">
                     <div class="flex items-center gap-3"><i data-lucide="zap" class="text-wheat w-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Basso Indice Glicemico</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="target" class="text-wheat w-4"></i> <span class="text-[9px] font-bold uppercase tracking-widest">Grani Antichi</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">Dicono di <span class="text-olive">Noi.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-stone-50 p-8 rounded-sm">
+                    <div class="flex text-wheat mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600 mb-6">"L'olio ha un profumo incredibile, sembra di stare in frantoio. La farina di tipo 1 è diventata la mia preferita per il pane della domenica."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Marco R. - Milano</p>
+                </div>
+                <div class="bg-stone-50 p-8 rounded-sm">
+                    <div class="flex text-wheat mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600 mb-6">"Qualità eccellente. Si sente la differenza dei grani antichi: molto più digeribili e saporiti rispetto alle farine industriali."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Elena V. - Firenze</p>
+                </div>
+                <div class="bg-stone-50 p-8 rounded-sm">
+                    <div class="flex text-wheat mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600 mb-6">"Spedizione velocissima e imballaggio perfetto. L'olio Selezione è un'eccellenza che non manca mai sulla mia tavola."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Giuseppe T. - Roma</p>
                 </div>
             </div>
         </div>
@@ -235,6 +292,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 md:py-32 bg-stone-50 section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-serif italic text-center mb-16 text-stone-900">Domande <span class="text-olive">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-stone-200 pb-4">
+                    <h4 class="text-lg font-serif italic text-stone-800 mb-2">Effettuate spedizioni in tutta Italia?</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">Sì, spediamo in tutta Italia tramite corriere espresso. L'olio e le farine vengono imballati con protezioni specifiche per garantirne l'integrità.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-4">
+                    <h4 class="text-lg font-serif italic text-stone-800 mb-2">Come va conservato l'olio EVO?</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">Consigliamo di conservarlo in un luogo fresco e asciutto, lontano da fonti di calore e luce diretta, idealmente tra i 14°C e i 18°C.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-4">
+                    <h4 class="text-lg font-serif italic text-stone-800 mb-2">Le vostre farine contengono additivi?</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">Assolutamente no. Le nostre farine sono "vive", contengono il germe di grano e non hanno alcun tipo di miglioratore o conservante aggiunto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -275,41 +352,55 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
-        // Inizializza icone
         lucide.createIcons();
 
         // Menu Mobile Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        function toggleMenu() {
-            const isOpen = mobileMenu.classList.contains('active');
-            if (isOpen) {
-                mobileMenu.classList.remove('active');
-                mobileMenu.style.transform = 'translateX(100%)';
-                mobileMenu.style.opacity = '0';
-                mobileMenu.style.pointerEvents = 'none';
-            } else {
-                mobileMenu.classList.add('active');
-                mobileMenu.style.transform = 'translateX(0)';
-                mobileMenu.style.opacity = '1';
-                mobileMenu.style.pointerEvents = 'auto';
-            }
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenu.classList.remove('opacity-0', 'pointer-events-none', 'translate-x-full');
+            mobileMenu.classList.add('opacity-100', 'pointer-events-auto', 'translate-x-0');
+            document.body.style.overflow = 'hidden';
         }
 
-        menuToggle.addEventListener('click', toggleMenu);
-        menuClose.addEventListener('click', toggleMenu);
-        
-        // Chiudi menu al click sui link
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-x-0');
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-x-full');
+            document.body.style.overflow = 'auto';
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        // Scroll Gestito via JS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Se cliccato da menu mobile, chiudi prima
+                    if (this.classList.contains('mobile-link')) {
+                        closeMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>

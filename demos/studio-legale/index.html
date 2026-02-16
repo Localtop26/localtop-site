@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Studio Legale Valente | Consulenza e Difesa Legale - Demo Mode</title>
@@ -70,11 +71,21 @@
                 width: auto !important;
                 align-items: flex-start;
             }
-            .demo-nav-container a {
-                padding: 0.6rem 0 !important;
-                font-size: 8px !important;
-                width: 160px !important; /* Larghezza fissa solo mobile */
+            .demo-nav-container a#cta-service {
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
+                width: auto !important;
                 justify-content: center !important;
+            }
+        }
+
+        /* Desktop CTA Style */
+        @media (min-width: 768px) {
+            .demo-nav-container a#cta-service {
+                padding: 16px 28px !important;
+                font-size: 15px !important;
+                min-height: 52px !important;
             }
         }
 
@@ -92,10 +103,11 @@
         .law-card:hover { border-left-color: #9a8447; background: #f8fafc; filter: none !important; }
 
         /* Interazioni Demo */
-        button, input, select, textarea, .wa-widget-demo {
+        button:not(.menu-toggle):not(#mobile-menu button), 
+        input, select, textarea {
             pointer-events: none !important;
         }
-        .menu-toggle, #mobile-menu a, .demo-nav-container a {
+        .menu-toggle, #mobile-menu a, .demo-nav-container a, a[href^="#"] {
             pointer-events: auto !important;
         }
     </style>
@@ -117,8 +129,10 @@
             <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 italic">
                 <a href="#studio" class="hover:text-navy transition">Lo Studio</a>
                 <a href="#competenze" class="hover:text-navy transition">Competenze</a>
+                <a href="#recensioni" class="hover:text-navy transition">Recensioni</a>
                 <a href="#filosofia" class="hover:text-navy transition">Filosofia</a>
                 <a href="#professionisti" class="hover:text-navy transition">Team</a>
+                <a href="#faq" class="hover:text-navy transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -132,15 +146,17 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-navy z-[2000] flex flex-col items-center justify-center space-y-8 lg:hidden">
+    <div id="mobile-menu" class="fixed inset-0 bg-navy z-[2000] flex flex-col items-center justify-center space-y-6 lg:hidden">
         <button onclick="toggleMenu()" class="absolute top-8 right-8 text-white">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#studio" onclick="toggleMenu()" class="text-white font-serif text-2xl uppercase italic">Lo Studio</a>
-        <a href="#competenze" onclick="toggleMenu()" class="text-white font-serif text-2xl uppercase italic">Competenze</a>
-        <a href="#filosofia" onclick="toggleMenu()" class="text-white font-serif text-2xl uppercase italic">Filosofia</a>
-        <a href="#professionisti" onclick="toggleMenu()" class="text-white font-serif text-2xl uppercase italic">Team</a>
-        <a href="#contatti" onclick="toggleMenu()" class="bg-white text-navy px-8 py-4 font-bold text-[10px] uppercase tracking-widest">Contatti</a>
+        <a href="#studio" class="text-white font-serif text-2xl uppercase italic">Lo Studio</a>
+        <a href="#competenze" class="text-white font-serif text-2xl uppercase italic">Competenze</a>
+        <a href="#recensioni" class="text-white font-serif text-2xl uppercase italic">Recensioni</a>
+        <a href="#filosofia" class="text-white font-serif text-2xl uppercase italic">Filosofia</a>
+        <a href="#professionisti" class="text-white font-serif text-2xl uppercase italic">Team</a>
+        <a href="#faq" class="text-white font-serif text-2xl uppercase italic">FAQ</a>
+        <a href="#contatti" class="bg-white text-navy px-8 py-4 font-bold text-[10px] uppercase tracking-widest">Contatti</a>
     </div>
 
     <section class="relative h-[75vh] md:h-[85vh] flex items-center hero-legal overflow-hidden">
@@ -187,6 +203,29 @@
                     <i data-lucide="shield-check" class="w-8 h-8 text-navy"></i>
                     <h4 class="text-xl md:text-2xl font-serif italic text-navy uppercase">Penale d'Impresa</h4>
                     <p class="text-sm text-slate-500 leading-relaxed italic font-light">Difesa tecnica per reati societari, fallimentari e compliance 231.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-12 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12 md:mb-20 uppercase text-navy italic">Dicono di <span class="italic text-slate-400">Noi</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 border border-slate-100 bg-slate-50 space-y-4">
+                    <div class="flex text-yellow-500 gap-1"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="italic text-slate-600 font-light">"Professionalità impeccabile. Hanno risolto una complessa controversia societaria con una strategia lungimirante."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Marco R. - Milano</p>
+                </div>
+                <div class="p-8 border border-slate-100 bg-slate-50 space-y-4">
+                    <div class="flex text-yellow-500 gap-1"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="italic text-slate-600 font-light">"Assistenza costante e trasparente. Mi sono sentita tutelata in ogni fase del procedimento civile."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Laura B. - Monza</p>
+                </div>
+                <div class="p-8 border border-slate-100 bg-slate-50 space-y-4">
+                    <div class="flex text-yellow-500 gap-1"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="italic text-slate-600 font-light">"Uno studio che unisce la tradizione alla modernità. Risposte rapide e soluzioni concrete."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Giuseppe V. - Varese</p>
                 </div>
             </div>
         </div>
@@ -262,6 +301,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-12 md:py-32 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12 uppercase text-navy italic">Domande <span class="italic text-slate-400">Frequenti</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-navy mb-2 italic">Come si svolge il primo colloquio?</h5>
+                    <p class="text-sm text-slate-500 font-light italic">Il primo incontro è finalizzato all'analisi preliminare del caso e alla valutazione della fattibilità dell'azione legale.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-4">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-navy mb-2 italic">Quali sono i criteri di fatturazione?</h5>
+                    <p class="text-sm text-slate-500 font-light italic">Seguiamo criteri di massima trasparenza, fornendo un preventivo dettagliato basato sulla complessità della pratica.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-4">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-navy mb-2 italic">Lo studio opera in tutta Italia?</h5>
+                    <p class="text-sm text-slate-500 font-light italic">Sì, grazie a una rete consolidata di domiciliatari, siamo in grado di assistere i clienti presso ogni foro nazionale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-12 md:py-32 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
             <div class="space-y-10">
@@ -295,16 +354,9 @@
     </footer>
 
     <div class="demo-nav-container flex flex-col gap-3 fixed bottom-6 left-6 z-[150]">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        <a id="cta-service" href="https://localtop.it/checkout" class="flex items-center justify-center bg-[#0F766E] text-white rounded-full font-bold shadow-2xl">
+            Attiva il Servizio
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
-
-    <div class="wa-widget-demo fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-[140]">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
     </div>
 
     <script>
@@ -319,6 +371,36 @@
                 document.body.style.overflow = '';
             }
         }
+
+        // Scroll Gestione Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Se è il menu mobile, chiudilo prima
+                    const menu = document.getElementById('mobile-menu');
+                    if (menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tessuti & Trame | Scampoli di Pregio e Stoffe al Metro - Demo Mode</title>
@@ -41,13 +42,13 @@
         }
 
         /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo {
+        button, input, select, textarea {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
-        /* Eccezione per il tasto menu */
-        #menu-toggle-btn {
+        /* Eccezioni per il tasto menu e CTA */
+        #menu-toggle-btn, .localtop-btn, .anchor-link {
             pointer-events: auto !important;
             cursor: pointer !important;
         }
@@ -95,8 +96,17 @@
                 font-size: clamp(3rem, 12vw, 4rem);
             }
             .localtop-btn {
-                padding: 0.6rem 1rem !important;
-                font-size: 8px !important;
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .localtop-btn {
+                padding: 16px 28px !important;
+                font-size: 15px !important;
+                min-height: 52px !important;
             }
         }
 
@@ -109,6 +119,16 @@
             flex-direction: column;
             gap: 0.5rem;
             max-width: calc(100% - 3rem);
+        }
+        
+        .localtop-btn {
+            background-color: #0F766E !important;
+            color: white !important;
+            font-weight: 700 !important;
+            border-radius: 9999px !important;
+            text-transform: none !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
         }
     </style>
 </head>
@@ -128,14 +148,16 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-stone-500">
-                <a href="#collezioni" class="hover:text-terracotta transition">Collezioni</a>
-                <a href="#scampoli" class="hover:text-terracotta transition">Area Scampoli</a>
-                <a href="#filosofia" class="hover:text-terracotta transition">Filosofia</a>
-                <a href="#contatti" class="hover:text-terracotta transition">Contatti</a>
+                <a href="#collezioni" class="anchor-link hover:text-terracotta transition">Collezioni</a>
+                <a href="#scampoli" class="anchor-link hover:text-terracotta transition">Area Scampoli</a>
+                <a href="#recensioni" class="anchor-link hover:text-terracotta transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-terracotta transition">FAQ</a>
+                <a href="#filosofia" class="anchor-link hover:text-terracotta transition">Filosofia</a>
+                <a href="#contatti" class="anchor-link hover:text-terracotta transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#contatti" class="bg-stone-900 text-white px-4 py-2 md:px-8 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-terracotta transition-all whitespace-nowrap">
+                <a href="#contatti" class="anchor-link bg-stone-900 text-white px-4 py-2 md:px-8 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-terracotta transition-all whitespace-nowrap">
                     Campione
                 </a>
                 <button id="menu-toggle-btn" class="lg:hidden text-stone-900 p-2 relative z-[160]">
@@ -146,14 +168,18 @@
     </nav>
 
     <div id="mobile-menu" class="lg:hidden">
-        <div class="flex flex-col space-y-8 text-center px-6">
-            <a href="#collezioni" class="mobile-link text-3xl font-serif italic text-stone-900">Collezioni</a>
+        <div class="flex flex-col space-y-6 text-center px-6">
+            <a href="#collezioni" class="mobile-link anchor-link text-3xl font-serif italic text-stone-900">Collezioni</a>
             <hr class="border-stone-100 w-24 mx-auto">
-            <a href="#scampoli" class="mobile-link text-3xl font-serif italic text-stone-900">Area Scampoli</a>
+            <a href="#scampoli" class="mobile-link anchor-link text-3xl font-serif italic text-stone-900">Area Scampoli</a>
             <hr class="border-stone-100 w-24 mx-auto">
-            <a href="#filosofia" class="mobile-link text-3xl font-serif italic text-stone-900">Filosofia</a>
+            <a href="#recensioni" class="mobile-link anchor-link text-3xl font-serif italic text-stone-900">Recensioni</a>
             <hr class="border-stone-100 w-24 mx-auto">
-            <a href="#contatti" class="mobile-link text-3xl font-serif italic text-stone-900">Contatti</a>
+            <a href="#faq" class="mobile-link anchor-link text-3xl font-serif italic text-stone-900">FAQ</a>
+            <hr class="border-stone-100 w-24 mx-auto">
+            <a href="#filosofia" class="mobile-link anchor-link text-3xl font-serif italic text-stone-900">Filosofia</a>
+            <hr class="border-stone-100 w-24 mx-auto">
+            <a href="#contatti" class="mobile-link anchor-link text-3xl font-serif italic text-stone-900">Contatti</a>
         </div>
     </div>
 
@@ -171,8 +197,8 @@
                 </div>
 
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#collezioni" class="bg-stone-900 text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-2xl hover:bg-terracotta transition-all">Vedi Tessuti</a>
-                    <a href="#scampoli" class="bg-white border border-stone-200 text-stone-900 px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-stone-50 transition-all italic">Occasioni</a>
+                    <a href="#collezioni" class="anchor-link bg-stone-900 text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-2xl hover:bg-terracotta transition-all">Vedi Tessuti</a>
+                    <a href="#scampoli" class="anchor-link bg-white border border-stone-200 text-stone-900 px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-stone-50 transition-all italic">Occasioni</a>
                 </div>
             </div>
         </div>
@@ -279,6 +305,73 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-16 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">Dicono di Noi</h2>
+                <p class="text-stone-400 mt-4 uppercase tracking-widest text-[10px] font-bold">L'opinione dei nostri clienti</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-stone-50 p-8 rounded-3xl border border-stone-100 italic">
+                    <div class="flex text-terracotta mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 mb-6 text-sm">"Ho trovato degli scampoli di seta pura introvabili altrove. La qualità è eccelsa e il servizio di consulenza è stato prezioso."</p>
+                    <p class="text-stone-900 font-bold uppercase tracking-tighter text-xs">Elena R. — Milano</p>
+                </div>
+                <div class="bg-stone-50 p-8 rounded-3xl border border-stone-100 italic">
+                    <div class="flex text-terracotta mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 mb-6 text-sm">"Le tende realizzate dal loro laboratorio artigianale hanno cambiato il volto al mio salotto. Rifiniture impeccabili."</p>
+                    <p class="text-stone-900 font-bold uppercase tracking-tighter text-xs">Marco V. — Monza</p>
+                </div>
+                <div class="bg-stone-50 p-8 rounded-3xl border border-stone-100 italic">
+                    <div class="flex text-terracotta mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 mb-6 text-sm">"Sostenibilità e bellezza. Adoro la loro selezione di cotoni bio. Un punto di riferimento per chi ama il cucito."</p>
+                    <p class="text-stone-900 font-bold uppercase tracking-tighter text-xs">Giulia M. — Bergamo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-32 bg-[#fdfaf8] section-padding">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">Domande Frequenti</h2>
+                <p class="text-stone-400 mt-4 uppercase tracking-widest text-[10px] font-bold">Tutto quello che c'è da sapere</p>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2 text-stone-900">Vendete solo a privati o anche ad aziende?</h4>
+                    <p class="text-stone-500 text-sm italic">Serviamo sia privati appassionati di cucito sia professionisti e sartorie, garantendo sempre la massima qualità.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2 text-stone-900">È possibile ordinare campioni di tessuto?</h4>
+                    <p class="text-stone-500 text-sm italic">Certamente. Possiamo inviare campionature per permettervi di valutare mano e colore prima dell'acquisto definitivo.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2 text-stone-900">Qual è la metratura minima acquistabile?</h4>
+                    <p class="text-stone-500 text-sm italic">Per i tessuti a rotolo il taglio minimo è di 50cm, mentre per l'area scampoli vendiamo il pezzo intero come indicato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-10 md:space-y-12 text-center lg:text-left">
@@ -327,16 +420,9 @@
     </footer>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 pointer-events-auto">
-            <i data-lucide="zap" class="w-3.5 h-3.5 text-white"></i> INIZIA ORA
+        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center pointer-events-auto">
+            Attiva il Servizio
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 pointer-events-auto">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Torna agli Esempi
-        </a>
-    </div>
-
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>
@@ -346,38 +432,63 @@
         const menuBtn = document.getElementById('menu-toggle-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function toggleMenu() {
-            const isActive = mobileMenu.classList.toggle('active');
-            
-            if (isActive) {
-                menuIcon.setAttribute('data-lucide', 'x');
-                document.body.style.overflow = 'hidden';
-            } else {
+        
+        function toggleMenu(forceClose = false) {
+            if (forceClose) {
+                mobileMenu.classList.remove('active');
                 menuIcon.setAttribute('data-lucide', 'menu');
                 document.body.style.overflow = '';
+            } else {
+                const isActive = mobileMenu.classList.toggle('active');
+                if (isActive) {
+                    menuIcon.setAttribute('data-lucide', 'x');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    menuIcon.setAttribute('data-lucide', 'menu');
+                    document.body.style.overflow = '';
+                }
             }
             lucide.createIcons();
         }
 
-        // Event listener per apertura/chiusura
+        // Event listener per apertura/chiusura hamburger
         menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             toggleMenu();
         });
 
-        // Chiudi menu quando si clicca una voce
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                toggleMenu();
+        // Gestione Scroll Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Se è un link del menu mobile
+                    if (this.classList.contains('mobile-link')) {
+                        toggleMenu(true);
+                    }
+                    
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
         // Chiudi menu se si ridimensiona a desktop
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
-                toggleMenu();
+                toggleMenu(true);
             }
         });
     </script>

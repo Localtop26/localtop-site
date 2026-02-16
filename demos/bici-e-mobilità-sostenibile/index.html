@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volt Ride | E-Bike, Scooters & Urban Mobility - Demo</title>
@@ -22,23 +23,20 @@
         .volt-card { background: #111; border: 1px solid #222; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .volt-card:hover { border-color: #bef264; transform: translateY(-5px); background: #161616; }
 
-        /* Rimozione filtri grayscale */
         img { filter: none !important; grayscale: 0 !important; }
 
-        /* Blocco Interazioni (Demo Mode) - Escluso il menu mobile */
-        button:not(.menu-toggle), input, select, textarea, .chat-widget-demo, .demo-btn-fake {
+        /* Blocco Interazioni (Demo Mode) */
+        button:not(.menu-toggle), input, select, textarea, .demo-btn-fake, a:not([href^="#"]):not([href*="localtop.it/checkout"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Abilitazione specifica per il toggle del menu */
-        .menu-toggle {
+        .menu-toggle, .localtop-btn, a[href^="#"] {
             pointer-events: auto !important;
             cursor: pointer !important;
         }
 
-        /* Mobile Menu Overlay */
         #mobile-menu {
             display: none;
             position: fixed;
@@ -51,7 +49,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 2rem;
             transition: all 0.3s ease;
         }
         #mobile-menu.active { display: flex; }
@@ -60,29 +58,44 @@
             h1 { font-size: clamp(3rem, 15vw, 6.5rem) !important; line-height: 0.9 !important; }
             h2 { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .localtop-btn { padding: 0.75rem 1rem !important; font-size: 8px !important; }
         }
 
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            max-width: 180px;
         }
+        .localtop-btn {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+            text-decoration: none;
+        }
+        @media (min-width: 768px) {
+            .localtop-btn {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .localtop-btn:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="selection:bg-lime selection:text-black">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Esempi
+        <a href="https://localtop.it/checkout" class="localtop-btn shadow-2xl">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -98,7 +111,8 @@
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400">
                 <a href="#ebike" class="hover:text-lime transition">E-Bike</a>
                 <a href="#scooters" class="hover:text-lime transition">Monopattini</a>
-                <a href="#officina" class="hover:text-lime transition">Officina</a>
+                <a href="#recensioni" class="hover:text-lime transition">Recensioni</a>
+                <a href="#faq" class="hover:text-lime transition">FAQ</a>
                 <a href="#business" class="hover:text-lime transition">Business</a>
             </div>
 
@@ -114,11 +128,12 @@
     </nav>
 
     <div id="mobile-menu" class="lg:hidden">
-        <a href="#ebike" onclick="toggleMenu()" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">E-Bike</a>
-        <a href="#scooters" onclick="toggleMenu()" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Monopattini</a>
-        <a href="#officina" onclick="toggleMenu()" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Officina</a>
-        <a href="#business" onclick="toggleMenu()" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Business</a>
-        <a href="#testride" onclick="toggleMenu()" class="bg-lime text-black px-10 py-4 rounded-sm font-black uppercase tracking-widest mt-6">Prenota Ora</a>
+        <a href="#ebike" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">E-Bike</a>
+        <a href="#scooters" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Monopattini</a>
+        <a href="#recensioni" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Recensioni</a>
+        <a href="#faq" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">FAQ</a>
+        <a href="#business" class="text-2xl font-tech font-bold uppercase tracking-widest text-white hover:text-lime">Business</a>
+        <a href="#testride" class="bg-lime text-black px-10 py-4 rounded-sm font-black uppercase tracking-widest mt-6">Prenota Ora</a>
     </div>
 
     <section class="relative h-screen flex items-center hero-mobility overflow-hidden">
@@ -195,7 +210,36 @@
         </div>
     </section>
 
-    <section id="officina" class="py-24 md:py-32 bg-[#050505] section-padding">
+    <section id="recensioni" class="py-24 md:py-32 bg-[#050505] section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic mb-16 text-center">Cosa dicono di <span class="text-lime">Noi.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="volt-card p-8 rounded-2xl">
+                    <div class="flex text-lime mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-400 italic mb-6">"Assistenza tecnica incredibile. Hanno rigenerato la batteria della mia e-bike in tempi record. Professionali al 100%."</p>
+                    <p class="text-white font-bold uppercase text-[10px] tracking-widest">— Marco R., Milano</p>
+                </div>
+                <div class="volt-card p-8 rounded-2xl">
+                    <div class="flex text-lime mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-400 italic mb-6">"Il City Flow è fantastico. Leggero da caricare in treno e velocissimo nel traffico. Cambia davvero il modo di vivere la città."</p>
+                    <p class="text-white font-bold uppercase text-[10px] tracking-widest">— Elena V., Roma</p>
+                </div>
+                <div class="volt-card p-8 rounded-2xl">
+                    <div class="flex text-lime mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-400 italic mb-6">"Ho noleggiato una flotta per i miei dipendenti. Un servizio chiavi in mano che ci ha permesso di essere più green."</p>
+                    <p class="text-white font-bold uppercase text-[10px] tracking-widest">— Luca M., Bologna</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="officina" class="py-24 md:py-32 bg-black section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="order-2 lg:order-1 relative h-[300px] md:h-[400px]">
                 <img src="assets/img3.jpg" class="w-full h-full object-cover rounded-2xl opacity-60" alt="Bicycle Workshop">
@@ -229,27 +273,27 @@
         </div>
     </section>
 
-    <section id="accessori" class="py-24 md:py-32 bg-black section-padding">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-                <div class="space-y-8">
-                    <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic">Ride <span class="text-lime">Safe.</span></h2>
-                    <p class="text-zinc-500 font-light text-lg">Caschi con luci integrate, lucchetti hi-tech ad arco e abbigliamento tecnico catarifrangente.</p>
-                    <div class="h-[1px] w-full bg-lime/30"></div>
+    <section id="faq" class="py-24 md:py-32 bg-[#050505] section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic mb-16 text-center">Domande <span class="text-lime">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="volt-card p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-white mb-2">È possibile provare i mezzi prima dell'acquisto?</h3>
+                    <p class="text-zinc-500 text-sm">Sì, offriamo test ride gratuiti su appuntamento presso il nostro showroom di Milano per tutti i modelli disponibili.</p>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="h-48 md:h-64 bg-zinc-900 border border-white/5 rounded-2xl flex items-center justify-center overflow-hidden">
-                        <img src="assets/img4.jpg" class="w-full h-full object-cover rounded-2xl" alt="Accessories 1">
-                    </div>
-                    <div class="h-48 md:h-64 bg-zinc-900 border border-white/5 rounded-2xl flex items-center justify-center mt-8 md:mt-12 overflow-hidden">
-                        <img src="assets/img5.jpg" class="w-full h-full object-cover rounded-2xl" alt="Accessories 2">
-                    </div>
+                <div class="volt-card p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-white mb-2">Che tipo di garanzia offrite sulle batterie?</h3>
+                    <p class="text-zinc-500 text-sm">Le nostre batterie hanno una garanzia ufficiale di 2 anni o 500 cicli di ricarica completi, estendibile con i nostri piani Volt Care.</p>
+                </div>
+                <div class="volt-card p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-white mb-2">Effettuate spedizioni in tutta Italia?</h3>
+                    <p class="text-zinc-500 text-sm">Certamente. Spediamo i nostri mezzi premontati e collaudati con corrieri specializzati per garantire la massima integrità del prodotto.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="testride" class="py-24 md:py-32 bg-[#050505] section-padding">
+    <section id="testride" class="py-24 md:py-32 bg-black section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
                 <h2 class="text-6xl md:text-8xl font-tech font-black text-white leading-none tracking-tighter uppercase italic">Feel the <br><span class="text-lime">Volt.</span></h2>
@@ -288,12 +332,7 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
-        // Inizializza Lucide Icons
         lucide.createIcons();
 
         function toggleMenu() {
@@ -301,19 +340,41 @@
             const iconElement = document.getElementById('menu-icon');
             const isActive = menu.classList.toggle('active');
             
-            // Cambia l'icona dinamicamente
             if (isActive) {
                 iconElement.setAttribute('data-lucide', 'x');
             } else {
                 iconElement.setAttribute('data-lucide', 'menu');
             }
-            
-            // Re-inizializza le icone solo per l'elemento cambiato
             lucide.createIcons();
-            
-            // Blocca lo scroll del body quando il menu è aperto
             document.body.style.overflow = isActive ? 'hidden' : 'auto';
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Se siamo su mobile, chiudiamo il menu
+                    const menu = document.getElementById('mobile-menu');
+                    if (menu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

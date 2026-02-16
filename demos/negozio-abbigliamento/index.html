@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth overflow-x-hidden w-full">
+<html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Essentia Boutique | Milano Contemporary Fashion - Demo</title>
@@ -12,9 +13,9 @@
             font-family: 'Inter', sans-serif; 
             background-color: #fff; 
             color: #1a1a1a; 
-            overflow-x: hidden; 
             width: 100%;
             -webkit-font-smoothing: antialiased;
+            margin: 0;
         }
         .font-luxury { font-family: 'Tenor Sans', sans-serif; }
         .bg-nude { background-color: #f8f5f2; }
@@ -26,7 +27,6 @@
             background-position: center; 
         }
 
-        /* Rimozione filtri e gestione hover immagini a colori */
         .img-hover img { 
             filter: none !important; 
             transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
@@ -34,7 +34,7 @@
         .img-hover:hover img { transform: scale(1.05); }
 
         /* Disabilitazione interazioni come richiesto */
-        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo {
+        button:not(#menu-toggle), input, select, textarea, a:not(.localtop-btn):not([href^="#"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -53,9 +53,18 @@
             h2 { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
             
-            /* Bottoni Localtop più piccoli su mobile */
             .localtop-btn {
-                padding: 0.75rem 1.25rem !important;
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .localtop-btn {
+                padding: 16px 28px !important;
+                font-size: 15px !important;
+                min-height: 52px !important;
             }
         }
 
@@ -64,45 +73,70 @@
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
+        }
+
+        .localtop-btn {
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-width: calc(100% - 3rem);
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            border-radius: 9999px;
+            font-weight: 700;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            text-decoration: none;
+        }
+        .localtop-btn:hover { transform: scale(1.05); }
+
+        /* Header Sticky Force */
+        header.main-nav {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f1f5f9;
         }
     </style>
 </head>
 <body class="selection:bg-stone-100 selection:text-stone-900">
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-white z-[200] hidden flex-col items-center justify-center space-y-8 text-center">
-        <button id="close-menu" class="absolute top-6 right-6">
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-white z-[2000] hidden flex-col items-center justify-center space-y-8 text-center">
+        <button id="close-menu" class="absolute top-6 right-6 pointer-events-auto !cursor-pointer">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#collezione" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Collezione</a>
-        <a href="#tessuti" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Tessuti</a>
-        <a href="#journal" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Journal</a>
-        <a href="#filosofia" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Filosofia</a>
-        <a href="#boutique" class="mobile-link text-2xl font-luxury uppercase tracking-widest">Contatti</a>
+        <a href="#collezione" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-black no-underline">Collezione</a>
+        <a href="#tessuti" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-black no-underline">Tessuti</a>
+        <a href="#recensioni" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-black no-underline">Recensioni</a>
+        <a href="#faq" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-black no-underline">FAQ</a>
+        <a href="#journal" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-black no-underline">Journal</a>
+        <a href="#filosofia" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-black no-underline">Filosofia</a>
+        <a href="#boutique" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-black no-underline">Contatti</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="localtop-btn">
+            Attiva il Servizio
         </a>
     </div>
 
-    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center">
-            <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 italic">
-                <a href="#collezione" class="hover:text-black transition">Collezione</a>
-                <a href="#tessuti" class="hover:text-black transition">Tessuti</a>
-                <a href="#journal" class="hover:text-black transition">Journal</a>
-                <a href="#filosofia" class="hover:text-black transition">Filosofia</a>
+    <header class="main-nav h-20 flex items-center">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center">
+            <div class="hidden lg:flex space-x-6 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 italic">
+                <a href="#collezione" class="hover:text-black transition no-underline">Collezione</a>
+                <a href="#tessuti" class="hover:text-black transition no-underline">Tessuti</a>
+                <a href="#recensioni" class="hover:text-black transition no-underline">Recensioni</a>
+                <a href="#faq" class="hover:text-black transition no-underline">FAQ</a>
+                <a href="#journal" class="hover:text-black transition no-underline">Journal</a>
+                <a href="#filosofia" class="hover:text-black transition no-underline">Filosofia</a>
             </div>
 
-            <button id="menu-toggle" class="lg:hidden p-2 -ml-2">
+            <button id="menu-toggle" class="lg:hidden p-2 -ml-2 pointer-events-auto !cursor-pointer bg-transparent border-none">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
 
@@ -111,11 +145,10 @@
             </div>
 
             <div class="flex items-center gap-3 md:gap-6">
-                <a href="#boutique" class="hidden xs:inline-block text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1 whitespace-nowrap">Milano Store</a>
-                <i data-lucide="shopping-bag" class="w-4 h-4 text-slate-400"></i>
+                <a href="#boutique" class="hidden xs:inline-block text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1 whitespace-nowrap no-underline text-black">Milano Store</a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <section class="relative min-h-[85vh] flex items-center hero-bg section-padding">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
@@ -127,7 +160,7 @@
                     L'essenza del lusso discreto. Capi pensati per chi non ha bisogno di gridare per farsi notare.
                 </p>
                 <div class="pt-6">
-                    <a href="#collezione" class="inline-block bg-black text-white px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-slate-800 transition-all">
+                    <a href="#collezione" class="inline-block bg-black text-white px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-slate-800 transition-all pointer-events-auto cursor-pointer no-underline">
                         Scopri la Selezione
                     </a>
                 </div>
@@ -197,6 +230,29 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-center text-3xl md:text-4xl font-luxury uppercase tracking-widest mb-16 italic">Dicono di noi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="p-8 bg-slate-50 border border-slate-100 italic space-y-4">
+                    <div class="flex text-stone-400 gap-1"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i></div>
+                    <p class="text-slate-600 text-sm font-light">"La qualità dei tessuti è impareggiabile. Un capo Essentia non è solo abbigliamento, è una sensazione di puro comfort e stile senza tempo."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest">— Elena V., Milano</p>
+                </div>
+                <div class="p-8 bg-slate-50 border border-slate-100 italic space-y-4">
+                    <div class="flex text-stone-400 gap-1"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i></div>
+                    <p class="text-slate-600 text-sm font-light">"Finalmente una boutique che sposa l'etica alla bellezza. Ogni acquisto qui mi fa sentire bene, sapendo della filiera controllata."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest">— Marco R., Roma</p>
+                </div>
+                <div class="p-8 bg-slate-50 border border-slate-100 italic space-y-4">
+                    <div class="flex text-stone-400 gap-1"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i></div>
+                    <p class="text-slate-600 text-sm font-light">"L'esperienza di private shopping è stata magica. Cura nei dettagli e un'attenzione al cliente che non trovavo da anni a Milano."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest">— Sofia L., Parigi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl md:text-5xl font-luxury uppercase italic">L'Etica del <span class="text-slate-400">Bello.</span></h2>
@@ -235,6 +291,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-center text-3xl md:text-4xl font-luxury uppercase tracking-widest mb-16 italic">Domande Frequenti</h2>
+            <div class="space-y-8">
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-3">Quali sono i tempi di produzione?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Essendo capi artigianali, alcuni pezzi richiedono dai 5 ai 7 giorni lavorativi per essere rifiniti prima della spedizione.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-3">Effettuate spedizioni internazionali?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Sì, spediamo in tutto il mondo con corrieri espressi assicurati per garantire l'integrità dei capi.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-3">Come posso prenotare una prova in boutique?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Puoi contattarci via telefono o WhatsApp per fissare un appuntamento privato con un nostro consulente di stile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="boutique" class="py-20 md:py-32 bg-black text-white overflow-hidden section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="space-y-10 order-2 lg:order-1">
@@ -245,11 +321,11 @@
                     <p class="flex items-center gap-6"><i data-lucide="phone" class="text-white w-4 h-4"></i> +39 02 1234 5678</p>
                 </div>
                 <div class="flex flex-col gap-4 pt-4">
-                    <button class="w-full md:w-auto border border-white/20 px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em]">Prenota Private Shopping</button>
-                    <button class="w-full md:w-auto bg-white text-black px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-3">
+                    <button class="w-full md:w-auto border border-white/20 px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] bg-transparent text-white">Prenota Private Shopping</button>
+                    <button class="w-full md:w-auto bg-white text-black px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-3 border-none">
                         <i data-lucide="phone" class="w-4 h-4"></i> Chiamaci Ora
                     </button>
-                    <button class="w-full md:w-auto bg-[#25D366] text-white px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-3">
+                    <button class="w-full md:w-auto bg-[#f8f5f2] text-black px-12 py-5 text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-3 border-none">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
                     </button>
                 </div>
@@ -268,7 +344,7 @@
             </div>
             <div class="space-y-6">
                 <span class="text-[10px] font-bold uppercase tracking-widest">Supporto</span>
-                <ul class="space-y-4 text-[9px] text-slate-400 uppercase tracking-widest font-bold">
+                <ul class="space-y-4 text-[9px] text-slate-400 uppercase tracking-widest font-bold list-none p-0">
                     <li>Spedizioni</li>
                     <li>Resi & Cambi</li>
                     <li>Tabella Taglie</li>
@@ -287,19 +363,12 @@
         </div>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </div>
-
     <script>
-        // Inizializzazione icone
         lucide.createIcons();
 
-        // Gestione Menu Mobile
         const menuToggle = document.getElementById('menu-toggle');
         const closeMenu = document.getElementById('close-menu');
         const overlay = document.getElementById('mobile-menu-overlay');
-        const links = document.querySelectorAll('.mobile-link');
 
         menuToggle.addEventListener('click', () => {
             overlay.classList.add('active');
@@ -311,10 +380,30 @@
             document.body.style.overflow = '';
         });
 
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
+        const allLinks = document.querySelectorAll('a[href^="#"]');
+
+        allLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+
+                    if (this.classList.contains('mobile-link')) {
+                        overlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

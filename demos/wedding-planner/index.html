@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etherea Weddings | Fine Art Wedding Planner - Demo Mode</title>
@@ -32,20 +33,20 @@
         .reveal-img { overflow: hidden; position: relative; width: 100%; }
         .reveal-img img { 
             transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); 
-            filter: none !important; /* Rimosso ogni filtro */
+            filter: none !important;
         }
         .reveal-img:hover img { transform: scale(1.08); filter: none !important; }
 
         img { filter: none !important; }
 
-        /* Blocco Interazioni (Demo Mode) tranne menu */
-        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo, .no-click {
+        /* Blocco Interazioni (Demo Mode) tranne menu e CTA principale */
+        button:not(#menu-toggle), input, select, textarea, .no-click {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Navigazione Sticky */
+        /* Navigazione Sticky - NON MODIFICARE */
         nav.sticky-nav {
             top: 0;
             z-index: 1000;
@@ -60,16 +61,40 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* Bottoni LocalTop */
+        /* Bottone LocalTop (Unico CTA) */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
+
+        .btn-localtop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            pointer-events: auto !important;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .btn-localtop:hover { transform: scale(1.05); }
 
         /* Menu Mobile Overlay */
         #mobile-menu-overlay {
@@ -92,16 +117,9 @@
                 justify-content: center !important;
                 padding-top: 0;
             }
-
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 10px 16px !important;
-                font-size: 8px !important;
-            }
             
             .sticky-nav { height: 70px !important; }
             
-            /* Evita sovrapposizione logo/bottone */
             .nav-container {
                 display: grid !important;
                 grid-template-columns: 40px 1fr 40px;
@@ -120,32 +138,33 @@
 <body class="selection:bg-stone-200 selection:text-stone-800 container-fix">
 
     <div id="mobile-menu-overlay" class="font-serif italic text-3xl text-stone-900">
-        <button onclick="toggleMenu()" class="absolute top-8 right-8"><i data-lucide="x" class="w-8 h-8"></i></button>
-        <a href="#filosofia" onclick="toggleMenu()" class="hover:text-gold">Filosofia</a>
-        <a href="#servizi" onclick="toggleMenu()" class="hover:text-gold">Servizi</a>
-        <a href="#portfolio" onclick="toggleMenu()" class="hover:text-gold">Storie</a>
-        <a href="#contatti" onclick="toggleMenu()" class="hover:text-gold">Contatti</a>
+        <button onclick="toggleMenu()" class="absolute top-8 right-8" style="pointer-events: auto !important;"><i data-lucide="x" class="w-8 h-8"></i></button>
+        <a href="#filosofia" class="hover:text-gold anchor-link">Filosofia</a>
+        <a href="#servizi" class="hover:text-gold anchor-link">Servizi</a>
+        <a href="#recensioni" class="hover:text-gold anchor-link">Recensioni</a>
+        <a href="#portfolio" class="hover:text-gold anchor-link">Storie</a>
+        <a href="#faq" class="hover:text-gold anchor-link">FAQ</a>
+        <a href="#contatti" class="hover:text-gold anchor-link">Contatti</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
     <nav class="sticky-nav sticky bg-white/90 backdrop-blur-lg h-24 flex items-center border-b border-stone-50">
         <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center nav-container">
-            <button id="menu-toggle" onclick="toggleMenu()" class="lg:hidden flex items-center">
+            <button id="menu-toggle" onclick="toggleMenu()" class="lg:hidden flex items-center" style="pointer-events: auto !important;">
                 <i data-lucide="menu" class="w-6 h-6 text-stone-900"></i>
             </button>
 
-            <div class="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.4em] font-bold text-stone-500">
-                <a href="#filosofia" class="hover:text-gold transition">Filosofia</a>
-                <a href="#servizi" class="hover:text-gold transition">Servizi</a>
-                <a href="#portfolio" class="hover:text-gold transition">Storie</a>
+            <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
+                <a href="#filosofia" class="hover:text-gold transition anchor-link">Filosofia</a>
+                <a href="#servizi" class="hover:text-gold transition anchor-link">Servizi</a>
+                <a href="#recensioni" class="hover:text-gold transition anchor-link">Recensioni</a>
+                <a href="#portfolio" class="hover:text-gold transition anchor-link">Storie</a>
+                <a href="#faq" class="hover:text-gold transition anchor-link">FAQ</a>
             </div>
             
             <div class="text-center">
@@ -154,7 +173,7 @@
             </div>
 
             <div class="flex items-center justify-end">
-                <a href="#contatti" class="bg-stone-900 text-white px-4 md:px-8 py-2 md:py-3 text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all shadow-lg whitespace-nowrap">
+                <a href="#contatti" class="bg-stone-900 text-white px-4 md:px-8 py-2 md:py-3 text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all shadow-lg whitespace-nowrap anchor-link">
                     Contatti
                 </a>
             </div>
@@ -175,7 +194,7 @@
                 </p>
                 
                 <div class="pt-4 md:pt-8">
-                    <a href="#portfolio" class="inline-block bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 md:px-10 py-4 text-[9px] md:text-[10px] uppercase tracking-[0.5em] font-bold hover:bg-gold hover:border-gold transition-all shadow-2xl">
+                    <a href="#portfolio" class="inline-block bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 md:px-10 py-4 text-[9px] md:text-[10px] uppercase tracking-[0.5em] font-bold hover:bg-gold hover:border-gold transition-all shadow-2xl anchor-link">
                         Esplora il Portfolio
                     </a>
                 </div>
@@ -233,6 +252,38 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-gold font-bold uppercase tracking-[0.5em] text-[10px]">Testimonianze</span>
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900 mt-4">Parole d'Amore</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-4 italic">
+                    <div class="flex text-gold mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-500 leading-relaxed">"Un'organizzazione impeccabile. Hanno trasformato i nostri sogni in una realtà meravigliosa, curando ogni minimo dettaglio."</p>
+                    <span class="block font-bold text-stone-900 text-[10px] uppercase tracking-widest">— Marco & Elena, Firenze</span>
+                </div>
+                <div class="space-y-4 italic">
+                    <div class="flex text-gold mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-500 leading-relaxed">"Professionalità e gusto estetico fuori dal comune. Il nostro destination wedding in Costiera è stato semplicemente perfetto."</p>
+                    <span class="block font-bold text-stone-900 text-[10px] uppercase tracking-widest">— Sarah & Tom, Londra</span>
+                </div>
+                <div class="space-y-4 italic">
+                    <div class="flex text-gold mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-500 leading-relaxed">"Non avremmo potuto chiedere di meglio. Etherea ha saputo gestire ogni imprevisto con una grazia e una calma incredibili."</p>
+                    <span class="block font-bold text-stone-900 text-[10px] uppercase tracking-widest">— Giulia & Paolo, Milano</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-20 md:py-32 bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
             <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900 uppercase">L'Anima del <span class="text-gold italic">Ricevimento.</span></h2>
@@ -274,6 +325,28 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 md:py-32 bg-[#fffcfb]">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">Domande Frequenti</h2>
+            </div>
+            <div class="space-y-8">
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="font-serif italic text-xl text-stone-900 mb-2">Con quanto anticipo dobbiamo contattarvi?</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed italic">Consigliamo di iniziare il percorso di planning 12-18 mesi prima della data desiderata, specialmente per le location più richieste in Italia.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="font-serif italic text-xl text-stone-900 mb-2">Lavorate in tutta Italia?</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed italic">Certamente. Pur avendo base nel Nord Italia, operiamo regolarmente in Toscana, Costiera Amalfitana, Puglia e nelle Isole.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="font-serif italic text-xl text-stone-900 mb-2">Potete aiutarci con la gestione burocratica?</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed italic">Sì, offriamo supporto completo per le pratiche civili e religiose, sia per cittadini italiani che stranieri (Destination Wedding).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-10 md:space-y-12">
@@ -295,7 +368,7 @@
                     <button class="w-full bg-stone-900 text-white py-5 text-[10px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3">
                         <i data-lucide="phone" class="w-4 h-4"></i> Chiamaci Ora
                     </button>
-                    <button class="w-full bg-[#25D366] text-white py-5 text-[10px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3">
+                    <button class="w-full bg-[#c5a059] text-white py-5 text-[10px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3">
                         <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
                     </button>
                     <button class="w-full border border-stone-200 text-stone-800 py-5 text-[10px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3">
@@ -313,13 +386,10 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-white border border-stone-100 text-stone-900 p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-5 h-5"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
+        // Toggle Menu Mobile
         function toggleMenu() {
             const overlay = document.getElementById('mobile-menu-overlay');
             if (overlay.style.display === 'flex') {
@@ -330,6 +400,33 @@
                 document.body.style.overflow = 'hidden';
             }
         }
+
+        // Gestione Smooth Scroll con Offset
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Se siamo su mobile e il menu è aperto, chiudilo
+                    const overlay = document.getElementById('mobile-menu-overlay');
+                    if (overlay.style.display === 'flex') {
+                        toggleMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

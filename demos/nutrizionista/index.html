@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dr.ssa Elena Riva | Biologa Nutrizionista - Nutrire il Benessere - Demo Mode</title>
@@ -15,7 +16,6 @@
         .text-glow-orange { color: #f3a683; }
         .bg-glow-orange { background-color: #f3a683; }
         
-        /* Immagini sempre a colori, rimosso grayscale */
         img { filter: none !important; grayscale: 0 !important; }
         
         .hero-nutrition { 
@@ -28,14 +28,13 @@
         .balance-card { transition: all 0.4s ease; border-radius: 2.5rem; background: #ffffff; border: 1px solid #f1f2f6; }
         .balance-card:hover { transform: translateY(-10px); border-color: #2d6a4f; box-shadow: 0 20px 40px rgba(45, 106, 79, 0.08); }
 
-        /* Disabilita interazioni tranne menu */
-        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo {
+        /* Disabilita interazioni tranne menu e CTA specifico */
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .wa-widget-demo, form {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Mobile Menu Overlay */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -44,46 +43,54 @@
             transform: translateX(0);
         }
 
-        @media (max-width: 768px) {
+        /* Unico CTA Attiva Servizio */
+        .cta-localtop {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1rem;
+            z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
             h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; }
             h2 { font-size: clamp(2.2rem, 8vw, 3.5rem) !important; }
+        }
+
+        @media (max-width: 768px) {
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
             .hero-nutrition { 
                 background: linear-gradient(to bottom, rgba(253,253,251,0.9) 35%, rgba(253,253,251,0.6) 100%), 
                 url('assets/img1.jpg'); 
                 background-position: 75% center !important; 
             }
-
-            .localtop-btn {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
-        }
-
-        .demo-nav-container {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 1rem;
-            z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
     </style>
 </head>
 <body class="selection:bg-vital-green selection:text-white">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="cta-localtop">
+        Attiva il Servizio
+    </a>
 
-    <nav class="sticky top-4 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-2 md:mx-10 rounded-2xl">
+    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 flex items-center border-b border-stone-100 shadow-sm mx-2 md:mx-10 rounded-2xl">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
             <div class="flex items-center gap-2 shrink-0">
                 <div class="w-10 h-10 bg-vital-green rounded-2xl flex items-center justify-center rotate-6 shadow-md">
@@ -95,15 +102,16 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
-                <a href="#metodo" class="hover:text-vital-green transition">Metodo</a>
-                <a href="#servizi" class="hover:text-vital-green transition">Percorsi</a>
-                <a href="#filosofia" class="hover:text-vital-green transition">Filosofia</a>
-                <a href="#bio" class="hover:text-vital-green transition">Chi sono</a>
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
+                <a href="#metodo" class="anchor-link hover:text-vital-green transition">Metodo</a>
+                <a href="#servizi" class="anchor-link hover:text-vital-green transition">Percorsi</a>
+                <a href="#recensioni" class="anchor-link hover:text-vital-green transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-vital-green transition">FAQ</a>
+                <a href="#bio" class="anchor-link hover:text-vital-green transition">Chi sono</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#contatti" class="hidden sm:block bg-glow-orange text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-vital-green transition-all shadow-md">
+                <a href="#contatti" class="anchor-link hidden sm:block bg-glow-orange text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-vital-green transition-all shadow-md">
                     Prenota
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-800">
@@ -113,15 +121,16 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[200] lg:hidden flex flex-col items-center justify-center space-y-8">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[200] lg:hidden flex flex-col items-center justify-center space-y-6">
         <button id="menu-close" class="absolute top-8 right-8 p-2">
             <i data-lucide="x" class="w-8 h-8 text-slate-800"></i>
         </button>
-        <a href="#metodo" class="mobile-link text-2xl font-heading uppercase italic text-slate-800">Metodo</a>
-        <a href="#servizi" class="mobile-link text-2xl font-heading uppercase italic text-slate-800">Percorsi</a>
-        <a href="#filosofia" class="mobile-link text-2xl font-heading uppercase italic text-slate-800">Filosofia</a>
-        <a href="#bio" class="mobile-link text-2xl font-heading uppercase italic text-slate-800">Chi sono</a>
-        <a href="#contatti" class="mobile-link bg-vital-green text-white px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest">Contatti</a>
+        <a href="#metodo" class="anchor-link mobile-link text-2xl font-heading uppercase italic text-slate-800">Metodo</a>
+        <a href="#servizi" class="anchor-link mobile-link text-2xl font-heading uppercase italic text-slate-800">Percorsi</a>
+        <a href="#recensioni" class="anchor-link mobile-link text-2xl font-heading uppercase italic text-slate-800">Recensioni</a>
+        <a href="#faq" class="anchor-link mobile-link text-2xl font-heading uppercase italic text-slate-800">FAQ</a>
+        <a href="#bio" class="anchor-link mobile-link text-2xl font-heading uppercase italic text-slate-800">Chi sono</a>
+        <a href="#contatti" class="anchor-link mobile-link bg-vital-green text-white px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest">Contatti</a>
     </div>
 
     <section class="relative min-h-[85vh] flex items-center hero-nutrition overflow-hidden section-padding">
@@ -137,8 +146,8 @@
                     Basta diete restrittive. Costruiamo insieme un piano alimentare sostenibile basato sulle tue analisi cliniche e sui tuoi ritmi di vita.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#servizi" class="bg-vital-green text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-800 transition-all text-center">Scegli il tuo percorso</a>
-                    <a href="#contatti" class="bg-white border-2 border-slate-100 text-slate-400 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic text-center">Parla con me</a>
+                    <a href="#servizi" class="anchor-link bg-vital-green text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-800 transition-all text-center">Scegli il tuo percorso</a>
+                    <a href="#contatti" class="anchor-link bg-white border-2 border-slate-100 text-slate-400 px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic text-center">Parla con me</a>
                 </div>
             </div>
         </div>
@@ -197,6 +206,31 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-heading text-slate-800 uppercase italic">Esperienze <span class="text-glow-orange">Reali.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-glow-orange mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Finalmente un percorso dove non ho sentito la fame. Ho imparato a mangiare bene e ho perso 8kg in 4 mesi senza rinunce estreme."</p>
+                    <p class="font-bold uppercase text-xs tracking-widest text-slate-400">— Marco R., Milano</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-glow-orange mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Professionale ed empatica. Mi ha aiutata moltissimo a gestire la nutrizione durante la mia prima gravidanza. Super consigliata!"</p>
+                    <p class="font-bold uppercase text-xs tracking-widest text-slate-400">— Giulia V., Monza</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-glow-orange mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Da atleta cercavo qualcuno che capisse le mie esigenze di recupero. I risultati in gara sono migliorati visibilmente."</p>
+                    <p class="font-bold uppercase text-xs tracking-widest text-slate-400">— Luca T., Milano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-24 bg-white section-padding overflow-hidden">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-5xl font-heading text-slate-800 uppercase italic">Il Cibo come <span class="text-vital-green">Risorsa.</span></h2>
@@ -229,6 +263,26 @@
                 </p>
                 <div class="flex gap-4 opacity-50">
                     <span class="text-[10px] font-bold uppercase tracking-widest">Iscr. Albo AA_12345</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-5xl font-heading text-slate-800 uppercase italic text-center mb-16">Domande <span class="text-vital-green">Frequenti.</span></h2>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-3xl border border-slate-100">
+                    <h4 class="font-bold uppercase text-sm mb-2">Cosa devo portare alla prima visita?</h4>
+                    <p class="text-slate-500 text-sm italic">È utile portare le analisi del sangue più recenti (ultimi 6-12 mesi) e un elenco di eventuali farmaci o integratori che stai assumendo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100">
+                    <h4 class="font-bold uppercase text-sm mb-2">Quanto dura il percorso?</h4>
+                    <p class="text-slate-500 text-sm italic">Non c'è una durata fissa. Dipende dai tuoi obiettivi e da come risponde il tuo corpo. In media, si effettuano controlli mensili per monitorare i progressi.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100">
+                    <h4 class="font-bold uppercase text-sm mb-2">È prevista una dieta pesata al grammo?</h4>
+                    <p class="text-slate-500 text-sm italic">Il mio obiettivo è l'educazione alimentare. Sebbene all'inizio possano esserci delle indicazioni sulle porzioni, lavoreremo per renderti autonomo nella gestione del piatto.</p>
                 </div>
             </div>
         </div>
@@ -278,10 +332,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -303,10 +353,32 @@
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+        // Scroll Gestione Ancore
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Chiudi menu mobile se aperto
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+
+                        const offset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                }
             });
         });
     </script>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Eternal Ink | Studio di Tatuaggi e Piercing di Lusso Milano - Demo Mode</title>
@@ -25,7 +26,6 @@
         .bg-gold { background-color: var(--gold); }
         .border-gold { border-color: var(--gold); }
         
-        /* Background Hero - Overlay meno scuro (da 0.4 a 0.2 e 1 a 0.8) */
         .hero-bg { 
             background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%), 
             url('assets/img1.jpg'); 
@@ -33,14 +33,12 @@
             background-position: center; 
         }
 
-        /* Hero Title Scaling */
         .hero-title {
             font-size: clamp(3rem, 12vw, 10rem);
             line-height: 0.9;
             word-wrap: break-word;
         }
 
-        /* Rimozione totale filtri immagini */
         img {
             filter: none !important;
             transition: transform 0.8s ease;
@@ -49,21 +47,19 @@
         .gold-shadow:hover { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
 
         /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo, .contact-btn {
+        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo, .contact-btn, .form-demo {
             pointer-events: none !important;
             cursor: default !important;
         }
 
-        /* Navbar Sticky & Mobile Fix */
         nav {
             top: 0;
             z-index: 100;
         }
         
-        /* Spaziatura sezioni bilanciata */
         .section-padding { padding: clamp(3rem, 8vw, 6rem) 0; }
 
-        /* Bottoni Localtop Mobile: a lato, non a tutto schermo */
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
@@ -72,26 +68,35 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            width: fit-content; /* Impedisce l'estensione a tutto schermo */
+            width: fit-content;
         }
 
-        @media (max-width: 640px) {
-            .demo-nav-container { 
-                bottom: 1rem; 
-                left: 1rem; 
-                /* Rimosso right: 1rem per non forzare la larghezza */
-                flex-direction: column; 
-                gap: 0.4rem;
-            }
-            .demo-nav-container a { 
-                padding: 0.6rem 0.8rem !important; 
-                font-size: 8px !important;
-                white-space: nowrap; /* Evita che il testo vada a capo */
-            }
-            .nav-logo { font-size: 1.25rem !important; }
+        .cta-localtop {
+            background-color: #0F766E;
+            color: white;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 9999px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
-        /* Menu Mobile Styles */
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .cta-localtop:hover { transform: scale(1.05); }
+
         #mobile-menu {
             display: none;
             position: fixed;
@@ -99,7 +104,7 @@
             left: 0;
             width: 100%;
             background: rgba(0,0,0,0.95);
-            backdrop-blur: lg;
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             z-index: 90;
         }
@@ -109,11 +114,8 @@
 <body class="selection:bg-gold selection:text-black">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -124,14 +126,16 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.4em] font-bold text-white/70">
-                <a href="#portfolio" class="hover:text-gold transition">Lavori</a>
-                <a href="#team" class="hover:text-gold transition">Artisti</a>
-                <a href="#piercing" class="hover:text-gold transition">Piercing</a>
-                <a href="#studio" class="hover:text-gold transition">Studio</a>
+                <a href="#portfolio" class="hover:text-gold transition anchor-link">Lavori</a>
+                <a href="#team" class="hover:text-gold transition anchor-link">Artisti</a>
+                <a href="#piercing" class="hover:text-gold transition anchor-link">Piercing</a>
+                <a href="#recensioni" class="hover:text-gold transition anchor-link">Recensioni</a>
+                <a href="#faq" class="hover:text-gold transition anchor-link">FAQ</a>
+                <a href="#studio" class="hover:text-gold transition anchor-link">Studio</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="bg-gold text-black px-3 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all rounded-sm">
+                <a href="#contatti" class="bg-gold text-black px-3 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all rounded-sm anchor-link">
                     Consulenza
                 </a>
                 <button id="menu-toggle" class="lg:hidden text-gold p-1" style="pointer-events: auto !important; cursor: pointer !important;">
@@ -143,11 +147,13 @@
 
     <div id="mobile-menu" class="lg:hidden">
         <div class="flex flex-col p-6 space-y-6 text-center text-[10px] uppercase tracking-[0.4em] font-bold text-white">
-            <a href="#portfolio" class="py-2 border-b border-white/5" onclick="toggleMenu()">Lavori</a>
-            <a href="#team" class="py-2 border-b border-white/5" onclick="toggleMenu()">Artisti</a>
-            <a href="#piercing" class="py-2 border-b border-white/5" onclick="toggleMenu()">Piercing</a>
-            <a href="#studio" class="py-2 border-b border-white/5" onclick="toggleMenu()">Studio</a>
-            <a href="#contatti" class="py-2 text-gold" onclick="toggleMenu()">Contatti</a>
+            <a href="#portfolio" class="py-2 border-b border-white/5 anchor-link">Lavori</a>
+            <a href="#team" class="py-2 border-b border-white/5 anchor-link">Artisti</a>
+            <a href="#piercing" class="py-2 border-b border-white/5 anchor-link">Piercing</a>
+            <a href="#recensioni" class="py-2 border-b border-white/5 anchor-link">Recensioni</a>
+            <a href="#faq" class="py-2 border-b border-white/5 anchor-link">FAQ</a>
+            <a href="#studio" class="py-2 border-b border-white/5 anchor-link">Studio</a>
+            <a href="#contatti" class="py-2 text-gold anchor-link">Contatti</a>
         </div>
     </div>
 
@@ -210,6 +216,38 @@
         </div>
     </section>
 
+    <section id="recensioni" class="section-padding bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl md:text-6xl font-gothic text-white uppercase tracking-widest italic">Esperienze</h2>
+                <div class="h-px w-24 bg-gold mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 border border-white/5 bg-zinc-950/50 rounded-sm italic">
+                    <div class="flex text-gold mb-4 gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+                    </div>
+                    <p class="text-white/70 mb-6 font-light">"Julian ha realizzato un pezzo realistico incredibile. La cura del dettaglio e l'igiene dello studio sono a livelli mai visti prima."</p>
+                    <p class="text-gold font-bold uppercase tracking-widest text-[10px]">Alessandro R. — Milano</p>
+                </div>
+                <div class="p-8 border border-white/5 bg-zinc-950/50 rounded-sm italic">
+                    <div class="flex text-gold mb-4 gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+                    </div>
+                    <p class="text-white/70 mb-6 font-light">"Ho fatto il mio primo piercing qui. Personale gentilissimo e gioielli bellissimi. Mi sono sentita subito a mio agio."</p>
+                    <p class="text-gold font-bold uppercase tracking-widest text-[10px]">Elena V. — Bergamo</p>
+                </div>
+                <div class="p-8 border border-white/5 bg-zinc-950/50 rounded-sm italic">
+                    <div class="flex text-gold mb-4 gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i><i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+                    </div>
+                    <p class="text-white/70 mb-6 font-light">"Studio di un'eleganza rara. Il lavoro Fine Line di Lara è di una precisione chirurgica. Tornerò sicuramente."</p>
+                    <p class="text-gold font-bold uppercase tracking-widest text-[10px]">Matteo L. — Monza</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="section-padding bg-black">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-10">
             <h2 class="text-3xl md:text-5xl font-gothic text-white uppercase italic tracking-tighter">Inchiostro <span class="text-gold italic">&</span> Etica</h2>
@@ -242,6 +280,26 @@
                     <img src="assets/img11.jpg" class="w-40 h-40 md:w-48 md:h-48 mx-auto rounded-full object-cover border border-gold/20 mb-6">
                     <h3 class="text-white font-bold tracking-widest uppercase">Lara Ink</h3>
                     <p class="text-gold text-[10px] mt-2 font-bold uppercase tracking-widest italic">Artista Fine Line</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section-padding bg-zinc-950">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-gothic text-white uppercase tracking-widest italic text-center mb-16">Domande <span class="text-gold">Frequenti</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-white/10 pb-4 italic">
+                    <p class="text-gold font-bold uppercase tracking-widest text-xs mb-2">È necessario prenotare?</p>
+                    <p class="text-white/60 font-light">Sì, lavoriamo preferibilmente su appuntamento per garantire la massima attenzione ad ogni cliente.</p>
+                </div>
+                <div class="border-b border-white/10 pb-4 italic">
+                    <p class="text-gold font-bold uppercase tracking-widest text-xs mb-2">Come avviene la sterilizzazione?</p>
+                    <p class="text-white/60 font-light">Utilizziamo autoclave di Classe B per gli strumenti riutilizzabili e materiali monouso certificati per ogni sessione.</p>
+                </div>
+                <div class="border-b border-white/10 pb-4 italic">
+                    <p class="text-gold font-bold uppercase tracking-widest text-xs mb-2">Fate tatuaggi su minori?</p>
+                    <p class="text-white/60 font-light">Solo dai 16 anni in su, esclusivamente con consenso firmato da entrambi i genitori presenti in studio.</p>
                 </div>
             </div>
         </div>
@@ -302,10 +360,6 @@
         &copy; 2026 Eternal Ink Milano | Realism Collective | Tutti i diritti riservati | LocalTop Demo Mode
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 bg-black border border-gold text-gold p-4 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -319,7 +373,34 @@
 
         function toggleMenu() {
             mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
+
+        // Smooth Scroll con Offset e blocco URL
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Chiudi menu se aperto
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

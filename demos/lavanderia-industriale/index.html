@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lava & Stira Pro | Lavanderia Artigianale & Forniture Alberghiere - Demo Mode</title>
@@ -28,11 +29,14 @@
         .b2b-gradient { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); }
 
         /* Interazioni Demo */
-        .wa-widget-demo, .demo-nav-container a {
-            pointer-events: auto !important;
-        }
-        input, select, textarea {
+        input, select, textarea, button:not(#menu-btn):not(.cta-stripe), a:not(.anchor-link):not(.cta-stripe) {
             pointer-events: none !important;
+            cursor: default !important;
+        }
+        
+        .cta-stripe, #menu-btn, .anchor-link {
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
         /* Mobile Menu Animation */
@@ -41,6 +45,7 @@
             transform: translateY(-100%);
             opacity: 0;
             pointer-events: none;
+            overflow-y: auto;
         }
         #mobile-menu.active {
             transform: translateY(0);
@@ -53,10 +58,18 @@
             h2 { font-size: 2.5rem !important; line-height: 1.1 !important; }
             .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
             
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
+            .cta-stripe {
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .cta-stripe {
+                padding: 16px 28px !important;
+                font-size: 15px !important;
+                min-height: 52px !important;
             }
         }
 
@@ -65,10 +78,22 @@
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+
+        .cta-stripe {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.4);
+            transition: transform 0.2s ease;
+        }
+        .cta-stripe:hover { transform: scale(1.03); }
+
+        .faq-item { border-bottom: 1px solid #e2e8f0; padding: 1.5rem 0; }
     </style>
 </head>
 <body class="selection:bg-indigo-50 selection:text-indigo-900">
@@ -83,16 +108,17 @@
             </div>
             
             <div class="hidden lg:flex space-x-6 xl:space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
-                <a href="#privati" class="hover:text-indigo-500 transition">Privati</a>
-                <a href="#stiro" class="hover:text-indigo-500 transition">Stireria</a>
-                <a href="#filosofia" class="hover:text-indigo-500 transition">Filosofia</a>
-                <a href="#horeca" class="hover:text-indigo-500 transition">Alberghi</a>
-                <a href="#noleggio" class="hover:text-indigo-500 transition">Noleggio</a>
-                <a href="#prezzi" class="hover:text-indigo-500 transition">Listino</a>
+                <a href="#privati" class="anchor-link hover:text-indigo-500 transition">Privati</a>
+                <a href="#stiro" class="anchor-link hover:text-indigo-500 transition">Stireria</a>
+                <a href="#recensioni" class="anchor-link hover:text-indigo-500 transition">Recensioni</a>
+                <a href="#horeca" class="anchor-link hover:text-indigo-500 transition">Alberghi</a>
+                <a href="#noleggio" class="anchor-link hover:text-indigo-500 transition">Noleggio</a>
+                <a href="#faq" class="anchor-link hover:text-indigo-500 transition">FAQ</a>
+                <a href="#prezzi" class="anchor-link hover:text-indigo-500 transition">Listino</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#prenota" class="hidden sm:block bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-500 transition-all">
+                <a href="#prenota" class="anchor-link hidden sm:block bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-500 transition-all">
                     Contatti
                 </a>
                 <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-900 pointer-events-auto cursor-pointer" id="menu-btn">
@@ -104,22 +130,20 @@
 
     <div id="mobile-menu" class="fixed inset-0 z-[90] bg-white pt-32 px-10 lg:hidden">
         <div class="flex flex-col gap-8 text-center">
-            <a href="#privati" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Privati</a>
-            <a href="#stiro" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Stireria</a>
-            <a href="#filosofia" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Filosofia</a>
-            <a href="#horeca" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Alberghi</a>
-            <a href="#noleggio" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Noleggio</a>
-            <a href="#prezzi" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Listino</a>
-            <a href="#prenota" onclick="toggleMenu()" class="bg-indigo-600 text-white py-4 rounded-full font-bold uppercase text-xs tracking-[0.2em]">Prenota Ritiro</a>
+            <a href="#privati" class="anchor-link text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Privati</a>
+            <a href="#stiro" class="anchor-link text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Stireria</a>
+            <a href="#recensioni" class="anchor-link text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Recensioni</a>
+            <a href="#horeca" class="anchor-link text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Alberghi</a>
+            <a href="#noleggio" class="anchor-link text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Noleggio</a>
+            <a href="#faq" class="anchor-link text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">FAQ</a>
+            <a href="#prezzi" class="anchor-link text-2xl font-heading font-bold uppercase tracking-widest text-slate-900">Listino</a>
+            <a href="#prenota" class="anchor-link bg-indigo-600 text-white py-4 rounded-full font-bold uppercase text-xs tracking-[0.2em]">Richiedi Preventivo</a>
         </div>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-stripe">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -133,8 +157,8 @@
                     Dal guardaroba di casa alla biancheria del tuo Hotel. Un unico partner per il trattamento professionale di ogni fibra, con consegna garantita in 24/48 ore.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#horeca" class="bg-indigo-500 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Divisione Hotel</a>
-                    <a href="#privati" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all">Servizi Privati</a>
+                    <a href="#horeca" class="anchor-link bg-indigo-500 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Divisione Hotel</a>
+                    <a href="#privati" class="anchor-link bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all">Servizi Privati</a>
                 </div>
             </div>
         </div>
@@ -181,7 +205,30 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-24 md:py-32 bg-white section-padding overflow-hidden">
+    <section id="recensioni" class="py-24 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-heading font-bold text-slate-900 mb-16 uppercase italic">Dicono di <span class="text-indigo-500">Noi.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-slate-50 rounded-[2rem] text-left">
+                    <div class="flex text-yellow-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Servizio impeccabile per le mie camicie da ufficio. La piega a mano fa davvero la differenza rispetto alle lavanderie standard."</p>
+                    <p class="font-bold text-slate-900">Marco R. - Milano</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-[2rem] text-left">
+                    <div class="flex text-yellow-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Abbiamo affidato a loro il tovagliato del nostro ristorante. Bianco splendente e puntualità svizzera nelle consegne."</p>
+                    <p class="font-bold text-slate-900">Elena G. - Boutique Hotel</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-[2rem] text-left">
+                    <div class="flex text-yellow-400 mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Lavaggio piumoni fantastico. Sono tornati come nuovi e profumati senza odore di chimica. Consigliatissimo!"</p>
+                    <p class="font-bold text-slate-900">Laura V. - Como</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-24 md:py-32 bg-slate-50 section-padding overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="order-2 lg:order-1 relative">
                 <img src="assets/img3.jpg" class="rounded-[2.5rem] md:rounded-[3rem] shadow-2xl w-full h-[400px] md:h-[500px] object-cover" alt="Laboratorio artigianale">
@@ -239,31 +286,55 @@
         </div>
     </section>
 
-    <section id="prezzi" class="py-24 md:py-32 bg-slate-50 section-padding">
+    <section id="faq" class="py-24 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-heading font-bold text-slate-900 mb-12 text-center uppercase">Domande <span class="text-indigo-500">Frequenti.</span></h2>
+            <div class="space-y-2">
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 mb-2 uppercase text-sm">Quali sono i tempi di consegna per i privati?</h4>
+                    <p class="text-slate-500 text-sm italic">Standard in 48 ore. Disponibile servizio express in 24 ore per camicie e capi business.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 mb-2 uppercase text-sm">Effettuate ritiro e consegna a domicilio?</h4>
+                    <p class="text-slate-500 text-sm italic">Certamente, operiamo su appuntamento in tutta l'area urbana per ordini superiori a 30€.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 mb-2 uppercase text-sm">I detergenti usati sono sicuri per le allergie?</h4>
+                    <p class="text-slate-500 text-sm italic">Sì, utilizziamo esclusivamente prodotti ipoallergenici e biodegradabili certificati.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-900 mb-2 uppercase text-sm">Come funziona il noleggio biancheria per B&B?</h4>
+                    <p class="text-slate-500 text-sm italic">Forniamo kit completi in cotone 100%. Sostituiamo lo sporco con il pulito secondo le vostre prenotazioni.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prezzi" class="py-24 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
                 <h2 class="text-6xl md:text-7xl font-heading font-extrabold text-slate-900 leading-none tracking-tighter uppercase italic">Listino <br><span class="text-indigo-500 underline decoration-indigo-200">Ordini.</span></h2>
-                <div class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-slate-100">
-                    <div class="flex justify-between py-5 border-b border-slate-50 items-center gap-4"><span class="font-bold text-sm md:text-base">Camicia (lavata e stirata)</span><span class="text-indigo-600 font-bold">€ 3,50</span></div>
-                    <div class="flex justify-between py-5 border-b border-slate-50 items-center gap-4"><span class="font-bold text-sm md:text-base">Completo Uomo 2 pz</span><span class="text-indigo-600 font-bold">€ 14,00</span></div>
-                    <div class="flex justify-between py-5 border-b border-slate-50 items-center gap-4"><span class="font-bold text-sm md:text-base">Biancheria Hotel (al kg)</span><span class="text-indigo-600 font-bold">Quote</span></div>
+                <div class="bg-slate-50 p-6 md:p-10 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex justify-between py-5 border-b border-slate-200 items-center gap-4"><span class="font-bold text-sm md:text-base">Camicia (lavata e stirata)</span><span class="text-indigo-600 font-bold">€ 3,50</span></div>
+                    <div class="flex justify-between py-5 border-b border-slate-200 items-center gap-4"><span class="font-bold text-sm md:text-base">Completo Uomo 2 pz</span><span class="text-indigo-600 font-bold">€ 14,00</span></div>
+                    <div class="flex justify-between py-5 border-b border-slate-200 items-center gap-4"><span class="font-bold text-sm md:text-base">Biancheria Hotel (al kg)</span><span class="text-indigo-600 font-bold">Quote</span></div>
                     <div class="flex justify-between py-5 items-center gap-4"><span class="font-bold text-sm md:text-base">Abbonamento 20 Camicie</span><span class="bg-indigo-500 text-white px-4 py-1 rounded-full text-[10px] font-bold">€ 60,00</span></div>
                 </div>
             </div>
-            <form id="prenota" class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl space-y-6">
-                <p class="text-[10px] font-bold uppercase tracking-widest text-indigo-600 mb-4 text-center italic">Richiesta ritiro o preventivo B2B (Demo Mode)</p>
+            <form id="prenota" class="bg-slate-900 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl space-y-6">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-4 text-center italic">Richiesta ritiro o preventivo B2B (Demo Mode)</p>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="NOME / AZIENDA" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest">
+                    <input type="text" placeholder="NOME / AZIENDA" class="w-full p-4 bg-white/5 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest text-white">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 bg-white/5 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest text-white">
                 </div>
-                <select class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase text-slate-400">
+                <select class="w-full p-4 bg-white/5 border-none rounded-2xl outline-none text-[10px] font-bold uppercase text-slate-400">
                     <option>TIPOLOGIA DI RICHIESTA</option>
                     <option>PRIVATO: RITIRO A DOMICILIO</option>
                     <option>AZIENDA: NOLEGGIO TESSILI</option>
                     <option>RISTORANTE: LAVAGGIO TOVAGLIE</option>
                 </select>
-                <textarea placeholder="INSERISCI INDIRIZZO E DETTAGLI..." rows="3" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button type="button" class="w-full bg-indigo-600 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Invia Messaggio</button>
+                <textarea placeholder="INSERISCI INDIRIZZO E DETTAGLI..." rows="3" class="w-full p-4 bg-white/5 border-none rounded-2xl outline-none text-[10px] font-bold uppercase tracking-widest text-white"></textarea>
+                <button type="button" class="w-full bg-indigo-600 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl opacity-50">Invia Messaggio</button>
             </form>
         </div>
     </section>
@@ -274,25 +345,50 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('active');
+            const isActive = menu.classList.toggle('active');
             
-            if(menu.classList.contains('active')) {
+            if(isActive) {
                 icon.setAttribute('data-lucide', 'x');
+                document.body.style.overflow = 'hidden';
             } else {
                 icon.setAttribute('data-lucide', 'menu');
+                document.body.style.overflow = '';
             }
             lucide.createIcons();
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Chiudi menu se aperto
+                    const menu = document.getElementById('mobile-menu');
+                    if (menu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

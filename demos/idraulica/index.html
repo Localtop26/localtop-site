@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>IdroMaster | Termoidraulica Milano</title>
@@ -8,15 +9,17 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* RESET GLOBALE & BLOCCO SCROLL ORIZZONTALE */
-        html, body { 
-            max-width: 100%; 
-            overflow-x: hidden; 
+        /* RESET GLOBALE */
+        html { 
+            scroll-behavior: smooth;
+        }
+        body { 
             margin: 0;
             padding: 0;
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #ffffff;
             -webkit-text-size-adjust: 100%;
+            overflow-x: hidden; /* Solo sul body per non rompere lo sticky */
         }
 
         h1, h2, h3 { font-family: 'Outfit', sans-serif; }
@@ -39,7 +42,6 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        /* CONTAINER SICURO */
         .content-container {
             width: 100%;
             max-width: 1280px;
@@ -47,7 +49,6 @@
             padding: 0 1.25rem;
         }
 
-        /* RESET FILTRI IMMAGINI */
         img { 
             filter: none !important; 
             transition: transform 0.7s ease !important;
@@ -66,39 +67,55 @@
             transform: translateX(0);
         }
 
-        /* SBLOCCO INTERAZIONI */
-        * { pointer-events: auto !important; }
-        button, a, input, select, textarea { cursor: pointer !important; }
+        /* DISATTIVAZIONE ELEMENTI */
+        * { pointer-events: none; }
+        #menu-toggle, #menu-close, .mobile-link, a[href^="#"], .localtop-btn, nav a, .nav-sticky-container { pointer-events: auto !important; }
+        button, a, input, select, textarea { cursor: default !important; }
+        .localtop-btn, #menu-toggle, #menu-close, .mobile-link, nav a, a[href^="#"] { cursor: pointer !important; }
 
         @media (max-width: 768px) {
             .hero-section { min-height: 80vh; padding-top: 80px; padding-bottom: 40px; }
             .hero-title { line-height: 1.1; }
-            .localtop-btn { padding: 0.5rem 1rem !important; }
         }
 
-        .demo-nav-container {
+        /* BOTTONE LOCALTOP */
+        .localtop-btn {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 200;
+            background-color: #0F766E;
+            color: white;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-decoration: none;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
+
+        @media (min-width: 768px) {
+            .localtop-btn {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .localtop-btn:hover { transform: scale(1.03); }
     </style>
 </head>
 <body>
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="localtop-btn">
+        Attiva il Servizio
+    </a>
 
-    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center shadow-sm">
+    <header class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center shadow-sm nav-sticky-container">
         <div class="content-container flex justify-between items-center w-full">
             <div class="flex items-center gap-2 md:gap-3 min-w-0">
                 <div class="w-10 h-10 bg-blue-pro rounded-xl flex items-center justify-center shadow-lg shrink-0">
@@ -112,8 +129,10 @@
             
             <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="#servizi" class="hover:text-blue-pro transition">Servizi</a>
+                <a href="#recensioni" class="hover:text-blue-pro transition">Recensioni</a>
                 <a href="#caldaie" class="hover:text-blue-pro transition">Caldaie</a>
                 <a href="#ristrutturazioni" class="hover:text-blue-pro transition">Bagno</a>
+                <a href="#faq" class="hover:text-blue-pro transition">FAQ</a>
                 <a href="#contatti" class="hover:text-blue-pro transition">Contatti</a>
             </div>
 
@@ -126,17 +145,18 @@
                 </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 z-[150] lg:hidden flex flex-col items-center justify-center space-y-8">
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 z-[150] lg:hidden flex flex-col items-center justify-center space-y-6">
         <button id="menu-close" class="absolute top-6 right-6 text-white">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
         <a href="#servizi" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Servizi</a>
+        <a href="#recensioni" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Recensioni</a>
         <a href="#caldaie" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Caldaie</a>
         <a href="#ristrutturazioni" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Bagno</a>
+        <a href="#faq" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">FAQ</a>
         <a href="#contatti" class="mobile-link text-white text-2xl font-black uppercase tracking-widest">Contatti</a>
-        <a href="tel:021234567" class="bg-blue-pro text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest">Chiama Ora</a>
     </div>
 
     <section class="hero-bg min-h-[85vh] flex items-center hero-section">
@@ -153,7 +173,7 @@
                 </p>
                 <div class="flex flex-wrap gap-4 pt-6">
                     <a href="#servizi" class="bg-blue-pro text-white px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest shadow-2xl hover:bg-white hover:text-blue-pro transition-all w-full sm:w-auto text-center">I Nostri Servizi</a>
-                    <a href="tel:021234567" class="bg-white/10 border-2 border-white text-white px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest backdrop-blur-md hover:bg-white hover:text-slate-900 transition-all w-full sm:w-auto text-center">Emergenza h24</a>
+                    <span class="bg-white/10 border-2 border-white text-white px-10 py-5 rounded-lg font-bold uppercase text-xs tracking-widest backdrop-blur-md w-full sm:w-auto text-center opacity-50">Emergenza h24</span>
                 </div>
             </div>
         </div>
@@ -167,19 +187,63 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                 <div class="p-10 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-pro transition-all group shadow-sm">
-                    <i data-lucide="wrench" class="text-blue-pro mb-6 w-12 h-12 group-hover:rotate-12 transition-transform"></i>
+                    <i data-lucide="wrench" class="text-blue-pro mb-6 w-12 h-12"></i>
                     <h3 class="text-2xl font-bold mb-4 uppercase">Riparazioni</h3>
                     <p class="text-slate-500 italic font-light">Perdite d'acqua, scarichi ostruiti e rubinetteria. Interveniamo con ricambi originali.</p>
                 </div>
                 <div class="p-10 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-pro transition-all group shadow-sm">
-                    <i data-lucide="flame" class="text-blue-pro mb-6 w-12 h-12 group-hover:scale-110 transition-transform"></i>
+                    <i data-lucide="flame" class="text-blue-pro mb-6 w-12 h-12"></i>
                     <h3 class="text-2xl font-bold mb-4 uppercase">Caldaie</h3>
                     <p class="text-slate-500 italic font-light">Assistenza specializzata, bollino blu e installazione caldaie a condensazione.</p>
                 </div>
                 <div class="p-10 bg-slate-50 rounded-3xl border border-slate-100 hover:border-blue-pro transition-all group shadow-sm">
-                    <i data-lucide="wind" class="text-blue-pro mb-6 w-12 h-12 group-hover:-translate-y-2 transition-transform"></i>
+                    <i data-lucide="wind" class="text-blue-pro mb-6 w-12 h-12"></i>
                     <h3 class="text-2xl font-bold mb-4 uppercase">Climatizzazione</h3>
                     <p class="text-slate-500 italic font-light">Installazione condizionatori mono e multisplit con certificazione F-GAS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 bg-slate-50">
+        <div class="content-container">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase italic">Cosa dicono di noi</h2>
+                <div class="h-2 w-24 bg-blue-pro mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Intervento rapidissimo per una perdita in bagno. Professionista serio e pulito."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Marco R. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Sostituzione caldaia eseguita a regola d'arte. Mi hanno aiutato anche con le pratiche."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Elena V. - Rho</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ristrutturazione bagno completa in soli 7 giorni. Risultato eccellente, oltre le attese."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Giuseppe T. - Sesto S.G.</p>
                 </div>
             </div>
         </div>
@@ -192,10 +256,6 @@
                 <p class="text-slate-400 text-lg leading-relaxed border-l-2 border-blue-400 pl-8 italic font-light">
                     Sostituisci la caldaia e risparmia fino al 30% sui consumi. Gestiamo noi tutte le pratiche per le detrazioni fiscali 2026.
                 </p>
-                <div class="grid grid-cols-2 gap-6 pt-4">
-                    <div class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"><i data-lucide="check" class="text-blue-400 w-5 h-5"></i> Analisi Fumi</div>
-                    <div class="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"><i data-lucide="check" class="text-blue-400 w-5 h-5"></i> Bollino Blu</div>
-                </div>
             </div>
             <div class="relative group">
                 <img src="assets/img2.jpg" class="rounded-3xl shadow-2xl w-full object-cover" alt="Caldaia">
@@ -211,47 +271,36 @@
             <div class="order-1 lg:order-2 space-y-8 lg:text-right">
                 <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Il tuo <br>Nuovo <span class="text-blue-pro">Bagno.</span></h2>
                 <p class="text-slate-500 text-xl leading-relaxed font-light italic">Dalla demolizione alla posa sanitari: trasformiamo il tuo bagno in un'oasi moderna in tempi record.</p>
-                <div class="flex flex-wrap lg:justify-end gap-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                    <span class="bg-slate-100 px-4 py-2 rounded-full">Progetto 3D</span>
-                    <span class="bg-slate-100 px-4 py-2 rounded-full">Posa Piastrelle</span>
-                    <span class="bg-slate-100 px-4 py-2 rounded-full">Certificazioni</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-white">
+        <div class="content-container max-w-3xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase italic">Domande Frequenti</h2>
+                <div class="h-2 w-24 bg-blue-pro mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="space-y-6">
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 uppercase text-sm mb-2">In quanto tempo intervenite per le urgenze?</h4>
+                    <p class="text-slate-500 italic font-light">Garantiamo l'uscita del tecnico entro 2-4 ore dalla chiamata su tutto il territorio di Milano.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 uppercase text-sm mb-2">Rilasciate certificazioni di conformità?</h4>
+                    <p class="text-slate-500 italic font-light">Assolutamente sì. Ogni nuovo impianto o sostituzione caldaia viene accompagnato dalla documentazione di legge.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contatti" class="py-20 bg-slate-50">
-        <div class="content-container">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-12">
-                    <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic">Fissa un <br><span class="text-blue-pro">Sopralluogo.</span></h2>
-                    <p class="text-slate-500 text-lg italic font-light max-w-md">Siamo a tua disposizione per emergenze e preventivi gratuiti a Milano e provincia.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 gap-6">
-                    <div class="flex items-center gap-6 bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-                        <div class="w-16 h-16 bg-blue-pro text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="phone" class="w-8 h-8"></i></div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Chiama Ora</p>
-                            <p class="text-2xl md:text-3xl font-black text-slate-900">02 123 4567</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-6 bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-                        <div class="w-16 h-16 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="message-circle" class="w-8 h-8"></i></div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">WhatsApp</p>
-                            <p class="text-2xl md:text-3xl font-black text-slate-900">333 123 4567</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-6 bg-slate-900 text-white p-8 rounded-[2rem] shadow-xl">
-                        <div class="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center shadow-xl shrink-0"><i data-lucide="map-pin" class="w-8 h-8"></i></div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-1">Zona Operativa</p>
-                            <p class="text-xl md:text-2xl font-bold uppercase">Milano e Hinterland</p>
-                        </div>
-                    </div>
+        <div class="content-container text-center">
+            <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic mb-12">Fissa un <br><span class="text-blue-pro">Sopralluogo.</span></h2>
+            <div class="max-w-xl mx-auto space-y-4">
+                <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Milano e Provincia</p>
+                    <p class="text-3xl font-black text-slate-900 italic">Disponibilità Immediata</p>
                 </div>
             </div>
         </div>
@@ -263,32 +312,49 @@
         </p>
     </footer>
 
-    <div class="fixed bottom-8 right-8 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-7 h-7"></i>
-    </div>
-
     <script>
-        // Inizializza icone
         lucide.createIcons();
 
-        // Logica Menu Mobile
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function toggleMenu() {
             mobileMenu.classList.toggle('active');
-            document.body.classList.toggle('overflow-hidden');
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
-        
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.classList.remove('overflow-hidden');
+
+        // Gestione Scroll Ancore (Corretto)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Chiudi menu mobile se aperto
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
         });
     </script>

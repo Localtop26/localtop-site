@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Abita & Design | Arredamenti, Cucine e Interior Design - Demo Mode</title>
@@ -19,7 +20,6 @@
             background-size: cover; background-position: center; 
         }
 
-        /* Effetto risalto testo Hero: Overlay bianco leggero */
         .hero-text-glass {
             background: radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 80%);
             backdrop-filter: blur(4px);
@@ -36,9 +36,15 @@
             opacity: 1 !important;
         }
 
-        input, select, textarea, .wa-widget-demo {
+        input, select, textarea, button:not(#menu-toggle, #menu-close, .cta-main), a:not(.anchor-link, .cta-main) {
             pointer-events: none !important;
             cursor: default !important;
+        }
+
+        /* Riabilita interazione per elementi specifici */
+        #menu-toggle, #menu-close, .anchor-link, .cta-main {
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
         h1 { 
@@ -63,7 +69,6 @@
             h2 { font-size: 2.5rem !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             .hero-subtitle { font-size: 1.15rem; color: #333; border-l-2 pl-4; }
-            .demo-nav-container a { padding: 0.75rem 1rem !important; font-size: 8px !important; }
             .hero-text-glass { padding: 1rem; border-radius: 40px; background: rgba(255,255,255,0.7); }
         }
 
@@ -72,10 +77,34 @@
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        
+        .cta-main {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .cta-main {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .cta-main:hover { transform: scale(1.05); }
         
         #mobile-menu {
             display: none;
@@ -98,11 +127,8 @@
 <body class="selection:bg-stone-200 selection:text-stone-800">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-main">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -119,19 +145,19 @@
             </div>
 
             <div class="hidden lg:flex space-x-8 text-[9px] font-bold uppercase tracking-[0.3em] text-stone-500">
-                <a href="#cucine" class="hover:text-stone-900 transition">Cucine</a>
-                <a href="#living" class="hover:text-stone-900 transition">Divani</a>
-                <a href="#notte" class="hover:text-stone-900 transition">Zona Notte</a>
-                <a href="#camerette" class="hover:text-stone-900 transition">Camerette</a>
-                <a href="#materiali" class="hover:text-stone-900 transition">Materia</a>
-                <a href="#progetti" class="hover:text-stone-900 transition">Realizzazioni</a>
+                <a href="#cucine" class="anchor-link hover:text-stone-900 transition">Cucine</a>
+                <a href="#living" class="anchor-link hover:text-stone-900 transition">Divani</a>
+                <a href="#notte" class="anchor-link hover:text-stone-900 transition">Zona Notte</a>
+                <a href="#recensioni" class="anchor-link hover:text-stone-900 transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-stone-900 transition">FAQ</a>
+                <a href="#progetti" class="anchor-link hover:text-stone-900 transition">Realizzazioni</a>
             </div>
 
             <div class="flex items-center gap-3 md:gap-4">
-                <a href="#contatti" class="bg-stone-900 text-white px-4 md:px-8 py-2.5 md:py-3 text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-clay transition-all shadow-md shrink-0">
+                <a href="#contatti" class="anchor-link bg-stone-900 text-white px-4 md:px-8 py-2.5 md:py-3 text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-clay transition-all shadow-md shrink-0">
                     Contattaci
                 </a>
-                <button id="menu-toggle" class="lg:hidden p-2 text-stone-900" style="pointer-events: auto !important; cursor: pointer !important;">
+                <button id="menu-toggle" class="lg:hidden p-2 text-stone-900">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
@@ -139,15 +165,16 @@
     </nav>
 
     <div id="mobile-menu">
-        <button id="menu-close" class="absolute top-6 right-6 p-2" style="pointer-events: auto !important; cursor: pointer !important;">
+        <button id="menu-close" class="absolute top-6 right-6 p-2">
             <i data-lucide="x" class="w-8 h-8 text-stone-900"></i>
         </button>
-        <a href="#cucine" class="mobile-link text-2xl font-serif italic">Cucine</a>
-        <a href="#living" class="mobile-link text-2xl font-serif italic">Divani</a>
-        <a href="#notte" class="mobile-link text-2xl font-serif italic">Zona Notte</a>
-        <a href="#camerette" class="mobile-link text-2xl font-serif italic">Camerette</a>
-        <a href="#materiali" class="mobile-link text-2xl font-serif italic">Materia</a>
-        <a href="#progetti" class="mobile-link text-2xl font-serif italic">Realizzazioni</a>
+        <a href="#cucine" class="anchor-link mobile-link text-2xl font-serif italic">Cucine</a>
+        <a href="#living" class="anchor-link mobile-link text-2xl font-serif italic">Divani</a>
+        <a href="#notte" class="anchor-link mobile-link text-2xl font-serif italic">Zona Notte</a>
+        <a href="#recensioni" class="anchor-link mobile-link text-2xl font-serif italic">Recensioni</a>
+        <a href="#faq" class="anchor-link mobile-link text-2xl font-serif italic">FAQ</a>
+        <a href="#progetti" class="anchor-link mobile-link text-2xl font-serif italic">Realizzazioni</a>
+        <a href="#contatti" class="anchor-link mobile-link text-2xl font-serif italic">Contatti</a>
     </div>
 
     <section class="relative h-[85vh] md:h-[90vh] flex items-center hero-home">
@@ -160,7 +187,7 @@
                     Dal singolo arredo alla ristrutturazione completa. Un viaggio nel design italiano dove ogni dettaglio racconta la tua storia.
                 </p>
                 <div class="flex gap-4 pt-4">
-                    <a href="#contatti" class="bg-stone-900 text-white px-8 md:px-14 py-4 md:py-5 text-[9px] md:text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-clay transition-all">Prenota Consulenza</a>
+                    <a href="#contatti" class="anchor-link bg-stone-900 text-white px-8 md:px-14 py-4 md:py-5 text-[9px] md:text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-clay transition-all">Prenota Consulenza</a>
                 </div>
             </div>
         </div>
@@ -190,6 +217,50 @@
             </div>
             <div class="reveal-card overflow-hidden shadow-2xl rounded-sm">
                 <img src="assets/img2.jpg" class="w-full h-auto object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">Esperienze di Casa</h2>
+                <p class="text-stone-400 uppercase tracking-widest text-[10px] mt-4 font-bold">Cosa dicono di noi i nostri clienti</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-stone-50 border border-stone-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                    </div>
+                    <p class="text-stone-600 italic mb-6">"Hanno saputo trasformare un anonimo bilocale in un gioiello di design. La cucina Ernestomeda è il cuore della casa."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-stone-900">Marco R. • Milano</p>
+                </div>
+                <div class="p-8 bg-stone-50 border border-stone-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                    </div>
+                    <p class="text-stone-600 italic mb-6">"Professionalità eccellente. I rendering 3D erano identici al risultato finale. Consigliatissimi per la cura dei dettagli."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-stone-900">Elena V. • Torino</p>
+                </div>
+                <div class="p-8 bg-stone-50 border border-stone-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-clay fill-clay"></i>
+                    </div>
+                    <p class="text-stone-600 italic mb-6">"I tessuti del divano sono di una qualità mai vista prima. Un team di architetti che sa davvero ascoltare."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-stone-900">Alessandro G. • Monza</p>
+                </div>
             </div>
         </div>
     </section>
@@ -305,6 +376,29 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">Domande Frequenti</h2>
+                <p class="text-stone-400 uppercase tracking-widest text-[10px] mt-4 font-bold">Tutto quello che devi sapere</p>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-lg font-serif italic text-stone-900 mb-2">È possibile richiedere mobili su misura?</h4>
+                    <p class="text-stone-500 text-sm font-light">Assolutamente sì. La nostra falegnameria interna e i partner industriali permettono di adattare ogni sistema alle misure reali della tua casa.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-lg font-serif italic text-stone-900 mb-2">Quali sono i tempi medi di consegna?</h4>
+                    <p class="text-stone-500 text-sm font-light">Per arredi standard i tempi variano dalle 4 alle 6 settimane. Per progetti complessi o cucine sartoriali, la consegna avviene solitamente in 8-10 settimane.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-lg font-serif italic text-stone-900 mb-2">Offrite il servizio di montaggio?</h4>
+                    <p class="text-stone-500 text-sm font-light">Sì, il montaggio è effettuato da squadre interne specializzate che garantiscono la massima cura e pulizia del cantiere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-20 md:py-32 bg-[#faf9f6] section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-10 md:space-y-12">
@@ -336,20 +430,44 @@
 
     <script>
         lucide.createIcons();
+        
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
+        
         function toggleMenu() {
             mobileMenu.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
         }
+        
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+
+        // Gestione scroll ancore
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Se cliccato da menu mobile
+                    if (this.classList.contains('mobile-link')) {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                    
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

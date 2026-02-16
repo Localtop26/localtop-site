@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Puro Splendore | Impresa di Pulizie & Sanificazione Professionale - Demo Mode</title>
@@ -34,10 +35,9 @@
             text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
-        /* Blocco Interazioni (Demo Mode) - Escluso il tasto menu per funzionalità */
-        input, select, textarea, .wa-widget-demo {
+        /* Blocco Interazioni (Demo Mode) */
+        input, select, textarea, button:not(#menu-toggle), a:not([href^="#"]):not([href*="checkout"]) {
             pointer-events: none !important;
-            cursor: default !important;
         }
 
         /* Hero Title Scaling */
@@ -71,20 +71,34 @@
 
         .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
 
+        /* Bottone LocalTop Unificato */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
 
-        @media (max-width: 768px) {
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
         }
     </style>
@@ -103,10 +117,11 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
+            <div class="hidden lg:flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-slate-500 italic">
                 <a href="#uffici" class="hover:text-pure-blue transition">Aziende</a>
                 <a href="#condomini" class="hover:text-pure-blue transition">Condomini</a>
-                <a href="#industriale" class="hover:text-pure-blue transition">Industriale</a>
+                <a href="#recensioni" class="hover:text-pure-blue transition">Recensioni</a>
+                <a href="#faq" class="hover:text-pure-blue transition">FAQ</a>
                 <a href="#speciali" class="hover:text-pure-blue transition">Servizi</a>
             </div>
 
@@ -123,17 +138,15 @@
         <div id="mobile-menu">
             <a href="#uffici" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-slate-600 border-b border-slate-50 pb-2">Aziende</a>
             <a href="#condomini" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-slate-600 border-b border-slate-50 pb-2">Condomini</a>
-            <a href="#industriale" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-slate-600 border-b border-slate-50 pb-2">Industriale</a>
+            <a href="#recensioni" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-slate-600 border-b border-slate-50 pb-2">Recensioni</a>
+            <a href="#faq" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-slate-600 border-b border-slate-50 pb-2">FAQ</a>
             <a href="#speciali" class="mobile-link text-[11px] font-bold uppercase tracking-widest text-slate-600 pb-2">Servizi</a>
         </div>
     </nav>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-4 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="zap" class="w-3 h-3"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-4 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -184,6 +197,37 @@
         </div>
     </section>
 
+    <section id="recensioni" class="section-padding bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-3xl md:text-5xl font-heading text-slate-900 uppercase italic">Cosa Dicono <span class="text-pure-blue">di Noi.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Professionalità impeccabile. Il nostro showroom non è mai stato così brillante. Team discreto e molto rapido."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Marco R. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Gestiamo diversi condomini e Puro Splendore è diventata la nostra ditta di riferimento. Puntuali e trasparenti."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Studio G. - Monza</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ottimo servizio di sanificazione ad ozono. Hanno risolto problemi di odori persistenti in tempi record."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">Elena V. - Bergamo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-16 bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
             <h2 class="text-3xl md:text-5xl font-heading font-bold uppercase italic text-slate-900">Etica <span class="text-pure-blue">&</span> Trasparenza.</h2>
@@ -212,6 +256,28 @@
                     <div class="flex items-center gap-2 md:gap-3"><i data-lucide="wind" class="text-pure-blue w-4 h-4 md:w-5 md:h-5"></i> <span class="text-[8px] md:text-[10px] font-bold uppercase tracking-widest">Trattamento Vetrate</span></div>
                     <div class="flex items-center gap-2 md:gap-3"><i data-lucide="shield-check" class="text-pure-blue w-4 h-4 md:w-5 md:h-5"></i> <span class="text-[8px] md:text-[10px] font-bold uppercase tracking-widest">Sanificazione</span></div>
                     <div class="flex items-center gap-2 md:gap-3"><i data-lucide="trash-2" class="text-pure-blue w-4 h-4 md:w-5 md:h-5"></i> <span class="text-[8px] md:text-[10px] font-bold uppercase tracking-widest">Sgomberi</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section-padding bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-3xl md:text-5xl font-heading text-slate-900 uppercase italic">Domande <span class="text-pure-blue">Frequenti.</span></h2>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-6">
+                    <h3 class="text-lg font-bold text-slate-900 mb-2 italic">Quali prodotti utilizzate per la pulizia?</h3>
+                    <p class="text-slate-500 text-sm italic">Utilizziamo esclusivamente detergenti professionali certificati Ecolabel, sicuri per l'ambiente e per le persone, garantendo la massima efficacia igienizzante.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h3 class="text-lg font-bold text-slate-900 mb-2 italic">Offrite servizi di emergenza?</h3>
+                    <p class="text-slate-500 text-sm italic">Sì, interveniamo per pulizie post-allagamento o sgomberi urgenti entro 24/48 ore dalla chiamata nelle zone di copertura principali.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h3 class="text-lg font-bold text-slate-900 mb-2 italic">Il personale è assicurato?</h3>
+                    <p class="text-slate-500 text-sm italic">Certamente. Tutto il nostro team è regolarmente assunto, formato sulle norme di sicurezza e coperto da assicurazione RCT per qualsiasi evenienza.</p>
                 </div>
             </div>
         </div>
@@ -258,10 +324,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -270,35 +332,57 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
 
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = mobileMenu.style.display === 'flex';
-            mobileMenu.style.display = isOpen ? 'none' : 'flex';
-            
-            // Cambia icona tra menu e x
-            if (!isOpen) {
-                menuIcon.setAttribute('data-lucide', 'x');
-            } else {
-                menuIcon.setAttribute('data-lucide', 'menu');
-            }
-            lucide.createIcons();
-        });
-
-        // Chiude il menu quando si clicca un link
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
+        function toggleMenu(forceClose = false) {
+            const isOpen = forceClose ? true : mobileMenu.style.display === 'flex';
+            if (isOpen) {
                 mobileMenu.style.display = 'none';
                 menuIcon.setAttribute('data-lucide', 'menu');
-                lucide.createIcons();
+                document.body.style.overflow = '';
+            } else {
+                mobileMenu.style.display = 'flex';
+                menuIcon.setAttribute('data-lucide', 'x');
+                document.body.style.overflow = 'hidden';
+            }
+            lucide.createIcons();
+        }
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        // GESTIONE ANCORE CON OFFSET E PREVENT DEFAULT
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Se è un link del menu mobile, chiudi prima il menu
+                    if (this.classList.contains('mobile-link')) {
+                        toggleMenu(true);
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
         // Chiude il menu cliccando fuori
         window.addEventListener('click', (e) => {
-            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.style.display = 'none';
-                menuIcon.setAttribute('data-lucide', 'menu');
-                lucide.createIcons();
+            if (mobileMenu.style.display === 'flex' && !menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                toggleMenu(true);
             }
         });
     </script>

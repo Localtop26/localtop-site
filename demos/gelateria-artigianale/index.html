@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Crema & Cuore | Gelateria Artigianale & Vegan Lab - Demo Mode</title>
@@ -39,8 +40,8 @@
         }
         #mobile-menu.active { display: flex; }
 
-        /* Demo Mode constraints - Solo sui link esterni/contatti specifici */
-        .demo-nav-container a, .contact-btn, .wa-widget-demo {
+        /* Demo Constraints - Disattiva elementi non richiesti */
+        .contact-btn, form, input, textarea, .demo-disabled {
             pointer-events: none !important;
             cursor: default !important;
         }
@@ -52,10 +53,11 @@
             
             .nav-container { padding-left: 1rem !important; padding-right: 1rem !important; gap: 0.25rem; }
             .nav-logo-text { font-size: 1.25rem !important; }
-            
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
+
+            .btn-localtop {
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
             }
         }
 
@@ -63,15 +65,30 @@
             h1 { font-size: 9rem !important; }
         }
 
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+            padding: 16px 28px;
+            font-size: 15px;
+            min-height: 52px;
+        }
+        .btn-localtop:hover { transform: translateY(-2px); }
+
+        .faq-item { border-bottom: 1px solid #fdf0e6; padding: 1.5rem 0; }
     </style>
 </head>
 <body class="selection:bg-strawberry selection:text-white">
@@ -81,20 +98,19 @@
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
         <nav class="flex flex-col items-center gap-8">
-            <a href="#filosofia" onclick="toggleMenu()" class="text-3xl font-pop font-bold uppercase text-slate-800">Filosofia</a>
-            <a href="#gusti" onclick="toggleMenu()" class="text-3xl font-pop font-bold uppercase text-slate-800">Gusti</a>
-            <a href="#vegan" onclick="toggleMenu()" class="text-3xl font-pop font-bold uppercase text-slate-800">Vegan</a>
-            <a href="#torte" onclick="toggleMenu()" class="text-3xl font-pop font-bold uppercase text-slate-800">Torte</a>
-            <a href="#contatti" onclick="toggleMenu()" class="text-3xl font-pop font-bold uppercase text-strawberry">Dove Siamo</a>
+            <a href="#filosofia" class="anchor-link text-3xl font-pop font-bold uppercase text-slate-800">Filosofia</a>
+            <a href="#gusti" class="anchor-link text-3xl font-pop font-bold uppercase text-slate-800">Gusti</a>
+            <a href="#recensioni" class="anchor-link text-3xl font-pop font-bold uppercase text-slate-800">Recensioni</a>
+            <a href="#vegan" class="anchor-link text-3xl font-pop font-bold uppercase text-slate-800">Vegan</a>
+            <a href="#torte" class="anchor-link text-3xl font-pop font-bold uppercase text-slate-800">Torte</a>
+            <a href="#faq" class="anchor-link text-3xl font-pop font-bold uppercase text-slate-800">FAQ</a>
+            <a href="#contatti" class="anchor-link text-3xl font-pop font-bold uppercase text-strawberry">Dove Siamo</a>
         </nav>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -110,15 +126,17 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-stone-400">
-                <a href="#filosofia" class="hover:text-strawberry transition">Filosofia</a>
-                <a href="#gusti" class="hover:text-strawberry transition">Gusti</a>
-                <a href="#vegan" class="hover:text-pistachio transition">Vegan & Intolleranze</a>
-                <a href="#torte" class="hover:text-strawberry transition">Torte</a>
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-stone-400">
+                <a href="#filosofia" class="anchor-link hover:text-strawberry transition">Filosofia</a>
+                <a href="#gusti" class="anchor-link hover:text-strawberry transition">Gusti</a>
+                <a href="#recensioni" class="anchor-link hover:text-strawberry transition">Recensioni</a>
+                <a href="#vegan" class="anchor-link hover:text-pistachio transition">Vegan</a>
+                <a href="#torte" class="anchor-link hover:text-strawberry transition">Torte</a>
+                <a href="#faq" class="anchor-link hover:text-strawberry transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="bg-pistachio text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-strawberry transition-all shadow-md hidden md:block">
+                <a href="#contatti" class="anchor-link bg-pistachio text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-strawberry transition-all shadow-md hidden md:block">
                     Dove Siamo
                 </a>
                 <button type="button" onclick="toggleMenu()" class="lg:hidden text-strawberry p-2 relative z-[110]" aria-label="Apri menu">
@@ -141,8 +159,8 @@
                     Gelato naturale, senza basi pronte né coloranti artificiali. Solo latte fresco, frutta di stagione e amore per la tradizione.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#gusti" class="bg-strawberry text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl">Sfoglia i Gusti</a>
-                    <a href="#vegan" class="bg-pistachio text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl">Gusti Vegan</a>
+                    <a href="#gusti" class="anchor-link bg-strawberry text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl">Sfoglia i Gusti</a>
+                    <a href="#vegan" class="anchor-link bg-pistachio text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl">Gusti Vegan</a>
                 </div>
             </div>
         </div>
@@ -191,6 +209,47 @@
                     <img src="assets/img5.jpg" class="w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full object-cover mb-8 shadow-md">
                     <h4 class="text-xl md:text-2xl font-pop text-slate-700 mb-2 uppercase">Nocciola Trilobata</h4>
                     <p class="text-sm text-stone-400 italic">Tonda Gentile del Piemonte tostata nei nostri forni.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-pop text-slate-800 mb-12 md:mb-20 uppercase text-center">Dicono di <span class="text-strawberry">Noi</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-[#fffaf5] p-8 rounded-3xl border border-orange-50">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                    </div>
+                    <p class="italic text-stone-600 mb-6">"Il miglior pistacchio mai mangiato a Milano. Si sente proprio la qualità delle materie prime."</p>
+                    <p class="font-bold text-slate-800 text-sm">Marco R. - Milano</p>
+                </div>
+                <div class="bg-[#fffaf5] p-8 rounded-3xl border border-orange-50">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                    </div>
+                    <p class="italic text-stone-600 mb-6">"Finalmente un'opzione vegana che non sembra un ripiego. Il gelato al cioccolato fondente è spaziale!"</p>
+                    <p class="font-bold text-slate-800 text-sm">Elena V. - Monza</p>
+                </div>
+                <div class="bg-[#fffaf5] p-8 rounded-3xl border border-orange-50">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-strawberry text-strawberry"></i>
+                    </div>
+                    <p class="italic text-stone-600 mb-6">"Le loro torte gelato sono diventate un must per ogni compleanno in famiglia. Artigianalità vera."</p>
+                    <p class="font-bold text-slate-800 text-sm">Giulia B. - Milano</p>
                 </div>
             </div>
         </div>
@@ -245,6 +304,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 bg-[#fff8f0] section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-pop text-slate-800 mb-12 uppercase text-center">Domande <span class="text-pistachio">Frequenti</span></h2>
+            <div class="space-y-4">
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-800 mb-2">Avete gusti senza glutine?</h4>
+                    <p class="text-stone-500 text-sm">Quasi tutti i nostri gusti di frutta e le nostre creme pure sono privi di glutine. Chiedi sempre al nostro staff per la lista allergeni aggiornata.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-800 mb-2">Fate consegne a domicilio?</h4>
+                    <p class="text-stone-500 text-sm">Certamente! Siamo presenti sulle principali piattaforme di delivery oppure puoi chiamarci direttamente per grandi ordini.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="font-bold text-slate-800 mb-2">Posso ordinare una torta personalizzata?</h4>
+                    <p class="text-stone-500 text-sm">Sì, richiediamo almeno 48 ore di preavviso per poterti garantire la massima qualità e personalizzazione.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-20 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div class="space-y-8 text-center lg:text-left">
@@ -290,15 +369,11 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-6 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         // Inizializza icone
         lucide.createIcons();
 
-        // Funzione Toggle Menu corretta
+        // Funzione Toggle Menu
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             if (menu.style.display === 'flex') {
@@ -309,6 +384,33 @@
                 document.body.style.overflow = 'hidden';
             }
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Se siamo in mobile menu, chiudilo
+                const menu = document.getElementById('mobile-menu');
+                if (menu.style.display === 'flex') {
+                    toggleMenu();
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

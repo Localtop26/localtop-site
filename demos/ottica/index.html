@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vision Lab | Ottica d'Eccellenza & Designer Eyewear - Demo Mode</title>
@@ -23,7 +24,7 @@
         img { filter: none !important; grayscale: 0 !important; }
         .optical-hover:hover img { transform: scale(1.05); transition: all 1s ease; filter: none !important; }
 
-        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .wa-widget-demo, a:not(.mobile-link):not([href^="#"]) {
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .wa-widget-demo, a:not(.mobile-link):not(.anchor-link):not([href="https://localtop.it/checkout"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -39,7 +40,6 @@
             h2 { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
             .hero-optic { background: linear-gradient(to bottom, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.7) 100%), url('assets/img1.jpg'); background-position: 70% center; min-height: 70vh; }
-            .demo-nav-container a { padding: 0.75rem 1.25rem !important; font-size: 8px !important; }
         }
 
         .demo-nav-container {
@@ -47,10 +47,34 @@
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="selection:bg-blue-100 selection:text-blue-900">
@@ -68,15 +92,16 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#eyewear" class="hover:text-vision transition">Eyewear</a>
-                <a href="#lenti" class="hover:text-vision transition">Lenti</a>
-                <a href="#filosofia" class="hover:text-vision transition">Filosofia</a>
-                <a href="#controllo" class="hover:text-vision transition">Check-up</a>
-                <a href="#servizi" class="hover:text-vision transition">Servizi</a>
+                <a href="#eyewear" class="anchor-link hover:text-vision transition">Eyewear</a>
+                <a href="#lenti" class="anchor-link hover:text-vision transition">Lenti</a>
+                <a href="#servizi" class="anchor-link hover:text-vision transition">Servizi</a>
+                <a href="#recensioni" class="anchor-link hover:text-vision transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-vision transition">FAQ</a>
+                <a href="#contatti" class="anchor-link hover:text-vision transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-2 md:gap-4 shrink-0">
-                <a href="#contatti" class="hidden sm:block bg-slate-900 text-white px-6 md:px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-vision transition-all">
+                <a href="#contatti" class="anchor-link hidden sm:block bg-slate-900 text-white px-6 md:px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-vision transition-all">
                     Prenota Esame
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 pointer-events-auto cursor-pointer flex items-center justify-center" aria-label="Menu">
@@ -90,20 +115,17 @@
         <button id="menu-close" class="absolute top-10 right-6 text-slate-900 pointer-events-auto cursor-pointer">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#eyewear" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Eyewear</a>
-        <a href="#lenti" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Lenti</a>
-        <a href="#filosofia" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Filosofia</a>
-        <a href="#controllo" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Check-up</a>
-        <a href="#servizi" class="mobile-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Servizi</a>
-        <a href="#contatti" class="mobile-link bg-vision text-white px-10 py-4 rounded-sm font-bold uppercase text-xs tracking-widest pointer-events-auto">Prenota Ora</a>
+        <a href="#eyewear" class="mobile-link anchor-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Eyewear</a>
+        <a href="#lenti" class="mobile-link anchor-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Lenti</a>
+        <a href="#servizi" class="mobile-link anchor-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Servizi</a>
+        <a href="#recensioni" class="mobile-link anchor-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">Recensioni</a>
+        <a href="#faq" class="mobile-link anchor-link text-2xl font-tech font-bold uppercase tracking-tighter pointer-events-auto">FAQ</a>
+        <a href="#contatti" class="mobile-link anchor-link bg-vision text-white px-10 py-4 rounded-sm font-bold uppercase text-xs tracking-widest pointer-events-auto">Prenota Ora</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -120,8 +142,8 @@
                     Un connubio tra design ricercato e protocolli optometrici avanzati. Scopri la collezione di montature esclusive e le lenti su misura.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#eyewear" class="bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-sm font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-vision transition-all">Vedi Montature</a>
-                    <a href="#lenti" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-sm font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all">Analisi Lenti</a>
+                    <a href="#eyewear" class="anchor-link bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-sm font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-vision transition-all pointer-events-auto">Vedi Montature</a>
+                    <a href="#lenti" class="anchor-link bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-sm font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all pointer-events-auto">Analisi Lenti</a>
                 </div>
             </div>
         </div>
@@ -263,6 +285,67 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-16 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic tracking-tighter mb-16 text-center">Feedback <span class="text-vision">Clienti.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Professionalità incredibile. Le lenti progressive che mi hanno preparato sono perfette fin dal primo istante."</p>
+                    <p class="font-bold uppercase text-[10px] tracking-widest text-slate-900">— Marco R., Milano</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Montature di design che non si trovano altrove. Il personale ti guida con estrema cura e competenza tecnica."</p>
+                    <p class="font-bold uppercase text-[10px] tracking-widest text-slate-900">— Elena S., Monza</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"L'esame della vista con la mappatura corneale è stato una rivelazione. Mai vista così nitidamente."</p>
+                    <p class="font-bold uppercase text-[10px] tracking-widest text-slate-900">— Giorgio M., Milano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic tracking-tighter mb-12 text-center">Domande <span class="text-vision">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-2">Quanto tempo serve per un esame della vista completo?</h4>
+                    <p class="text-slate-500 text-sm">L'esame optometrico avanzato dura circa 30-45 minuti, includendo la mappatura digitale e l'analisi dello stress visivo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-2">Offrite garanzie sulle lenti progressive?</h4>
+                    <p class="text-slate-500 text-sm">Sì, offriamo una garanzia di adattamento totale di 30 giorni. Se non ti abitui alle lenti, le sostituiamo gratuitamente.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-2">È necessario l'appuntamento?</h4>
+                    <p class="text-slate-500 text-sm">Consigliamo sempre la prenotazione per garantire la disponibilità dei nostri specialisti e delle strumentazioni laser.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20">
             <div class="space-y-10 md:space-y-12">
@@ -299,10 +382,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-white border border-slate-100 text-slate-900 p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -321,18 +400,44 @@
             }
         }
 
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleMenu();
-        });
+        if (menuToggle) {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+        }
         
-        menuClose.addEventListener('click', toggleMenu);
+        if (menuClose) {
+            menuClose.addEventListener('click', toggleMenu);
+        }
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+        // Gestione Anchor Scroll Unificata
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Se cliccato da menu mobile
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.add('hidden');
+                            mobileMenu.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+
+                        const offset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
     </script>

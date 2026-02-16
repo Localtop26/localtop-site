@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orizzonti Infiniti | Viaggi di Lusso Demo</title>
@@ -21,11 +22,11 @@
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
-            filter: none !important; /* Forza rimozione filtri */
+            filter: none !important;
         }
 
-        /* Demo Mode: Interazioni form disabilitate come da originale */
-        input, select, textarea, .whatsapp-widget {
+        /* Demo Mode: Interazioni disabilitate */
+        input, select, textarea, button:not(#menu-toggle, .cta-main), .disabled-link {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -40,29 +41,46 @@
             .responsive-h1 { font-size: clamp(2.5rem, 12vw, 4rem) !important; line-height: 1.1 !important; }
             .responsive-h2 { font-size: clamp(2rem, 10vw, 3rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
         }
 
-        /* Floating Buttons Bottom-Left */
+        /* Floating Button Bottom-Left */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+
+        .cta-main {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .cta-main {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .cta-main:hover { transform: scale(1.05); }
+        .cta-main:active { transform: scale(0.95); }
 
         .dest-card { transition: all 0.5s ease; border-radius: 1.5rem; overflow: hidden; position: relative; }
         .dest-card:hover { transform: translateY(-10px); }
 
-        /* Menu Mobile Styles */
+        /* Menu Mobile & Tablet Styles */
         #mobile-menu {
             display: none;
             position: absolute;
@@ -84,11 +102,8 @@
 <body class="selection:bg-teal-100 selection:text-teal-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-main shadow-2xl">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -101,22 +116,26 @@
                 <span class="text-xl md:text-2xl font-bold text-slate-900 tracking-tighter uppercase truncate">ORIZZONTI<span class="text-[#ff6b6b]">INFINITI</span></span>
             </div>
             
-            <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#destinazioni" class="hover:text-[#ff6b6b] transition">Mete</a>
-                <a href="#bespoke" class="hover:text-[#ff6b6b] transition">Su Misura</a>
-                <a href="#filosofia" class="hover:text-[#ff6b6b] transition">Chi Siamo</a>
-                <a href="#contatti" class="hover:text-[#ff6b6b] transition">Contatti</a>
+            <div class="hidden lg:flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#destinazioni" class="nav-anchor hover:text-[#ff6b6b] transition">Mete</a>
+                <a href="#bespoke" class="nav-anchor hover:text-[#ff6b6b] transition">Su Misura</a>
+                <a href="#recensioni" class="nav-anchor hover:text-[#ff6b6b] transition">Recensioni</a>
+                <a href="#faq" class="nav-anchor hover:text-[#ff6b6b] transition">FAQ</a>
+                <a href="#filosofia" class="nav-anchor hover:text-[#ff6b6b] transition">Chi Siamo</a>
+                <a href="#contatti" class="nav-anchor hover:text-[#ff6b6b] transition">Contatti</a>
             </div>
 
-            <button id="menu-toggle" class="md:hidden p-2 text-slate-900" aria-label="Menu">
+            <button id="menu-toggle" class="lg:hidden p-2 text-slate-900" aria-label="Menu">
                 <i data-lucide="menu" class="w-7 h-7"></i>
             </button>
 
-            <div id="mobile-menu" class="md:hidden">
-                <a href="#destinazioni" class="nav-link text-xs font-bold uppercase tracking-widest p-2 border-b border-slate-50">Mete</a>
-                <a href="#bespoke" class="nav-link text-xs font-bold uppercase tracking-widest p-2 border-b border-slate-50">Su Misura</a>
-                <a href="#filosofia" class="nav-link text-xs font-bold uppercase tracking-widest p-2 border-b border-slate-50">Chi Siamo</a>
-                <a href="#contatti" class="nav-link text-xs font-bold uppercase tracking-widest p-2">Contatti</a>
+            <div id="mobile-menu" class="lg:hidden">
+                <a href="#destinazioni" class="nav-anchor text-xs font-bold uppercase tracking-widest p-2 border-b border-slate-50">Mete</a>
+                <a href="#bespoke" class="nav-anchor text-xs font-bold uppercase tracking-widest p-2 border-b border-slate-50">Su Misura</a>
+                <a href="#recensioni" class="nav-anchor text-xs font-bold uppercase tracking-widest p-2 border-b border-slate-50">Recensioni</a>
+                <a href="#faq" class="nav-anchor text-xs font-bold uppercase tracking-widest p-2 border-b border-slate-50">FAQ</a>
+                <a href="#filosofia" class="nav-anchor text-xs font-bold uppercase tracking-widest p-2 border-b border-slate-50">Chi Siamo</a>
+                <a href="#contatti" class="nav-anchor text-xs font-bold uppercase tracking-widest p-2">Contatti</a>
             </div>
         </div>
     </nav>
@@ -185,6 +204,35 @@
         </div>
     </section>
 
+    <section id="recensioni" class="section-padding py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="responsive-h2 text-5xl font-serif italic text-slate-900 text-center mb-16">Esperienze <span class="text-[#ff6b6b]">Memorabili.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Un viaggio in Giappone organizzato nei minimi dettagli. Abbiamo avuto accesso a templi solitamente chiusi al pubblico. Indimenticabile."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-slate-900">Marco V. - Milano</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"La Namibia è stata un'esperienza mistica grazie ai lodge selezionati da Orizzonti Infiniti. Il lusso vero è la pace che abbiamo trovato."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-slate-900">Elena R. - Roma</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Non credevo fosse possibile trasformare una crociera privata in un'avventura così profonda. Servizio impeccabile h24."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-slate-900">Alessandro G. - Torino</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="section-padding py-24 bg-[#0f172a] text-white px-6">
         <div class="max-w-5xl mx-auto text-center space-y-12">
             <h2 class="text-[10px] font-bold text-[#ff6b6b] uppercase tracking-[0.5em]">La Nostra Essenza</h2>
@@ -193,6 +241,26 @@
             </p>
             <div class="flex justify-center">
                 <div class="w-24 h-1 bg-[#ff6b6b]"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section-padding py-24 bg-slate-50 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="responsive-h2 text-5xl font-serif italic text-slate-900 text-center mb-16">Domande <span class="text-[#ff6b6b]">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-xs uppercase tracking-widest text-slate-900 mb-2">Come funziona la progettazione?</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Iniziamo con una consulenza telefonica o in presenza per capire i vostri desideri, poi elaboriamo una prima bozza di itinerario totalmente personalizzata.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-xs uppercase tracking-widest text-slate-900 mb-2">Siete operativi in tutto il mondo?</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Sì, grazie alla nostra rete globale di partner locali esclusivi, siamo in grado di coprire ogni continente con standard di lusso garantiti.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-xs uppercase tracking-widest text-slate-900 mb-2">Cosa include il servizio Concierge?</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Dalla prenotazione di ristoranti stellati all'assistenza immediata per qualsiasi imprevisto durante il viaggio, siamo a vostra disposizione 24/7.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -231,34 +299,45 @@
         </p>
     </footer>
 
-    <div class="whatsapp-widget fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
-        // Inizializzazione Lucide Icons
         lucide.createIcons();
 
-        // Menu Mobile Logic
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.querySelectorAll('.nav-link');
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
-        // Chiudi menu al click su una voce
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+        document.querySelectorAll('.nav-anchor').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Chiudi menu
                 mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
         });
 
-        // Chiudi menu se si clicca fuori
         window.addEventListener('click', (e) => {
-            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target) && mobileMenu.classList.contains('active')) {
                 mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     </script>

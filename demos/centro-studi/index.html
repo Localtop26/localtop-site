@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bright Minds | Centro Studi & Corsi di Lingue - Demo</title>
@@ -22,19 +23,17 @@
         }
         .class-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid transparent; }
         
-        /* Rimozione Grayscale ovunque */
         .grayscale, .group-hover\:grayscale-0 {
             filter: none !important;
         }
 
         /* Demo Mode Lock */
-        button, input, select, textarea, .chat-widget-demo {
+        input, select, textarea, form button, .hero-learning a, .py-20 button {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Mobile Menu Logic */
         #mobile-menu {
             display: none;
         }
@@ -46,25 +45,40 @@
             h1 { font-size: clamp(2.8rem, 10vw, 4.5rem) !important; line-height: 1 !important; }
             h2 { font-size: clamp(2rem, 8vw, 3rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem;
-                font-size: 8px;
-            }
         }
 
-        .demo-nav-container {
+        /* Pulsante Attiva Servizio LocalTop */
+        .btn-localtop {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s;
+            text-decoration: none;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
 
-        /* Prevenzione overflow orizzontale */
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
+
         .max-w-7xl { width: 100%; max-width: 80rem; margin-left: auto; margin-right: auto; }
     </style>
 </head>
@@ -82,15 +96,16 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#inglese" class="hover:text-smart-blue transition">Inglese</a>
-                <a href="#scuola" class="hover:text-smart-blue transition">Aiuto Scuola</a>
-                <a href="#metodo" class="hover:text-smart-blue transition">Metodo</a>
-                <a href="#laboratori" class="hover:text-smart-blue transition">Laboratori</a>
+            <div class="hidden lg:flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="#inglese" class="nav-link hover:text-smart-blue transition">Inglese</a>
+                <a href="#scuola" class="nav-link hover:text-smart-blue transition">Aiuto Scuola</a>
+                <a href="#laboratori" class="nav-link hover:text-smart-blue transition">Laboratori</a>
+                <a href="#recensioni" class="nav-link hover:text-smart-blue transition">Recensioni</a>
+                <a href="#faq" class="nav-link hover:text-smart-blue transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden sm:block bg-focus-yellow text-slate-900 px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-smart-blue hover:text-white transition-all">
+                <a href="#contatti" class="nav-link hidden sm:block bg-focus-yellow text-slate-900 px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-smart-blue hover:text-white transition-all !pointer-events-auto !cursor-pointer">
                     Contattaci
                 </a>
                 <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-900 !pointer-events-auto !cursor-pointer">
@@ -100,25 +115,19 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 z-[110] flex-col items-center justify-center gap-8 text-white">
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 z-[110] flex-col items-center justify-center gap-6 text-white text-center">
         <button onclick="toggleMenu()" class="absolute top-8 right-8 !pointer-events-auto !cursor-pointer">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#inglese" onclick="toggleMenu()" class="text-2xl font-heading font-bold !pointer-events-auto">Inglese</a>
-        <a href="#scuola" onclick="toggleMenu()" class="text-2xl font-heading font-bold !pointer-events-auto">Aiuto Scuola</a>
-        <a href="#metodo" onclick="toggleMenu()" class="text-2xl font-heading font-bold !pointer-events-auto">Metodo</a>
-        <a href="#laboratori" onclick="toggleMenu()" class="text-2xl font-heading font-bold !pointer-events-auto">Laboratori</a>
-        <a href="#contatti" onclick="toggleMenu()" class="bg-focus-yellow text-slate-900 px-10 py-4 rounded-full font-black uppercase text-xs !pointer-events-auto">Prenota Ora</a>
+        <a href="#inglese" class="nav-link text-xl font-heading font-bold !pointer-events-auto">Inglese</a>
+        <a href="#scuola" class="nav-link text-xl font-heading font-bold !pointer-events-auto">Aiuto Scuola</a>
+        <a href="#laboratori" class="nav-link text-xl font-heading font-bold !pointer-events-auto">Laboratori</a>
+        <a href="#recensioni" class="nav-link text-xl font-heading font-bold !pointer-events-auto">Recensioni</a>
+        <a href="#faq" class="nav-link text-xl font-heading font-bold !pointer-events-auto">FAQ</a>
+        <a href="#contatti" class="nav-link bg-focus-yellow text-slate-900 px-10 py-4 rounded-full font-black uppercase text-xs !pointer-events-auto mt-4">Contattaci</a>
     </div>
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 !pointer-events-auto !cursor-pointer">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 !pointer-events-auto !cursor-pointer">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="btn-localtop">Attiva il Servizio</a>
 
     <section class="relative h-[80vh] md:h-[85vh] flex items-center hero-learning overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
@@ -133,8 +142,8 @@
                     Dall'inglese certificato al supporto in ogni materia scolastica. Costruiamo fiducia, autonomia e competenze per gli studenti di oggi.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#scuola" class="bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-smart-blue transition-all !pointer-events-auto">Supporto Scolastico</a>
-                    <a href="#inglese" class="bg-white border border-slate-200 text-slate-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all !pointer-events-auto">Corsi di Lingue</a>
+                    <a href="#scuola" class="nav-link bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-smart-blue transition-all !pointer-events-auto">Supporto Scolastico</a>
+                    <a href="#inglese" class="nav-link bg-white border border-slate-200 text-slate-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all !pointer-events-auto">Corsi di Lingue</a>
                 </div>
             </div>
         </div>
@@ -185,6 +194,29 @@
                     <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-smart-blue w-5 h-5"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-700">Recupero Debiti</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-smart-blue w-5 h-5"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-700">Doposcuola Specialistico</span></div>
                     <div class="flex items-center gap-3"><i data-lucide="check-circle" class="text-smart-blue w-5 h-5"></i> <span class="text-[10px] font-bold uppercase tracking-widest text-slate-700">DSA & BES Welcome</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 italic uppercase text-center mb-16">Cosa Dicono <span class="text-smart-blue">Di Noi.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-focus-yellow mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6 text-sm">"Tutor preparatissimi. Mio figlio ha recuperato due debiti in un mese."</p>
+                    <p class="font-bold text-slate-900 text-xs">Marco R. - Milano</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-focus-yellow mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6 text-sm">"Il corso Cambridge è eccellente, ho preso la certificazione senza problemi."</p>
+                    <p class="font-bold text-slate-900 text-xs">Elena V. - Monza</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                    <div class="flex text-focus-yellow mb-4"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-slate-600 italic mb-6 text-sm">"Metodo di studio rivoluzionario. Studio meno e i voti sono migliorati!"</p>
+                    <p class="font-bold text-slate-900 text-xs">Luca S. - Milano</p>
                 </div>
             </div>
         </div>
@@ -257,34 +289,34 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 italic uppercase text-center mb-16">FAQ. <span class="text-smart-blue">Domande Frequenti.</span></h2>
+            <div class="space-y-4">
+                <div class="border-b border-slate-100 pb-4">
+                    <p class="font-bold text-slate-900 uppercase text-[11px] tracking-wider mb-2">Quali materie trattate?</p>
+                    <p class="text-slate-500 italic text-sm">Tutte le materie scolastiche: da matematica e fisica a latino e greco.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-4">
+                    <p class="font-bold text-slate-900 uppercase text-[11px] tracking-wider mb-2">Fate corsi per certificazioni?</p>
+                    <p class="text-slate-500 italic text-sm">Sì, siamo specializzati in certificazioni Cambridge, TOEFL e IELTS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-20 md:py-32 bg-white section-padding overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
             <div class="space-y-8 md:space-y-12">
                 <h2 class="text-5xl md:text-7xl font-heading font-black text-slate-900 leading-none tracking-tighter uppercase italic">Facciamo <br><span class="text-focus-yellow underline">Squadra.</span></h2>
-                <div class="space-y-6 md:space-y-8">
+                <div class="space-y-6 md:space-y-8 text-sm">
                     <div class="flex items-center gap-6">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-2xl md:rounded-3xl flex items-center justify-center text-smart-blue shadow-md border border-slate-50"><i data-lucide="map-pin"></i></div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">La nostra sede</p>
-                            <p class="text-lg md:text-xl font-bold">Via dei Talenti 22, Milano</p>
-                        </div>
+                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-smart-blue shadow-md border border-slate-50"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase text-slate-400">La nostra sede</p><p class="font-bold italic">Via dei Talenti 22, Milano</p></div>
                     </div>
                     <div class="flex items-center gap-6">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-2xl md:rounded-3xl flex items-center justify-center text-smart-blue shadow-md border border-slate-50"><i data-lucide="phone"></i></div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Chiamaci ora</p>
-                            <p class="text-lg md:text-xl font-bold">02 987 654 32</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-6">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-2xl md:rounded-3xl flex items-center justify-center text-smart-blue shadow-md border border-slate-50"><i data-lucide="mail"></i></div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Inviaci un'email</p>
-                            <p class="text-lg md:text-xl font-bold">info@brightminds.it</p>
-                        </div>
-                    </div>
-                    <div class="pt-4">
-                        <button class="bg-smart-blue text-white px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg">Chiama per Info</button>
+                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-smart-blue shadow-md border border-slate-50"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[10px] font-bold uppercase text-slate-400">Chiamaci</p><p class="font-bold italic">02 987 654 32</p></div>
                     </div>
                 </div>
             </div>
@@ -295,13 +327,6 @@
                     <input type="text" placeholder="NOME STUDENTE" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-bold tracking-widest">
                 </div>
                 <input type="email" placeholder="IL TUO INDIRIZZO EMAIL" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-bold tracking-widest">
-                <select class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase text-slate-400 tracking-widest">
-                    <option>COSA STAI CERCANDO?</option>
-                    <option>CORSO DI INGLESE</option>
-                    <option>AIUTO COMPITI (MEDIE/SUPERIORI)</option>
-                    <option>METODO DI STUDIO</option>
-                    <option>PREPARAZIONE ESAMI/MATURITÀ</option>
-                </select>
                 <textarea placeholder="DICCI DI COSA HAI BISOGNO..." rows="3" class="w-full p-4 bg-slate-50 border-none rounded-2xl outline-none text-[10px] uppercase font-bold tracking-widest"></textarea>
                 <button class="w-full bg-slate-900 text-white py-6 rounded-3xl font-black uppercase text-[11px] tracking-[0.3em] hover:bg-smart-blue transition-all shadow-xl">Invia Richiesta</button>
             </form>
@@ -312,10 +337,6 @@
         &copy; 2026 Bright Minds Education | Milano | P.IVA 0123456789 | Centro Certificato
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -324,13 +345,36 @@
             const icon = document.getElementById('menu-icon');
             if (menu.classList.contains('active')) {
                 menu.classList.remove('active');
+                document.body.style.overflow = 'auto';
                 icon.setAttribute('data-lucide', 'menu');
             } else {
                 menu.classList.add('active');
+                document.body.style.overflow = 'hidden';
                 icon.setAttribute('data-lucide', 'x');
             }
             lucide.createIcons();
         }
+
+        // JS per scroll ancore fluido con offset di 100px
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        const menu = document.getElementById('mobile-menu');
+                        if (menu.classList.contains('active')) toggleMenu();
+                        
+                        const offset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>

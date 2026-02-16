@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terra Viva | Azienda Agricola & Bottega a Km 0 - Demo Mode</title>
@@ -42,7 +43,7 @@
             inset: 0;
             background: white;
             z-index: 200;
-            display: none; /* Gestito da JS */
+            display: none; 
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -54,22 +55,37 @@
             h1 { font-size: clamp(3.5rem, 15vw, 5rem) !important; line-height: 0.9 !important; }
             h2 { font-size: clamp(2.5rem, 10vw, 3.5rem) !important; }
             section { padding-top: 4rem; padding-bottom: 4rem; }
-            
-            .demo-controls a {
-                padding: 10px 16px !important;
-                font-size: 8px !important;
-            }
         }
 
-        .demo-controls {
+        /* Bottone LocalTop Unico */
+        .cta-localtop {
             position: fixed;
             bottom: 2rem;
             left: 1.5rem;
             z-index: 100;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease;
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
+
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .cta-localtop:hover { transform: scale(1.05); }
 
         img { filter: none !important; grayscale: 0 !important; }
     </style>
@@ -81,22 +97,19 @@
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
         <div class="flex flex-col items-center gap-8">
-            <a href="#campi" onclick="toggleMenu()" class="text-3xl font-serif italic text-forest">La Tenuta</a>
-            <a href="#bottega" onclick="toggleMenu()" class="text-3xl font-serif italic text-forest">Bottega</a>
-            <a href="#esperienze" onclick="toggleMenu()" class="text-3xl font-serif italic text-forest">Esperienze</a>
-            <a href="#filosofia" onclick="toggleMenu()" class="text-3xl font-serif italic text-forest">Filosofia</a>
-            <a href="#contatti" onclick="toggleMenu()" class="bg-earth text-white px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest shadow-xl">Contatti</a>
+            <a href="#campi" class="nav-link text-3xl font-serif italic text-forest">La Tenuta</a>
+            <a href="#bottega" class="nav-link text-3xl font-serif italic text-forest">Bottega</a>
+            <a href="#recensioni" class="nav-link text-3xl font-serif italic text-forest">Recensioni</a>
+            <a href="#faq" class="nav-link text-3xl font-serif italic text-forest">FAQ</a>
+            <a href="#esperienze" class="nav-link text-3xl font-serif italic text-forest">Esperienze</a>
+            <a href="#filosofia" class="nav-link text-3xl font-serif italic text-forest">Filosofia</a>
+            <a href="#contatti" class="nav-link bg-earth text-white px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest shadow-xl">Contatti</a>
         </div>
     </div>
 
-    <div class="demo-controls">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
-            <i data-lucide="zap" class="w-4 h-4"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="cta-localtop">
+        Attiva il Servizio
+    </a>
 
     <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 h-20 md:h-24 flex items-center">
         <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
@@ -111,14 +124,16 @@
             </div>
             
             <div class="hidden lg:flex space-x-10 text-[11px] font-bold uppercase tracking-widest text-stone-500">
-                <a href="#campi" class="hover:text-forest transition">La Tenuta</a>
-                <a href="#bottega" class="hover:text-forest transition">Bottega</a>
-                <a href="#esperienze" class="hover:text-forest transition">Esperienze</a>
-                <a href="#filosofia" class="hover:text-forest transition">Filosofia</a>
+                <a href="#campi" class="nav-link hover:text-forest transition">La Tenuta</a>
+                <a href="#bottega" class="nav-link hover:text-forest transition">Bottega</a>
+                <a href="#recensioni" class="nav-link hover:text-forest transition">Recensioni</a>
+                <a href="#faq" class="nav-link hover:text-forest transition">FAQ</a>
+                <a href="#esperienze" class="nav-link hover:text-forest transition">Esperienze</a>
+                <a href="#filosofia" class="nav-link hover:text-forest transition">Filosofia</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden md:block bg-earth text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-forest transition-all shadow-md">
+                <a href="#contatti" class="nav-link hidden md:block bg-earth text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-forest transition-all shadow-md">
                     Contatti
                 </a>
                 <button onclick="toggleMenu()" class="lg:hidden text-forest p-2 cursor-pointer">
@@ -141,7 +156,7 @@
                     Benvenuti a Terra Viva. Coltiviamo con amore, rispettiamo i cicli della natura e portiamo la freschezza del campo direttamente a casa tua.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-6">
-                    <a href="#bottega" class="bg-forest text-white px-12 py-6 rounded-full font-bold uppercase text-xs tracking-widest shadow-2xl hover:bg-earth transition-all">Visita la Bottega</a>
+                    <a href="#bottega" class="nav-link bg-forest text-white px-12 py-6 rounded-full font-bold uppercase text-xs tracking-widest shadow-2xl hover:bg-earth transition-all">Visita la Bottega</a>
                 </div>
             </div>
         </div>
@@ -191,6 +206,47 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl md:text-6xl font-serif text-forest italic mb-16">Dicono di <span class="text-earth">Noi.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-stone-50 p-10 rounded-[2.5rem] space-y-4">
+                    <div class="flex justify-center text-earth mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600 font-light">"La cassetta di verdure ha un sapore incredibile, si sente che è tutto raccolto in giornata. Un servizio prezioso!"</p>
+                    <p class="font-bold text-forest text-sm uppercase tracking-widest pt-4">— Marco, Siena</p>
+                </div>
+                <div class="bg-stone-50 p-10 rounded-[2.5rem] space-y-4">
+                    <div class="flex justify-center text-earth mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600 font-light">"L'olio extra vergine è eccezionale. Veniamo ogni mese apposta per fare scorta in bottega."</p>
+                    <p class="font-bold text-forest text-sm uppercase tracking-widest pt-4">— Elena, Firenze</p>
+                </div>
+                <div class="bg-stone-50 p-10 rounded-[2.5rem] space-y-4">
+                    <div class="flex justify-center text-earth mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600 font-light">"Un paradiso di biodiversità. Fare la spesa qui è un'esperienza che riconnette con la natura."</p>
+                    <p class="font-bold text-forest text-sm uppercase tracking-widest pt-4">— Giulia, Arezzo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-24 md:py-40 bg-white">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-5xl md:text-7xl font-serif italic text-forest">La Nostra Filosofia</h2>
@@ -198,6 +254,26 @@
                 "Rispettiamo i tempi della terra, non forziamo le crescite. Ogni frutto matura al sole, seguendo il ritmo delle stagioni per preservare intatto il sapore del territorio."
             </p>
             <div class="w-24 h-px bg-earth mx-auto"></div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 md:py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-serif text-forest italic text-center mb-16">Domande <span class="text-earth">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-xl font-serif font-bold italic text-forest mb-2">Consegnate a domicilio?</h4>
+                    <p class="text-stone-500 font-light">Effettuiamo consegne nel raggio di 30km ogni martedì e venerdì mattina.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-xl font-serif font-bold italic text-forest mb-2">I prodotti sono certificati bio?</h4>
+                    <p class="text-stone-500 font-light">Seguiamo disciplinari di agricoltura biologica e rigenerativa, privilegiando la salute del suolo.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h4 class="text-xl font-serif font-bold italic text-forest mb-2">Posso visitare l'azienda?</h4>
+                    <p class="text-stone-500 font-light">Certamente! Organizziamo tour guidati e degustazioni su prenotazione ogni weekend.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -241,15 +317,11 @@
         &copy; 2026 Terra Viva Società Agricola | Demo Mode
     </footer>
 
-    <div class="chat-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50 btn-demo-disabled">
-        <i data-lucide="message-circle" class="w-8 h-8"></i>
-    </div>
-
     <script>
         // Inizializzazione icone
         lucide.createIcons();
 
-        // Funzione corretta per il Menu Hamburger
+        // Menu Hamburger
         function toggleMenu() {
             const overlay = document.getElementById('mobile-overlay');
             const isVisible = window.getComputedStyle(overlay).display === 'flex';
@@ -262,6 +334,34 @@
                 document.body.style.overflow = 'hidden';
             }
         }
+
+        // Gestione Scroll Ancore Interne
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Se siamo nel menu mobile, chiudilo
+                    const overlay = document.getElementById('mobile-overlay');
+                    if (window.getComputedStyle(overlay).display === 'flex') {
+                        toggleMenu();
+                    }
+
+                    // Calcolo scroll con offset di 100px
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

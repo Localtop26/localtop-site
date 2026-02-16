@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nebula Vape | Premium E-Cig & Liquid Lab - Demo Mode</title>
@@ -28,14 +29,14 @@
         img { filter: none !important; grayscale: 0 !important; }
 
         /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo, .contact-btn-demo {
+        button, input, select, textarea, .contact-btn-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
         
-        /* Eccezione per navigazione */
-        .demo-nav-container a, #mobile-menu a, .menu-toggle {
+        /* Eccezione per navigazione e CTA unico */
+        .demo-nav-container a, #mobile-menu a, .menu-toggle, .nav-anchor {
             pointer-events: auto !important;
             cursor: pointer !important;
         }
@@ -45,24 +46,37 @@
             h1 { font-size: clamp(3.5rem, 15vw, 8.5rem) !important; line-height: 0.85 !important; }
             h2 { font-size: clamp(2.5rem, 8vw, 4.5rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
         }
 
-        /* Bottoni Floating (Bottom-Left) */
+        /* Bottone Unico CTA (Bottom-Left) */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
+        .cta-localtop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .cta-localtop:hover { transform: scale(1.05); }
 
         /* Mobile Menu */
         #mobile-menu {
@@ -77,11 +91,8 @@
 <body class="selection:bg-neon selection:text-black">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -95,15 +106,16 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
-                <a href="#hardware" class="hover:text-neon transition">Hardware</a>
-                <a href="#liquidi" class="hover:text-neon transition">Aroma Bar</a>
-                <a href="#disposable" class="hover:text-neon transition">Disposable</a>
-                <a href="#filosofia" class="hover:text-neon transition">Filosofia</a>
-                <a href="#community" class="hover:text-neon transition">Community</a>
+                <a href="#hardware" class="nav-anchor hover:text-neon transition">Hardware</a>
+                <a href="#liquidi" class="nav-anchor hover:text-neon transition">Aroma Bar</a>
+                <a href="#recensioni" class="nav-anchor hover:text-neon transition">Recensioni</a>
+                <a href="#disposable" class="nav-anchor hover:text-neon transition">Disposable</a>
+                <a href="#faq" class="nav-anchor hover:text-neon transition">FAQ</a>
+                <a href="#community" class="nav-anchor hover:text-neon transition">Community</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden sm:block bg-white text-black px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-neon transition-all">
+                <a href="#contatti" class="nav-anchor hidden sm:block bg-white text-black px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-neon transition-all">
                     Trova Store
                 </a>
                 <button class="menu-toggle lg:hidden text-white p-2" onclick="toggleMenu()">
@@ -117,12 +129,13 @@
         <button class="absolute top-6 right-6 text-white" onclick="toggleMenu()">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#hardware" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Hardware</a>
-        <a href="#liquidi" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Aroma Bar</a>
-        <a href="#disposable" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Disposable</a>
-        <a href="#filosofia" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Filosofia</a>
-        <a href="#community" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Community</a>
-        <a href="#contatti" onclick="toggleMenu()" class="mt-4 bg-neon text-black px-8 py-4 rounded-full font-black uppercase text-xs tracking-widest">Contatti</a>
+        <a href="#hardware" class="nav-anchor text-3xl font-tech font-bold uppercase text-white">Hardware</a>
+        <a href="#liquidi" class="nav-anchor text-3xl font-tech font-bold uppercase text-white">Aroma Bar</a>
+        <a href="#recensioni" class="nav-anchor text-3xl font-tech font-bold uppercase text-white">Recensioni</a>
+        <a href="#disposable" class="nav-anchor text-3xl font-tech font-bold uppercase text-white">Disposable</a>
+        <a href="#faq" class="nav-anchor text-3xl font-tech font-bold uppercase text-white">FAQ</a>
+        <a href="#community" class="nav-anchor text-3xl font-tech font-bold uppercase text-white">Community</a>
+        <a href="#contatti" class="nav-anchor mt-4 bg-neon text-black px-8 py-4 rounded-full font-black uppercase text-xs tracking-widest">Contatti</a>
     </div>
 
     <section class="relative min-h-[85vh] flex items-center hero-vape overflow-hidden section-padding">
@@ -139,8 +152,8 @@
                     Dall'entry level al cloud chasing professionale. Solo i migliori brand mondiali e una selezione di oltre 500 aromi certificati.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#liquidi" class="bg-neon text-black px-10 md:px-12 py-5 rounded-full font-black uppercase text-xs tracking-widest shadow-xl hover:bg-white transition-all">Mix & Vape Bar</a>
-                    <a href="#hardware" class="bg-white/5 border border-white/10 text-white px-10 md:px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition-all">Scegli la tua Box</a>
+                    <a href="#liquidi" class="nav-anchor bg-neon text-black px-10 md:px-12 py-5 rounded-full font-black uppercase text-xs tracking-widest shadow-xl hover:bg-white transition-all">Mix & Vape Bar</a>
+                    <a href="#hardware" class="nav-anchor bg-white/5 border border-white/10 text-white px-10 md:px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition-all">Scegli la tua Box</a>
                 </div>
             </div>
         </div>
@@ -205,332 +218,42 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-24 md:py-32 bg-[#050505] section-padding">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
-            <h2 class="text-4xl md:text-5xl font-tech font-bold uppercase italic tracking-tighter">Etica <span class="text-neon italic">&</span> Qualità.</h2>
-            <p class="text-zinc-500 text-lg md:text-xl font-light italic leading-relaxed">
-                "La nostra filosofia si fonda sull'integrità aromatica e sulla sicurezza. Crediamo che onorare la scelta consapevole di ogni vaper sia il modo più nobile per supportare il passaggio al digitale, agendo sempre con trasparenza totale e certificazione dei componenti."
-            </p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-8">
-                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-neon"></i><p class="text-[9px] font-bold uppercase tracking-widest italic text-zinc-400">Qualità Master</p></div>
-                <div class="text-center"><i data-lucide="shield-check" class="mx-auto mb-4 text-neon"></i><p class="text-[9px] font-bold uppercase tracking-widest italic text-zinc-400">Sicurezza Totale</p></div>
-                <div class="text-center"><i data-lucide="beaker" class="mx-auto mb-4 text-neon"></i><p class="text-[9px] font-bold uppercase tracking-widest italic text-zinc-400">Cura Laboratorio</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="disposable" class="py-24 md:py-32 bg-[#050505] section-padding">
+    <section id="recensioni" class="py-24 md:py-32 bg-[#050505] section-padding">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="bg-white/5 rounded-[3rem] p-10 md:p-20 flex flex-col md:flex-row items-center gap-12 md:gap-16 border border-white/5">
-                <div class="md:w-1/2 space-y-8 text-center md:text-left">
-                    <h2 class="text-4xl md:text-5xl font-tech italic uppercase">Pocket <span class="text-neon">Power.</span></h2>
-                    <p class="text-zinc-400 font-light italic text-lg">Le migliori usa e getta sul mercato. Fino a 800 tiri, design ultra-compatto e intensità di gusto garantita. Perfette per chi inizia o per chi cerca praticità.</p>
-                    <ul class="space-y-4 font-bold text-[10px] uppercase tracking-[0.3em] text-zinc-200 inline-block md:block text-left">
-                        <li class="flex items-center gap-4"><i data-lucide="check" class="text-neon"></i> Mesh Coil Technology</li>
-                        <li class="flex items-center gap-4"><i data-lucide="check" class="text-neon"></i> Wide Range of Flavours</li>
-                    </ul>
-                </div>
-                <div class="md:w-1/2 grid grid-cols-2 gap-4">
-                    <div class="h-48 md:h-64 bg-zinc-900 rounded-3xl border border-white/5 overflow-hidden"><img src="assets/img3.jpg" class="w-full h-full object-cover"></div>
-                    <div class="h-48 md:h-64 bg-zinc-800 rounded-3xl border border-white/5 mt-8 md:mt-12 overflow-hidden"><img src="assets/img4.jpg" class="w-full h-full object-cover"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="community" class="py-24 md:py-32 bg-zinc-950 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="order-2 lg:order-1 relative group">
-                <img src="assets/img5.jpg" class="rounded-[2rem] shadow-xl w-full" alt="Vape Lounge">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="text-center p-6 md:p-8 border border-neon/20 backdrop-blur-md rounded-2xl bg-black/40">
-                        <p class="text-3xl md:text-4xl font-tech font-bold text-neon uppercase italic">Relax</p>
-                        <p class="text-[10px] font-bold uppercase tracking-widest mt-2">In Store Lounge Area</p>
-                    </div>
-                </div>
-            </div>
-            <div class="space-y-10 order-1 lg:order-2 text-center lg:text-left">
-                <h2 class="text-5xl font-tech font-bold italic leading-tight uppercase">Non solo un <br><span class="text-neon underline decoration-white/20">Negozio.</span></h2>
-                <p class="text-zinc-500 text-lg leading-relaxed font-light italic border-l-2 border-neon pl-8 mx-auto lg:mx-0">
-                    Vieni a trovarci per rigenerare il tuo atomizzatore, scambiare pareri sulle ultime novità o semplicemente per una pausa nel nostro Vape Corner. Organizziamo mensilmente "Cloud Competitions" e degustazioni aromi.
-                </p>
-                <div class="flex justify-center lg:justify-start gap-6">
-                    <i data-lucide="instagram" class="w-6 h-6 text-zinc-600 hover:text-neon cursor-pointer transition"></i>
-                    <i data-lucide="facebook" class="w-6 h-6 text-zinc-600 hover:text-neon cursor-pointer transition"></i>
-                    <i data-lucide="youtube" class="w-6 h-6 text-zinc-600 hover:text-neon cursor-pointer transition"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contatti" class="py-24 md:py-32 bg-[#050505] section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
-            <div class="space-y-12 text-center lg:text-left">
-                <h2 class="text-7xl lg:text-9xl font-tech font-bold italic leading-none text-white tracking-tighter uppercase">Join the <br><span class="text-neon">Nebula.</span></h2>
-                <div class="space-y-8">
-                    <div class="flex items-center justify-center lg:justify-start gap-6">
-                        <div class="w-14 h-14 bg-neon text-black rounded-xl flex items-center justify-center shadow-lg rotate-12"><i data-lucide="map-pin"></i></div>
-                        <div class="text-left"><p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Milano Store</p><p class="text-xl font-bold">Corso di Porta Ticinese 42</p></div>
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start gap-6 text-zinc-400">
-                        <div class="w-14 h-14 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center -rotate-12"><i data-lucide="phone" class="text-neon"></i></div>
-                        <p class="text-xl font-bold italic">02 987 654 32</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="vape-card p-8 md:p-12 rounded-[3rem] flex flex-col justify-center gap-4 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-neon px-4 py-1 text-[8px] font-black uppercase text-black italic">Demo Mode</div>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-neon mb-4 italic text-center">Contattaci o vieni a trovarci</p>
-                
-                <div class="contact-btn-demo flex items-center gap-4 bg-white/5 border border-white/10 p-5 rounded-2xl">
-                    <i data-lucide="phone" class="text-neon w-5 h-5"></i>
-                    <span class="font-bold uppercase text-[11px] tracking-widest">Chiama lo Store</span>
-                </div>
-                
-                <div class="contact-btn-demo flex items-center gap-4 bg-[#25D366]/10 border border-[#25D366]/20 p-5 rounded-2xl">
-                    <i data-lucide="message-circle" class="text-[#25D366] w-5 h-5"></i>
-                    <span class="font-bold uppercase text-[11px] tracking-widest">Chat WhatsApp</span>
-                </div>
-
-                <div class="contact-btn-demo flex items-center gap-4 bg-white/5 border border-white/10 p-5 rounded-2xl">
-                    <i data-lucide="navigation" class="text-neon w-5 h-5"></i>
-                    <span class="font-bold uppercase text-[11px] tracking-widest">Ottieni Indicazioni</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-16 bg-black border-t border-white/5 text-center px-6">
-        <p class="text-zinc-600 text-[9px] uppercase tracking-[0.6em] font-bold italic leading-relaxed">
-            &copy; 2026 Nebula Vape Milano | Vietata la vendita ai minori di 18 anni | P.IVA 0123456789 | LocalTop Demo Mode
-        </p>
-    </footer>
-
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
-    </div>
-
-    <script>
-        lucide.createIcons();
-
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('active');
-            
-            // Cambia icona se necessario
-            const icon = document.getElementById('menu-icon');
-            if(menu.classList.contains('active')) {
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                icon.setAttribute('data-lucide', 'menu');
-            }
-            lucide.createIcons();
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nebula Vape | Premium E-Cig & Liquid Lab - Demo Mode</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: #fafafa; overflow-x: hidden; width: 100%; }
-        .font-tech { font-family: 'Space Grotesk', sans-serif; }
-        .text-neon { color: #00ffcc; text-shadow: 0 0 15px rgba(0, 255, 204, 0.4); }
-        .bg-neon { background-color: #00ffcc; }
-        
-        /* Background Hero */
-        .hero-vape { 
-            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 204, 0.1) 0%, rgba(5, 5, 5, 1) 100%),
-            url('assets/img1.jpg'); 
-            background-size: cover; background-position: center; 
-        }
-        
-        .vape-card { background: #0f0f0f; border: 1px solid #1a1a1a; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .vape-card:hover { border-color: #00ffcc; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1); }
-        .liquid-drop { background: linear-gradient(135deg, #00ffcc 0%, #0099ff 100%); }
-
-        /* Rimosso grayscale e filtri */
-        img { filter: none !important; grayscale: 0 !important; }
-
-        /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo, .contact-btn-demo {
-            pointer-events: none !important;
-            cursor: default !important;
-            user-select: none;
-        }
-        
-        /* Eccezione per navigazione */
-        .demo-nav-container a, #mobile-menu a, .menu-toggle {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
-
-        /* Ottimizzazione Mobile & Font Scaling */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3.5rem, 15vw, 8.5rem) !important; line-height: 0.85 !important; }
-            h2 { font-size: clamp(2.5rem, 8vw, 4.5rem) !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
-        }
-
-        /* Bottoni Floating (Bottom-Left) */
-        .demo-nav-container {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        /* Mobile Menu */
-        #mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        #mobile-menu.active {
-            transform: translateX(0);
-        }
-    </style>
-</head>
-<body class="selection:bg-neon selection:text-black">
-
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
-
-    <nav class="sticky top-0 z-[100] bg-black/80 backdrop-blur-xl border-b border-white/5 h-20 flex items-center">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="w-10 h-10 bg-neon rounded-xl flex items-center justify-center rotate-6 shadow-[0_0_20px_rgba(0,255,204,0.5)]">
-                    <i data-lucide="wind" class="text-black w-6 h-6"></i>
-                </div>
-                <span class="text-xl md:text-2xl font-tech font-bold tracking-tighter uppercase">Nebula<span class="text-neon">Vape</span></span>
-            </div>
-            
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
-                <a href="#hardware" class="hover:text-neon transition">Hardware</a>
-                <a href="#liquidi" class="hover:text-neon transition">Aroma Bar</a>
-                <a href="#disposable" class="hover:text-neon transition">Disposable</a>
-                <a href="#filosofia" class="hover:text-neon transition">Filosofia</a>
-                <a href="#community" class="hover:text-neon transition">Community</a>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden sm:block bg-white text-black px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-neon transition-all">
-                    Trova Store
-                </a>
-                <button class="menu-toggle lg:hidden text-white p-2" onclick="toggleMenu()">
-                    <i data-lucide="menu" id="menu-icon"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-black p-8 lg:hidden flex flex-col justify-center items-center gap-8">
-        <button class="absolute top-6 right-6 text-white" onclick="toggleMenu()">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
-        <a href="#hardware" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Hardware</a>
-        <a href="#liquidi" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Aroma Bar</a>
-        <a href="#disposable" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Disposable</a>
-        <a href="#filosofia" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Filosofia</a>
-        <a href="#community" onclick="toggleMenu()" class="text-3xl font-tech font-bold uppercase text-white">Community</a>
-        <a href="#contatti" onclick="toggleMenu()" class="mt-4 bg-neon text-black px-8 py-4 rounded-full font-black uppercase text-xs tracking-widest">Contatti</a>
-    </div>
-
-    <section class="relative min-h-[85vh] flex items-center hero-vape overflow-hidden section-padding">
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-            <div class="max-w-3xl space-y-8 animate-fade-in text-center md:text-left">
-                <div class="inline-flex items-center gap-2 bg-neon/10 border border-neon/20 px-4 py-1.5 rounded-full">
-                    <span class="w-2 h-2 bg-neon rounded-full animate-pulse"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-neon">Nuovi Arrivi: DNA Chip Series 2026</span>
-                </div>
-                <h1 class="text-7xl md:text-9xl font-tech font-bold leading-[0.85] text-white uppercase italic tracking-tighter">
-                    Pure <br> <span class="text-neon">Flavour.</span>
-                </h1>
-                <p class="text-lg text-zinc-400 font-light max-w-lg leading-relaxed italic border-l border-neon pl-8 mx-auto md:mx-0">
-                    Dall'entry level al cloud chasing professionale. Solo i migliori brand mondiali e una selezione di oltre 500 aromi certificati.
-                </p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#liquidi" class="bg-neon text-black px-10 md:px-12 py-5 rounded-full font-black uppercase text-xs tracking-widest shadow-xl hover:bg-white transition-all">Mix & Vape Bar</a>
-                    <a href="#hardware" class="bg-white/5 border border-white/10 text-white px-10 md:px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition-all">Scegli la tua Box</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="hardware" class="py-24 md:py-32 bg-[#050505] section-padding">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 md:mb-20 gap-8 text-center md:text-left">
-                <h2 class="text-5xl font-tech font-bold uppercase italic">Master <span class="text-neon">Hardware</span></h2>
-                <span class="text-xs font-bold text-zinc-600 uppercase tracking-widest border-b border-neon pb-2">Tecnologia ad alte prestazioni</span>
-            </div>
+            <h2 class="text-5xl font-tech font-bold uppercase italic mb-16 text-center md:text-left">Vapers <span class="text-neon">Voice</span></h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="vape-card p-10 rounded-[2rem] space-y-6 group">
-                    <div class="aspect-square bg-zinc-900 rounded-2xl flex items-center justify-center p-8">
-                        <i data-lucide="zap" class="w-16 h-16 text-neon group-hover:scale-110 transition duration-500"></i>
+                <div class="vape-card p-8 rounded-3xl space-y-4 border-white/5">
+                    <div class="flex text-neon gap-1 mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                     </div>
-                    <h3 class="text-2xl font-tech font-bold uppercase">Box Mod & Kit</h3>
-                    <p class="text-sm text-zinc-500 leading-relaxed italic">Dispositivi high-end con controllo della temperatura e chip ultra-rapidi.</p>
+                    <p class="text-zinc-400 italic font-light">"Il miglior negozio di Milano per la rigenerazione. Personale espertissimo e una selezione di aromi organici introvabile altrove."</p>
+                    <p class="font-bold text-sm uppercase tracking-widest text-white">Marco G. - Milano</p>
                 </div>
-                <div class="vape-card p-10 rounded-[2rem] space-y-6 group">
-                    <div class="aspect-square bg-zinc-900 rounded-2xl flex items-center justify-center p-8">
-                        <i data-lucide="layers" class="w-16 h-16 text-neon group-hover:scale-110 transition duration-500"></i>
+                <div class="vape-card p-8 rounded-3xl space-y-4 border-white/5">
+                    <div class="flex text-neon gap-1 mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                     </div>
-                    <h3 class="text-2xl font-tech font-bold uppercase">Atomizzatori</h3>
-                    <p class="text-sm text-zinc-500 leading-relaxed italic">RDA, RTA e sistemi a testina per la massima resa aromatica e densità di vapore.</p>
+                    <p class="text-zinc-400 italic font-light">"L'Aroma Bar è un'esperienza pazzesca. Ho trovato la mia miscela ideale dopo mesi di prove. Spedizione rapida e imballaggio perfetto."</p>
+                    <p class="font-bold text-sm uppercase tracking-widest text-white">Elena R. - Roma</p>
                 </div>
-                <div class="vape-card p-10 rounded-[2rem] space-y-6 group">
-                    <div class="aspect-square bg-zinc-900 rounded-2xl flex items-center justify-center p-8">
-                        <i data-lucide="activity" class="w-16 h-16 text-neon group-hover:scale-110 transition duration-500"></i>
+                <div class="vape-card p-8 rounded-3xl space-y-4 border-white/5">
+                    <div class="flex text-neon gap-1 mb-2">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                     </div>
-                    <h3 class="text-2xl font-tech font-bold uppercase">Rigenerazione</h3>
-                    <p class="text-sm text-zinc-500 leading-relaxed italic">Resistenze artigianali, cotone organico e tool kit per vapers esperti.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="liquidi" class="py-24 md:py-32 bg-zinc-950 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-10">
-                <h2 class="text-5xl md:text-6xl font-tech font-bold uppercase leading-none italic">Aroma <br><span class="text-neon">Alchemy.</span></h2>
-                <p class="text-zinc-400 text-lg font-light leading-relaxed border-l-2 border-neon pl-8 italic">
-                    Tabaccosi organici, cremosi gourmet o fruttati ghiacciati. Nel nostro bar puoi miscelare la tua base ideale con nicotina o zero. Oltre 100 brand italiani e internazionali.
-                </p>
-                <div class="grid grid-cols-2 gap-8">
-                    <div class="p-6 border border-white/5 rounded-2xl">
-                        <span class="text-3xl font-tech text-neon">500+</span>
-                        <p class="text-[9px] uppercase tracking-widest text-zinc-600 mt-2 font-bold">Aromi in Stock</p>
-                    </div>
-                    <div class="p-6 border border-white/5 rounded-2xl">
-                        <span class="text-3xl font-tech text-neon">24H</span>
-                        <p class="text-[9px] uppercase tracking-widest text-zinc-600 mt-2 font-bold">Maturazione Rapida</p>
-                    </div>
-                </div>
-            </div>
-            <div class="relative group">
-                <img src="assets/img2.jpg" class="rounded-[3rem] transition duration-1000 shadow-2xl w-full" alt="Liquid Lab">
-                <div class="absolute -bottom-6 -right-6 liquid-drop p-8 md:p-10 rounded-full shadow-2xl">
-                    <i data-lucide="droplet" class="text-white w-8 h-8 md:w-10 h-10"></i>
+                    <p class="text-zinc-400 italic font-light">"Nebula Vape è diventato il mio punto di riferimento. Box mod di altissima qualità e supporto post-vendita davvero professionale."</p>
+                    <p class="font-bold text-sm uppercase tracking-widest text-white">Luca T. - Torino</p>
                 </div>
             </div>
         </div>
@@ -569,6 +292,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-24 md:py-32 bg-[#050505] section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-5xl font-tech font-bold uppercase italic mb-16 text-center">Questions & <span class="text-neon">Answers</span></h2>
+            <div class="space-y-6">
+                <div class="vape-card p-8 rounded-3xl border-white/5">
+                    <h4 class="text-lg font-bold uppercase mb-3 text-neon">Vendete liquidi pronti o aromi da miscelare?</h4>
+                    <p class="text-zinc-500 italic font-light leading-relaxed text-sm">Offriamo entrambe le soluzioni. Nel nostro Aroma Bar puoi creare la tua miscela personalizzata, oppure scegliere tra centinaia di liquidi pronti all'uso dei migliori brand mondiali.</p>
+                </div>
+                <div class="vape-card p-8 rounded-3xl border-white/5">
+                    <h4 class="text-lg font-bold uppercase mb-3 text-neon">Effettuate spedizioni in tutta Italia?</h4>
+                    <p class="text-zinc-500 italic font-light leading-relaxed text-sm">Sì, spediamo in 24/48 ore in tutta Italia con corriere espresso. Ogni pacco è imballato con cura per garantire l'integrità dei flaconi e dei dispositivi hardware.</p>
+                </div>
+                <div class="vape-card p-8 rounded-3xl border-white/5">
+                    <h4 class="text-lg font-bold uppercase mb-3 text-neon">Offrite assistenza per la rigenerazione?</h4>
+                    <p class="text-zinc-500 italic font-light leading-relaxed text-sm">Assolutamente sì. In store disponiamo di un'area dedicata dove i nostri esperti possono aiutarti a rigenerare il tuo atomizzatore o insegnarti le tecniche base e avanzate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="community" class="py-24 md:py-32 bg-zinc-950 section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="order-2 lg:order-1 relative group">
@@ -586,9 +329,9 @@
                     Vieni a trovarci per rigenerare il tuo atomizzatore, scambiare pareri sulle ultime novità o semplicemente per una pausa nel nostro Vape Corner. Organizziamo mensilmente "Cloud Competitions" e degustazioni aromi.
                 </p>
                 <div class="flex justify-center lg:justify-start gap-6">
-                    <i data-lucide="instagram" class="w-6 h-6 text-zinc-600 hover:text-neon cursor-pointer transition"></i>
-                    <i data-lucide="facebook" class="w-6 h-6 text-zinc-600 hover:text-neon cursor-pointer transition"></i>
-                    <i data-lucide="youtube" class="w-6 h-6 text-zinc-600 hover:text-neon cursor-pointer transition"></i>
+                    <i data-lucide="instagram" class="w-6 h-6 text-zinc-600"></i>
+                    <i data-lucide="facebook" class="w-6 h-6 text-zinc-600"></i>
+                    <i data-lucide="youtube" class="w-6 h-6 text-zinc-600"></i>
                 </div>
             </div>
         </div>
@@ -638,26 +381,52 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('active');
-            
-            // Cambia icona se necessario
             const icon = document.getElementById('menu-icon');
-            if(menu.classList.contains('active')) {
-                icon.setAttribute('data-lucide', 'x');
-            } else {
+            const isOpen = menu.classList.contains('active');
+            
+            if(isOpen) {
+                menu.classList.remove('active');
+                document.body.style.overflow = '';
                 icon.setAttribute('data-lucide', 'menu');
+            } else {
+                menu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                icon.setAttribute('data-lucide', 'x');
             }
             lucide.createIcons();
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.nav-anchor').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Chiudi menu mobile se aperto
+                    const menu = document.getElementById('mobile-menu');
+                    if(menu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

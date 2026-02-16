@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinfonia di Sensi | SPA & Wellness Sanctuary</title>
@@ -13,7 +14,6 @@
         .text-sage { color: #8ba88e; }
         .bg-sage { background-color: #8ba88e; }
         
-        /* Immagini: rimosso ogni filtro grayscale */
         .hero-spa { 
             background: linear-gradient(rgba(252,251,249,0.3), rgba(252,251,249,0.1)), 
             url('assets/img1.jpg'); 
@@ -26,48 +26,46 @@
         .wellness-card:hover { transform: translateY(-10px); border-color: #8ba88e; }
 
         /* Interazioni Demo */
-        button, input, select, textarea, .chat-widget-demo, .mobile-nav-link {
+        button:not(#menu-toggle, #menu-close), input, select, textarea, .mobile-nav-link:not([href^="#"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
-        
-        /* Sblocco il menu mobile per la navigazione demo */
-        #menu-toggle, #mobile-menu a {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
 
-        /* Ottimizzazione Mobile */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(3.5rem, 12vw, 5.5rem) !important; line-height: 0.9 !important; }
-            h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli SOLO su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
-        }
-
-        /* Bottoni Localtop Desktop (Ripristinati) */
+        /* Bottone LOCALTOP */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
 
-        .demo-nav-container a {
-            padding: 1rem 1.5rem;
-            font-size: 10px;
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
 
-        /* Gestione Menu Mobile */
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+            h1 { font-size: clamp(3.5rem, 12vw, 5.5rem) !important; line-height: 0.9 !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+        }
+
         #mobile-menu {
             transform: translateY(-100%);
             transition: transform 0.4s ease-in-out;
@@ -75,16 +73,15 @@
         #mobile-menu.active {
             transform: translateY(0);
         }
+
+        .star-rating { color: #d4af37; font-size: 14px; }
     </style>
 </head>
 <body class="selection:bg-sage selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white rounded-full font-bold uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] rounded-full font-bold uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -100,11 +97,12 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">
+            <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">
                 <a href="#percorso" class="hover:text-sage transition">SPA</a>
                 <a href="#trattamenti" class="hover:text-sage transition">Rituali</a>
-                <a href="#private" class="hover:text-sage transition">Private</a>
-                <a href="#dayspa" class="hover:text-sage transition">Day SPA</a>
+                <a href="#recensioni" class="hover:text-sage transition">Recensioni</a>
+                <a href="#faq" class="hover:text-sage transition">FAQ</a>
+                <a href="#contatti" class="hover:text-sage transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -124,11 +122,11 @@
             <button id="menu-close" class="p-2"><i data-lucide="x" class="w-8 h-8"></i></button>
         </div>
         <div class="flex flex-col gap-8 text-2xl font-serif italic text-stone-800">
-            <a href="#percorso" onclick="closeMenu()">Il Percorso SPA</a>
-            <a href="#trattamenti" onclick="closeMenu()">Rituali Benessere</a>
-            <a href="#private" onclick="closeMenu()">Private Sanctuary</a>
-            <a href="#dayspa" onclick="closeMenu()">Pacchetti Day SPA</a>
-            <a href="#contatti" onclick="closeMenu()" class="text-sage">Contatti</a>
+            <a href="#percorso">Il Percorso SPA</a>
+            <a href="#trattamenti">Rituali Benessere</a>
+            <a href="#recensioni">Recensioni</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contatti" class="text-sage">Contatti</a>
         </div>
     </div>
 
@@ -149,7 +147,7 @@
         </div>
     </section>
 
-    <section id="percorso" class="py-20 md:py-32 bg-white section-padding">
+    <section id="percorso" class="py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="space-y-10">
                 <span class="text-sage font-bold uppercase tracking-[0.5em] text-[10px]">The Water Ritual</span>
@@ -168,7 +166,7 @@
         </div>
     </section>
 
-    <section id="trattamenti" class="py-20 md:py-32 bg-stone-50 section-padding">
+    <section id="trattamenti" class="py-20 md:py-32 bg-stone-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 md:mb-24">
                 <h2 class="text-5xl font-serif italic text-stone-800">I Nostri <span class="text-sage">Rituali.</span></h2>
@@ -194,7 +192,33 @@
         </div>
     </section>
 
-    <section id="private" class="py-20 md:py-32 bg-stone-900 text-stone-100 section-padding">
+    <section id="recensioni" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-serif italic text-stone-800">Esperienze <span class="text-sage">Indimenticabili.</span></h2>
+                <p class="text-stone-400 mt-4 uppercase tracking-widest text-[10px] font-bold">Cosa dicono di noi i nostri ospiti</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-stone-50 rounded-[2rem] space-y-4">
+                    <div class="star-rating">★★★★★</div>
+                    <p class="italic text-stone-600 font-light">"Un'oasi di pace nel cuore della città. Il massaggio olistico è stato il migliore mai ricevuto."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-sage">Elena R., Milano</p>
+                </div>
+                <div class="p-8 bg-stone-50 rounded-[2rem] space-y-4">
+                    <div class="star-rating">★★★★★</div>
+                    <p class="italic text-stone-600 font-light">"La Private SPA è magica. Atmosfera intima e dettagli curatissimi. Torneremo sicuramente."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-sage">Marco T., Monza</p>
+                </div>
+                <div class="p-8 bg-stone-50 rounded-[2rem] space-y-4">
+                    <div class="star-rating">★★★★★</div>
+                    <p class="italic text-stone-600 font-light">"Il percorso acqua è rigenerante. La sauna al profumo di cedro è un'esperienza sensoriale unica."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-sage">Giulia B., Bergamo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="private" class="py-20 md:py-32 bg-stone-900 text-stone-100">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-10">
                 <h2 class="text-5xl font-serif italic text-sage leading-none uppercase">Private <br><span class="text-white">Sanctuary.</span></h2>
@@ -207,7 +231,7 @@
         </div>
     </section>
 
-    <section id="dayspa" class="py-20 md:py-32 bg-white section-padding">
+    <section id="dayspa" class="py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-serif italic text-center mb-16 md:mb-24 text-stone-800">I Pacchetti Day SPA</h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -229,24 +253,27 @@
         </div>
     </section>
 
-    <section class="py-20 md:py-32 bg-stone-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 md:gap-20">
-            <div class="lg:w-1/2">
-                <img src="assets/img4.jpg" class="rounded-[2rem] md:rounded-[10rem] shadow-2xl w-full object-cover" alt="Concept Store">
-            </div>
-            <div class="lg:w-1/2 space-y-8 text-center md:text-left">
-                <h2 class="text-5xl font-serif italic text-stone-900 leading-tight uppercase">Porta a casa <br><span class="text-sage">il Benessere.</span></h2>
-                <p class="text-stone-500 text-lg leading-relaxed font-light italic">Scopri la nostra linea di cosmesi naturale e candele botaniche nel nostro Concept Store. Prodotti creati con estratti biologici e oils essenziali puri.</p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                    <span class="px-6 py-2 border border-stone-200 rounded-full text-[10px] font-bold uppercase tracking-widest">Oli Bio</span>
-                    <span class="px-6 py-2 border border-stone-200 rounded-full text-[10px] font-bold uppercase tracking-widest">Sieri Viso</span>
-                    <span class="px-6 py-2 border border-stone-200 rounded-full text-[10px] font-bold uppercase tracking-widest">Tisane</span>
+    <section id="faq" class="py-20 md:py-32 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-5xl font-serif italic text-center mb-16 text-stone-800">Domande <span class="text-sage">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="bg-white p-8 rounded-[2rem] border border-stone-100">
+                    <h4 class="font-serif italic text-xl text-stone-800 mb-2">È necessaria la prenotazione?</h4>
+                    <p class="text-stone-500 font-light italic text-sm">Sì, per garantire il massimo relax e privacy ai nostri ospiti, l'accesso è consentito solo su prenotazione.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-stone-100">
+                    <h4 class="font-serif italic text-xl text-stone-800 mb-2">Cosa devo portare con me?</h4>
+                    <p class="text-stone-500 font-light italic text-sm">Forniamo noi il kit cortesia (accappatoio, telo e ciabattine). È necessario portare solo il costume da bagno.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-stone-100">
+                    <h4 class="font-serif italic text-xl text-stone-800 mb-2">Quali sono gli orari di apertura?</h4>
+                    <p class="text-stone-500 font-light italic text-sm">Siamo aperti tutti i giorni dalle 10:00 alle 21:00. La Private SPA è disponibile anche in orario serale.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
+    <section id="contatti" class="py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
                 <h2 class="text-6xl md:text-7xl font-serif italic text-stone-800 leading-none tracking-tighter uppercase">Scrivi la <br><span class="text-sage font-normal">Tua Pausa.</span></h2>
@@ -296,10 +323,6 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-6 md:right-10 bg-white border border-stone-100 text-stone-800 p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -309,15 +332,38 @@
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
 
         menuClose.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
         });
 
-        function closeMenu() {
-            mobileMenu.classList.remove('active');
-        }
+        // Gestione Scroll Smooth senza # nell'URL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Chiudi menu mobile se aperto
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

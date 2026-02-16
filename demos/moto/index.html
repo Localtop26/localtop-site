@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Apex Moto | Concessionaria, Gear & Officina Custom - Demo Mode</title>
@@ -26,10 +27,16 @@
         .metal-finish { background: linear-gradient(145deg, #1a1a1a, #0a0a0a); }
 
         /* Demo Mode */
-        button, input, select, textarea, .wa-widget-demo, .contact-btn-demo {
+        input, select, textarea, .contact-btn-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
+        }
+        
+        /* Disattivazione pulsanti estetici tranne quelli richiesti */
+        .btn-estetico {
+            pointer-events: none !important;
+            cursor: default !important;
         }
 
         /* Navigazione Mobile Overlay */
@@ -55,36 +62,56 @@
             h2 { font-size: clamp(2.5rem, 8vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             .hero-moto { height: auto; min-height: 100vh; padding-top: 120px; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 10px 16px;
-                font-size: 8px;
-            }
         }
 
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        }
+        
+        .btn-attiva-servizio {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (min-width: 768px) {
+            .btn-attiva-servizio {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        
+        .btn-attiva-servizio:hover {
+            transform: scale(1.05);
         }
 
         /* Reset filtri su tutte le immagini */
         img { filter: none !important; grayscale: 0 !important; }
+
+        /* Accordion FAQ */
+        .faq-item { border-bottom: 1px solid #222; }
     </style>
 </head>
 <body class="selection:bg-orange-racing selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-attiva-servizio">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -100,9 +127,9 @@
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400">
                 <a href="#moto" class="hover:text-orange-racing transition">Showroom</a>
                 <a href="#abbigliamento" class="hover:text-orange-racing transition">Abbigliamento</a>
-                <a href="#filosofia" class="hover:text-orange-racing transition">Filosofia</a>
                 <a href="#officina" class="hover:text-orange-racing transition">Officina</a>
-                <a href="#accessori" class="hover:text-orange-racing transition">Accessori</a>
+                <a href="#recensioni" class="hover:text-orange-racing transition">Recensioni</a>
+                <a href="#faq" class="hover:text-orange-racing transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -120,12 +147,12 @@
         <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white" style="pointer-events: auto !important; cursor: pointer !important;">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <a href="#moto" onclick="toggleMenu()" class="text-3xl font-racing italic text-white hover:text-orange-racing">Showroom</a>
-        <a href="#abbigliamento" onclick="toggleMenu()" class="text-3xl font-racing italic text-white hover:text-orange-racing">Abbigliamento</a>
-        <a href="#filosofia" onclick="toggleMenu()" class="text-3xl font-racing italic text-white hover:text-orange-racing">Filosofia</a>
-        <a href="#officina" onclick="toggleMenu()" class="text-3xl font-racing italic text-white hover:text-orange-racing">Officina</a>
-        <a href="#accessori" onclick="toggleMenu()" class="text-3xl font-racing italic text-white hover:text-orange-racing">Accessori</a>
-        <a href="#contatti" onclick="toggleMenu()" class="bg-orange-racing text-white px-8 py-4 font-black uppercase tracking-widest mt-4">Contattaci</a>
+        <a href="#moto" class="text-3xl font-racing italic text-white hover:text-orange-racing anchor-link">Showroom</a>
+        <a href="#abbigliamento" class="text-3xl font-racing italic text-white hover:text-orange-racing anchor-link">Abbigliamento</a>
+        <a href="#officina" class="text-3xl font-racing italic text-white hover:text-orange-racing anchor-link">Officina</a>
+        <a href="#recensioni" class="text-3xl font-racing italic text-white hover:text-orange-racing anchor-link">Recensioni</a>
+        <a href="#faq" class="text-3xl font-racing italic text-white hover:text-orange-racing anchor-link">FAQ</a>
+        <a href="#contatti" class="bg-orange-racing text-white px-8 py-4 font-black uppercase tracking-widest mt-4 anchor-link">Contattaci</a>
     </div>
 
     <section class="relative h-screen flex items-center hero-moto overflow-hidden section-padding">
@@ -153,8 +180,8 @@
             <div class="flex flex-col md:flex-row justify-between md:items-end mb-16 border-b border-white/5 pb-10 gap-6">
                 <h2 class="text-5xl md:text-6xl font-racing italic">The <span class="text-orange-racing">Machines.</span></h2>
                 <div class="flex gap-4 text-[10px] font-bold uppercase tracking-widest">
-                    <button class="text-orange-racing border-b border-orange-racing pb-1">Nuovo</button>
-                    <button class="text-zinc-500 hover:text-white transition">Usato Garantito</button>
+                    <button class="text-orange-racing border-b border-orange-racing pb-1 btn-estetico">Nuovo</button>
+                    <button class="text-zinc-500 hover:text-white transition btn-estetico">Usato Garantito</button>
                 </div>
             </div>
             
@@ -218,6 +245,47 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-24 md:py-32 bg-black section-padding border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-racing italic mb-16 text-center">Feedback <span class="text-orange-racing">Piloti.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="moto-card p-8">
+                    <div class="flex text-orange-racing mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-400 italic mb-6">"Officina incredibile. Hanno trasformato la mia Street Fighter in una vera bestia da pista. Competenza tecnica rara da trovare oggi."</p>
+                    <p class="font-bold text-white uppercase text-xs tracking-widest">— Marco R., Milano</p>
+                </div>
+                <div class="moto-card p-8">
+                    <div class="flex text-orange-racing mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-400 italic mb-6">"Il miglior showroom di abbigliamento tecnico in zona. Ho trovato la nuova tuta Dainese che cercavo da mesi. Staff preparatissimo."</p>
+                    <p class="font-bold text-white uppercase text-xs tracking-widest">— Luca V., Monza</p>
+                </div>
+                <div class="moto-card p-8">
+                    <div class="flex text-orange-racing mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-400 italic mb-6">"Ho acquistato la mia Scrambler qui. Servizio vendita impeccabile e post-vendita ancora meglio. Apex Moto è una garanzia assoluta."</p>
+                    <p class="font-bold text-white uppercase text-xs tracking-widest">— Giulia M., Varese</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-24 md:py-32 bg-black section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-10">
             <h2 class="text-5xl font-racing italic text-white italic leading-none">Anima <span class="text-orange-racing italic">Meccanica.</span></h2>
@@ -251,11 +319,35 @@
                 <div class="lg:w-1/2 space-y-8">
                     <h2 class="text-5xl md:text-6xl font-racing italic leading-none">Performance <br> Parts.</h2>
                     <p class="text-white/80 text-lg md:text-xl font-bold">Scarichi Akrapovič, sospensioni Öhlins e componentistica Rizoma. Abbiamo tutto ciò che serve per limare decimi sul giro o migliorare il comfort del tuo viaggio.</p>
-                    <button class="bg-black text-white px-10 py-5 text-[11px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">Shop Online Parti</button>
+                    <button class="bg-black text-white px-10 py-5 text-[11px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all btn-estetico">Shop Online Parti</button>
                 </div>
                 <div class="lg:w-1/2 grid grid-cols-2 gap-4 w-full">
                     <div class="h-48 md:h-64 bg-black/20 rounded border border-white/10 flex items-center justify-center italic text-sm font-bold uppercase tracking-widest">Exhaust</div>
                     <div class="h-48 md:h-64 bg-black/20 rounded border border-white/10 flex items-center justify-center italic text-sm font-bold uppercase tracking-widest mt-8 md:mt-12">Suspension</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 md:py-32 bg-[#0a0a0a] section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-racing italic mb-16 text-center">Domande <span class="text-orange-racing">Frequenti.</span></h2>
+            <div class="space-y-4">
+                <div class="faq-item pb-4">
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-2">Effettuate spedizioni per l'abbigliamento?</h4>
+                    <p class="text-zinc-500 text-sm italic">Sì, spediamo in tutta Italia ed Europa con corriere espresso 24/48h. Per gli ordini superiori a 200€ la spedizione è gratuita.</p>
+                </div>
+                <div class="faq-item pb-4">
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-2">È possibile provare le moto prima dell'acquisto?</h4>
+                    <p class="text-zinc-500 text-sm italic">Certamente. Disponiamo di una flotta demo per i principali modelli. È necessaria la prenotazione e il possesso di patente valida in corso di validità.</p>
+                </div>
+                <div class="faq-item pb-4">
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-2">Offrite servizi di finanziamento?</h4>
+                    <p class="text-zinc-500 text-sm italic">Offriamo piani finanziari personalizzati su misura, sia per il nuovo che per l'usato, con possibilità di mini-rate e riscatto finale.</p>
+                </div>
+                <div class="faq-item pb-4">
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-2">Quanto tempo occorre per un tagliando ordinario?</h4>
+                    <p class="text-zinc-500 text-sm italic">Per la manutenzione ordinaria garantiamo il servizio "Fast Track" in giornata, previo appuntamento telefonico o via web.</p>
                 </div>
             </div>
         </div>
@@ -308,16 +400,11 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-6 md:right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
             if (menu.style.display === 'flex') {
                 menu.style.display = 'none';
                 document.body.style.overflow = 'auto';
@@ -326,6 +413,38 @@
                 document.body.style.overflow = 'hidden';
             }
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                // Salta se l'ancora è vuota o solo #
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Se siamo su mobile, chiudi il menu
+                    const menu = document.getElementById('mobile-menu');
+                    if (menu.style.display === 'flex') {
+                        menu.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+
+                    // Calcolo posizione con offset di 100px
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - 100;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

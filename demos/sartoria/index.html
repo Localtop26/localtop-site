@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sartoria Valenti | L'Eleganza del Su Misura - Demo Mode</title>
@@ -42,7 +43,7 @@
         }
 
         /* Demo Mode Constraints */
-        input, select, textarea, .wa-widget-demo {
+        input, select, textarea {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -62,16 +63,36 @@
             bottom: 1.5rem;
             left: 1rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
 
-        @media (max-width: 640px) {
-            .demo-nav-container a {
-                padding: 0.5rem 1rem; /* Bottoni Localtop più piccoli su mobile */
-                font-size: 8px;
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(15, 118, 110, 0.3);
+            transition: transform 0.2s;
+            pointer-events: auto !important;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
+        }
+
+        .btn-localtop:hover {
+            transform: scale(1.02);
         }
 
         /* Scaling Font e Responsività */
@@ -86,16 +107,18 @@
         @media (min-width: 768px) {
             .section-padding { padding-top: 8rem; padding-bottom: 8rem; }
         }
+
+        /* Disattiva interazioni non richieste */
+        .nav-action-btn, .pointer-events-auto:not(.btn-localtop):not(button):not(a[href^="#"]) {
+            pointer-events: none !important;
+        }
     </style>
 </head>
 <body class="selection:bg-navy selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl pointer-events-auto">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl pointer-events-auto">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -114,6 +137,8 @@
             <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
                 <a href="#abiti" class="hover:text-navy transition">Abiti</a>
                 <a href="#tessuti" class="hover:text-navy transition">Tessuti</a>
+                <a href="#recensioni" class="hover:text-navy transition">Recensioni</a>
+                <a href="#faq" class="hover:text-navy transition">FAQ</a>
                 <a href="#metodo" class="hover:text-navy transition">Il Metodo</a>
                 <a href="#riparazioni" class="hover:text-navy transition">Riparazioni</a>
             </div>
@@ -133,11 +158,13 @@
         <button onclick="toggleMenu()" class="absolute top-6 right-6 p-2 text-navy pointer-events-auto">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#abiti" onclick="toggleMenu()" class="text-2xl font-serif italic text-navy pointer-events-auto">Abiti</a>
-        <a href="#tessuti" onclick="toggleMenu()" class="text-2xl font-serif italic text-navy pointer-events-auto">Tessuti</a>
-        <a href="#metodo" onclick="toggleMenu()" class="text-2xl font-serif italic text-navy pointer-events-auto">Il Metodo</a>
-        <a href="#riparazioni" onclick="toggleMenu()" class="text-2xl font-serif italic text-navy pointer-events-auto">Riparazioni</a>
-        <a href="#contatti" onclick="toggleMenu()" class="text-2xl font-serif italic text-navy pointer-events-auto">Contatti</a>
+        <a href="#abiti" class="text-2xl font-serif italic text-navy">Abiti</a>
+        <a href="#tessuti" class="text-2xl font-serif italic text-navy">Tessuti</a>
+        <a href="#recensioni" class="text-2xl font-serif italic text-navy">Recensioni</a>
+        <a href="#faq" class="text-2xl font-serif italic text-navy">FAQ</a>
+        <a href="#metodo" class="text-2xl font-serif italic text-navy">Il Metodo</a>
+        <a href="#riparazioni" class="text-2xl font-serif italic text-navy">Riparazioni</a>
+        <a href="#contatti" class="text-2xl font-serif italic text-navy">Contatti</a>
     </div>
 
     <section class="relative min-h-[70vh] flex items-center hero-sartoria overflow-hidden py-12 md:py-20">
@@ -151,8 +178,8 @@
                     La tua immagine passa per il pulito. Offriamo soluzioni professionali per aziende, condomini e privati con prodotti eco-compatibili di alta gamma.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#abiti" class="bg-navy text-white px-8 md:px-12 py-4 text-[10px] font-bold uppercase tracking-widest shadow-2xl pointer-events-auto">Collezione</a>
-                    <a href="#contatti" class="bg-white/80 backdrop-blur border border-stone-200 text-stone-900 px-8 md:px-12 py-4 text-[10px] font-bold uppercase tracking-widest italic text-center pointer-events-auto">Appuntamento</a>
+                    <a href="#abiti" class="bg-navy text-white px-8 md:px-12 py-4 text-[10px] font-bold uppercase tracking-widest shadow-2xl">Collezione</a>
+                    <a href="#contatti" class="bg-white/80 backdrop-blur border border-stone-200 text-stone-900 px-8 md:px-12 py-4 text-[10px] font-bold uppercase tracking-widest italic text-center">Appuntamento</a>
                 </div>
             </div>
         </div>
@@ -180,6 +207,50 @@
                     <i data-lucide="shirt" class="w-10 h-10 mx-auto text-navy opacity-40"></i>
                     <h4 class="text-2xl font-serif italic">Camiceria Fine</h4>
                     <p class="text-sm text-stone-400 leading-relaxed font-light italic">Cotoni egiziani e doppie ritorte. Collo e polsi strutturati per una vestibilità senza compromessi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 md:mb-20 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-navy">Dicono di <span class="font-light">Noi.</span></h2>
+                <p class="text-stone-400 font-bold tracking-widest uppercase text-[9px] md:text-[10px]">L'esperienza dei nostri clienti</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 border border-stone-100 bg-stone-50/50 rounded-sm italic">
+                    <div class="flex gap-1 mb-4 text-navy">
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-6 leading-relaxed">"Un'esperienza unica. L'abito calza come una seconda pelle e la scelta dei tessuti è davvero infinita. Professionalità d'altri tempi."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Marco B. • Milano</p>
+                </div>
+                <div class="p-8 border border-stone-100 bg-stone-50/50 rounded-sm italic">
+                    <div class="flex gap-1 mb-4 text-navy">
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-6 leading-relaxed">"Ho richiesto un abito da cerimonia con tempi stretti e sono stati impeccabili. La cura dei dettagli è maniacale. Consigliatissimo."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Alessandro V. • Roma</p>
+                </div>
+                <div class="p-8 border border-stone-100 bg-stone-50/50 rounded-sm italic">
+                    <div class="flex gap-1 mb-4 text-navy">
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-6 leading-relaxed">"Finalmente una camiceria di altissimo livello. I cotoni sono spettacolari e il taglio valorizza perfettamente la figura."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Luca T. • Bergamo</p>
                 </div>
             </div>
         </div>
@@ -235,6 +306,32 @@
         </div>
     </section>
 
+    <section id="faq" class="section-padding bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-4xl font-serif italic text-navy">Domande <span class="font-light">Frequenti.</span></h2>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic text-navy mb-2">Quanto tempo occorre per un abito su misura?</h4>
+                    <p class="text-sm text-stone-500 leading-relaxed italic">Generalmente sono necessarie dalle 4 alle 6 settimane, includendo almeno due prove intermedie per garantire la perfezione del taglio.</p>
+                </div>
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic text-navy mb-2">Posso portare il mio tessuto?</h4>
+                    <p class="text-sm text-stone-500 leading-relaxed italic">Preferiamo lavorare con la nostra selezione esclusiva per garantire lo standard qualitativo della Sartoria Valenti, ma valutiamo tessuti vintage di particolare pregio.</p>
+                </div>
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic text-navy mb-2">Effettuate anche riparazioni su abiti non vostri?</h4>
+                    <p class="text-sm text-stone-500 leading-relaxed italic">Certamente. Trattiamo ogni capo con la massima cura artigianale, indipendentemente dalla sua provenienza.</p>
+                </div>
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic text-navy mb-2">È necessario l'appuntamento?</h4>
+                    <p class="text-sm text-stone-500 leading-relaxed italic">Sì, riceviamo esclusivamente su appuntamento per dedicare a ogni cliente tutto il tempo e l'attenzione necessari.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="section-padding bg-[#fdfcfb]">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
             <div class="space-y-8 md:space-y-12">
@@ -244,7 +341,7 @@
             
             <div class="space-y-4">
                 <div class="flex flex-col gap-4">
-                    <div class="flex items-center gap-4 bg-white p-6 shadow-sm border border-stone-100 rounded-sm pointer-events-none">
+                    <div class="flex items-center gap-4 bg-white p-6 shadow-sm border border-stone-100 rounded-sm">
                         <div class="w-12 h-12 bg-navy text-white flex items-center justify-center rounded-full shrink-0">
                             <i data-lucide="phone" class="w-5 h-5"></i>
                         </div>
@@ -254,7 +351,7 @@
                         </div>
                     </div>
                     
-                    <div class="flex items-center gap-4 bg-white p-6 shadow-sm border border-stone-100 rounded-sm pointer-events-none">
+                    <div class="flex items-center gap-4 bg-white p-6 shadow-sm border border-stone-100 rounded-sm">
                         <div class="w-12 h-12 bg-[#25D366] text-white flex items-center justify-center rounded-full shrink-0">
                             <i data-lucide="message-circle" class="w-5 h-5"></i>
                         </div>
@@ -264,7 +361,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-4 bg-white p-6 shadow-sm border border-stone-100 rounded-sm pointer-events-none">
+                    <div class="flex items-center gap-4 bg-white p-6 shadow-sm border border-stone-100 rounded-sm">
                         <div class="w-12 h-12 bg-white border border-stone-200 text-navy flex items-center justify-center rounded-full shrink-0">
                             <i data-lucide="map-pin" class="w-5 h-5"></i>
                         </div>
@@ -283,10 +380,6 @@
         &copy; 2026 Sartoria Valenti | Custom Tailoring | P.IVA 0123456789 | Made in Italy | LocalTop Demo Mode
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-white border border-stone-100 text-stone-800 p-4 md:p-5 rounded-full shadow-2xl z-50 pointer-events-none">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -299,6 +392,36 @@
                 document.body.style.overflow = '';
             }
         }
+
+        // Scroll Gestione Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Se siamo su mobile e il menu è aperto
+                    const menu = document.getElementById('mobile-menu');
+                    if (menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

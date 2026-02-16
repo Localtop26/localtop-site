@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Mondo Bumbi | Il tuo Negozio di Fiducia a Milano - Demo Mode</title>
@@ -36,23 +37,36 @@
             word-wrap: break-word;
         }
 
-        /* Navigazione Floating Localtop - Più piccoli su mobile */
+        /* Navigazione Floating Localtop - Aggiornato */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-width: calc(100% - 3rem);
         }
-        @media (max-width: 640px) {
-            .demo-nav-container a {
-                padding: 0.5rem 1rem;
-                font-size: 8px;
+        .cta-localtop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+            text-decoration: none;
+        }
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
         }
+        .cta-localtop:hover { transform: scale(1.05); }
 
         /* Utility per evitare overflow */
         .container-fix {
@@ -94,16 +108,16 @@
             align-items: center;
             width: 100%;
         }
+
+        /* FAQ Accordion Style (Statico per demo) */
+        .faq-item { border-bottom: 1px solid #fee2e2; }
     </style>
 </head>
 <body class="text-slate-700">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -121,14 +135,16 @@
                 </div>
 
                 <div class="hidden lg:flex space-x-6 text-[11px] font-black uppercase tracking-widest text-slate-500">
-                    <a href="#esperienze" class="hover:text-strawberry transition">Esperienze</a>
-                    <a href="#servizi" class="hover:text-strawberry transition">Servizi</a>
-                    <a href="#filosofia" class="hover:text-strawberry transition">Filosofia</a>
-                    <a href="#storia" class="hover:text-strawberry transition">Chi Siamo</a>
+                    <a href="#esperienze" class="anchor-link hover:text-strawberry transition">Esperienze</a>
+                    <a href="#servizi" class="anchor-link hover:text-strawberry transition">Servizi</a>
+                    <a href="#recensioni" class="anchor-link hover:text-strawberry transition">Recensioni</a>
+                    <a href="#filosofia" class="anchor-link hover:text-strawberry transition">Filosofia</a>
+                    <a href="#faq" class="anchor-link hover:text-strawberry transition">FAQ</a>
+                    <a href="#storia" class="anchor-link hover:text-strawberry transition">Chi Siamo</a>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <a href="#contatti" class="hidden sm:block bg-sky-400 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-sky-500 transition-all shadow-md">
+                    <a href="#contatti" class="anchor-link hidden sm:block bg-sky-400 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-sky-500 transition-all shadow-md">
                         Contatti
                     </a>
                     <button id="mobile-menu-btn" class="lg:hidden p-2 text-slate-600 cursor-pointer" aria-label="Menu">
@@ -144,11 +160,12 @@
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
         <div class="flex flex-col items-center gap-8">
-            <a href="#esperienze" class="mobile-link text-2xl font-kids text-slate-800 uppercase">Esperienze</a>
-            <a href="#servizi" class="mobile-link text-2xl font-kids text-slate-800 uppercase">Servizi</a>
-            <a href="#filosofia" class="mobile-link text-2xl font-kids text-slate-800 uppercase">Filosofia</a>
-            <a href="#storia" class="mobile-link text-2xl font-kids text-slate-800 uppercase">Chi Siamo</a>
-            <a href="#contatti" class="mobile-link bg-strawberry text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-sm shadow-lg">Contatti</a>
+            <a href="#esperienze" class="anchor-link text-2xl font-kids text-slate-800 uppercase">Esperienze</a>
+            <a href="#servizi" class="anchor-link text-2xl font-kids text-slate-800 uppercase">Servizi</a>
+            <a href="#recensioni" class="anchor-link text-2xl font-kids text-slate-800 uppercase">Recensioni</a>
+            <a href="#faq" class="anchor-link text-2xl font-kids text-slate-800 uppercase">FAQ</a>
+            <a href="#storia" class="anchor-link text-2xl font-kids text-slate-800 uppercase">Chi Siamo</a>
+            <a href="#contatti" class="anchor-link bg-strawberry text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-sm shadow-lg">Contatti</a>
         </div>
     </div>
 
@@ -164,8 +181,8 @@
                         Nel cuore di Milano, un mondo incantato dove toccare, provare e scegliere i migliori giocattoli e articoli per la crescita dei tuoi bimbi.
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
-                        <a href="#esperienze" class="bg-strawberry text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-xs md:text-sm uppercase tracking-widest hover:shadow-xl transition-all text-center">Esplora il Negozio</a>
-                        <div class="flex items-center justify-center gap-3 bg-white/50 p-4 rounded-full border border-white">
+                        <a href="#esperienze" class="anchor-link bg-strawberry text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-xs md:text-sm uppercase tracking-widest hover:shadow-xl transition-all text-center">Esplora il Negozio</a>
+                        <div class="flex items-center justify-center gap-3 bg-white/50 p-4 rounded-full border border-white no-click">
                             <i data-lucide="smile" class="text-amber-500 w-5 h-5"></i>
                             <span class="text-[10px] font-bold uppercase tracking-widest">Area gioco gratuita</span>
                         </div>
@@ -249,16 +266,62 @@
             </div>
         </section>
 
+        <section id="recensioni" class="py-16 md:py-32 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 space-y-4">
+                    <h2 class="text-3xl md:text-5xl font-kids text-slate-800 uppercase italic">Cosa dicono le <span class="text-sky-400">Famiglie</span></h2>
+                    <p class="text-slate-400 font-medium">La gioia dei nostri piccoli clienti è il nostro traguardo più grande.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-pastel-blue/30 p-8 rounded-[2rem] space-y-4 border border-white">
+                        <div class="flex text-amber-400 gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                        <p class="text-slate-600 italic">"Un posto magico! Ho trovato dei giochi in legno bellissimi che non riuscivo a reperire altrove. Elena è gentilissima."</p>
+                        <p class="font-bold text-sky-600 uppercase text-[10px] tracking-widest">— Chiara, Milano</p>
+                    </div>
+                    <div class="bg-pastel-pink/30 p-8 rounded-[2rem] space-y-4 border border-white">
+                        <div class="flex text-amber-400 gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                        <p class="text-slate-600 italic">"Ho fatto qui la lista nascita e mi sono trovata benissimo. Consigli onesti e mai orientati solo alla vendita."</p>
+                        <p class="font-bold text-strawberry uppercase text-[10px] tracking-widest">— Martina, Rho</p>
+                    </div>
+                    <div class="bg-pastel-green/30 p-8 rounded-[2rem] space-y-4 border border-white">
+                        <div class="flex text-amber-400 gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                        <p class="text-slate-600 italic">"I laboratori del sabato sono il momento preferito di mio figlio. Organizzazione impeccabile e materiali di qualità."</p>
+                        <p class="font-bold text-green-600 uppercase text-[10px] tracking-widest">— Luca, Milano</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="filosofia" class="py-16 md:py-32 bg-white">
             <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
                 <h2 class="text-3xl md:text-5xl font-kids text-slate-800 uppercase italic">Il Cuore del <span class="text-strawberry">Nostro Impegno.</span></h2>
                 <p class="text-slate-500 text-lg md:text-xl font-medium leading-relaxed">
                     "Crediamo che ogni bambino meriti un'infanzia fatta di tempo, pazienza e materiali genuini. La nostra filosofia mette al centro il rispetto per le tappe di crescita e la sostenibilità."
                 </p>
-                <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-4">
+                <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-4 no-click">
                     <div class="text-center w-24"><i data-lucide="award" class="mx-auto mb-3 text-strawberry"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità certificata</p></div>
                     <div class="text-center w-24"><i data-lucide="leaf" class="mx-auto mb-3 text-strawberry"></i><p class="text-[9px] font-bold uppercase tracking-widest">Materiali Eco</p></div>
                     <div class="text-center w-24"><i data-lucide="heart" class="mx-auto mb-3 text-strawberry"></i><p class="text-[9px] font-bold uppercase tracking-widest">Curato con amore</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-16 md:py-32 bg-pastel-blue/10">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 class="text-3xl md:text-5xl font-kids text-slate-800 uppercase italic text-center mb-12">Domande <span class="text-amber-500">Frequenti</span></h2>
+                <div class="space-y-4">
+                    <div class="faq-item py-6">
+                        <h4 class="font-bold text-slate-800 mb-2 uppercase text-sm">Effettuate spedizioni a domicilio?</h4>
+                        <p class="text-slate-500 text-sm">Sì, consegniamo gratuitamente a Milano per ordini superiori a 50€. Per il resto d'Italia utilizziamo corrieri certificati.</p>
+                    </div>
+                    <div class="faq-item py-6">
+                        <h4 class="font-bold text-slate-800 mb-2 uppercase text-sm">È possibile prenotare l'area gioco per feste?</h4>
+                        <p class="text-slate-500 text-sm">Al momento l'area gioco è ad accesso libero durante lo shopping. Per eventi privati, contattaci per disponibilità e costi.</p>
+                    </div>
+                    <div class="faq-item py-6">
+                        <h4 class="font-bold text-slate-800 mb-2 uppercase text-sm">I vostri giochi sono sicuri per i neonati?</h4>
+                        <p class="text-slate-500 text-sm">Assolutamente sì. Tutti i nostri prodotti hanno certificazione CE e superano test rigorosi sui materiali e vernici atossiche.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -343,10 +406,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         // Inizializza icone
         lucide.createIcons();
@@ -355,9 +414,9 @@
         const menuBtn = document.getElementById('mobile-menu-btn');
         const closeBtn = document.getElementById('close-menu');
         const overlay = document.getElementById('mobile-menu-overlay');
-        const links = document.querySelectorAll('.mobile-link');
+        const anchorLinks = document.querySelectorAll('.anchor-link');
 
-        // Funzione Apri/Chiudi
+        // Funzione Apri/Chiudi Menu
         function toggleMenu() {
             overlay.classList.toggle('active');
             if (overlay.classList.contains('active')) {
@@ -367,7 +426,34 @@
             }
         }
 
-        // Eventi
+        // Gestione Scroll Smooth con Offset
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Chiudi menu mobile se aperto
+                if (overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Eventi Menu
         menuBtn.addEventListener('click', (e) => {
             e.preventDefault();
             toggleMenu();
@@ -376,13 +462,6 @@
         closeBtn.addEventListener('click', (e) => {
             e.preventDefault();
             toggleMenu();
-        });
-        
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                overlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
         });
     </script>
 </body>

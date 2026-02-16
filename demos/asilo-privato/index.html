@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Il Giardino dei Piccoli | Nido e Scuola dell'Infanzia - Demo</title>
@@ -15,14 +16,12 @@
         .text-clay { color: #f28482; }
         .bg-clay { background-color: #f28482; }
         
-        /* Rimozione filtri immagini */
         img { filter: none !important; grayscale: 0 !important; }
 
         .text-shadow-safe {
             text-shadow: 0px 0px 20px rgba(255, 253, 250, 0.8);
         }
 
-        /* Immagini Locali */
         .hero-nido { 
             background: linear-gradient(rgba(255,253,250,0.4), rgba(255,253,250,0.1)), 
             url('assets/img1.jpg'); 
@@ -32,21 +31,50 @@
         .soft-card { background: #ffffff; border-radius: 40px; border: 2px solid #f9f4ef; transition: all 0.4s ease; }
         .blob { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
 
-        /* Demo Mode */
-        button:not(#menu-toggle), input, select, textarea, .chat-widget {
+        /* CTA LocalTop Unico */
+        .localtop-cta-fixed {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+        }
+        .localtop-btn-premium {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.4);
+            transition: transform 0.3s ease;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .localtop-btn-premium {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .localtop-btn-premium:hover { transform: scale(1.05); }
+
+        /* Demo Mode Restrictions */
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Responsive Fixes */
         @media (max-width: 768px) {
             .responsive-title { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .localtop-btn { padding: 10px 16px !important; font-size: 8px !important; }
         }
 
-        /* Mobile Menu */
         #mobile-menu {
             transform: translateY(-100%);
             transition: transform 0.3s ease-in-out;
@@ -54,26 +82,13 @@
         #mobile-menu.active {
             transform: translateY(0);
         }
-
-        .demo-nav-container {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
     </style>
 </head>
 <body class="selection:bg-sage selection:text-white">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+    <div class="localtop-cta-fixed">
+        <a href="https://localtop.it/checkout" class="localtop-btn-premium">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -90,14 +105,16 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-stone-400">
-                <a href="#progetto" class="hover:text-sage transition">Progetto</a>
-                <a href="#spazi" class="hover:text-sage transition">Gli Spazi</a>
-                <a href="#metodo" class="hover:text-sage transition">Metodo</a>
-                <a href="#giornata" class="hover:text-sage transition">La Giornata</a>
+                <a href="#progetto" class="nav-link hover:text-sage transition">Progetto</a>
+                <a href="#spazi" class="nav-link hover:text-sage transition">Gli Spazi</a>
+                <a href="#recensioni" class="nav-link hover:text-sage transition">Recensioni</a>
+                <a href="#metodo" class="nav-link hover:text-sage transition">Metodo</a>
+                <a href="#faq" class="nav-link hover:text-sage transition">FAQ</a>
+                <a href="#giornata" class="nav-link hover:text-sage transition">La Giornata</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#iscrizioni" class="hidden sm:block bg-sage text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-clay transition-all shadow-md">
+                <a href="#iscrizioni" class="nav-link hidden sm:block bg-sage text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-clay transition-all shadow-md">
                     Contatti
                 </a>
                 <button id="menu-toggle" class="lg:hidden text-sage p-2" aria-label="Menu">
@@ -107,15 +124,17 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[115] lg:hidden flex flex-col items-center justify-center space-y-8">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[115] lg:hidden flex flex-col items-center justify-center space-y-6">
         <button id="menu-close" class="absolute top-6 right-6 text-sage">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#progetto" class="mobile-link text-2xl font-kids text-sage">Progetto</a>
-        <a href="#spazi" class="mobile-link text-2xl font-kids text-sage">Gli Spazi</a>
-        <a href="#metodo" class="mobile-link text-2xl font-kids text-sage">Metodo</a>
-        <a href="#giornata" class="mobile-link text-2xl font-kids text-sage">La Giornata</a>
-        <a href="#iscrizioni" class="mobile-link bg-clay text-white px-8 py-4 rounded-full font-kids text-xl">Contatti</a>
+        <a href="#progetto" class="nav-link text-2xl font-kids text-sage">Progetto</a>
+        <a href="#spazi" class="nav-link text-2xl font-kids text-sage">Gli Spazi</a>
+        <a href="#recensioni" class="nav-link text-2xl font-kids text-sage">Recensioni</a>
+        <a href="#metodo" class="nav-link text-2xl font-kids text-sage">Metodo</a>
+        <a href="#faq" class="nav-link text-2xl font-kids text-sage">FAQ</a>
+        <a href="#giornata" class="nav-link text-2xl font-kids text-sage">La Giornata</a>
+        <a href="#iscrizioni" class="nav-link bg-clay text-white px-8 py-4 rounded-full font-kids text-xl">Contatti</a>
     </div>
 
     <section class="relative h-[80vh] md:h-[85vh] flex items-center hero-nido overflow-hidden">
@@ -131,7 +150,7 @@
                     Uno spazio a misura di bambino, dove ogni gioco è scoperta e ogni scoperta è crescita. Benvenuti nella nostra famiglia.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#progetto" class="bg-sage text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] tracking-widest shadow-xl hover:bg-clay transition-all">Scopri di più</a>
+                    <a href="#progetto" class="nav-link bg-sage text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] tracking-widest shadow-xl hover:bg-clay transition-all">Scopri di più</a>
                 </div>
             </div>
         </div>
@@ -185,7 +204,38 @@
         </div>
     </section>
 
-    <section id="metodo" class="section-padding py-16 md:py-24 bg-white px-6">
+    <section id="recensioni" class="section-padding py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-kids text-sage italic">Cosa dicono le Famiglie</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 soft-card">
+                    <div class="flex gap-1 mb-4 text-yellow-400">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-stone-500 italic mb-6">"Un ambiente magico dove mio figlio ha imparato l'autonomia divertendosi. Le maestre sono dolcissime."</p>
+                    <p class="font-bold text-slate-700 text-sm">— Elena R., Milano</p>
+                </div>
+                <div class="p-8 soft-card">
+                    <div class="flex gap-1 mb-4 text-yellow-400">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-stone-500 italic mb-6">"La cucina interna bio fa la differenza. Siamo sereni sapendo che mangia sano ogni giorno."</p>
+                    <p class="font-bold text-slate-700 text-sm">— Marco V., Milano</p>
+                </div>
+                <div class="p-8 soft-card">
+                    <div class="flex gap-1 mb-4 text-yellow-400">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-stone-500 italic mb-6">"Il metodo Montessori è applicato con vera passione. Vediamo progressi incredibili settimana dopo settimana."</p>
+                    <p class="font-bold text-slate-700 text-sm">— Silvia T., Milano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="section-padding py-16 md:py-24 bg-stone-50 px-6">
         <div class="max-w-4xl mx-auto text-center space-y-8">
             <h2 class="text-3xl md:text-5xl font-kids text-clay italic">Il Metodo Montessori</h2>
             <p class="text-stone-500 text-lg leading-relaxed italic">
@@ -193,6 +243,26 @@
             </p>
             <div class="relative h-[250px] md:h-[450px] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-xl mt-10">
                 <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Attività Montessori">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section-padding py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-kids text-sage text-center mb-12 italic">Domande Frequenti</h2>
+            <div class="space-y-6">
+                <div class="p-6 bg-stone-50 rounded-3xl border border-stone-100">
+                    <h4 class="font-bold text-slate-700 mb-2 font-kids">Quali sono gli orari di apertura?</h4>
+                    <p class="text-stone-500 text-sm italic">Siamo aperti dalle 07:30 alle 18:30 per venire incontro alle esigenze dei genitori lavoratori.</p>
+                </div>
+                <div class="p-6 bg-stone-50 rounded-3xl border border-stone-100">
+                    <h4 class="font-bold text-slate-700 mb-2 font-kids">Fornite il servizio mensa?</h4>
+                    <p class="text-stone-500 text-sm italic">Sì, disponiamo di una cucina interna con menù biologici e stagionali approvati dalla ASL.</p>
+                </div>
+                <div class="p-6 bg-stone-50 rounded-3xl border border-stone-100">
+                    <h4 class="font-bold text-slate-700 mb-2 font-kids">Qual è l'età per l'inserimento?</h4>
+                    <p class="text-stone-500 text-sm italic">Accogliamo bambini dai 6 mesi (Nido) fino ai 6 anni (Scuola dell'Infanzia).</p>
+                </div>
             </div>
         </div>
     </section>
@@ -262,31 +332,47 @@
         </p>
     </footer>
 
-    <div class="chat-widget fixed bottom-10 right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-[110]">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
-        // Mobile Menu Logic
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+            const isActive = mobileMenu.classList.toggle('active');
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
         }
 
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        // Scroll Gestione Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Chiudi menu mobile se aperto
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
         });
     </script>

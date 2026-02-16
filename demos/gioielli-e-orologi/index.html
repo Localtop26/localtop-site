@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurea & Co. | Alta Gioielleria e Orologeria d'Élite</title>
@@ -20,32 +21,47 @@
             background-position: center; 
         }
         
-        /* Rimossi filtri grayscale e transizioni di colore */
         .reveal-img { overflow: hidden; position: relative; border-radius: 4px; filter: none !important; }
         .reveal-img img { transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); filter: none !important; }
         .reveal-img:hover img { transform: scale(1.05); }
         .diamond-shadow { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); }
 
-        /* Fix per Mobile e Overflow */
         @media (max-width: 768px) {
             h1 { font-size: clamp(2.5rem, 8vw, 4rem) !important; line-height: 1.1 !important; }
             h2 { font-size: clamp(2rem, 7vw, 3rem) !important; line-height: 1.2 !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             .hero-section { height: auto; min-height: 80vh; padding-top: 80px; }
-            .localtop-btn { padding: 0.5rem 1rem !important; font-size: 8px !important; }
         }
 
-        .demo-nav-container {
+        /* Bottone LocalTop Unico */
+        .localtop-cta-fixed {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
+        @media (min-width: 768px) {
+            .localtop-cta-fixed {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .localtop-cta-fixed:hover { transform: scale(1.05); }
 
-        /* Mobile Menu Overlay */
         #mobile-menu {
             display: none;
             position: fixed;
@@ -61,18 +77,15 @@
             gap: 2rem;
         }
         #mobile-menu.active { display: flex; }
+
+        .non-clickable { pointer-events: none; cursor: default; }
     </style>
 </head>
 <body class="selection:bg-stone-200 selection:text-gold">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="localtop-cta-fixed">
+        Attiva il Servizio
+    </a>
 
     <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md h-20 md:h-24 flex items-center border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
@@ -81,10 +94,11 @@
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
 
-            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.4em] font-bold text-stone-500">
-                <a href="#gioielli" class="hover:text-gold transition">Gioielli</a>
-                <a href="#orologi" class="hover:text-gold transition">Orologi</a>
-                <a href="#atelier" class="hover:text-gold transition">Atelier</a>
+            <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
+                <a href="#gioielli" class="nav-anchor hover:text-gold transition">Gioielli</a>
+                <a href="#orologi" class="nav-anchor hover:text-gold transition">Orologi</a>
+                <a href="#recensioni" class="nav-anchor hover:text-gold transition">Recensioni</a>
+                <a href="#faq" class="nav-anchor hover:text-gold transition">FAQ</a>
             </div>
             
             <div class="text-center flex-grow lg:flex-grow-0">
@@ -93,7 +107,7 @@
             </div>
 
             <div class="flex items-center">
-                <a href="#contatti" class="hidden xs:block border border-stone-900 text-stone-900 px-3 md:px-8 py-2 md:py-3 text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all">
+                <a href="#contatti" class="nav-anchor hidden xs:block border border-stone-900 text-stone-900 px-3 md:px-8 py-2 md:py-3 text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all">
                     Contatti
                 </a>
             </div>
@@ -104,10 +118,11 @@
         <button id="menu-close" class="absolute top-8 right-8 text-stone-900">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#gioielli" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-stone-900">Gioielli</a>
-        <a href="#orologi" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-stone-900">Orologi</a>
-        <a href="#atelier" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-stone-900">Atelier</a>
-        <a href="#contatti" class="mobile-link text-2xl font-luxury uppercase tracking-widest text-stone-900">Contatti</a>
+        <a href="#gioielli" class="nav-anchor mobile-link text-xl font-luxury uppercase tracking-widest text-stone-900">Gioielli</a>
+        <a href="#orologi" class="nav-anchor mobile-link text-xl font-luxury uppercase tracking-widest text-stone-900">Orologi</a>
+        <a href="#recensioni" class="nav-anchor mobile-link text-xl font-luxury uppercase tracking-widest text-stone-900">Recensioni</a>
+        <a href="#faq" class="nav-anchor mobile-link text-xl font-luxury uppercase tracking-widest text-stone-900">FAQ</a>
+        <a href="#contatti" class="nav-anchor mobile-link text-xl font-luxury uppercase tracking-widest text-stone-900">Contatti</a>
     </div>
 
     <section class="relative min-h-[85vh] flex items-center hero-gold overflow-hidden hero-section">
@@ -120,8 +135,8 @@
                     Dalla purezza dei diamanti certificati alla precisione dei movimenti svizzeri. Creiamo eredità che durano per generazioni.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 md:gap-6 pt-4">
-                    <a href="#gioielli" class="bg-gold text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-white hover:text-stone-900 transition-all text-center">Esplora Gioielli</a>
-                    <a href="#orologi" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-all text-center">Collezione Orologi</a>
+                    <a href="#gioielli" class="nav-anchor bg-gold text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-white hover:text-stone-900 transition-all text-center">Esplora Gioielli</a>
+                    <a href="#orologi" class="nav-anchor bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-all text-center">Collezione Orologi</a>
                 </div>
             </div>
         </div>
@@ -183,6 +198,50 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-16 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-gold font-bold uppercase tracking-[0.5em] text-[10px]">Esperienze Uniche</span>
+                <h2 class="text-4xl md:text-5xl font-luxury text-stone-900 uppercase mt-4">La Voce dei Nostri <span class="text-gold italic">Clienti</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-stone-50 border border-stone-100 italic">
+                    <div class="flex text-gold mb-4 non-clickable">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 mb-6 font-light leading-relaxed">"Ho commissionato un anello per un'occasione speciale. L'attenzione ai dettagli e la qualità del diamante sono semplicemente impareggiabili. Una vera eccellenza milanese."</p>
+                    <p class="font-luxury text-stone-900 uppercase text-xs tracking-widest">— Alessandro V., Milano</p>
+                </div>
+                <div class="p-8 bg-stone-50 border border-stone-100 italic">
+                    <div class="flex text-gold mb-4 non-clickable">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 mb-6 font-light leading-relaxed">"La collezione di orologi vintage è incredibile. Ho trovato un pezzo raro in condizioni perfette. Il personale è estremamente competente e professionale."</p>
+                    <p class="font-luxury text-stone-900 uppercase text-xs tracking-widest">— Sophie L., Parigi</p>
+                </div>
+                <div class="p-8 bg-stone-50 border border-stone-100 italic">
+                    <div class="flex text-gold mb-4 non-clickable">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 mb-6 font-light leading-relaxed">"Consulenza d'investimento impeccabile. Mi hanno guidato nella scelta di una pietra GIA con grande onestà e trasparenza. Tornerò sicuramente."</p>
+                    <p class="font-luxury text-stone-900 uppercase text-xs tracking-widest">— Marco R., Ginevra</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="atelier" class="py-16 md:py-32 bg-white">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-10 md:space-y-12">
             <h2 class="text-3xl md:text-4xl font-luxury uppercase italic tracking-widest">Il Vostro Sogno, <span class="text-gold">La Nostra Arte.</span></h2>
@@ -214,7 +273,33 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-16 md:py-32 bg-stone-50">
+    <section id="faq" class="py-16 md:py-32 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-luxury uppercase text-stone-900">Domande <span class="text-gold italic">Frequenti</span></h2>
+            </div>
+            <div class="space-y-8">
+                <div class="border-b border-stone-200 pb-6">
+                    <h3 class="font-luxury text-lg mb-3">Le vostre pietre sono certificate?</h3>
+                    <p class="text-stone-500 font-light text-sm">Sì, tutti i nostri diamanti superiori a 0.30 carati sono accompagnati da certificati internazionali GIA, HRD o IGI.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h3 class="font-luxury text-lg mb-3">È possibile personalizzare un gioiello?</h3>
+                    <p class="text-stone-500 font-light text-sm">Certamente. Il nostro Atelier specializzato può realizzare gioielli su misura partendo da un vostro bozzetto o da una nostra consulenza.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h3 class="font-luxury text-lg mb-3">Offrite assistenza post-vendita sugli orologi?</h3>
+                    <p class="text-stone-500 font-light text-sm">Ogni segnatempo venduto da Aurea & Co. gode di una garanzia di 24 mesi e accesso prioritario al nostro centro assistenza specializzato.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-6">
+                    <h3 class="font-luxury text-lg mb-3">Spedite in tutta Italia?</h3>
+                    <p class="text-stone-500 font-light text-sm">Effettuiamo spedizioni assicurate in tutto il mondo tramite corrieri specializzati in trasporto valori.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-16 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-10 md:space-y-12">
                 <h2 class="text-5xl md:text-7xl font-luxury text-stone-900 leading-none tracking-tighter uppercase italic">The Private <br><span class="text-gold font-normal">Experience.</span></h2>
@@ -258,10 +343,6 @@
         </p>
     </footer>
 
-    <button class="fixed bottom-6 right-6 bg-stone-900 text-white p-4 rounded-full shadow-2xl z-50 hover:bg-gold transition-colors">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </button>
-
     <script>
         lucide.createIcons();
 
@@ -269,7 +350,6 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.add('active');
@@ -281,10 +361,39 @@
             document.body.style.overflow = 'auto';
         });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        // Scroll Gestione Ancore
+        document.querySelectorAll('.nav-anchor').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Disattiva Form e Input (Solo visivi)
+        document.querySelectorAll('form, input, textarea, button:not(#menu-toggle, #menu-close), a:not(.nav-anchor, .localtop-cta-fixed)').forEach(el => {
+            el.classList.add('non-clickable');
+            el.addEventListener('click', (e) => {
+                if(!el.classList.contains('nav-anchor') && !el.classList.contains('localtop-cta-fixed')) {
+                    e.preventDefault();
+                }
             });
         });
     </script>

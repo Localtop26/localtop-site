@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Care & Home | Assistenza Domiciliare e Selezione Badanti - Demo</title>
@@ -19,7 +20,6 @@
         .text-care-green { color: #6b8e83; }
         .bg-care-green { background-color: #6b8e83; }
         
-        /* Immagini: Rimosso ogni filtro grayscale */
         .hero-care { 
             background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.2)), 
             url('assets/img1.jpg'); 
@@ -31,41 +31,43 @@
         .info-card { transition: all 0.3s ease; border-radius: 1.5rem; border: 1px solid #f1f5f9; background: white; }
         .info-card:hover { transform: translateY(-5px); border-color: #6b8e83; box-shadow: 0 20px 25px -5px rgba(107, 142, 131, 0.1); }
 
-        /* Interazioni Demo */
-        button, input, select, textarea, .chat-widget-demo, .nav-link-demo {
+        /* Interazioni Disattivate per Demo */
+        input, select, textarea, form button, .hero-buttons a:not([href^="#"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
-        
-        /* Riabilito pointer events solo per il menu mobile e i link di navigazione demo-nav */
-        .mobile-menu-toggle, .demo-nav-container a, #mobile-menu-overlay a {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
 
-        /* Ottimizzazione Mobile */
-        @media (max-width: 768px) {
-            h1 { font-size: clamp(2.5rem, 10vw, 5rem) !important; line-height: 1.1 !important; }
-            h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
-        }
-
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .cta-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .cta-localtop:hover { transform: scale(1.05); }
 
         /* Menu Mobile Overlay */
         #mobile-menu-overlay {
@@ -79,16 +81,19 @@
             justify-content: center;
             gap: 2rem;
         }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(2.5rem, 10vw, 5rem) !important; line-height: 1.1 !important; }
+            h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
+            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+        }
     </style>
 </head>
 <body class="selection:bg-emerald-50 selection:text-emerald-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -105,17 +110,17 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#servizi" class="hover:text-care-green transition">Servizi</a>
-                <a href="#metodo" class="hover:text-care-green transition">Il Metodo</a>
-                <a href="#selezione" class="hover:text-care-green transition">Selezione</a>
-                <a href="#faq" class="hover:text-care-green transition">Info Utili</a>
+                <a href="#servizi" class="nav-link hover:text-care-green transition">Servizi</a>
+                <a href="#metodo" class="nav-link hover:text-care-green transition">Il Metodo</a>
+                <a href="#recensioni" class="nav-link hover:text-care-green transition">Recensioni</a>
+                <a href="#faq" class="nav-link hover:text-care-green transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden md:block bg-slate-900 text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-care-green transition-all shadow-md">
+                <a href="#contatti" class="nav-link hidden md:block bg-slate-900 text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-care-green transition-all shadow-md">
                     Richiedi Assistenza
                 </a>
-                <button onclick="toggleMenu()" class="mobile-menu-toggle lg:hidden p-2 text-slate-900">
+                <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-900">
                     <i data-lucide="menu" id="menu-icon"></i>
                 </button>
             </div>
@@ -126,11 +131,11 @@
         <button onclick="toggleMenu()" class="absolute top-8 right-8 p-2">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#servizi" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest">Servizi</a>
-        <a href="#metodo" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest">Il Metodo</a>
-        <a href="#selezione" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest">Selezione</a>
-        <a href="#faq" onclick="toggleMenu()" class="text-2xl font-heading font-bold uppercase tracking-widest">Info Utili</a>
-        <a href="#contatti" onclick="toggleMenu()" class="bg-care-green text-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest">Contattaci</a>
+        <a href="#servizi" class="nav-link text-2xl font-heading font-bold uppercase tracking-widest">Servizi</a>
+        <a href="#metodo" class="nav-link text-2xl font-heading font-bold uppercase tracking-widest">Il Metodo</a>
+        <a href="#recensioni" class="nav-link text-2xl font-heading font-bold uppercase tracking-widest">Recensioni</a>
+        <a href="#faq" class="nav-link text-2xl font-heading font-bold uppercase tracking-widest">FAQ</a>
+        <a href="#contatti" class="nav-link bg-care-green text-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest">Contattaci</a>
     </div>
 
     <section class="relative min-h-[80vh] flex items-center hero-care overflow-hidden py-12">
@@ -145,9 +150,9 @@
                 <p class="text-lg md:text-xl text-slate-600 font-light max-w-lg leading-relaxed border-l-4 border-care-green pl-6 md:pl-8">
                     Selezioniamo personale referenziato e qualificato per garantire ai tuoi cari la dignità e l'affetto di cui hanno bisogno, direttamente a casa loro.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#servizi" class="bg-care-green text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">I Nostri Servizi</a>
-                    <a href="#contatti" class="bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Parla con noi</a>
+                <div class="flex flex-wrap gap-4 pt-4 hero-buttons">
+                    <a href="#servizi" class="nav-link bg-care-green text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">I Nostri Servizi</a>
+                    <a href="#contatti" class="nav-link bg-white border-2 border-slate-100 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all italic">Parla con noi</a>
                 </div>
             </div>
         </div>
@@ -180,6 +185,49 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 bg-white border-t border-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-5xl font-heading text-slate-900 uppercase">Dicono di <span class="text-care-green italic">Noi.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 info-card">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Hanno trovato una persona splendida per mia madre in tempi record. Professionalità e umanità rare da trovare oggi."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">— Maria R., Milano</p>
+                </div>
+                <div class="p-8 info-card">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"La selezione è stata accuratissima. La badante che ci hanno proposto è diventata parte della famiglia."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">— Luca B., Roma</p>
+                </div>
+                <div class="p-8 info-card">
+                    <div class="flex text-amber-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ottimo servizio di sostituzione durante le ferie. Non siamo mai rimasti scoperti nemmeno per un giorno."</p>
+                    <p class="font-bold text-slate-900 uppercase text-xs tracking-widest">— Elena V., Torino</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="metodo" class="py-20 bg-slate-50 border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="space-y-10">
@@ -199,31 +247,25 @@
         </div>
     </section>
 
-    <section id="selezione" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
-            <div class="relative order-2 lg:order-1">
-                <img src="assets/img3.jpg" class="rounded-[2rem] md:rounded-[4rem] shadow-2xl w-full object-cover h-[350px] md:h-auto" alt="Care Selection">
-            </div>
-            <div class="space-y-10 order-1 lg:order-2">
-                <h2 class="text-5xl md:text-6xl font-heading font-bold text-slate-900 leading-none">Qualità <br><span class="text-care-green italic">Referenziata.</span></h2>
-                <p class="text-slate-500 text-lg font-light leading-relaxed italic border-l-4 border-care-green pl-8">
-                    Il nostro processo di selezione è rigoroso. Accettiamo solo il 15% delle candidature che riceviamo, per garantire alle famiglie esclusivamente profili d'eccellenza.
-                </p>
-            </div>
-        </div>
-    </section>
-
     <section id="faq" class="py-20 bg-slate-50">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl font-heading text-center text-slate-800 mb-12 uppercase">Domande Frequenti</h2>
             <div class="space-y-8">
                 <div class="border-b border-slate-200 pb-6">
                     <h4 class="font-bold text-care-green mb-2">Quanto tempo serve per trovare una badante?</h4>
-                    <p class="text-sm text-slate-500 italic">In media riusciamo a proporre i primi profili idonei entro 48 ore dalla vostra richiesta.</p>
+                    <p class="text-sm text-slate-500 italic">In media riusciamo a proporre i primi profili idonei entro 48 ore dalla vostra richiesta iniziale.</p>
                 </div>
                 <div class="border-b border-slate-200 pb-6">
-                    <h4 class="font-bold text-care-green mb-2">Cosa succede se la badante si ammala?</h4>
-                    <p class="text-sm text-slate-500 italic">Garantiamo la sostituzione immediata con un altro operatore per non lasciare mai solo il vostro caro.</p>
+                    <h4 class="font-bold text-care-green mb-2">Cosa succede se la badante si ammala o va in ferie?</h4>
+                    <p class="text-sm text-slate-500 italic">Garantiamo la sostituzione immediata con un altro operatore qualificato per non lasciare mai solo il vostro caro.</p>
+                </div>
+                <div class="border-b border-slate-200 pb-6">
+                    <h4 class="font-bold text-care-green mb-2">Svolgete controlli sui documenti?</h4>
+                    <p class="text-sm text-slate-500 italic">Assolutamente sì. Verifichiamo documenti di identità, permessi di soggiorno e casellario giudiziale di ogni candidato.</p>
+                </div>
+                <div class="border-b border-slate-200 pb-6">
+                    <h4 class="font-bold text-care-green mb-2">È possibile avere un periodo di prova?</h4>
+                    <p class="text-sm text-slate-500 italic">Certamente. Prevediamo un periodo di inserimento per valutare l'affinità tra l'assistito e l'operatore.</p>
                 </div>
             </div>
         </div>
@@ -256,7 +298,7 @@
                     <option>ASSISTENZA A ORE</option>
                 </select>
                 <textarea placeholder="DICCI QUALCOSA DI PIÙ..." rows="3" class="w-full p-5 bg-slate-50 rounded-3xl border-none outline-none text-xs font-bold uppercase"></textarea>
-                <button class="w-full bg-care-green text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Richiedi Contatto</button>
+                <button type="button" class="w-full bg-care-green text-white py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl">Richiedi Contatto</button>
             </form>
         </div>
     </section>
@@ -267,10 +309,6 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-8 right-8 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -280,6 +318,36 @@
             overlay.style.display = isVisible ? 'none' : 'flex';
             document.body.style.overflow = isVisible ? 'auto' : 'hidden';
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Chiudi menu mobile se aperto
+                        const overlay = document.getElementById('mobile-menu-overlay');
+                        if (overlay.style.display === 'flex') {
+                            toggleMenu();
+                        }
+
+                        // Scroll Fluido con Offset
+                        const offset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>

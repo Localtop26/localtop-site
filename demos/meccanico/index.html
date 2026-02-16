@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth overflow-x-hidden w-full">
+<html lang="it" class="w-full">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Meccanica Italia | Atelier del Motore & Officina Premium - Demo Mode</title>
@@ -8,51 +9,93 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; overflow-x: hidden; width: 100%; -webkit-font-smoothing: antialiased; }
+        /* Reset e Base */
+        html, body { 
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: #ffffff; 
+            color: #1e293b;
+        }
+        
         .font-serif { font-family: 'Playfair Display', serif; }
         .text-racing-red { color: #ce1126; } 
         .bg-racing-red { background-color: #ce1126; }
         
-        /* Background Hero a Colori - No filtri */
         .hero-gradient { 
             background: linear-gradient(to right, rgba(255,255,255,0.8) 20%, rgba(255,255,255,0) 100%), 
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
 
-        /* --- TITOLO HERO MONUMENTALE --- */
         h1 { 
             font-size: clamp(4rem, 12vw, 11rem) !important; 
             line-height: 0.8; 
             letter-spacing: -0.05em;
         }
 
-        /* Rimozione filtri immagini */
         img { filter: none !important; grayscale: 0 !important; }
         
         @media (max-width: 768px) {
             h1 { line-height: 0.85 !important; }
             h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop Mobile più piccoli */
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem !important;
-                font-size: 8px !important;
-            }
         }
 
+        /* --- BOTTONE LOCALTOP FISSO --- */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
-            z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            z-index: 200;
+        }
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
+
+        /* --- HEADER FIXED (SOLUZIONE DEFINITIVA) --- */
+        .main-header {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 1000; /* Valore altissimo per stare sopra tutto */
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        /* Mobile Menu Overlay */
+        /* Distanziatore per evitare che il contenuto finisca sotto l'header fixed */
+        .header-spacer {
+            height: 80px;
+            width: 100%;
+        }
+
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -60,20 +103,22 @@
         #mobile-menu.active {
             transform: translateX(0);
         }
+
+        .no-click {
+            pointer-events: none;
+            cursor: default;
+        }
     </style>
 </head>
 <body class="selection:bg-red-50 selection:text-racing-red">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
-    <nav class="sticky top-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 h-20 flex items-center">
+    <nav class="main-header flex items-center">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-4 shrink-0">
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-racing-red rounded-sm flex items-center justify-center transform -skew-x-12">
@@ -86,15 +131,17 @@
             </div>
             
             <div class="hidden lg:flex space-x-10 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#storia" class="hover:text-racing-red transition">Storia</a>
-                <a href="#servizi" class="hover:text-racing-red transition">Servizi</a>
-                <a href="#filosofia" class="hover:text-racing-red transition">Filosofia</a>
-                <a href="#tecnologia" class="hover:text-racing-red transition">Tecnologia</a>
-                <a href="#contatti" class="hover:text-racing-red transition">Contatti</a>
+                <a href="#storia" class="anchor-link hover:text-racing-red transition">Storia</a>
+                <a href="#servizi" class="anchor-link hover:text-racing-red transition">Servizi</a>
+                <a href="#recensioni" class="anchor-link hover:text-racing-red transition">Recensioni</a>
+                <a href="#filosofia" class="anchor-link hover:text-racing-red transition">Filosofia</a>
+                <a href="#tecnologia" class="anchor-link hover:text-racing-red transition">Tecnologia</a>
+                <a href="#faq" class="anchor-link hover:text-racing-red transition">FAQ</a>
+                <a href="#contatti" class="anchor-link hover:text-racing-red transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="tel:+39059123456" class="hidden sm:block bg-slate-900 text-white px-5 md:px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-racing-red transition-all shadow-md whitespace-nowrap">
+                <a href="#" class="no-click hidden sm:block bg-slate-900 text-white px-5 md:px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest shadow-md">
                     Richiedi Assistenza
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-900" aria-label="Menu">
@@ -104,18 +151,22 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-slate-900 text-white flex flex-col p-8 lg:hidden">
+    <div class="header-spacer"></div>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[1100] bg-slate-900 text-white flex flex-col p-8 lg:hidden">
         <div class="flex justify-end mb-12">
             <button id="menu-close" class="text-white">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
         </div>
         <div class="flex flex-col gap-8 text-2xl font-black uppercase italic">
-            <a href="#storia" class="mobile-link">Storia</a>
-            <a href="#servizi" class="mobile-link">Servizi</a>
-            <a href="#filosofia" class="mobile-link">Filosofia</a>
-            <a href="#tecnologia" class="mobile-link">Tecnologia</a>
-            <a href="#contatti" class="mobile-link">Contatti</a>
+            <a href="#storia" class="anchor-link mobile-link">Storia</a>
+            <a href="#servizi" class="anchor-link mobile-link">Servizi</a>
+            <a href="#recensioni" class="anchor-link mobile-link">Recensioni</a>
+            <a href="#filosofia" class="anchor-link mobile-link">Filosofia</a>
+            <a href="#tecnologia" class="anchor-link mobile-link">Tecnologia</a>
+            <a href="#faq" class="anchor-link mobile-link">FAQ</a>
+            <a href="#contatti" class="anchor-link mobile-link">Contatti</a>
         </div>
         <div class="mt-auto">
             <p class="text-racing-red text-xs font-bold uppercase tracking-widest mb-4">Meccanica Italia</p>
@@ -133,7 +184,7 @@
                     Non ripariamo solo automobili. Ci prendiamo cura della tua sicurezza con l'eccellenza e la passione del Made in Italy.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#contatti" class="bg-racing-red text-white px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Prenota un Appuntamento</a>
+                    <a href="#contatti" class="anchor-link bg-racing-red text-white px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Prenota un Appuntamento</a>
                 </div>
             </div>
         </div>
@@ -191,16 +242,48 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-slate-900 uppercase italic">Cosa dicono di noi</h2>
+                <div class="h-1 w-20 bg-racing-red mx-auto mt-4"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 border border-slate-100 italic">
+                    <div class="flex text-racing-red mb-4 no-click">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light">"Professionalità incredibile. Hanno risolto un problema elettronico sulla mia Giulia che nessuno riusciva a capire."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">Marco V. — Modena</p>
+                </div>
+                <div class="bg-slate-50 p-8 border border-slate-100 italic">
+                    <div class="flex text-racing-red mb-4 no-click">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light">"Il miglior atelier del motore in zona. Trattano le auto come opere d'arte. Trasparenza totale sui prezzi."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">Alessandro L. — Carpi</p>
+                </div>
+                <div class="bg-slate-50 p-8 border border-slate-100 italic">
+                    <div class="flex text-racing-red mb-4 no-click">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light">"Tagliando effettuato in tempi record e auto sostitutiva perfetta. Si sente la cura artigiana."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">Elena G. — Bologna</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-20 md:py-32 bg-white section-padding border-t border-slate-50">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl font-black text-slate-900 uppercase italic">L'Etica del <span class="text-racing-red">Lavoro.</span></h2>
             <p class="text-slate-600 text-lg md:text-xl font-light italic leading-relaxed">
-                "Non siamo solo un'officina, siamo custodi di storie su quattro ruote. La nostra filosofia si basa sulla trasparenza assoluta: ogni vite serrata, ogni componente sostituito è frutto di una scelta consapevole tra durata e performance."
+                "Non siamo solo un'officina, siamo custodi di storie su quattro ruote. La nostra filosofia si basa sulla trasparenza assoluta: ogni vite serrata è frutto di una scelta consapevole."
             </p>
             <div class="flex justify-center gap-8 md:gap-16 pt-8">
-                <div class="text-center"><i data-lucide="award" class="mx-auto mb-4 text-racing-red"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità DOC</p></div>
-                <div class="text-center"><i data-lucide="user-check" class="mx-auto mb-4 text-racing-red"></i><p class="text-[9px] font-bold uppercase tracking-widest">Esperti Certificati</p></div>
-                <div class="text-center"><i data-lucide="heart" class="mx-auto mb-4 text-racing-red"></i><p class="text-[9px] font-bold uppercase tracking-widest">Cura Artigiana</p></div>
+                <div class="text-center no-click"><i data-lucide="award" class="mx-auto mb-4 text-racing-red"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità DOC</p></div>
+                <div class="text-center no-click"><i data-lucide="user-check" class="mx-auto mb-4 text-racing-red"></i><p class="text-[9px] font-bold uppercase tracking-widest">Esperti Certificati</p></div>
+                <div class="text-center no-click"><i data-lucide="heart" class="mx-auto mb-4 text-racing-red"></i><p class="text-[9px] font-bold uppercase tracking-widest">Cura Artigiana</p></div>
             </div>
         </div>
     </section>
@@ -208,23 +291,23 @@
     <section id="tecnologia" class="py-20 md:py-32 bg-slate-50 section-padding overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="order-2 lg:order-1 relative">
-                <img src="assets/img3.jpg" class="rounded-sm shadow-xl transition duration-700 w-full" alt="Tecnologia Officina">
+                <img src="assets/img3.jpg" class="rounded-sm shadow-xl transition duration-700 w-full" alt="Tecnologia">
             </div>
             <div class="order-1 lg:order-2 space-y-10">
                 <h2 class="text-5xl font-black text-slate-900 leading-none uppercase italic">Standard <br><span class="text-racing-red italic font-serif normal-case">Premium.</span></h2>
                 <div class="space-y-8">
                     <div class="flex gap-6">
-                        <div class="w-12 h-12 bg-white shadow-sm rounded flex items-center justify-center text-racing-red shrink-0"><i data-lucide="car"></i></div>
+                        <div class="w-12 h-12 bg-white shadow-sm rounded flex items-center justify-center text-racing-red shrink-0 no-click"><i data-lucide="car"></i></div>
                         <div>
                             <h4 class="font-bold text-slate-900 uppercase text-xs tracking-widest mb-1">Auto Sostitutiva</h4>
-                            <p class="text-sm text-slate-500 font-light italic">Offriamo vetture di cortesia moderne per ogni intervento superiore alle 4 ore.</p>
+                            <p class="text-sm text-slate-500 font-light italic">Vetture di cortesia moderne per interventi superiori alle 4 ore.</p>
                         </div>
                     </div>
                     <div class="flex gap-6">
-                        <div class="w-12 h-12 bg-white shadow-sm rounded flex items-center justify-center text-racing-red shrink-0"><i data-lucide="snowflake"></i></div>
+                        <div class="w-12 h-12 bg-white shadow-sm rounded flex items-center justify-center text-racing-red shrink-0 no-click"><i data-lucide="snowflake"></i></div>
                         <div>
                             <h4 class="font-bold text-slate-900 uppercase text-xs tracking-widest mb-1">Igienizzazione O3</h4>
-                            <p class="text-sm text-slate-500 font-light italic">Sanificazione abitacolo all'ozono certificata per eliminare batteri e allergeni.</p>
+                            <p class="text-sm text-slate-500 font-light italic">Sanificazione abitacolo all'ozono certificata.</p>
                         </div>
                     </div>
                 </div>
@@ -232,32 +315,39 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-20 md:py-32 bg-white section-padding">
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-slate-900 uppercase italic">FAQ</h2>
+                <div class="h-1 w-20 bg-racing-red mx-auto mt-4"></div>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-slate-900 uppercase text-sm mb-2 italic">Mantenete la garanzia ufficiale?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Sì, eseguiamo i tagliandi seguendo i protocolli dei costruttori.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-6">
+                    <h4 class="font-bold text-slate-900 uppercase text-sm mb-2 italic">Fornite preventivi scritti?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Assolutamente sì. Trasparenza totale prima di ogni intervento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20 md:py-32 bg-slate-50 section-padding">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic mb-16">Mettiti in <br><span class="text-racing-red underline decoration-slate-100 underline-offset-8">Contatto.</span></h2>
-            
+            <h2 class="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase tracking-tighter italic mb-16">Contatti.</h2>
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="bg-slate-50 p-10 border border-slate-100 flex flex-col items-center gap-4">
-                    <div class="w-16 h-16 bg-white flex items-center justify-center text-racing-red shadow-sm rounded-full">
-                        <i data-lucide="phone" class="w-8 h-8"></i>
-                    </div>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Telefono</p>
+                <div class="bg-white p-10 border border-slate-100 flex flex-col items-center gap-4 no-click">
+                    <div class="w-16 h-16 bg-slate-50 flex items-center justify-center text-racing-red shadow-sm rounded-full"><i data-lucide="phone" class="w-8 h-8"></i></div>
                     <p class="text-xl font-bold">+39 059 1234 567</p>
                 </div>
-
-                <div class="bg-slate-50 p-10 border border-slate-100 flex flex-col items-center gap-4">
-                    <div class="w-16 h-16 bg-white flex items-center justify-center text-[#25D366] shadow-sm rounded-full">
-                        <i data-lucide="message-circle" class="w-8 h-8"></i>
-                    </div>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">WhatsApp</p>
-                    <p class="text-xl font-bold">Inviaci un Messaggio</p>
+                <div class="bg-white p-10 border border-slate-100 flex flex-col items-center gap-4 no-click">
+                    <div class="w-16 h-16 bg-slate-50 flex items-center justify-center text-[#25D366] shadow-sm rounded-full"><i data-lucide="message-circle" class="w-8 h-8"></i></div>
+                    <p class="text-xl font-bold">WhatsApp</p>
                 </div>
-
-                <div class="bg-slate-50 p-10 border border-slate-100 flex flex-col items-center gap-4">
-                    <div class="w-16 h-16 bg-white flex items-center justify-center text-racing-red shadow-sm rounded-full">
-                        <i data-lucide="map-pin" class="w-8 h-8"></i>
-                    </div>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Posizione</p>
+                <div class="bg-white p-10 border border-slate-100 flex flex-col items-center gap-4 no-click">
+                    <div class="w-16 h-16 bg-slate-50 flex items-center justify-center text-racing-red shadow-sm rounded-full"><i data-lucide="map-pin" class="w-8 h-8"></i></div>
                     <p class="text-xl font-bold uppercase italic">Modena, Italia</p>
                 </div>
             </div>
@@ -265,39 +355,64 @@
     </section>
 
     <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
-        <p class="text-slate-400 text-[9px] uppercase tracking-[0.5em] font-bold italic leading-relaxed">
-            &copy; 2026 Meccanica Italia Modena | Passione, Orgoglio, Precisione | P.IVA 0123456789 | LocalTop Demo Mode
+        <p class="text-slate-400 text-[9px] uppercase tracking-[0.5em] font-bold italic leading-relaxed no-click">
+            &copy; 2026 Meccanica Italia Modena | P.IVA 0123456789 | LocalTop Demo Mode
         </p>
     </footer>
-
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50 transition-transform hover:scale-110 cursor-default">
-        <i data-lucide="message-square" class="w-7 h-7"></i>
-    </div>
 
     <script>
         lucide.createIcons();
 
-        // Mobile Menu Logic
+        // LOGICA MENU MOBILE
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        const closeMobileMenu = () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        };
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
-        menuClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
+        menuClose.addEventListener('click', closeMobileMenu);
+
+        // LOGICA SMOOTH SCROLL CON OFFSET 100PX (JS-ONLY)
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        closeMobileMenu();
+
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
         });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
+        // DISATTIVA INTERAZIONI ESTETICHE (TRANNE I LINK ANCORA E IL BOTTONE LOCALTOP)
+        document.querySelectorAll('form, input, textarea, button:not(#menu-toggle):not(#menu-close)').forEach(el => {
+            if(!el.closest('.demo-nav-container') && !el.classList.contains('anchor-link')) {
+                el.classList.add('no-click');
+                el.addEventListener('click', (e) => e.preventDefault());
+            }
         });
     </script>
 </body>

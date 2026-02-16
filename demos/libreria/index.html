@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orizzonti Narrativi | Libreria, Giochi & Concept Store - Demo Mode</title>
@@ -57,53 +58,63 @@
             gap: 2rem;
         }
 
-        @media (max-width: 768px) {
-            .demo-nav-container a {
-                padding: 0.5rem 1rem !important;
-                font-size: 8px !important;
-            }
-            
-            /* Modifica specifica per portare il contenuto in alto su mobile */
-            .hero-section-container {
-                align-items: flex-start !important;
-                padding-top: 4rem !important;
-            }
-
-            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 0.95 !important; }
-            h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
-            .reading-section-img { background-attachment: scroll; height: 400px; }
-            .max-w-7xl { overflow: hidden; }
-        }
-
-        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo {
-            pointer-events: none !important;
-            cursor: default !important;
-            user-select: none;
-        }
-
-        .demo-nav-container {
+        /* Bottone LocalTop Unico */
+        .localtop-cta {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
             z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            max-width: calc(100% - 2rem);
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .localtop-cta {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .localtop-cta:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section-container {
+                align-items: flex-start !important;
+                padding-top: 4rem !important;
+            }
+            h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 0.95 !important; }
+            h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            .reading-section-img { background-attachment: scroll; height: 400px; }
+        }
+
+        /* Disattivazione elementi non richiesti */
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea {
+            pointer-events: none !important;
+            cursor: default !important;
+            user-select: none;
         }
     </style>
 </head>
 <body class="selection:bg-mustard selection:text-ink">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 whitespace-nowrap">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 whitespace-nowrap">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="localtop-cta">
+        Attiva il Servizio
+    </a>
 
     <nav class="sticky sticky-nav z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 h-20 md:h-24 flex items-center shadow-md transition-all px-4 md:px-10">
         <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
@@ -120,8 +131,8 @@
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="#lettura" class="hover:text-mustard transition">Vieni a Leggere</a>
                 <a href="#giochi" class="hover:text-mustard transition">Board Games</a>
-                <a href="#filosofia" class="hover:text-mustard transition">Filosofia</a>
-                <a href="#cartoleria" class="hover:text-mustard transition">Store</a>
+                <a href="#recensioni" class="hover:text-mustard transition">Recensioni</a>
+                <a href="#faq" class="hover:text-mustard transition">FAQ</a>
                 <a href="#eventi" class="hover:text-mustard transition">Eventi</a>
             </div>
 
@@ -142,8 +153,8 @@
         </button>
         <a href="#lettura" class="text-2xl font-serif italic text-ink mobile-link">Vieni a Leggere</a>
         <a href="#giochi" class="text-2xl font-serif italic text-ink mobile-link">Board Games</a>
-        <a href="#filosofia" class="text-2xl font-serif italic text-ink mobile-link">Filosofia</a>
-        <a href="#cartoleria" class="text-2xl font-serif italic text-ink mobile-link">Store</a>
+        <a href="#recensioni" class="text-2xl font-serif italic text-ink mobile-link">Recensioni</a>
+        <a href="#faq" class="text-2xl font-serif italic text-ink mobile-link">FAQ</a>
         <a href="#eventi" class="text-2xl font-serif italic text-ink mobile-link">Eventi</a>
         <a href="#contatti" class="text-2xl font-serif italic text-mustard mobile-link">Contatti</a>
     </div>
@@ -205,6 +216,31 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-serif italic text-ink uppercase tracking-tighter">Cosa dicono di <span class="text-mustard">Noi</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-[#fdfaf6] rounded-3xl border border-stone-100 shadow-sm">
+                    <div class="flex text-mustard mb-4"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    <p class="italic text-slate-600 mb-6">"Un angolo di paradiso per chi ama leggere. Il personale è preparatissimo e l'atmosfera è magica."</p>
+                    <p class="font-bold text-ink uppercase text-[10px] tracking-widest">Marco R. — Milano</p>
+                </div>
+                <div class="p-8 bg-[#fdfaf6] rounded-3xl border border-stone-100 shadow-sm">
+                    <div class="flex text-mustard mb-4"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    <p class="italic text-slate-600 mb-6">"La selezione di giochi da tavolo è incredibile. Ho trovato titoli introvabili altrove."</p>
+                    <p class="font-bold text-ink uppercase text-[10px] tracking-widest">Elena V. — Monza</p>
+                </div>
+                <div class="p-8 bg-[#fdfaf6] rounded-3xl border border-stone-100 shadow-sm">
+                    <div class="flex text-mustard mb-4"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+                    <p class="italic text-slate-600 mb-6">"Le candele ispirate ai libri sono un tocco di classe unico. Ottimo per fare regali originali."</p>
+                    <p class="font-bold text-ink uppercase text-[10px] tracking-widest">Giulia S. — Pavia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
             <div class="space-y-10">
@@ -235,6 +271,28 @@
                 <div class="flex flex-wrap gap-4">
                     <span class="px-6 py-2 border border-slate-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-400 italic">Moleskine</span>
                     <span class="px-6 py-2 border border-slate-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-400 italic">Lamy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-white section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-serif italic text-ink uppercase tracking-tighter italic">Domande <span class="text-mustard">Frequenti</span></h2>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-stone-200 pb-4">
+                    <h4 class="text-lg font-bold text-ink mb-2 italic">Posso venire solo a leggere senza acquistare?</h4>
+                    <p class="text-slate-500 font-light">Certamente! La nostra area lettura è aperta a tutti. Chiediamo solo il rispetto del silenzio per gli altri lettori.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-4">
+                    <h4 class="text-lg font-bold text-ink mb-2 italic">Organizzate serate di gioco guidate?</h4>
+                    <p class="text-slate-500 font-light">Sì, ogni giovedì sera abbiamo dei "Game Master" che spiegano le regole dei nuovi titoli in store.</p>
+                </div>
+                <div class="border-b border-stone-200 pb-4">
+                    <h4 class="text-lg font-bold text-ink mb-2 italic">Posso prenotare un libro non disponibile?</h4>
+                    <p class="text-slate-500 font-light">Sì, ordiniamo libri quotidianamente e solitamente arrivano entro 48 ore lavorative.</p>
                 </div>
             </div>
         </div>
@@ -299,10 +357,6 @@
         &copy; 2026 Orizzonti Narrativi | Books & Games Specialist | P.IVA 0123456789 | LocalTop Demo Mode
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -311,18 +365,44 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        menuToggle.addEventListener('click', () => {
+        const openMenu = () => {
             mobileMenu.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-        });
+        };
 
         const closeMenu = () => {
             mobileMenu.style.display = 'none';
             document.body.style.overflow = 'auto';
         };
 
+        menuToggle.addEventListener('click', openMenu);
         menuClose.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Se il click è dal menu mobile
+                    if (this.classList.contains('mobile-link')) {
+                        closeMenu();
+                    }
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Anima Verde | Erboristeria Tradizionale & Officina Botanica - Demo</title>
@@ -39,10 +40,10 @@
         }
         .herb-card:hover { transform: translateY(-8px); border-color: #bc8a5f; }
 
-        input, select, textarea, .chat-widget-demo {
+        /* Disattivazione elementi interattivi non richiesti */
+        input, select, textarea, button:not(#open-menu):not(#close-menu), .pointer-none {
             pointer-events: none !important;
             cursor: default !important;
-            user-select: none;
         }
 
         .main-nav {
@@ -63,22 +64,37 @@
             h1 { font-size: clamp(3.5rem, 12vw, 5rem) !important; line-height: 0.9 !important; }
             h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; }
             .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-            
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem !important;
-                font-size: 8px !important;
-            }
         }
 
-        .demo-nav-container {
+        /* Bottone LocalTop Unico */
+        .localtop-cta {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
+
+        @media (min-width: 768px) {
+            .localtop-cta {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .localtop-cta:hover { transform: scale(1.03); }
     </style>
 </head>
 <body class="selection:bg-botanical selection:text-white">
@@ -89,23 +105,20 @@
                 <i data-lucide="x" class="w-10 h-10"></i>
             </button>
         </div>
-        <div class="flex flex-col items-center justify-center flex-grow space-y-8 text-center">
-            <a href="#rimedi" class="mobile-link text-3xl font-serif italic text-botanical">Rimedi</a>
-            <a href="#cosmesi" class="mobile-link text-3xl font-serif italic text-botanical">Fitocosmesi</a>
-            <a href="#integrazione" class="mobile-link text-3xl font-serif italic text-botanical">Integrazione</a>
-            <a href="#laboratorio" class="mobile-link text-3xl font-serif italic text-botanical">Il Lab</a>
-            <a href="#contatti" class="mobile-link bg-botanical text-white px-8 py-4 rounded-full font-black uppercase text-[10px] tracking-widest shadow-xl">Contattaci</a>
+        <div class="flex flex-col items-center justify-center flex-grow space-y-6 text-center">
+            <a href="#rimedi" class="anchor-link text-2xl font-serif italic text-botanical">Rimedi</a>
+            <a href="#cosmesi" class="anchor-link text-2xl font-serif italic text-botanical">Fitocosmesi</a>
+            <a href="#integrazione" class="anchor-link text-2xl font-serif italic text-botanical">Integrazione</a>
+            <a href="#recensioni" class="anchor-link text-2xl font-serif italic text-botanical">Recensioni</a>
+            <a href="#faq" class="anchor-link text-2xl font-serif italic text-botanical">FAQ</a>
+            <a href="#laboratorio" class="anchor-link text-2xl font-serif italic text-botanical">Il Lab</a>
+            <a href="#contatti" class="anchor-link bg-botanical text-white px-8 py-4 rounded-full font-black uppercase text-[10px] tracking-widest shadow-xl">Contattaci</a>
         </div>
     </div>
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="localtop-cta">
+        Attiva il Servizio
+    </a>
 
     <nav class="main-nav bg-white/90 backdrop-blur-md border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 md:h-24 flex items-center justify-between">
@@ -119,15 +132,17 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-10 text-[10px] font-black uppercase tracking-[0.3em] text-stone-500">
-                <a href="#rimedi" class="hover:text-botanical transition">Rimedi</a>
-                <a href="#cosmesi" class="hover:text-botanical transition">Fitocosmesi</a>
-                <a href="#integrazione" class="hover:text-botanical transition">Integrazione</a>
-                <a href="#laboratorio" class="hover:text-botanical transition">Il Lab</a>
+            <div class="hidden lg:flex space-x-8 text-[9px] font-black uppercase tracking-[0.2em] text-stone-500">
+                <a href="#rimedi" class="anchor-link hover:text-botanical transition">Rimedi</a>
+                <a href="#cosmesi" class="anchor-link hover:text-botanical transition">Fitocosmesi</a>
+                <a href="#integrazione" class="anchor-link hover:text-botanical transition">Integrazione</a>
+                <a href="#recensioni" class="anchor-link hover:text-botanical transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-botanical transition">FAQ</a>
+                <a href="#laboratorio" class="anchor-link hover:text-botanical transition">Il Lab</a>
             </div>
 
             <div class="flex items-center gap-2">
-                <a href="#contatti" class="hidden md:block bg-botanical text-white px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-clay transition-all shadow-md">
+                <a href="#contatti" class="anchor-link hidden md:block bg-botanical text-white px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-clay transition-all shadow-md">
                     Contattaci
                 </a>
                 <button id="open-menu" class="lg:hidden text-botanical p-2 hover:bg-stone-50 rounded-full transition-colors" aria-label="Menu">
@@ -147,8 +162,8 @@
                     Custodi della tradizione erboristica. Miscele personalizzate, oli essenziali puri e fitocosmesi naturale per un equilibrio consapevole tra corpo e natura.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#rimedi" class="bg-botanical text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-black uppercase text-xs tracking-widest shadow-2xl hover:bg-clay transition-all">Esplora Rimedi</a>
-                    <a href="#laboratorio" class="bg-white/80 backdrop-blur-sm border border-stone-200 text-stone-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-black uppercase text-xs tracking-widest hover:bg-stone-50 transition-all italic">Miscele su Misura</a>
+                    <a href="#rimedi" class="anchor-link bg-botanical text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-black uppercase text-xs tracking-widest shadow-2xl hover:bg-clay transition-all">Esplora Rimedi</a>
+                    <a href="#laboratorio" class="anchor-link bg-white/80 backdrop-blur-sm border border-stone-200 text-stone-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-black uppercase text-xs tracking-widest hover:bg-stone-50 transition-all italic">Miscele su Misura</a>
                 </div>
             </div>
         </div>
@@ -226,20 +241,86 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-clay font-black uppercase tracking-[0.5em] text-[10px]">Feedback</span>
+                <h2 class="text-5xl font-serif italic text-botanical uppercase mt-4">Voci dal <span class="text-clay font-normal">Bosco.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-stone-50 rounded-3xl border border-stone-100">
+                    <div class="flex gap-1 mb-4 text-clay">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic font-bold text-stone-600 mb-6">"Le loro tisane personalizzate hanno risolto i miei problemi di insonnia. Professionalità e competenza rara."</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-botanical">Elena R. - Milano</p>
+                </div>
+                <div class="p-8 bg-stone-50 rounded-3xl border border-stone-100">
+                    <div class="flex gap-1 mb-4 text-clay">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic font-bold text-stone-600 mb-6">"Prodotti di fitocosmesi eccezionali. Il siero alla rosa canina è diventato il mio alleato quotidiano."</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-botanical">Marco V. - Torino</p>
+                </div>
+                <div class="p-8 bg-stone-50 rounded-3xl border border-stone-100">
+                    <div class="flex gap-1 mb-4 text-clay">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic font-bold text-stone-600 mb-6">"Un luogo magico dove riscoprire il potere della natura. Consulenza preparatissima e gentilezza."</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-botanical">Giulia B. - Bergamo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="laboratorio" class="py-20 md:py-32 bg-[#f4f1ee] section-padding">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-8 md:space-y-12">
             <h2 class="text-4xl font-serif italic text-botanical uppercase tracking-widest">L'Arte della <span class="text-clay">Miscela.</span></h2>
             <p class="text-stone-600 text-lg font-bold leading-relaxed max-w-2xl mx-auto italic">Prepariamo tisane personalizzate e fiori di Bach. Scopri l'Angolo del Tè.</p>
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 pt-6">
-                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm">
+                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm pointer-none">
                     <i data-lucide="flask-conical" class="w-8 h-8 mx-auto mb-6 text-clay"></i>
                     <h4 class="font-black uppercase text-[11px] tracking-widest">Miscele Personalizzate</h4>
                     <p class="text-xs text-stone-400 mt-4 leading-relaxed italic font-bold text-center">Create per le tue specifiche esigenze.</p>
                 </div>
-                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm">
+                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm pointer-none">
                     <i data-lucide="coffee" class="w-8 h-8 mx-auto mb-6 text-clay"></i>
                     <h4 class="font-black uppercase text-[11px] tracking-widest">Tè dal Mondo</h4>
                     <p class="text-xs text-stone-400 mt-4 leading-relaxed italic font-bold text-center">Selezioni pregiate da infusione.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-stone-50 section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-serif italic text-botanical uppercase">Domande <span class="text-clay font-normal">Frequenti.</span></h2>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-stone-100">
+                    <h4 class="font-black text-xs uppercase text-botanical mb-3 italic">Effettuate spedizioni a domicilio?</h4>
+                    <p class="text-stone-500 text-sm font-bold italic">Sì, spediamo i nostri rimedi e preparati in tutta Italia tramite corriere espresso in 24/48 ore.</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-stone-100">
+                    <h4 class="font-black text-xs uppercase text-botanical mb-3 italic">Posso richiedere una miscela personalizzata online?</h4>
+                    <p class="text-stone-500 text-sm font-bold italic">Certamente. Potete contattarci via WhatsApp per una breve consulenza e creeremo la miscela perfetta per voi.</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-stone-100">
+                    <h4 class="font-black text-xs uppercase text-botanical mb-3 italic">I vostri prodotti sono biologici?</h4>
+                    <p class="text-stone-500 text-sm font-bold italic">Utilizziamo esclusivamente erbe da coltivazione biologica certificata o da raccolta spontanea in zone incontaminate.</p>
                 </div>
             </div>
         </div>
@@ -253,27 +334,27 @@
             </div>
             
             <div class="space-y-6">
-                <a href="#" class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 hover:border-clay transition-all group shadow-sm">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white flex items-center justify-center rounded-full shadow-lg shrink-0 group-hover:scale-110 transition-transform">
+                <div class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 pointer-none shadow-sm">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white flex items-center justify-center rounded-full shadow-lg shrink-0">
                         <i data-lucide="message-circle" class="w-7 h-7"></i>
                     </div>
                     <div>
                         <p class="text-[9px] font-black uppercase tracking-widest text-stone-400 mb-1">WhatsApp</p>
                         <p class="text-xl md:text-2xl font-serif italic font-bold uppercase text-botanical">+39 333 123 4567</p>
                     </div>
-                </a>
+                </div>
 
-                <a href="#" class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 hover:border-clay transition-all group shadow-sm">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-botanical text-white flex items-center justify-center rounded-full shadow-lg shrink-0 group-hover:scale-110 transition-transform">
+                <div class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 pointer-none shadow-sm">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-botanical text-white flex items-center justify-center rounded-full shadow-lg shrink-0">
                         <i data-lucide="phone" class="w-7 h-7"></i>
                     </div>
                     <div>
                         <p class="text-[9px] font-black uppercase tracking-widest text-stone-400 mb-1">Chiamaci</p>
                         <p class="text-xl md:text-2xl font-serif italic font-bold uppercase text-botanical">02 1234 5678</p>
                     </div>
-                </a>
+                </div>
 
-                <div class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 shadow-sm">
+                <div class="flex items-center gap-6 md:gap-8 bg-stone-50 p-6 md:p-8 rounded-[2rem] border border-stone-100 shadow-sm pointer-none">
                     <div class="w-14 h-14 md:w-16 md:h-16 bg-clay text-white flex items-center justify-center rounded-full shadow-lg shrink-0">
                         <i data-lucide="map-pin" class="w-7 h-7"></i>
                     </div>
@@ -292,30 +373,48 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-6 md:bottom-10 right-6 md:right-10 bg-white border border-stone-100 text-botanical p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
+        // Elementi Menu
         const openBtn = document.getElementById('open-menu');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+            const isActive = mobileMenu.classList.toggle('active');
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
         }
 
         openBtn.addEventListener('click', toggleMenu);
         closeBtn.addEventListener('click', toggleMenu);
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Chiudi menu mobile se aperto
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+
+                        // Scroll Fluido con Offset
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
 

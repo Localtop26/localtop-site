@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Step Hub | Calzature Multibrand & Sneaker Store - Demo Mode</title>
@@ -21,7 +22,7 @@
         .bg-cream { background-color: #f4f4f2; }
         
         /* Rimozione totale filtri immagini */
-        img, .brand-grid span, .grayscale, .group-hover\:grayscale-0 { 
+        img, .brand-grid span { 
             filter: none !important; 
             grayscale: 0 !important;
             opacity: 1 !important; 
@@ -52,7 +53,7 @@
         #mobile-menu {
             display: none;
             position: fixed;
-            top: 70px; /* Altezza ridotta per mobile */
+            top: 70px; 
             left: 0;
             width: 100%;
             background: white;
@@ -68,34 +69,55 @@
             .hero-title { font-size: clamp(2.8rem, 12vw, 4rem); }
             .nav-container { padding-left: 0.75rem; padding-right: 0.75rem; }
             .logo-text { font-size: 1.1rem; }
-            .main-nav { h-16; }
-            /* Bottoni Localtop più piccoli su mobile */
-            .localtop-btn { 
-                padding: 0.4rem 0.8rem !important;
-                font-size: 7px !important;
-            }
+            .main-nav { height: 70px; }
         }
 
+        /* Bottone Localtop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 200;
+        }
+
+        .localtop-btn-unique {
+            background-color: #0F766E;
+            color: white;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 9999px;
+            min-height: 44px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-width: calc(100vw - 3rem);
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 768px) {
+            .localtop-btn-unique {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        
+        .localtop-btn-unique:hover { transform: scale(1.05); }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1.5rem 0;
         }
     </style>
 </head>
 <body class="selection:bg-black selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="localtop-btn-unique">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -110,15 +132,15 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
-                <a href="#sneakers" class="hover:text-black transition">Sneakers</a>
-                <a href="#classico" class="hover:text-black transition">Classico</a>
-                <a href="#filosofia" class="hover:text-black transition">Filosofia</a>
-                <a href="#sport" class="hover:text-black transition">Sport</a>
-                <a href="#brand" class="hover:text-black transition">Brand</a>
+                <a href="#sneakers" class="nav-link hover:text-black transition">Sneakers</a>
+                <a href="#classico" class="nav-link hover:text-black transition">Classico</a>
+                <a href="#recensioni" class="nav-link hover:text-black transition">Recensioni</a>
+                <a href="#faq" class="nav-link hover:text-black transition">FAQ</a>
+                <a href="#brand" class="nav-link hover:text-black transition">Brand</a>
             </div>
 
             <div class="flex items-center gap-2 md:gap-4">
-                <a href="#contatti" class="bg-rose-600 text-white px-3 md:px-8 py-2 md:py-3 rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-black transition-all shadow-lg shadow-rose-100 whitespace-nowrap">
+                <a href="#contatti" class="nav-link bg-rose-600 text-white px-3 md:px-8 py-2 md:py-3 rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-black transition-all shadow-lg shadow-rose-100 whitespace-nowrap">
                     Store
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 bg-slate-50 rounded-lg">
@@ -130,11 +152,11 @@
 
     <div id="mobile-menu" class="shadow-xl">
         <div class="flex flex-col p-6 space-y-5 text-[11px] font-bold uppercase tracking-widest italic">
-            <a href="#sneakers" onclick="toggleMenu()" class="flex items-center justify-between border-b border-slate-100 pb-3">Sneakers <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
-            <a href="#classico" onclick="toggleMenu()" class="flex items-center justify-between border-b border-slate-100 pb-3">Classico <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
-            <a href="#filosofia" onclick="toggleMenu()" class="flex items-center justify-between border-b border-slate-100 pb-3">Filosofia <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
-            <a href="#sport" onclick="toggleMenu()" class="flex items-center justify-between border-b border-slate-100 pb-3">Sport <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
-            <a href="#brand" onclick="toggleMenu()" class="flex items-center justify-between border-b border-slate-100 pb-3">Brand <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            <a href="#sneakers" class="nav-link flex items-center justify-between border-b border-slate-100 pb-3">Sneakers <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            <a href="#classico" class="nav-link flex items-center justify-between border-b border-slate-100 pb-3">Classico <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            <a href="#recensioni" class="nav-link flex items-center justify-between border-b border-slate-100 pb-3">Recensioni <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            <a href="#faq" class="nav-link flex items-center justify-between border-b border-slate-100 pb-3">FAQ <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            <a href="#brand" class="nav-link flex items-center justify-between border-b border-slate-100 pb-3">Brand <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
         </div>
     </div>
 
@@ -148,8 +170,8 @@
                     Dai campi da gioco alle passerelle. La più grande selezione multibrand di Milano: Nike, Adidas, Church's e molto altro.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                    <a href="#sneakers" class="bg-black text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-rose-600 transition-all">Sneaker Head</a>
-                    <a href="#classico" class="bg-white border border-slate-200 text-black px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all italic">Classic Luxury</a>
+                    <a href="#sneakers" class="nav-link bg-black text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-rose-600 transition-all">Sneaker Head</a>
+                    <a href="#classico" class="nav-link bg-white border border-slate-200 text-black px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all italic">Classic Luxury</a>
                 </div>
             </div>
             <div class="relative w-full max-w-2xl mx-auto lg:max-w-none">
@@ -233,6 +255,47 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-16 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-brand italic mb-12 uppercase">Dicono di <span class="text-rose-600">Noi.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 rounded-3xl space-y-4">
+                    <div class="flex text-rose-600">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-600">"Sempre i primi ad avere le ultime release Jordan. Personale super preparato e cordiale."</p>
+                    <div><p class="font-bold text-[10px] uppercase tracking-widest">Marco B. - Milano</p></div>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl space-y-4">
+                    <div class="flex text-rose-600">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-600">"Ho trovato delle Church's introvabili altrove. Un mix perfetto tra streetwear e classico."</p>
+                    <div><p class="font-bold text-[10px] uppercase tracking-widest">Elena V. - Monza</p></div>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl space-y-4">
+                    <div class="flex text-rose-600">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-600">"Il laboratorio biomeccanico in store mi ha aiutato a scegliere la scarpa da trail perfetta."</p>
+                    <div><p class="font-bold text-[10px] uppercase tracking-widest">Luca S. - Bergamo</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-16 md:py-32 bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-8 md:space-y-12">
             <h2 class="text-4xl md:text-6xl font-brand italic text-black uppercase">Passione ad <span class="text-rose-600">Ogni Passo.</span></h2>
@@ -247,19 +310,17 @@
         </div>
     </section>
 
-    <section id="sport" class="py-16 md:py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="bg-black text-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-24 overflow-hidden relative">
-                <div class="relative z-10 max-w-xl space-y-6 md:space-y-8">
-                    <h2 class="text-4xl md:text-6xl font-brand italic uppercase">Performance <br> Without Limits</h2>
-                    <p class="text-slate-400 font-light italic text-base md:text-lg">Running, Trekking o Training. Abbiamo la tecnologia giusta per ogni tuo obiettivo. Testa la tua falcata nel nostro laboratorio biomeccanico in store.</p>
-                    <ul class="space-y-4 font-brand text-lg md:text-xl italic">
-                        <li class="flex items-center gap-4 text-rose-600"><i data-lucide="zap"></i> Carbon Plate Running Shoes</li>
-                        <li class="flex items-center gap-4 text-rose-600"><i data-lucide="mountain"></i> Gore-Tex Hiking Boots</li>
-                    </ul>
+    <section id="faq" class="py-16 md:py-32 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-brand italic mb-12 uppercase text-center">Domande <span class="text-rose-600">Frequenti.</span></h2>
+            <div class="space-y-2">
+                <div class="faq-item">
+                    <h4 class="font-brand text-xl mb-2">Effettuate spedizioni online?</h4>
+                    <p class="text-slate-500 italic text-sm">Siamo focalizzati sull'esperienza in store, ma offriamo il servizio di spedizione a domicilio per i clienti del club.</p>
                 </div>
-                <div class="absolute right-0 bottom-0 opacity-10 hidden lg:block">
-                    <i data-lucide="trophy" class="w-[400px] h-[400px]"></i>
+                <div class="faq-item">
+                    <h4 class="font-brand text-xl mb-2">Come funzionano le release limitate?</h4>
+                    <p class="text-slate-500 italic text-sm">Le release Hype avvengono tramite raffle comunicate in anticipo sui nostri canali social.</p>
                 </div>
             </div>
         </div>
@@ -277,58 +338,74 @@
                             <p class="text-xl md:text-2xl font-brand">Via della Moda 10, Milano</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-6 md:gap-8 text-slate-400">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white flex items-center justify-center rounded-2xl shadow-sm border border-slate-100 text-rose-600 shrink-0"><i data-lucide="clock"></i></div>
-                        <p class="text-lg md:text-xl font-light italic">Tutti i giorni: 10:00 - 20:00</p>
-                    </div>
                 </div>
             </div>
             
             <div class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl flex flex-col justify-center gap-4">
-                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-rose-600 mb-6 italic text-center">Contattaci Direttamente</p>
-                
-                <div class="no-click w-full bg-black text-white py-5 rounded-full font-bold uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-4">
-                    <i data-lucide="phone" class="w-4 h-4"></i> +39 02 1234567
-                </div>
-                
-                <div class="no-click w-full border-2 border-green-500 text-green-600 py-5 rounded-full font-bold uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-4">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Store
-                </div>
-
-                <div class="no-click w-full bg-slate-100 text-slate-800 py-5 rounded-full font-bold uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-4 text-center">
-                    <i data-lucide="map" class="w-4 h-4"></i> Ottieni Indicazioni
-                </div>
+                <div class="no-click w-full bg-black text-white py-5 rounded-full font-bold uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-4"><i data-lucide="phone" class="w-4 h-4"></i> +39 02 1234567</div>
+                <div class="no-click w-full border-2 border-green-500 text-green-600 py-5 rounded-full font-bold uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-4"><i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Store</div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 bg-white text-center text-slate-400 text-[8px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.5em] font-bold border-t border-slate-50 px-6">
+    <footer class="py-12 bg-white text-center text-slate-400 text-[8px] md:text-[9px] uppercase tracking-[0.5em] font-bold border-t border-slate-50 px-6">
         &copy; 2026 Step Hub Milano | P.IVA 0123456789 | LocalTop Demo Experience
     </footer>
 
-    <div class="no-click fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-black text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
+        // Inizializza icone
         lucide.createIcons();
 
-        // Mobile Menu Toggle Logic
-        const menuToggle = document.getElementById('menu-toggle');
+        const menuBtn = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        function toggleMenu() {
-            mobileMenu.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            if(mobileMenu.classList.contains('active')) {
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                icon.setAttribute('data-lucide', 'menu');
-            }
+        // Funzione per chiudere il menu
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            menuBtn.innerHTML = '<i data-lucide="menu" class="w-5 h-5"></i>';
+            document.body.style.overflow = '';
             lucide.createIcons();
         }
 
-        menuToggle.addEventListener('click', toggleMenu);
+        // Toggle Menu
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = mobileMenu.classList.toggle('active');
+            menuBtn.innerHTML = isOpen ? '<i data-lucide="x" class="w-5 h-5"></i>' : '<i data-lucide="menu" class="w-5 h-5"></i>';
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            lucide.createIcons();
+        });
+
+        // Gestione Link e Scroll
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Se è un'ancora interna
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        // Chiudi menu se aperto
+                        if (mobileMenu.classList.contains('active')) {
+                            closeMenu();
+                        }
+
+                        // Scroll con offset
+                        const offset = 100;
+                        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Chiudi se clicchi fuori dal menu
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
     </script>
 </body>
 </html>

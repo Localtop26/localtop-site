@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio Tecnico Geometra | Progettazione, Catasto e Perizie - Demo</title>
@@ -21,14 +22,14 @@
         }
         
         /* Demo Mode Logic */
-        button, input, select, textarea, .wa-widget-demo { 
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea { 
             pointer-events: none !important; 
             cursor: default !important; 
             user-select: none;
         }
         
-        /* Re-enable pointer events for hamburger and mobile menu */
-        #menu-toggle, #mobile-menu, #mobile-menu a, .demo-nav-container a {
+        /* Re-enable pointer events for specific UI */
+        #menu-toggle, #mobile-menu, #mobile-menu a, .demo-nav-container a, nav a {
             pointer-events: auto !important;
             cursor: pointer !important;
         }
@@ -56,22 +57,38 @@
             h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
             .section-padding { padding-top: 2.5rem; padding-bottom: 2.5rem; }
             img { max-width: 100%; height: auto; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem !important;
-                font-size: 8px !important;
+        }
+
+        /* Custom LocalTop Button Style */
+        .btn-localtop {
+            background-color: #0F766E !important;
+            color: white !important;
+            font-weight: 700 !important;
+            border-radius: 9999px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
         }
+        .btn-localtop:hover { transform: scale(1.05); }
 
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
     </style>
 </head>
@@ -90,18 +107,19 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#servizi" class="hover:text-tech-blue transition">Servizi</a>
-                <a href="#catasto" class="hover:text-tech-blue transition">Catasto</a>
-                <a href="#perizie" class="hover:text-tech-blue transition">Perizie</a>
-                <a href="#cantiere" class="hover:text-tech-blue transition">Cantiere</a>
+                <a href="#servizi" class="anchor-link hover:text-tech-blue transition">Servizi</a>
+                <a href="#recensioni" class="anchor-link hover:text-tech-blue transition">Recensioni</a>
+                <a href="#catasto" class="anchor-link hover:text-tech-blue transition">Catasto</a>
+                <a href="#perizie" class="anchor-link hover:text-tech-blue transition">Perizie</a>
+                <a href="#faq" class="anchor-link hover:text-tech-blue transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-2 md:gap-4 shrink-0">
-                <a href="#contatti" class="hidden sm:block border-2 border-slate-900 text-slate-900 px-4 md:px-6 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-md pointer-events-auto">
+                <a href="#contatti" class="anchor-link hidden sm:block border-2 border-slate-900 text-slate-900 px-4 md:px-6 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-md">
                     Richiedi Consulenza
                 </a>
                 
-                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 pointer-events-auto">
+                <button id="menu-toggle" class="lg:hidden p-2 text-slate-900">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
@@ -109,22 +127,19 @@
     </nav>
 
     <div id="mobile-menu" class="fixed inset-0 z-[200] bg-slate-900 flex flex-col items-center justify-center space-y-8 lg:hidden">
-        <button id="menu-close" class="absolute top-10 right-10 text-white pointer-events-auto">
+        <button id="menu-close" class="absolute top-10 right-10 text-white">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#servizi" class="text-white text-2xl font-tech font-bold uppercase tracking-widest">Servizi</a>
-        <a href="#catasto" class="text-white text-2xl font-tech font-bold uppercase tracking-widest">Catasto</a>
-        <a href="#perizie" class="text-white text-2xl font-tech font-bold uppercase tracking-widest">Perizie</a>
-        <a href="#cantiere" class="text-white text-2xl font-tech font-bold uppercase tracking-widest">Cantiere</a>
-        <a href="#contatti" class="bg-tech-blue text-white px-8 py-4 rounded-sm font-bold uppercase text-xs tracking-widest">Contatti</a>
+        <a href="#servizi" class="anchor-link text-white text-2xl font-tech font-bold uppercase tracking-widest">Servizi</a>
+        <a href="#recensioni" class="anchor-link text-white text-2xl font-tech font-bold uppercase tracking-widest">Recensioni</a>
+        <a href="#catasto" class="anchor-link text-white text-2xl font-tech font-bold uppercase tracking-widest">Catasto</a>
+        <a href="#faq" class="anchor-link text-white text-2xl font-tech font-bold uppercase tracking-widest">FAQ</a>
+        <a href="#contatti" class="anchor-link bg-tech-blue text-white px-8 py-4 rounded-sm font-bold uppercase text-xs tracking-widest">Contatti</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -139,8 +154,8 @@
                     Dalla conformità urbanistica alla direzione lavori. Offriamo un supporto tecnico completo per trasformare le tue idee in realtà solide, legali e certificate.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#contatti" class="bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-sm font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-tech-blue transition-all pointer-events-auto">Preventivo Pratica</a>
-                    <a href="#servizi" class="bg-white border border-slate-200 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-sm font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all pointer-events-auto">I Nostri Servizi</a>
+                    <a href="#contatti" class="anchor-link bg-slate-900 text-white px-8 md:px-10 py-4 md:py-5 rounded-sm font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl hover:bg-tech-blue transition-all">Preventivo Pratica</a>
+                    <a href="#servizi" class="anchor-link bg-white border border-slate-200 text-slate-400 px-8 md:px-10 py-4 md:py-5 rounded-sm font-bold uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-50 transition-all">I Nostri Servizi</a>
                 </div>
             </div>
         </div>
@@ -173,7 +188,48 @@
         </div>
     </section>
 
-    <section id="catasto" class="py-12 md:py-24 bg-slate-50 border-y border-slate-100 section-padding">
+    <section id="recensioni" class="py-12 md:py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-tech font-bold text-slate-900 uppercase italic mb-12 text-center">Cosa dicono i <span class="text-tech-blue">Clienti.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 border border-slate-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Professionalità eccellente nella gestione della sanatoria per il mio appartamento. Pratica risolta in tempi record."</p>
+                    <p class="font-bold text-slate-900 text-xs uppercase tracking-widest">— Marco R., Milano</p>
+                </div>
+                <div class="bg-white p-8 border border-slate-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Rilievo topografico millimetrico per il mio terreno. Strumentazione all'avanguardia e grande disponibilità."</p>
+                    <p class="font-bold text-slate-900 text-xs uppercase tracking-widest">— Elena V., Monza</p>
+                </div>
+                <div class="bg-white p-8 border border-slate-100 shadow-sm">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Supporto fondamentale per la successione ereditaria. Hanno gestito tutta la burocrazia senza intoppi."</p>
+                    <p class="font-bold text-slate-900 text-xs uppercase tracking-widest">— Gianluca M., Rho</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="catasto" class="py-12 md:py-24 bg-white border-y border-slate-100 section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="space-y-8 md:space-y-10">
                 <h2 class="text-5xl md:text-6xl font-tech font-bold text-slate-900 leading-none uppercase italic">Precisione <br><span class="text-tech-blue">Topografica.</span></h2>
@@ -205,21 +261,22 @@
         </div>
     </section>
 
-    <section class="py-12 md:py-24 bg-slate-900 text-white section-padding">
-        <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-6 md:space-y-8">
-                <h2 class="text-4xl md:text-5xl font-tech font-bold leading-none uppercase italic">Successioni <br><span class="text-tech-blue">Ereditarie.</span></h2>
-                <p class="text-slate-400 text-base md:text-lg font-light leading-relaxed">
-                    Gestione completa delle dichiarazioni di successione e delle relative volture catastali. Un supporto discreto e professionale per risolvere le pendenze burocratiche familiari.
-                </p>
-            </div>
-            <div class="bg-white/5 p-8 md:p-12 rounded-sm border border-white/10">
-                <h4 class="font-tech font-bold mb-4 uppercase text-tech-blue">Cosa include il servizio:</h4>
-                <ul class="space-y-4 text-sm text-slate-300 italic">
-                    <li class="flex items-center gap-4"><i data-lucide="check" class="text-tech-blue w-4 h-4"></i> Calcolo imposte di successione</li>
-                    <li class="flex items-center gap-4"><i data-lucide="check" class="text-tech-blue w-4 h-4"></i> Invio telematico Agenzia delle Entrate</li>
-                    <li class="flex items-center gap-4"><i data-lucide="check" class="text-tech-blue w-4 h-4"></i> Aggiornamento intestazioni Catasto</li>
-                </ul>
+    <section id="faq" class="py-12 md:py-24 bg-slate-900 text-white section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-tech font-bold uppercase italic mb-12 text-center text-tech-blue">Domande Frequenti.</h2>
+            <div class="space-y-6">
+                <div class="border-b border-white/10 pb-4">
+                    <h4 class="font-tech font-bold uppercase text-sm mb-2">Quanto tempo occorre per una pratica CILA?</h4>
+                    <p class="text-slate-400 text-sm italic">Generalmente la predisposizione richiede 7-10 giorni lavorativi, una volta acquisita tutta la documentazione necessaria.</p>
+                </div>
+                <div class="border-b border-white/10 pb-4">
+                    <h4 class="font-tech font-bold uppercase text-sm mb-2">Effettuate sopralluoghi fuori Milano?</h4>
+                    <p class="text-slate-400 text-sm italic">Sì, operiamo in tutta la provincia e nelle aree limitrofe previo appuntamento.</p>
+                </div>
+                <div class="border-b border-white/10 pb-4">
+                    <h4 class="font-tech font-bold uppercase text-sm mb-2">Come posso verificare la conformità di un immobile prima dell'acquisto?</h4>
+                    <p class="text-slate-400 text-sm italic">Offriamo un servizio di "Check-up Immobiliare" che include accesso agli atti e rilievo comparativo.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -249,7 +306,7 @@
                     <option>TIPOLOGIA DI PRATICA</option>
                 </select>
                 <textarea placeholder="DESCRIZIONE SINTETICA DELLA RICHIESTA..." rows="3" class="w-full p-4 bg-white rounded-sm border-none outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-slate-900 text-white py-5 md:py-6 rounded-sm font-black uppercase text-[11px] tracking-[0.3em] shadow-xl transition-all">Invia Richiesta Tecnica</button>
+                <button type="button" class="w-full bg-slate-900 text-white py-5 md:py-6 rounded-sm font-black uppercase text-[11px] tracking-[0.3em] shadow-xl transition-all">Invia Richiesta Tecnica</button>
             </form>
         </div>
     </section>
@@ -260,10 +317,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50 opacity-80">
-        <i data-lucide="message-square" class="w-7 h-7"></i>
-    </div>
-
     <script>
         // Inizializza icone
         lucide.createIcons();
@@ -272,24 +325,41 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = mobileMenu.querySelectorAll('a');
 
-        function toggleMenu() {
-            mobileMenu.classList.toggle('open');
-            if (mobileMenu.classList.contains('open')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
 
-        menuToggle.addEventListener('click', toggleMenu);
-        menuClose.addEventListener('click', toggleMenu);
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = '';
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Chiudi menu se aperto
+                    closeMenu();
+                    
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

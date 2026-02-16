@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etoile Academy | Scuola di Danza & Movimento Creativo - Demo Mode</title>
@@ -19,26 +20,22 @@
             background-size: cover; background-position: center; 
         }
         
-        /* TITOLO HERO: Maestoso su Desktop, Scalato su Mobile senza perdere impatto */
         .hero-title { 
             font-size: clamp(3rem, 10vw, 9rem); 
             line-height: 0.9; 
             letter-spacing: -0.04em;
         }
 
-        /* RIMOZIONE FILTRI - TUTTO A COLORI */
         img { filter: none !important; grayscale: 0 !important; max-width: 100%; height: auto; }
 
         .dance-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); border: 1px solid #f3ecec; overflow: hidden; }
         .dance-card:hover { border-color: #c5a059; transform: translateY(-10px); }
         .dance-card:hover img { transform: scale(1.1); }
 
-        /* Blocca interazioni Demo eccetto Menu */
-        input, select, textarea {
+        input, select, textarea, button:not(#menu-toggle, #menu-close), .pointer-events-none-custom {
             pointer-events: none !important;
         }
 
-        /* Mobile Menu Overlay */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -51,28 +48,50 @@
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
             .hero-content { text-align: center; }
             .hero-text { border-left: none; padding-left: 0; border-top: 2px solid #c5a059; padding-top: 1.5rem; margin: 1.5rem auto 0; }
-            .demo-nav-container { transform: scale(0.8); left: 0.5rem !important; bottom: 1rem !important; }
         }
 
+        /* CTA FIXA BOTTOM LEFT */
         .demo-nav-container {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1rem;
+            left: 1rem;
             z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
+
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .demo-nav-container { bottom: 2rem; left: 2rem; }
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        
+        .btn-localtop:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="selection:bg-stone-200 selection:text-gold">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -89,16 +108,17 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
-                <a href="#corsi" class="hover:text-gold transition">I Corsi</a>
-                <a href="#metodo" class="hover:text-gold transition">Metodo</a>
-                <a href="#staff" class="hover:text-gold transition">Docenti</a>
-                <a href="#filosofia" class="hover:text-gold transition">Filosofia</a>
-                <a href="#spettacoli" class="hover:text-gold transition">Eventi</a>
+            <div class="hidden lg:flex space-x-6 text-[10px] uppercase tracking-[0.2em] font-bold text-stone-500">
+                <a href="#corsi" class="anchor-link hover:text-gold transition">I Corsi</a>
+                <a href="#metodo" class="anchor-link hover:text-gold transition">Metodo</a>
+                <a href="#staff" class="anchor-link hover:text-gold transition">Docenti</a>
+                <a href="#recensioni" class="anchor-link hover:text-gold transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-gold transition">FAQ</a>
+                <a href="#spettacoli" class="anchor-link hover:text-gold transition">Eventi</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#iscrizioni" class="hidden sm:block bg-stone-900 text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all">
+                <a href="#iscrizioni" class="anchor-link hidden sm:block bg-stone-900 text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all">
                     Prova Gratuita
                 </a>
                 <button id="menu-toggle" class="lg:hidden text-stone-900 p-2">
@@ -115,12 +135,13 @@
             </button>
         </div>
         <div class="flex flex-col gap-8 mt-12 text-center">
-            <a href="#corsi" class="mobile-link text-2xl font-serif italic text-stone-900">I Corsi</a>
-            <a href="#metodo" class="mobile-link text-2xl font-serif italic text-stone-900">Metodo</a>
-            <a href="#staff" class="mobile-link text-2xl font-serif italic text-stone-900">Docenti</a>
-            <a href="#filosofia" class="mobile-link text-2xl font-serif italic text-stone-900">Filosofia</a>
-            <a href="#spettacoli" class="mobile-link text-2xl font-serif italic text-stone-900">Eventi</a>
-            <a href="#iscrizioni" class="mobile-link bg-gold text-white py-4 font-bold uppercase tracking-widest text-xs mt-4">Prenota Prova</a>
+            <a href="#corsi" class="anchor-link text-2xl font-serif italic text-stone-900">I Corsi</a>
+            <a href="#metodo" class="anchor-link text-2xl font-serif italic text-stone-900">Metodo</a>
+            <a href="#staff" class="anchor-link text-2xl font-serif italic text-stone-900">Docenti</a>
+            <a href="#recensioni" class="anchor-link text-2xl font-serif italic text-stone-900">Recensioni</a>
+            <a href="#faq" class="anchor-link text-2xl font-serif italic text-stone-900">FAQ</a>
+            <a href="#spettacoli" class="anchor-link text-2xl font-serif italic text-stone-900">Eventi</a>
+            <a href="#iscrizioni" class="anchor-link bg-gold text-white py-4 font-bold uppercase tracking-widest text-xs mt-4">Prenota Prova</a>
         </div>
     </div>
 
@@ -135,8 +156,8 @@
                     Dalla grazia della danza classica all'energia dell'urban dance. Scopri il tuo potenziale espressivo in un ambiente professionale.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 pt-4">
-                    <a href="#corsi" class="bg-gold text-white px-8 md:px-12 py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-stone-900 transition-all">Esplora i Corsi</a>
-                    <a href="#iscrizioni" class="bg-transparent border border-white text-white px-8 md:px-12 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all italic">Iscriviti Online</a>
+                    <a href="#corsi" class="anchor-link bg-gold text-white px-8 md:px-12 py-5 text-[10px] font-bold uppercase tracking-widest shadow-2xl hover:bg-white hover:text-stone-900 transition-all">Esplora i Corsi</a>
+                    <a href="#iscrizioni" class="anchor-link bg-transparent border border-white text-white px-8 md:px-12 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all italic">Iscriviti Online</a>
                 </div>
             </div>
         </div>
@@ -180,6 +201,32 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-serif italic text-stone-900 uppercase">Le Voci dei <span class="text-gold">Protagonisti</span></h2>
+                <div class="w-20 h-px bg-gold mx-auto mt-4"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 border border-stone-100 italic shadow-sm">
+                    <div class="flex text-gold mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-stone-600 mb-6 font-light">"Un ambiente professionale dove l'arte viene prima di tutto. Mia figlia ha trovato la sua seconda casa."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-900">— Elena R., Milano</p>
+                </div>
+                <div class="bg-white p-8 border border-stone-100 italic shadow-sm">
+                    <div class="flex text-gold mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-stone-600 mb-6 font-light">"Il corso di contemporaneo è incredibile. Insegnanti preparatissimi e di grande ispirazione."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-900">— Marco V., Monza</p>
+                </div>
+                <div class="bg-white p-8 border border-stone-100 italic shadow-sm">
+                    <div class="flex text-gold mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-stone-600 mb-6 font-light">"Danza classica insegnata con rigore ma con una dolcezza rara. Bellissima struttura."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-900">— Sofia G., Milano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-24 md:py-32 bg-stone-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="relative">
@@ -194,7 +241,7 @@
                 <p class="text-stone-500 text-lg font-light leading-relaxed italic border-l-4 border-gold pl-6 md:pl-8">
                     Il corso di Propedeutica introduce i più piccoli al mondo del ritmo attraverso il gioco creativo. Sviluppiamo la consapevolezza del corpo e dello spazio.
                 </p>
-                <button class="border-b-2 border-gold pb-2 text-[10px] font-bold uppercase tracking-widest hover:text-gold transition italic pointer-events-none">Scopri di più</button>
+                <button class="border-b-2 border-gold pb-2 text-[10px] font-bold uppercase tracking-widest hover:text-gold transition italic pointer-events-none-custom">Scopri di più</button>
             </div>
         </div>
     </section>
@@ -228,6 +275,26 @@
             <div class="max-w-4xl mx-auto">
                 <div class="aspect-[16/9] md:aspect-[21/9] bg-stone-100 overflow-hidden rounded-sm shadow-2xl">
                     <img src="assets/img6.jpg" class="w-full h-full object-cover object-top" alt="Maestro di Danza">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-serif italic text-center mb-16 uppercase">Domande <span class="text-gold">Frequenti</span></h2>
+            <div class="space-y-8">
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2 text-stone-900">È possibile fare una lezione di prova?</h4>
+                    <p class="text-stone-500 font-light text-sm italic">Certamente! Offriamo una settimana di prova gratuita per permettere agli allievi di trovare lo stile più adatto a loro.</p>
+                </div>
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2 text-stone-900">A che età si può iniziare?</h4>
+                    <p class="text-stone-500 font-light text-sm italic">Accogliamo piccoli ballerini a partire dai 4 anni con i corsi di propedeutica alla danza.</p>
+                </div>
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2 text-stone-900">La scuola rilascia certificazioni?</h4>
+                    <p class="text-stone-500 font-light text-sm italic">Sì, prepariamo gli allievi per esami certificati e partecipiamo a concorsi nazionali e internazionali.</p>
                 </div>
             </div>
         </div>
@@ -294,20 +361,45 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
 
         const closeMenu = () => {
             mobileMenu.classList.remove('active');
             document.body.style.overflow = '';
         };
 
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
         menuClose.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Advanced Scroll Logic
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // Se è mobile menu, chiudi prima lo scrigno
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMenu();
+                    }
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>

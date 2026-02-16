@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vinum & Co. | Enoteca d'Autore & Spirits Lab - Demo Mode</title>
@@ -19,33 +20,48 @@
             background-size: cover; background-position: center; 
         }
         
-        /* Rimozione filtri immagini */
         img { filter: none !important; grayscale: 0 !important; }
         
         .wine-card { background: #1a1a1a; border: 1px solid #262626; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
         .wine-card:hover { border-color: #c5a059; transform: translateY(-10px); }
         .blur-overlay { backdrop-filter: blur(12px); background: rgba(13, 13, 13, 0.9); }
 
-        /* Disable pointer events for demo elements as requested, except mobile menu */
-        input, select, textarea, .chat-widget-demo {
-            pointer-events: none !important;
-            cursor: default !important;
-            user-select: none;
-        }
-
-        .demo-nav-container {
+        /* CTA UNICO LOCALTOP */
+        .localtop-cta {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
-            right: 1rem;
             z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-width: fit-content;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .localtop-cta {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .localtop-cta:hover { transform: scale(1.05); }
+
+        /* Disable non-required interactions */
+        input, select, textarea, button:not(#menu-toggle, #menu-close), .non-interactive {
+            pointer-events: none !important;
+            cursor: default !important;
         }
 
-        /* Mobile Menu Overlay */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -57,20 +73,14 @@
         @media (max-width: 768px) {
             h1 { font-size: clamp(3.5rem, 15vw, 6rem) !important; line-height: 0.9 !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .demo-nav-container a { padding: 0.75rem 1rem; font-size: 8px; }
         }
     </style>
 </head>
 <body class="selection:bg-wine selection:text-white">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="localtop-cta">
+        Attiva il Servizio
+    </a>
 
     <nav class="sticky top-0 z-[110] blur-overlay border-b border-white/5 min-h-[80px] flex items-center">
         <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
@@ -85,17 +95,18 @@
             </div>
             
             <div class="hidden lg:flex space-x-10 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">
-                <a href="#vini" class="hover:text-vintage-gold transition">Cantina</a>
-                <a href="#spirits" class="hover:text-vintage-gold transition">Distillati</a>
-                <a href="#degustazioni" class="hover:text-vintage-gold transition">Esperienze</a>
-                <a href="#club" class="hover:text-vintage-gold transition">Wine Club</a>
+                <a href="#vini" class="anchor-link hover:text-vintage-gold transition">Cantina</a>
+                <a href="#spirits" class="anchor-link hover:text-vintage-gold transition">Distillati</a>
+                <a href="#recensioni" class="anchor-link hover:text-vintage-gold transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-vintage-gold transition">FAQ</a>
+                <a href="#club" class="anchor-link hover:text-vintage-gold transition">Wine Club</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden md:block border border-vintage-gold text-vintage-gold px-8 py-3.5 text-[10px] font-black uppercase tracking-widest hover:bg-vintage-gold hover:text-black transition-all shrink-0">
+                <a href="#contatti" class="anchor-link hidden md:block border border-vintage-gold text-vintage-gold px-8 py-3.5 text-[10px] font-black uppercase tracking-widest hover:bg-vintage-gold hover:text-black transition-all shrink-0">
                     Prenota Tavolo
                 </a>
-                <button id="menu-toggle" class="lg:hidden text-white p-2 pointer-events-auto! important" style="pointer-events: auto !important; cursor: pointer !important;">
+                <button id="menu-toggle" class="lg:hidden text-white p-2">
                     <i data-lucide="menu" class="w-8 h-8"></i>
                 </button>
             </div>
@@ -106,10 +117,12 @@
         <button id="menu-close" class="absolute top-8 right-8 text-white">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <a href="#vini" class="mobile-link text-3xl font-serif italic text-white">Cantina</a>
-        <a href="#spirits" class="mobile-link text-3xl font-serif italic text-white">Distillati</a>
-        <a href="#club" class="mobile-link text-3xl font-serif italic text-white">Wine Club</a>
-        <a href="#contatti" class="mobile-link text-3xl font-serif italic text-vintage-gold">Prenota Tavolo</a>
+        <a href="#vini" class="anchor-link text-3xl font-serif italic text-white">Cantina</a>
+        <a href="#spirits" class="anchor-link text-3xl font-serif italic text-white">Distillati</a>
+        <a href="#recensioni" class="anchor-link text-3xl font-serif italic text-white">Recensioni</a>
+        <a href="#faq" class="anchor-link text-3xl font-serif italic text-white">FAQ</a>
+        <a href="#club" class="anchor-link text-3xl font-serif italic text-white">Wine Club</a>
+        <a href="#contatti" class="anchor-link text-3xl font-serif italic text-vintage-gold">Prenota Tavolo</a>
     </div>
 
     <section class="relative h-screen flex items-center hero-wine overflow-hidden">
@@ -123,8 +136,8 @@
                     Dalle vigne eroiche ai piccoli produttori indipendenti. Una selezione curata per chi non cerca solo un vino, ma un'emozione da custodire.
                 </p>
                 <div class="flex flex-wrap gap-4 md:gap-6 pt-4 md:pt-6">
-                    <a href="#vini" class="bg-white text-black px-8 md:px-12 py-4 md:py-5 text-[10px] font-black uppercase tracking-widest hover:bg-vintage-gold hover:text-white transition-all shadow-2xl">Esplora la Cantina</a>
-                    <a href="#club" class="bg-transparent border border-white/20 text-white px-8 md:px-12 py-4 md:py-5 text-[10px] font-black uppercase tracking-widest hover:bg-white/5 transition-all italic">Unisciti al Club</a>
+                    <a href="#vini" class="anchor-link bg-white text-black px-8 md:px-12 py-4 md:py-5 text-[10px] font-black uppercase tracking-widest hover:bg-vintage-gold hover:text-white transition-all shadow-2xl">Esplora la Cantina</a>
+                    <a href="#club" class="anchor-link bg-transparent border border-white/20 text-white px-8 md:px-12 py-4 md:py-5 text-[10px] font-black uppercase tracking-widest hover:bg-white/5 transition-all italic">Unisciti al Club</a>
                 </div>
             </div>
         </div>
@@ -194,6 +207,50 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-black section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-vintage-gold font-black uppercase tracking-[0.5em] text-[10px]">What they say</span>
+                <h2 class="text-4xl md:text-5xl font-serif italic mt-4 text-white uppercase tracking-tighter">Esperienze degli Ospiti</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="wine-card p-8 space-y-4">
+                    <div class="flex text-vintage-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-300 italic font-medium">"Una selezione di Champagne incredibile. Ho trovato etichette di piccoli produttori che cercavo da anni. Il servizio è impeccabile."</p>
+                    <p class="text-vintage-gold text-[10px] font-black uppercase tracking-widest">— Marco R., Milano</p>
+                </div>
+                <div class="wine-card p-8 space-y-4">
+                    <div class="flex text-vintage-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-300 italic font-medium">"Il Wine Club è un'esperienza che consiglio a tutti. Ogni mese scopro perle rare direttamente a casa mia. Sommelier molto preparato."</p>
+                    <p class="text-vintage-gold text-[10px] font-black uppercase tracking-widest">— Elena V., Torino</p>
+                </div>
+                <div class="wine-card p-8 space-y-4">
+                    <div class="flex text-vintage-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-zinc-300 italic font-medium">"Atmosfera da caveau parigino nel cuore di Milano. I distillati rari sono il vero punto di forza. Un luogo per veri intenditori."</p>
+                    <p class="text-vintage-gold text-[10px] font-black uppercase tracking-widest">— Alessandro G., Roma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-16 md:py-24 bg-black">
         <div class="max-w-[95%] mx-auto h-[400px] md:h-[600px] overflow-hidden rounded-sm relative group">
             <img src="assets/img6.jpg" class="w-full h-full object-cover transition duration-[2s] group-hover:scale-105" alt="Table Experience">
@@ -206,7 +263,7 @@
 
     <section id="club" class="py-20 md:py-32 bg-wine text-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
-            <h2 class="text-5xl md:text-7xl font-serif italic italic">The Vintage Club</h2>
+            <h2 class="text-5xl md:text-7xl font-serif italic">The Vintage Club</h2>
             <p class="text-rose-100 text-lg md:text-2xl font-black italic">Ricevi ogni mese 3 bottiglie selezionate direttamente dal nostro sommelier. Accesso prioritario alle release limitate.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 pt-8">
                 <div class="space-y-4">
@@ -222,7 +279,30 @@
                     <p class="text-[11px] font-black uppercase tracking-widest">Eventi VIP</p>
                 </div>
             </div>
-            <button class="bg-white text-black px-10 md:px-12 py-4 md:py-5 text-[11px] font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-2xl">Abbonati Ora</button>
+            <button class="bg-white text-black px-10 md:px-12 py-4 md:py-5 text-[11px] font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-2xl non-interactive">Abbonati Ora</button>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-zinc-950 section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-vintage-gold font-black uppercase tracking-[0.5em] text-[10px]">Information</span>
+                <h2 class="text-4xl md:text-5xl font-serif italic mt-4 text-white uppercase tracking-tighter">Domande Frequenti</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-lg font-bold text-white mb-2 italic">Effettuate spedizioni a domicilio?</h4>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Sì, spediamo in tutta Italia ed Europa con corrieri specializzati nel trasporto di bottiglie di pregio, garantendo la temperatura controllata.</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-lg font-bold text-white mb-2 italic">Come funziona l'iscrizione al Wine Club?</h4>
+                    <p class="text-zinc-400 text-sm leading-relaxed">L'abbonamento è mensile e può essere sospeso in qualsiasi momento. Ogni mese riceverai una box curata dal nostro Head Sommelier.</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-lg font-bold text-white mb-2 italic">È necessaria la prenotazione per le degustazioni?</h4>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Assolutamente sì. Le nostre esperienze sono private o per piccoli gruppi, per garantire il massimo della cura e del racconto.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -256,7 +336,7 @@
                     <option>ISCRIZIONE WINE CLUB</option>
                 </select>
                 <textarea placeholder="DETTAGLI SULLA TUA RICERCA..." rows="3" class="w-full p-4 md:p-5 bg-transparent border-b border-zinc-800 outline-none text-[11px] font-black uppercase tracking-widest"></textarea>
-                <button class="w-full bg-vintage-gold text-black py-5 md:py-6 text-[12px] font-black uppercase tracking-[0.4em] hover:bg-white transition-all shadow-xl">Richiedi l'invito</button>
+                <button class="w-full bg-vintage-gold text-black py-5 md:py-6 text-[12px] font-black uppercase tracking-[0.4em] hover:bg-white transition-all shadow-xl non-interactive">Richiedi l'invito</button>
             </form>
         </div>
     </section>
@@ -267,10 +347,6 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-white text-black p-4 md:p-6 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-8 md:h-8"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -278,20 +354,43 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        menuToggle.addEventListener('click', () => {
+        const openMenu = () => {
             mobileMenu.classList.add('open');
             document.body.style.overflow = 'hidden';
-        });
+        };
 
         const closeMenu = () => {
             mobileMenu.classList.remove('open');
             document.body.style.overflow = '';
         };
 
+        menuToggle.addEventListener('click', openMenu);
         menuClose.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Scroll Ancore Interne
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Chiudi menu se mobile
+                    closeMenu();
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

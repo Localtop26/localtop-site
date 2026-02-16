@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VoltMaster | Impianti Elettrici e Domotica Milano - Demo Mode</title>
@@ -13,7 +14,6 @@
         .text-electric { color: #facc15; }
         .bg-electric { background-color: #facc15; }
         
-        /* Hero: Nessun filtro grayscale, immagine a colori */
         .hero-bg { 
             background: linear-gradient(to right, rgba(15, 23, 42, 0.6) 20%, rgba(15, 23, 42, 0.1) 100%), 
             url('assets/img1.jpg'); 
@@ -22,61 +22,77 @@
         .nav-glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
         .service-card:hover { border-bottom: 4px solid #facc15; transform: translateY(-5px); transition: all 0.3s ease; }
 
-        /* Rimozione filtri immagini */
         img { filter: none !important; grayscale: 0 !important; }
 
-        /* Blocco Interazioni (Demo Mode) - Escluso menu per funzionamento anchor */
-        input, select, textarea, .chat-widget-demo {
+        /* Disattivazione elementi interattivi non richiesti */
+        input, select, textarea, button:not(#menu-toggle), .cta-disabled {
             pointer-events: none !important;
             cursor: default !important;
-            user-select: none;
+        }
+        
+        /* Esclusione specifica per il tasto di attivazione e menu */
+        .btn-active, #menu-toggle, #mobile-menu a, nav a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
 
-        /* Mobile Menu Animation */
         #mobile-menu {
             transition: all 0.3s ease-in-out;
             max-height: 0;
             overflow: hidden;
         }
         #mobile-menu.open {
-            max-height: 400px;
+            max-height: 500px;
             border-bottom: 1px solid #f1f5f9;
         }
 
-        /* Ottimizzazione Mobile & Font Scaling */
         @media (max-width: 768px) {
             h1 { font-size: clamp(3rem, 14vw, 6rem) !important; line-height: 0.9 !important; }
             h2 { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem !important;
-                font-size: 8px !important;
-            }
         }
 
-        .demo-nav-container {
+        /* Bottone LocalTop Unico */
+        .localtop-fixed-btn {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .localtop-fixed-btn {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .localtop-fixed-btn:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body class="selection:bg-yellow-400 selection:text-black">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-black text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="localtop-fixed-btn btn-active">
+        Attiva il Servizio
+    </a>
 
     <nav class="sticky top-0 z-[100] nav-glass border-b border-slate-100 min-h-20 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center h-20">
@@ -92,8 +108,10 @@
             
             <div class="hidden lg:flex space-x-10 text-[11px] font-black uppercase tracking-widest text-slate-500">
                 <a href="#servizi" class="hover:text-yellow-500 transition">Impianti</a>
+                <a href="#recensioni" class="hover:text-yellow-500 transition">Recensioni</a>
                 <a href="#smart" class="hover:text-yellow-500 transition">Domotica</a>
                 <a href="#energia" class="hover:text-yellow-500 transition">Fotovoltaico</a>
+                <a href="#faq" class="hover:text-yellow-500 transition">FAQ</a>
                 <a href="#sicurezza" class="hover:text-yellow-500 transition">Sicurezza</a>
             </div>
 
@@ -101,7 +119,7 @@
                 <a href="#contatti" class="hidden sm:block bg-slate-900 text-white px-6 py-3 rounded text-[10px] font-black uppercase tracking-widest hover:bg-yellow-400 hover:text-black transition-all shrink-0">
                     Contatti
                 </a>
-                <button id="menu-toggle" class="lg:hidden text-slate-900 p-2 focus:outline-none" style="pointer-events: auto !important;">
+                <button id="menu-toggle" class="lg:hidden text-slate-900 p-2 focus:outline-none">
                     <i data-lucide="menu" class="w-8 h-8"></i>
                 </button>
             </div>
@@ -109,11 +127,13 @@
 
         <div id="mobile-menu" class="lg:hidden bg-white border-t border-slate-50 overflow-hidden">
             <div class="flex flex-col p-6 space-y-4 text-[12px] font-black uppercase tracking-widest text-slate-600">
-                <a href="#servizi" onclick="toggleMenu()" class="hover:text-yellow-500">Impianti</a>
-                <a href="#smart" onclick="toggleMenu()" class="hover:text-yellow-500">Domotica</a>
-                <a href="#energia" onclick="toggleMenu()" class="hover:text-yellow-500">Fotovoltaico</a>
-                <a href="#sicurezza" onclick="toggleMenu()" class="hover:text-yellow-500">Sicurezza</a>
-                <a href="#contatti" onclick="toggleMenu()" class="text-yellow-600">Richiedi Studio</a>
+                <a href="#servizi" class="hover:text-yellow-500">Impianti</a>
+                <a href="#recensioni" class="hover:text-yellow-500">Recensioni</a>
+                <a href="#smart" class="hover:text-yellow-500">Domotica</a>
+                <a href="#energia" class="hover:text-yellow-500">Fotovoltaico</a>
+                <a href="#faq" class="hover:text-yellow-500">FAQ</a>
+                <a href="#sicurezza" class="hover:text-yellow-500">Sicurezza</a>
+                <a href="#contatti" class="text-yellow-600">Richiedi Studio</a>
             </div>
         </div>
     </nav>
@@ -131,8 +151,8 @@
                     Progettiamo e realizziamo il cuore elettrico della tua casa e della tua azienda. Sicurezza garantita e tecnologie Smart di ultima generazione.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#servizi" class="bg-yellow-400 text-black px-8 md:px-12 py-5 md:py-6 rounded font-black uppercase text-[10px] md:text-xs tracking-[0.2em] shadow-2xl hover:bg-white transition-all">Sopralluogo Gratuito</a>
-                    <a href="tel:029876543" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 md:px-12 py-5 md:py-6 rounded font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all">S.O.S Elettricista</a>
+                    <a href="#servizi" class="bg-yellow-400 text-black px-8 md:px-12 py-5 md:py-6 rounded font-black uppercase text-[10px] md:text-xs tracking-[0.2em] shadow-2xl hover:bg-white transition-all cta-disabled">Sopralluogo Gratuito</a>
+                    <a href="#" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 md:px-12 py-5 md:py-6 rounded font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all cta-disabled">S.O.S Elettricista</a>
                 </div>
             </div>
         </div>
@@ -155,6 +175,47 @@
                     <i data-lucide="shield-check" class="text-slate-900 mb-6 w-12 h-12"></i>
                     <h3 class="text-2xl font-black mb-4 uppercase italic tracking-tighter">Verifiche & Terra</h3>
                     <p class="text-sm text-slate-500 leading-relaxed font-bold italic">Analisi strumentale della resistenza di terra e protezione dalle scariche atmosferiche per condomini.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-black text-slate-900 leading-none uppercase tracking-tighter italic mb-16 text-center">Cosa dicono <br><span class="text-yellow-500">i nostri clienti.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                    </div>
+                    <p class="text-slate-600 font-bold italic mb-6">"Professionali e puntuali. Hanno rifatto l'intero quadro elettrico dell'ufficio in tempi record. Consigliatissimi per Milano e provincia."</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Marco V. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                    </div>
+                    <p class="text-slate-600 font-bold italic mb-6">"Il sistema domotico KNX installato funziona a meraviglia. Finalmente gestisco tutto dallo smartphone con estrema facilità."</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Elena G. - Monza</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                    </div>
+                    <p class="text-slate-600 font-bold italic mb-6">"Installazione fotovoltaico impeccabile. Pratiche per detrazioni gestite interamente da loro. Un servizio chiavi in mano vero."</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Roberto F. - Legnano</p>
                 </div>
             </div>
         </div>
@@ -197,6 +258,26 @@
                     <span>Sistemi Accumulo</span>
                     <span>Wallbox</span>
                     <span>Ecobonus 50%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-black uppercase italic tracking-tighter mb-12 text-center text-slate-900">Domande <span class="text-yellow-500">Frequenti</span></h2>
+            <div class="space-y-6">
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 class="font-black text-slate-900 uppercase text-[12px] tracking-widest mb-2 italic">Rilasciate la certificazione di conformità?</h4>
+                    <p class="text-slate-500 text-sm font-bold italic">Certamente. Al termine di ogni intervento viene rilasciata la Di.Co. ai sensi del DM 37/08, obbligatoria per legge.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 class="font-black text-slate-900 uppercase text-[12px] tracking-widest mb-2 italic">Quanto tempo richiede il rifacimento di un impianto civile?</h4>
+                    <p class="text-slate-500 text-sm font-bold italic">Per un appartamento standard i tempi variano dai 5 ai 10 giorni lavorativi, in base alla complessità e allo stato delle canaline esistenti.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 class="font-black text-slate-900 uppercase text-[12px] tracking-widest mb-2 italic">Posso usufruire delle detrazioni fiscali?</h4>
+                    <p class="text-slate-500 text-sm font-bold italic">Sì, per le ristrutturazioni e per il fotovoltaico è possibile accedere alle detrazioni IRPEF del 50% attualmente in vigore.</p>
                 </div>
             </div>
         </div>
@@ -248,10 +329,6 @@
         </p>
     </footer>
 
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-black text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="zap" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -261,16 +338,47 @@
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('open');
+            if(mobileMenu.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
 
-        function toggleMenu() {
-            mobileMenu.classList.remove('open');
-        }
+        // Scroll Ancore Gestito via JS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Chiudi menu mobile se aperto
+                    if(mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        document.body.style.overflow = '';
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
 
         // Close menu on resize
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) {
                 mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
             }
         });
     </script>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio Aegis | Architettura & Interior Design - Demo Mode</title>
@@ -12,7 +13,7 @@
         .font-serif { font-family: 'Playfair Display', serif; }
         
         /* BLOCCO INTERAZIONI (DEMO MODE) */
-        button, input, select, textarea, .whatsapp-widget, [role="button"] {
+        input, select, textarea, [role="button"]:not(#menu-toggle):not(#menu-close), form button:not(.cta-active) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -30,12 +31,6 @@
             .mobile-padding { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
             section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
             .hero-container { height: auto !important; min-height: 80vh; padding-top: 6rem; }
-            
-            /* Bottoni Localtop Mobile */
-            .floating-demo-controls a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
         }
 
         /* GESTIONE MENU MOBILE */
@@ -47,20 +42,44 @@
             transform: translateX(0);
         }
 
-        /* BOTTONI FLOATING (BOTTOM-LEFT) */
-        .floating-demo-controls {
+        /* BOTTONE LOCALTOP */
+        .floating-cta {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.03); }
 
         .image-overlay {
             background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
         }
+        
+        /* FAQ Accordion Style (Static) */
+        .faq-item { border-bottom: 1px solid #e5e7eb; padding: 1.5rem 0; }
     </style>
 </head>
 <body class="selection:bg-black selection:text-white">
@@ -71,15 +90,16 @@
                 <span class="text-lg md:text-2xl font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase">Aegis<span class="font-light text-gray-400">Studio</span></span>
             </div>
             
-            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.4em] font-medium text-gray-500">
-                <a href="#progetti" class="hover:text-black transition">Opere</a>
-                <a href="#metodo" class="hover:text-black transition">Metodo</a>
-                <a href="#visione" class="hover:text-black transition">Visione</a>
-                <a href="#materia" class="hover:text-black transition">Materia</a>
+            <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.4em] font-medium text-gray-500">
+                <a href="#progetti" class="nav-link hover:text-black transition">Opere</a>
+                <a href="#metodo" class="nav-link hover:text-black transition">Metodo</a>
+                <a href="#recensioni" class="nav-link hover:text-black transition">Recensioni</a>
+                <a href="#faq" class="nav-link hover:text-black transition">FAQ</a>
+                <a href="#visione" class="nav-link hover:text-black transition">Visione</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden md:block text-[10px] font-bold uppercase tracking-[0.3em] border border-black px-6 py-3 hover:bg-black hover:text-white transition-all">
+                <a href="#contatti" class="nav-link hidden md:block text-[10px] font-bold uppercase tracking-[0.3em] border border-black px-6 py-3 hover:bg-black hover:text-white transition-all">
                     Contatti
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 !pointer-events-auto !cursor-pointer">
@@ -96,20 +116,18 @@
             </button>
         </div>
         <div class="flex flex-col space-y-8 mt-12 text-center">
-            <a href="#progetti" class="menu-link text-2xl uppercase tracking-widest font-light">Opere</a>
-            <a href="#metodo" class="menu-link text-2xl uppercase tracking-widest font-light">Metodo</a>
-            <a href="#visione" class="menu-link text-2xl uppercase tracking-widest font-light">Visione</a>
-            <a href="#materia" class="menu-link text-2xl uppercase tracking-widest font-light">Materia</a>
-            <a href="#contatti" class="menu-link text-2xl uppercase tracking-widest font-bold">Contatti</a>
+            <a href="#progetti" class="nav-link text-2xl uppercase tracking-widest font-light">Opere</a>
+            <a href="#metodo" class="nav-link text-2xl uppercase tracking-widest font-light">Metodo</a>
+            <a href="#recensioni" class="nav-link text-2xl uppercase tracking-widest font-light">Recensioni</a>
+            <a href="#faq" class="nav-link text-2xl uppercase tracking-widest font-light">FAQ</a>
+            <a href="#visione" class="nav-link text-2xl uppercase tracking-widest font-light">Visione</a>
+            <a href="#contatti" class="nav-link text-2xl uppercase tracking-widest font-bold">Contatti</a>
         </div>
     </div>
 
-    <div class="floating-demo-controls">
-        <a href="https://localtop.it/checkout" class="flex items-center gap-3 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform !pointer-events-auto !cursor-pointer">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center gap-3 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform !pointer-events-auto !cursor-pointer">
-            <i data-lucide="arrow-left" class="w-4 h-4 text-[#008080]"></i> Torna agli Esempi
+    <div class="floating-cta">
+        <a href="https://localtop.it/checkout" class="btn-localtop !pointer-events-auto !cursor-pointer">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -123,7 +141,7 @@
                     Architettura che non grida. Progettiamo spazi dove la luce e la materia dialogano in perfetto equilibrio.
                 </p>
                 <div class="pt-4">
-                    <a href="#progetti" class="group flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.3em]">
+                    <a href="#progetti" class="nav-link group flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.3em]">
                         Esplora i Progetti <span class="w-12 h-[1px] bg-black group-hover:w-20 transition-all"></span>
                     </a>
                 </div>
@@ -194,6 +212,59 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="text-center mb-16 md:mb-24">
+                <span class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold">Esperienze</span>
+                <h2 class="text-3xl md:text-5xl font-light uppercase tracking-tighter mt-4">Dicono di <span class="font-serif italic text-gray-300">Noi</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-6 p-8 bg-[#fbfbfb]">
+                    <div class="flex text-yellow-500 gap-1">
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                    </div>
+                    <p class="text-sm text-gray-500 italic leading-loose">"Hanno trasformato il nostro appartamento in un'oasi di pace. La cura per i dettagli materici è senza eguali."</p>
+                    <div class="pt-4 border-t border-gray-100">
+                        <span class="block text-[10px] font-bold uppercase tracking-widest">Elena Riva</span>
+                        <span class="text-[8px] text-gray-400 uppercase tracking-widest">Milano</span>
+                    </div>
+                </div>
+                <div class="space-y-6 p-8 bg-[#fbfbfb]">
+                    <div class="flex text-yellow-500 gap-1">
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                    </div>
+                    <p class="text-sm text-gray-500 italic leading-loose">"Un approccio minimalista ma caldo. Studio Aegis ha saputo interpretare perfettamente la nostra visione aziendale."</p>
+                    <div class="pt-4 border-t border-gray-100">
+                        <span class="block text-[10px] font-bold uppercase tracking-widest">Marco Valentini</span>
+                        <span class="text-[8px] text-gray-400 uppercase tracking-widest">Lugano</span>
+                    </div>
+                </div>
+                <div class="space-y-6 p-8 bg-[#fbfbfb]">
+                    <div class="flex text-yellow-500 gap-1">
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                    </div>
+                    <p class="text-sm text-gray-500 italic leading-loose">"La gestione della luce naturale nel progetto della nostra villa è magistrale. Professionisti esemplari."</p>
+                    <div class="pt-4 border-t border-gray-100">
+                        <span class="block text-[10px] font-bold uppercase tracking-widest">Giulia S.</span>
+                        <span class="text-[8px] text-gray-400 uppercase tracking-widest">Como</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="materia" class="py-20 md:py-40 bg-white">
         <div class="max-w-7xl mx-auto px-6 md:px-8">
             <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -215,6 +286,33 @@
                             <span class="text-[8px] uppercase tracking-widest text-gray-400">Progetti Unici</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-40 bg-[#fbfbfb]">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold">Domande frequenti</span>
+                <h2 class="text-3xl md:text-5xl font-light uppercase tracking-tighter mt-4">FAQ</h2>
+            </div>
+            <div class="space-y-2">
+                <div class="faq-item">
+                    <h4 class="text-[11px] font-bold uppercase tracking-widest mb-3">Qual è il vostro raggio d'azione?</h4>
+                    <p class="text-sm text-gray-500 font-light leading-relaxed">Operiamo principalmente in Italia e Svizzera, ma valutiamo progetti internazionali su base individuale.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="text-[11px] font-bold uppercase tracking-widest mb-3">Quanto dura mediamente un progetto?</h4>
+                    <p class="text-sm text-gray-500 font-light leading-relaxed">Dalla fase concettuale alla consegna, i tempi variano dai 4 ai 12 mesi a seconda della complessità.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="text-[11px] font-bold uppercase tracking-widest mb-3">Vi occupate anche di pratiche burocratiche?</h4>
+                    <p class="text-sm text-gray-500 font-light leading-relaxed">Sì, offriamo un servizio chiavi in mano che include la gestione completa di autorizzazioni e permessi edilizi.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="text-[11px] font-bold uppercase tracking-widest mb-3">Come definite il budget?</h4>
+                    <p class="text-sm text-gray-500 font-light leading-relaxed">Lavoriamo in massima trasparenza, definendo i costi materici e professionali fin dalle prime fasi di bozza.</p>
                 </div>
             </div>
         </div>
@@ -262,7 +360,7 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const menuLinks = document.querySelectorAll('.menu-link');
+        const navLinks = document.querySelectorAll('.nav-link');
 
         function toggleMenu() {
             mobileMenu.classList.toggle('active');
@@ -272,10 +370,31 @@
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        // Scroll fluido con offset e prevenzione hash in URL
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Chiudi menu mobile se aperto
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                }
             });
         });
     </script>

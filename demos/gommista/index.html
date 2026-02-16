@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PneusExpert | Gommista & Assistenza Pneumatici Milano</title>
@@ -26,7 +27,6 @@
             background-position: center; 
         }
 
-        /* Rimosso grayscale - Immagini sempre a colori */
         img, .hero-gradient {
             filter: none !important;
         }
@@ -54,36 +54,51 @@
             transform: translateX(0);
         }
 
-        .demo-nav-container {
+        /* Bottone LocalTop Unico */
+        .cta-localtop {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
 
-        @media (max-width: 640px) {
-            .demo-nav-container {
-                left: 1rem;
-                bottom: 1rem;
-                transform: scale(0.8);
-                transform-origin: bottom left;
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
+        }
+
+        .cta-localtop:hover { transform: scale(1.05); }
+        .cta-localtop:active { transform: scale(0.95); }
+
+        /* Disabilita interazioni non richieste */
+        button:not(#menu-btn, #close-menu), a:not([href^="#"], .cta-localtop, .nav-link) {
+            cursor: default;
+            pointer-events: none;
         }
     </style>
 </head>
 <body class="selection:bg-yellow-400 selection:text-black">
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="cta-localtop">
+        Attiva il Servizio
+    </a>
 
     <nav class="fixed top-0 w-full z-[100] bg-black/95 border-b border-white/10 h-20 flex items-center">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
@@ -98,14 +113,16 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-300">
-                <a href="#servizi" class="hover:text-racing transition">Servizi</a>
-                <a href="#marche" class="hover:text-racing transition">Marche</a>
-                <a href="#tecnologia" class="hover:text-racing transition">Tecnologia</a>
-                <a href="#contatti" class="hover:text-racing transition">Contatti</a>
+                <a href="#servizi" class="nav-link hover:text-racing transition">Servizi</a>
+                <a href="#recensioni" class="nav-link hover:text-racing transition">Recensioni</a>
+                <a href="#marche" class="nav-link hover:text-racing transition">Marche</a>
+                <a href="#tecnologia" class="nav-link hover:text-racing transition">Tecnologia</a>
+                <a href="#faq" class="nav-link hover:text-racing transition">FAQ</a>
+                <a href="#contatti" class="nav-link hover:text-racing transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <button class="hidden sm:block bg-racing text-black px-4 md:px-6 py-2.5 rounded font-black uppercase text-[10px] md:text-[11px] hover:bg-white transition-all shadow-lg shrink-0">
+                <button class="hidden sm:block bg-racing text-black px-4 md:px-6 py-2.5 rounded font-black uppercase text-[10px] md:text-[11px] opacity-50">
                     S.O.S Gomme
                 </button>
                 <button id="menu-btn" class="lg:hidden text-white p-2" aria-label="Menu">
@@ -123,11 +140,13 @@
                 </button>
             </div>
             <div class="flex flex-col items-center justify-center flex-grow space-y-8 text-2xl font-black uppercase italic text-white tracking-tighter">
-                <a href="#servizi" onclick="toggleMenu()" class="hover:text-racing">Servizi</a>
-                <a href="#marche" onclick="toggleMenu()" class="hover:text-racing">Marche</a>
-                <a href="#tecnologia" onclick="toggleMenu()" class="hover:text-racing">Tecnologia</a>
-                <a href="#contatti" onclick="toggleMenu()" class="hover:text-racing">Contatti</a>
-                <button class="bg-racing text-black px-8 py-4 rounded-sm text-sm mt-4 font-black">S.O.S GOMME</button>
+                <a href="#servizi" class="nav-link hover:text-racing">Servizi</a>
+                <a href="#recensioni" class="nav-link hover:text-racing">Recensioni</a>
+                <a href="#marche" class="nav-link hover:text-racing">Marche</a>
+                <a href="#tecnologia" class="nav-link hover:text-racing">Tecnologia</a>
+                <a href="#faq" class="nav-link hover:text-racing">FAQ</a>
+                <a href="#contatti" class="nav-link hover:text-racing">Contatti</a>
+                <button class="bg-racing text-black px-8 py-4 rounded-sm text-sm mt-4 font-black opacity-50">S.O.S GOMME</button>
             </div>
         </div>
     </div>
@@ -145,8 +164,8 @@
                     Cambio pneumatici rapido, equilibratura computerizzata e deposito stagionale. La tua sicurezza su ogni asfalto inizia da qui.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <button class="bg-racing text-black px-8 md:px-10 py-4 md:py-5 rounded font-black uppercase text-xs tracking-widest shadow-xl hover:bg-white transition-all w-full sm:w-auto">Prenota Cambio</button>
-                    <button class="bg-white/10 text-white border border-white/20 backdrop-blur-md px-8 md:px-10 py-4 md:py-5 rounded font-black uppercase text-xs tracking-widest w-full sm:w-auto">Tutti i Servizi</button>
+                    <button class="bg-racing text-black px-8 md:px-10 py-4 md:py-5 rounded font-black uppercase text-xs tracking-widest opacity-50 w-full sm:w-auto">Prenota Cambio</button>
+                    <button class="bg-white/10 text-white border border-white/20 backdrop-blur-md px-8 md:px-10 py-4 md:py-5 rounded font-black uppercase text-xs tracking-widest opacity-50 w-full sm:w-auto">Tutti i Servizi</button>
                 </div>
             </div>
         </div>
@@ -174,6 +193,47 @@
                     <i data-lucide="wrench" class="text-black mb-6 w-10 h-10"></i>
                     <h3 class="text-lg font-black uppercase mb-3">Riparazione</h3>
                     <p class="text-sm text-slate-500 italic">Interventi certificati su forature e rigenerazione estetica cerchi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-16 md:py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter italic mb-12 text-center">Cosa dicono di <span class="text-racing">noi.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex text-racing mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Servizio impeccabile e velocità incredibile. Hanno trattato i miei cerchi in lega con estrema cura."</p>
+                    <p class="font-bold uppercase text-[10px] tracking-widest text-black">Marco B. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex text-racing mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Prezzi onesti e staff molto competente. L'assetto 3D ha cambiato totalmente il feeling di guida."</p>
+                    <p class="font-bold uppercase text-[10px] tracking-widest text-black">Elena V. - Rho</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex text-racing mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Il deposito stagionale è comodissimo. Officina pulita e macchinari all'avanguardia."</p>
+                    <p class="font-bold uppercase text-[10px] tracking-widest text-black">Riccardo T. - Monza</p>
                 </div>
             </div>
         </div>
@@ -222,16 +282,22 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-16 md:py-32 bg-slate-50">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic tracking-widest">Passione per la <span class="text-racing">Strada.</span></h2>
-            <p class="text-slate-600 text-lg md:text-xl font-light italic leading-relaxed">
-                "Non vendiamo solo pneumatici, vendiamo la tranquillità di viaggiare sicuri in ogni condizione atmosferica."
-            </p>
-            <div class="flex flex-wrap justify-center gap-6 md:gap-12 pt-8">
-                <div class="text-center w-24"><i data-lucide="award" class="mx-auto mb-3 text-black w-7 h-7"></i><p class="text-[9px] font-bold uppercase tracking-widest">Qualità</p></div>
-                <div class="text-center w-24"><i data-lucide="timer" class="mx-auto mb-3 text-black w-7 h-7"></i><p class="text-[9px] font-bold uppercase tracking-widest">Efficienza</p></div>
-                <div class="text-center w-24"><i data-lucide="heart" class="mx-auto mb-3 text-black w-7 h-7"></i><p class="text-[9px] font-bold uppercase tracking-widest">Cura</p></div>
+    <section id="faq" class="py-16 md:py-32 bg-white border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter italic mb-12 text-center">Domande <span class="text-racing">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="bg-slate-50 p-6 rounded-xl">
+                    <h4 class="font-bold uppercase text-xs tracking-widest mb-2">È necessaria la prenotazione?</h4>
+                    <p class="text-slate-500 text-sm italic">Sì, per garantire il servizio in 40 minuti consigliamo sempre di prenotare il proprio slot orario.</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-xl">
+                    <h4 class="font-bold uppercase text-xs tracking-widest mb-2">Cosa include il deposito stagionale?</h4>
+                    <p class="text-slate-500 text-sm italic">Include lo stoccaggio in ambiente a temperatura controllata e la pulizia tecnica degli pneumatici prima del montaggio.</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-xl">
+                    <h4 class="font-bold uppercase text-xs tracking-widest mb-2">Quanto tempo richiede l'assetto ruote?</h4>
+                    <p class="text-slate-500 text-sm italic">L'assetto 3D richiede circa 20-30 minuti a seconda delle regolazioni necessarie.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -283,10 +349,6 @@
         </p>
     </footer>
 
-    <a href="javascript:void(0)" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50 cursor-default">
-        <i data-lucide="message-square" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </a>
-
     <script>
         lucide.createIcons();
 
@@ -305,6 +367,32 @@
 
         menuBtn.addEventListener('click', toggleMenu);
         closeMenu.addEventListener('click', toggleMenu);
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Se siamo su mobile e il menu è aperto, chiudilo
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Gaming | PC, PS5 & Hardware Specialist - Demo Mode</title>
@@ -19,17 +20,15 @@
         .rgb-line { height: 2px; background: linear-gradient(90deg, #ff0000, #ff00ff, #00f2ff, #00ff00, #ffff00, #ff0000); background-size: 200% 100%; animation: rgb-move 5s linear infinite; position: relative; z-index: 110; }
         @keyframes rgb-move { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
-        /* Rimozione filtri immagini */
         img { filter: none !important; grayscale: 0 !important; }
 
-        /* Blocco Interazioni (Demo Mode) tranne menu hamburger */
-        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo, .no-click {
+        /* Blocchi interazioni demo */
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .no-click {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Navigazione Mobile */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -42,33 +41,45 @@
             h1 { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 1 !important; }
             h2 { font-size: clamp(2.2rem, 8vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem !important;
-                font-size: 8px !important;
-            }
         }
 
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
+        .btn-localtop:active { transform: scale(0.95); }
     </style>
 </head>
 <body class="selection:bg-neon-blue selection:text-black">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -83,17 +94,18 @@
                 <span class="text-xl md:text-2xl font-cyber font-black tracking-tighter text-white uppercase whitespace-nowrap">Nexus<span class="text-neon-blue">Lab</span></span>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
-                <a href="#console" class="hover:text-neon-blue transition">Console</a>
-                <a href="#pc" class="hover:text-neon-blue transition">PC Master</a>
-                <a href="#filosofia" class="hover:text-neon-blue transition">Filosofia</a>
-                <a href="#gear" class="hover:text-neon-blue transition">Gear</a>
-                <a href="#usato" class="hover:text-neon-blue transition">Usato</a>
-                <a href="#assistenza" class="hover:text-neon-blue transition">Assistenza</a>
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                <a href="#console" class="hover:text-neon-blue transition anchor-link">Console</a>
+                <a href="#pc" class="hover:text-neon-blue transition anchor-link">PC Master</a>
+                <a href="#recensioni" class="hover:text-neon-blue transition anchor-link">Recensioni</a>
+                <a href="#gear" class="hover:text-neon-blue transition anchor-link">Gear</a>
+                <a href="#faq" class="hover:text-neon-blue transition anchor-link">FAQ</a>
+                <a href="#assistenza" class="hover:text-neon-blue transition anchor-link">Assistenza</a>
+                <a href="#contatti" class="hover:text-neon-blue transition anchor-link">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden sm:block bg-neon-blue text-black px-4 md:px-6 py-2 rounded font-black uppercase text-[10px] tracking-widest hover:bg-white transition-all shadow-lg whitespace-nowrap">
+                <a href="#contatti" class="anchor-link hidden sm:block bg-neon-blue text-black px-4 md:px-6 py-2 rounded font-black uppercase text-[10px] tracking-widest hover:bg-white transition-all shadow-lg whitespace-nowrap">
                     Trova Store
                 </a>
                 <button id="menu-toggle" class="lg:hidden text-white p-2">
@@ -103,17 +115,17 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-[#05070a] flex flex-col items-center justify-center space-y-8 lg:hidden">
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-[#05070a] flex flex-col items-center justify-center space-y-6 lg:hidden">
         <button id="menu-close" class="absolute top-6 right-6 text-white">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#console" class="text-2xl font-cyber text-white uppercase mobile-link">Console</a>
-        <a href="#pc" class="text-2xl font-cyber text-white uppercase mobile-link">PC Master</a>
-        <a href="#filosofia" class="text-2xl font-cyber text-white uppercase mobile-link">Filosofia</a>
-        <a href="#gear" class="text-2xl font-cyber text-white uppercase mobile-link">Gear</a>
-        <a href="#usato" class="text-2xl font-cyber text-white uppercase mobile-link">Usato</a>
-        <a href="#assistenza" class="text-2xl font-cyber text-white uppercase mobile-link">Assistenza</a>
-        <a href="#contatti" class="text-2xl font-cyber text-neon-blue uppercase mobile-link">Contatti</a>
+        <a href="#console" class="text-2xl font-cyber text-white uppercase anchor-link">Console</a>
+        <a href="#pc" class="text-2xl font-cyber text-white uppercase anchor-link">PC Master</a>
+        <a href="#recensioni" class="text-2xl font-cyber text-white uppercase anchor-link">Recensioni</a>
+        <a href="#gear" class="text-2xl font-cyber text-white uppercase anchor-link">Gear</a>
+        <a href="#faq" class="text-2xl font-cyber text-white uppercase anchor-link">FAQ</a>
+        <a href="#assistenza" class="text-2xl font-cyber text-white uppercase anchor-link">Assistenza</a>
+        <a href="#contatti" class="text-2xl font-cyber text-neon-blue uppercase anchor-link">Contatti</a>
     </div>
 
     <section class="relative min-h-[90vh] flex items-center hero-glow overflow-hidden section-padding">
@@ -130,8 +142,8 @@
                     Dalla potenza bruta dei PC custom alle ultime esclusive PS5. Assemblaggio professionale, assistenza tecnica e il miglior usato garantito di Milano.
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                    <a href="#pc" class="bg-neon-blue text-black px-10 py-5 rounded font-black uppercase text-xs tracking-widest hover:scale-105 transition shadow-2xl shadow-blue-500/20">Configura il tuo PC</a>
-                    <a href="#console" class="bg-white/5 border border-white/10 text-white px-10 py-5 rounded font-black uppercase text-xs tracking-widest hover:bg-white/10 transition">Console & Giochi</a>
+                    <a href="#pc" class="anchor-link bg-neon-blue text-black px-10 py-5 rounded font-black uppercase text-xs tracking-widest hover:scale-105 transition shadow-2xl shadow-blue-500/20">Configura il tuo PC</a>
+                    <a href="#console" class="anchor-link bg-white/5 border border-white/10 text-white px-10 py-5 rounded font-black uppercase text-xs tracking-widest hover:bg-white/10 transition">Console & Giochi</a>
                 </div>
             </div>
             <div class="relative group order-2 block">
@@ -190,6 +202,41 @@
                     <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-white"><i data-lucide="check-circle" class="text-neon-blue"></i> Consulenza componenti gratuita</div>
                     <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-white"><i data-lucide="check-circle" class="text-neon-blue"></i> Cambio pasta termica e pulizia</div>
                     <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-white"><i data-lucide="check-circle" class="text-neon-blue"></i> Overclocking sicuro e stabile</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-24 bg-[#05070a] section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-cyber font-bold mb-16 uppercase tracking-tighter italic border-r-4 border-neon-blue pr-6 text-right">User <span class="text-neon-blue">Feedback</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-gaming p-8 rounded-2xl space-y-4">
+                    <div class="flex text-neon-blue gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-300">"Assemblaggio PC perfetto. Cable management da opera d'arte e temperature bassissime anche sotto stress."</p>
+                    <div class="pt-4 border-t border-white/5">
+                        <p class="font-cyber text-xs text-white">Marco R. - Milano</p>
+                    </div>
+                </div>
+                <div class="card-gaming p-8 rounded-2xl space-y-4">
+                    <div class="flex text-neon-blue gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-300">"Riparato il drift del DualSense in un pomeriggio. Professionali e onesti nei prezzi."</p>
+                    <div class="pt-4 border-t border-white/5">
+                        <p class="font-cyber text-xs text-white">Luca S. - Monza</p>
+                    </div>
+                </div>
+                <div class="card-gaming p-8 rounded-2xl space-y-4">
+                    <div class="flex text-neon-blue gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-slate-300">"Ho dato dentro la mia vecchia PS4 e ho preso la 5 con una valutazione ottima. Consigliatissimi."</p>
+                    <div class="pt-4 border-t border-white/5">
+                        <p class="font-cyber text-xs text-white">Alessia V. - Milano</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -276,6 +323,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-24 bg-[#0a0c12] section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-cyber font-bold mb-16 uppercase tracking-tighter italic text-center">Gaming <span class="text-neon-blue">Intelligence</span> (FAQ)</h2>
+            <div class="space-y-4">
+                <div class="card-gaming p-6 rounded-xl">
+                    <h4 class="font-cyber text-neon-blue text-sm mb-2 uppercase">Quanto tempo serve per assemblare un PC?</h4>
+                    <p class="text-slate-400 text-sm italic">Solitamente 3-5 giorni lavorativi, inclusi i test di stress di 24 ore obbligatori per garantire la stabilità.</p>
+                </div>
+                <div class="card-gaming p-6 rounded-xl">
+                    <h4 class="font-cyber text-neon-blue text-sm mb-2 uppercase">Ritirate hardware usato da privati?</h4>
+                    <p class="text-slate-400 text-sm italic">Sì, valutiamo console e componenti PC recenti. La valutazione definitiva viene fatta in store dopo i test tecnici.</p>
+                </div>
+                <div class="card-gaming p-6 rounded-xl">
+                    <h4 class="font-cyber text-neon-blue text-sm mb-2 uppercase">Fate assistenza a domicilio?</h4>
+                    <p class="text-slate-400 text-sm italic">Operiamo principalmente nel nostro laboratorio attrezzato a Milano per garantire la massima precisione e disponibilità di ricambi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-24 bg-[#0a0c12] border-t border-white/5 section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20">
             <div class="space-y-12 text-center lg:text-left">
@@ -320,10 +387,6 @@
         &copy; 2026 Nexus Gaming Milano | P.IVA 11223344556 | Powered by High-Performance Hardware | LocalTop Demo Mode
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -331,22 +394,45 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const mobileLinks = document.querySelectorAll('.anchor-link');
+
+        const closeMenu = () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        };
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
-        menuClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        menuClose.addEventListener('click', closeMenu);
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+        // Scroll Logic con Offset
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
+                
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // Se siamo su mobile, chiudi prima il menu
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMenu();
+                    }
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
     </script>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth" style="overflow-x: hidden;">
+<html lang="it">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sinergia Infissi | Finestre, Porte e Design a Milano - Demo Mode</title>
@@ -8,17 +9,18 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
-        html, body { 
-            overflow-x: hidden; 
-            width: 100%; 
-            position: relative; 
+        html { scroll-behavior: smooth; }
+        body { 
             margin: 0; 
             padding: 0; 
+            font-family: 'Inter', sans-serif; 
+            background-color: #ffffff; 
+            color: #1e293b;
+            overflow-x: hidden;
         }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e293b; }
+        
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
         
-        /* Titoli Massicci e Sicuri - Desktop invariant */
         h1 { 
             font-size: clamp(3.2rem, 12vw, 9rem) !important; 
             line-height: 0.85 !important; 
@@ -37,21 +39,22 @@
             url('assets/img1.jpg'); 
             background-size: cover; background-position: center; 
         }
-        
-        /* Reset Immagini - No Filtri */
-        img { filter: none !important; max-width: 100%; height: auto; display: block; transition: none !important; }
-        img:hover { filter: none !important; }
 
-        /* Navigazione Sticky */
-        .sticky-nav { 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            background: rgba(255,255,255,0.98);
+        /* HEADER STICKY */
+        #site-header {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
         }
 
-        /* Mobile Menu Overlay */
         #mobile-menu {
             display: none;
             position: fixed;
@@ -60,53 +63,56 @@
             width: 100%;
             height: calc(100vh - 80px);
             background: white;
-            z-index: 999;
+            z-index: 9999;
             flex-direction: column;
             padding: 2rem;
             gap: 2rem;
         }
         #mobile-menu.active { display: flex; }
 
-        @media (max-width: 768px) {
-            .hero-section { min-height: 70vh; padding-top: 2rem; padding-bottom: 2rem; }
-            .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .absolute-badge { position: relative !important; right: 0 !important; bottom: 0 !important; margin-top: 1.5rem; display: block !important; width: fit-content; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 8px 12px !important;
-                font-size: 7px !important;
-            }
-        }
-
+        /* Bottone LocalTop */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
-            z-index: 150;
+            z-index: 10001;
+        }
+        .cta-localtop {
+            background-color: #0F766E;
+            color: white;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 9999px;
+            min-height: 44px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            pointer-events: auto !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        @media (min-width: 768px) {
+            .cta-localtop { padding: 16px 28px; font-size: 15px; min-height: 52px; }
         }
 
-        /* Disabilita interazioni tranne menu e link di navigazione */
         button:not(#menu-toggle), input, select, textarea { pointer-events: none !important; }
-        .no-click { pointer-events: none !important; }
+        .faq-item { border-bottom: 1px solid #f1f5f9; padding: 1.5rem 0; }
+        img { filter: none !important; max-width: 100%; height: auto; display: block; }
+        .absolute-badge { position: absolute; bottom: -2rem; right: -2rem; }
+        @media (max-width: 768px) {
+            .absolute-badge { position: relative !important; right: 0 !important; bottom: 0 !important; margin-top: 1.5rem; }
+        }
     </style>
 </head>
 <body class="selection:bg-slate-800 selection:text-white">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
-        </a>
+        <a href="https://localtop.it/checkout" class="cta-localtop">Attiva il Servizio</a>
     </div>
 
-    <nav class="sticky-nav border-b border-slate-100 min-h-[80px] flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center py-3">
+    <header id="site-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full flex justify-between items-center">
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <div class="w-7 h-7 sm:w-10 sm:h-10 border-2 border-slate-900 flex items-center justify-center shrink-0">
                     <div class="w-4 h-4 sm:w-5 sm:h-5 border-t-2 border-r-2 border-slate-900"></div>
@@ -117,41 +123,41 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
-                <a href="#serramenti" class="hover:text-slate-900 transition">Infissi</a>
-                <a href="#sicurezza" class="hover:text-slate-900 transition">Sicurezza</a>
-                <a href="#bonus" class="hover:text-slate-900 transition">Bonus</a>
-                <a href="#contatti" class="hover:text-slate-900 transition border-b-2 border-slate-900 text-slate-900">Preventivo</a>
-            </div>
+            <nav class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
+                <a href="#serramenti" class="js-anchor hover:text-slate-900 transition">Infissi</a>
+                <a href="#sicurezza" class="js-anchor hover:text-slate-900 transition">Sicurezza</a>
+                <a href="#recensioni" class="js-anchor hover:text-slate-900 transition">Recensioni</a>
+                <a href="#faq" class="js-anchor hover:text-slate-900 transition">FAQ</a>
+                <a href="#contatti" class="js-anchor hover:text-slate-900 transition border-b-2 border-slate-900 text-slate-900">Preventivo</a>
+            </nav>
 
-            <div class="flex items-center gap-4 lg:hidden">
+            <div class="lg:hidden">
                 <button id="menu-toggle" class="p-2 text-slate-900" style="pointer-events: auto !important;">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+                    <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
                 </button>
             </div>
         </div>
-    </nav>
+    </header>
 
     <div id="mobile-menu" class="lg:hidden">
-        <a href="#serramenti" class="text-2xl font-black uppercase italic text-slate-900" onclick="toggleMenu()">Infissi</a>
-        <a href="#sicurezza" class="text-2xl font-black uppercase italic text-slate-900" onclick="toggleMenu()">Sicurezza</a>
-        <a href="#bonus" class="text-2xl font-black uppercase italic text-slate-900" onclick="toggleMenu()">Bonus</a>
-        <a href="#contatti" class="text-2xl font-black uppercase italic text-slate-900" onclick="toggleMenu()">Contatti</a>
+        <a href="#serramenti" class="js-anchor text-2xl font-black uppercase italic text-slate-900">Infissi</a>
+        <a href="#sicurezza" class="js-anchor text-2xl font-black uppercase italic text-slate-900">Sicurezza</a>
+        <a href="#recensioni" class="js-anchor text-2xl font-black uppercase italic text-slate-900">Recensioni</a>
+        <a href="#faq" class="js-anchor text-2xl font-black uppercase italic text-slate-900">FAQ</a>
+        <a href="#contatti" class="js-anchor text-2xl font-black uppercase italic text-slate-900">Contatti</a>
     </div>
 
     <section class="relative hero-section hero-bg flex items-center py-12 lg:py-32">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
             <div class="max-w-5xl space-y-10 text-center lg:text-left">
-                <h1 class="text-slate-900 uppercase">
-                    Cornici di <br> <span class="text-slate-400 italic font-light">Puro Benessere.</span>
-                </h1>
+                <h1 class="text-slate-900 uppercase"> Cornici di <br> <span class="text-slate-400 italic font-light">Puro Benessere.</span></h1>
                 <div class="space-y-8">
                     <p class="text-lg sm:text-2xl text-slate-600 font-light max-w-2xl leading-relaxed border-l-0 lg:border-l-4 border-slate-900 lg:pl-10 mx-auto lg:mx-0">
                         Sostituisci i tuoi vecchi serramenti con soluzioni ad alta efficienza. Silenzio e risparmio in un unico progetto.
                     </p>
                     <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-                        <a href="#contatti" class="bg-slate-900 text-white px-8 py-5 text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl">Calcola Risparmio</a>
-                        <a href="#serramenti" class="bg-white border-2 border-slate-200 text-slate-900 px-8 py-5 text-[10px] font-bold uppercase tracking-[0.2em] italic">Collezioni 2026</a>
+                        <a href="#contatti" class="js-anchor bg-slate-900 text-white px-8 py-5 text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl">Calcola Risparmio</a>
+                        <a href="#serramenti" class="js-anchor bg-white border-2 border-slate-200 text-slate-900 px-8 py-5 text-[10px] font-bold uppercase tracking-[0.2em] italic">Collezioni 2026</a>
                     </div>
                 </div>
             </div>
@@ -183,11 +189,34 @@
         </div>
     </section>
 
-    <section id="sicurezza" class="py-16 lg:py-32 bg-slate-50 overflow-hidden">
+    <section id="recensioni" class="py-16 lg:py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-slate-900 uppercase italic mb-16">Feedback <br> <span class="text-slate-400">Clienti.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-yellow-500 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="italic text-slate-600 mb-4 text-sm">"Installazione impeccabile e pulizia assoluta. I nuovi infissi hanno cambiato volto al mio appartamento."</p>
+                    <p class="font-bold text-slate-900 text-[10px] uppercase tracking-widest">Marco V. - Milano</p>
+                </div>
+                <div class="bg-white p-8 shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-yellow-500 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="italic text-slate-600 mb-4 text-sm">"Efficienza energetica raddoppiata. Il risparmio in bolletta è stato immediato. Grandi professionisti."</p>
+                    <p class="font-bold text-slate-900 text-[10px] uppercase tracking-widest">Elena R. - Milano</p>
+                </div>
+                <div class="bg-white p-8 shadow-sm border border-slate-100">
+                    <div class="flex gap-1 text-yellow-500 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="italic text-slate-600 mb-4 text-sm">"La porta blindata è un capolavoro di design. Sicurezza e bellezza possono finalmente convivere."</p>
+                    <p class="font-bold text-slate-900 text-[10px] uppercase tracking-widest">Giuseppe T. - Monza</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sicurezza" class="py-16 lg:py-32 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div class="relative order-2 lg:order-1">
                 <img src="assets/img5.jpg" class="rounded-sm shadow-2xl w-full" alt="Porta Blindata">
-                <div class="absolute-badge absolute -bottom-8 -right-8 bg-slate-900 text-white p-8 lg:p-10 hidden md:block">
+                <div class="absolute-badge bg-slate-900 text-white p-8 lg:p-10 hidden md:block">
                     <p class="font-heading text-4xl lg:text-5xl font-black italic">Classe 4</p>
                     <p class="text-[10px] uppercase tracking-widest mt-2">Sicurezza Totale</p>
                 </div>
@@ -220,13 +249,22 @@
         </div>
     </section>
 
+    <section id="faq" class="py-16 lg:py-32 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-slate-900 uppercase italic mb-12 text-center">Risposte ai <br> <span class="text-slate-400">Dubbi.</span></h2>
+            <div class="space-y-2">
+                <div class="faq-item"><p class="font-bold italic">Quanto tempo richiede l'installazione?</p><p class="text-sm text-slate-500">In media la sostituzione per un appartamento standard richiede 1-2 giorni lavorativi senza opere murarie invasive.</p></div>
+                <div class="faq-item"><p class="font-bold italic">Il sopralluogo è davvero gratuito?</p><p class="text-sm text-slate-500">Sì, i nostri tecnici effettuano una valutazione energetica gratuita dei tuoi attuali serramenti a Milano e provincia.</p></div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-16 lg:py-32 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div class="space-y-12 text-center lg:text-left">
                 <h2 class="text-slate-900 uppercase italic">Parliamo del <br>tuo <span class="text-slate-400">Progetto.</span></h2>
                 <div class="space-y-6 inline-block lg:block text-left w-full">
                     <p class="text-slate-500 uppercase tracking-widest text-[10px] font-bold">Contattaci subito per una consulenza:</p>
-                    
                     <div class="flex flex-col gap-4">
                         <div class="no-click flex items-center gap-6 bg-white p-6 shadow-xl border border-slate-100">
                             <div class="w-12 h-12 bg-slate-900 flex items-center justify-center text-white shrink-0"><i data-lucide="phone" class="w-6 h-6"></i></div>
@@ -235,7 +273,6 @@
                                 <p class="text-xl sm:text-2xl font-black italic text-slate-900">+39 02 1234 567</p>
                             </div>
                         </div>
-
                         <div class="no-click flex items-center gap-6 bg-white p-6 shadow-xl border border-slate-100">
                             <div class="w-12 h-12 bg-green-600 flex items-center justify-center text-white shrink-0"><i data-lucide="message-circle" class="w-6 h-6"></i></div>
                             <div>
@@ -243,58 +280,54 @@
                                 <p class="text-xl sm:text-2xl font-black italic text-slate-900">Chat Diretta</p>
                             </div>
                         </div>
-
-                        <div class="no-click flex items-center gap-6 bg-white p-6 shadow-xl border border-slate-100">
-                            <div class="w-12 h-12 bg-slate-400 flex items-center justify-center text-white shrink-0"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
-                            <div>
-                                <p class="text-[9px] uppercase font-bold text-slate-400 tracking-tighter">Sede Milano</p>
-                                <p class="text-lg sm:text-xl font-light italic text-slate-900">Via della Luce 10, Milano</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            
             <div class="bg-slate-900 p-10 lg:p-14 text-white space-y-8 shadow-2xl flex flex-col justify-center items-center text-center">
                 <i data-lucide="calendar-check" class="w-16 h-16 text-slate-400 mb-4"></i>
-                <h3 class="text-3xl font-black italic uppercase">Richiedi un Sopralluogo Gratuito</h3>
-                <p class="text-slate-400 font-light">I nostri tecnici sono a tua disposizione per una valutazione energetica dei tuoi attuali serramenti.</p>
-                <div class="w-full h-px bg-slate-800"></div>
-                <p class="text-[10px] uppercase tracking-[0.3em] font-bold">Risposta entro 24 ore lavorative</p>
+                <h3 class="text-3xl font-black italic uppercase">Richiedi un Sopralluogo</h3>
+                <p class="text-slate-400 font-light">Risposta garantita entro 24 ore lavorative per sopralluoghi gratuiti a Milano.</p>
             </div>
         </div>
     </section>
 
     <footer class="py-12 bg-white border-t border-slate-100 text-center px-6">
-        <p class="text-slate-300 text-[10px] uppercase tracking-[0.4em] font-bold italic">
-            &copy; 2026 Sinergia Infissi Milano | P.IVA 09876543210
-        </p>
+        <p class="text-slate-300 text-[10px] uppercase tracking-[0.4em] font-bold italic">&copy; 2026 Sinergia Infissi Milano | P.IVA 09876543210</p>
     </footer>
-
-    <div class="wa-widget-demo fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl z-50 no-click">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
-    </div>
 
     <script>
         lucide.createIcons();
 
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            if (mobileMenu.classList.contains('active')) {
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                icon.setAttribute('data-lucide', 'menu');
-            }
+            const isOpen = mobileMenu.classList.toggle('active');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
             lucide.createIcons();
         }
 
         menuToggle.addEventListener('click', (e) => {
             e.preventDefault();
             toggleMenu();
+        });
+
+        document.querySelectorAll('.js-anchor').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    if (mobileMenu.classList.contains('active')) toggleMenu();
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
         });
     </script>
 </body>

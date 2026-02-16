@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nautica Prestige | Charter Yacht & Rimessaggio d'Eccellenza - Demo Mode</title>
@@ -28,8 +29,8 @@
         /* RIMOZIONE FILTRI IMMAGINI */
         img { filter: none !important; grayscale: 0 !important; }
 
-        /* Blocco Interazioni (Demo Mode) tranne menu */
-        input, select, textarea, .wa-widget-demo {
+        /* Blocco Interazioni (Demo Mode) tranne menu e CTA principale */
+        input, select, textarea, button:not(#menu-toggle):not(#menu-close), .yacht-card, a:not([href^="#"]):not([href*="checkout"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -41,34 +42,46 @@
             h2 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
             
-            /* Bottoni Localtop PICCOLI e LATERALI su mobile */
+            /* Bottone Localtop Mobile */
             .demo-nav-container { 
                 bottom: 1.5rem; 
                 left: 1rem; 
-                right: auto; 
-                flex-direction: column; 
-                align-items: flex-start;
-                gap: 0.5rem; 
-                width: auto;
+                right: auto;
             }
             .demo-nav-container a { 
-                padding: 10px 14px; 
-                font-size: 8px; 
-                width: max-content;
-                min-width: 120px;
-                justify-content: flex-start;
+                padding: 12px 18px; 
+                font-size: 14px;
+                min-height: 44px;
             }
         }
 
-        /* Bottoni Floating Desktop */
+        /* Bottone Floating Desktop */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 200;
+        }
+        
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
         }
 
         /* Menu Mobile Overlay */
@@ -84,11 +97,8 @@
 <body class="selection:bg-slate-200 selection:text-navy">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -108,7 +118,8 @@
                 <a href="#charter" class="hover:text-gold transition">Charter</a>
                 <a href="#ormeggio" class="hover:text-gold transition">Ormeggio</a>
                 <a href="#rimessaggio" class="hover:text-gold transition">Rimessaggio</a>
-                <a href="#filosofia" class="hover:text-gold transition">Filosofia</a>
+                <a href="#recensioni" class="hover:text-gold transition">Recensioni</a>
+                <a href="#faq" class="hover:text-gold transition">FAQ</a>
                 <a href="#vip" class="hover:text-gold transition">Servizi VIP</a>
             </div>
 
@@ -130,7 +141,8 @@
         <a href="#charter" class="text-xl font-serif uppercase tracking-widest hover:text-gold mobile-link">Charter</a>
         <a href="#ormeggio" class="text-xl font-serif uppercase tracking-widest hover:text-gold mobile-link">Ormeggio</a>
         <a href="#rimessaggio" class="text-xl font-serif uppercase tracking-widest hover:text-gold mobile-link">Rimessaggio</a>
-        <a href="#filosofia" class="text-xl font-serif uppercase tracking-widest hover:text-gold mobile-link">Filosofia</a>
+        <a href="#recensioni" class="text-xl font-serif uppercase tracking-widest hover:text-gold mobile-link">Recensioni</a>
+        <a href="#faq" class="text-xl font-serif uppercase tracking-widest hover:text-gold mobile-link">FAQ</a>
         <a href="#vip" class="text-xl font-serif uppercase tracking-widest hover:text-gold mobile-link">Servizi VIP</a>
         <a href="#contatti" class="bg-gold text-navy px-10 py-4 font-bold uppercase tracking-widest mobile-link">Prenota Ora</a>
     </div>
@@ -244,6 +256,50 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-16 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 md:mb-24 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-serif text-navy uppercase">Esperienze <span class="text-gold italic">Clienti.</span></h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-[10px]">Dicono di noi</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 border border-slate-100 bg-slate-50/50 italic">
+                    <div class="flex text-gold mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light">"Un servizio impeccabile. Abbiamo noleggiato il Flybridge per una settimana e lo staff è stato incredibilmente professionale."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Marco B. - Milano</p>
+                </div>
+                <div class="p-8 border border-slate-100 bg-slate-50/50 italic">
+                    <div class="flex text-gold mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light">"Il miglior rimessaggio della zona. Mi sento tranquillo a lasciare il mio yacht nelle loro mani ogni inverno."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Alessandro V. - Roma</p>
+                </div>
+                <div class="p-8 border border-slate-100 bg-slate-50/50 italic">
+                    <div class="flex text-gold mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light">"Servizio concierge di altissimo livello. Hanno organizzato una cena a bordo perfetta in pochissimo tempo."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-navy">Elena M. - Verona</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-16 md:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl md:text-5xl font-serif text-navy uppercase italic">Passione per il <span class="text-gold">Blu.</span></h2>
@@ -267,6 +323,28 @@
             </p>
             <div class="pt-8">
                 <span class="text-[10px] font-bold uppercase tracking-[0.4em] border border-slate-200 px-8 py-4 rounded-full text-slate-400">Servizio Riservato Armatori</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-32 bg-slate-50 border-t border-slate-100 section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-serif text-navy uppercase">Domande <span class="text-gold italic">Frequenti.</span></h2>
+            </div>
+            <div class="space-y-6">
+                <div class="p-6 bg-white border border-slate-100">
+                    <h4 class="text-sm font-bold uppercase tracking-widest text-navy mb-2">È incluso lo skipper nei noleggi?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Sì, tutti i nostri yacht includono skipper professionisti certificati per garantire la massima sicurezza.</p>
+                </div>
+                <div class="p-6 bg-white border border-slate-100">
+                    <h4 class="text-sm font-bold uppercase tracking-widest text-navy mb-2">Quali sono le dimensioni massime per l'ormeggio?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Possiamo ospitare imbarcazioni e superyacht fino a una lunghezza di 40 metri.</p>
+                </div>
+                <div class="p-6 bg-white border border-slate-100">
+                    <h4 class="text-sm font-bold uppercase tracking-widest text-navy mb-2">Offrite assistenza tecnica durante il rimessaggio?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Certamente. Disponiamo di un'officina meccanica interna specializzata in motori marini e refitting.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -307,10 +385,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-24 right-6 md:bottom-10 md:right-10 bg-navy text-gold p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-7 h-7"></i>
-    </div>
-
     <script>
         // Inizializza icone
         lucide.createIcons();
@@ -333,10 +407,32 @@
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+        // Scroll Gestito con Offset e chiusura menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Se è un link del menu mobile
+                    if (this.classList.contains('mobile-link') || mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedPoint | Centro Diagnostico Avanzato & Medicina Specialistica - Demo Mode</title>
@@ -15,7 +16,6 @@
         .text-tech-cyan { color: #22d3ee; }
         .bg-tech-cyan { background-color: #22d3ee; }
         
-        /* Immagini: Rimosso ogni filtro grayscale, sempre a colori */
         .hero-medical { 
             background: linear-gradient(to right, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%), 
             url('assets/img1.jpg'); 
@@ -29,7 +29,7 @@
         .diag-card:hover { transform: translateY(-5px); border-color: #22d3ee; box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.05); }
 
         /* Demo Mode: Disabilitazione interattività tranne menu e anchor */
-        button:not(#menu-toggle), input, select, textarea, .chat-widget-demo {
+        button:not(#menu-toggle, #menu-close, .cta-service), input, select, textarea {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -44,34 +44,49 @@
             transform: translateX(0);
         }
 
-        /* Ottimizzazione Mobile */
         @media (max-width: 768px) {
             h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; line-height: 1.1 !important; }
             h2 { font-size: clamp(2rem, 8vw, 3rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .demo-nav-container a { padding: 0.75rem 1rem !important; } /* Bottoni Localtop più piccoli */
         }
 
-        /* Bottoni Floating (Bottom-Left) */
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 1rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .cta-service {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.3);
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .cta-service {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .cta-service:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="selection:bg-cyan-100 selection:text-cyan-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-service">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -88,15 +103,16 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#diagnostica" class="hover:text-med-blue transition">Diagnostica</a>
-                <a href="#specialisti" class="hover:text-med-blue transition">Specialisti</a>
-                <a href="#analisi" class="hover:text-med-blue transition">Laboratorio</a>
-                <a href="#filosofia" class="hover:text-med-blue transition">Filosofia</a>
-                <a href="#servizi" class="hover:text-med-blue transition">Convenzioni</a>
+                <a href="#diagnostica" class="anchor-link hover:text-med-blue transition">Diagnostica</a>
+                <a href="#specialisti" class="anchor-link hover:text-med-blue transition">Specialisti</a>
+                <a href="#analisi" class="anchor-link hover:text-med-blue transition">Laboratorio</a>
+                <a href="#recensioni" class="anchor-link hover:text-med-blue transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-med-blue transition">FAQ</a>
+                <a href="#servizi" class="anchor-link hover:text-med-blue transition">Convenzioni</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#prenota" class="hidden sm:block bg-tech-cyan text-white px-6 md:px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-med-blue transition-all shadow-lg shadow-cyan-100">
+                <a href="#prenota" class="anchor-link hidden sm:block bg-tech-cyan text-white px-6 md:px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-med-blue transition-all shadow-lg shadow-cyan-100">
                     Prenota
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-900" aria-label="Menu">
@@ -111,12 +127,13 @@
             <button id="menu-close" class="p-2"><i data-lucide="x" class="w-8 h-8 text-slate-900"></i></button>
         </div>
         <div class="flex flex-col space-y-6 text-sm font-bold uppercase tracking-[0.2em] text-slate-800">
-            <a href="#diagnostica" onclick="toggleMenu()">Diagnostica</a>
-            <a href="#specialisti" onclick="toggleMenu()">Specialisti</a>
-            <a href="#analisi" onclick="toggleMenu()">Laboratorio</a>
-            <a href="#filosofia" onclick="toggleMenu()">Filosofia</a>
-            <a href="#servizi" onclick="toggleMenu()">Convenzioni</a>
-            <a href="#prenota" onclick="toggleMenu()" class="text-tech-cyan">Prenota Ora</a>
+            <a href="#diagnostica" class="anchor-link">Diagnostica</a>
+            <a href="#specialisti" class="anchor-link">Specialisti</a>
+            <a href="#analisi" class="anchor-link">Laboratorio</a>
+            <a href="#recensioni" class="anchor-link">Recensioni</a>
+            <a href="#faq" class="anchor-link">FAQ</a>
+            <a href="#servizi" class="anchor-link">Convenzioni</a>
+            <a href="#prenota" class="anchor-link text-tech-cyan">Prenota Ora</a>
         </div>
     </div>
 
@@ -133,8 +150,8 @@
                     Diagnosi accurate in tempi brevi. Un team multidisciplinare e macchinari all'avanguardia per offrirti la massima precisione medica.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#diagnostica" class="bg-med-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Area Diagnostica</a>
-                    <a href="#analisi" class="bg-white border-2 border-slate-200 text-slate-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all">Laboratorio Analisi</a>
+                    <a href="#diagnostica" class="anchor-link bg-med-blue text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Area Diagnostica</a>
+                    <a href="#analisi" class="anchor-link bg-white border-2 border-slate-200 text-slate-900 px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-slate-50 transition-all">Laboratorio Analisi</a>
                 </div>
             </div>
         </div>
@@ -225,23 +242,6 @@
         </div>
     </section>
 
-    <section id="filosofia" class="py-24 bg-slate-50 section-padding">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
-            <div class="space-y-10">
-                <h2 class="text-5xl md:text-6xl text-slate-900 leading-none uppercase italic">Evoluzione <br><span class="text-tech-cyan">Costante.</span></h2>
-                <p class="text-slate-500 text-base md:text-lg font-light leading-relaxed border-l-4 border-tech-cyan pl-8">
-                    La nostra missione è coniugare l'umanità del rapporto medico-paziente con la fredda precisione della tecnologia. Ricerchiamo costantemente protocolli diagnostici che riducano l'invasività migliorando l'accuratezza clinica.
-                </p>
-                <div class="relative h-[250px] md:h-[300px] overflow-hidden rounded-[2rem]">
-                    <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Medical Technology">
-                </div>
-            </div>
-            <div class="relative">
-                <img src="assets/img4.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover h-[400px] md:h-[500px]" alt="Patient Care">
-            </div>
-        </div>
-    </section>
-
     <section id="servizi" class="py-24 bg-white section-padding">
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-3xl md:text-4xl uppercase tracking-tighter">I Vantaggi del <span class="text-med-blue">Network MedPoint</span></h2>
@@ -265,7 +265,78 @@
         </div>
     </section>
 
-    <section id="prenota" class="py-24 md:py-32 bg-slate-50 section-padding">
+    <section id="recensioni" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl md:text-5xl text-slate-900 uppercase italic">Cosa dicono <span class="text-tech-cyan">i Pazienti</span></h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Esperienze reali presso il nostro centro</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic text-sm mb-6">"Personale estremamente qualificato e tempi di attesa ridotti al minimo. La risonanza magnetica è stata eseguita con estrema cura."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-med-blue">Marco V. - Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic text-sm mb-6">"Ho effettuato un check-up completo. Referti chiari e medici disponibili a spiegare ogni dettaglio. Un punto di riferimento."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-med-blue">Elena R. - Monza</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic text-sm mb-6">"Struttura all'avanguardia e pulizia impeccabile. Prenotazione veloce e accettazione molto cordiale."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-med-blue">Stefano L. - Milano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofia" class="py-24 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl md:text-6xl text-slate-900 leading-none uppercase italic">Evoluzione <br><span class="text-tech-cyan">Costante.</span></h2>
+                <p class="text-slate-500 text-base md:text-lg font-light leading-relaxed border-l-4 border-tech-cyan pl-8">
+                    La nostra missione è coniugare l'umanità del rapporto medico-paziente con la fredda precisione della tecnologia. Ricerchiamo costantemente protocolli diagnostici che riducano l'invasività migliorando l'accuratezza clinica.
+                </p>
+                <div class="relative h-[250px] md:h-[300px] overflow-hidden rounded-[2rem]">
+                    <img src="assets/img3.jpg" class="w-full h-full object-cover" alt="Medical Technology">
+                </div>
+            </div>
+            <div class="relative">
+                <img src="assets/img4.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover h-[400px] md:h-[500px]" alt="Patient Care">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-slate-50 section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl uppercase italic">Domande <span class="text-med-blue">Frequenti</span></h2>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">È necessaria la prenotazione per gli esami del sangue?</h4>
+                    <p class="text-sm text-slate-500 italic">No, il punto prelievi è ad accesso diretto dalle 07:30 alle 10:30, dal lunedì al sabato.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Come posso ritirare i miei referti?</h4>
+                    <p class="text-sm text-slate-500 italic">I referti sono consultabili online tramite il nostro portale pazienti o ritirabili di persona presso la reception.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Il centro è convenzionato con fondi sanitari?</h4>
+                    <p class="text-sm text-slate-500 italic">Sì, siamo convenzionati con i principali fondi integrativi come FASI, Unisalute e Metasalute.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prenota" class="py-24 md:py-32 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
                 <h2 class="text-5xl md:text-7xl text-slate-900 leading-none tracking-tighter uppercase italic">Scegli la <br><span class="text-med-blue underline underline-offset-8 decoration-tech-cyan">Prevenzione.</span></h2>
@@ -280,20 +351,20 @@
                     </div>
                 </div>
             </div>
-            <form class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl space-y-6">
+            <form class="bg-slate-50 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl space-y-6">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-med-blue mb-4 text-center italic">Prenota online: verrai ricontattato in meno di un'ora (Demo Mode)</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase">
+                    <input type="text" placeholder="IL TUO NOME" class="w-full p-4 md:p-5 bg-white rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase">
+                    <input type="text" placeholder="TELEFONO" class="w-full p-4 md:p-5 bg-white rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase">
                 </div>
-                <select class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl md:rounded-3xl outline-none transition text-[10px] font-bold uppercase text-slate-400 tracking-widest">
+                <select class="w-full p-4 md:p-5 bg-white rounded-2xl md:rounded-3xl outline-none transition text-[10px] font-bold uppercase text-slate-400 tracking-widest">
                     <option>TIPOLOGIA DI ESAME / VISITA</option>
                     <option>DIAGNOSTICA PER IMMAGINI (TAC/RMN)</option>
                     <option>VISITA SPECIALISTICA</option>
                     <option>ESAMI DEL SANGUE</option>
                     <option>CHECK-UP AZIENDALE</option>
                 </select>
-                <textarea placeholder="INSERISCI L'ESAME INDICATO NELLA RICETTA O IL MOTIVO DELLA VISITA..." rows="3" class="w-full p-4 md:p-5 bg-slate-50 rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase"></textarea>
+                <textarea placeholder="INSERISCI L'ESAME INDICATO NELLA RICETTA O IL MOTIVO DELLA VISITA..." rows="3" class="w-full p-4 md:p-5 bg-white rounded-2xl md:rounded-3xl outline-none transition text-xs font-bold uppercase"></textarea>
                 <button class="w-full bg-med-blue text-white py-5 md:py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] shadow-xl shadow-blue-100">Richiedi Prenotazione</button>
             </form>
         </div>
@@ -304,10 +375,6 @@
             &copy; 2026 MedPoint Diagnostic | Dir. Sanitario Dr. Rossi | P.IVA 0123456789 | Aut. Sanitaria N. 1234
         </p>
     </footer>
-
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
 
     <script>
         // Inizializzazione icone Lucide
@@ -329,6 +396,32 @@
 
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
+
+        // Scroll Gestione Ancore
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Se menu mobile aperto, chiudi
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

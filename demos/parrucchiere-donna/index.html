@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumière Coiffure | Luxury Hair Salon & Balayage Milano - Demo Mode</title>
@@ -21,8 +22,10 @@
         }
         .nav-glass { background: rgba(255, 252, 249, 0.95); backdrop-filter: blur(10px); }
 
-        /* Blocco Interazioni (Demo Mode) tranne menu */
-        button:not(#menu-toggle), input, select, textarea, .wa-widget-demo, .contact-btn-demo {
+        /* Blocco Interazioni (Demo Mode) */
+        input, select, textarea, .wa-widget-demo, .contact-btn-demo, 
+        button:not(#menu-toggle), 
+        a:not([href^="#"]):not([href="https://localtop.it/checkout"]):not(#menu-toggle) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -41,45 +44,46 @@
             h1 { font-size: clamp(3.5rem, 15vw, 8rem) !important; line-height: 0.85 !important; }
             h2 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Bottoni Localtop più piccoli su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
         }
 
-        /* Correzione Bottoni Localtop Desktop */
-        .demo-nav-container {
+        /* Bottone Localtop Unico */
+        .cta-localtop {
             position: fixed;
             bottom: 2rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            width: auto; /* Permette al contenitore di adattarsi al contenuto */
-        }
-
-        .demo-nav-container a {
-            white-space: nowrap; /* Impedisce al testo di andare a capo */
-            min-width: 160px;    /* Assicura una base solida */
+            background-color: #0F766E;
+            color: white;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
+
+        @media (min-width: 768px) {
+            .cta-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        
+        .cta-localtop:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
 
-    <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 gap-2">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 gap-2">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
-        </a>
-    </div>
+    <a href="https://localtop.it/checkout" class="cta-localtop">
+        Attiva il Servizio
+    </a>
 
     <nav class="fixed top-0 w-full z-[100] nav-glass border-b border-orange-50 h-20 md:h-24 flex items-center">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
@@ -88,15 +92,17 @@
                 <span class="text-[8px] md:text-[9px] tracking-[0.4em] uppercase text-gold font-bold mt-1">Atelier Hair & Beauty</span>
             </div>
             
-            <div class="hidden lg:flex space-x-10 text-[11px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="#servizi" class="hover:text-gold transition">Trattamenti</a>
-                <a href="#gallery" class="hover:text-gold transition">Ispirazioni</a>
-                <a href="#filosofia" class="hover:text-gold transition">Filosofia</a>
-                <a href="#contatti" class="hover:text-gold transition">Contatti</a>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="#servizi" class="anchor-link hover:text-gold transition">Trattamenti</a>
+                <a href="#recensioni" class="anchor-link hover:text-gold transition">Recensioni</a>
+                <a href="#gallery" class="anchor-link hover:text-gold transition">Ispirazioni</a>
+                <a href="#faq" class="anchor-link hover:text-gold transition">FAQ</a>
+                <a href="#filosofia" class="anchor-link hover:text-gold transition">Filosofia</a>
+                <a href="#contatti" class="anchor-link hover:text-gold transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden md:block bg-slate-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all shadow-xl">
+                <a href="#contatti" class="anchor-link hidden md:block bg-slate-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-gold transition-all shadow-xl">
                     Prenota Atelier
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 z-[110]">
@@ -106,12 +112,14 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[105] flex flex-col items-center justify-center space-y-8 text-center lg:hidden">
-        <a href="#servizi" onclick="toggleMenu()" class="text-2xl font-serif italic text-slate-900">Trattamenti</a>
-        <a href="#gallery" onclick="toggleMenu()" class="text-2xl font-serif italic text-slate-900">Ispirazioni</a>
-        <a href="#filosofia" onclick="toggleMenu()" class="text-2xl font-serif italic text-slate-900">Filosofia</a>
-        <a href="#contatti" onclick="toggleMenu()" class="text-2xl font-serif italic text-slate-900">Contatti</a>
-        <a href="#contatti" onclick="toggleMenu()" class="bg-gold text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest">Prenota Ora</a>
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[105] flex flex-col items-center justify-center space-y-6 text-center lg:hidden">
+        <a href="#servizi" class="anchor-link text-2xl font-serif italic text-slate-900">Trattamenti</a>
+        <a href="#recensioni" class="anchor-link text-2xl font-serif italic text-slate-900">Recensioni</a>
+        <a href="#gallery" class="anchor-link text-2xl font-serif italic text-slate-900">Ispirazioni</a>
+        <a href="#faq" class="anchor-link text-2xl font-serif italic text-slate-900">FAQ</a>
+        <a href="#filosofia" class="anchor-link text-2xl font-serif italic text-slate-900">Filosofia</a>
+        <a href="#contatti" class="anchor-link text-2xl font-serif italic text-slate-900">Contatti</a>
+        <a href="#contatti" class="anchor-link bg-gold text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest">Prenota Ora</a>
     </div>
 
     <section class="relative h-screen flex items-center hero-bg overflow-hidden pt-20">
@@ -125,7 +133,7 @@
                     Scolpiamo la luce sui tuoi capelli. Trattamenti sartoriali pensati per esaltare i tuoi lineamenti naturali attraverso l'armocromia.
                 </p>
                 <div class="pt-6">
-                    <a href="#servizi" class="inline-flex items-center gap-6 group">
+                    <a href="#servizi" class="anchor-link inline-flex items-center gap-6 group">
                         <span class="text-xs uppercase tracking-[0.4em] font-bold text-slate-900 group-hover:text-gold transition">Scopri i Servizi</span>
                         <div class="w-12 h-[1px] bg-gold group-hover:w-24 transition-all"></div>
                     </a>
@@ -173,6 +181,32 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-24 md:py-32 bg-[#fffcf9] section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-5xl font-serif italic text-slate-900 leading-tight">Dicono di noi</h2>
+                <div class="h-px w-20 bg-gold mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-50">
+                    <div class="flex text-gold mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Il miglior balayage mai ricevuto a Milano. La naturalezza delle sfumature è incredibile e i capelli sono rimasti morbidissimi."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">Elena R. — Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-50">
+                    <div class="flex text-gold mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Un'esperienza di puro relax. Il trattamento Molecular Hair Spa ha letteralmente trasformato la mia chioma spenta."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">Martina V. — Monza</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-50">
+                    <div class="flex text-gold mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic mb-6">"Taglio sartoriale impeccabile. Hanno capito subito cosa desideravo rispettando la forma del mio viso. Atelier stupendo."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-900">Chiara S. — Milano</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="gallery" class="py-24 md:py-32 bg-champagne section-padding">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="space-y-4">
@@ -190,6 +224,29 @@
             <div class="space-y-4 pt-8 md:pt-12">
                 <img src="assets/img11.jpg" class="w-full h-48 md:h-64 object-cover rounded-sm transition duration-700">
                 <img src="assets/img12.jpg" class="w-full h-64 md:h-80 object-cover rounded-sm transition duration-700">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 md:py-32 bg-white section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-5xl font-serif italic text-slate-900">Domande Frequenti</h2>
+                <div class="h-px w-20 bg-gold mx-auto"></div>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-orange-100 pb-4">
+                    <h4 class="text-lg font-serif italic text-slate-900 mb-2">Quanto dura una seduta di Signature Balayage?</h4>
+                    <p class="text-slate-500 font-light text-sm">In genere dai 120 ai 180 minuti, a seconda della lunghezza e della densità del capello.</p>
+                </div>
+                <div class="border-b border-orange-100 pb-4">
+                    <h4 class="text-lg font-serif italic text-slate-900 mb-2">Utilizzate prodotti senza ammoniaca?</h4>
+                    <p class="text-slate-500 font-light text-sm">Sì, per i nostri trattamenti utilizziamo esclusivamente formulazioni ecosostenibili e delicate per la cute.</p>
+                </div>
+                <div class="border-b border-orange-100 pb-4">
+                    <h4 class="text-lg font-serif italic text-slate-900 mb-2">È necessaria la prenotazione?</h4>
+                    <p class="text-slate-500 font-light text-sm">Sì, riceviamo solo su appuntamento per garantire ad ogni cliente un'esperienza esclusiva e personalizzata.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -257,10 +314,6 @@
         <p>&copy; 2026 Lumière Atelier Milano | P.IVA 09876543210 | Crafted with Style | LocalTop Demo Mode</p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-6 md:right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -284,6 +337,32 @@
         }
 
         menuToggle.addEventListener('click', toggleMenu);
+
+        // Gestione Smooth Scroll Avanzata
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Chiudi menu mobile se aperto
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

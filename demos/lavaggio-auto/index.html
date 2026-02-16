@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AquaDetail | Detailing Specialist Milano</title>
@@ -20,7 +21,6 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        /* Rimozione filtri immagini */
         img { 
             filter: none !important; 
             transition: none !important;
@@ -94,40 +94,54 @@
             transform: translateX(0);
         }
 
-        /* DEMO MODE & FLOATING NAV */
-        button, input, textarea, select { pointer-events: none !important; cursor: default !important; }
-        
+        /* BOTTONE LOCALTOP */
         .floating-nav {
-            position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 9999;
-            display: flex; flex-direction: column; gap: 0.5rem;
+            position: fixed; 
+            bottom: 1.5rem; 
+            left: 1.5rem; 
+            z-index: 9999;
         }
 
-        /* Fix centering for Localtop buttons */
         .localtop-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            min-width: 160px; /* Assicura spazio per il testo */
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.4);
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
 
-        @media (max-width: 768px) {
-            .floating-nav a {
-                padding: 0.6rem 1.2rem;
-                font-size: 8px;
-                min-width: 140px;
+        @media (min-width: 768px) {
+            .localtop-btn {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
         }
+        
+        .localtop-btn:hover { transform: scale(1.02); }
+
+        /* DEMO MODE */
+        button:not(.nav-toggle), input, textarea, select { pointer-events: none !important; cursor: default !important; }
+        .clickable { pointer-events: auto !important; cursor: pointer !important; }
+
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
 
     <div class="floating-nav">
-        <a href="#" class="localtop-btn bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl gap-3">
-            <i data-lucide="zap" class="w-4 h-4"></i> <span>INIZIA ORA</span>
-        </a>
-        <a href="#" class="localtop-btn bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-2xl gap-3">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> <span>Torna agli Esempi</span>
+        <a href="https://localtop.it/checkout" class="localtop-btn clickable">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -141,26 +155,30 @@
             </div>
             
             <div class="hidden lg:flex items-center gap-8">
-                <a href="#metodo" class="text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition">Metodo</a>
-                <a href="#ceramica" class="text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition">Ceramica</a>
-                <a href="#interni" class="text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition">Interni</a>
-                <a href="#contatti" class="bg-white text-black px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Contatti</a>
+                <a href="#metodo" class="anchor-link text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition clickable">Metodo</a>
+                <a href="#ceramica" class="anchor-link text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition clickable">Ceramica</a>
+                <a href="#interni" class="anchor-link text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition clickable">Interni</a>
+                <a href="#recensioni" class="anchor-link text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition clickable">Recensioni</a>
+                <a href="#faq" class="anchor-link text-[10px] font-bold uppercase tracking-widest text-white hover:text-water transition clickable">FAQ</a>
+                <a href="#contatti" class="anchor-link bg-white text-black px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest clickable">Contatti</a>
             </div>
 
-            <button onclick="toggleMenu()" class="lg:hidden text-white p-2 pointer-events-auto !cursor-pointer" style="pointer-events: auto !important;">
+            <button onclick="toggleMenu()" class="nav-toggle lg:hidden text-white p-2 clickable">
                 <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
             </button>
         </div>
     </nav>
 
     <div id="mobile-menu" class="fixed inset-0 bg-black z-[110] flex flex-col items-center justify-center gap-8 lg:hidden">
-        <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white pointer-events-auto !cursor-pointer" style="pointer-events: auto !important;">
+        <button onclick="toggleMenu()" class="nav-toggle absolute top-6 right-6 text-white clickable">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#metodo" onclick="toggleMenu()" class="text-2xl font-tech text-white">Metodo</a>
-        <a href="#ceramica" onclick="toggleMenu()" class="text-2xl font-tech text-white">Ceramica</a>
-        <a href="#interni" onclick="toggleMenu()" class="text-2xl font-tech text-white">Interni</a>
-        <a href="#contatti" onclick="toggleMenu()" class="text-2xl font-tech text-water">Contatti</a>
+        <a href="#metodo" class="anchor-link text-2xl font-tech text-white clickable">Metodo</a>
+        <a href="#ceramica" class="anchor-link text-2xl font-tech text-white clickable">Ceramica</a>
+        <a href="#interni" class="anchor-link text-2xl font-tech text-white clickable">Interni</a>
+        <a href="#recensioni" class="anchor-link text-2xl font-tech text-white clickable">Recensioni</a>
+        <a href="#faq" class="anchor-link text-2xl font-tech text-white clickable">FAQ</a>
+        <a href="#contatti" class="anchor-link text-2xl font-tech text-water clickable">Contatti</a>
     </div>
 
     <section class="hero-section">
@@ -255,7 +273,36 @@
         </div>
     </section>
 
-    <section class="py-20 bg-black">
+    <section id="recensioni" class="py-24 bg-black border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-tech text-4xl lg:text-6xl text-white italic mb-16 text-center uppercase">Elite <br><span class="text-water">Feedback.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <div class="flex text-water mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Lavoro impeccabile sulla mia 911. La finitura ceramica ha dato una profondità al nero mai vista prima. Professionalità rara."</p>
+                    <span class="block font-tech text-[10px] text-white">Marco R. - Milano</span>
+                </div>
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <div class="flex text-water mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Gli interni in pelle sono tornati morbidi e opachi come appena uscita dal concessionario. La sanificazione ha rimosso ogni odore."</p>
+                    <span class="block font-tech text-[10px] text-white">Alessandro V. - Monza</span>
+                </div>
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <div class="flex text-water mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Trattamento nanotech incredibile. Anche dopo la pioggia l'auto sembra appena lavata. Servizio top level."</p>
+                    <span class="block font-tech text-[10px] text-white">Giulia B. - Arese</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#050505]">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <img src="assets/img5.jpg" class="rounded-[2rem] md:rounded-[3rem] w-full h-[300px] md:h-[400px] object-cover border border-white/5" alt="Vapore 180 gradi">
             <div class="space-y-8">
@@ -264,6 +311,26 @@
                     Sgrassaggio tecnico del vano motore e delle aree difficili (cerchi, passaruota). Il vapore secco permette una pulizia profonda in totale sicurezza per le componenti elettriche, senza chimica aggressiva.
                 </p>
                 <button class="bg-white text-black px-10 py-4 rounded-full font-black uppercase text-[10px] tracking-widest">Dettagli Tecnici</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-black">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="font-tech text-4xl text-white italic mb-12 text-center uppercase">Expert <br><span class="text-water">Answers.</span></h2>
+            <div class="space-y-4">
+                <div class="faq-item py-6">
+                    <h4 class="font-bold text-white mb-2 uppercase text-xs tracking-widest">Quanto dura il trattamento ceramico?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">I nostri coating garantiscono una protezione da 3 a 5 anni, a seconda del pacchetto scelto e della manutenzione eseguita.</p>
+                </div>
+                <div class="faq-item py-6">
+                    <h4 class="font-bold text-white mb-2 uppercase text-xs tracking-widest">Posso lavare l'auto sotto i rulli?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Assolutamente sconsigliato. Per preservare il detailing consigliamo solo lavaggi manuali con tecnica dei due secchi.</p>
+                </div>
+                <div class="faq-item py-6">
+                    <h4 class="font-bold text-white mb-2 uppercase text-xs tracking-widest">Quanto tempo richiede un detailing completo?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">A seconda delle condizioni e dei trattamenti, dalle 48 ore fino a una settimana per i lavori più complessi.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -299,19 +366,45 @@
     </footer>
 
     <script>
-        // Inizializzazione icone con opzioni per la visibilità
         lucide.createIcons();
 
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('active');
-            
             if (menu.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = '';
             }
         }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Chiudi menu mobile se aperto
+                const menu = document.getElementById('mobile-menu');
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Essentia | Profumeria Artistica & Skincare Lab - Demo Mode</title>
@@ -27,43 +28,31 @@
             background-size: cover; background-position: center; 
         }
         
-        /* Rimozione filtri e grayscale */
         img { filter: none !important; grayscale: 0 !important; }
         .scent-card { transition: all 0.5s ease; border: 1px solid #f3ecec; }
         .scent-card:hover { transform: translateY(-10px); border-color: #b76e79; background: #ffffff; }
         .scent-card img { transition: transform 0.7s ease !important; filter: none !important; }
 
         /* Interazioni Disabilitate (Demo Mode) */
-        input, select, textarea, .wa-widget-demo, .contact-btn-demo {
+        input, select, textarea, .contact-btn-demo, button:not(#menu-toggle):not(#menu-close), a:not([href^="#"]):not([href*="localtop.it/checkout"]) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Gestione Titoli Desktop */
         @media (min-width: 1024px) {
             h1 { font-size: 9rem !important; line-height: 0.85 !important; letter-spacing: -0.04em !important; }
             .section-padding { padding-top: 8rem; padding-bottom: 8rem; }
         }
 
-        /* Responsive Mobile */
         @media (max-width: 1023px) {
             h1 { font-size: clamp(3rem, 12vw, 5rem) !important; text-align: center; line-height: 1 !important; }
             h2 { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; line-height: 1.1 !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Prevenzione overflow */
             .max-w-7xl { overflow: hidden; }
             img { max-width: 100%; height: auto; }
-            
-            /* Riduzione bottoni Localtop su mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem !important;
-                font-size: 9px !important;
-            }
         }
 
-        /* Mobile Menu Animation */
         #mobile-menu {
             transition: opacity 0.3s ease, visibility 0.3s ease;
             opacity: 0;
@@ -74,26 +63,43 @@
             visibility: visible;
         }
 
-        /* Bottoni Floating Demo */
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+            text-decoration: none;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="selection:bg-rose-100 selection:text-rose-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -104,11 +110,12 @@
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
 
-            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.4em] font-bold text-stone-400">
+            <div class="hidden lg:flex space-x-8 text-[9px] uppercase tracking-[0.3em] font-bold text-stone-400">
                 <a href="#nicchia" class="hover:text-rose-gold transition pointer-events-auto">Nicchia</a>
                 <a href="#skincare" class="hover:text-rose-gold transition pointer-events-auto">Skincare</a>
-                <a href="#filosofia" class="hover:text-rose-gold transition pointer-events-auto">Filosofia</a>
-                <a href="#home" class="hover:text-rose-gold transition pointer-events-auto">Ambiente</a>
+                <a href="#recensioni" class="hover:text-rose-gold transition pointer-events-auto">Recensioni</a>
+                <a href="#faq" class="hover:text-rose-gold transition pointer-events-auto">FAQ</a>
+                <a href="#contatti" class="hover:text-rose-gold transition pointer-events-auto">Contatti</a>
             </div>
             
             <div class="text-center flex-grow lg:flex-none">
@@ -131,7 +138,8 @@
         </button>
         <a href="#nicchia" class="mobile-link text-3xl font-serif italic text-stone-900 pointer-events-auto">Nicchia</a>
         <a href="#skincare" class="mobile-link text-3xl font-serif italic text-stone-900 pointer-events-auto">Skincare</a>
-        <a href="#home" class="mobile-link text-3xl font-serif italic text-stone-900 pointer-events-auto">Ambiente</a>
+        <a href="#recensioni" class="mobile-link text-3xl font-serif italic text-stone-900 pointer-events-auto">Recensioni</a>
+        <a href="#faq" class="mobile-link text-3xl font-serif italic text-stone-900 pointer-events-auto">FAQ</a>
         <a href="#contatti" class="mobile-link text-3xl font-serif italic text-stone-900 pointer-events-auto">Contatti</a>
     </div>
 
@@ -214,6 +222,50 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-white overflow-hidden section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-serif italic text-stone-900">Esperienze <span class="text-rose-gold">Olfattive</span></h2>
+                <p class="text-[10px] font-bold text-stone-400 uppercase tracking-[0.3em] mt-4 italic">Cosa dicono di noi</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-stone-50 p-10 rounded-[2rem] space-y-4">
+                    <div class="flex text-rose-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600">"Una ricerca della perfezione incredibile. Oud Imperial è diventato la mia firma olfattiva, ricevo complimenti ovunque io vada."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-900">— Elena R., Milano</p>
+                </div>
+                <div class="bg-stone-50 p-10 rounded-[2rem] space-y-4">
+                    <div class="flex text-rose-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600">"Il laboratorio skincare è una vera gemma. I sieri molecolari hanno trasformato la texture della mia pelle in poche settimane."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-900">— Marco V., Roma</p>
+                </div>
+                <div class="bg-stone-50 p-10 rounded-[2rem] space-y-4">
+                    <div class="flex text-rose-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="italic text-stone-600">"Atmosfera magica e consulenza d'eccellenza. Non è solo un acquisto, ma un viaggio sensoriale guidato da esperti."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-900">— Sofia L., Firenze</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="home" class="py-20 md:py-32 bg-stone-900 text-white rounded-[2rem] md:rounded-[5rem] mx-4 md:mx-10 overflow-hidden section-padding">
         <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="space-y-8 md:space-y-10">
@@ -226,6 +278,28 @@
             </div>
             <div class="relative px-2">
                 <img src="assets/img6.jpg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-serif italic text-stone-900">Domande <span class="text-rose-gold">Frequenti</span></h2>
+            </div>
+            <div class="space-y-6">
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2">È possibile richiedere una consulenza personalizzata?</h4>
+                    <p class="text-sm text-stone-500 font-light italic">Sì, offriamo il servizio di "Scent Discovery" per aiutarti a trovare la fragranza che meglio esprime la tua identità.</p>
+                </div>
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2">I vostri prodotti sono cruelty-free?</h4>
+                    <p class="text-sm text-stone-500 font-light italic">Assolutamente sì. Tutti i nostri prodotti e le materie prime non sono testati su animali e seguono i più alti standard etici.</p>
+                </div>
+                <div class="border-b border-stone-100 pb-6">
+                    <h4 class="text-lg font-serif italic mb-2">Effettuate spedizioni internazionali?</h4>
+                    <p class="text-sm text-stone-500 font-light italic">Spediamo le nostre creazioni in tutto il mondo con imballaggi protettivi ecosostenibili.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -266,10 +340,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-8 right-8 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-[140]">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -290,11 +360,31 @@
 
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
-        
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+
+        // Scroll con offset e gestione menu mobile
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Se è un link del menu mobile, chiudi il menu prima
+                if (this.classList.contains('mobile-link')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

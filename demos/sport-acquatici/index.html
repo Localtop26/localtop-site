@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Wave Master | Academy Sport Acquatici & Surf Shop - Demo Mode</title>
@@ -80,8 +81,44 @@
             display: flex;
         }
 
-        @media (max-width: 768px) {
-            .demo-btn { padding: 0.6rem 1rem !important; }
+        /* Unico Bottone Localtop */
+        .btn-localtop {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 10000;
+            background-color: #0F766E;
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+            
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover {
+            transform: scale(1.05);
+            background-color: #0d665f;
+        }
+
+        /* Disattivazione elementi non richiesti */
+        .only-visual {
+            pointer-events: none !important;
+            cursor: default !important;
         }
     </style>
 </head>
@@ -96,10 +133,12 @@
                 <span class="text-lg md:text-2xl font-action font-black text-white tracking-tighter uppercase italic">WAVE<span class="text-cyan-400">MASTER</span></span>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+            <div class="hidden lg:flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="#academy" class="hover:text-cyan-400 transition">Academy</a>
                 <a href="#noleggio" class="hover:text-cyan-400 transition">Rent</a>
+                <a href="#recensioni" class="hover:text-cyan-400 transition">Recensioni</a>
                 <a href="#shop" class="hover:text-cyan-400 transition">Shop</a>
+                <a href="#faq" class="hover:text-cyan-400 transition">FAQ</a>
                 <a href="#meteo" class="hover:text-cyan-400 transition">Meteo</a>
             </div>
 
@@ -115,12 +154,14 @@
     </nav>
 
     <div id="mobile-menu">
-        <div class="flex flex-col gap-8 text-center">
-            <a href="#academy" onclick="closeMenu()" class="text-4xl font-action font-black uppercase italic tracking-tighter">Academy</a>
-            <a href="#noleggio" onclick="closeMenu()" class="text-4xl font-action font-black uppercase italic tracking-tighter">Rent</a>
-            <a href="#shop" onclick="closeMenu()" class="text-4xl font-action font-black uppercase italic tracking-tighter">Shop</a>
-            <a href="#meteo" onclick="closeMenu()" class="text-4xl font-action font-black uppercase italic tracking-tighter">Meteo</a>
-            <a href="#booking" onclick="closeMenu()" class="text-4xl font-action font-black uppercase italic tracking-tighter text-cyan-400">Contatti</a>
+        <div class="flex flex-col gap-6 text-center">
+            <a href="#academy" class="text-3xl font-action font-black uppercase italic tracking-tighter">Academy</a>
+            <a href="#noleggio" class="text-3xl font-action font-black uppercase italic tracking-tighter">Rent</a>
+            <a href="#recensioni" class="text-3xl font-action font-black uppercase italic tracking-tighter">Recensioni</a>
+            <a href="#shop" class="text-3xl font-action font-black uppercase italic tracking-tighter">Shop</a>
+            <a href="#faq" class="text-3xl font-action font-black uppercase italic tracking-tighter">FAQ</a>
+            <a href="#meteo" class="text-3xl font-action font-black uppercase italic tracking-tighter">Meteo</a>
+            <a href="#booking" class="text-3xl font-action font-black uppercase italic tracking-tighter text-cyan-400">Contatti</a>
         </div>
     </div>
 
@@ -145,7 +186,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl md:text-6xl font-action font-black mb-12 md:mb-20 uppercase text-center">Scegli la tua <span class="text-cyan-400 italic">Sfida.</span></h2>
             <div class="grid md:grid-cols-3 gap-8 md:gap-10">
-                <div class="action-card group">
+                <div class="action-card group only-visual">
                     <div class="bg-slate-900 flex items-center justify-center p-2">
                         <img src="assets/img2.jpg" class="img-full-display" alt="Surf Academy">
                     </div>
@@ -155,7 +196,7 @@
                         <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Lezioni da € 40</span>
                     </div>
                 </div>
-                <div class="action-card group border-cyan-500/50">
+                <div class="action-card group border-cyan-500/50 only-visual">
                     <div class="bg-slate-900 flex items-center justify-center p-2">
                         <img src="assets/img3.jpg" class="img-full-display" alt="Kitesurf Academy">
                     </div>
@@ -165,7 +206,7 @@
                         <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Full Course € 350</span>
                     </div>
                 </div>
-                <div class="action-card group">
+                <div class="action-card group only-visual">
                     <div class="bg-slate-900 flex items-center justify-center p-2">
                         <img src="assets/img4.jpg" class="img-full-display" alt="Wings & Foil">
                     </div>
@@ -174,6 +215,47 @@
                         <p class="text-sm text-slate-400 mb-6 italic">Volo silenzioso sull'acqua.</p>
                         <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Intro Foil € 90</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-16 md:py-32 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-action font-black mb-12 md:mb-20 uppercase text-center">Cosa dicono i <span class="text-cyan-400 italic">Riders.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-950 p-8 rounded-3xl border border-white/5">
+                    <div class="flex text-cyan-400 mb-4">
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Esperienza incredibile! Ho imparato le basi del Kitesurf in pochissimo tempo grazie ad istruttori super pazienti."</p>
+                    <p class="font-bold uppercase text-xs tracking-widest text-cyan-400">Marco - Milano</p>
+                </div>
+                <div class="bg-slate-950 p-8 rounded-3xl border border-white/5">
+                    <div class="flex text-cyan-400 mb-4">
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Il miglior shop tecnico della zona. Hanno attrezzatura all'avanguardia e mi hanno consigliato la muta perfetta."</p>
+                    <p class="font-bold uppercase text-xs tracking-widest text-cyan-400">Giulia - Roma</p>
+                </div>
+                <div class="bg-slate-950 p-8 rounded-3xl border border-white/5">
+                    <div class="flex text-cyan-400 mb-4">
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-cyan-400 w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Location fantastica e atmosfera da vera tribe. Il corso di Foil è stato magico, sembrava di volare."</p>
+                    <p class="font-bold uppercase text-xs tracking-widest text-cyan-400">Luca - Verona</p>
                 </div>
             </div>
         </div>
@@ -197,23 +279,43 @@
         <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
             <h2 class="text-5xl font-action font-black uppercase italic mb-16">The <span class="text-cyan-600">Hardware.</span></h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center space-y-4">
+                <div class="text-center space-y-4 only-visual">
                     <div class="aspect-square bg-slate-100 rounded-3xl p-8"><img src="assets/img6.jpg" class="w-full h-full object-contain" alt="Product"></div>
                     <h5 class="font-bold uppercase text-xs">Shortboard 6'0</h5>
                     <p class="text-cyan-600 font-black">€ 549,00</p>
                 </div>
-                <div class="text-center space-y-4">
+                <div class="text-center space-y-4 only-visual">
                     <div class="aspect-square bg-slate-100 rounded-3xl p-8"><img src="assets/img7.jpg" class="w-full h-full object-contain" alt="Product"></div>
                     <h5 class="font-bold uppercase text-xs">Wetsuit 4/3mm</h5>
                     <p class="text-cyan-600 font-black">€ 289,00</p>
                 </div>
-                <div class="text-center space-y-4">
+                <div class="text-center space-y-4 only-visual">
                     <div class="aspect-square bg-slate-100 rounded-3xl p-8"><img src="assets/img8.jpg" class="w-full h-full object-contain" alt="Product"></div>
                     <h5 class="font-bold uppercase text-xs">Kite Wing 5m</h5>
                     <p class="text-cyan-600 font-black">€ 890,00</p>
                 </div>
-                <div class="flex items-center justify-center border-2 border-dashed border-slate-200 rounded-3xl p-8 min-h-[250px]">
+                <div class="flex items-center justify-center border-2 border-dashed border-slate-200 rounded-3xl p-8 min-h-[250px] only-visual">
                     <button class="text-[10px] font-black uppercase tracking-widest hover:text-cyan-600 transition">Vedi tutto lo shop →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-32 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-action font-black mb-12 uppercase text-center italic">Domande <span class="text-cyan-400">Frequenti.</span></h2>
+            <div class="space-y-4">
+                <div class="bg-slate-900 p-6 rounded-2xl border border-white/5 only-visual">
+                    <h5 class="font-bold text-lg mb-2">È necessario saper nuotare bene?</h5>
+                    <p class="text-slate-400 text-sm">Sì, la sicurezza è la nostra priorità. È richiesta una buona acquaticità per tutti i corsi.</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-white/5 only-visual">
+                    <h5 class="font-bold text-lg mb-2">L'attrezzatura è inclusa nel prezzo?</h5>
+                    <p class="text-slate-400 text-sm">Assolutamente sì. Per tutti i corsi forniamo muta, tavola, vela e protezioni necessarie.</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-white/5 only-visual">
+                    <h5 class="font-bold text-lg mb-2">Cosa succede se non c'è vento o onda?</h5>
+                    <p class="text-slate-400 text-sm">In caso di condizioni meteo non idonee, la lezione viene recuperata nella prima data utile o convertita in voucher.</p>
                 </div>
             </div>
         </div>
@@ -223,17 +325,17 @@
         <div class="max-w-5xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-4xl md:text-5xl font-action font-black uppercase italic">Spot <span class="text-cyan-400">Live.</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5">
+                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5 only-visual">
                     <i data-lucide="thermometer" class="w-8 h-8 mx-auto mb-4 text-cyan-400"></i>
                     <p class="text-4xl font-black">22°C</p>
                     <p class="text-[9px] uppercase font-bold text-slate-500 mt-2">Temperatura Aria</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5">
+                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5 only-visual">
                     <i data-lucide="wind" class="w-8 h-8 mx-auto mb-4 text-cyan-400"></i>
                     <p class="text-4xl font-black">12kt</p>
                     <p class="text-[9px] uppercase font-bold text-slate-500 mt-2">Vento Maestrale</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5">
+                <div class="bg-slate-900 p-8 rounded-3xl border border-white/5 only-visual">
                     <i data-lucide="video" class="w-8 h-8 mx-auto mb-4 text-cyan-400"></i>
                     <p class="text-xl font-bold uppercase">Webcam HD</p>
                     <p class="text-[9px] uppercase font-bold text-slate-500 mt-2">Guarda lo spot</p>
@@ -247,17 +349,17 @@
             <div class="space-y-10 text-center lg:text-left">
                 <h2 class="text-6xl md:text-8xl font-action font-black leading-none uppercase italic">Join the <br><span class="text-white underline decoration-slate-950">Tribe.</span></h2>
                 <div class="space-y-8">
-                    <div class="flex flex-col md:flex-row items-center gap-4">
+                    <div class="flex flex-col md:flex-row items-center gap-4 only-visual">
                         <div class="w-14 h-14 bg-slate-950 text-white rounded-2xl flex items-center justify-center rotate-6 shrink-0"><i data-lucide="map-pin"></i></div>
                         <div><p class="text-xl md:text-2xl font-bold uppercase">Spiaggia di Levante</p></div>
                     </div>
-                    <div class="flex flex-col md:flex-row items-center gap-4">
+                    <div class="flex flex-col md:flex-row items-center gap-4 only-visual">
                         <div class="w-14 h-14 bg-white text-slate-950 rounded-2xl flex items-center justify-center -rotate-6 shrink-0"><i data-lucide="phone"></i></div>
                         <div><p class="text-xl md:text-2xl font-bold italic">+39 333 123 4567</p></div>
                     </div>
                 </div>
             </div>
-            <div class="bg-slate-900 p-8 md:p-12 rounded-[2.5rem] shadow-2xl space-y-6 text-white relative">
+            <div class="bg-slate-900 p-8 md:p-12 rounded-[2.5rem] shadow-2xl space-y-6 text-white relative only-visual">
                 <p class="text-[10px] font-black uppercase tracking-widest text-cyan-400 text-center italic">Contatti Rapidi</p>
                 <div class="space-y-4">
                     <div class="bg-slate-800 p-5 rounded-2xl flex items-center gap-4 border border-white/5">
@@ -283,22 +385,14 @@
         </p>
     </footer>
 
-    <div class="demo-nav-container fixed bottom-6 left-6 z-[10000] flex flex-col gap-3">
-        <a href="https://localtop.it/checkout" class="demo-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="zap" class="w-3.5 h-3.5"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="demo-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3.5 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Torna agli Esempi
-        </a>
-    </div>
-
-    <div class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-[10000] pointer-events-none">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </div>
+    <a href="https://localtop.it/checkout" class="btn-localtop">
+        Attiva il Servizio
+    </a>
 
     <script>
         lucide.createIcons();
 
+        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -323,6 +417,32 @@
         }
 
         menuToggle.addEventListener('click', toggleMenu);
+
+        // Smooth Scroll con Offset e senza Hash nell'URL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Chiudi menu se siamo su mobile
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

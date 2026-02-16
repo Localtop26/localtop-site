@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Street Bites | Burgers, Tacos & Urban Vibes - Demo Mode</title>
@@ -19,14 +20,13 @@
             background-size: cover; background-position: center; 
         }
         
-        /* Rimosso Grayscale ovunque */
         img { filter: none !important; }
         
         .food-card { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .food-card:hover { transform: scale(1.02) rotate(-1deg); }
 
         /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo, .demo-nav-container a {
+        button:not(.menu-toggle), input, select, textarea {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -50,12 +50,13 @@
             h1 { font-size: clamp(3.5rem, 15vw, 8.5rem) !important; line-height: 0.85 !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
+            .cta-localtop {
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+                min-height: 44px !important;
             }
             
-            .nav-btn-res { display: none; } /* Nascondi btn "Ordina" in nav su mobile per evitare sovrapposizioni */
+            .nav-btn-res { display: none; } 
         }
 
         .demo-nav-container {
@@ -63,20 +64,35 @@
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+
+        .cta-localtop {
+            background-color: #0F766E;
+            color: white;
+            padding: 16px 28px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 9999px;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
+        .cta-localtop:hover { transform: scale(1.05); }
+
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 0; }
     </style>
 </head>
 <body class="selection:bg-neon selection:text-black">
 
     <div class="demo-nav-container">
-        <a href="#" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="#" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -89,19 +105,21 @@
                 <span class="text-3xl md:text-4xl font-street text-white tracking-wider">STREET<span class="text-neon">BITES</span></span>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-extrabold uppercase tracking-widest text-zinc-400">
-                <a href="#menu" class="hover:text-neon transition">Il Menu</a>
-                <a href="#combo" class="hover:text-neon transition">Combo Deal</a>
-                <a href="#filosofia" class="hover:text-neon transition">Filosofia</a>
-                <a href="#delivery" class="hover:text-neon transition">Delivery</a>
-                <a href="#vibes" class="hover:text-neon transition">Vibes</a>
+            <div class="hidden lg:flex space-x-6 text-[10px] font-extrabold uppercase tracking-widest text-zinc-400">
+                <a href="#menu" class="anchor-link hover:text-neon transition">Il Menu</a>
+                <a href="#combo" class="anchor-link hover:text-neon transition">Combo Deal</a>
+                <a href="#recensioni" class="anchor-link hover:text-neon transition">Recensioni</a>
+                <a href="#filosofia" class="anchor-link hover:text-neon transition">Filosofia</a>
+                <a href="#faq" class="anchor-link hover:text-neon transition">FAQ</a>
+                <a href="#delivery" class="anchor-link hover:text-neon transition">Delivery</a>
+                <a href="#vibes" class="anchor-link hover:text-neon transition">Vibes</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="nav-btn-res bg-white text-black px-8 py-3 rounded-full font-street text-xl tracking-wider hover:bg-neon transition-all">
+                <a href="#contatti" class="anchor-link nav-btn-res bg-white text-black px-8 py-3 rounded-full font-street text-xl tracking-wider hover:bg-neon transition-all">
                     ORDINA ORA
                 </a>
-                <button onclick="toggleMenu()" class="lg:hidden text-white p-2 pointer-events-auto !cursor-pointer" style="pointer-events: auto !important; cursor: pointer !important;">
+                <button onclick="toggleMenu()" class="menu-toggle lg:hidden text-white p-2 pointer-events-auto !cursor-pointer">
                     <i data-lucide="menu" class="w-8 h-8"></i>
                 </button>
             </div>
@@ -109,15 +127,17 @@
     </nav>
 
     <div id="mobile-menu-overlay" class="font-street">
-        <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white pointer-events-auto !cursor-pointer" style="pointer-events: auto !important; cursor: pointer !important;">
+        <button onclick="toggleMenu()" class="menu-toggle absolute top-6 right-6 text-white pointer-events-auto !cursor-pointer">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <a href="#menu" onclick="toggleMenu()" class="text-4xl text-white hover:text-neon">IL MENU</a>
-        <a href="#combo" onclick="toggleMenu()" class="text-4xl text-white hover:text-neon">COMBO DEAL</a>
-        <a href="#filosofia" onclick="toggleMenu()" class="text-4xl text-white hover:text-neon">FILOSOFIA</a>
-        <a href="#delivery" onclick="toggleMenu()" class="text-4xl text-white hover:text-neon">DELIVERY</a>
-        <a href="#vibes" onclick="toggleMenu()" class="text-4xl text-white hover:text-neon">VIBES</a>
-        <a href="#contatti" onclick="toggleMenu()" class="text-4xl text-neon">ORDINA ORA</a>
+        <a href="#menu" class="anchor-link text-4xl text-white hover:text-neon">IL MENU</a>
+        <a href="#combo" class="anchor-link text-4xl text-white hover:text-neon">COMBO DEAL</a>
+        <a href="#recensioni" class="anchor-link text-4xl text-white hover:text-neon">RECENSIONI</a>
+        <a href="#filosofia" class="anchor-link text-4xl text-white hover:text-neon">FILOSOFIA</a>
+        <a href="#faq" class="anchor-link text-4xl text-white hover:text-neon">FAQ</a>
+        <a href="#delivery" class="anchor-link text-4xl text-white hover:text-neon">DELIVERY</a>
+        <a href="#vibes" class="anchor-link text-4xl text-white hover:text-neon">VIBES</a>
+        <a href="#contatti" class="anchor-link text-4xl text-neon">ORDINA ORA</a>
     </div>
 
     <section class="relative h-[80vh] md:h-[85vh] flex items-center hero-food overflow-hidden">
@@ -130,8 +150,8 @@
                     I migliori burger della città, tacos fatti a mano e patatine che creano dipendenza. Niente formalità, solo cibo pazzesco.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-6">
-                    <a href="#menu" class="bg-neon text-black px-8 md:px-12 py-4 md:py-5 rounded-full font-street text-xl md:text-2xl tracking-widest">VEDI IL MENU</a>
-                    <a href="#delivery" class="bg-transparent border-2 border-white text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-street text-xl md:text-2xl tracking-widest">DELIVERY</a>
+                    <a href="#menu" class="anchor-link bg-neon text-black px-8 md:px-12 py-4 md:py-5 rounded-full font-street text-xl md:text-2xl tracking-widest">VEDI IL MENU</a>
+                    <a href="#delivery" class="anchor-link bg-transparent border-2 border-white text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-street text-xl md:text-2xl tracking-widest">DELIVERY</a>
                 </div>
             </div>
         </div>
@@ -194,6 +214,29 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-[#0a0a0a] section-padding border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-street italic uppercase mb-16 text-center">STREET <span class="text-neon">VOICES</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 p-8 rounded-[2rem] border border-white/5 italic">
+                    <div class="flex text-neon mb-4"><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i></div>
+                    <p class="text-zinc-300 mb-6">"Il miglior Smash Burger mai provato a Milano. Atmosfera incredibile e musica top."</p>
+                    <p class="text-white font-bold uppercase text-xs tracking-widest">— Marco, Milano</p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-[2rem] border border-white/5 italic">
+                    <div class="flex text-neon mb-4"><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i></div>
+                    <p class="text-zinc-300 mb-6">"I Tacos sono un'esplosione di sapore. Servizio veloce anche nel weekend."</p>
+                    <p class="text-white font-bold uppercase text-xs tracking-widest">— Giulia, Torino</p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-[2rem] border border-white/5 italic">
+                    <div class="flex text-neon mb-4"><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i><i data-lucide="star" class="fill-neon w-4 h-4"></i></div>
+                    <p class="text-zinc-300 mb-6">"Il Lava Burger è illegale da quanto è buono. Diventerà la mia tappa fissa."</p>
+                    <p class="text-white font-bold uppercase text-xs tracking-widest">— Luca, Monza</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-20 md:py-32 bg-zinc-950 section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
             <h2 class="text-5xl md:text-6xl font-street italic text-white uppercase tracking-tighter">ANIMA <span class="text-neon italic">URBANA.</span></h2>
@@ -219,6 +262,26 @@
             <div class="md:w-1/2 grid grid-cols-2 gap-4">
                 <div class="h-48 md:h-64 bg-black rounded-3xl flex items-center justify-center"><i data-lucide="beef" class="text-neon w-12 h-12 md:w-16 md:h-16"></i></div>
                 <div class="h-48 md:h-64 bg-white rounded-3xl flex items-center justify-center mt-8 md:mt-12 shadow-2xl"><i data-lucide="drumstick" class="text-black w-12 h-12 md:w-16 md:h-16"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-black section-padding">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-street italic uppercase mb-12 text-center">DOMANDE <span class="text-neon">FREQUENTI</span></h2>
+            <div class="space-y-2">
+                <div class="faq-item">
+                    <h4 class="text-xl font-street uppercase text-neon mb-2">Fate opzioni senza glutine?</h4>
+                    <p class="text-zinc-400 italic font-light">Abbiamo buns senza glutine disponibili su richiesta e quasi tutti i nostri tacos sono di mais 100%.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="text-xl font-street uppercase text-neon mb-2">Quali sono gli orari di consegna?</h4>
+                    <p class="text-zinc-400 italic font-light">Siamo attivi per il delivery dalle 12:00 alle 15:00 e dalle 19:00 alle 23:30 tutti i giorni.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="text-xl font-street uppercase text-neon mb-2">Posso prenotare un tavolo?</h4>
+                    <p class="text-zinc-400 italic font-light">Siamo una realtà street: non prendiamo prenotazioni, ma i nostri tavoli girano velocemente!</p>
+                </div>
             </div>
         </div>
     </section>
@@ -293,10 +356,6 @@
         &copy; 2026 Street Bites Milano | Handmade Urban Food | P.IVA 0123456789 | LocalTop Demo Mode
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-8 h-8"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -310,6 +369,36 @@
                 document.body.style.overflow = 'hidden';
             }
         }
+
+        // Scroll Ancore Gestione
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Se cliccato da menu mobile
+                        const menu = document.getElementById('mobile-menu-overlay');
+                        if (menu.style.display === 'flex') {
+                            menu.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        }
+
+                        const offset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>

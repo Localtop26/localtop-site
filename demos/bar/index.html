@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brera Mistique | Milano Cocktail & Culture</title>
@@ -20,13 +21,18 @@
         }
         
         /* Interactive elements disabled for demo */
-        button:not(#menu-toggle), input, select, textarea, .visual-widget {
+        button:not(#menu-toggle, #menu-close), input, select, textarea, .visual-widget, form, .social-dummy {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Mobile Menu Overlay */
+        /* Re-enable CTA and Menu */
+        .cta-active, #menu-toggle, #menu-close, .menu-link, .nav-link-anchor {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
         #mobile-menu.active {
             display: flex !important;
         }
@@ -37,23 +43,41 @@
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
         }
 
+        /* Single CTA Button Styling */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
 
-        /* Responsive Localtop Buttons */
-        @media (max-width: 640px) {
-            .demo-nav-container a {
-                padding: 0.75rem 1rem;
-                font-size: 8px;
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
         }
+
+        .btn-localtop:hover { transform: scale(1.05); }
+        .btn-localtop:active { transform: scale(0.95); }
 
         .gallery-img-container {
             overflow: hidden;
@@ -62,22 +86,17 @@
         }
         .gallery-img-container img {
             transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: none !important; /* Forza rimozione filtri */
         }
         .gallery-img-container:hover img {
             transform: scale(1.05);
-            filter: none !important;
         }
     </style>
 </head>
 <body class="antialiased">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop cta-active">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -88,16 +107,17 @@
                 <span class="text-[9px] md:text-[10px] tracking-[0.4em] text-[#C5A059] uppercase -mt-1">Mistique Milano</span>
             </div>
             
-            <div class="hidden lg:flex space-x-10 text-[11px] uppercase tracking-[0.3em] font-light">
-                <a href="#storia" class="hover:text-[#C5A059] transition">La Filosofia</a>
-                <a href="#menu" class="hover:text-[#C5A059] transition">Menu</a>
-                <a href="#gallery" class="hover:text-[#C5A059] transition">Gallery</a>
-                <a href="#eventi" class="hover:text-[#C5A059] transition">Eventi</a>
-                <a href="#contatti" class="hover:text-[#C5A059] transition">Contatti</a>
+            <div class="hidden lg:flex space-x-8 text-[11px] uppercase tracking-[0.3em] font-light">
+                <a href="#storia" class="nav-link-anchor hover:text-[#C5A059] transition">La Filosofia</a>
+                <a href="#menu" class="nav-link-anchor hover:text-[#C5A059] transition">Menu</a>
+                <a href="#recensioni" class="nav-link-anchor hover:text-[#C5A059] transition">Recensioni</a>
+                <a href="#gallery" class="nav-link-anchor hover:text-[#C5A059] transition">Gallery</a>
+                <a href="#faq" class="nav-link-anchor hover:text-[#C5A059] transition">FAQ</a>
+                <a href="#contatti" class="nav-link-anchor hover:text-[#C5A059] transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <button class="hidden sm:block bg-[#C5A059] text-black px-6 md:px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all duration-500">
+                <button class="hidden sm:block bg-[#C5A059] text-black px-6 md:px-8 py-3 text-[10px] font-bold uppercase tracking-widest">
                     Prenota
                 </button>
                 <button id="menu-toggle" class="lg:hidden text-white p-2">
@@ -113,8 +133,9 @@
         </button>
         <a href="#storia" class="text-2xl font-serif text-white uppercase tracking-widest menu-link">La Filosofia</a>
         <a href="#menu" class="text-2xl font-serif text-white uppercase tracking-widest menu-link">Menu</a>
+        <a href="#recensioni" class="text-2xl font-serif text-white uppercase tracking-widest menu-link">Recensioni</a>
         <a href="#gallery" class="text-2xl font-serif text-white uppercase tracking-widest menu-link">Gallery</a>
-        <a href="#eventi" class="text-2xl font-serif text-white uppercase tracking-widest menu-link">Eventi</a>
+        <a href="#faq" class="text-2xl font-serif text-white uppercase tracking-widest menu-link">FAQ</a>
         <a href="#contatti" class="text-2xl font-serif text-white uppercase tracking-widest menu-link">Contatti</a>
         <button class="bg-[#C5A059] text-black px-10 py-4 text-[12px] font-bold uppercase tracking-widest mt-4">Prenota Ora</button>
     </div>
@@ -126,7 +147,7 @@
             <p class="text-[#C5A059] tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs uppercase animate-pulse">Luxury Lifestyle Experience</p>
             <h1 class="text-6xl md:text-9xl text-white font-serif italic leading-tight">Mood & <br> Mixology</h1>
             <div class="flex justify-center gap-6">
-                <a href="#menu" class="border border-white/20 px-8 md:px-12 py-4 text-[10px] md:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Sfoglia la Carta</a>
+                <a href="#menu" class="nav-link-anchor border border-white/20 px-8 md:px-12 py-4 text-[10px] md:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Sfoglia la Carta</a>
             </div>
         </div>
     </section>
@@ -157,7 +178,7 @@
                 <h2 class="text-4xl md:text-5xl font-serif text-white italic">La Nostra Selezione</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8 md:gap-12">
-                <div class="space-y-6 p-6 md:p-8 border border-white/5 hover:border-[#C5A059]/30 transition">
+                <div class="space-y-6 p-6 md:p-8 border border-white/5 transition">
                     <i data-lucide="coffee" class="text-[#C5A059] w-8 h-8"></i>
                     <h4 class="text-2xl font-serif text-white">Morning Ritual</h4>
                     <ul class="space-y-4 text-sm text-gray-500 font-light">
@@ -173,13 +194,57 @@
                         <li class="flex justify-between"><span>Smoked Old Fashioned</span> <span>€15</span></li>
                     </ul>
                 </div>
-                <div class="space-y-6 p-6 md:p-8 border border-white/5 hover:border-[#C5A059]/30 transition">
+                <div class="space-y-6 p-6 md:p-8 border border-white/5 transition">
                     <i data-lucide="utensils" class="text-[#C5A059] w-8 h-8"></i>
                     <h4 class="text-2xl font-serif text-white">After Dark Bites</h4>
                     <ul class="space-y-4 text-sm text-gray-500 font-light">
                         <li class="flex justify-between"><span>Ostriche Fine de Claire</span> <span>€4/pz</span></li>
                         <li class="flex justify-between"><span>Tagliere Brera Mistique</span> <span>€22</span></li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-[#C5A059] text-[10px] uppercase tracking-[0.4em] mb-4">Dicono di noi</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-white italic">Guest Experiences</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 border border-white/10 space-y-4 bg-[#0a0a0a]">
+                    <div class="flex gap-1 text-[#C5A059]">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-400 italic font-light">"Il miglior Old Fashioned di Milano. L'atmosfera in Brera è impareggiabile, servizio impeccabile e discreto."</p>
+                    <div class="text-white font-serif tracking-widest text-sm">— Marco R., Milano</div>
+                </div>
+                <div class="p-8 border border-white/10 space-y-4 bg-[#0a0a0a]">
+                    <div class="flex gap-1 text-[#C5A059]">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-400 italic font-light">"Un rifugio elegante. Perfetto per un aperitivo di lavoro o una serata romantica. Il 'Milanese Gold' è un'esperienza da provare."</p>
+                    <div class="text-white font-serif tracking-widest text-sm">— Elena V., Roma</div>
+                </div>
+                <div class="p-8 border border-white/10 space-y-4 bg-[#0a0a0a]">
+                    <div class="flex gap-1 text-[#C5A059]">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-400 italic font-light">"Ricerca e qualità in ogni dettaglio. Dalle ostriche ai cocktail d'autore, Brera Mistique non delude mai le aspettative."</p>
+                    <div class="text-white font-serif tracking-widest text-sm">— Julian K., Berlino</div>
                 </div>
             </div>
         </div>
@@ -206,6 +271,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 md:py-32 bg-[#0f0f0f]">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-serif text-white italic text-center mb-16">Domande Frequenti</h2>
+            <div class="space-y-8">
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-white font-semibold mb-2">È necessaria la prenotazione?</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Per il servizio serale e il weekend è vivamente consigliata la prenotazione per garantirvi il miglior tavolo possibile.</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-white font-semibold mb-2">Organizzate eventi privati?</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Certamente. Disponiamo di un'area riservata ideale per eventi aziendali, lanci di prodotto o celebrazioni private fino a 50 persone.</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-white font-semibold mb-2">Qual è il vostro dress code?</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Promuoviamo uno stile Smart Casual in sintonia con l'eleganza del quartiere Brera.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="eventi" class="py-20 md:py-32 bg-[#C5A059] text-black">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
             <div class="md:w-1/2">
@@ -218,11 +303,11 @@
             <div class="md:w-1/2 w-full bg-black p-8 md:p-12 text-white">
                 <h4 class="text-2xl font-serif mb-8 text-center md:text-left">Contattaci Subito</h4>
                 <div class="flex flex-col gap-4">
-                    <button class="w-full bg-[#25D366] text-white py-5 flex items-center justify-center gap-3 font-bold uppercase text-[10px] tracking-widest hover:opacity-90 transition">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i> Scrivici su WhatsApp
+                    <button class="w-full border border-white/20 text-white py-5 flex items-center justify-center gap-3 font-bold uppercase text-[10px] tracking-widest">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i> Richiesta WhatsApp
                     </button>
-                    <button class="w-full bg-white text-black py-5 flex items-center justify-center gap-3 font-bold uppercase text-[10px] tracking-widest hover:bg-gray-200 transition">
-                        <i data-lucide="phone" class="w-5 h-5"></i> Chiamaci Ora
+                    <button class="w-full bg-[#C5A059] text-black py-5 flex items-center justify-center gap-3 font-bold uppercase text-[10px] tracking-widest">
+                        <i data-lucide="phone" class="w-5 h-5"></i> Prenotazione Telefonica
                     </button>
                 </div>
             </div>
@@ -245,18 +330,16 @@
             <div class="space-y-4 md:space-y-6 text-center md:text-left">
                 <h5 class="text-[#C5A059] uppercase tracking-widest text-xs">Social</h5>
                 <div class="flex gap-4 justify-center md:justify-start">
-                    <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-                    <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                    <span class="social-dummy w-10 h-10 border border-white/10 flex items-center justify-center rounded-full"><i data-lucide="instagram" class="w-4 h-4"></i></span>
+                    <span class="social-dummy w-10 h-10 border border-white/10 flex items-center justify-center rounded-full"><i data-lucide="facebook" class="w-4 h-4"></i></span>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
-        // Mobile Menu Logic
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -270,10 +353,32 @@
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+        const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
+        
+        allAnchorLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    if (this.classList.contains('menu-link')) {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

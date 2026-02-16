@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peak Store | Trekking, Sci & Outdoor Specialists - Demo Mode</title>
@@ -25,11 +26,10 @@
         .gear-card:hover { border-color: #f97316; transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
         .topo-bg { background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); opacity: 0.05; position: absolute; inset: 0; pointer-events: none; }
 
-        /* Rimozione filtri e grayscale */
         img { filter: none !important; grayscale: 0 !important; }
 
         /* Demo Mode Constraints */
-        button, input, select, textarea, .wa-widget-demo, .contact-btn-demo {
+        button:not(.menu-toggle), input, select, textarea, .wa-widget-demo, .contact-btn-demo {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -52,21 +52,12 @@
         }
         #mobile-menu.active { display: flex; }
 
-        /* Responsive Fixes */
         @media (max-width: 768px) {
             h1 { font-size: clamp(3.5rem, 15vw, 5rem) !important; line-height: 0.9 !important; text-transform: uppercase !important; }
             h2 { font-size: clamp(2.5rem, 10vw, 3.5rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            /* Localtop Buttons Mobile */
-            .demo-nav-container a {
-                padding: 0.75rem 1.25rem !important;
-                font-size: 8px !important;
-            }
-            .demo-nav-container { left: 1rem; bottom: 1rem; }
         }
 
-        /* Desktop Title */
         @media (min-width: 1024px) {
             h1 { font-size: 10rem !important; line-height: 0.8; text-transform: lowercase !important; }
         }
@@ -76,12 +67,37 @@
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
 
-        /* Hamburger Animation */
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            /* Mobile styles */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .btn-localtop:hover { transform: scale(1.05); }
+
         .menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
@@ -105,9 +121,10 @@
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
                 <a href="#trekking" class="hover:text-summit transition">Trekking</a>
                 <a href="#sci" class="hover:text-summit transition">Sci & Snow</a>
-                <a href="#filosofia" class="hover:text-summit transition">Filosofia</a>
                 <a href="#climbing" class="hover:text-summit transition">Climbing</a>
                 <a href="#laboratorio" class="hover:text-summit transition">Servizi</a>
+                <a href="#recensioni" class="hover:text-summit transition">Recensioni</a>
+                <a href="#faq" class="hover:text-summit transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -125,12 +142,13 @@
     </nav>
 
     <div id="mobile-menu" class="lg:hidden italic font-bold text-[12px] uppercase tracking-widest">
-        <a href="#trekking" onclick="toggleMenu()">Trekking</a>
-        <a href="#sci" onclick="toggleMenu()">Sci & Snow</a>
-        <a href="#filosofia" onclick="toggleMenu()">Filosofia</a>
-        <a href="#climbing" onclick="toggleMenu()">Climbing</a>
-        <a href="#laboratorio" onclick="toggleMenu()">Servizi</a>
-        <a href="#contatti" onclick="toggleMenu()">Contatti</a>
+        <a href="#trekking">Trekking</a>
+        <a href="#sci">Sci & Snow</a>
+        <a href="#climbing">Climbing</a>
+        <a href="#laboratorio">Servizi</a>
+        <a href="#recensioni">Recensioni</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contatti">Contatti</a>
     </div>
 
     <section class="relative h-[85vh] flex items-center hero-outdoor overflow-hidden">
@@ -273,6 +291,57 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-alpine uppercase italic">Dicono di <span class="text-summit italic">Noi.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-stone-50 border border-stone-100 rounded-sm italic">
+                    <div class="flex text-summit mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light leading-relaxed">"Personale incredibilmente preparato. Mi hanno consigliato lo scarpone perfetto per la mia morfologia plantare. Un riferimento."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-alpine">Marco B. - Torino</p>
+                </div>
+                <div class="p-8 bg-stone-50 border border-stone-100 rounded-sm italic">
+                    <div class="flex text-summit mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light leading-relaxed">"Il laboratorio Pro-Fix ha fatto miracoli con i miei vecchi sci da freeride. Sono tornati come nuovi. Professionalità al top."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-alpine">Elena V. - Susa</p>
+                </div>
+                <div class="p-8 bg-stone-50 border border-stone-100 rounded-sm italic">
+                    <div class="flex text-summit mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-light leading-relaxed">"Assortimento tecnico che raramente si trova altrove. Hanno i marchi migliori e sanno davvero di cosa parlano."</p>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-alpine">Stefano G. - Moncalieri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-stone-50 section-padding overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-alpine uppercase italic text-center mb-16">Domande <span class="text-summit italic">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="bg-white p-6 border border-stone-200">
+                    <h4 class="font-bold text-alpine uppercase text-sm mb-2 italic">È possibile prenotare il noleggio online?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Al momento il noleggio viene gestito direttamente in negozio per garantire il corretto fitting dell'attrezzatura.</p>
+                </div>
+                <div class="bg-white p-6 border border-stone-200">
+                    <h4 class="font-bold text-alpine uppercase text-sm mb-2 italic">Quanto tempo richiede la manutenzione degli sci?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Di norma garantiamo la consegna entro 24/48 ore, a seconda della stagionalità e del carico di lavoro del laboratorio.</p>
+                </div>
+                <div class="bg-white p-6 border border-stone-200">
+                    <h4 class="font-bold text-alpine uppercase text-sm mb-2 italic">Trattate abbigliamento per spedizioni d'alta quota?</h4>
+                    <p class="text-slate-500 text-sm font-light italic">Sì, disponiamo di una selezione dedicata all'alpinismo d'alta quota con imbottiture in piuma certificata e gusci tecnici estremi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-16 md:py-24 bg-white section-padding">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20 items-center">
             <div class="space-y-8 md:space-y-12 text-center md:text-left">
@@ -312,16 +381,9 @@
     </footer>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 !pointer-events-auto !cursor-pointer">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95 !pointer-events-auto !cursor-pointer">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
-
-    <div class="wa-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>
@@ -330,15 +392,48 @@
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const toggle = document.querySelector('.menu-toggle');
-            menu.classList.toggle('active');
+            const isActive = menu.classList.toggle('active');
             toggle.classList.toggle('active');
+            document.body.style.overflow = isActive ? 'hidden' : '';
         }
 
-        // Close menu on resize to avoid layout ghosts
+        // Anchor Scroll Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Close mobile menu if open
+                    const menu = document.getElementById('mobile-menu');
+                    const toggle = document.querySelector('.menu-toggle');
+                    if (menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        toggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) {
                 document.getElementById('mobile-menu').classList.remove('active');
                 document.querySelector('.menu-toggle').classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     </script>

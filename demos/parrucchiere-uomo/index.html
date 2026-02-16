@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The Blade | Barber Shop & Hair Cut Milano - Demo Mode</title>
@@ -19,61 +20,75 @@
         .text-gold { color: #d4af37; }
         .bg-gold { background-color: #d4af37; }
 
-        /* Rimozione filtri grayscale */
         img { filter: none !important; }
         .grayscale, .hover\:grayscale-0 { filter: none !important; grayscale: 0 !important; }
 
         /* Blocco Interazioni (Demo Mode) */
-        button:not(#menu-toggle):not(#menu-close), input, select, textarea, .wa-widget-demo {
+        button:not(#menu-toggle):not(#menu-close), input, select, textarea {
             pointer-events: none !important;
             cursor: default !important;
         }
 
-        /* Bottoni Localtop più piccoli su mobile */
         @media (max-width: 768px) {
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 9px !important;
-            }
             h1 { font-size: clamp(3rem, 12vw, 7.5rem) !important; line-height: 0.9 !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
         }
 
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
+        }
+        
+        .btn-localtop {
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
         }
 
-        /* Sistema Menu Mobile Corretto */
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        
+        .btn-localtop:active { transform: scale(0.95); }
+
         #mobile-menu {
             position: fixed;
             inset: 0;
             background-color: black;
             z-index: 200;
-            display: none; /* Nascosto di default */
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 2rem;
         }
         #mobile-menu.active {
-            display: flex; /* Mostra quando attivo */
+            display: flex;
         }
     </style>
 </head>
 <body class="selection:bg-gold selection:text-black">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -85,15 +100,17 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.3em] text-white/50">
-                <a href="#servizi" class="hover:text-gold transition">Servizi</a>
-                <a href="#gallery" class="hover:text-gold transition">Stile</a>
-                <a href="#filosofia" class="hover:text-gold transition">Filosofia</a>
-                <a href="#team" class="hover:text-gold transition">Barbers</a>
-                <a href="#prenota" class="hover:text-gold transition">Contatti</a>
+                <a href="#servizi" class="hover:text-gold transition anchor-link">Servizi</a>
+                <a href="#recensioni" class="hover:text-gold transition anchor-link">Recensioni</a>
+                <a href="#gallery" class="hover:text-gold transition anchor-link">Stile</a>
+                <a href="#filosofia" class="hover:text-gold transition anchor-link">Filosofia</a>
+                <a href="#team" class="hover:text-gold transition anchor-link">Barbers</a>
+                <a href="#faq" class="hover:text-gold transition anchor-link">FAQ</a>
+                <a href="#prenota" class="hover:text-gold transition anchor-link">Contatti</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#prenota" class="hidden sm:block bg-gold text-black px-5 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all">
+                <a href="#prenota" class="hidden sm:block bg-gold text-black px-5 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all anchor-link">
                     Prenota
                 </a>
                 <button id="menu-toggle" class="lg:hidden text-white p-2">
@@ -108,9 +125,11 @@
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
         <a href="#servizi" class="text-3xl font-barber text-white mobile-link">Servizi</a>
+        <a href="#recensioni" class="text-3xl font-barber text-white mobile-link">Recensioni</a>
         <a href="#gallery" class="text-3xl font-barber text-white mobile-link">Stile</a>
         <a href="#filosofia" class="text-3xl font-barber text-white mobile-link">Filosofia</a>
         <a href="#team" class="text-3xl font-barber text-white mobile-link">Barbers</a>
+        <a href="#faq" class="text-3xl font-barber text-white mobile-link">FAQ</a>
         <a href="#prenota" class="text-3xl font-barber text-gold mobile-link">Prenota Ora</a>
     </div>
 
@@ -160,6 +179,35 @@
             <div class="relative">
                 <img src="assets/img2.jpg" class="w-full rounded-sm" alt="Barber tools">
                 <div class="absolute -bottom-6 -left-6 bg-gold text-black p-6 md:p-8 font-barber text-2xl md:text-3xl">Est. 2018</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 px-6 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-barber text-white italic tracking-tight mb-16 text-center">Cosa dicono del <span class="text-gold">Club</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-zinc-900 border border-white/5 space-y-4 italic">
+                    <div class="flex text-gold gap-1 text-sm">
+                        <i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300">"Miglior fade di Milano. Tommy è un chirurgo con la sfumatura. Atmosfera incredibile."</p>
+                    <p class="text-xs font-bold text-white uppercase tracking-widest">— Marco R., Milano</p>
+                </div>
+                <div class="p-8 bg-zinc-900 border border-white/5 space-y-4 italic">
+                    <div class="flex text-gold gap-1 text-sm">
+                        <i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300">"Il rituale della barba con panno caldo è un'esperienza mistica. Professionalità assoluta."</p>
+                    <p class="text-xs font-bold text-white uppercase tracking-widest">— Alessandro G., Monza</p>
+                </div>
+                <div class="p-8 bg-zinc-900 border border-white/5 space-y-4 italic">
+                    <div class="flex text-gold gap-1 text-sm">
+                        <i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i><i data-lucide="star" class="fill-gold w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300">"Posto pulito, curato e musica top. Diventato il mio appuntamento fisso ogni due settimane."</p>
+                    <p class="text-xs font-bold text-white uppercase tracking-widest">— Luca M., Milano</p>
+                </div>
             </div>
         </div>
     </section>
@@ -222,6 +270,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-20 md:py-32 bg-zinc-950 border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-barber text-white italic tracking-tight mb-16 text-center">Domande <span class="text-gold">Frequenti</span></h2>
+            <div class="space-y-6">
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-lg font-barber text-white mb-2 italic">È necessaria la prenotazione?</h4>
+                    <p class="text-gray-400 text-sm italic">Consigliamo sempre di prenotare per garantirti il posto, ma se passi e abbiamo una poltrona libera ti accoglieremo subito.</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-lg font-barber text-white mb-2 italic">Quanto dura un taglio Fade?</h4>
+                    <p class="text-gray-400 text-sm italic">Per una sfumatura perfetta dedichiamo circa 30-45 minuti, curando ogni dettaglio a lama.</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <h4 class="text-lg font-barber text-white mb-2 italic">Trattate anche barbe lunghe?</h4>
+                    <p class="text-gray-400 text-sm italic">Siamo specialisti nella modellatura di barbe lunghe con tecnica a forbice e rifinitura dei contorni.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="prenota" class="py-20 md:py-32 bg-black border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20">
             <div class="space-y-10">
@@ -253,10 +321,6 @@
         &copy; 2026 The Blade Barber Shop Milano | LocalTop Demo Mode
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -264,19 +328,46 @@
         const toggleBtn = document.getElementById('menu-toggle');
         const closeBtn = document.getElementById('menu-close');
         const menuOverlay = document.getElementById('mobile-menu');
-        const links = document.querySelectorAll('.mobile-link');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        toggleBtn.addEventListener('click', () => {
+        const openMenu = () => {
             menuOverlay.classList.add('active');
-        });
+            document.body.style.overflow = 'hidden';
+        };
 
-        closeBtn.addEventListener('click', () => {
+        const closeMenu = () => {
             menuOverlay.classList.remove('active');
-        });
+            document.body.style.overflow = '';
+        };
 
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menuOverlay.classList.remove('active');
+        toggleBtn.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+
+        // GESTIONE SCROLL ANCORE
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Se è un link del menu mobile
+                    if (this.classList.contains('mobile-link')) {
+                        closeMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

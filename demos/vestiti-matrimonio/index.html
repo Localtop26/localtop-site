@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sartoria Reale | Atelier Abiti da Sposa e Sposo Milano - Demo Mode</title>
@@ -41,7 +42,7 @@
         }
 
         /* Blocco Interazioni (Demo Mode) */
-        .wa-widget-demo, .contact-btn-demo {
+        .wa-widget-demo, .contact-btn-demo, .non-interactive {
             pointer-events: none !important;
             cursor: default !important;
         }
@@ -66,23 +67,39 @@
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
         }
 
-        /* Bottoni Floating Localtop - Più piccoli su mobile */
+        /* Bottoni Floating Localtop - Aggiornato */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
 
-        @media (max-width: 768px) {
-            .demo-nav-container a {
-                padding: 0.75rem 1rem;
-                font-size: 8px;
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
             }
         }
+
+        .btn-localtop:hover { transform: scale(1.05); }
 
         /* Mobile Menu Logic */
         #mobile-menu {
@@ -97,22 +114,20 @@
 <body class="selection:bg-stone-100 selection:text-gold">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
     <nav class="fixed w-full z-[100] bg-white/95 backdrop-blur-md border-b border-stone-100 h-20 md:h-24 flex items-center">
         <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center relative">
             
-            <div class="hidden lg:flex space-x-10 text-[10px] uppercase tracking-[0.4em] font-bold text-stone-500">
+            <div class="hidden lg:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
                 <a href="#sposa" class="hover:text-gold transition">Sposa</a>
                 <a href="#sposo" class="hover:text-gold transition">Sposo</a>
                 <a href="#filosofia" class="hover:text-gold transition">Filosofia</a>
-                <a href="#sartoria" class="hover:text-gold transition">Sartoria</a>
+                <a href="#recensioni" class="hover:text-gold transition">Recensioni</a>
+                <a href="#faq" class="hover:text-gold transition">FAQ</a>
             </div>
             
             <div class="text-left md:text-center flex-shrink-0">
@@ -131,15 +146,16 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[110] flex flex-col items-center justify-center space-y-8 text-center lg:hidden">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[110] flex flex-col items-center justify-center space-y-6 text-center lg:hidden">
         <button id="menu-close" class="absolute top-6 right-6 text-stone-900">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#sposa" class="text-2xl font-atelier uppercase tracking-widest text-stone-900" onclick="toggleMenu()">Sposa</a>
-        <a href="#sposo" class="text-2xl font-atelier uppercase tracking-widest text-stone-900" onclick="toggleMenu()">Sposo</a>
-        <a href="#filosofia" class="text-2xl font-atelier uppercase tracking-widest text-stone-900" onclick="toggleMenu()">Filosofia</a>
-        <a href="#sartoria" class="text-2xl font-atelier uppercase tracking-widest text-stone-900" onclick="toggleMenu()">Sartoria</a>
-        <a href="#appuntamento" class="bg-stone-900 text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest" onclick="toggleMenu()">Prenota Prova</a>
+        <a href="#sposa" class="text-xl font-atelier uppercase tracking-widest text-stone-900">Sposa</a>
+        <a href="#sposo" class="text-xl font-atelier uppercase tracking-widest text-stone-900">Sposo</a>
+        <a href="#filosofia" class="text-xl font-atelier uppercase tracking-widest text-stone-900">Filosofia</a>
+        <a href="#recensioni" class="text-xl font-atelier uppercase tracking-widest text-stone-900">Recensioni</a>
+        <a href="#faq" class="text-xl font-atelier uppercase tracking-widest text-stone-900">FAQ</a>
+        <a href="#appuntamento" class="bg-stone-900 text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest">Prenota Prova</a>
     </div>
 
     <section class="relative h-screen flex items-center hero-bg overflow-hidden">
@@ -212,6 +228,50 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-3xl md:text-5xl font-atelier uppercase text-stone-900 tracking-widest italic">Voci di <span class="text-gold">Bellezza</span></h2>
+                <p class="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold italic">L'esperienza di chi ci ha scelto</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-stone-50 border-t-2 border-gold space-y-4">
+                    <div class="flex text-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 italic font-light">"Un'esperienza magica. L'abito era esattamente come lo sognavo, ogni dettaglio curato con una maestria d'altri tempi."</p>
+                    <p class="text-stone-900 font-bold uppercase text-[10px] tracking-widest">— Elena R., Milano</p>
+                </div>
+                <div class="p-8 bg-stone-50 border-t-2 border-gold space-y-4">
+                    <div class="flex text-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 italic font-light">"Professionalità e tessuti di altissima qualità. Lo smoking su misura è perfetto, mi sono sentito impeccabile per tutto il giorno."</p>
+                    <p class="text-stone-900 font-bold uppercase text-[10px] tracking-widest">— Marco V., Torino</p>
+                </div>
+                <div class="p-8 bg-stone-50 border-t-2 border-gold space-y-4">
+                    <div class="flex text-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 italic font-light">"L'atelier è un tempio dell'eleganza. Grazie a tutto lo staff per aver reso il mio percorso così emozionante e sereno."</p>
+                    <p class="text-stone-900 font-bold uppercase text-[10px] tracking-widest">— Sofia L., Roma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="filosofia" class="py-20 md:py-32 bg-white section-padding">
         <div class="max-w-4xl mx-auto px-6 text-center space-y-10 md:space-y-12">
             <h2 class="text-3xl md:text-5xl font-atelier text-stone-900 uppercase italic">Etica <span class="text-gold italic">&</span> Eleganza.</h2>
@@ -258,11 +318,34 @@
             <div class="lg:w-1/2 space-y-8">
                 <h2 class="text-3xl md:text-5xl font-atelier text-gold italic uppercase">Dettagli di <br> Luce.</h2>
                 <p class="text-stone-400 text-base md:text-lg font-light leading-relaxed">Veli in seta, tiare artigianali, gemelli in argento e scarpe sartoriali. Completate il vostro outfit con una selezione di accessori curata dai nostri stylist.</p>
-                <button class="border-b-2 border-gold text-gold font-bold uppercase text-[10px] tracking-[0.4em] pb-2 hover:text-white hover:border-white transition">Vedi Collezione Accessori</button>
+                <button class="border-b-2 border-gold text-gold font-bold uppercase text-[10px] tracking-[0.4em] pb-2 hover:text-white hover:border-white transition non-interactive">Vedi Collezione Accessori</button>
             </div>
             <div class="lg:w-1/2 grid grid-cols-2 gap-4">
                 <img src="assets/img5.jpg" class="w-full object-cover">
                 <img src="assets/img6.jpg" class="w-full mt-8 object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-32 bg-stone-50 section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-3xl md:text-5xl font-atelier uppercase text-stone-900 tracking-widest italic">Domande <span class="text-gold">Frequenti</span></h2>
+                <p class="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold italic">Tutto quello che c'è da sapere</p>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white p-6 md:p-8 border-l-4 border-gold">
+                    <h4 class="font-atelier text-lg text-stone-900 mb-2 italic">Quanto tempo prima devo prenotare il mio abito?</h4>
+                    <p class="text-stone-500 font-light text-sm md:text-base leading-relaxed">Consigliamo di fissare il primo appuntamento almeno 6-8 mesi prima della data del matrimonio per garantire i tempi tecnici della creazione sartoriale.</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 border-l-4 border-gold">
+                    <h4 class="font-atelier text-lg text-stone-900 mb-2 italic">È possibile personalizzare un modello esistente?</h4>
+                    <p class="text-stone-500 font-light text-sm md:text-base leading-relaxed">Assolutamente sì. La nostra natura sartoriale ci permette di modificare ogni dettaglio, dai tessuti alle applicazioni, per rendere l'abito unico.</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 border-l-4 border-gold">
+                    <h4 class="font-atelier text-lg text-stone-900 mb-2 italic">Quante prove sono necessarie?</h4>
+                    <p class="text-stone-500 font-light text-sm md:text-base leading-relaxed">Generalmente prevediamo tre prove principali per assicurarci che la vestibilità sia impeccabile in ogni movimento.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -318,10 +401,6 @@
         </p>
     </footer>
 
-    <div class="wa-widget-demo fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-white border border-stone-100 text-stone-900 p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -340,6 +419,31 @@
 
         trigger.addEventListener('click', toggleMenu);
         close.addEventListener('click', toggleMenu);
+
+        // --- GESTIONE SCROLL ANCORE ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Se siamo su mobile e il menu è aperto, chiudilo
+                    if (menu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

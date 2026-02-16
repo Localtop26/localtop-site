@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verde Vivo | Architettura del Paesaggio & Cura del Giardino - Demo Mode</title>
@@ -24,17 +25,14 @@
         .green-card:hover { transform: translateY(-8px); border-color: #3a5a40; box-shadow: 0 20px 40px rgba(58, 90, 64, 0.1); }
         .organic-shape { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
 
-        /* Blocca interazioni ma lascia attivo l'hamburger per demo */
-        input, select, textarea, .chat-widget-demo {
+        input, select, textarea, button:not(#menu-btn, #close-menu, .anchor-link), form, .non-interactive {
             pointer-events: none !important;
         }
 
-        /* Ottimizzazione Mobile & Font Scaling */
         @media (max-width: 768px) {
             h1 { font-size: clamp(3.5rem, 12vw, 6rem) !important; line-height: 0.9 !important; }
             h2 { font-size: clamp(2.2rem, 8vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            .demo-nav-container a { padding: 0.8rem 1.2rem !important; font-size: 8px !important; }
         }
 
         .demo-nav-container {
@@ -42,15 +40,35 @@
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
 
-        /* Rimosso grayscale come richiesto */
+        .cta-premium {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(15, 118, 110, 0.3);
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .cta-premium {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .cta-premium:hover { transform: scale(1.03); }
         img { filter: none !important; grayscale: 0 !important; }
 
-        /* Menu Mobile Styles */
         #mobile-menu {
             display: none;
             position: fixed;
@@ -63,30 +81,27 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
     </style>
 </head>
 <body class="selection:bg-green-100 selection:text-green-900">
 
     <div id="mobile-menu" class="flex lg:hidden">
-        <button onclick="toggleMenu()" class="absolute top-8 right-8 text-slate-900">
+        <button id="close-menu" onclick="toggleMenu()" class="absolute top-8 right-8 text-slate-900">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#design" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-slate-900">Realizzazione</a>
-        <a href="#manutenzione" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-slate-900">Cura</a>
-        <a href="#potatura" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-slate-900">Potature</a>
-        <a href="#irrigazione" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-slate-900">Sistemi</a>
-        <a href="#filosofia" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-slate-900">Filosofia</a>
-        <a href="#prenota" onclick="toggleMenu()" class="bg-garden-green text-white px-8 py-4 rounded-full font-bold uppercase text-sm">Contatti</a>
+        <a href="#design" class="anchor-link text-xl font-bold uppercase tracking-widest text-slate-900">Realizzazione</a>
+        <a href="#manutenzione" class="anchor-link text-xl font-bold uppercase tracking-widest text-slate-900">Cura</a>
+        <a href="#gallery" class="anchor-link text-xl font-bold uppercase tracking-widest text-slate-900">Lavori</a>
+        <a href="#recensioni" class="anchor-link text-xl font-bold uppercase tracking-widest text-slate-900">Recensioni</a>
+        <a href="#faq" class="anchor-link text-xl font-bold uppercase tracking-widest text-slate-900">FAQ</a>
+        <a href="#prenota" class="anchor-link bg-garden-green text-white px-8 py-4 rounded-full font-bold uppercase text-sm">Contatti</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-premium">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -101,19 +116,20 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
-                <a href="#design" class="hover:text-garden-green transition">Realizzazione</a>
-                <a href="#manutenzione" class="hover:text-garden-green transition">Cura</a>
-                <a href="#potatura" class="hover:text-garden-green transition">Potature</a>
-                <a href="#irrigazione" class="hover:text-garden-green transition">Sistemi</a>
-                <a href="#filosofia" class="hover:text-garden-green transition">Filosofia</a>
+            <div class="hidden lg:flex space-x-6 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="#design" class="anchor-link hover:text-garden-green transition">Realizzazione</a>
+                <a href="#manutenzione" class="anchor-link hover:text-garden-green transition">Cura</a>
+                <a href="#gallery" class="anchor-link hover:text-garden-green transition">Lavori</a>
+                <a href="#recensioni" class="anchor-link hover:text-garden-green transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-garden-green transition">FAQ</a>
+                <a href="#filosofia" class="anchor-link hover:text-garden-green transition">Filosofia</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#prenota" class="hidden md:block bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-garden-green transition-all">
+                <a href="#prenota" class="anchor-link hidden md:block bg-slate-900 text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-garden-green transition-all">
                     Contatti
                 </a>
-                <button onclick="toggleMenu()" class="lg:hidden text-slate-900 p-2">
+                <button id="menu-btn" onclick="toggleMenu()" class="lg:hidden text-slate-900 p-2">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
@@ -130,8 +146,8 @@
                     Progettiamo, realizziamo e curiamo spazi verdi che respirano. Dalla manutenzione del tappeto erboso alle potature d'alto fusto.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-                    <a href="#prenota" class="bg-garden-green text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl transition-all">Contattaci Ora</a>
-                    <a href="#design" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest transition-all">Vedi i Lavori</a>
+                    <a href="#prenota" class="anchor-link bg-garden-green text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest shadow-xl transition-all">Contattaci Ora</a>
+                    <a href="#gallery" class="anchor-link bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-[10px] md:text-xs tracking-widest transition-all">Vedi i Lavori</a>
                 </div>
             </div>
         </div>
@@ -160,22 +176,59 @@
                 <h2 class="text-4xl md:text-5xl font-heading font-bold text-slate-900 uppercase">Cura a <span class="text-garden-green italic">360 Gradi.</span></h2>
                 <p class="text-slate-400 font-bold tracking-widest uppercase text-xs">Mantieni il tuo verde splendente tutto l'anno</p>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-8 md:gap-10">
                 <div class="p-8 md:p-12 green-card text-center">
                     <i data-lucide="scissors" class="w-12 h-12 text-garden-green mx-auto mb-6"></i>
                     <h4 class="text-xl font-bold mb-4 uppercase">Taglio & Bordure</h4>
                     <p class="text-sm text-slate-500">Gestione regolare del prato, rifilatura bordi e rimozione erbe infestanti per un ordine perfetto.</p>
                 </div>
-                <div id="potatura" class="p-8 md:p-12 green-card border-earth/20 bg-emerald-50/30 text-center">
+                <div class="p-8 md:p-12 green-card border-earth/20 bg-emerald-50/30 text-center">
                     <i data-lucide="tree-pine" class="w-12 h-12 text-garden-green mx-auto mb-6"></i>
                     <h4 class="text-xl font-bold mb-4 uppercase">Potature</h4>
                     <p class="text-sm text-slate-500">Esperti in potatura siepi, alberi da frutto e Tree Climbing per piante ad alto fusto in sicurezza.</p>
                 </div>
-                <div id="irrigazione" class="p-8 md:p-12 green-card text-center">
+                <div class="p-8 md:p-12 green-card text-center">
                     <i data-lucide="droplets" class="w-12 h-12 text-garden-green mx-auto mb-6"></i>
                     <h4 class="text-xl font-bold mb-4 uppercase">Irrigazione</h4>
                     <p class="text-sm text-slate-500">Installazione e manutenzione impianti a goccia o a pioggia con centraline smart.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-16 text-center uppercase">I Nostri <span class="text-garden-green italic">Lavori.</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="h-48 md:h-64 rounded-3xl overflow-hidden group"><img src="assets/img4.jpg" class="w-full h-full object-cover transition duration-700"></div>
+                <div class="h-48 md:h-64 rounded-3xl overflow-hidden group mt-4 md:mt-8"><img src="assets/img5.jpg" class="w-full h-full object-cover transition duration-700"></div>
+                <div class="h-48 md:h-64 rounded-3xl overflow-hidden group"><img src="assets/img6.jpg" class="w-full h-full object-cover transition duration-700"></div>
+                <div class="h-48 md:h-64 rounded-3xl overflow-hidden group mt-4 md:mt-8"><img src="assets/img7.jpg" class="w-full h-full object-cover transition duration-700"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 md:py-32 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-earth font-bold uppercase tracking-widest text-[10px]">Feedback</span>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-slate-900 uppercase">Cosa dicono i <span class="text-garden-green">Clienti.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-[2.5rem] bg-white border border-slate-100 space-y-4 shadow-sm">
+                    <div class="flex gap-1 text-yellow-500"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic">"Hanno trasformato il mio giardino abbandonato in un'oasi moderna. Professionalità incredibile."</p>
+                    <p class="font-bold text-sm uppercase tracking-tighter">— Marco R., Grosseto</p>
+                </div>
+                <div class="p-8 rounded-[2.5rem] bg-white border border-slate-100 space-y-4 shadow-sm">
+                    <div class="flex gap-1 text-yellow-500"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic">"Potatura in tree climbing eseguita perfettamente e in totale sicurezza. Squadra molto preparata."</p>
+                    <p class="font-bold text-sm uppercase tracking-tighter">— Elena V., Siena</p>
+                </div>
+                <div class="p-8 rounded-[2.5rem] bg-white border border-slate-100 space-y-4 shadow-sm">
+                    <div class="flex gap-1 text-yellow-500"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-slate-600 italic">"L'impianto di irrigazione smart mi ha salvato il prato durante l'estate. Puntuali e puliti."</p>
+                    <p class="font-bold text-sm uppercase tracking-tighter">— Roberto T., Follonica</p>
                 </div>
             </div>
         </div>
@@ -185,34 +238,28 @@
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div class="space-y-8 md:space-y-10">
                 <h2 class="text-5xl md:text-6xl font-heading font-extrabold leading-none uppercase">Dottori <br><span class="text-green-300 italic font-light">delle Piante.</span></h2>
-                <p class="text-green-100 text-lg font-light leading-relaxed italic border-l-4 border-green-300 pl-8">
-                    La bellezza parte dalla salute. Effettuiamo trattamenti fitosanitari, concimazioni organiche e rigenerazione di manti erbosi degradati.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
-                        <i data-lucide="shield-check" class="text-green-300"></i>
-                        <span class="text-xs font-bold uppercase tracking-widest">Lotta Biologica</span>
-                    </div>
-                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
-                        <i data-lucide="sprout" class="text-green-300"></i>
-                        <span class="text-xs font-bold uppercase tracking-widest">Endoterapia</span>
-                    </div>
+                <p class="text-green-100 text-lg font-light leading-relaxed italic border-l-4 border-green-300 pl-8">La bellezza parte dalla salute. Effettuiamo trattamenti fitosanitari e concimazioni organiche.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><i data-lucide="shield-check" class="text-green-300"></i><span class="text-xs font-bold uppercase tracking-widest">Lotta Biologica</span></div>
+                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><i data-lucide="sprout" class="text-green-300"></i><span class="text-xs font-bold uppercase tracking-widest">Endoterapia</span></div>
                 </div>
             </div>
-            <div class="relative">
-                <img src="assets/img3.jpg" class="rounded-3xl shadow-2xl transition duration-1000" alt="Plant Health">
-            </div>
+            <img src="assets/img3.jpg" class="rounded-3xl shadow-2xl" alt="Plant Health">
         </div>
     </section>
 
-    <section id="gallery" class="py-20 md:py-32 bg-white section-padding">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-16 md:mb-20 text-center uppercase tracking-tighter">I Nostri <span class="text-garden-green italic">Capolavori.</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="h-48 md:h-64 rounded-2xl overflow-hidden group"><img src="assets/img4.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
-                <div class="h-48 md:h-64 rounded-2xl overflow-hidden group mt-4 md:mt-8"><img src="assets/img5.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
-                <div class="h-48 md:h-64 rounded-2xl overflow-hidden group"><img src="assets/img6.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
-                <div class="h-48 md:h-64 rounded-2xl overflow-hidden group mt-4 md:mt-8"><img src="assets/img7.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
+    <section id="faq" class="py-20 md:py-32 bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-heading font-bold text-slate-900 mb-12 text-center uppercase">Domande <span class="text-garden-green">Frequenti</span></h2>
+            <div class="space-y-4">
+                <div class="bg-slate-50 p-6 md:p-8 rounded-[2rem] border border-slate-100">
+                    <h4 class="font-bold text-lg mb-2">Effettuate sopralluoghi gratuiti?</h4>
+                    <p class="text-slate-500 text-sm">Sì, il primo sopralluogo tecnico nelle zone di Grosseto e limitrofi è sempre gratuito.</p>
+                </div>
+                <div class="bg-slate-50 p-6 md:p-8 rounded-[2rem] border border-slate-100">
+                    <h4 class="font-bold text-lg mb-2">Siete assicurati per le potature ad alto fusto?</h4>
+                    <p class="text-slate-500 text-sm">Certamente. Operiamo con certificazioni Tree Climbing e copertura assicurativa completa.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -221,45 +268,29 @@
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 md:gap-20">
             <div class="space-y-12">
                 <h2 class="text-5xl md:text-7xl font-heading font-extrabold leading-none tracking-tighter uppercase italic">Fai <br><span class="text-green-400 underline decoration-green-800 underline-offset-8">Rifiorire</span> il verde.</h2>
-                <div class="space-y-6 md:space-y-8">
-                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Contattaci per informazioni o sopralluoghi:</p>
-                    
-                    <div class="flex items-center gap-6 md:gap-8 p-6 bg-white/5 rounded-[2rem] border border-white/10">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-garden-green text-white rounded-2xl flex items-center justify-center shrink-0"><i data-lucide="map-pin"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Località</p><p class="text-xl md:text-2xl font-bold uppercase">Toscana & Grosseto</p></div>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 p-6 bg-white/5 rounded-[2rem] border border-white/10 non-interactive">
+                        <div class="w-12 h-12 bg-garden-green text-white rounded-2xl flex items-center justify-center shrink-0"><i data-lucide="map-pin"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Località</p><p class="text-xl font-bold uppercase">Toscana & Grosseto</p></div>
                     </div>
-
-                    <div class="flex items-center gap-6 md:gap-8 p-6 bg-white/5 rounded-[2rem] border border-white/10">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shrink-0"><i data-lucide="phone"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">WhatsApp & Call</p><p class="text-xl md:text-2xl font-bold italic">0566 123 456</p></div>
-                    </div>
-
-                    <div class="flex items-center gap-6 md:gap-8 p-6 bg-white/5 rounded-[2rem] border border-white/10">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-white text-slate-900 rounded-2xl flex items-center justify-center shrink-0"><i data-lucide="mail"></i></div>
-                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Scrivici</p><p class="text-xl md:text-2xl font-bold italic">info@verdevivo.it</p></div>
+                    <div class="flex items-center gap-6 p-6 bg-white/5 rounded-[2rem] border border-white/10 non-interactive">
+                        <div class="w-12 h-12 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shrink-0"><i data-lucide="phone"></i></div>
+                        <div><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">WhatsApp</p><p class="text-xl font-bold italic">0566 123 456</p></div>
                     </div>
                 </div>
             </div>
-            
             <div class="flex flex-col justify-center items-center text-center space-y-8 bg-garden-green/20 p-12 rounded-[3rem] border border-white/5">
                 <i data-lucide="sprout" class="w-20 h-20 text-green-400"></i>
                 <h3 class="text-3xl font-heading font-bold uppercase">Pronto ad iniziare?</h3>
-                <p class="text-slate-300 italic">Siamo a tua completa disposizione per trasformare il tuo spazio esterno in un'oasi di benessere.</p>
-                <div class="w-full h-px bg-white/10"></div>
+                <p class="text-slate-300 italic">Siamo a tua completa disposizione per trasformare il tuo spazio esterno.</p>
                 <p class="text-[10px] font-bold uppercase tracking-widest text-green-400">Reperibilità 24/7 per emergenze</p>
             </div>
         </div>
     </section>
 
     <footer class="py-12 bg-slate-950 text-center text-slate-600 border-t border-white/5">
-        <p class="text-[9px] uppercase tracking-[0.5em] font-bold px-4">
-            &copy; 2026 Verde Vivo Giardini | P.IVA 0123456789 | Operatori Certificati Tree Climbing | LocalTop Demo
-        </p>
+        <p class="text-[9px] uppercase tracking-[0.5em] font-bold px-4">&copy; 2026 Verde Vivo Giardini | LocalTop Demo</p>
     </footer>
-
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
-    </div>
 
     <script>
         lucide.createIcons();
@@ -274,6 +305,21 @@
                 document.body.style.overflow = 'hidden';
             }
         }
+
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        if (document.getElementById('mobile-menu').style.display === 'flex') toggleMenu();
+                        const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>

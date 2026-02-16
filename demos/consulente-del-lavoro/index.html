@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio Labor | Strategie e Gestione Risorse Umane - Demo Mode</title>
@@ -29,7 +30,7 @@
         .consult-card { transition: all 0.3s ease; border-top: 4px solid transparent; }
 
         /* Demo Mode Constraints */
-        button:not(#menu-toggle), input, select, textarea {
+        button:not(#menu-toggle), input, select, textarea, .prevent-click {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -56,30 +57,44 @@
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-            width: auto;
         }
+
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            text-decoration: none;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .btn-localtop:hover { transform: scale(1.05); }
+        .btn-localtop:active { transform: scale(0.95); }
 
         @media (max-width: 768px) {
             h1 { font-size: clamp(2.5rem, 12vw, 4.5rem) !important; line-height: 1 !important; }
             h2 { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
             
-            /* Responsive adjustments for buttons on mobile */
             .demo-nav-container {
                 bottom: 1rem;
                 left: 1rem;
-                flex-direction: column;
-                gap: 0.5rem;
-                max-width: 180px;
-            }
-            .demo-nav-container a {
-                padding: 0.6rem 0.8rem !important;
-                font-size: 8px !important;
-                width: 100%;
-                justify-content: flex-start;
             }
         }
     </style>
@@ -87,11 +102,8 @@
 <body class="selection:bg-cyan-50 selection:text-cyan-900">
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -108,14 +120,15 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#payroll" class="hover:text-petrol transition">Payroll</a>
-                <a href="#welfare" class="hover:text-petrol transition">Welfare</a>
-                <a href="#crisi" class="hover:text-petrol transition">Crisi d'Impresa</a>
-                <a href="#audit" class="hover:text-petrol transition">Audit</a>
+                <a href="#payroll" class="anchor-link hover:text-petrol transition">Payroll</a>
+                <a href="#welfare" class="anchor-link hover:text-petrol transition">Welfare</a>
+                <a href="#recensioni" class="anchor-link hover:text-petrol transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-petrol transition">FAQ</a>
+                <a href="#audit" class="anchor-link hover:text-petrol transition">Audit</a>
             </div>
 
             <div class="flex items-center gap-2 md:gap-4">
-                <a href="#contatti" class="hidden sm:inline-block bg-slate-900 text-white px-4 md:px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-petrol transition-all shadow-md">
+                <a href="#contatti" class="anchor-link hidden sm:inline-block bg-slate-900 text-white px-4 md:px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-petrol transition-all shadow-md">
                     Richiedi Check-up
                 </a>
                 <button id="menu-toggle" class="lg:hidden text-slate-900 p-2 pointer-events-auto cursor-pointer flex items-center justify-center">
@@ -129,7 +142,8 @@
         <div class="flex flex-col space-y-8 text-center">
             <a href="#payroll" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Payroll</a>
             <a href="#welfare" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Welfare</a>
-            <a href="#crisi" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Crisi d'Impresa</a>
+            <a href="#recensioni" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Recensioni</a>
+            <a href="#faq" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">FAQ</a>
             <a href="#audit" class="mobile-link text-2xl font-lex font-bold text-slate-900 uppercase">Audit</a>
             <a href="#contatti" class="mobile-link bg-petrol text-white py-4 rounded-sm font-bold uppercase tracking-widest text-sm">Contattaci Ora</a>
         </div>
@@ -145,7 +159,7 @@
                     Oltre l'amministrazione. Supportiamo le aziende nella creazione di relazioni di lavoro sane, efficienti e conformi, ottimizzando il costo del personale attraverso leve strategiche.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#contatti" class="bg-slate-900 text-white px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-petrol transition-all">Consulenza Strategica</a>
+                    <a href="#contatti" class="anchor-link bg-slate-900 text-white px-10 py-5 rounded-sm font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-petrol transition-all">Consulenza Strategica</a>
                 </div>
             </div>
         </div>
@@ -173,6 +187,49 @@
                     <i data-lucide="users" class="w-8 h-8 text-petrol mb-6"></i>
                     <h3 class="text-xl font-lex font-bold mb-4 uppercase">Relazioni Sindacali</h3>
                     <p class="text-sm text-slate-500 italic leading-relaxed">Assistenza in sede di contrattazione collettiva aziendale e gestione dei rapporti con gli enti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-16 md:py-24 bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-lex font-bold text-slate-900 uppercase">Cosa Dicono <span class="text-petrol">di Noi.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic text-sm mb-6">"Professionalità impeccabile nella gestione del nostro piano welfare aziendale. Abbiamo ridotto sensibilmente il turnover."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-slate-900">Marco R. — Milano</p>
+                </div>
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic text-sm mb-6">"Il supporto durante la fase di crisi è stato fondamentale. Grande competenza normativa e sensibilità umana."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-slate-900">Elena V. — Bergamo</p>
+                </div>
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 italic text-sm mb-6">"Il portale HR ha digitalizzato completamente i nostri processi. Le buste paga sono sempre puntuali e precise."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-slate-900">Roberto T. — Monza</p>
                 </div>
             </div>
         </div>
@@ -206,6 +263,26 @@
             </p>
             <div class="pt-8">
                 <span class="text-[10px] font-bold uppercase tracking-[0.4em] border border-slate-200 px-8 py-4 rounded-sm text-slate-400 block sm:inline-block">Consulente Iscritto all'Ordine Nazionale</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-24 bg-slate-50 section-padding">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-lex font-bold text-slate-900 uppercase text-center mb-16">Domande <span class="text-petrol">Frequenti.</span></h2>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-sm border border-slate-200">
+                    <h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide mb-2">Quali documenti servono per il primo check-up?</h4>
+                    <p class="text-slate-500 text-sm">Analizziamo il LUL, i contratti individuali e l'ultimo prospetto ratei per identificare subito aree di ottimizzazione fiscale.</p>
+                </div>
+                <div class="bg-white p-6 rounded-sm border border-slate-200">
+                    <h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide mb-2">Il portale HR è incluso nel servizio payroll?</h4>
+                    <p class="text-slate-500 text-sm">Sì, tutti i nostri clienti accedono alla piattaforma cloud per la distribuzione digitale di cedolini e CU senza costi aggiuntivi.</p>
+                </div>
+                <div class="bg-white p-6 rounded-sm border border-slate-200">
+                    <h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide mb-2">Gestite anche vertenze sindacali complesse?</h4>
+                    <p class="text-slate-500 text-sm">Certamente. Forniamo assistenza tecnica e rappresentanza durante le negoziazioni e i tavoli di conciliazione.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -273,27 +350,46 @@
         // Mobile Menu Logic
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            const isActive = mobileMenu.classList.contains('active');
-            document.body.style.overflow = isActive ? 'hidden' : 'auto';
-            
-            if (isActive) {
-                menuToggle.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
-            } else {
-                menuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
-            }
-            lucide.createIcons();
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
+        const toggleMenu = (forceClose = false) => {
+            if (forceClose) {
                 mobileMenu.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 menuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
-                lucide.createIcons();
+            } else {
+                mobileMenu.classList.toggle('active');
+                const isActive = mobileMenu.classList.contains('active');
+                document.body.style.overflow = isActive ? 'hidden' : 'auto';
+                menuToggle.innerHTML = isActive ? '<i data-lucide="x" class="w-6 h-6"></i>' : '<i data-lucide="menu" class="w-6 h-6"></i>';
+            }
+            lucide.createIcons();
+        };
+
+        menuToggle.addEventListener('click', () => toggleMenu());
+
+        // Optimized Anchor Scroll Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // If mobile link, close menu first
+                    if (this.classList.contains('mobile-link')) {
+                        toggleMenu(true);
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

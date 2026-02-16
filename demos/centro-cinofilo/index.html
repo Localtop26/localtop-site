@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Dog | Centro Cinofilo & Wellness Park - Demo Mode</title>
@@ -22,20 +23,24 @@
         }
         .park-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(74, 103, 65, 0.15); }
 
-        /* Demo Mode: Disabilitazione interattività elementi form/chat */
-        input, select, textarea, .chat-widget-demo {
+        /* Demo Mode: Disabilitazione interattività elementi form e bottoni non funzionali */
+        input, select, textarea, button:not(#hamburger-btn, #close-menu-btn), a:not(.functional-link) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
         }
 
-        /* Correzione Immagini: Rimosso grayscale e filtri */
+        /* Riabilitazione specifica per link di navigazione e CTA principale */
+        .functional-link {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
         img {
             filter: none !important;
             grayscale: 0 !important;
         }
 
-        /* Menu Mobile Overlay */
         #mobile-menu {
             display: none;
             position: fixed;
@@ -55,29 +60,47 @@
             display: flex;
         }
 
-        /* Ottimizzazione Mobile */
         @media (max-width: 768px) {
             h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; }
             h2 { font-size: clamp(2.2rem, 8vw, 4rem) !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
-            
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
         }
 
+        /* Bottone LocalTop Fisso */
         .demo-nav-container {
             position: fixed;
             bottom: 2rem;
             left: 2rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
 
-        /* Prevents horizontal scroll */
+        .btn-activator {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-activator {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .btn-activator:hover {
+            transform: scale(1.05);
+        }
+
         .container-wrapper {
             max-width: 100vw;
             overflow-x: hidden;
@@ -87,22 +110,21 @@
 <body class="selection:bg-moss selection:text-white">
 
     <div id="mobile-menu">
-        <button onclick="toggleMenu()" class="absolute top-8 right-8 text-forest">
+        <button id="close-menu-btn" onclick="toggleMenu()" class="absolute top-8 right-8 text-forest functional-link">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <a href="#percorsi" onclick="toggleMenu()" class="text-2xl font-round font-bold text-forest">Educazione</a>
-        <a href="#servizi" onclick="toggleMenu()" class="text-2xl font-round font-bold text-forest">Asilo & Hotel</a>
-        <a href="#metodo" onclick="toggleMenu()" class="text-2xl font-round font-bold text-forest">Il Metodo</a>
-        <a href="#sport" onclick="toggleMenu()" class="text-2xl font-round font-bold text-forest">Sport</a>
-        <a href="#contatti" onclick="toggleMenu()" class="bg-forest text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest">Prenota Ora</a>
+        <a href="#percorsi" class="text-2xl font-round font-bold text-forest functional-link anchor-link">Educazione</a>
+        <a href="#servizi" class="text-2xl font-round font-bold text-forest functional-link anchor-link">Asilo & Hotel</a>
+        <a href="#recensioni" class="text-2xl font-round font-bold text-forest functional-link anchor-link">Recensioni</a>
+        <a href="#metodo" class="text-2xl font-round font-bold text-forest functional-link anchor-link">Il Metodo</a>
+        <a href="#sport" class="text-2xl font-round font-bold text-forest functional-link anchor-link">Sport</a>
+        <a href="#faq" class="text-2xl font-round font-bold text-forest functional-link anchor-link">FAQ</a>
+        <a href="#contatti" class="bg-forest text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest functional-link anchor-link">Contatti</a>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-activator functional-link">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -119,17 +141,19 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500 italic">
-                <a href="#percorsi" class="hover:text-moss transition">Educazione</a>
-                <a href="#servizi" class="hover:text-moss transition">Asilo & Hotel</a>
-                <a href="#metodo" class="hover:text-moss transition">Il Metodo</a>
-                <a href="#sport" class="hover:text-moss transition">Sport</a>
+                <a href="#percorsi" class="hover:text-moss transition functional-link anchor-link">Educazione</a>
+                <a href="#servizi" class="hover:text-moss transition functional-link anchor-link">Asilo & Hotel</a>
+                <a href="#recensioni" class="hover:text-moss transition functional-link anchor-link">Recensioni</a>
+                <a href="#metodo" class="hover:text-moss transition functional-link anchor-link">Il Metodo</a>
+                <a href="#sport" class="hover:text-moss transition functional-link anchor-link">Sport</a>
+                <a href="#faq" class="hover:text-moss transition functional-link anchor-link">FAQ</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#contatti" class="hidden sm:block bg-forest text-white px-6 md:px-8 py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-moss transition-all shadow-md">
+                <a href="#contatti" class="hidden sm:block bg-forest text-white px-6 md:px-8 py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-moss transition-all shadow-md functional-link anchor-link">
                     Prenota <span class="hidden md:inline">Valutazione</span>
                 </a>
-                <button onclick="toggleMenu()" class="lg:hidden text-forest p-2">
+                <button id="hamburger-btn" onclick="toggleMenu()" class="lg:hidden text-forest p-2 functional-link">
                     <i data-lucide="menu" class="w-8 h-8"></i>
                 </button>
             </div>
@@ -150,7 +174,7 @@
                         Oltre 5000mq di parco dedicato all'educazione e allo svago del tuo cane. Un centro di eccellenza dove la relazione è al primo posto.
                     </p>
                     <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="#percorsi" class="bg-moss text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-2xl hover:bg-forest transition-all">I Nostri Percorsi</a>
+                        <a href="#percorsi" class="bg-moss text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-2xl hover:bg-forest transition-all functional-link anchor-link">I Nostri Percorsi</a>
                     </div>
                 </div>
             </div>
@@ -208,6 +232,50 @@
             </div>
         </section>
 
+        <section id="recensioni" class="py-20 md:py-32 bg-stone-50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-6xl font-round text-forest mb-4">Cosa Dicono <span class="text-moss">di Noi</span></h2>
+                    <p class="text-slate-500 italic">La felicità dei nostri amici a quattro zampe è la nostra missione.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100">
+                        <div class="flex text-yellow-400 mb-4 italic">
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        </div>
+                        <p class="text-slate-600 italic mb-6">"Il miglior centro cinofilo della zona. Il mio Oliver ha fatto passi da gigante con la Puppy Class!"</p>
+                        <p class="font-bold text-forest">Marco R. - Milano</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100">
+                        <div class="flex text-yellow-400 mb-4 italic">
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        </div>
+                        <p class="text-slate-600 italic mb-6">"L'asilo è una salvezza. Personale preparatissimo e spazi incredibili. Lo consiglio a tutti."</p>
+                        <p class="font-bold text-forest">Elena V. - Monza</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100">
+                        <div class="flex text-yellow-400 mb-4 italic">
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                            <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        </div>
+                        <p class="text-slate-600 italic mb-6">"Abbiamo risolto problemi di reattività al guinzaglio che pensavamo impossibili. Grazie di cuore!"</p>
+                        <p class="font-bold text-forest">Giulia S. - Sesto S.G.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="metodo" class="py-20 md:py-32 bg-white">
             <div class="max-w-5xl mx-auto px-6 text-center space-y-12 md:space-y-16">
                 <h2 class="text-3xl md:text-4xl font-round text-forest italic uppercase tracking-widest">Un Metodo Gentile</h2>
@@ -241,16 +309,23 @@
             </div>
         </section>
 
-        <section id="consulenza" class="py-20 md:py-32 bg-white">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="bg-moss rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-20 text-white flex flex-col lg:flex-row items-center gap-10 md:gap-12 shadow-2xl overflow-hidden">
-                    <div class="lg:w-1/2 space-y-6 md:space-y-8">
-                        <h2 class="text-3xl md:text-5xl font-round">Consulenza Pre-Affido</h2>
-                        <p class="text-stone-100 text-lg font-light italic">Stai pensando di adottare un cane? Ti aiutiamo a scegliere la razza o il soggetto del canile più adatto al tuo stile di vita, per partire col piede (e la zampa) giusto.</p>
-                        <button class="bg-forest text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-lg">Inizia da qui</button>
+        <section id="faq" class="py-20 md:py-32 bg-white">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-6xl font-round text-forest mb-4">Domande <span class="text-moss">Frequenti</span></h2>
+                </div>
+                <div class="space-y-6">
+                    <div class="border-b border-stone-100 pb-6">
+                        <h4 class="text-lg font-bold text-forest mb-2">Il mio cane è adulto, può ancora imparare?</h4>
+                        <p class="text-slate-500 font-light italic">Assolutamente sì! I cani imparano a qualsiasi età. I percorsi per adulti si concentrano sulla gestione quotidiana e sulla risoluzione di cattive abitudini.</p>
                     </div>
-                    <div class="lg:w-1/2">
-                        <img src="assets/img4.jpg" class="rounded-[2rem] shadow-xl md:rotate-2 w-full">
+                    <div class="border-b border-stone-100 pb-6">
+                        <h4 class="text-lg font-bold text-forest mb-2">Quali vaccini sono necessari per l'asilo?</h4>
+                        <p class="text-slate-500 font-light italic">È obbligatorio il libretto sanitario in regola con le vaccinazioni annuali, inclusa la tosse dei canili, e il trattamento antiparassitario.</p>
+                    </div>
+                    <div class="border-b border-stone-100 pb-6">
+                        <h4 class="text-lg font-bold text-forest mb-2">Quanto dura una lezione singola?</h4>
+                        <p class="text-slate-500 font-light italic">Le lezioni individuali hanno una durata di circa 60 minuti, per garantire il massimo della concentrazione senza stressare eccessivamente il cane.</p>
                     </div>
                 </div>
             </div>
@@ -267,19 +342,19 @@
                             <div class="text-left"><p class="text-[9px] font-bold uppercase tracking-widest text-slate-400">Sede</p><p class="text-lg font-bold">Via dei Campi 4, Milano Nord</p></div>
                         </div>
                         
-                        <a href="#" class="flex items-center gap-6 p-4 bg-forest text-white rounded-3xl shadow-lg transition hover:bg-moss">
+                        <div class="flex items-center gap-6 p-4 bg-forest text-white rounded-3xl shadow-lg transition">
                             <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white shrink-0"><i data-lucide="phone"></i></div>
                             <div class="text-left"><p class="text-[9px] font-bold uppercase tracking-[0.2em] text-stone-300">Chiama Ora</p><p class="text-lg font-bold">02 123 4567</p></div>
-                        </a>
+                        </div>
 
-                        <a href="#" class="flex items-center gap-6 p-4 bg-[#25D366] text-white rounded-3xl shadow-lg transition opacity-90">
+                        <div class="flex items-center gap-6 p-4 bg-[#25D366] text-white rounded-3xl shadow-lg transition opacity-90">
                             <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white shrink-0"><i data-lucide="message-circle"></i></div>
                             <div class="text-left"><p class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/80">Scrivici su WhatsApp</p><p class="text-lg font-bold">Chatta con noi</p></div>
-                        </a>
+                        </div>
                     </div>
                 </div>
 
-                <form class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl border border-stone-100 space-y-6">
+                <div class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl border border-stone-100 space-y-6">
                     <p class="text-[10px] font-bold uppercase tracking-widest text-moss mb-4 italic text-center">Richiedi informazioni</p>
                     <div class="grid md:grid-cols-2 gap-6">
                         <input type="text" placeholder="Nome" class="w-full p-4 bg-stone-50 border-none rounded-2xl outline-none text-sm">
@@ -296,7 +371,7 @@
                     </select>
                     <textarea placeholder="Descrivici le tue necessità..." rows="3" class="w-full p-4 bg-stone-50 border-none rounded-2xl outline-none text-sm"></textarea>
                     <button class="w-full bg-forest text-white py-6 rounded-3xl font-bold uppercase text-[10px] tracking-widest shadow-lg">Invia Messaggio</button>
-                </form>
+                </div>
             </div>
         </section>
 
@@ -305,10 +380,6 @@
                 &copy; 2026 Alpha Dog Centro Cinofilo Milano | P.IVA 0123456789 | Tutti i diritti riservati
             </p>
         </footer>
-    </div>
-
-    <div class="chat-widget-demo fixed bottom-10 right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-square" class="w-6 h-6"></i>
     </div>
 
     <script>
@@ -323,6 +394,33 @@
                 document.body.style.overflow = 'auto';
             }
         }
+
+        // Gestione Scroll Smooth con Offset e senza # nell'URL
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Chiudi il menu mobile se aperto
+                    const menu = document.getElementById('mobile-menu');
+                    if (menu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AnimaVet | Clinica Veterinaria & Pronto Soccorso 24h - Demo Mode</title>
@@ -62,26 +63,43 @@
         }
         #mobile-menu.active { display: block; }
 
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1rem;
             z-index: 150;
+        }
+        
+        .localtop-btn-fixed {
+            background-color: #0F766E;
+            color: white;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 9999px;
+            min-height: 44px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            text-decoration: none;
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
+            .localtop-btn-fixed {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
             .section-padding { padding-top: 2.5rem; padding-bottom: 2.5rem; }
             .hero-title { font-size: 2.75rem; line-height: 1.1; }
             .main-nav { height: 64px; }
-            /* Bottoni Localtop più piccoli su mobile */
-            .localtop-btn { 
-                padding: 0.5rem 1rem !important; 
-                font-size: 8px !important;
-            }
         }
+
+        /* FAQ Accordion Style (Statico per Demo) */
+        .faq-item { border-bottom: 1px solid #f1f5f9; }
     </style>
 </head>
 <body class="text-slate-700">
@@ -97,13 +115,15 @@
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="#servizi" class="hover:text-sage transition">Servizi</a>
+                <a href="#recensioni" class="hover:text-sage transition">Recensioni</a>
                 <a href="#specialisti" class="hover:text-sage transition">Il Team</a>
+                <a href="#faq" class="hover:text-sage transition">FAQ</a>
                 <a href="#filosofia" class="hover:text-sage transition">Filosofia</a>
                 <a href="#contatti" class="hover:text-sage transition">Contatti</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#contatti" class="hidden sm:inline-block bg-sage text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-all shadow-md">
+                <a href="#contatti" class="hidden sm:inline-block bg-sage text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-all shadow-md no-click">
                     Prenota Visita
                 </a>
                 <button id="menu-toggle" class="lg:hidden p-2 text-slate-900 focus:outline-none">
@@ -115,7 +135,9 @@
         <div id="mobile-menu" class="lg:hidden shadow-xl">
             <div class="flex flex-col p-6 space-y-4 text-center font-bold uppercase tracking-widest text-xs text-slate-600">
                 <a href="#servizi" class="py-2 border-b border-slate-50">Servizi</a>
+                <a href="#recensioni" class="py-2 border-b border-slate-50">Recensioni</a>
                 <a href="#specialisti" class="py-2 border-b border-slate-50">Il Team</a>
+                <a href="#faq" class="py-2 border-b border-slate-50">FAQ</a>
                 <a href="#filosofia" class="py-2 border-b border-slate-50">Filosofia</a>
                 <a href="#contatti" class="py-2">Contatti</a>
             </div>
@@ -123,11 +145,8 @@
     </nav>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="localtop-btn flex items-center justify-center gap-2 bg-[#008080] text-white px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="zap" class="w-3 h-3 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="localtop-btn flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-5 py-3 rounded-full font-bold text-[9px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
-            <i data-lucide="arrow-left" class="w-3 h-3"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="localtop-btn-fixed">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -183,6 +202,38 @@
                     </div>
                     <h3 class="text-xl md:text-2xl font-soft font-bold mb-4 uppercase">Laboratorio Analisi</h3>
                     <p class="text-sm text-slate-500 leading-relaxed font-light italic">Analisi del sangue, urine e citologia interna per risultati in tempo reale durante le emergenze.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-16 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl font-soft font-bold text-slate-900 italic">Dicono di Noi</h2>
+                <p class="text-slate-400 font-bold uppercase tracking-widest text-[10px] mt-4">La fiducia dei proprietari è il nostro orgoglio</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-8 bg-slate-50 rounded-[2rem] space-y-4">
+                    <div class="flex text-sage">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="italic text-slate-600 font-light">"Professionalità e umanità rare. Hanno salvato il mio gatto con un intervento d'urgenza nella notte. Eternamente grata."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-slate-900">— Chiara M., Milano</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-[2rem] space-y-4">
+                    <div class="flex text-sage">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="italic text-slate-600 font-light">"La clinica più avanzata della zona. Il Dr. Verdi è un luminare, ma tutto lo staff è incredibilmente preparato."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-slate-900">— Marco R., Monza</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-[2rem] space-y-4">
+                    <div class="flex text-sage">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="italic text-slate-600 font-light">"Ambiente pulito, moderno e accogliente. Si vede che amano davvero gli animali. Prezzi onesti per la qualità offerta."</p>
+                    <p class="font-bold text-xs uppercase tracking-widest text-slate-900">— Elena V., Sesto S.G.</p>
                 </div>
             </div>
         </div>
@@ -246,6 +297,30 @@
                 </div>
                 <div class="aspect-square bg-slate-50 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden">
                     <img src="assets/img8.jpg" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-32 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-soft font-bold mb-12 text-center italic uppercase">Domande Frequenti</h2>
+            <div class="space-y-4">
+                <div class="faq-item py-6">
+                    <h4 class="font-bold text-slate-900 mb-2">È necessario l'appuntamento per un'urgenza?</h4>
+                    <p class="text-sm text-slate-500 font-light italic">No, il nostro pronto soccorso è attivo 24/7 senza appuntamento, ma una telefonata preventiva ci aiuta a preparare l'accoglienza.</p>
+                </div>
+                <div class="faq-item py-6">
+                    <h4 class="font-bold text-slate-900 mb-2">Effettuate visite a domicilio?</h4>
+                    <p class="text-sm text-slate-500 font-light italic">Sì, per controlli di routine e casi non critici operiamo su appuntamento nell'area urbana di Milano.</p>
+                </div>
+                <div class="faq-item py-6">
+                    <h4 class="font-bold text-slate-900 mb-2">Quali specie trattate nella clinica?</h4>
+                    <p class="text-sm text-slate-500 font-light italic">Oltre a cani e gatti, abbiamo specialisti dedicati agli animali esotici, piccoli mammiferi e rettili.</p>
+                </div>
+                <div class="faq-item py-6">
+                    <h4 class="font-bold text-slate-900 mb-2">Posso restare col mio animale durante gli esami?</h4>
+                    <p class="text-sm text-slate-500 font-light italic">Compatibilmente con le procedure mediche, cerchiamo sempre di favorire la vicinanza del proprietario per ridurre lo stress del pet.</p>
                 </div>
             </div>
         </div>
@@ -317,10 +392,6 @@
         &copy; 2026 AnimaVet Milano | Clinica Autorizzata ASL | P.IVA 0123456789 | LocalTop Demo Mode
     </footer>
 
-    <div class="no-click fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </div>
-
     <script>
         lucide.createIcons();
 
@@ -333,9 +404,34 @@
             mobileMenu.classList.toggle('active');
         });
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
+        // Gestione Scroll Ancore e Menu Mobile
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                // Evita preventDefault se il link non ha target id (es. #)
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Se siamo su mobile e il menu è aperto, chiudilo
+                    if(mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                    }
+
+                    // Scroll fluido con offset
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VoltAir | Energie Rinnovabili & Comfort Termico</title>
@@ -27,7 +28,7 @@
         .text-cool-blue { color: #3b82f6; }
         .bg-cool-blue { background-color: #3b82f6; }
         
-        /* Hero Section - Background a colori senza filtri */
+        /* Hero Section */
         .hero-tech { 
             background: linear-gradient(to right, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.1) 100%), 
             url('assets/img1.jpg'); 
@@ -36,7 +37,6 @@
             min-height: 80vh;
         }
 
-        /* Tipografia Adattiva */
         .hero-title {
             font-size: clamp(2.5rem, 8vw, 6rem);
             line-height: 0.95;
@@ -54,27 +54,47 @@
             box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.1); 
         }
 
-        /* Rimosso grayscale e filtri */
         img {
             filter: none !important;
             transition: transform 0.3s ease;
         }
 
-        /* Sblocco interazioni globale */
-        button, a, input, select, textarea {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
-
-        /* Fix per elementi flottanti demo Localtop */
+        /* Bottone LocalTop Unico */
         .demo-nav-container {
             position: fixed;
             bottom: 20px;
             left: 20px;
             z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        }
+
+        .btn-localtop {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+
+        .btn-localtop:hover {
+            transform: scale(1.05);
+            background-color: #0d665f;
         }
 
         /* Mobile Menu Animation */
@@ -90,16 +110,14 @@
             pointer-events: auto;
         }
 
+        /* Disattivazione elementi interattivi non richiesti */
+        .disabled-element {
+            pointer-events: none !important;
+            cursor: default !important;
+        }
+
         @media (max-width: 640px) {
             .hero-title { font-size: 3rem; }
-            .demo-nav-container { 
-                bottom: 10px; 
-                left: 10px; 
-            }
-            .demo-nav-container a {
-                padding: 10px 16px;
-                font-size: 8px;
-            }
         }
     </style>
 </head>
@@ -118,13 +136,14 @@
             </div>
             
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#fotovoltaico" class="hover:text-energy-green transition">Fotovoltaico</a>
-                <a href="#clima" class="hover:text-cool-blue transition">Climatizzazione</a>
-                <a href="#manutenzione" class="hover:text-slate-900 transition">Manutenzione</a>
+                <a href="#fotovoltaico" class="anchor-link hover:text-energy-green transition">Fotovoltaico</a>
+                <a href="#clima" class="anchor-link hover:text-cool-blue transition">Climatizzazione</a>
+                <a href="#recensioni" class="anchor-link hover:text-slate-900 transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-slate-900 transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#contatti" class="bg-slate-900 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-energy-green transition-all whitespace-nowrap">
+                <a href="#contatti" class="anchor-link bg-slate-900 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest hover:bg-energy-green transition-all whitespace-nowrap">
                     Preventivo
                 </a>
                 <button id="menu-toggle" class="lg:hidden text-slate-900 p-2">
@@ -135,21 +154,19 @@
     </nav>
 
     <div id="mobile-menu" class="fixed inset-0 bg-white z-[90] flex flex-col items-center justify-center space-y-8 lg:hidden">
-        <a href="#fotovoltaico" class="mobile-link text-2xl font-heading font-black uppercase text-slate-900">Fotovoltaico</a>
-        <a href="#clima" class="mobile-link text-2xl font-heading font-black uppercase text-slate-900">Climatizzazione</a>
-        <a href="#manutenzione" class="mobile-link text-2xl font-heading font-black uppercase text-slate-900">Manutenzione</a>
-        <a href="#contatti" class="mobile-link text-2xl font-heading font-black uppercase text-energy-green">Contatti</a>
+        <a href="#fotovoltaico" class="anchor-link text-2xl font-heading font-black uppercase text-slate-900">Fotovoltaico</a>
+        <a href="#clima" class="anchor-link text-2xl font-heading font-black uppercase text-slate-900">Climatizzazione</a>
+        <a href="#recensioni" class="anchor-link text-2xl font-heading font-black uppercase text-slate-900">Recensioni</a>
+        <a href="#faq" class="anchor-link text-2xl font-heading font-black uppercase text-slate-900">FAQ</a>
+        <a href="#contatti" class="anchor-link text-2xl font-heading font-black uppercase text-energy-green">Contatti</a>
         <button id="menu-close" class="mt-8 p-4 bg-slate-100 rounded-full">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
     </div>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
-            <i data-lucide="zap" class="w-4 h-4"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition hover:scale-105">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -164,8 +181,8 @@
                     Soluzioni ad alta efficienza per la tua casa. Riduci le bollette del 70% con il fotovoltaico e vivi nel massimo comfort termico.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#fotovoltaico" class="bg-energy-green text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Sistemi Solari</a>
-                    <a href="#clima" class="bg-white border-2 border-cool-blue text-cool-blue px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-cool-blue hover:text-white transition-all">Climatizzazione</a>
+                    <a href="#fotovoltaico" class="anchor-link bg-energy-green text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all">Sistemi Solari</a>
+                    <a href="#clima" class="anchor-link bg-white border-2 border-cool-blue text-cool-blue px-8 md:px-10 py-4 md:py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-cool-blue hover:text-white transition-all">Climatizzazione</a>
                 </div>
             </div>
         </div>
@@ -219,6 +236,49 @@
         </div>
     </section>
 
+    <section id="recensioni" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-heading font-black text-slate-900 uppercase">Dicono di <span class="text-energy-green italic">Noi.</span></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Installazione impeccabile. Il team è stato velocissimo e finalmente la bolletta è quasi azzerata!"</p>
+                    <p class="font-bold text-slate-900">Marco R. - Milano</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Climatizzatori silenziosissimi. La funzione di monitoraggio app è utilissima per gestire i consumi."</p>
+                    <p class="font-bold text-slate-900">Elena V. - Monza</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-6">"Ottimo servizio di manutenzione. Professionali, puntuali e molto chiari nelle spiegazioni tecniche."</p>
+                    <p class="font-bold text-slate-900">Giuseppe L. - Bergamo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="manutenzione" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-6 text-center max-w-4xl">
             <h2 class="text-3xl md:text-5xl font-heading font-black text-slate-900 uppercase mb-8">Efficienza <span class="text-energy-green italic">Sempre Garantita.</span></h2>
@@ -244,6 +304,26 @@
         </div>
     </section>
 
+    <section id="faq" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl md:text-5xl font-heading font-black text-slate-900 uppercase mb-12 text-center">Domande <span class="text-cool-blue italic">Frequenti.</span></h2>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-slate-900 mb-2">Quanto tempo richiede l'installazione?</h4>
+                    <p class="text-slate-500 text-sm">Per un impianto residenziale standard, i lavori si concludono solitamente in 2-3 giorni lavorativi.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-slate-900 mb-2">Quali incentivi sono disponibili?</h4>
+                    <p class="text-slate-500 text-sm">Gestiamo noi tutte le pratiche per le detrazioni fiscali vigenti e l'eventuale conto termico.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-slate-900 mb-2">L'impianto funziona anche se piove?</h4>
+                    <p class="text-slate-500 text-sm">Sì, i pannelli producono energia anche con luce diffusa, seppur con un rendimento ridotto rispetto al pieno sole.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contatti" class="py-16 md:py-24 bg-slate-50">
         <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-16">
             <div class="space-y-8 md:space-y-12">
@@ -261,12 +341,12 @@
             </div>
             <form class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl space-y-6">
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="IL TUO NOME" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
-                    <input type="text" placeholder="TELEFONO" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
+                    <input type="text" placeholder="IL TUO NOME" class="disabled-element w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
+                    <input type="text" placeholder="TELEFONO" class="disabled-element w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
                 </div>
-                <input type="email" placeholder="EMAIL" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
-                <textarea placeholder="COME POSSIAMO AIUTARTI?" rows="3" class="w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase"></textarea>
-                <button type="submit" class="w-full bg-slate-900 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-widest hover:bg-energy-green transition-all shadow-lg">Invia Richiesta</button>
+                <input type="email" placeholder="EMAIL" class="disabled-element w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase">
+                <textarea placeholder="COME POSSIAMO AIUTARTI?" rows="3" class="disabled-element w-full p-5 bg-slate-50 border-none rounded-2xl outline-none text-[10px] font-bold uppercase"></textarea>
+                <button type="submit" class="disabled-element w-full bg-slate-900 text-white py-6 rounded-full font-black uppercase text-[11px] tracking-widest shadow-lg">Invia Richiesta</button>
             </form>
         </div>
     </section>
@@ -277,10 +357,6 @@
         </p>
     </footer>
 
-    <a href="javascript:void(0)" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
-    </a>
-
     <script>
         lucide.createIcons();
 
@@ -288,20 +364,39 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+            const isActive = mobileMenu.classList.toggle('active');
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
         }
 
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
-        
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+
+        // Scroll Ancore con offset e senza hash nell'URL
+        document.querySelectorAll('.anchor-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Gestione chiusura menu mobile se il link è interno ad esso
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
         });
     </script>

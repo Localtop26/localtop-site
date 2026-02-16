@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EdilCentro | Magazzino Edile & Showroom Arredo Bagno - Demo Mode</title>
@@ -20,7 +21,6 @@
         }
         .section-dark { background-color: #1a1c20; color: #fff; }
         
-        /* Rimozione filtri e gestione hover */
         .card-shadow:hover { 
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
             transform: translateY(-4px); 
@@ -29,10 +29,16 @@
         img { filter: none !important; grayscale: 0 !important; }
 
         /* Blocco Interazioni (Demo Mode) */
-        button, input, select, textarea, .wa-widget-demo, .no-click {
+        input, select, textarea, .no-click {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
+        }
+
+        /* Bottoni non funzionali */
+        .btn-style-only {
+            pointer-events: none !important;
+            cursor: default !important;
         }
 
         /* Mobile Menu Logic */
@@ -44,29 +50,46 @@
             width: 100%;
             background: white;
             z-index: 90;
-            border-bottom: 4px border-orange-construction;
+            border-bottom: 4px solid #f97316;
         }
         #mobile-menu.active { display: block; }
 
-        /* Bottoni Localtop Responsive */
         @media (max-width: 768px) {
-            .demo-nav-container a {
-                padding: 0.75rem 1rem !important;
-                font-size: 8px !important;
-            }
             h1 { font-size: clamp(3.5rem, 12vw, 5.5rem) !important; line-height: 0.9 !important; }
             .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
         }
 
+        /* Bottone Unico LocalTop */
         .demo-nav-container {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
             z-index: 150;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
         }
+        .btn-localtop {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            /* Mobile dimensions */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .btn-localtop {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .btn-localtop:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="selection:bg-orange-500 selection:text-white">
@@ -83,31 +106,33 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-600">
-                <a href="#edilizia" class="hover:text-orange-construction transition">Materiali Edili</a>
-                <a href="#finiture" class="hover:text-orange-construction transition">Pavimenti & Bagni</a>
-                <a href="#ferramenta" class="hover:text-orange-construction transition">Ferramenta</a>
-                <a href="#servizi" class="hover:text-orange-construction transition">Noleggio & Gru</a>
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-slate-600">
+                <a href="#edilizia" class="anchor-link hover:text-orange-construction transition">Materiali</a>
+                <a href="#finiture" class="anchor-link hover:text-orange-construction transition">Showroom</a>
+                <a href="#recensioni" class="anchor-link hover:text-orange-construction transition">Recensioni</a>
+                <a href="#faq" class="anchor-link hover:text-orange-construction transition">FAQ</a>
+                <a href="#servizi" class="anchor-link hover:text-orange-construction transition">Noleggio</a>
             </div>
 
             <div class="flex items-center gap-2 md:gap-4">
-                <a href="#contatti" class="hidden md:block bg-slate-900 text-white px-6 py-3 rounded-sm text-[11px] font-bold uppercase tracking-widest hover:bg-orange-construction transition-all">
+                <a href="#contatti" class="anchor-link hidden md:block bg-slate-900 text-white px-6 py-3 rounded-sm text-[11px] font-bold uppercase tracking-widest hover:bg-orange-construction transition-all">
                     Contatti
                 </a>
-                <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-900 pointer-events-auto" style="pointer-events: auto !important; cursor: pointer !important;">
+                <button onclick="toggleMenu()" class="lg:hidden p-2 text-slate-900" style="cursor: pointer !important;">
                     <i data-lucide="menu" id="menu-icon"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <div id="mobile-menu" class="lg:hidden shadow-xl border-t border-slate-100">
+    <div id="mobile-menu" class="lg:hidden shadow-xl">
         <div class="flex flex-col p-6 space-y-4 text-[12px] font-bold uppercase tracking-widest text-slate-800">
-            <a href="#edilizia" onclick="toggleMenu()" class="py-2 border-b border-slate-50">Materiali Edili</a>
-            <a href="#finiture" onclick="toggleMenu()" class="py-2 border-b border-slate-50">Pavimenti & Bagni</a>
-            <a href="#ferramenta" onclick="toggleMenu()" class="py-2 border-b border-slate-50">Ferramenta</a>
-            <a href="#servizi" onclick="toggleMenu()" class="py-2 border-b border-slate-50">Noleggio & Gru</a>
-            <a href="#contatti" onclick="toggleMenu()" class="py-2 text-orange-construction">Richiedi Info</a>
+            <a href="#edilizia" class="anchor-link py-2 border-b border-slate-50">Materiali Edili</a>
+            <a href="#finiture" class="anchor-link py-2 border-b border-slate-50">Showroom</a>
+            <a href="#recensioni" class="anchor-link py-2 border-b border-slate-50">Recensioni</a>
+            <a href="#faq" class="anchor-link py-2 border-b border-slate-50">FAQ</a>
+            <a href="#servizi" class="anchor-link py-2 border-b border-slate-50">Noleggio & Gru</a>
+            <a href="#contatti" class="anchor-link py-2 text-orange-construction">Contatti</a>
         </div>
     </div>
 
@@ -121,8 +146,8 @@
                     Dal cemento armato alle finiture di lusso. Oltre 20.000 articoli in pronta consegna per l'impresa e il privato.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#edilizia" class="bg-orange-construction text-white px-6 md:px-10 py-4 md:py-5 text-[10px] md:text-[12px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-xl">Magazzino Edile</a>
-                    <a href="#finiture" class="bg-white text-slate-900 px-6 md:px-10 py-4 md:py-5 text-[10px] md:text-[12px] font-bold uppercase tracking-widest hover:bg-orange-construction hover:text-white transition-all">Showroom Bagni</a>
+                    <a href="#edilizia" class="anchor-link bg-orange-construction text-white px-6 md:px-10 py-4 md:py-5 text-[10px] md:text-[12px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-xl">Magazzino Edile</a>
+                    <a href="#finiture" class="anchor-link bg-white text-slate-900 px-6 md:px-10 py-4 md:py-5 text-[10px] md:text-[12px] font-bold uppercase tracking-widest hover:bg-orange-construction hover:text-white transition-all">Showroom Bagni</a>
                 </div>
             </div>
         </div>
@@ -208,27 +233,6 @@
         </div>
     </section>
 
-    <section id="ferramenta" class="py-16 md:py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-6 md:space-y-8">
-                <h2 class="text-4xl md:text-5xl font-heavy text-slate-900">Ferramenta <br>& <span class="text-orange-construction">Tintometro.</span></h2>
-                <p class="text-slate-600 leading-relaxed text-sm md:text-base">Oltre 10.000 referenze di viteria, elettroutensili professionali dei migliori marchi e un sistema tintometrico elettronico per riprodurre qualsiasi colore in pochi minuti.</p>
-                <div class="flex flex-wrap gap-6 md:gap-10 font-heavy text-xl md:text-2xl">
-                    <div class="text-center"><span class="block text-orange-construction text-3xl md:text-4xl italic">BOSCH</span><p class="text-[9px] text-slate-400 tracking-widest font-sans uppercase">Power Tools</p></div>
-                    <div class="text-center"><span class="block text-orange-construction text-3xl md:text-4xl italic">SIKKENS</span><p class="text-[9px] text-slate-400 tracking-widest font-sans uppercase">Paint Expert</p></div>
-                    <div class="text-center"><span class="block text-orange-construction text-3xl md:text-4xl italic">FISCHER</span><p class="text-[9px] text-slate-400 tracking-widest font-sans uppercase">Fixing Systems</p></div>
-                </div>
-            </div>
-            <div class="bg-slate-900 p-2 rounded-sm md:rotate-2 shadow-2xl">
-                <div class="bg-slate-800 p-8 md:p-12 border border-slate-700">
-                    <i data-lucide="wrench" class="text-orange-construction w-10 h-10 md:w-12 md:h-12 mb-6"></i>
-                    <h4 class="text-white font-heavy text-2xl md:text-3xl mb-4">Utensileria Professionale</h4>
-                    <p class="text-slate-400 text-sm font-light italic leading-relaxed">Disponibile vendita e noleggio di martelli pneumatici, carotatrici e betoniere per l'uso professionale intensivo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="servizi" class="py-16 md:py-24 section-dark">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-center">
@@ -257,7 +261,82 @@
         </div>
     </section>
 
-    <section id="contatti" class="py-16 md:py-24 bg-white">
+    <section id="recensioni" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-4xl md:text-5xl font-heavy text-slate-900">Cosa dicono di <span class="text-orange-construction">noi</span></h2>
+                <p class="text-slate-400 font-bold uppercase tracking-widest text-[10px] mt-2">La fiducia dei nostri clienti</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 border border-slate-100 italic">
+                    <div class="flex text-orange-construction mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 text-sm">"Fornitore affidabile da anni. Il servizio di consegna con gru è impeccabile anche in cantieri difficili."</p>
+                    <p class="text-slate-900 font-bold text-xs uppercase">— Marco R., Milano</p>
+                </div>
+                <div class="bg-slate-50 p-8 border border-slate-100 italic">
+                    <div class="flex text-orange-construction mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 text-sm">"Showroom moderno e personale molto preparato. Mi hanno aiutato a scegliere i rivestimenti perfetti per il mio nuovo bagno."</p>
+                    <p class="text-slate-900 font-bold text-xs uppercase">— Elena V., Monza</p>
+                </div>
+                <div class="bg-slate-50 p-8 border border-slate-100 italic">
+                    <div class="flex text-orange-construction mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 text-sm">"Il reparto ferramenta è fornitissimo. Il sistema tintometrico è rapidissimo e precisissimo. Consigliato!"</p>
+                    <p class="text-slate-900 font-bold text-xs uppercase">— Giuseppe T., Rho</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ferramenta" class="py-16 md:py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-6 md:space-y-8">
+                <h2 class="text-4xl md:text-5xl font-heavy text-slate-900">Ferramenta <br>& <span class="text-orange-construction">Tintometro.</span></h2>
+                <p class="text-slate-600 leading-relaxed text-sm md:text-base">Oltre 10.000 referenze di viteria, elettroutensili professionali dei migliori marchi e un sistema tintometrico elettronico per riprodurre qualsiasi colore in pochi minuti.</p>
+                <div class="flex flex-wrap gap-6 md:gap-10 font-heavy text-xl md:text-2xl">
+                    <div class="text-center"><span class="block text-orange-construction text-3xl md:text-4xl italic">BOSCH</span><p class="text-[9px] text-slate-400 tracking-widest font-sans uppercase">Power Tools</p></div>
+                    <div class="text-center"><span class="block text-orange-construction text-3xl md:text-4xl italic">SIKKENS</span><p class="text-[9px] text-slate-400 tracking-widest font-sans uppercase">Paint Expert</p></div>
+                    <div class="text-center"><span class="block text-orange-construction text-3xl md:text-4xl italic">FISCHER</span><p class="text-[9px] text-slate-400 tracking-widest font-sans uppercase">Fixing Systems</p></div>
+                </div>
+            </div>
+            <div class="bg-slate-900 p-2 rounded-sm md:rotate-2 shadow-2xl">
+                <div class="bg-slate-800 p-8 md:p-12 border border-slate-700">
+                    <i data-lucide="wrench" class="text-orange-construction w-10 h-10 md:w-12 md:h-12 mb-6"></i>
+                    <h4 class="text-white font-heavy text-2xl md:text-3xl mb-4">Utensileria Professionale</h4>
+                    <p class="text-slate-400 text-sm font-light italic leading-relaxed">Disponibile vendita e noleggio di martelli pneumatici, carotatrici e betoniere per l'uso professionale intensivo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="border-l-8 border-slate-900 pl-6 mb-12">
+                <h2 class="text-4xl md:text-5xl font-heavy text-slate-900 italic">Domande <span class="text-orange-construction">Frequenti</span></h2>
+            </div>
+            <div class="grid gap-6 max-w-4xl">
+                <div class="p-6 bg-slate-50 border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Effettuate consegne a domicilio?</h4>
+                    <p class="text-slate-500 text-sm italic">Sì, disponiamo di una flotta di mezzi con gru per la consegna di materiali pesanti direttamente in cantiere o al piano.</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">È possibile richiedere un preventivo gratuito?</h4>
+                    <p class="text-slate-500 text-sm italic">Certamente. I nostri tecnici sono a disposizione per l'analisi dei vostri computi metrici e la formulazione di preventivi personalizzati.</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-100">
+                    <h4 class="font-bold text-slate-900 mb-2">Avete materiali in pronta consegna?</h4>
+                    <p class="text-slate-500 text-sm italic">Il nostro magazzino di oltre 5.000mq garantisce la disponibilità immediata dei principali materiali da costruzione e finitura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-16 md:py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-8 md:space-y-12">
                 <h2 class="text-5xl md:text-7xl font-heavy text-slate-900 leading-[0.85] italic">Costruiamo <br><span class="text-orange-construction">Insieme.</span></h2>
@@ -265,7 +344,7 @@
             </div>
             
             <div class="grid gap-4 md:gap-6">
-                <div class="no-click flex items-center gap-6 bg-slate-50 p-6 md:p-8 border-l-4 border-slate-900 shadow-lg">
+                <div class="no-click flex items-center gap-6 bg-white p-6 md:p-8 border-l-4 border-slate-900 shadow-lg">
                     <div class="w-12 h-12 md:w-16 md:h-16 bg-slate-900 text-white flex items-center justify-center shrink-0">
                         <i data-lucide="phone"></i>
                     </div>
@@ -274,7 +353,7 @@
                         <p class="text-lg md:text-xl font-bold uppercase">02 123 4567</p>
                     </div>
                 </div>
-                <div class="no-click flex items-center gap-6 bg-slate-50 p-6 md:p-8 border-l-4 border-[#25D366] shadow-lg">
+                <div class="no-click flex items-center gap-6 bg-white p-6 md:p-8 border-l-4 border-[#25D366] shadow-lg">
                     <div class="w-12 h-12 md:w-16 md:h-16 bg-[#25D366] text-white flex items-center justify-center shrink-0">
                         <i data-lucide="message-circle"></i>
                     </div>
@@ -283,7 +362,7 @@
                         <p class="text-lg md:text-xl font-bold uppercase">333 123 4567</p>
                     </div>
                 </div>
-                <div class="no-click flex items-center gap-6 bg-slate-50 p-6 md:p-8 border-l-4 border-orange-construction shadow-lg">
+                <div class="no-click flex items-center gap-6 bg-white p-6 md:p-8 border-l-4 border-orange-construction shadow-lg">
                     <div class="w-12 h-12 md:w-16 md:h-16 bg-orange-construction text-white flex items-center justify-center shrink-0">
                         <i data-lucide="map-pin"></i>
                     </div>
@@ -301,35 +380,66 @@
     </footer>
 
     <div class="demo-nav-container">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
+        <a href="https://localtop.it/checkout" class="btn-localtop">
+            Attiva il Servizio
         </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl transition-transform hover:scale-105 active:scale-95">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
-        </a>
-    </div>
-
-    <div class="wa-widget-demo fixed bottom-6 md:bottom-10 right-6 md:right-10 bg-[#25D366] text-white p-4 md:p-5 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7"></i>
     </div>
 
     <script>
         lucide.createIcons();
 
+        // Gestione Menu Hamburger
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
             const isOpen = menu.classList.contains('active');
             
             if (isOpen) {
-                menu.classList.remove('active');
-                icon.setAttribute('data-lucide', 'menu');
+                closeMenu();
             } else {
                 menu.classList.add('active');
                 icon.setAttribute('data-lucide', 'x');
+                document.body.style.overflow = 'hidden';
             }
             lucide.createIcons();
         }
+
+        function closeMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.remove('active');
+            icon.setAttribute('data-lucide', 'menu');
+            document.body.style.overflow = '';
+            lucide.createIcons();
+        }
+
+        // Gestione Scroll Ancore
+        document.querySelectorAll('.anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Se cliccato da mobile menu, chiudi prima il menu
+                        if (document.getElementById('mobile-menu').classList.contains('active')) {
+                            closeMenu();
+                        }
+
+                        const offset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>

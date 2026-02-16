@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" class="scroll-smooth">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poggio alle Erbe | Demo Visiva</title>
@@ -15,7 +16,6 @@
         .text-siena { color: #a0522d; }
         .bg-siena { background-color: #a0522d; }
         
-        /* Hero Setup */
         .hero-agri { 
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), 
             url('assets/img1.jpg'); 
@@ -26,7 +26,7 @@
         img { filter: none !important; grayscale: 0 !important; }
 
         /* Blocchi Interazioni Demo */
-        input, select, textarea, .whatsapp-widget, .call-btn {
+        input, select, textarea, .call-btn, form button:not(.cta-stripe) {
             pointer-events: none !important;
             cursor: default !important;
             user-select: none;
@@ -54,28 +54,45 @@
             h1 { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: 1 !important; }
             .hero-container { justify-content: flex-start !important; padding-top: 4rem !important; }
             .hero-agri { height: 90vh; }
-            .floating-demo-nav a { padding: 10px 16px !important; font-size: 8px !important; }
         }
 
+        /* Bottone LocalTop Unico */
         .floating-demo-nav {
             position: fixed;
             bottom: 1.5rem;
             left: 1rem;
             z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
         }
+        .cta-stripe {
+            background-color: #0F766E;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            /* Mobile sizes */
+            padding: 12px 18px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .cta-stripe {
+                padding: 16px 28px;
+                font-size: 15px;
+                min-height: 52px;
+            }
+        }
+        .cta-stripe:hover { transform: scale(1.03); }
     </style>
 </head>
 <body class="selection:bg-olive selection:text-white">
 
     <div class="floating-demo-nav">
-        <a href="https://localtop.it/checkout" class="flex items-center justify-center gap-2 bg-[#008080] text-white px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
-            <i data-lucide="zap" class="w-4 h-4 text-white"></i> INIZIA ORA
-        </a>
-        <a href="https://localtop.it/esempi-di-siti/" class="flex items-center justify-center gap-2 bg-white border-2 border-[#008080] text-[#008080] px-6 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-2xl hover:scale-105 transition-transform">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Torna agli Esempi
+        <a href="https://localtop.it/checkout" class="cta-stripe">
+            Attiva il Servizio
         </a>
     </div>
 
@@ -91,11 +108,12 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-stone-500">
+            <div class="hidden lg:flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-stone-500">
                 <a href="#ospitalita" class="hover:text-olive transition">Ospitalità</a>
                 <a href="#ristorante" class="hover:text-olive transition">Ristorante</a>
-                <a href="#prodotti" class="hover:text-olive transition">I Nostri Prodotti</a>
-                <a href="#attivita" class="hover:text-olive transition">Esperienze</a>
+                <a href="#prodotti" class="hover:text-olive transition">Prodotti</a>
+                <a href="#recensioni" class="hover:text-olive transition">Recensioni</a>
+                <a href="#faq" class="hover:text-olive transition">FAQ</a>
             </div>
 
             <div class="flex items-center gap-3">
@@ -111,11 +129,12 @@
         <button id="close-menu" class="absolute top-6 right-6 p-2 text-stone-900" style="pointer-events: auto !important;">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <div class="flex flex-col items-center gap-8">
+        <div class="flex flex-col items-center gap-6">
             <a href="#ospitalita" class="mobile-link text-3xl font-serif italic text-stone-900">Ospitalità</a>
             <a href="#ristorante" class="mobile-link text-3xl font-serif italic text-stone-900">Ristorante</a>
             <a href="#prodotti" class="mobile-link text-3xl font-serif italic text-stone-900">I Nostri Prodotti</a>
-            <a href="#attivita" class="mobile-link text-3xl font-serif italic text-stone-900">Esperienze</a>
+            <a href="#recensioni" class="mobile-link text-3xl font-serif italic text-stone-900">Recensioni</a>
+            <a href="#faq" class="mobile-link text-3xl font-serif italic text-stone-900">FAQ</a>
             <a href="#contatti" class="mobile-link mt-4 bg-siena text-white px-10 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest">Contattaci</a>
         </div>
     </div>
@@ -180,7 +199,7 @@
         </div>
     </section>
 
-    <section id="prodotti" class="py-16 md:py-32 bg-white">
+    <section id="prodotti" class="py-16 md:py-32 bg-stone-50">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             <div class="space-y-8 text-center lg:text-left">
                 <h2 class="text-4xl md:text-6xl font-serif italic text-stone-900">Porta a Casa <br><span class="text-siena">un pezzo di noi.</span></h2>
@@ -193,31 +212,60 @@
         </div>
     </section>
 
-    <section id="attivita" class="py-16 md:py-32 bg-stone-900 text-stone-100">
-        <div class="max-w-7xl mx-auto px-6 text-center space-y-16">
-            <h2 class="text-3xl md:text-5xl font-serif italic tracking-widest uppercase">Vivere la <span class="text-olive">Campagna.</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                <div class="space-y-3">
-                    <i data-lucide="cooking-pot" class="mx-auto text-siena w-8 h-8"></i>
-                    <h4 class="font-bold text-[9px] uppercase tracking-widest">Cooking Class</h4>
+    <section id="recensioni" class="py-16 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">Dicono di <span class="text-olive">Noi.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-stone-50 p-8 rounded-3xl border border-stone-100">
+                    <div class="flex gap-1 text-siena mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 italic mb-6">"Un paradiso terrestre. La pasta fatta in casa ha il sapore di una volta. Torneremo sicuramente."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-stone-400">— Marco R., Milano</p>
                 </div>
-                <div class="space-y-3">
-                    <i data-lucide="grape" class="mx-auto text-siena w-8 h-8"></i>
-                    <h4 class="font-bold text-[9px] uppercase tracking-widest">Wine Tour</h4>
+                <div class="bg-stone-50 p-8 rounded-3xl border border-stone-100">
+                    <div class="flex gap-1 text-siena mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 italic mb-6">"Dormire nel silenzio assoluto della campagna non ha prezzo. Colazione bio indimenticabile."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-stone-400">— Elena V., Firenze</p>
                 </div>
-                <div class="space-y-3">
-                    <i data-lucide="bike" class="mx-auto text-siena w-8 h-8"></i>
-                    <h4 class="font-bold text-[9px] uppercase tracking-widest">E-Bike</h4>
-                </div>
-                <div class="space-y-3">
-                    <i data-lucide="tractor" class="mx-auto text-siena w-8 h-8"></i>
-                    <h4 class="font-bold text-[9px] uppercase tracking-widest">Fattoria</h4>
+                <div class="bg-stone-50 p-8 rounded-3xl border border-stone-100">
+                    <div class="flex gap-1 text-siena mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-stone-600 italic mb-6">"Esperienza autentica. Abbiamo partecipato alla raccolta delle olive, un ricordo bellissimo."</p>
+                    <p class="font-bold text-[10px] uppercase tracking-widest text-stone-400">— Thomas L., Berlino</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-16 md:py-32 bg-stone-50">
+    <section id="faq" class="py-16 md:py-32 bg-stone-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif italic text-stone-900">Domande <span class="text-siena">Frequenti.</span></h2>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-2xl border border-stone-200">
+                    <h4 class="font-bold text-[11px] uppercase tracking-widest text-olive mb-2">È possibile acquistare i prodotti in loco?</h4>
+                    <p class="text-sm text-stone-500 italic">Certamente, abbiamo una piccola bottega dove vendiamo olio, vino e conserve di nostra produzione.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-stone-200">
+                    <h4 class="font-bold text-[11px] uppercase tracking-widest text-olive mb-2">Accettate animali domestici?</h4>
+                    <p class="text-sm text-stone-500 italic">Siamo amanti degli animali! I vostri amici a quattro zampe sono i benvenuti previa comunicazione.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-stone-200">
+                    <h4 class="font-bold text-[11px] uppercase tracking-widest text-olive mb-2">Qual è l'orario del ristorante?</h4>
+                    <p class="text-sm text-stone-500 italic">Il ristorante è aperto a cena dal giovedì alla domenica. La prenotazione è sempre obbligatoria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-16 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 md:gap-20">
             <div class="space-y-10 text-center lg:text-left">
                 <h2 class="text-5xl md:text-7xl font-serif italic text-stone-900 leading-none tracking-tighter uppercase">Scrivici <br><span class="text-siena font-normal italic">in Fattoria.</span></h2>
@@ -241,7 +289,7 @@
                     <input type="email" placeholder="EMAIL" class="w-full p-4 border-b border-stone-100 outline-none text-[10px] font-bold uppercase tracking-widest">
                 </div>
                 <textarea placeholder="DETTAGLI..." rows="3" class="w-full p-4 border-b border-stone-100 outline-none text-[10px] font-bold uppercase tracking-widest"></textarea>
-                <button class="w-full bg-siena text-white py-6 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl">Invia Messaggio (Demo)</button>
+                <button type="button" class="w-full bg-siena text-white py-6 text-[10px] font-black uppercase tracking-[0.4em] shadow-xl">Invia Messaggio (Demo)</button>
             </form>
         </div>
     </section>
@@ -250,31 +298,48 @@
         &copy; 2026 Poggio alle Erbe | Demo Mode per LocalTop
     </footer>
 
-    <div class="whatsapp-widget fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-    </div>
-
     <script>
         lucide.createIcons();
+        
         const openBtn = document.getElementById('open-menu');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
 
+        // Gestione Menu Mobile
         openBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
-        closeBtn.addEventListener('click', () => {
+        const closeMobileMenu = () => {
             mobileMenu.classList.remove('active');
             document.body.style.overflow = 'auto';
-        });
+        };
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        closeBtn.addEventListener('click', closeMobileMenu);
+
+        // Gestione Scroll Smooth con Offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Se siamo su mobile, chiudiamo il menu prima
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

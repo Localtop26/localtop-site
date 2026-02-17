@@ -2932,7 +2932,7 @@ body.home .divider{
   margin:34px 0;
 }
 
-body.home main.page > .container > section > h2{
+body.home main.page > .container > section:not(.pricingWrap) > h2{
   margin-bottom:14px;
 }
 

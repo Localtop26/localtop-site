@@ -605,16 +605,6 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
 
 /* Home hero: on small screens keep the descriptive text wide and readable */
 @media(max-width:640px){
-  /* Home hero: no crop + 60% viewport height */
-  .home .heroSplit .heroMedia{
-    height:60vh;
-    max-height:none;
-  }
-  .home .heroSideImg{
-    height:100%;
-    object-fit:contain;
-  }
-
   /* Home hero: reduce only the main title (lead) on mobile */
   .home .heroTitleLead{
     font-size:26px;

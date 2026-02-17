@@ -2949,7 +2949,7 @@ body.home main.page > .container > section > h2{
 
 /* === HOME: blocco prezzo (99€ + annuale + payoff) === */
 .pricingWrap h2{
-  margin-bottom:4px;
+  margin-bottom:2px;
 }
 .pricingWrap p{
   margin:0;

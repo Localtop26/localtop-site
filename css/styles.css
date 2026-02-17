@@ -748,7 +748,7 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     .ba ul li{margin:6px 0}
 
     /* Pricing teaser */
-    .pricingWrap{padding:6px 0 0}
+    .pricingWrap{padding:6px 0 0; margin-bottom:18px}
     .pricingGrid{display:grid; gap:14px; margin-top:16px}
     @media(min-width:980px){ .pricingGrid{grid-template-columns:repeat(3,1fr); gap:16px} }
     .planCard{
@@ -2949,19 +2949,22 @@ body.home main.page > .container > section > h2{
 
 /* === HOME: blocco prezzo (99€ + annuale + payoff) === */
 .pricingWrap h2{
-  margin-bottom:6px;
+  margin-bottom:4px;
 }
-
 .pricingWrap p{
   margin:0;
 }
 
 .pricingWrap p + p{
-  margin-top:8px;
+  margin-top:6px;
 }
 
 /* Annuale leggermente più discreto */
 .pricingWrap p:first-of-type{
   font-weight:600;
   color: var(--muted);
+}
+
+.pricingSingle{
+  margin-top:0;
 }

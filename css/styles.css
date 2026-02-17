@@ -2949,7 +2949,7 @@ body.home main.page > .container > section > h2{
 
 /* === HOME: blocco prezzo (99€ + annuale + payoff) === */
 .pricingWrap h2{
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 
 .pricingWrap p{
@@ -2957,11 +2957,11 @@ body.home main.page > .container > section > h2{
 }
 
 .pricingWrap p + p{
-  margin-top:18px;
+  margin-top:8px;
 }
 
 /* Annuale leggermente più discreto */
 .pricingWrap p:first-of-type{
-  font-weight:700;
+  font-weight:600;
   color: var(--muted);
 }

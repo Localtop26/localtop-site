@@ -432,7 +432,7 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
 /* Hero split (Home) */
 .heroSplit .heroGrid{
   gap:0;
-  align-items:start;
+  align-items:stretch;
   justify-items:stretch;
 }
 .heroMedia{
@@ -513,7 +513,7 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
 
 /* Home: tablet portrait should behave like a "bigger mobile".
    Keep the mobile layout, but slightly increase hero typography for readability. */
-@media (min-width: 760px) and (max-width: 979px) and (orientation: portrait){
+@media (min-width: 760px) and (max-width: 979px){
   /* Tablet portrait = "mobile XL"
      Layout stays mobile (hamburger + single column), but scale up type and spacing
      for better readability on 8"–9" devices. */
@@ -544,17 +544,17 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     font-size:16px;
   }
 
-  /* Home hero */
-  /* Tablet portrait: hero image should take ~70% of viewport height, without crop */
+  /* Home hero: no crop + 60% viewport height */
   .home .heroSplit .heroMedia{
-    height:70vh;
-    max-height:70vh;
+    height:60vh;
+    max-height:none;
   }
-  .home .heroSplit .heroSideImg{
+  .home .heroSideImg{
     height:100%;
     object-fit:contain;
   }
-  .home .heroTitleLead{ font-size: calc(clamp(29px, 4.2vw, 49px) + 8px); }
+
+.home .heroTitleLead{ font-size: calc(clamp(29px, 4.2vw, 49px) + 8px); }
   .home .heroTitleSub{ font-size: calc(clamp(24px, 3.6vw, 44px) + 6px); }
   .heroSub{ font-size:17px; }
   .heroCtas{ gap:12px; margin-top:18px; }
@@ -604,15 +604,24 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     .heroSub strong{color:#374151;font-weight:900}
 
 /* Home hero: on small screens keep the descriptive text wide and readable */
-@media (max-width:640px){
-  /* Keep CTAs visible, and avoid image crop */
-  .home .heroSplit .heroMedia{ max-height:300px; }
-  .home .heroSplit .heroSideImg{ height:100%; object-fit:contain; }
+@media(max-width:640px){
+  /* Home hero: no crop + 60% viewport height */
+  .home .heroSplit .heroMedia{
+    height:60vh;
+    max-height:none;
+  }
+  .home .heroSideImg{
+    height:100%;
+    object-fit:contain;
+  }
 
-  /* Reduce only the main title (lead) on mobile */
-  .home .heroTitleLead{ font-size:26px; line-height:1.12; }
+  /* Home hero: reduce only the main title (lead) on mobile */
+  .home .heroTitleLead{
+    font-size:26px;
+    line-height:1.12;
+  }
 
-  .home .heroSplit .heroSub{
+  .heroSplit .heroSub{
     max-width:none;
     text-align:center;
     margin-left:auto;

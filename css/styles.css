@@ -545,10 +545,12 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
   }
 
   /* Home hero */
-  /* Limit hero image height on tablet portrait to keep CTAs visible */
+  /* Tablet portrait: avoid cropping the hero image.
+     The image should keep its natural aspect ratio ("bigger mobile"), without forced height caps. */
   .home .heroSplit .heroMedia{
-    max-height: clamp(720px, 80vh, 900px);
+    max-height:none;
   }
+  .home .heroSplit .heroSideImg{ height:auto; }
   .home .heroTitleLead{ font-size: calc(clamp(29px, 4.2vw, 49px) + 8px); }
   .home .heroTitleSub{ font-size: calc(clamp(24px, 3.6vw, 44px) + 6px); }
   .heroSub{ font-size:17px; }
@@ -604,7 +606,6 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
   .home .heroSplit .heroMedia{
     max-height:300px;
   }
-
   /* Home hero: reduce only the main title (lead) on mobile */
   .home .heroTitleLead{
     font-size:26px;
@@ -619,15 +620,6 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
     padding-inline:8px;
   }
 }
-
-/* Large/tall devices that still fall under max-width:640px (e.g. some tablets with UI scale)
-   allow a taller hero image to avoid aggressive cropping. */
-@media(max-width:640px) and (min-height:900px){
-  .home .heroSplit .heroMedia{
-    max-height: clamp(520px, 80vh, 900px);
-  }
-}
-
 
 /* Hero centered copy (Home) */
 .heroCenter .heroContent{ text-align:center; }

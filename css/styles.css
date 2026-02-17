@@ -603,12 +603,9 @@ p{margin:0 0 12px;color:#374151;font-weight:600;line-height:1.5}
   /* Home hero: limit image height so CTAs stay above the fold */
   .home .heroSplit .heroMedia{
     max-height:300px;
-  
-  .home .heroTitleLead{
-    font-size:31px;
   }
 
-}
+
 
   /* Home hero: reduce only the main title (lead) on mobile */
   .home .heroTitleLead{
